@@ -206,8 +206,8 @@ window.forceUpdateCounter = function() {
     }, 100);
 };
 
-// ========== КНОПКА "ПОДЕЛИТЬСЯ" ==========
-function shareApp() {
+// ========== КНОПКА "ПОДЕЛИТЬСЯ" (ФУНКЦИЯ ГЛОБАЛЬНАЯ) ==========
+window.shareApp = function() {
     const url = window.location.href;
     const title = 'Deutsch-Meister — учите немецкий язык!';
     const text = '🇩🇪 Бесплатное приложение для изучения немецкого языка: карточки, тесты, тренажёр и грамматика. Попробуйте!';
@@ -332,7 +332,7 @@ function shareApp() {
     
     document.getElementById('shareCloseBtn').onclick = () => modal.remove();
     modal.onclick = (e) => { if (e.target === modal) modal.remove(); };
-}
+};
 
 // ========== МОБИЛЬНОЕ МЕНЮ (ГАМБУРГЕР) ==========
 
@@ -506,11 +506,14 @@ async function init() {
         await loadSentences();
         await loadGrammarData();
         
+        // ===== ИНИЦИАЛИЗАЦИЯ КНОПОК МЕНЮ =====
         document.querySelectorAll('.mode-btn').forEach(function(btn) {
             btn.onclick = function() { setMode(btn.dataset.mode); };
         });
-        document.querySelectorAll('[data-level]').forEach(function(btn) {
-            btn.onclick = function() { setLevel(btn.dataset.level); };
+        
+        // ===== ИНИЦИАЛИЗАЦИЯ КНОПКИ "ПОДЕЛИТЬСЯ" (ТОЧНО ТАК ЖЕ, КАК КНОПКИ МЕНЮ) =====
+        document.querySelectorAll('.share-btn').forEach(function(btn) {
+            btn.onclick = function() { window.shareApp(); };
         });
         
         document.querySelectorAll('[data-level]').forEach(function(btn) {
@@ -526,12 +529,6 @@ async function init() {
         setTimeout(function() {
             updateCounter();
         }, 1000);
-        
-        // ===== КНОПКА "ПОДЕЛИТЬСЯ" — ПРОСТО НАЗНАЧАЕМ ОБРАБОТЧИК =====
-        var shareDesktop = document.getElementById('shareBtnDesktop');
-        var shareMobile = document.getElementById('shareBtnMobile');
-        if (shareDesktop) shareDesktop.onclick = shareApp;
-        if (shareMobile) shareMobile.onclick = shareApp;
         
         setInterval(function() {
             if (window.isAuthenticated && window.isAuthenticated()) {

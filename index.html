@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, viewport-fit=cover">
+    
+    <title>Deutsch-Meister</title>
+    
+    <link rel="manifest" href="/Deutsch-Meister/manifest.json">
+    
+    <link rel="icon" type="image/svg+xml" href="/Deutsch-Meister/icons/icon.svg">
+    <link rel="icon" type="image/png" sizes="192x192" href="/Deutsch-Meister/icons/icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="/Deutsch-Meister/icons/icon-512x512.png">
+    <link rel="apple-touch-icon" href="/Deutsch-Meister/icons/icon-192x192.png">
+    <link rel="apple-touch-icon-precomposed" href="/Deutsch-Meister/icons/icon-192x192.png">
+    
+    <meta name="theme-color" content="#3B6FE0">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-title" content="Deutsch-Meister">
+    <meta name="application-name" content="Deutsch-Meister">
+    <meta name="msapplication-TileColor" content="#3B6FE0">
+    <meta name="msapplication-TileImage" content="/Deutsch-Meister/icons/icon-144x144.png">
+    
+    <link rel="stylesheet" href="/Deutsch-Meister/css/style.css">
+    
+    <style>
+        .app { 
+            opacity: 0; 
+            transition: opacity 0.3s ease;
+            display: none;
+        }
+        .app.loaded { 
+            opacity: 1; 
+            display: flex;
+        }
+        
+        #loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #F8F8F8;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 999999;
+            transition: opacity 0.5s ease;
+        }
+        #loader.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+        
+        .loader-spinner {
+            width: 60px;
+            height: 60px;
+            border: 5px solid #E0E0E0;
+            border-top: 5px solid #3B6FE0;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .loader-text {
+            margin-top: 20px;
+            font-size: 16px;
+            color: #666;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+        }
+        
+        .loader-logo {
+            font-size: 48px;
+            margin-bottom: 15px;
+        }
+        
+        .loader-dots::after {
+            content: '';
+            animation: dots 1.2s steps(4, end) infinite;
+        }
+        
+        @keyframes dots {
+            0% { content: ''; }
+            25% { content: '.'; }
+            50% { content: '..'; }
+            75% { content: '...'; }
+            100% { content: ''; }
+        }
+
+        .install-banner {
+            display: none;
+            background: #3B6FE0;
+            color: white;
+            padding: 12px 16px;
+            border-radius: 12px;
+            margin: 10px 0;
+            text-align: center;
+            font-weight: bold;
+            font-size: 14px;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(59,111,224,0.3);
+            transition: all 0.2s;
+        }
+        .install-banner:hover {
+            transform: scale(1.02);
+            box-shadow: 0 6px 16px rgba(59,111,224,0.4);
+        }
+        .install-banner .sub {
+            font-size: 11px;
+            font-weight: normal;
+            opacity: 0.8;
+            display: block;
+            margin-top: 4px;
+        }
+        
+        @media (max-width: 768px) {
+            .install-banner {
+                display: block;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div id="loader">
+    <div class="loader-logo">🇩🇪</div>
+    <div class="loader-spinner"></div>
+    <div class="loader-text">Загрузка<span class="loader-dots"></span></div>
+</div>
+
+<div class="app">
+    <div class="sidebar">
+        <div class="sidebar-content">
+            <button id="loginBtn" class="btn btn-login" style="margin-bottom: 10px;">🔐 Войти</button>
+            <div id="userInfo" style="display: none; margin: 10px 0; padding: 8px; background: #E8F0FE; border-radius: 8px; text-align: center; font-size: 12px;"></div>
+            <div class="levels-container" id="levelsContainer">
+                <button data-level="A1" class="btn btn-level">A1</button>
+                <button data-level="A2" class="btn btn-level">A2</button>
+                <button data-level="B1" class="btn btn-level">B1</button>
+                <button data-level="B2" class="btn btn-level">B2</button>
+                <button data-level="C1" class="btn btn-level">C1</button>
+            </div>
+            <button data-mode="grammar" class="btn mode-btn">ГРАММАТИКА</button>
+            <button data-mode="cards" class="btn mode-btn">КАРТОЧКИ</button>
+            <button data-mode="quiz" class="btn mode-btn">ТЕСТ</button>
+            <button data-mode="sentences" class="btn mode-btn">ТРЕНАЖЁР</button>
+            
+            <div class="install-banner" id="installBanner">
+                📱 Установить приложение
+                <span class="sub">Быстрый доступ с главного экрана</span>
+            </div>
+            
+            <button id="shareBtnDesktop" class="btn" style="margin-top: 10px; background: #4CAF50; color: white; border-color: #388E3C;">🔗 ПОДЕЛИТЬСЯ</button>
+        </div>
+    </div>
+    
+    <div class="main">
+        <div class="top-bar">
+            <div class="top-bar-left">
+                <button class="hamburger-btn" id="hamburgerBtn">☰</button>
+                <span id="modeIndicator" class="mode-indicator">Грамматика A1</span>
+            </div>
+            <span id="counter">Загрузка...</span>
+        </div>
+        <div class="content" id="content"></div>
+    </div>
+</div>
+
+<div class="menu-overlay" id="menuOverlay"></div>
+<div class="mobile-menu" id="mobileMenu">
+    <div class="mobile-menu-header">
+        <h3>📚 Deutsch-Meister</h3>
+        <button class="close-menu-btn" id="closeMenuBtn">✕</button>
+    </div>
+    <div class="sidebar-content">
+        <button id="loginBtnMobile" class="btn btn-login-mobile" style="margin-bottom: 10px;">🔐 Войти</button>
+        <div id="userInfoMobile" style="display: none; margin: 10px 0; padding: 8px; background: #E8F0FE; border-radius: 8px; text-align: center; font-size: 12px;"></div>
+        <div class="levels-container" id="levelsContainerMobile">
+            <button data-level="A1" class="btn btn-level">A1</button>
+            <button data-level="A2" class="btn btn-level">A2</button>
+            <button data-level="B1" class="btn btn-level">B1</button>
+            <button data-level="B2" class="btn btn-level">B2</button>
+            <button data-level="C1" class="btn btn-level">C1</button>
+        </div>
+        <button data-mode="grammar" class="btn mode-btn">ГРАММАТИКА</button>
+        <button data-mode="cards" class="btn mode-btn">КАРТОЧКИ</button>
+        <button data-mode="quiz" class="btn mode-btn">ТЕСТ</button>
+        <button data-mode="sentences" class="btn mode-btn">ТРЕНАЖЁР</button>
+        
+        <div class="install-banner" id="installBannerMobile">
+            📱 Установить приложение
+            <span class="sub">Быстрый доступ с главного экрана</span>
+        </div>
+        
+        <button id="shareBtnMobile" class="btn" style="margin-top: 10px; background: #4CAF50; color: white; border-color: #388E3C;">🔗 ПОДЕЛИТЬСЯ</button>
+    </div>
+</div>
+
+<script src="/Deutsch-Meister/js/config.js"></script>
+<script src="/Deutsch-Meister/js/utils.js"></script>
+<script src="/Deutsch-Meister/js/logger.js"></script>
+<script src="/Deutsch-Meister/js/containerManager.js"></script>
+<script src="/Deutsch-Meister/js/carousel.js"></script>
+<script src="/Deutsch-Meister/js/wordsManager.js"></script>
+<script src="/Deutsch-Meister/js/sentencesManager.js"></script>
+<script src="/Deutsch-Meister/js/cardsMode.js"></script>
+<script src="/Deutsch-Meister/js/quizMode.js"></script>
+<script src="/Deutsch-Meister/js/sentencesMode.js"></script>
+<script src="/Deutsch-Meister/js/grammarMode.js"></script>
+<script src="/Deutsch-Meister/js/app.js"></script>
+<script src="/Deutsch-Meister/js/auth.js"></script>
+<script src="/Deutsch-Meister/js/userService.js"></script>
+<script src="/Deutsch-Meister/js/activityTracker.js"></script>
+<script src="/Deutsch-Meister/js/adminUI.js"></script>
+
+<script>
+    function isMobile() {
+        return window.innerWidth <= 768;
+    }
+
+    if ('serviceWorker' in navigator) {
+        window.addEventListener('load', function() {
+            navigator.serviceWorker.register('/Deutsch-Meister/sw.js')
+                .then(function(registration) {
+                    console.log('✅ Service Worker зарегистрирован:', registration.scope);
+                })
+                .catch(function(error) {
+                    console.log('❌ Ошибка регистрации Service Worker:', error);
+                });
+        });
+    }
+    
+    let deferredPrompt = null;
+    
+    window.addEventListener('beforeinstallprompt', function(e) {
+        e.preventDefault();
+        deferredPrompt = e;
+        if (isMobile()) {
+            document.querySelectorAll('.install-banner').forEach(function(banner) {
+                banner.style.display = 'block';
+            });
+        }
+    });
+    
+    document.querySelectorAll('.install-banner').forEach(function(banner) {
+        banner.addEventListener('click', function() {
+            if (deferredPrompt) {
+                deferredPrompt.prompt();
+                deferredPrompt.userChoice.then(function(choiceResult) {
+                    if (choiceResult.outcome === 'accepted') {
+                        console.log('✅ Пользователь установил приложение');
+                    } else {
+                        console.log('❌ Пользователь отказался от установки');
+                    }
+                    deferredPrompt = null;
+                    document.querySelectorAll('.install-banner').forEach(function(b) {
+                        b.style.display = 'none';
+                    });
+                });
+            } else {
+                showInstallInstructions();
+            }
+        });
+    });
+    
+    function showInstallInstructions() {
+        var isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+        var isAndroid = /Android/.test(navigator.userAgent);
+        var message = '📱 Чтобы установить приложение:\n\n';
+        if (isIOS) {
+            message += '1. Нажмите кнопку "Поделиться" (квадрат со стрелкой)\n';
+            message += '2. Пролистайте вниз и выберите "На экран «Домой»"\n';
+            message += '3. Нажмите "Добавить"';
+        } else if (isAndroid) {
+            message += '1. Нажмите на три точки в правом верхнем углу\n';
+            message += '2. Выберите "Добавить на главный экран"\n';
+            message += '3. Нажмите "Добавить"';
+        } else {
+            message += 'Откройте этот сайт в браузере на телефоне,\n';
+            message += 'чтобы установить приложение.';
+        }
+        alert(message);
+    }
+    
+    window.addEventListener('appinstalled', function() {
+        document.querySelectorAll('.install-banner').forEach(function(banner) {
+            banner.style.display = 'none';
+        });
+        deferredPrompt = null;
+        console.log('✅ Приложение установлено!');
+    });
+    
+    window.addEventListener('load', function() {
+        document.querySelector('.app').classList.add('loaded');
+        setTimeout(function() {
+            document.getElementById('loader').classList.add('hidden');
+        }, 300);
+    });
+    
+    setTimeout(function() {
+        var content = document.querySelector('.content');
+        if (content) {
+            content.style.overflowY = 'auto';
+            content.style.webkitOverflowScrolling = 'touch';
+            content.style.paddingBottom = '50px';
+        }
+    }, 500);
+</script>
+
+</body>
+</html>

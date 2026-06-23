@@ -1,15 +1,44 @@
 // ====================================================================
-// app.js — ГЛАВНЫЙ ФАЙЛ (навигация, загрузка, инициализация)
+// app.js — ГЛАВНЫЙ ФАЙЛ (навигация, загрузка, сохранение состояния)
 // ====================================================================
 
 // ========== СОСТОЯНИЕ ==========
 let currentLevel = 'A1';
 let currentLesson = null;
 let courseData = null;
+let currentMode = 'grammar';
+
+// ========== СОХРАНЕНИЕ СОСТОЯНИЯ ==========
+function saveState() {
+    try {
+        const state = {
+            level: currentLevel,
+            lessonId: currentLesson?.id || null,
+            mode: currentMode || 'grammar'
+        };
+        localStorage.setItem('dm_app_state', JSON.stringify(state));
+    } catch(e) {
+        console.log('Ошибка сохранения состояния:', e);
+    }
+}
+
+function loadState() {
+    try {
+        const saved = localStorage.getItem('dm_app_state');
+        if (saved) {
+            const state = JSON.parse(saved);
+            return state;
+        }
+    } catch(e) {
+        console.log('Ошибка загрузки состояния:', e);
+    }
+    return null;
+}
 
 // ========== ЗАГРУЗКА ДАННЫХ ==========
 async function loadLevel(level) {
     currentLevel = level;
+    saveState();
     try {
         const response = await fetch(`docs/course/${level}/index.json`);
         if (!response.ok) throw new Error('Курс не найден');
@@ -84,6 +113,7 @@ function renderLevel() {
     document.getElementById('content').innerHTML = html;
     document.getElementById('modeIndicator').textContent = `Курс ${currentLevel}`;
     updateCounter();
+    saveState();
 
     document.querySelectorAll('.lesson-btn').forEach(btn => {
         btn.onclick = function() {
@@ -96,6 +126,7 @@ function renderLevel() {
 // ========== ОТОБРАЖЕНИЕ УРОКА ==========
 function renderLesson(lesson) {
     currentLesson = lesson;
+    saveState();
 
     let html = `
         <button class="back-btn" onclick="renderLevel()">← К СПИСКУ УРОКОВ</button>
@@ -118,14 +149,30 @@ function renderLesson(lesson) {
         btn.onclick = function() {
             document.querySelectorAll('.mode-btn').forEach(b => b.classList.remove('active'));
             this.classList.add('active');
-            renderMode(this.getAttribute('data-mode'), lesson);
+            const mode = this.getAttribute('data-mode');
+            currentMode = mode;
+            saveState();
+            renderMode(mode, lesson);
         };
     });
+
+    // Восстанавливаем сохранённый режим, если он был
+    const savedState = loadState();
+    if (savedState && savedState.mode && savedState.lessonId === lesson.id) {
+        const modeBtn = document.querySelector(`.mode-btn[data-mode="${savedState.mode}"]`);
+        if (modeBtn) {
+            document.querySelectorAll('.mode-btn').forEach(b => b.classList.remove('active'));
+            modeBtn.classList.add('active');
+            currentMode = savedState.mode;
+            renderMode(savedState.mode, lesson);
+            return;
+        }
+    }
 
     renderMode('grammar', lesson);
 }
 
-// ========== ОТОБРАЖЕНИЕ РЕЖИМОВ (вызов функций из отдельных файлов) ==========
+// ========== ОТОБРАЖЕНИЕ РЕЖИМОВ ==========
 function renderMode(mode, lesson) {
     const container = document.getElementById('modeContent');
     if (!container) return;
@@ -184,6 +231,7 @@ function renderMode(mode, lesson) {
 function initApp() {
     console.log('🚀 Запуск Deutsch-Meister...');
     
+    // Кнопки уровней (десктоп)
     document.querySelectorAll('#levelsContainer .btn-level').forEach(btn => {
         btn.onclick = function() {
             document.querySelectorAll('#levelsContainer .btn-level').forEach(b => b.classList.remove('active'));
@@ -193,6 +241,7 @@ function initApp() {
         };
     });
     
+    // Кнопки уровней (мобильные)
     document.querySelectorAll('#levelsContainerMobile .btn-level').forEach(btn => {
         btn.onclick = function() {
             document.querySelectorAll('#levelsContainerMobile .btn-level').forEach(b => b.classList.remove('active'));
@@ -202,7 +251,41 @@ function initApp() {
         };
     });
     
-    loadLevel('A1');
+    // Восстанавливаем состояние
+    const savedState = loadState();
+    if (savedState) {
+        console.log('🔄 Восстановление состояния:', savedState);
+        currentLevel = savedState.level || 'A1';
+        
+        // Активируем кнопку уровня
+        document.querySelectorAll('#levelsContainer .btn-level, #levelsContainerMobile .btn-level').forEach(btn => {
+            if (btn.getAttribute('data-level') === currentLevel) {
+                btn.classList.add('active');
+            } else {
+                btn.classList.remove('active');
+            }
+        });
+        
+        // Загружаем уровень
+        loadLevel(currentLevel);
+        
+        // Если был открыт урок — загружаем его после загрузки уровня
+        if (savedState.lessonId) {
+            setTimeout(() => {
+                // Проверяем, что урок загружен
+                if (courseData && courseData.lessons) {
+                    const lessonExists = courseData.lessons.some(l => l.id === savedState.lessonId);
+                    if (lessonExists) {
+                        loadLesson(savedState.lessonId);
+                    }
+                }
+            }, 500);
+        }
+    } else {
+        // Если состояния нет — загружаем A1
+        loadLevel('A1');
+    }
+    
     console.log('✅ Deutsch-Meister готов!');
 }
 

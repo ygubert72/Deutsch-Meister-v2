@@ -1,5 +1,5 @@
 // ====================================================================
-// trainerMode.js — Тренажёр (составление предложений)
+// trainerMode.js — Тренажёр (составление предложений из слов)
 // ====================================================================
 
 let trainerSentences = [];
@@ -10,7 +10,7 @@ let trainerAvailableWords = [];
 let trainerActiveWords = {};
 let trainerHintIndex = 0;
 let trainerHintWords = [];
-let trainerDirection = 'ru_to_de'; // 'ru_to_de' или 'de_to_ru'
+let trainerDirection = 'ru_to_de';
 
 function renderTrainer(container, lesson) {
     const vocab = lesson.vocabulary || [];
@@ -25,19 +25,28 @@ function renderTrainer(container, lesson) {
         return;
     }
 
-    // Создаём предложения из слов урока (по 3 слова)
+    // БЕРЁМ ОТДЕЛЬНЫЕ СЛОВА, а не целые фразы
+    // Перемешиваем слова и группируем по 3-4 слова
+    const shuffledVocab = [...vocab];
+    for (let i = shuffledVocab.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [shuffledVocab[i], shuffledVocab[j]] = [shuffledVocab[j], shuffledVocab[i]];
+    }
+
     trainerSentences = [];
-    for (let i = 0; i < Math.min(vocab.length, 30); i += 3) {
-        if (i + 2 < vocab.length) {
-            const words = [vocab[i], vocab[i+1], vocab[i+2]];
-            const shuffled = [...words];
-            for (let j = shuffled.length - 1; j > 0; j--) {
+    const wordsPerSentence = 3;
+    for (let i = 0; i < shuffledVocab.length && trainerSentences.length < 10; i += wordsPerSentence) {
+        const chunk = shuffledVocab.slice(i, i + wordsPerSentence);
+        if (chunk.length === wordsPerSentence) {
+            // Перемешиваем слова внутри предложения
+            const shuffledChunk = [...chunk];
+            for (let j = shuffledChunk.length - 1; j > 0; j--) {
                 const k = Math.floor(Math.random() * (j + 1));
-                [shuffled[j], shuffled[k]] = [shuffled[k], shuffled[j]];
+                [shuffledChunk[j], shuffledChunk[k]] = [shuffledChunk[k], shuffledChunk[j]];
             }
             trainerSentences.push({
-                original: words,
-                shuffled: shuffled
+                original: chunk,
+                shuffled: shuffledChunk
             });
         }
     }
@@ -123,7 +132,6 @@ function showTrainerSentence(container) {
 
     container.innerHTML = html;
 
-    // Кнопка смены направления
     document.getElementById('trainerDirBtn').onclick = function() {
         trainerDirection = trainerDirection === 'ru_to_de' ? 'de_to_ru' : 'ru_to_de';
         this.textContent = trainerDirection === 'ru_to_de' ? '🇷🇺→🇩🇪' : '🇩🇪→🇷🇺';

@@ -54,7 +54,8 @@ function showContainerModal(config) {
         
         if (header) {
             const count = currentItems ? currentItems.length : 0;
-            header.textContent = `${title.replace(/\d+/, count)} (${count})`;
+            // Убираем дублирование — показываем только количество без вторых скобок
+            header.textContent = `📦 КОНТЕЙНЕР (${count})`;
         }
         
         if (itemsContainer) {
@@ -99,8 +100,8 @@ function showContainerModal(config) {
     
     // Строим HTML
     const displayTitle = isEmpty 
-        ? title.replace(/\d+/, '0') 
-        : title;
+        ? '📦 КОНТЕЙНЕР (0)' 
+        : `📦 КОНТЕЙНЕР (${items.length})`;
     
     modalContent.innerHTML = `
         <div style="padding: 15px; border-bottom: 1px solid #ddd; text-align: center;">

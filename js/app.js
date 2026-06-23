@@ -1,650 +1,382 @@
-// app.js - полная версия с новым CourseManager
+// ====================================================================
+// app.js — НОВАЯ ВЕРСИЯ ГЛАВНОГО ПРИЛОЖЕНИЯ
+// Вся логика в одном файле, работает без внешних зависимостей
+// ====================================================================
 
-// ========== ЛОГИРОВАНИЕ ДЕЙСТВИЙ ПОЛЬЗОВАТЕЛЯ ==========
-async function logUserAction(action, details = {}) {
-    try {
-        if (typeof window.isAuthenticated === 'undefined' || !window.isAuthenticated()) {
-            return;
-        }
-        
-        const user = window.getCurrentUser ? window.getCurrentUser() : null;
-        if (!user) return;
-        
-        const db = window.db || firebase.firestore();
-        
-        await db.collection('user_actions').add({
-            userId: user.uid,
-            email: user.email,
-            action: action,
-            details: details,
-            timestamp: new Date().toISOString(),
-            userAgent: navigator.userAgent,
-            url: window.location.href,
-            deviceId: getDeviceId ? getDeviceId() : 'unknown'
+// ========== ДАННЫЕ УРОКОВ (ВСТРОЕННЫЕ) ==========
+const COURSE_DATA = {
+    A1: {
+        title: "Немецкий для начинающих",
+        lessons: [
+            {
+                id: 1,
+                title: "Знакомство. Глагол 'sein'.",
+                grammar: `
+                    <h3>📌 Глагол sein</h3>
+                    <p>Глагол <strong>sein</strong> переводится как «быть», «находиться».</p>
+                    <table border="1" cellpadding="8" style="border-collapse: collapse; width: 100%; margin: 10px 0;">
+                        <tr style="background: #3B6FE0; color: white;">
+                            <th>Местоимение</th><th>Форма</th>
+                        </tr>
+                        <tr><td>ich</td><td><strong>bin</strong></td></tr>
+                        <tr><td>du</td><td><strong>bist</strong></td></tr>
+                        <tr><td>er/sie/es</td><td><strong>ist</strong></td></tr>
+                        <tr><td>wir</td><td><strong>sind</strong></td></tr>
+                        <tr><td>ihr</td><td><strong>seid</strong></td></tr>
+                        <tr><td>sie/Sie</td><td><strong>sind</strong></td></tr>
+                    </table>
+                    <div style="background: #E8F0FE; padding: 15px; border-radius: 12px; margin: 15px 0;">
+                        <strong>🎯 ЗАПОМИНАЛКА:</strong><br>
+                        ich bin, du bist, er ist, wir sind, ihr seid, sie sind
+                    </div>
+                `,
+                examples: [
+                    { de: "Ich bin Anna.", ru: "Я Анна." },
+                    { de: "Du bist mein Freund.", ru: "Ты мой друг." },
+                    { de: "Er ist mein Bruder.", ru: "Он мой брат." },
+                    { de: "Sie ist meine Schwester.", ru: "Она моя сестра." },
+                    { de: "Wir sind glücklich.", ru: "Мы счастливы." },
+                    { de: "Ihr seid zu Hause.", ru: "Вы дома." },
+                    { de: "Sie sind in Berlin.", ru: "Они в Берлине." },
+                    { de: "Das ist mein Buch.", ru: "Это моя книга." }
+                ],
+                vocabulary: [
+                    { de: "Hallo!", ru: "Привет!" },
+                    { de: "Tschüss!", ru: "Пока!" },
+                    { de: "Guten Morgen!", ru: "Доброе утро!" },
+                    { de: "Guten Tag!", ru: "Добрый день!" },
+                    { de: "Guten Abend!", ru: "Добрый вечер!" },
+                    { de: "Gute Nacht!", ru: "Спокойной ночи!" },
+                    { de: "Auf Wiedersehen!", ru: "До свидания!" },
+                    { de: "Bitte!", ru: "Пожалуйста!" },
+                    { de: "Danke!", ru: "Спасибо!" },
+                    { de: "Ja", ru: "Да" },
+                    { de: "Nein", ru: "Нет" },
+                    { de: "der Mann", ru: "мужчина" },
+                    { de: "die Frau", ru: "женщина" },
+                    { de: "das Kind", ru: "ребёнок" },
+                    { de: "der Vater", ru: "отец" },
+                    { de: "die Mutter", ru: "мать" },
+                    { de: "der Freund", ru: "друг" },
+                    { de: "die Freundin", ru: "подруга" },
+                    { de: "der Bruder", ru: "брат" },
+                    { de: "die Schwester", ru: "сестра" }
+                ],
+                practice: [
+                    { question: "Вставьте правильную форму sein:", sentence: "Ich ___ Anna.", answer: "bin", hint: "ich → bin" },
+                    { question: "Вставьте правильную форму sein:", sentence: "Du ___ mein Freund.", answer: "bist", hint: "du → bist" },
+                    { question: "Вставьте правильную форму sein:", sentence: "Er ___ mein Bruder.", answer: "ist", hint: "er → ist" },
+                    { question: "Вставьте правильную форму sein:", sentence: "Wir ___ glücklich.", answer: "sind", hint: "wir → sind" },
+                    { question: "Вставьте правильную форму sein:", sentence: "Ihr ___ zu Hause.", answer: "seid", hint: "ihr → seid" },
+                    { question: "Переведите на немецкий:", sentence: "Я Анна.", answer: "Ich bin Anna.", hint: "Анна — это имя" },
+                    { question: "Переведите на немецкий:", sentence: "Ты мой друг.", answer: "Du bist mein Freund.", hint: "Freund — мужской род" },
+                    { question: "Переведите на немецкий:", sentence: "Мы счастливы.", answer: "Wir sind glücklich.", hint: "Множественное число" }
+                ],
+                dictation: [
+                    { ru: "Привет! Меня зовут Анна.", de: "Hallo! Ich heiße Anna." },
+                    { ru: "Ты мой друг.", de: "Du bist mein Freund." },
+                    { ru: "Мы счастливы.", de: "Wir sind glücklich." },
+                    { ru: "Добрый день, как дела?", de: "Guten Tag, wie geht es dir?" },
+                    { ru: "Спасибо, хорошо!", de: "Danke, gut!" }
+                ]
+            }
+        ]
+    },
+    A2: { title: "Немецкий для продолжающих (A2)", lessons: [] },
+    B1: { title: "Немецкий для среднего уровня (B1)", lessons: [] },
+    B2: { title: "Немецкий для продвинутого уровня (B2)", lessons: [] },
+    C1: { title: "Немецкий для экспертов (C1)", lessons: [] }
+};
+
+// ========== СОСТОЯНИЕ ==========
+let currentLevel = 'A1';
+let currentLesson = null;
+let currentMode = 'grammar';
+
+// ========== ОЗВУЧКА ==========
+function speak(text) {
+    if (!text || !window.speechSynthesis) return;
+    const utterance = new SpeechSynthesisUtterance(text);
+    utterance.lang = 'de-DE';
+    utterance.rate = 0.9;
+    window.speechSynthesis.cancel();
+    window.speechSynthesis.speak(utterance);
+}
+
+// ========== ОТОБРАЖЕНИЕ УРОВНЕЙ ==========
+function renderLevel(level) {
+    currentLevel = level;
+    const data = COURSE_DATA[level];
+    if (!data || !data.lessons || data.lessons.length === 0) {
+        document.getElementById('content').innerHTML = `
+            <div style="text-align: center; padding: 40px; color: #999;">
+                <div style="font-size: 48px; margin-bottom: 15px;">📝</div>
+                <div>Уроки для уровня ${level} пока не добавлены.</div>
+                <div style="font-size: 14px; margin-top: 10px;">Скоро они появятся!</div>
+            </div>
+        `;
+        document.getElementById('modeIndicator').textContent = `Курс ${level}`;
+        updateCounter();
+        return;
+    }
+
+    let html = `<h2>📚 ${data.title}</h2><div style="margin-top: 20px;">`;
+    data.lessons.forEach(lesson => {
+        html += `
+            <button class="lesson-btn" data-lesson-id="${lesson.id}" style="display: block; width: 100%; padding: 15px; margin: 8px 0; background: #E8F0FE; border: 2px solid #D0D0D0; border-radius: 8px; cursor: pointer; text-align: left; font-size: 16px;">
+                📘 Урок ${lesson.id}: ${lesson.title}
+            </button>
+        `;
+    });
+    html += `</div>`;
+    document.getElementById('content').innerHTML = html;
+    document.getElementById('modeIndicator').textContent = `Курс ${level}`;
+    updateCounter();
+
+    document.querySelectorAll('.lesson-btn').forEach(btn => {
+        btn.onclick = () => {
+            const id = parseInt(btn.getAttribute('data-lesson-id'));
+            renderLesson(level, id);
+        };
+    });
+}
+
+// ========== ОТОБРАЖЕНИЕ УРОКА ==========
+function renderLesson(level, lessonId) {
+    const data = COURSE_DATA[level];
+    const lesson = data.lessons.find(l => l.id === lessonId);
+    if (!lesson) return;
+    currentLesson = lesson;
+
+    let html = `
+        <button class="back-btn" onclick="renderLevel('${level}')" style="padding: 10px 20px; background: #3B6FE0; color: white; border: none; border-radius: 8px; cursor: pointer; margin-bottom: 15px;">← К СПИСКУ УРОКОВ</button>
+        <h2>📖 Урок ${lesson.id}: ${lesson.title}</h2>
+        <div class="mode-buttons" style="display: flex; gap: 10px; flex-wrap: wrap; margin: 15px 0;">
+            <button class="mode-btn active" data-mode="grammar" style="padding: 10px 20px; background: #3B6FE0; color: white; border: 2px solid #2B5BC7; border-radius: 8px; cursor: pointer; font-weight: bold;">📘 Грамматика</button>
+            <button class="mode-btn" data-mode="vocabulary" style="padding: 10px 20px; background: #E8F0FE; border: 2px solid #D0D0D0; border-radius: 8px; cursor: pointer; font-weight: bold;">📚 Слова</button>
+            <button class="mode-btn" data-mode="practice" style="padding: 10px 20px; background: #E8F0FE; border: 2px solid #D0D0D0; border-radius: 8px; cursor: pointer; font-weight: bold;">✍️ Практика</button>
+            <button class="mode-btn" data-mode="dictation" style="padding: 10px 20px; background: #E8F0FE; border: 2px solid #D0D0D0; border-radius: 8px; cursor: pointer; font-weight: bold;">✏️ Диктант</button>
+        </div>
+        <div id="modeContent"></div>
+    `;
+    document.getElementById('content').innerHTML = html;
+    document.getElementById('modeIndicator').textContent = `Урок ${lesson.id}: ${lesson.title}`;
+    updateCounter();
+
+    document.querySelectorAll('.mode-btn').forEach(btn => {
+        btn.onclick = () => {
+            document.querySelectorAll('.mode-btn').forEach(b => {
+                b.style.background = '#E8F0FE';
+                b.style.color = '#333';
+                b.style.border = '2px solid #D0D0D0';
+            });
+            btn.style.background = '#3B6FE0';
+            btn.style.color = 'white';
+            btn.style.border = '2px solid #2B5BC7';
+            renderMode(btn.getAttribute('data-mode'), lesson);
+        };
+    });
+
+    renderMode('grammar', lesson);
+}
+
+// ========== ОТОБРАЖЕНИЕ РЕЖИМОВ ==========
+function renderMode(mode, lesson) {
+    const container = document.getElementById('modeContent');
+    if (!container) return;
+
+    switch(mode) {
+        case 'grammar':
+            renderGrammar(container, lesson);
+            break;
+        case 'vocabulary':
+            renderVocabulary(container, lesson);
+            break;
+        case 'practice':
+            renderPractice(container, lesson);
+            break;
+        case 'dictation':
+            renderDictation(container, lesson);
+            break;
+        default:
+            container.innerHTML = '<div>Режим не найден</div>';
+    }
+}
+
+function renderGrammar(container, lesson) {
+    let html = `<div style="line-height: 1.8;">${lesson.grammar || ''}</div>`;
+    
+    if (lesson.examples && lesson.examples.length) {
+        html += `<h4>📝 Примеры:</h4><div style="margin-top: 10px;">`;
+        lesson.examples.forEach(ex => {
+            const safeText = ex.de.replace(/'/g, "\\'");
+            html += `
+                <div style="background: #E8F0FE; padding: 10px; border-radius: 8px; margin: 8px 0; display: flex; justify-content: space-between; align-items: center;">
+                    <span><strong>${ex.de}</strong> — ${ex.ru}</span>
+                    <button class="speak-btn" onclick="speak('${safeText}')" style="background: #4CAF50; color: white; border: none; border-radius: 20px; padding: 4px 12px; cursor: pointer;">🔊</button>
+                </div>
+            `;
         });
-        
-        console.log('📊 Действие залогировано:', action, details);
-    } catch(e) {
-        console.error('Ошибка логирования действия:', e);
+        html += `</div>`;
     }
+    
+    container.innerHTML = html;
 }
 
-function getDeviceId() {
-    let id = navigator.userAgent + navigator.platform + window.screen.width + window.screen.height;
-    let hash = 0;
-    for (let i = 0; i < id.length; i++) {
-        hash = ((hash << 5) - hash) + id.charCodeAt(i);
-        hash |= 0;
+function renderVocabulary(container, lesson) {
+    const vocab = lesson.vocabulary || [];
+    if (vocab.length === 0) {
+        container.innerHTML = '<div>Слова не загружены</div>';
+        return;
     }
-    return hash.toString();
+
+    let html = '<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">';
+    vocab.forEach(word => {
+        const safeText = word.de.replace(/'/g, "\\'");
+        html += `
+            <div style="background: #f8f9fa; padding: 12px; border-radius: 8px; display: flex; justify-content: space-between; align-items: center;">
+                <span><strong>${word.de}</strong> — ${word.ru}</span>
+                <button class="speak-btn" onclick="speak('${safeText}')" style="background: #4CAF50; color: white; border: none; border-radius: 20px; padding: 4px 12px; cursor: pointer;">🔊</button>
+            </div>
+        `;
+    });
+    html += '</div>';
+    container.innerHTML = html;
 }
 
-// ========== ОБНОВЛЕНИЕ СЧЁТЧИКА ==========
+function renderPractice(container, lesson) {
+    const exercises = lesson.practice || [];
+    if (exercises.length === 0) {
+        container.innerHTML = '<div>Упражнений нет</div>';
+        return;
+    }
+
+    let html = '<h3>✍️ Упражнения</h3>';
+    exercises.forEach((ex, index) => {
+        html += `
+            <div style="background: #f8f9fa; padding: 15px; border-radius: 8px; margin: 10px 0;">
+                <div><strong>${index + 1}.</strong> ${ex.question}</div>
+                <div style="margin: 8px 0;">${ex.sentence}</div>
+                <input type="text" class="practice-input" data-index="${index}" placeholder="Введите ответ..." style="width: 100%; padding: 10px; border: 2px solid #D0D0D0; border-radius: 8px; margin: 8px 0; font-size: 16px;">
+                <button class="check-btn" data-index="${index}" style="padding: 8px 20px; background: #3B6FE0; color: white; border: none; border-radius: 8px; cursor: pointer;">ПРОВЕРИТЬ</button>
+                <div class="practice-result" data-index="${index}" style="margin-top: 8px;"></div>
+                <div style="color: #999; font-size: 14px;">💡 ${ex.hint}</div>
+            </div>
+        `;
+    });
+    container.innerHTML = html;
+
+    container.querySelectorAll('.check-btn').forEach(btn => {
+        btn.onclick = () => {
+            const index = parseInt(btn.getAttribute('data-index'));
+            const input = container.querySelector(`.practice-input[data-index="${index}"]`);
+            const result = container.querySelector(`.practice-result[data-index="${index}"]`);
+            const exercise = exercises[index];
+
+            if (!input || !result) return;
+            const userAnswer = input.value.trim().toLowerCase();
+            const correctAnswer = exercise.answer.toLowerCase();
+
+            if (userAnswer === correctAnswer) {
+                result.innerHTML = '✅ Правильно!';
+                result.style.color = '#4CAF50';
+                input.style.borderColor = '#4CAF50';
+            } else {
+                result.innerHTML = `❌ Неправильно. Правильный ответ: <strong>${exercise.answer}</strong>`;
+                result.style.color = '#F44336';
+                input.style.borderColor = '#F44336';
+            }
+        };
+    });
+}
+
+function renderDictation(container, lesson) {
+    const sentences = lesson.dictation || [];
+    if (sentences.length === 0) {
+        container.innerHTML = '<div>Нет предложений для диктанта</div>';
+        return;
+    }
+
+    let html = '<h3>✏️ Правописание</h3><p>Напишите перевод на немецком языке:</p>';
+    sentences.forEach((s, index) => {
+        html += `
+            <div style="background: #f8f9fa; padding: 15px; border-radius: 8px; margin: 10px 0;">
+                <div><strong>${index + 1}.</strong> ${s.ru}</div>
+                <input type="text" class="practice-input" data-dict-index="${index}" placeholder="Введите перевод..." style="width: 100%; padding: 10px; border: 2px solid #D0D0D0; border-radius: 8px; margin: 8px 0; font-size: 16px;">
+                <button class="check-btn" data-dict-index="${index}" style="padding: 8px 20px; background: #3B6FE0; color: white; border: none; border-radius: 8px; cursor: pointer;">ПРОВЕРИТЬ</button>
+                <div class="dictation-result" data-dict-index="${index}" style="margin-top: 8px;"></div>
+            </div>
+        `;
+    });
+    container.innerHTML = html;
+
+    container.querySelectorAll('.check-btn[data-dict-index]').forEach(btn => {
+        btn.onclick = () => {
+            const index = parseInt(btn.getAttribute('data-dict-index'));
+            const input = container.querySelector(`.practice-input[data-dict-index="${index}"]`);
+            const result = container.querySelector(`.dictation-result[data-dict-index="${index}"]`);
+            const sentence = sentences[index];
+
+            if (!input || !result) return;
+            const userAnswer = input.value.trim().toLowerCase().replace(/\s+/g, ' ');
+            const correctAnswer = sentence.de.toLowerCase().replace(/\s+/g, ' ');
+
+            if (userAnswer === correctAnswer) {
+                result.innerHTML = '✅ Правильно!';
+                result.style.color = '#4CAF50';
+                input.style.borderColor = '#4CAF50';
+            } else {
+                result.innerHTML = `❌ Неправильно. Правильный ответ: <strong>${sentence.de}</strong>`;
+                result.style.color = '#F44336';
+                input.style.borderColor = '#F44336';
+            }
+        };
+    });
+}
+
+// ========== СЧЁТЧИК ==========
 function updateCounter() {
     const el = document.getElementById('counter');
     if (!el) return;
     
-    // Если мы в режиме курса - показываем информацию о прогрессе
-    if (window.CourseManager && window.CourseManager.lessonData) {
-        const lesson = window.CourseManager.lessonData;
-        const vocabCount = lesson.vocabulary ? lesson.vocabulary.length : 0;
-        const practiceCount = lesson.practice ? lesson.practice.length : 0;
+    if (currentLesson) {
+        const vocabCount = currentLesson.vocabulary ? currentLesson.vocabulary.length : 0;
+        const practiceCount = currentLesson.practice ? currentLesson.practice.length : 0;
         el.textContent = `Слов: ${vocabCount} | Упражнений: ${practiceCount}`;
-    } else if (currentMode === 'cards' || currentMode === 'quiz') {
-        const total = wordsDB[AppConfig.currentLevel]?.length || 0;
-        const unstudied = getUnstudiedWords().length;
-        const studied = total - unstudied;
-        el.textContent = `Всего: ${total} | Учим: ${unstudied} | Выучено: ${studied}`;
-    } 
-    else if (currentMode === 'sentences') {
-        const total = sentencesDB[AppConfig.currentLevel]?.length || 0;
-        let completed = sentencesProgress[AppConfig.currentLevel]?.filter(p => p?.studied === true).length || 0;
-        el.textContent = `Всего фраз: ${total} | Выучено: ${completed}`;
-    } 
-    else if (currentMode === 'grammar') {
-        const level = AppConfig.currentLevel;
-        const grammarData = grammarDB[level];
-        
-        const savedLesson = localStorage.getItem('dm_last_grammar_lesson');
-        const savedLevel = localStorage.getItem('dm_last_grammar_level');
-        const isLessonOpen = (savedLesson !== null && savedLevel === level);
-        
-        if (isLessonOpen && grammarData && grammarData.length > 0) {
-            const totalLessons = grammarData.length;
-            const completed = grammarProgress[level]?.filter(p => p?.completed === true).length || 0;
-            el.textContent = `Пройдено: ${completed} из ${totalLessons} уроков`;
-        }
-        else if (grammarData && grammarData.length > 0) {
-            el.textContent = `Всего уроков: ${grammarData.length}`;
-        }
-        else if (grammarData && grammarData.length === 0) {
-            el.textContent = `Загрузка материалов...`;
-        }
-        else {
-            el.textContent = `Выберите уровень`;
-        }
-    }
-    else {
-        el.textContent = `Deutsch-Meister`;
-    }
-    
-    updateModeIndicator();
-}
-
-function updateModeIndicator() {
-    const indicator = document.getElementById('modeIndicator');
-    if (!indicator) return;
-    
-    // Если мы в режиме курса - показываем информацию о курсе
-    if (window.CourseManager && window.CourseManager.lessonData) {
-        const lesson = window.CourseManager.lessonData;
-        indicator.textContent = `Урок ${lesson.id}: ${lesson.title}`;
-        return;
-    }
-    
-    const level = AppConfig.currentLevel;
-    const savedLesson = localStorage.getItem('dm_last_grammar_lesson');
-    const savedLevel = localStorage.getItem('dm_last_grammar_level');
-    const isLessonOpen = (savedLesson !== null && savedLevel === level);
-    
-    let modeText = '';
-    switch(currentMode) {
-        case 'grammar': 
-            modeText = 'Грамматика';
-            break;
-        case 'cards': 
-            modeText = 'Карточки';
-            break;
-        case 'quiz': 
-            modeText = 'Тест';
-            break;
-        case 'sentences': 
-            modeText = 'Тренажёр';
-            break;
-        default: 
-            modeText = '';
-    }
-    
-    if (currentMode === 'grammar' && isLessonOpen) {
-        const lessonIdx = parseInt(savedLesson);
-        const lessons = grammarDB[level];
-        if (lessons && lessons[lessonIdx]) {
-            const lessonNum = lessons[lessonIdx].lesson;
-            indicator.textContent = `${modeText} ${level} | Урок ${lessonNum}`;
-        } else {
-            indicator.textContent = `${modeText} ${level}`;
-        }
+    } else if (currentLevel) {
+        const data = COURSE_DATA[currentLevel];
+        const lessonsCount = data && data.lessons ? data.lessons.length : 0;
+        el.textContent = `Уровень ${currentLevel} | Уроков: ${lessonsCount}`;
     } else {
-        indicator.textContent = `${modeText} ${level}`;
+        el.textContent = 'Deutsch-Meister';
     }
 }
-
-function setMode(mode) {
-    currentMode = mode;
-    document.querySelectorAll('.mode-btn').forEach(btn => {
-        if (btn.dataset.mode === mode) btn.classList.add('active');
-        else btn.classList.remove('active');
-    });
-    
-    logUserAction('change_mode', { mode: mode, level: AppConfig.currentLevel });
-    
-    if (mode === 'cards') renderCards();
-    else if (mode === 'quiz') renderQuiz();
-    else if (mode === 'sentences') renderSentences();
-    else if (mode === 'grammar') renderGrammar();
-    
-    saveProgress();
-    updateCounter();
-    updateModeIndicator();
-}
-
-// ========== УСТАНОВКА УРОВНЯ ==========
-function setLevel(level) {
-    // Проверка доступа к уровню
-    if (typeof window.hasAccessToLevel !== 'undefined' && !window.hasAccessToLevel(level)) {
-        if (level === 'B1' || level === 'B2' || level === 'C1') {
-            const isAuthenticated = window.isAuthenticated && window.isAuthenticated();
-            const currentUser = window.getCurrentUser && window.getCurrentUser();
-            
-            if (!isAuthenticated || !currentUser) {
-                alert(`🔒 Уровень ${level} требует премиум-доступа.\n\n📝 Зарегистрируйтесь и оформите премиум в личном кабинете.`);
-            } else {
-                alert(`🔒 Уровень ${level} требует премиум-доступа.\n\n💎 Оформите премиум в личном кабинете (кнопка под email).`);
-            }
-            return;
-        }
-        return;
-    }
-    
-    // Устанавливаем уровень
-    AppConfig.currentLevel = level;
-    
-    // Обновляем активные кнопки
-    document.querySelectorAll('[data-level]').forEach(btn => {
-        if (btn.dataset.level === level) btn.classList.add('active');
-        else btn.classList.remove('active');
-    });
-    
-    // Дублируем для мобильного меню
-    document.querySelectorAll('#levelsContainerMobile [data-level]').forEach(btn => {
-        if (btn.dataset.level === level) btn.classList.add('active');
-        else btn.classList.remove('active');
-    });
-    
-    logUserAction('change_level', { level: level, mode: currentMode });
-    
-    // Загружаем уровень через CourseManager
-    if (window.CourseManager) {
-        window.CourseManager.loadLevel(level);
-    } else {
-        // Фолбэк на старую логику
-        if (currentMode === 'cards') {
-            renderCards();
-        } else if (currentMode === 'quiz') {
-            renderQuiz();
-        } else if (currentMode === 'sentences') {
-            renderSentences();
-        } else if (currentMode === 'grammar') {
-            renderGrammar();
-        }
-    }
-    
-    updateCounter();
-    updateModeIndicator();
-    saveProgress();
-}
-
-function loadGrammarProgress() {
-    try {
-        const gp = localStorage.getItem('dm_grammar_progress');
-        if (gp) {
-            const parsed = JSON.parse(gp);
-            for (const level in parsed) {
-                if (grammarProgress[level]) {
-                    grammarProgress[level] = parsed[level];
-                }
-            }
-        }
-    } catch(e) {
-        console.error('Ошибка загрузки прогресса грамматики:', e);
-    }
-}
-
-window.forceUpdateCounter = function() {
-    setTimeout(() => {
-        updateCounter();
-    }, 100);
-};
-
-// ========== КНОПКА "ПОДЕЛИТЬСЯ" ==========
-window.shareApp = function() {
-    const url = window.location.href;
-    const title = 'Deutsch-Meister — учите немецкий язык!';
-    const text = '🇩🇪 Бесплатное приложение для изучения немецкого языка: карточки, тесты, тренажёр и грамматика. Попробуйте!';
-    const fullText = `${text}\n\n🔗 ${url}`;
-    
-    logUserAction('share_app', { method: 'modal_opened' });
-    
-    const modal = document.createElement('div');
-    modal.id = 'shareModal';
-    modal.style.cssText = `
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: rgba(0,0,0,0.7);
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        z-index: 10000000;
-        overflow: auto;
-    `;
-    
-    const modalContent = document.createElement('div');
-    modalContent.style.cssText = `
-        background: white;
-        border-radius: 20px;
-        max-width: 420px;
-        width: 90%;
-        padding: 25px;
-        text-align: center;
-        margin: 20px;
-        max-height: 90vh;
-        overflow-y: auto;
-    `;
-    
-    const shareOptions = [
-        { name: 'Telegram', icon: '✈️', url: `https://t.me/share/url?url=${encodeURIComponent(url)}&text=${encodeURIComponent(text)}` },
-        { name: 'WhatsApp', icon: '💬', url: `https://api.whatsapp.com/send?text=${encodeURIComponent(fullText)}` },
-        { name: 'VK', icon: '📱', url: `https://vk.com/share.php?url=${encodeURIComponent(url)}&title=${encodeURIComponent(title)}&description=${encodeURIComponent(text)}` },
-        { name: 'Instagram', icon: '📸', url: null, copy: true },
-        { name: 'Facebook', icon: '👍', url: `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}&quote=${encodeURIComponent(text)}` },
-        { name: 'Email', icon: '📧', url: `mailto:?subject=${encodeURIComponent(title)}&body=${encodeURIComponent(fullText)}` }
-    ];
-    
-    let buttonsHtml = '<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">';
-    shareOptions.forEach(opt => {
-        if (opt.name === 'Instagram' && opt.copy) {
-            buttonsHtml += `
-                <button class="share-option-btn" data-copy="true" style="
-                    padding: 14px 10px;
-                    background: #f0f0f0;
-                    border: 2px solid #ddd;
-                    border-radius: 12px;
-                    cursor: pointer;
-                    font-size: 14px;
-                    font-weight: bold;
-                    transition: all 0.1s;
-                ">
-                    <div style="font-size: 28px;">${opt.icon}</div>
-                    <div>${opt.name}</div>
-                    <div style="font-size: 10px; color: #888; margin-top: 4px;">(скопировать ссылку)</div>
-                </button>
-            `;
-        } else if (opt.url) {
-            buttonsHtml += `
-                <button class="share-option-btn" data-url="${opt.url}" style="
-                    padding: 14px 10px;
-                    background: #f0f0f0;
-                    border: 2px solid #ddd;
-                    border-radius: 12px;
-                    cursor: pointer;
-                    font-size: 14px;
-                    font-weight: bold;
-                    transition: all 0.1s;
-                ">
-                    <div style="font-size: 28px;">${opt.icon}</div>
-                    <div>${opt.name}</div>
-                </button>
-            `;
-        }
-    });
-    buttonsHtml += '</div>';
-    
-    modalContent.innerHTML = `
-        <h3 style="margin-top: 0; margin-bottom: 15px; font-size: 20px;">🔗 Поделиться приложением</h3>
-        <p style="color: #666; margin-bottom: 20px; font-size: 14px;">Выберите способ, чтобы поделиться с друзьями:</p>
-        ${buttonsHtml}
-        <button id="shareCloseBtn" style="
-            margin-top: 20px;
-            padding: 10px 30px;
-            background: #e0e0e0;
-            border: none;
-            border-radius: 10px;
-            cursor: pointer;
-            font-size: 14px;
-            font-weight: bold;
-        ">Закрыть</button>
-    `;
-    
-    modal.appendChild(modalContent);
-    document.body.appendChild(modal);
-    
-    modalContent.querySelectorAll('.share-option-btn').forEach(btn => {
-        btn.onclick = () => {
-            const url = btn.getAttribute('data-url');
-            if (btn.getAttribute('data-copy') === 'true') {
-                navigator.clipboard.writeText(fullText).then(() => {
-                    alert('✅ Ссылка скопирована!');
-                    logUserAction('share_app', { method: 'copy_link' });
-                }).catch(() => {
-                    prompt('Скопируйте ссылку:', fullText);
-                });
-                return;
-            }
-            if (url) {
-                window.open(url, '_blank', 'width=600,height=500');
-                logUserAction('share_app', { method: 'social_share' });
-            }
-        };
-    });
-    
-    document.getElementById('shareCloseBtn').onclick = () => modal.remove();
-    modal.onclick = (e) => { if (e.target === modal) modal.remove(); };
-};
-
-// ========== МОБИЛЬНОЕ МЕНЮ ==========
-
-function closeMobileMenu() {
-    const mobileMenu = document.getElementById('mobileMenu');
-    const menuOverlay = document.getElementById('menuOverlay');
-    if (mobileMenu) {
-        mobileMenu.classList.remove('show');
-        mobileMenu.classList.remove('open');
-    }
-    if (menuOverlay) {
-        menuOverlay.classList.remove('show');
-    }
-    document.body.style.overflow = '';
-}
-
-function openMobileMenu() {
-    const mobileMenu = document.getElementById('mobileMenu');
-    const menuOverlay = document.getElementById('menuOverlay');
-    if (mobileMenu) {
-        mobileMenu.classList.add('show');
-        mobileMenu.classList.add('open');
-    }
-    if (menuOverlay) {
-        menuOverlay.classList.add('show');
-    }
-    document.body.style.overflow = 'hidden';
-    
-    logUserAction('open_mobile_menu', {});
-    
-    history.pushState(null, null, location.href);
-}
-
-function initSwipeToClose() {
-    const mobileMenu = document.getElementById('mobileMenu');
-    if (!mobileMenu) return;
-    
-    let touchStartX = 0;
-    let touchStartY = 0;
-    let isSwiping = false;
-    
-    mobileMenu.addEventListener('touchstart', function(e) {
-        touchStartX = e.changedTouches[0].screenX;
-        touchStartY = e.changedTouches[0].screenY;
-        isSwiping = true;
-    }, { passive: true });
-    
-    mobileMenu.addEventListener('touchmove', function(e) {
-        if (!isSwiping) return;
-        const touchCurrentX = e.changedTouches[0].screenX;
-        const touchCurrentY = e.changedTouches[0].screenY;
-        const deltaX = touchCurrentX - touchStartX;
-        const deltaY = touchCurrentY - touchStartY;
-        
-        if (deltaX < -20 && Math.abs(deltaX) > Math.abs(deltaY)) {
-            isSwiping = false;
-            closeMobileMenu();
-        }
-    }, { passive: true });
-    
-    mobileMenu.addEventListener('touchend', function() {
-        isSwiping = false;
-    }, { passive: true });
-}
-
-function syncMobileUserInfo() {
-    const userInfo = document.getElementById('userInfo');
-    const userInfoMobile = document.getElementById('userInfoMobile');
-    const loginBtnMobile = document.getElementById('loginBtnMobile');
-    
-    if (userInfoMobile && userInfo) {
-        userInfoMobile.innerHTML = userInfo.innerHTML;
-        userInfoMobile.style.display = userInfo.style.display;
-    }
-    
-    if (loginBtnMobile) {
-        const loginBtn = document.getElementById('loginBtn');
-        if (loginBtn) {
-            loginBtnMobile.style.display = loginBtn.style.display;
-            if (loginBtn.onclick) {
-                loginBtnMobile.onclick = loginBtn.onclick;
-            }
-        }
-    }
-}
-
-function initMobileMenu() {
-    const hamburgerBtn = document.getElementById('hamburgerBtn');
-    const closeMenuBtn = document.getElementById('closeMenuBtn');
-    const menuOverlay = document.getElementById('menuOverlay');
-    
-    if (!hamburgerBtn) return;
-    
-    hamburgerBtn.onclick = openMobileMenu;
-    
-    if (closeMenuBtn) {
-        closeMenuBtn.onclick = closeMobileMenu;
-    }
-    
-    if (menuOverlay) {
-        menuOverlay.onclick = closeMobileMenu;
-    }
-    
-    initSwipeToClose();
-    
-    // Синхронизация кликов на мобильных кнопках уровней
-    const levelButtonsMobile = document.querySelectorAll('#levelsContainerMobile [data-level]');
-    levelButtonsMobile.forEach(function(btn) {
-        btn.onclick = function(e) {
-            e.stopPropagation();
-            const level = btn.getAttribute('data-level');
-            setLevel(level);
-            closeMobileMenu();
-        };
-    });
-    
-    // Синхронизация кликов на мобильных кнопках режимов
-    const modeButtonsMobile = document.querySelectorAll('#mobileMenu .mode-btn');
-    modeButtonsMobile.forEach(function(btn) {
-        btn.onclick = function(e) {
-            e.stopPropagation();
-            const mode = btn.getAttribute('data-mode');
-            setMode(mode);
-            closeMobileMenu();
-        };
-    });
-    
-    window.addEventListener('popstate', function() {
-        const mobileMenu = document.getElementById('mobileMenu');
-        if (mobileMenu && mobileMenu.classList.contains('show')) {
-            closeMobileMenu();
-        }
-    });
-    
-    syncMobileUserInfo();
-    
-    const observer = new MutationObserver(syncMobileUserInfo);
-    const userInfo = document.getElementById('userInfo');
-    if (userInfo) {
-        observer.observe(userInfo, { attributes: true, childList: true, subtree: true });
-    }
-}
-
-// ========== ПРИМЕНЕНИЕ СОСТОЯНИЯ ИЗ ХРАНИЛИЩА ==========
-window.applyAppState = function() {
-    if (window.stateApplied) return;
-    window.stateApplied = true;
-    
-    console.log('🔄 Применяем состояние:', {
-        level: AppConfig.currentLevel,
-        mode: currentMode,
-        isAuthenticated: window.isAuthenticated ? window.isAuthenticated() : false
-    });
-    
-    // Устанавливаем активные кнопки уровней
-    document.querySelectorAll('[data-level]').forEach(btn => {
-        if (btn.dataset.level === AppConfig.currentLevel) btn.classList.add('active');
-        else btn.classList.remove('active');
-    });
-    document.querySelectorAll('#levelsContainerMobile [data-level]').forEach(btn => {
-        if (btn.dataset.level === AppConfig.currentLevel) btn.classList.add('active');
-        else btn.classList.remove('active');
-    });
-    
-    // Устанавливаем активные кнопки режимов
-    document.querySelectorAll('.mode-btn').forEach(btn => {
-        if (btn.dataset.mode === currentMode) btn.classList.add('active');
-        else btn.classList.remove('active');
-    });
-    
-    updateCounter();
-    updateModeIndicator();
-};
 
 // ========== ИНИЦИАЛИЗАЦИЯ ==========
-async function init() {
-    console.log('init: начало загрузки');
+function initApp() {
+    console.log('🚀 Запуск Deutsch-Meister...');
     
-    var startTime = Date.now();
-    var maxWaitTime = 10000;
-    var timeoutId = null;
+    // Настраиваем кнопки уровней
+    document.querySelectorAll('[data-level]').forEach(btn => {
+        btn.onclick = () => {
+            document.querySelectorAll('[data-level]').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            renderLevel(btn.getAttribute('data-level'));
+        };
+    });
     
-    function checkTimeout() {
-        if (Date.now() - startTime > maxWaitTime) {
-            console.log('⏰ Превышено время ожидания, перезагружаем...');
-            if (timeoutId) {
-                clearTimeout(timeoutId);
-                timeoutId = null;
-            }
-            location.reload();
-        }
-    }
+    // Настраиваем кнопки режимов (старые)
+    document.querySelectorAll('.mode-btn:not([data-level])').forEach(btn => {
+        btn.onclick = () => {
+            alert('Этот режим будет доступен в следующей версии. Используйте уроки для изучения!');
+        };
+    });
     
-    timeoutId = setInterval(checkTimeout, 2000);
+    // Загружаем уровень A1 по умолчанию
+    renderLevel('A1');
     
-    try {
-        // ===== ВАЖНО: СБРАСЫВАЕМ ПРОГРЕСС ГОСТЯ ПРИ ЗАГРУЗКЕ =====
-        // Это гарантирует, что гость начинает с чистого листа при каждой загрузке
-        if (window.resetGuestProgress) {
-            window.resetGuestProgress();
-            console.log('🗑️ Прогресс гостя сброшен (новая сессия)');
-        }
-        
-        // Загружаем прогресс (для гостя — пустой, для авторизованного — из сессии/облака)
-        loadProgress();
-        loadGrammarProgress();
-        
-        await loadWords();
-        await loadSentences();
-        await loadGrammarData();
-        
-        // ===== ИНИЦИАЛИЗАЦИЯ КНОПОК МЕНЮ =====
-        document.querySelectorAll('.mode-btn').forEach(function(btn) {
-            btn.onclick = function() { setMode(btn.dataset.mode); };
-        });
-        
-        // ===== ИНИЦИАЛИЗАЦИЯ КНОПОК УРОВНЕЙ =====
-        document.querySelectorAll('[data-level]').forEach(function(btn) {
-            btn.onclick = function() { 
-                const level = btn.getAttribute('data-level');
-                setLevel(level);
-            };
-        });
-        
-        // ===== ИНИЦИАЛИЗАЦИЯ КНОПКИ "ПОДЕЛИТЬСЯ" =====
-        document.querySelectorAll('.share-btn').forEach(function(btn) {
-            btn.onclick = function() { window.shareApp(); };
-        });
-        
-        // Устанавливаем активный уровень
-        document.querySelectorAll('[data-level]').forEach(function(btn) {
-            if (btn.dataset.level === AppConfig.currentLevel) btn.classList.add('active');
-            else btn.classList.remove('active');
-        });
-        
-        // Устанавливаем активный режим
-        setMode(currentMode);
-        
-        initMobileMenu();
-        updateModeIndicator();
-        
-        // ===== ЗАГРУЗКА НОВОГО КУРСА =====
-        // Загружаем уровень через CourseManager
-        if (window.CourseManager) {
-            await window.CourseManager.loadLevel(AppConfig.currentLevel);
-        } else {
-            console.warn('CourseManager не загружен, используем старую логику');
-        }
-        
-        setTimeout(function() {
-            updateCounter();
-        }, 1000);
-        
-        setInterval(function() {
-            if (window.isAuthenticated && window.isAuthenticated()) {
-                logUserAction('heartbeat', {
-                    level: AppConfig.currentLevel,
-                    mode: currentMode,
-                    wordsUnstudied: getUnstudiedWords().length,
-                    sentencesUnstudied: getUnstudiedSentences().length
-                });
-            }
-        }, 5 * 60 * 1000);
-        
-        if (timeoutId) {
-            clearTimeout(timeoutId);
-            timeoutId = null;
-        }
-        
-        console.log('init: завершено');
-        
-    } catch(e) {
-        console.error('Ошибка загрузки:', e);
-        if (timeoutId) {
-            clearTimeout(timeoutId);
-            timeoutId = null;
-        }
-        setTimeout(function() {
-            location.reload();
-        }, 1000);
-    }
+    console.log('✅ Deutsch-Meister готов!');
 }
 
-// Запускаем инициализацию
-init();
+// Запускаем приложение
+document.addEventListener('DOMContentLoaded', initApp);

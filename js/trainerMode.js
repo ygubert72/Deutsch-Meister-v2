@@ -10,6 +10,7 @@ let trainerAvailableWords = [];
 let trainerActiveWords = {};
 let trainerHintIndex = 0;
 let trainerHintWords = [];
+let trainerDirection = 'ru_to_de'; // 'ru_to_de' или 'de_to_ru'
 
 function renderTrainer(container, lesson) {
     const vocab = lesson.vocabulary || [];
@@ -24,8 +25,9 @@ function renderTrainer(container, lesson) {
         return;
     }
 
+    // Создаём предложения из слов урока (по 3 слова)
     trainerSentences = [];
-    for (let i = 0; i < Math.min(vocab.length, 20); i += 3) {
+    for (let i = 0; i < Math.min(vocab.length, 30); i += 3) {
         if (i + 2 < vocab.length) {
             const words = [vocab[i], vocab[i+1], vocab[i+2]];
             const shuffled = [...words];
@@ -52,6 +54,7 @@ function renderTrainer(container, lesson) {
     }
 
     trainerIndex = 0;
+    trainerDirection = 'ru_to_de';
     showTrainerSentence(container);
 }
 
@@ -76,13 +79,21 @@ function showTrainerSentence(container) {
     trainerHintIndex = 0;
     trainerHintWords = trainerCurrentSentence.original.map(w => w.de);
 
+    const isRuToDe = trainerDirection === 'ru_to_de';
+    const questionText = isRuToDe 
+        ? trainerCurrentSentence.original.map(w => w.ru).join(' ')
+        : trainerCurrentSentence.original.map(w => w.de).join(' ');
+
     let html = `
         <div style="text-align: center;">
+            <button class="dir-btn" id="trainerDirBtn" style="background: #3B6FE0; color: white; padding: 8px 20px; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; margin-bottom: 15px;">
+                ${isRuToDe ? '🇷🇺→🇩🇪' : '🇩🇪→🇷🇺'}
+            </button>
             <div style="background: #E8F0FE; border-radius: 20px; padding: 20px; margin-bottom: 15px;">
-                <div style="font-size: 14px; color: #666; margin-bottom: 5px;">Составьте предложение:</div>
-                <div style="font-size: 18px; font-weight: bold;">${trainerCurrentSentence.original.map(w => w.ru).join(' ')}</div>
+                <div style="font-size: 14px; color: #666; margin-bottom: 5px;">Составьте предложение на немецком:</div>
+                <div style="font-size: 20px; font-weight: bold;">${questionText}</div>
             </div>
-            <div style="background: #FFFFFF; border: 2px solid #E0E0E0; border-radius: 16px; padding: 15px; margin: 10px 0; text-align: center; font-weight: bold; font-size: 18px; min-height: 60px;" id="trainerResult">
+            <div style="background: #FFFFFF; border: 2px solid #E0E0E0; border-radius: 16px; padding: 15px; margin: 10px 0; text-align: center; font-weight: bold; font-size: 20px; min-height: 60px; color: #1A1A1A;" id="trainerResult">
                 ${trainerSelectedWords.join(' ') || 'Нажмите на слова, чтобы собрать предложение'}
             </div>
             <div style="display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin: 15px 0;" id="trainerWordsContainer">
@@ -111,6 +122,13 @@ function showTrainerSentence(container) {
     `;
 
     container.innerHTML = html;
+
+    // Кнопка смены направления
+    document.getElementById('trainerDirBtn').onclick = function() {
+        trainerDirection = trainerDirection === 'ru_to_de' ? 'de_to_ru' : 'ru_to_de';
+        this.textContent = trainerDirection === 'ru_to_de' ? '🇷🇺→🇩🇪' : '🇩🇪→🇷🇺';
+        showTrainerSentence(container);
+    };
 
     container.querySelectorAll('#trainerWordsContainer .word-btn').forEach(btn => {
         btn.onclick = function() {

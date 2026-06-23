@@ -165,7 +165,7 @@
         <div class="top-bar">
             <div class="top-bar-left">
                 <button class="hamburger-btn" id="hamburgerBtn">☰</button>
-                <span id="modeIndicator" class="mode-indicator">Грамматика A1</span>
+                <span id="modeIndicator" class="mode-indicator">Курс A1</span>
             </div>
             <span id="counter">Загрузка...</span>
         </div>
@@ -203,17 +203,17 @@
     </div>
 </div>
 
-<!-- ===== ПОДКЛЮЧЕНИЕ СКРИПТОВ (ИСПРАВЛЕННЫЙ ПОРЯДОК) ===== -->
-<!-- 1. Базовые утилиты -->
+<!-- ===== ПОДКЛЮЧЕНИЕ СКРИПТОВ (исправленный порядок) ===== -->
+<!-- Базовые утилиты -->
 <script src="js/config.js"></script>
 <script src="js/utils.js"></script>
 <script src="js/logger.js"></script>
 
-<!-- 2. Менеджеры данных -->
+<!-- Менеджеры данных -->
 <script src="js/wordsManager.js"></script>
 <script src="js/sentencesManager.js"></script>
 
-<!-- 3. Компоненты и режимы (здесь определяются все функции, включая loadGrammarData) -->
+<!-- Компоненты и режимы -->
 <script src="js/containerManager.js"></script>
 <script src="js/carousel.js"></script>
 <script src="js/cardsMode.js"></script>
@@ -221,13 +221,10 @@
 <script src="js/sentencesMode.js"></script>
 <script src="js/grammarMode.js"></script>
 
-<!-- 4. Новый менеджер курса -->
-<script src="js/courseManager.js"></script>
+<!-- НОВЫЙ ГЛАВНЫЙ СКРИПТ (вся логика в одном файле) -->
+<script src="js/app_new.js"></script>
 
-<!-- 5. ГЛАВНОЕ ПРИЛОЖЕНИЕ (загружается ПОСЛЕ всех режимов) -->
-<script src="js/app.js"></script>
-
-<!-- 6. Авторизация и сервисы -->
+<!-- Авторизация и сервисы -->
 <script src="js/auth.js"></script>
 <script src="js/userService.js"></script>
 <script src="js/activityTracker.js"></script>

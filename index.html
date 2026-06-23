@@ -203,20 +203,31 @@
     </div>
 </div>
 
-<!-- ПОДКЛЮЧАЕМ СКРИПТЫ (пути исправлены) -->
+<!-- ===== ПОДКЛЮЧЕНИЕ СКРИПТОВ (исправленный порядок) ===== -->
+<!-- Сначала базовые утилиты и конфиги -->
 <script src="js/config.js"></script>
 <script src="js/utils.js"></script>
 <script src="js/logger.js"></script>
-<script src="js/containerManager.js"></script>
-<script src="js/carousel.js"></script>
+
+<!-- Потом менеджеры данных -->
 <script src="js/wordsManager.js"></script>
 <script src="js/sentencesManager.js"></script>
+
+<!-- Потом режимы (здесь определяются функции renderCards, renderQuiz, loadGrammarData и т.д.) -->
+<script src="js/containerManager.js"></script>
+<script src="js/carousel.js"></script>
 <script src="js/cardsMode.js"></script>
 <script src="js/quizMode.js"></script>
 <script src="js/sentencesMode.js"></script>
 <script src="js/grammarMode.js"></script>
+
+<!-- Потом новый менеджер курса -->
 <script src="js/courseManager.js"></script>
+
+<!-- ПОТОМ app.js (он использует всё, что определено выше) -->
 <script src="js/app.js"></script>
+
+<!-- Потом авторизация и сервисы -->
 <script src="js/auth.js"></script>
 <script src="js/userService.js"></script>
 <script src="js/activityTracker.js"></script>
@@ -251,7 +262,7 @@
         }
     });
     
-    document.querySelectorAll('.install-banner').forEach(function(banner) {
+    document.querySelectorAll('.install-banners').forEach(function(banner) {
         banner.addEventListener('click', function() {
             if (deferredPrompt) {
                 deferredPrompt.prompt();

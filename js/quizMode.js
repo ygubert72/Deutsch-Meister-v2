@@ -7,6 +7,7 @@ let quizIndex = 0;
 let quizCurrentWord = null;
 let quizDirection = 'de_to_ru';
 let quizStudiedWords = {};
+let currentLessonId = null;
 
 function renderQuiz(container, lesson) {
     const vocab = lesson.vocabulary || [];
@@ -15,18 +16,26 @@ function renderQuiz(container, lesson) {
         return;
     }
 
+    // Сохраняем ID урока
+    currentLessonId = lesson.id || 1;
+
     // Загружаем сохранённые изученные слова из localStorage
     try {
-        const saved = localStorage.getItem('dm_quiz_studied_' + (lesson.id || 1));
+        const saved = localStorage.getItem('dm_quiz_studied_' + currentLessonId);
         if (saved) {
             quizStudiedWords = JSON.parse(saved);
+        } else {
+            quizStudiedWords = {};
         }
-    } catch(e) {}
+    } catch(e) {
+        quizStudiedWords = {};
+    }
 
     quizWords = vocab.filter(word => !quizStudiedWords[word.de]);
     if (quizWords.length === 0) {
         quizWords = [...vocab];
         quizStudiedWords = {};
+        localStorage.removeItem('dm_quiz_studied_' + currentLessonId);
     }
     
     quizIndex = 0;
@@ -111,8 +120,7 @@ function renderQuiz(container, lesson) {
 
 function saveQuizState() {
     try {
-        const lessonId = window.currentLesson?.id || 1;
-        localStorage.setItem('dm_quiz_studied_' + lessonId, JSON.stringify(quizStudiedWords));
+        localStorage.setItem('dm_quiz_studied_' + currentLessonId, JSON.stringify(quizStudiedWords));
     } catch(e) {}
 }
 

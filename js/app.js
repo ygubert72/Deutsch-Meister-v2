@@ -1,4 +1,4 @@
-// app.js - полная версия с плавным мобильным меню
+// app.js - полная версия с новым CourseManager
 
 // ========== ЛОГИРОВАНИЕ ДЕЙСТВИЙ ПОЛЬЗОВАТЕЛЯ ==========
 async function logUserAction(action, details = {}) {
@@ -44,7 +44,13 @@ function updateCounter() {
     const el = document.getElementById('counter');
     if (!el) return;
     
-    if (currentMode === 'cards' || currentMode === 'quiz') {
+    // Если мы в режиме курса - показываем информацию о прогрессе
+    if (window.CourseManager && window.CourseManager.lessonData) {
+        const lesson = window.CourseManager.lessonData;
+        const vocabCount = lesson.vocabulary ? lesson.vocabulary.length : 0;
+        const practiceCount = lesson.practice ? lesson.practice.length : 0;
+        el.textContent = `Слов: ${vocabCount} | Упражнений: ${practiceCount}`;
+    } else if (currentMode === 'cards' || currentMode === 'quiz') {
         const total = wordsDB[AppConfig.currentLevel]?.length || 0;
         const unstudied = getUnstudiedWords().length;
         const studied = total - unstudied;
@@ -88,6 +94,13 @@ function updateCounter() {
 function updateModeIndicator() {
     const indicator = document.getElementById('modeIndicator');
     if (!indicator) return;
+    
+    // Если мы в режиме курса - показываем информацию о курсе
+    if (window.CourseManager && window.CourseManager.lessonData) {
+        const lesson = window.CourseManager.lessonData;
+        indicator.textContent = `Урок ${lesson.id}: ${lesson.title}`;
+        return;
+    }
     
     const level = AppConfig.currentLevel;
     const savedLesson = localStorage.getItem('dm_last_grammar_lesson');
@@ -180,15 +193,20 @@ function setLevel(level) {
     
     logUserAction('change_level', { level: level, mode: currentMode });
     
-    // Рендерим текущий режим с новым уровнем
-    if (currentMode === 'cards') {
-        renderCards();
-    } else if (currentMode === 'quiz') {
-        renderQuiz();
-    } else if (currentMode === 'sentences') {
-        renderSentences();
-    } else if (currentMode === 'grammar') {
-        renderGrammar();
+    // Загружаем уровень через CourseManager
+    if (window.CourseManager) {
+        window.CourseManager.loadLevel(level);
+    } else {
+        // Фолбэк на старую логику
+        if (currentMode === 'cards') {
+            renderCards();
+        } else if (currentMode === 'quiz') {
+            renderQuiz();
+        } else if (currentMode === 'sentences') {
+            renderSentences();
+        } else if (currentMode === 'grammar') {
+            renderGrammar();
+        }
     }
     
     updateCounter();
@@ -586,6 +604,14 @@ async function init() {
         initMobileMenu();
         updateModeIndicator();
         
+        // ===== ЗАГРУЗКА НОВОГО КУРСА =====
+        // Загружаем уровень через CourseManager
+        if (window.CourseManager) {
+            await window.CourseManager.loadLevel(AppConfig.currentLevel);
+        } else {
+            console.warn('CourseManager не загружен, используем старую логику');
+        }
+        
         setTimeout(function() {
             updateCounter();
         }, 1000);
@@ -620,4 +646,5 @@ async function init() {
     }
 }
 
+// Запускаем инициализацию
 init();

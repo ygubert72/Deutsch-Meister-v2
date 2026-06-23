@@ -88,9 +88,10 @@ const COURSE_DATA = {
 };
 
 // ========== СОСТОЯНИЕ ==========
+// ВНИМАНИЕ: currentMode уже объявлен в config.js, НЕ объявляем его заново!
 let currentLevel = 'A1';
 let currentLesson = null;
-let currentMode = 'grammar';
+// Используем глобальный currentMode из config.js
 
 // ========== ОЗВУЧКА ==========
 function speak(text) {

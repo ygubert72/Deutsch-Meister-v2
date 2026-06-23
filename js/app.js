@@ -6,7 +6,7 @@
 let currentLevel = 'A1';
 let currentLesson = null;
 let courseData = null;
-// ВНИМАНИЕ: currentMode уже объявлен в config.js, НЕ объявляем его заново!
+// currentMode объявлен в config.js
 
 // ========== СОХРАНЕНИЕ СОСТОЯНИЯ ==========
 function saveState() {
@@ -17,6 +17,7 @@ function saveState() {
             mode: currentMode || 'grammar'
         };
         localStorage.setItem('dm_app_state', JSON.stringify(state));
+        console.log('💾 Состояние сохранено:', state);
     } catch(e) {
         console.log('Ошибка сохранения состояния:', e);
     }
@@ -27,6 +28,7 @@ function loadState() {
         const saved = localStorage.getItem('dm_app_state');
         if (saved) {
             const state = JSON.parse(saved);
+            console.log('📂 Состояние загружено:', state);
             return state;
         }
     } catch(e) {
@@ -38,12 +40,14 @@ function loadState() {
 // ========== ЗАГРУЗКА ДАННЫХ ==========
 async function loadLevel(level) {
     currentLevel = level;
-    saveState();
+    console.log('📚 Загрузка уровня:', level);
     try {
         const response = await fetch(`docs/course/${level}/index.json`);
         if (!response.ok) throw new Error('Курс не найден');
         courseData = await response.json();
+        console.log('✅ Курс загружен:', courseData.title);
         renderLevel();
+        saveState();
     } catch(e) {
         console.error('Ошибка загрузки курса:', e);
         document.getElementById('content').innerHTML = `
@@ -57,6 +61,7 @@ async function loadLevel(level) {
 }
 
 async function loadLesson(lessonId) {
+    console.log('📖 Загрузка урока:', lessonId);
     try {
         const lessonInfo = courseData.lessons.find(l => l.id === lessonId);
         if (!lessonInfo) throw new Error('Урок не найден');
@@ -64,7 +69,9 @@ async function loadLesson(lessonId) {
         const response = await fetch(`docs/course/${currentLevel}/lessons/${lessonInfo.file}`);
         if (!response.ok) throw new Error('Файл урока не найден');
         const lesson = await response.json();
+        console.log('✅ Урок загружен:', lesson.title);
         renderLesson(lesson);
+        saveState();
     } catch(e) {
         console.error('Ошибка загрузки урока:', e);
         document.getElementById('content').innerHTML = `
@@ -161,6 +168,7 @@ function renderLesson(lesson) {
     if (savedState && savedState.mode && savedState.lessonId === lesson.id) {
         const modeBtn = document.querySelector(`.mode-btn[data-mode="${savedState.mode}"]`);
         if (modeBtn) {
+            console.log('🔄 Восстановление режима:', savedState.mode);
             document.querySelectorAll('.mode-btn').forEach(b => b.classList.remove('active'));
             modeBtn.classList.add('active');
             currentMode = savedState.mode;
@@ -251,7 +259,7 @@ function initApp() {
         };
     });
     
-    // Восстанавливаем состояние
+    // ==== ВОССТАНОВЛЕНИЕ СОСТОЯНИЯ ====
     const savedState = loadState();
     if (savedState) {
         console.log('🔄 Восстановление состояния:', savedState);
@@ -269,20 +277,40 @@ function initApp() {
         // Загружаем уровень
         loadLevel(currentLevel);
         
-        // Если был открыт урок — загружаем его после загрузки уровня
+        // Если был открыт урок — загружаем его ПОСЛЕ загрузки уровня
         if (savedState.lessonId) {
-            setTimeout(() => {
-                // Проверяем, что урок загружен
+            // Используем setTimeout с проверкой через интервал
+            let attempts = 0;
+            const maxAttempts = 20; // 2 секунды (20 * 100ms)
+            
+            const tryLoadLesson = setInterval(() => {
+                attempts++;
+                console.log(`⏳ Попытка ${attempts} загрузить урок ${savedState.lessonId}...`);
+                
                 if (courseData && courseData.lessons) {
+                    clearInterval(tryLoadLesson);
                     const lessonExists = courseData.lessons.some(l => l.id === savedState.lessonId);
                     if (lessonExists) {
+                        console.log('🔄 Загрузка сохранённого урока:', savedState.lessonId);
                         loadLesson(savedState.lessonId);
+                    } else {
+                        console.warn('⚠️ Сохранённый урок не найден, загружаем первый');
+                        if (courseData.lessons.length > 0) {
+                            loadLesson(courseData.lessons[0].id);
+                        }
+                    }
+                } else if (attempts >= maxAttempts) {
+                    clearInterval(tryLoadLesson);
+                    console.warn('⚠️ Таймаут загрузки курса, загружаем первый урок');
+                    if (courseData && courseData.lessons && courseData.lessons.length > 0) {
+                        loadLesson(courseData.lessons[0].id);
                     }
                 }
-            }, 500);
+            }, 100);
         }
     } else {
         // Если состояния нет — загружаем A1
+        console.log('📂 Состояния нет, загружаем A1 по умолчанию');
         loadLevel('A1');
     }
     

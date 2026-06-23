@@ -1,31 +1,23 @@
-// ========== НОВАЯ ФУНКЦИЯ ДЛЯ РАБОТЫ С COURSE MANAGER ==========
-// Эта функция позволяет использовать упражнения из нового формата уроков
+// ====================================================================
+// grammarMode.js — Грамматика
+// ====================================================================
 
-function initGrammarFromLesson(lessonData) {
-    // Сохраняем данные урока в глобальную переменную
-    window.currentLessonData = lessonData;
+function renderGrammar(container, lesson) {
+    let html = `<div style="line-height: 1.8;">${lesson.grammar || ''}</div>`;
     
-    // Если есть упражнения - показываем их
-    if (lessonData.practice && lessonData.practice.length > 0) {
-        // Используем существующую логику для отображения упражнений
-        window.currentExercises = lessonData.practice;
-        window.currentExerciseIndex = 0;
-        
-        // Создаем контейнер для упражнений
-        const container = document.getElementById('lessonContent');
-        if (container) {
-            // Создаем временный контейнер для грамматики
-            const grammarContainer = document.createElement('div');
-            grammarContainer.id = 'grammarContent';
-            container.appendChild(grammarContainer);
-            
-            // Показываем первое упражнение
-            if (typeof window.showGrammarExercise === 'function') {
-                window.showGrammarExercise(lessonData.practice[0]);
-            }
-        }
+    if (lesson.examples && lesson.examples.length) {
+        html += `<h4>📝 Примеры:</h4><div style="margin-top: 10px;">`;
+        lesson.examples.forEach(ex => {
+            const safeText = ex.de.replace(/'/g, "\\'");
+            html += `
+                <div style="background: #E8F0FE; padding: 10px; border-radius: 8px; margin: 8px 0; display: flex; justify-content: space-between; align-items: center;">
+                    <span><strong>${ex.de}</strong> — ${ex.ru}</span>
+                    <button class="speak-btn" onclick="speak('${safeText}')">🔊</button>
+                </div>
+            `;
+        });
+        html += `</div>`;
     }
+    
+    container.innerHTML = html;
 }
-
-// Экспортируем функцию
-window.initGrammarFromLesson = initGrammarFromLesson;

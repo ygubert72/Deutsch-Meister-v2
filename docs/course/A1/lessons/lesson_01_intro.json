@@ -1,0 +1,135 @@
+{
+  "id": 1,
+  "title": "Знакомство. Глагол 'sein'.",
+  "grammar": {
+    "theory": "<h3>📌 Личные местоимения и глагол sein</h3><p>В этом уроке мы научимся представляться, спрашивать имя и говорить о себе. Для этого нам понадобятся <strong>личные местоимения</strong> и самый важный глагол — <strong>sein</strong> (быть, находиться).</p><div class='info-box' style='background: #E8F0FE; padding: 15px; border-radius: 12px; margin: 15px 0;'><strong>🔑 ЗОЛОТОЕ ПРАВИЛО:</strong><br>В немецком языке местоимение <strong>обязательно</strong>! Его нельзя опускать, как в русском. <br>❌ Неправильно: Bin Student.<br>✅ Правильно: <strong>Ich bin</strong> Student.</div><h3>📌 Личные местоимения</h3><table border='1' cellpadding='8' style='border-collapse: collapse; width: 100%; margin: 15px 0;'><tr style='background: #3B6FE0; color: white;'><th>Русский</th><th>Немецкий</th><th>Пример</th></tr><tr style='background: #E3F2FD;'><td>я</td><td>ich</td><td>ich lerne</td></tr><tr style='background: #F5F5F5;'><td>ты</td><td>du</td><td>du lernst</td></tr><tr style='background: #E3F2FD;'><td>он</td><td>er</td><td>er lernt</td></tr><tr style='background: #F5F5F5;'><td>она</td><td>sie</td><td>sie lernt</td></tr><tr style='background: #E3F2FD;'><td>оно</td><td>es</td><td>es lernt</td></tr><tr style='background: #F5F5F5;'><td>мы</td><td>wir</td><td>wir lernen</td></tr><tr style='background: #E3F2FD;'><td>вы</td><td>ihr</td><td>ihr lernt</td></tr><tr style='background: #F5F5F5;'><td>они</td><td>sie</td><td>sie lernen</td></tr><tr style='background: #E3F2FD;'><td>Вы (вежл.)</td><td>Sie</td><td>Sie lernen</td></tr></table><h3>📌 Спряжение глагола sein</h3><p>Глагол <strong>sein</strong> переводится как «быть», «находиться», «являться». Он спрягается не по правилам, его формы нужно запомнить.</p><table border='1' cellpadding='8' style='border-collapse: collapse; width: 100%; margin: 15px 0;'><tr style='background: #3B6FE0; color: white;'><th>Местоимение</th><th>Форма sein</th><th>Пример</th></tr><tr style='background: #E3F2FD;'><td>ich</td><td><strong>bin</strong></td><td>Ich bin Anna.</td></tr><tr style='background: #F5F5F5;'><td>du</td><td><strong>bist</strong></td><td>Du bist mein Freund.</td></tr><tr style='background: #E3F2FD;'><td>er/sie/es</td><td><strong>ist</strong></td><td>Er ist mein Bruder.</td></tr><tr style='background: #F5F5F5;'><td>wir</td><td><strong>sind</strong></td><td>Wir sind glücklich.</td></tr><tr style='background: #E3F2FD;'><td>ihr</td><td><strong>seid</strong></td><td>Ihr seid zu Hause.</td></tr><tr style='background: #F5F5F5;'><td>sie/Sie</td><td><strong>sind</strong></td><td>Sie sind in Berlin.</td></tr></table><div class='info-box' style='background: #E8F0FE; padding: 15px; border-radius: 12px; margin: 15px 0;'><strong>🎯 ЗАПОМИНАЛКА:</strong><br>ich bin, du bist, er ist, wir sind, ihr seid, sie sind</div>",
+    "examples": [
+      { "de": "Ich bin Anna.", "ru": "Я Анна." },
+      { "de": "Du bist mein Freund.", "ru": "Ты мой друг." },
+      { "de": "Er ist mein Bruder.", "ru": "Он мой брат." },
+      { "de": "Sie ist meine Schwester.", "ru": "Она моя сестра." },
+      { "de": "Wir sind glücklich.", "ru": "Мы счастливы." },
+      { "de": "Ihr seid zu Hause.", "ru": "Вы дома." },
+      { "de": "Sie sind in Berlin.", "ru": "Они в Берлине." },
+      { "de": "Das ist mein Buch.", "ru": "Это моя книга." },
+      { "de": "Wie geht es dir?", "ru": "Как у тебя дела?" },
+      { "de": "Mir geht es gut.", "ru": "У меня всё хорошо." }
+    ]
+  },
+  "vocabulary": [
+    { "de": "Hallo!", "ru": "Привет!" },
+    { "de": "Tschüss!", "ru": "Пока!" },
+    { "de": "Guten Morgen!", "ru": "Доброе утро!" },
+    { "de": "Guten Tag!", "ru": "Добрый день!" },
+    { "de": "Guten Abend!", "ru": "Добрый вечер!" },
+    { "de": "Gute Nacht!", "ru": "Спокойной ночи!" },
+    { "de": "Auf Wiedersehen!", "ru": "До свидания!" },
+    { "de": "Bis bald!", "ru": "До скорого!" },
+    { "de": "Bitte!", "ru": "Пожалуйста!" },
+    { "de": "Danke!", "ru": "Спасибо!" },
+    { "de": "Entschuldigung!", "ru": "Извините!" },
+    { "de": "Ja", "ru": "Да" },
+    { "de": "Nein", "ru": "Нет" },
+    { "de": "Vielleicht", "ru": "Возможно" },
+    { "de": "der Mann", "ru": "мужчина" },
+    { "de": "die Frau", "ru": "женщина" },
+    { "de": "das Kind", "ru": "ребёнок" },
+    { "de": "der Vater", "ru": "отец" },
+    { "de": "die Mutter", "ru": "мать" },
+    { "de": "der Freund", "ru": "друг" },
+    { "de": "die Freundin", "ru": "подруга" },
+    { "de": "der Bruder", "ru": "брат" },
+    { "de": "die Schwester", "ru": "сестра" },
+    { "de": "die Familie", "ru": "семья" },
+    { "de": "Deutschland", "ru": "Германия" },
+    { "de": "Russland", "ru": "Россия" },
+    { "de": "die USA", "ru": "США" },
+    { "de": "Frankreich", "ru": "Франция" },
+    { "de": "Italien", "ru": "Италия" },
+    { "de": "Spanien", "ru": "Испания" },
+    { "de": "die Türkei", "ru": "Турция" },
+    { "de": "die Stadt", "ru": "город" },
+    { "de": "das Dorf", "ru": "деревня" },
+    { "de": "das Haus", "ru": "дом" },
+    { "de": "die Wohnung", "ru": "квартира" },
+    { "de": "das Zimmer", "ru": "комната" },
+    { "de": "die Küche", "ru": "кухня" },
+    { "de": "das Bad", "ru": "ванная" },
+    { "de": "das Wohnzimmer", "ru": "гостиная" },
+    { "de": "das Schlafzimmer", "ru": "спальня" },
+    { "de": "der Tisch", "ru": "стол" },
+    { "de": "der Stuhl", "ru": "стул" },
+    { "de": "das Bett", "ru": "кровать" },
+    { "de": "das Buch", "ru": "книга" },
+    { "de": "der Hund", "ru": "собака" },
+    { "de": "die Katze", "ru": "кошка" },
+    { "de": "das Pferd", "ru": "лошадь" },
+    { "de": "der Vogel", "ru": "птица" },
+    { "de": "der Fisch", "ru": "рыба" }
+  ],
+  "practice": [
+    { "type": "fill", "question": "Вставьте правильную форму sein:", "sentence": "Ich ___ Anna.", "answer": "bin", "hint": "Местоимение ich → форма bin" },
+    { "type": "fill", "question": "Вставьте правильную форму sein:", "sentence": "Du ___ mein Freund.", "answer": "bist", "hint": "Местоимение du → форма bist" },
+    { "type": "fill", "question": "Вставьте правильную форму sein:", "sentence": "Er ___ mein Bruder.", "answer": "ist", "hint": "Местоимение er → форма ist" },
+    { "type": "fill", "question": "Вставьте правильную форму sein:", "sentence": "Sie ___ meine Schwester.", "answer": "ist", "hint": "Местоимение sie (она) → форма ist" },
+    { "type": "fill", "question": "Вставьте правильную форму sein:", "sentence": "Wir ___ glücklich.", "answer": "sind", "hint": "Местоимение wir → форма sind" },
+    { "type": "fill", "question": "Вставьте правильную форму sein:", "sentence": "Ihr ___ zu Hause.", "answer": "seid", "hint": "Местоимение ihr → форма seid" },
+    { "type": "fill", "question": "Вставьте правильную форму sein:", "sentence": "Sie (они) ___ in Berlin.", "answer": "sind", "hint": "Местоимение sie (они) → форма sind" },
+    { "type": "fill", "question": "Переделайте в вопрос (глагол на 1-е место):", "sentence": "___ du müde?", "answer": "Bist", "hint": "Вопрос: глагол на первом месте, du → bist" },
+    { "type": "fill", "question": "Переделайте в отрицание с nicht:", "sentence": "Ich ___ nicht müde.", "answer": "bin", "hint": "Отрицание не меняет форму глагола" },
+    { "type": "fill", "question": "Переведите на немецкий:", "sentence": "Я Анна.", "answer": "Ich bin Anna.", "hint": "Анна — это имя" },
+    { "type": "fill", "question": "Переведите на немецкий:", "sentence": "Ты мой друг.", "answer": "Du bist mein Freund.", "hint": "Freund — мужской род" },
+    { "type": "fill", "question": "Переведите на немецкий:", "sentence": "Он мой брат.", "answer": "Er ist mein Bruder.", "hint": "Bruder — мужской род" },
+    { "type": "fill", "question": "Переведите на немецкий:", "sentence": "Мы счастливы.", "answer": "Wir sind glücklich.", "hint": "Множественное число" },
+    { "type": "fill", "question": "Переведите на немецкий (вопрос):", "sentence": "Ты дома?", "answer": "Bist du zu Hause?", "hint": "Вопрос начинается с глагола" }
+  ],
+  "quiz": {
+    "type": "vocabulary",
+    "title": "Тест на слова урока"
+  },
+  "trainer": {
+    "type": "sentence_builder",
+    "title": "Тренажер"
+  },
+  "dictation": {
+    "sentences": [
+      { "ru": "Привет! Меня зовут Анна.", "de": "Hallo! Ich heiße Anna." },
+      { "ru": "Ты мой друг.", "de": "Du bist mein Freund." },
+      { "ru": "Он мой брат.", "de": "Er ist mein Bruder." },
+      { "ru": "Мы счастливы.", "de": "Wir sind glücklich." },
+      { "ru": "Добрый день, как дела?", "de": "Guten Tag, wie geht es dir?" },
+      { "ru": "Спасибо, хорошо!", "de": "Danke, gut!" },
+      { "ru": "Это моя книга.", "de": "Das ist mein Buch." },
+      { "ru": "Меня зовут Том.", "de": "Ich heiße Tom." }
+    ]
+  },
+  "dialogues": {
+    "scenario": "Знакомство в парке",
+    "steps": [
+      {
+        "speaker": "Anna",
+        "text": "Hallo! Wie heißt du?",
+        "expected_keywords": ["ich heiße", "ich bin", "tom"],
+        "hint": "Sag deinen Namen.",
+        "success_response": "Freut mich, dich kennenzulernen, Tom!",
+        "fail_response": "Versuche es nochmal. Sag: Ich heiße [Name]."
+      },
+      {
+        "speaker": "Tom",
+        "text": "Ich heiße Tom. Und du?",
+        "expected_keywords": ["ich heiße", "ich bin", "anna"],
+        "hint": "Sag deinen Namen.",
+        "success_response": "Ich bin Anna. Schön, dich zu treffen!",
+        "fail_response": "Versuche es nochmal. Sag: Ich heiße [Name]."
+      },
+      {
+        "speaker": "Anna",
+        "text": "Woher kommst du?",
+        "expected_keywords": ["aus", "berlin", "russland"],
+        "hint": "Sag das Land oder die Stadt.",
+        "success_response": "Ah, aus Berlin! Super!",
+        "fail_response": "Versuche es nochmal. Sag: Ich komme aus [Land]."
+      }
+    ]
+  }
+}

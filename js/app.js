@@ -6,7 +6,7 @@
 let currentLevel = 'A1';
 let currentLesson = null;
 let courseData = null;
-let currentMode = 'grammar';
+// ВНИМАНИЕ: currentMode уже объявлен в config.js, НЕ объявляем его заново!
 
 // ========== СОХРАНЕНИЕ СОСТОЯНИЯ ==========
 function saveState() {

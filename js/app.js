@@ -1,9 +1,8 @@
 // ====================================================================
-// app.js — НОВАЯ ВЕРСИЯ ГЛАВНОГО ПРИЛОЖЕНИЯ
-// Вся логика в одном файле, работает без внешних зависимостей
+// app.js — ГЛАВНОЕ ПРИЛОЖЕНИЕ (без перезагрузок)
 // ====================================================================
 
-// ========== ДАННЫЕ УРОКОВ (ВСТРОЕННЫЕ) ==========
+// ========== ДАННЫЕ УРОКОВ ==========
 const COURSE_DATA = {
     A1: {
         title: "Немецкий для начинающих",
@@ -96,17 +95,41 @@ let currentMode = 'grammar';
 // ========== ОЗВУЧКА ==========
 function speak(text) {
     if (!text || !window.speechSynthesis) return;
-    const utterance = new SpeechSynthesisUtterance(text);
-    utterance.lang = 'de-DE';
-    utterance.rate = 0.9;
-    window.speechSynthesis.cancel();
-    window.speechSynthesis.speak(utterance);
+    try {
+        const utterance = new SpeechSynthesisUtterance(text);
+        utterance.lang = 'de-DE';
+        utterance.rate = 0.9;
+        window.speechSynthesis.cancel();
+        window.speechSynthesis.speak(utterance);
+    } catch(e) {
+        console.log('Ошибка озвучки:', e);
+    }
+}
+
+// ========== ОБНОВЛЕНИЕ СЧЁТЧИКА ==========
+function updateCounter() {
+    const el = document.getElementById('counter');
+    if (!el) return;
+    
+    if (currentLesson) {
+        const vocabCount = currentLesson.vocabulary ? currentLesson.vocabulary.length : 0;
+        const practiceCount = currentLesson.practice ? currentLesson.practice.length : 0;
+        el.textContent = `Слов: ${vocabCount} | Упражнений: ${practiceCount}`;
+    } else if (currentLevel) {
+        const data = COURSE_DATA[currentLevel];
+        const lessonsCount = data && data.lessons ? data.lessons.length : 0;
+        el.textContent = `Уровень ${currentLevel} | Уроков: ${lessonsCount}`;
+    } else {
+        el.textContent = 'Deutsch-Meister';
+    }
 }
 
 // ========== ОТОБРАЖЕНИЕ УРОВНЕЙ ==========
 function renderLevel(level) {
+    console.log('📚 Загрузка уровня:', level);
     currentLevel = level;
     const data = COURSE_DATA[level];
+    
     if (!data || !data.lessons || data.lessons.length === 0) {
         document.getElementById('content').innerHTML = `
             <div style="text-align: center; padding: 40px; color: #999;">
@@ -123,7 +146,7 @@ function renderLevel(level) {
     let html = `<h2>📚 ${data.title}</h2><div style="margin-top: 20px;">`;
     data.lessons.forEach(lesson => {
         html += `
-            <button class="lesson-btn" data-lesson-id="${lesson.id}" style="display: block; width: 100%; padding: 15px; margin: 8px 0; background: #E8F0FE; border: 2px solid #D0D0D0; border-radius: 8px; cursor: pointer; text-align: left; font-size: 16px;">
+            <button class="lesson-btn" data-lesson-id="${lesson.id}">
                 📘 Урок ${lesson.id}: ${lesson.title}
             </button>
         `;
@@ -134,8 +157,8 @@ function renderLevel(level) {
     updateCounter();
 
     document.querySelectorAll('.lesson-btn').forEach(btn => {
-        btn.onclick = () => {
-            const id = parseInt(btn.getAttribute('data-lesson-id'));
+        btn.onclick = function() {
+            const id = parseInt(this.getAttribute('data-lesson-id'));
             renderLesson(level, id);
         };
     });
@@ -143,19 +166,20 @@ function renderLevel(level) {
 
 // ========== ОТОБРАЖЕНИЕ УРОКА ==========
 function renderLesson(level, lessonId) {
+    console.log('📖 Загрузка урока:', lessonId);
     const data = COURSE_DATA[level];
     const lesson = data.lessons.find(l => l.id === lessonId);
     if (!lesson) return;
     currentLesson = lesson;
 
     let html = `
-        <button class="back-btn" onclick="renderLevel('${level}')" style="padding: 10px 20px; background: #3B6FE0; color: white; border: none; border-radius: 8px; cursor: pointer; margin-bottom: 15px;">← К СПИСКУ УРОКОВ</button>
+        <button class="back-btn" onclick="renderLevel('${level}')">← К СПИСКУ УРОКОВ</button>
         <h2>📖 Урок ${lesson.id}: ${lesson.title}</h2>
-        <div class="mode-buttons" style="display: flex; gap: 10px; flex-wrap: wrap; margin: 15px 0;">
-            <button class="mode-btn active" data-mode="grammar" style="padding: 10px 20px; background: #3B6FE0; color: white; border: 2px solid #2B5BC7; border-radius: 8px; cursor: pointer; font-weight: bold;">📘 Грамматика</button>
-            <button class="mode-btn" data-mode="vocabulary" style="padding: 10px 20px; background: #E8F0FE; border: 2px solid #D0D0D0; border-radius: 8px; cursor: pointer; font-weight: bold;">📚 Слова</button>
-            <button class="mode-btn" data-mode="practice" style="padding: 10px 20px; background: #E8F0FE; border: 2px solid #D0D0D0; border-radius: 8px; cursor: pointer; font-weight: bold;">✍️ Практика</button>
-            <button class="mode-btn" data-mode="dictation" style="padding: 10px 20px; background: #E8F0FE; border: 2px solid #D0D0D0; border-radius: 8px; cursor: pointer; font-weight: bold;">✏️ Диктант</button>
+        <div class="mode-buttons">
+            <button class="mode-btn active" data-mode="grammar">📘 Грамматика</button>
+            <button class="mode-btn" data-mode="vocabulary">📚 Слова</button>
+            <button class="mode-btn" data-mode="practice">✍️ Практика</button>
+            <button class="mode-btn" data-mode="dictation">✏️ Диктант</button>
         </div>
         <div id="modeContent"></div>
     `;
@@ -164,16 +188,12 @@ function renderLesson(level, lessonId) {
     updateCounter();
 
     document.querySelectorAll('.mode-btn').forEach(btn => {
-        btn.onclick = () => {
+        btn.onclick = function() {
             document.querySelectorAll('.mode-btn').forEach(b => {
-                b.style.background = '#E8F0FE';
-                b.style.color = '#333';
-                b.style.border = '2px solid #D0D0D0';
+                b.classList.remove('active');
             });
-            btn.style.background = '#3B6FE0';
-            btn.style.color = 'white';
-            btn.style.border = '2px solid #2B5BC7';
-            renderMode(btn.getAttribute('data-mode'), lesson);
+            this.classList.add('active');
+            renderMode(this.getAttribute('data-mode'), lesson);
         };
     });
 
@@ -213,7 +233,7 @@ function renderGrammar(container, lesson) {
             html += `
                 <div style="background: #E8F0FE; padding: 10px; border-radius: 8px; margin: 8px 0; display: flex; justify-content: space-between; align-items: center;">
                     <span><strong>${ex.de}</strong> — ${ex.ru}</span>
-                    <button class="speak-btn" onclick="speak('${safeText}')" style="background: #4CAF50; color: white; border: none; border-radius: 20px; padding: 4px 12px; cursor: pointer;">🔊</button>
+                    <button class="speak-btn" onclick="speak('${safeText}')">🔊</button>
                 </div>
             `;
         });
@@ -230,13 +250,13 @@ function renderVocabulary(container, lesson) {
         return;
     }
 
-    let html = '<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">';
+    let html = '<div class="vocab-grid">';
     vocab.forEach(word => {
         const safeText = word.de.replace(/'/g, "\\'");
         html += `
-            <div style="background: #f8f9fa; padding: 12px; border-radius: 8px; display: flex; justify-content: space-between; align-items: center;">
+            <div class="vocab-item">
                 <span><strong>${word.de}</strong> — ${word.ru}</span>
-                <button class="speak-btn" onclick="speak('${safeText}')" style="background: #4CAF50; color: white; border: none; border-radius: 20px; padding: 4px 12px; cursor: pointer;">🔊</button>
+                <button class="speak-btn" onclick="speak('${safeText}')">🔊</button>
             </div>
         `;
     });
@@ -254,12 +274,12 @@ function renderPractice(container, lesson) {
     let html = '<h3>✍️ Упражнения</h3>';
     exercises.forEach((ex, index) => {
         html += `
-            <div style="background: #f8f9fa; padding: 15px; border-radius: 8px; margin: 10px 0;">
+            <div class="practice-item">
                 <div><strong>${index + 1}.</strong> ${ex.question}</div>
                 <div style="margin: 8px 0;">${ex.sentence}</div>
-                <input type="text" class="practice-input" data-index="${index}" placeholder="Введите ответ..." style="width: 100%; padding: 10px; border: 2px solid #D0D0D0; border-radius: 8px; margin: 8px 0; font-size: 16px;">
-                <button class="check-btn" data-index="${index}" style="padding: 8px 20px; background: #3B6FE0; color: white; border: none; border-radius: 8px; cursor: pointer;">ПРОВЕРИТЬ</button>
-                <div class="practice-result" data-index="${index}" style="margin-top: 8px;"></div>
+                <input type="text" class="practice-input" data-index="${index}" placeholder="Введите ответ...">
+                <button class="check-btn" data-index="${index}">ПРОВЕРИТЬ</button>
+                <div class="practice-result" data-index="${index}"></div>
                 <div style="color: #999; font-size: 14px;">💡 ${ex.hint}</div>
             </div>
         `;
@@ -267,8 +287,8 @@ function renderPractice(container, lesson) {
     container.innerHTML = html;
 
     container.querySelectorAll('.check-btn').forEach(btn => {
-        btn.onclick = () => {
-            const index = parseInt(btn.getAttribute('data-index'));
+        btn.onclick = function() {
+            const index = parseInt(this.getAttribute('data-index'));
             const input = container.querySelector(`.practice-input[data-index="${index}"]`);
             const result = container.querySelector(`.practice-result[data-index="${index}"]`);
             const exercise = exercises[index];
@@ -279,11 +299,11 @@ function renderPractice(container, lesson) {
 
             if (userAnswer === correctAnswer) {
                 result.innerHTML = '✅ Правильно!';
-                result.style.color = '#4CAF50';
+                result.className = 'practice-result result-correct';
                 input.style.borderColor = '#4CAF50';
             } else {
                 result.innerHTML = `❌ Неправильно. Правильный ответ: <strong>${exercise.answer}</strong>`;
-                result.style.color = '#F44336';
+                result.className = 'practice-result result-wrong';
                 input.style.borderColor = '#F44336';
             }
         };
@@ -300,21 +320,21 @@ function renderDictation(container, lesson) {
     let html = '<h3>✏️ Правописание</h3><p>Напишите перевод на немецком языке:</p>';
     sentences.forEach((s, index) => {
         html += `
-            <div style="background: #f8f9fa; padding: 15px; border-radius: 8px; margin: 10px 0;">
+            <div class="dictation-item">
                 <div><strong>${index + 1}.</strong> ${s.ru}</div>
-                <input type="text" class="practice-input" data-dict-index="${index}" placeholder="Введите перевод..." style="width: 100%; padding: 10px; border: 2px solid #D0D0D0; border-radius: 8px; margin: 8px 0; font-size: 16px;">
-                <button class="check-btn" data-dict-index="${index}" style="padding: 8px 20px; background: #3B6FE0; color: white; border: none; border-radius: 8px; cursor: pointer;">ПРОВЕРИТЬ</button>
-                <div class="dictation-result" data-dict-index="${index}" style="margin-top: 8px;"></div>
+                <input type="text" class="practice-input" data-dict-index="${index}" placeholder="Введите перевод...">
+                <button class="check-btn" data-dict-index="${index}">ПРОВЕРИТЬ</button>
+                <div class="practice-result" data-dict-index="${index}"></div>
             </div>
         `;
     });
     container.innerHTML = html;
 
     container.querySelectorAll('.check-btn[data-dict-index]').forEach(btn => {
-        btn.onclick = () => {
-            const index = parseInt(btn.getAttribute('data-dict-index'));
+        btn.onclick = function() {
+            const index = parseInt(this.getAttribute('data-dict-index'));
             const input = container.querySelector(`.practice-input[data-dict-index="${index}"]`);
-            const result = container.querySelector(`.dictation-result[data-dict-index="${index}"]`);
+            const result = container.querySelector(`.practice-result[data-dict-index="${index}"]`);
             const sentence = sentences[index];
 
             if (!input || !result) return;
@@ -323,51 +343,42 @@ function renderDictation(container, lesson) {
 
             if (userAnswer === correctAnswer) {
                 result.innerHTML = '✅ Правильно!';
-                result.style.color = '#4CAF50';
+                result.className = 'practice-result result-correct';
                 input.style.borderColor = '#4CAF50';
             } else {
                 result.innerHTML = `❌ Неправильно. Правильный ответ: <strong>${sentence.de}</strong>`;
-                result.style.color = '#F44336';
+                result.className = 'practice-result result-wrong';
                 input.style.borderColor = '#F44336';
             }
         };
     });
 }
 
-// ========== СЧЁТЧИК ==========
-function updateCounter() {
-    const el = document.getElementById('counter');
-    if (!el) return;
-    
-    if (currentLesson) {
-        const vocabCount = currentLesson.vocabulary ? currentLesson.vocabulary.length : 0;
-        const practiceCount = currentLesson.practice ? currentLesson.practice.length : 0;
-        el.textContent = `Слов: ${vocabCount} | Упражнений: ${practiceCount}`;
-    } else if (currentLevel) {
-        const data = COURSE_DATA[currentLevel];
-        const lessonsCount = data && data.lessons ? data.lessons.length : 0;
-        el.textContent = `Уровень ${currentLevel} | Уроков: ${lessonsCount}`;
-    } else {
-        el.textContent = 'Deutsch-Meister';
-    }
-}
-
 // ========== ИНИЦИАЛИЗАЦИЯ ==========
 function initApp() {
     console.log('🚀 Запуск Deutsch-Meister...');
     
-    // Настраиваем кнопки уровней
-    document.querySelectorAll('[data-level]').forEach(btn => {
-        btn.onclick = () => {
-            document.querySelectorAll('[data-level]').forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
-            renderLevel(btn.getAttribute('data-level'));
+    // Настраиваем кнопки уровней (десктоп)
+    document.querySelectorAll('#levelsContainer .btn-level').forEach(btn => {
+        btn.onclick = function() {
+            document.querySelectorAll('#levelsContainer .btn-level').forEach(b => b.classList.remove('active'));
+            this.classList.add('active');
+            renderLevel(this.getAttribute('data-level'));
+        };
+    });
+    
+    // Настраиваем кнопки уровней (мобильные)
+    document.querySelectorAll('#levelsContainerMobile .btn-level').forEach(btn => {
+        btn.onclick = function() {
+            document.querySelectorAll('#levelsContainerMobile .btn-level').forEach(b => b.classList.remove('active'));
+            this.classList.add('active');
+            renderLevel(this.getAttribute('data-level'));
         };
     });
     
     // Настраиваем кнопки режимов (старые)
     document.querySelectorAll('.mode-btn:not([data-level])').forEach(btn => {
-        btn.onclick = () => {
+        btn.onclick = function() {
             alert('Этот режим будет доступен в следующей версии. Используйте уроки для изучения!');
         };
     });
@@ -379,4 +390,6 @@ function initApp() {
 }
 
 // Запускаем приложение
-document.addEventListener('DOMContentLoaded', initApp);
+document.addEventListener('DOMContentLoaded', function() {
+    initApp();
+});

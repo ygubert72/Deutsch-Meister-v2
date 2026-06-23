@@ -1,5 +1,5 @@
 // ====================================================================
-// trainerMode.js — Тренажёр (шаблоны загружаются из JSON)
+// trainerMode.js — Тренажёр (шаблоны из файла урока)
 // ====================================================================
 
 let trainerSentences = [];
@@ -11,31 +11,7 @@ let trainerActiveWords = {};
 let trainerHintIndex = 0;
 let trainerHintWords = [];
 let trainerDirection = 'ru_to_de';
-
-// ===== ЗАГРУЗКА ШАБЛОНОВ ДЛЯ УРОКА =====
-async function loadTemplatesForLesson(level, lessonId) {
-    try {
-        const response = await fetch(`docs/course/templates/${level}_lesson_${String(lessonId).padStart(2, '0')}.json`);
-        if (!response.ok) {
-            console.warn('⚠️ Шаблоны для урока не найдены, используем базовые');
-            return getFallbackTemplates();
-        }
-        const data = await response.json();
-        return data.templates || [];
-    } catch(e) {
-        console.warn('⚠️ Ошибка загрузки шаблонов:', e);
-        return getFallbackTemplates();
-    }
-}
-
-// ===== БАЗОВЫЕ ШАБЛОНЫ (если JSON не загрузился) =====
-function getFallbackTemplates() {
-    return [
-        { ru: "Привет!", de: "Hallo!", required: ["hallo"] },
-        { ru: "Пока!", de: "Tschüss!", required: ["tschüss"] },
-        { ru: "Добрый день!", de: "Guten Tag!", required: ["guten", "tag"] }
-    ];
-}
+let allVocabWords = [];
 
 // ===== ЗАГРУЗКА ВСЕХ СЛОВ ИЗ ПРОЙДЕННЫХ УРОКОВ =====
 async function loadAllVocabulary(level, currentLessonId) {
@@ -79,11 +55,21 @@ function renderTrainer(container, lesson) {
         </div>
     `;
     
-    // Загружаем всё параллельно
-    Promise.all([
-        loadAllVocabulary(currentLevel, lessonId),
-        loadTemplatesForLesson(currentLevel, lessonId)
-    ]).then(([vocab, templates]) => {
+    // Берём шаблоны из самого урока
+    const templates = lesson.trainer?.templates || [];
+    
+    if (templates.length === 0) {
+        container.innerHTML = `
+            <div style="text-align: center; padding: 40px; color: #999;">
+                <div style="font-size: 48px; margin-bottom: 15px;">📝</div>
+                <div>Для этого урока нет шаблонов для тренажёра.</div>
+            </div>
+        `;
+        return;
+    }
+    
+    // Загружаем слова из всех пройденных уроков
+    loadAllVocabulary(currentLevel, lessonId).then(vocab => {
         allVocabWords = vocab;
         
         if (allVocabWords.length < 5) {
@@ -118,7 +104,7 @@ function renderTrainer(container, lesson) {
                 <div style="text-align: center; padding: 40px; color: #999;">
                     <div style="font-size: 48px; margin-bottom: 15px;">📝</div>
                     <div>Недостаточно подходящих слов для осмысленных предложений.</div>
-                    <div style="font-size: 14px; margin-top: 10px;">Попробуйте другой урок или пройдите больше материала.</div>
+                    <div style="font-size: 14px; margin-top: 10px;">Попробуйте другой урок.</div>
                 </div>
             `;
             return;
@@ -138,11 +124,11 @@ function renderTrainer(container, lesson) {
         trainerDirection = 'ru_to_de';
         showTrainerSentence(container);
     }).catch(e => {
-        console.error('Ошибка загрузки:', e);
+        console.error('Ошибка загрузки слов:', e);
         container.innerHTML = `
             <div style="text-align: center; padding: 40px; color: #999;">
                 <div style="font-size: 48px; margin-bottom: 15px;">❌</div>
-                <div>Ошибка загрузки данных для тренажёра.</div>
+                <div>Ошибка загрузки слов для тренажёра.</div>
                 <div style="font-size: 14px; margin-top: 10px;">${e.message}</div>
             </div>
         `;

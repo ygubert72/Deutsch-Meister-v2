@@ -1,381 +1,135 @@
-// ====================================================================
-// trainerMode.js — Тренажёр (составление осмысленных предложений)
-// ====================================================================
-
-let trainerSentences = [];
-let trainerIndex = 0;
-let trainerCurrentSentence = null;
-let trainerSelectedWords = [];
-let trainerAvailableWords = [];
-let trainerActiveWords = {};
-let trainerHintIndex = 0;
-let trainerHintWords = [];
-let trainerDirection = 'ru_to_de';
-let allVocabWords = [];
-
-// ===== ЗАГРУЗКА ВСЕХ СЛОВ ИЗ ПРОЙДЕННЫХ УРОКОВ =====
-async function loadAllVocabulary(level, currentLessonId) {
-    try {
-        const response = await fetch(`docs/course/${level}/index.json`);
-        if (!response.ok) throw new Error('Курс не найден');
-        const courseData = await response.json();
-        
-        let allWords = [];
-        
-        for (const lessonInfo of courseData.lessons) {
-            if (lessonInfo.id > currentLessonId) break;
-            
-            try {
-                const lessonResponse = await fetch(`docs/course/${level}/lessons/${lessonInfo.file}`);
-                if (lessonResponse.ok) {
-                    const lessonData = await lessonResponse.json();
-                    if (lessonData.vocabulary) {
-                        allWords = allWords.concat(lessonData.vocabulary);
-                    }
-                }
-            } catch(e) {
-                console.warn('Не удалось загрузить урок:', lessonInfo.id);
-            }
-        }
-        
-        return allWords;
-    } catch(e) {
-        console.error('Ошибка загрузки лексики:', e);
-        return [];
-    }
-}
-
-// ===== ШАБЛОНЫ ДЛЯ УРОВНЯ A1 =====
+// ===== РАСШИРЕННЫЕ ШАБЛОНЫ ДЛЯ УРОВНЯ A1 =====
 function getTemplatesForLevel(level) {
+    // Полный набор шаблонов для A1 (будет расти с каждым уроком)
     const allTemplates = [
-        // Урок 1: Знакомство, приветствия, семья
-        { ru: "Привет!", de: "Hallo!", required: ["hallo"], lesson: 1 },
-        { ru: "Пока!", de: "Tschüss!", required: ["tschüss"], lesson: 1 },
-        { ru: "Доброе утро!", de: "Guten Morgen!", required: ["guten", "morgen"], lesson: 1 },
-        { ru: "Добрый день!", de: "Guten Tag!", required: ["guten", "tag"], lesson: 1 },
-        { ru: "Добрый вечер!", de: "Guten Abend!", required: ["guten", "abend"], lesson: 1 },
-        { ru: "Спокойной ночи!", de: "Gute Nacht!", required: ["gute", "nacht"], lesson: 1 },
-        { ru: "До свидания!", de: "Auf Wiedersehen!", required: ["auf", "wiedersehen"], lesson: 1 },
-        { ru: "Пожалуйста!", de: "Bitte!", required: ["bitte"], lesson: 1 },
-        { ru: "Спасибо!", de: "Danke!", required: ["danke"], lesson: 1 },
-        { ru: "Извините!", de: "Entschuldigung!", required: ["entschuldigung"], lesson: 1 },
-        { ru: "Да", de: "Ja", required: ["ja"], lesson: 1 },
-        { ru: "Нет", de: "Nein", required: ["nein"], lesson: 1 },
-        { ru: "Привет! Меня зовут Анна.", de: "Hallo! Ich heiße Anna.", required: ["hallo", "ich", "heiße"], lesson: 1 },
-        { ru: "Как тебя зовут?", de: "Wie heißt du?", required: ["wie", "heißt", "du"], lesson: 1 },
-        { ru: "Я Анна.", de: "Ich bin Anna.", required: ["ich", "bin"], lesson: 1 },
-        { ru: "Ты мой друг.", de: "Du bist mein Freund.", required: ["du", "bist", "mein", "freund"], lesson: 1 },
-        { ru: "Это мой друг.", de: "Das ist mein Freund.", required: ["das", "ist", "mein", "freund"], lesson: 1 },
-        { ru: "Он мой брат.", de: "Er ist mein Bruder.", required: ["er", "ist", "mein", "bruder"], lesson: 1 },
-        { ru: "Она моя сестра.", de: "Sie ist meine Schwester.", required: ["sie", "ist", "meine", "schwester"], lesson: 1 },
-        { ru: "Это моя семья.", de: "Das ist meine Familie.", required: ["das", "ist", "meine", "familie"], lesson: 1 },
-        { ru: "Мы счастливы.", de: "Wir sind glücklich.", required: ["wir", "sind", "glücklich"], lesson: 1 },
-        { ru: "Где ты?", de: "Wo bist du?", required: ["wo", "bist", "du"], lesson: 1 },
-        { ru: "Я здесь.", de: "Ich bin hier.", required: ["ich", "bin", "hier"], lesson: 1 },
-        { ru: "Я из России.", de: "Ich komme aus Russland.", required: ["ich", "komme", "aus", "russland"], lesson: 1 },
-        { ru: "Это моя книга.", de: "Das ist mein Buch.", required: ["das", "ist", "mein", "buch"], lesson: 1 },
-        { ru: "Это мой дом.", de: "Das ist mein Haus.", required: ["das", "ist", "mein", "haus"], lesson: 1 },
-        { ru: "Стол.", de: "Der Tisch.", required: ["der", "tisch"], lesson: 1 },
-        { ru: "Стул.", de: "Der Stuhl.", required: ["der", "stuhl"], lesson: 1 },
-        { ru: "Кровать.", de: "Das Bett.", required: ["das", "bett"], lesson: 1 },
-        { ru: "Собака.", de: "Der Hund.", required: ["der", "hund"], lesson: 1 },
-        { ru: "Кошка.", de: "Die Katze.", required: ["die", "katze"], lesson: 1 },
-        { ru: "Я устал.", de: "Ich bin müde.", required: ["ich", "bin", "müde"], lesson: 1 },
-        { ru: "Как дела?", de: "Wie geht es dir?", required: ["wie", "geht", "es", "dir"], lesson: 1 },
-        { ru: "Спасибо, хорошо!", de: "Danke, gut!", required: ["danke", "gut"], lesson: 1 }
+        // ===== УРОК 1: Приветствия и прощания =====
+        { ru: "Привет!", de: "Hallo!", required: ["hallo"] },
+        { ru: "Пока!", de: "Tschüss!", required: ["tschüss"] },
+        { ru: "Доброе утро!", de: "Guten Morgen!", required: ["guten", "morgen"] },
+        { ru: "Добрый день!", de: "Guten Tag!", required: ["guten", "tag"] },
+        { ru: "Добрый вечер!", de: "Guten Abend!", required: ["guten", "abend"] },
+        { ru: "Спокойной ночи!", de: "Gute Nacht!", required: ["gute", "nacht"] },
+        { ru: "До свидания!", de: "Auf Wiedersehen!", required: ["auf", "wiedersehen"] },
+        { ru: "До скорого!", de: "Bis bald!", required: ["bis", "bald"] },
+        { ru: "До встречи!", de: "Bis später!", required: ["bis", "später"] },
+        
+        // ===== УРОК 1: Вежливые слова =====
+        { ru: "Пожалуйста!", de: "Bitte!", required: ["bitte"] },
+        { ru: "Спасибо!", de: "Danke!", required: ["danke"] },
+        { ru: "Большое спасибо!", de: "Vielen Dank!", required: ["vielen", "dank"] },
+        { ru: "Извините!", de: "Entschuldigung!", required: ["entschuldigung"] },
+        { ru: "Без проблем.", de: "Kein Problem.", required: ["kein", "problem"] },
+        
+        // ===== УРОК 1: Утверждения и отрицания =====
+        { ru: "Да", de: "Ja", required: ["ja"] },
+        { ru: "Нет", de: "Nein", required: ["nein"] },
+        { ru: "Возможно", de: "Vielleicht", required: ["vielleicht"] },
+        { ru: "Конечно", de: "Natürlich", required: ["natürlich"] },
+        { ru: "Точно", de: "Genau", required: ["genau"] },
+        
+        // ===== УРОК 1: Представление =====
+        { ru: "Привет! Меня зовут Анна.", de: "Hallo! Ich heiße Anna.", required: ["hallo", "ich", "heiße"] },
+        { ru: "Меня зовут Анна.", de: "Ich heiße Anna.", required: ["ich", "heiße"] },
+        { ru: "Как тебя зовут?", de: "Wie heißt du?", required: ["wie", "heißt", "du"] },
+        { ru: "Я Анна.", de: "Ich bin Anna.", required: ["ich", "bin"] },
+        { ru: "Я Том.", de: "Ich bin Tom.", required: ["ich", "bin"] },
+        { ru: "Ты мой друг.", de: "Du bist mein Freund.", required: ["du", "bist", "mein", "freund"] },
+        { ru: "Ты моя подруга.", de: "Du bist meine Freundin.", required: ["du", "bist", "meine", "freundin"] },
+        { ru: "Это мой друг.", de: "Das ist mein Freund.", required: ["das", "ist", "mein", "freund"] },
+        { ru: "Это моя подруга.", de: "Das ist meine Freundin.", required: ["das", "ist", "meine", "freundin"] },
+        { ru: "Он мой брат.", de: "Er ist mein Bruder.", required: ["er", "ist", "mein", "bruder"] },
+        { ru: "Она моя сестра.", de: "Sie ist meine Schwester.", required: ["sie", "ist", "meine", "schwester"] },
+        { ru: "Это мой отец.", de: "Das ist mein Vater.", required: ["das", "ist", "mein", "vater"] },
+        { ru: "Это моя мать.", de: "Das ist meine Mutter.", required: ["das", "ist", "meine", "mutter"] },
+        { ru: "Это моя семья.", de: "Das ist meine Familie.", required: ["das", "ist", "meine", "familie"] },
+        { ru: "Мой брат.", de: "Mein Bruder.", required: ["mein", "bruder"] },
+        { ru: "Моя сестра.", de: "Meine Schwester.", required: ["meine", "schwester"] },
+        { ru: "Мой отец.", de: "Mein Vater.", required: ["mein", "vater"] },
+        { ru: "Моя мать.", de: "Meine Mutter.", required: ["meine", "mutter"] },
+        { ru: "Мы друзья.", de: "Wir sind Freunde.", required: ["wir", "sind", "freunde"] },
+        { ru: "Мы семья.", de: "Wir sind eine Familie.", required: ["wir", "sind", "familie"] },
+        { ru: "Мы счастливы.", de: "Wir sind glücklich.", required: ["wir", "sind", "glücklich"] },
+        
+        // ===== УРОК 1: Вопросы о месте =====
+        { ru: "Где ты?", de: "Wo bist du?", required: ["wo", "bist", "du"] },
+        { ru: "Я здесь.", de: "Ich bin hier.", required: ["ich", "bin", "hier"] },
+        { ru: "Я из России.", de: "Ich komme aus Russland.", required: ["ich", "komme", "aus", "russland"] },
+        { ru: "Я из Германии.", de: "Ich komme aus Deutschland.", required: ["ich", "komme", "aus", "deutschland"] },
+        { ru: "Откуда ты?", de: "Woher kommst du?", required: ["woher", "kommst", "du"] },
+        { ru: "Где ты живёшь?", de: "Wo wohnst du?", required: ["wo", "wohnst", "du"] },
+        { ru: "Я живу в Берлине.", de: "Ich wohne in Berlin.", required: ["ich", "wohne", "in"] },
+        { ru: "Я живу в Кёльне.", de: "Ich wohne in Köln.", required: ["ich", "wohne", "in"] },
+        
+        // ===== УРОК 1: Предметы и вещи =====
+        { ru: "Это моя книга.", de: "Das ist mein Buch.", required: ["das", "ist", "mein", "buch"] },
+        { ru: "Это мой дом.", de: "Das ist mein Haus.", required: ["das", "ist", "mein", "haus"] },
+        { ru: "Это моя квартира.", de: "Das ist meine Wohnung.", required: ["das", "ist", "meine", "wohnung"] },
+        { ru: "Это моя комната.", de: "Das ist mein Zimmer.", required: ["das", "ist", "mein", "zimmer"] },
+        { ru: "Это моя кухня.", de: "Das ist meine Küche.", required: ["das", "ist", "meine", "küche"] },
+        { ru: "Квартира большая.", de: "Die Wohnung ist groß.", required: ["die", "wohnung", "ist", "groß"] },
+        { ru: "Комната маленькая.", de: "Das Zimmer ist klein.", required: ["das", "zimmer", "ist", "klein"] },
+        { ru: "Кухня чистая.", de: "Die Küche ist sauber.", required: ["die", "küche", "ist", "sauber"] },
+        { ru: "Ванная светлая.", de: "Das Bad ist hell.", required: ["das", "bad", "ist", "hell"] },
+        
+        // ===== УРОК 1: Мебель =====
+        { ru: "Стол.", de: "Der Tisch.", required: ["der", "tisch"] },
+        { ru: "Стул.", de: "Der Stuhl.", required: ["der", "stuhl"] },
+        { ru: "Кровать.", de: "Das Bett.", required: ["das", "bett"] },
+        { ru: "Стол круглый.", de: "Der Tisch ist rund.", required: ["der", "tisch", "ist", "rund"] },
+        { ru: "Стул удобный.", de: "Der Stuhl ist bequem.", required: ["der", "stuhl", "ist", "bequem"] },
+        { ru: "Кровать новая.", de: "Das Bett ist neu.", required: ["das", "bett", "ist", "neu"] },
+        { ru: "Шкаф старый.", de: "Der Schrank ist alt.", required: ["der", "schrank", "ist", "alt"] },
+        
+        // ===== УРОК 1: Животные =====
+        { ru: "Собака.", de: "Der Hund.", required: ["der", "hund"] },
+        { ru: "Кошка.", de: "Die Katze.", required: ["die", "katze"] },
+        { ru: "Собака большая.", de: "Der Hund ist groß.", required: ["der", "hund", "ist", "groß"] },
+        { ru: "Кошка милая.", de: "Die Katze ist süß.", required: ["die", "katze", "ist", "süß"] },
+        
+        // ===== УРОК 1: Состояния =====
+        { ru: "Я устал.", de: "Ich bin müde.", required: ["ich", "bin", "müde"] },
+        { ru: "Я голоден.", de: "Ich habe Hunger.", required: ["ich", "habe", "hunger"] },
+        { ru: "Я хочу пить.", de: "Ich habe Durst.", required: ["ich", "habe", "durst"] },
+        { ru: "Я счастлив.", de: "Ich bin glücklich.", required: ["ich", "bin", "glücklich"] },
+        
+        // ===== УРОК 1: Вопросы =====
+        { ru: "Как дела?", de: "Wie geht es dir?", required: ["wie", "geht", "es", "dir"] },
+        { ru: "У меня всё хорошо.", de: "Mir geht es gut.", required: ["mir", "geht", "es", "gut"] },
+        { ru: "У тебя есть время?", de: "Hast du Zeit?", required: ["hast", "du", "zeit"] },
+        { ru: "Сегодня у меня нет времени.", de: "Heute habe ich keine Zeit.", required: ["heute", "habe", "ich", "keine", "zeit"] },
+        { ru: "Ты понимаешь меня?", de: "Verstehst du mich?", required: ["verstehst", "du", "mich"] },
+        { ru: "Я понимаю.", de: "Ich verstehe.", required: ["ich", "verstehe"] },
+        { ru: "Я не понимаю.", de: "Ich verstehe nicht.", required: ["ich", "verstehe", "nicht"] },
+        
+        // ===== УРОК 1: Ответы =====
+        { ru: "Спасибо, хорошо!", de: "Danke, gut!", required: ["danke", "gut"] },
+        { ru: "Не очень хорошо.", de: "Nicht so gut.", required: ["nicht", "so", "gut"] },
+        { ru: "Это правильно.", de: "Das ist richtig.", required: ["das", "ist", "richtig"] },
+        { ru: "Это неправильно.", de: "Das ist falsch.", required: ["das", "ist", "falsch"] },
+        { ru: "Ты прав.", de: "Du hast recht.", required: ["du", "hast", "recht"] },
+        
+        // ===== УРОК 1: Действия =====
+        { ru: "Что ты делаешь?", de: "Was machst du?", required: ["was", "machst", "du"] },
+        { ru: "Я учу немецкий.", de: "Ich lerne Deutsch.", required: ["ich", "lerne", "deutsch"] },
+        { ru: "Я работаю.", de: "Ich arbeite.", required: ["ich", "arbeite"] },
+        { ru: "Он работает.", de: "Er arbeitet.", required: ["er", "arbeitet"] },
+        { ru: "Она работает.", de: "Sie arbeitet.", required: ["sie", "arbeitet"] },
+        { ru: "Мы работаем.", de: "Wir arbeiten.", required: ["wir", "arbeiten"] },
+        
+        // ===== УРОК 1: Время =====
+        { ru: "Сегодня понедельник.", de: "Heute ist Montag.", required: ["heute", "ist", "montag"] },
+        { ru: "Завтра вторник.", de: "Morgen ist Dienstag.", required: ["morgen", "ist", "dienstag"] },
+        { ru: "Сейчас девять часов.", de: "Es ist neun Uhr.", required: ["es", "ist", "neun", "uhr"] },
+        
+        // ===== УРОК 1: Семья =====
+        { ru: "У меня есть брат.", de: "Ich habe einen Bruder.", required: ["ich", "habe", "einen", "bruder"] },
+        { ru: "У меня есть сестра.", de: "Ich habe eine Schwester.", required: ["ich", "habe", "eine", "schwester"] },
+        { ru: "У тебя есть брат?", de: "Hast du einen Bruder?", required: ["hast", "du", "einen", "bruder"] },
+        { ru: "У тебя есть сестра?", de: "Hast du eine Schwester?", required: ["hast", "du", "eine", "schwester"] },
+        { ru: "У меня есть кошка.", de: "Ich habe eine Katze.", required: ["ich", "habe", "eine", "katze"] },
+        { ru: "У нас есть кошка.", de: "Wir haben eine Katze.", required: ["wir", "haben", "eine", "katze"] },
+        { ru: "У неё нет детей.", de: "Sie hat keine Kinder.", required: ["sie", "hat", "keine", "kinder"] }
     ];
     
     return allTemplates;
-}
-
-function renderTrainer(container, lesson) {
-    const lessonId = lesson.id || 1;
-    
-    container.innerHTML = `
-        <div style="text-align: center; padding: 40px; color: #999;">
-            <div style="font-size: 48px; margin-bottom: 15px;">⏳</div>
-            <div>Загрузка слов для тренажёра...</div>
-        </div>
-    `;
-    
-    loadAllVocabulary(currentLevel, lessonId).then(vocab => {
-        allVocabWords = vocab;
-        
-        if (allVocabWords.length < 5) {
-            container.innerHTML = `
-                <div style="text-align: center; padding: 40px; color: #999;">
-                    <div style="font-size: 48px; margin-bottom: 15px;">📝</div>
-                    <div>Недостаточно слов для тренажёра.</div>
-                    <div style="font-size: 14px; margin-top: 10px;">Пройдите больше уроков, чтобы увеличить количество слов.</div>
-                </div>
-            `;
-            return;
-        }
-        
-        const wordMap = {};
-        allVocabWords.forEach(w => {
-            const key = w.de.toLowerCase().replace(/[.,!?;:]/g, '');
-            wordMap[key] = w;
-        });
-        
-        const templates = getTemplatesForLevel(currentLevel);
-        
-        const availableTemplates = templates.filter(template => {
-            const words = template.de.toLowerCase().replace(/[.,!?;:]/g, '').split(/\s+/);
-            return words.every(w => {
-                const cleanW = w.replace(/[.,!?;:]/g, '');
-                return wordMap[cleanW] !== undefined;
-            });
-        });
-        
-        if (availableTemplates.length === 0) {
-            container.innerHTML = `
-                <div style="text-align: center; padding: 40px; color: #999;">
-                    <div style="font-size: 48px; margin-bottom: 15px;">📝</div>
-                    <div>Недостаточно подходящих слов для осмысленных предложений.</div>
-                    <div style="font-size: 14px; margin-top: 10px;">Попробуйте другой урок или пройдите больше материала.</div>
-                </div>
-            `;
-            return;
-        }
-        
-        const shuffled = [...availableTemplates];
-        for (let i = shuffled.length - 1; i > 0; i--) {
-            const j = Math.floor(Math.random() * (i + 1));
-            [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
-        }
-        
-        const maxSentences = Math.min(shuffled.length, 15);
-        trainerSentences = shuffled.slice(0, maxSentences);
-        
-        trainerIndex = 0;
-        trainerDirection = 'ru_to_de';
-        showTrainerSentence(container);
-    }).catch(e => {
-        console.error('Ошибка загрузки слов:', e);
-        container.innerHTML = `
-            <div style="text-align: center; padding: 40px; color: #999;">
-                <div style="font-size: 48px; margin-bottom: 15px;">❌</div>
-                <div>Ошибка загрузки слов для тренажёра.</div>
-                <div style="font-size: 14px; margin-top: 10px;">${e.message}</div>
-            </div>
-        `;
-    });
-}
-
-function showTrainerSentence(container) {
-    if (trainerIndex >= trainerSentences.length) {
-        container.innerHTML = `
-            <div style="text-align: center; padding: 40px;">
-                <div style="font-size: 64px; margin-bottom: 20px;">🎉</div>
-                <div style="font-size: 24px; margin-bottom: 20px;">Поздравляем!</div>
-                <div style="font-size: 16px; margin-bottom: 20px;">Вы завершили все предложения в тренажёре!</div>
-                <button class="ctrl-btn" onclick="renderMode('trainer', window.currentLesson)" style="padding: 10px 30px; background: #3B6FE0; color: white; border: none; border-radius: 8px; cursor: pointer;">НАЧАТЬ ЗАНОВО</button>
-            </div>
-        `;
-        return;
-    }
-
-    trainerCurrentSentence = trainerSentences[trainerIndex];
-    
-    const deWords = trainerCurrentSentence.de.replace(/[.,!?;:]/g, '').split(/\s+/);
-    const ruWords = trainerCurrentSentence.ru.replace(/[.,!?;:]/g, '').split(/\s+/);
-
-    const words = deWords.map((w, i) => ({
-        de: w,
-        ru: ruWords[i] || w,
-        originalIndex: i
-    }));
-
-    const shuffledWords = [...words];
-    for (let i = shuffledWords.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [shuffledWords[i], shuffledWords[j]] = [shuffledWords[j], shuffledWords[i]];
-    }
-
-    trainerSelectedWords = [];
-    trainerAvailableWords = shuffledWords;
-    trainerActiveWords = {};
-    trainerAvailableWords.forEach(w => { trainerActiveWords[w.de] = true; });
-    trainerHintIndex = 0;
-    trainerHintWords = deWords;
-
-    const isRuToDe = trainerDirection === 'ru_to_de';
-    const questionText = isRuToDe ? trainerCurrentSentence.ru : trainerCurrentSentence.de;
-
-    // ===== ОСНОВНОЕ ИЗМЕНЕНИЕ: подсказка более бледная =====
-    const hasWords = trainerSelectedWords.length > 0;
-    const displayText = trainerSelectedWords.map(w => w.de).join(' ') || 'Нажмите на слова, чтобы собрать предложение';
-    const textColor = hasWords ? '#1A1A1A' : '#CCCCCC';
-    const fontWeight = hasWords ? 'bold' : 'normal';
-
-    let html = `
-        <div style="text-align: center;">
-            <button class="dir-btn" id="trainerDirBtn" style="background: #3B6FE0; color: white; padding: 8px 20px; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; margin-bottom: 15px;">
-                ${isRuToDe ? '🇷🇺→🇩🇪' : '🇩🇪→🇷🇺'}
-            </button>
-            <div style="background: #E8F0FE; border-radius: 20px; padding: 20px; margin-bottom: 15px;">
-                <div style="font-size: 14px; color: #666; margin-bottom: 5px;">Составьте предложение на немецком:</div>
-                <div style="font-size: 20px; font-weight: bold;">${questionText}</div>
-            </div>
-            <div style="background: #FFFFFF; border: 2px solid #E0E0E0; border-radius: 16px; padding: 15px; margin: 10px 0; text-align: center; font-size: 20px; min-height: 60px; color: ${textColor}; font-weight: ${fontWeight};" id="trainerResult">
-                ${displayText}
-            </div>
-            <div style="display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin: 15px 0;" id="trainerWordsContainer">
-                ${trainerAvailableWords.map(word => `
-                    <button class="word-btn" data-word="${word.de}">
-                        ${word.de}
-                    </button>
-                `).join('')}
-            </div>
-            <div style="display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; margin: 15px 0;">
-                <button class="ctrl-btn" id="trainerUndoBtn">↩️ ВЕРНУТЬ СЛОВО</button>
-                <button class="ctrl-btn" id="trainerResetBtn">🔄 СБРОСИТЬ ВСЁ</button>
-                <button class="ctrl-btn check-btn" id="trainerCheckBtn">✅ ПРОВЕРИТЬ</button>
-                <button class="ctrl-btn" id="trainerSpeakBtn">🔊 ОЗВУЧИТЬ</button>
-            </div>
-            <div style="display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; margin: 15px 0;">
-                <button class="ctrl-btn" id="trainerHintBtn">💡 ПОДСКАЗКА</button>
-                <div style="background: #FFFFFF; border: 2px solid #E0E0E0; border-radius: 12px; padding: 10px 16px; flex: 1; min-width: 150px; font-size: 13px; color: #3B6FE0; font-weight: bold; text-align: center; min-height: 42px;" id="trainerHintLabel"></div>
-            </div>
-            <div style="display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; margin: 15px 0;">
-                <button class="ctrl-btn" id="trainerPrevBtn">◀ НАЗАД</button>
-                <button class="ctrl-btn" id="trainerNextBtn">ВПЕРЕД ▶</button>
-                <div style="font-size: 14px; color: #888; display: flex; align-items: center;">${trainerIndex + 1} / ${trainerSentences.length}</div>
-            </div>
-        </div>
-    `;
-
-    container.innerHTML = html;
-
-    document.getElementById('trainerDirBtn').onclick = function() {
-        trainerDirection = trainerDirection === 'ru_to_de' ? 'de_to_ru' : 'ru_to_de';
-        this.textContent = trainerDirection === 'ru_to_de' ? '🇷🇺→🇩🇪' : '🇩🇪→🇷🇺';
-        showTrainerSentence(container);
-    };
-
-    container.querySelectorAll('#trainerWordsContainer .word-btn').forEach(btn => {
-        btn.onclick = function() {
-            const word = this.getAttribute('data-word');
-            if (trainerActiveWords[word]) {
-                trainerActiveWords[word] = false;
-                const foundWord = trainerAvailableWords.find(w => w.de === word);
-                if (foundWord) {
-                    trainerSelectedWords.push(foundWord);
-                    updateTrainerDisplay(container);
-                }
-            }
-        };
-    });
-
-    document.getElementById('trainerUndoBtn').onclick = function() {
-        if (trainerSelectedWords.length > 0) {
-            const lastWord = trainerSelectedWords.pop();
-            trainerActiveWords[lastWord.de] = true;
-            updateTrainerDisplay(container);
-        }
-    };
-
-    document.getElementById('trainerResetBtn').onclick = function() {
-        trainerSelectedWords = [];
-        trainerAvailableWords.forEach(w => { trainerActiveWords[w.de] = true; });
-        updateTrainerDisplay(container);
-        document.getElementById('trainerHintLabel').textContent = '';
-        trainerHintIndex = 0;
-    };
-
-    document.getElementById('trainerCheckBtn').onclick = function() {
-        if (trainerSelectedWords.length === 0) {
-            const result = document.getElementById('trainerResult');
-            result.style.backgroundColor = '#FFCDD2';
-            setTimeout(() => result.style.backgroundColor = '#FFFFFF', 500);
-            return;
-        }
-
-        const correctAnswer = trainerCurrentSentence.de;
-        const userAnswer = trainerSelectedWords.map(w => w.de).join(' ');
-        const result = document.getElementById('trainerResult');
-
-        if (userAnswer === correctAnswer) {
-            result.style.backgroundColor = '#C8E6C9';
-            setTimeout(() => {
-                result.style.backgroundColor = '#FFFFFF';
-                trainerIndex++;
-                showTrainerSentence(container);
-            }, 500);
-        } else {
-            result.style.backgroundColor = '#FFCDD2';
-            trainerSelectedWords.forEach(w => { trainerActiveWords[w.de] = true; });
-            trainerSelectedWords = [];
-            setTimeout(() => {
-                result.style.backgroundColor = '#FFFFFF';
-                updateTrainerDisplay(container);
-            }, 500);
-        }
-    };
-
-    document.getElementById('trainerSpeakBtn').onclick = function() {
-        speak(trainerCurrentSentence.de);
-    };
-
-    document.getElementById('trainerHintBtn').onclick = function() {
-        const hintLabel = document.getElementById('trainerHintLabel');
-        if (trainerHintIndex < trainerHintWords.length) {
-            const currentHint = trainerHintWords.slice(0, trainerHintIndex + 1).join(' ');
-            hintLabel.textContent = '💡 ' + currentHint;
-            trainerHintIndex++;
-        } else {
-            hintLabel.textContent = '💡 Полное предложение: ' + trainerHintWords.join(' ');
-        }
-    };
-
-    document.getElementById('trainerPrevBtn').onclick = function() {
-        if (trainerIndex > 0) {
-            trainerIndex--;
-            showTrainerSentence(container);
-        }
-    };
-
-    document.getElementById('trainerNextBtn').onclick = function() {
-        if (trainerIndex + 1 < trainerSentences.length) {
-            trainerIndex++;
-            showTrainerSentence(container);
-        }
-    };
-}
-
-function updateTrainerDisplay(container) {
-    const result = document.getElementById('trainerResult');
-    const wordsContainer = document.getElementById('trainerWordsContainer');
-    
-    if (result) {
-        const hasWords = trainerSelectedWords.length > 0;
-        const displayText = trainerSelectedWords.map(w => w.de).join(' ') || 'Нажмите на слова, чтобы собрать предложение';
-        result.textContent = displayText;
-        result.style.color = hasWords ? '#1A1A1A' : '#CCCCCC';
-        result.style.fontWeight = hasWords ? 'bold' : 'normal';
-        result.style.backgroundColor = '#FFFFFF';
-    }
-    
-    if (wordsContainer) {
-        wordsContainer.innerHTML = '';
-        trainerAvailableWords.forEach(word => {
-            if (trainerActiveWords[word.de]) {
-                const btn = document.createElement('button');
-                btn.className = 'word-btn';
-                btn.textContent = word.de;
-                btn.onclick = function() {
-                    if (trainerActiveWords[word.de]) {
-                        trainerActiveWords[word.de] = false;
-                        const foundWord = trainerAvailableWords.find(w => w.de === word.de);
-                        if (foundWord) {
-                            trainerSelectedWords.push(foundWord);
-                            updateTrainerDisplay(container);
-                        }
-                    }
-                };
-                wordsContainer.appendChild(btn);
-            }
-        });
-    }
 }

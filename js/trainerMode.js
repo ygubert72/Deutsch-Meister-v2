@@ -1,5 +1,5 @@
 // ====================================================================
-// trainerMode.js — Тренажёр (составление предложений из слов)
+// trainerMode.js — Тренажёр (составление осмысленных предложений)
 // ====================================================================
 
 let trainerSentences = [];
@@ -25,42 +25,117 @@ function renderTrainer(container, lesson) {
         return;
     }
 
-    // БЕРЁМ ОТДЕЛЬНЫЕ СЛОВА, а не целые фразы
-    // Перемешиваем слова и группируем по 3-4 слова
-    const shuffledVocab = [...vocab];
-    for (let i = shuffledVocab.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [shuffledVocab[i], shuffledVocab[j]] = [shuffledVocab[j], shuffledVocab[i]];
-    }
+    // ===== СОЗДАЁМ КАРТУ СЛОВ ДЛЯ БЫСТРОГО ПОИСКА =====
+    const wordMap = {};
+    vocab.forEach(w => {
+        const key = w.de.toLowerCase().replace(/[.,!?;:]/g, '');
+        wordMap[key] = w;
+    });
 
-    trainerSentences = [];
-    const wordsPerSentence = 3;
-    for (let i = 0; i < shuffledVocab.length && trainerSentences.length < 10; i += wordsPerSentence) {
-        const chunk = shuffledVocab.slice(i, i + wordsPerSentence);
-        if (chunk.length === wordsPerSentence) {
-            // Перемешиваем слова внутри предложения
-            const shuffledChunk = [...chunk];
-            for (let j = shuffledChunk.length - 1; j > 0; j--) {
-                const k = Math.floor(Math.random() * (j + 1));
-                [shuffledChunk[j], shuffledChunk[k]] = [shuffledChunk[k], shuffledChunk[j]];
-            }
-            trainerSentences.push({
-                original: chunk,
-                shuffled: shuffledChunk
-            });
-        }
-    }
+    // ===== ШАБЛОНЫ ОСМЫСЛЕННЫХ ПРЕДЛОЖЕНИЙ =====
+    // Каждый шаблон содержит русский вариант, немецкий вариант и список обязательных слов
+    const templates = [
+        // Приветствия и прощания
+        { ru: "Привет!", de: "Hallo!", required: ["hallo"] },
+        { ru: "Пока!", de: "Tschüss!", required: ["tschüss"] },
+        { ru: "Доброе утро!", de: "Guten Morgen!", required: ["guten", "morgen"] },
+        { ru: "Добрый день!", de: "Guten Tag!", required: ["guten", "tag"] },
+        { ru: "Добрый вечер!", de: "Guten Abend!", required: ["guten", "abend"] },
+        { ru: "Спокойной ночи!", de: "Gute Nacht!", required: ["gute", "nacht"] },
+        { ru: "До свидания!", de: "Auf Wiedersehen!", required: ["auf", "wiedersehen"] },
+        { ru: "До скорого!", de: "Bis bald!", required: ["bis", "bald"] },
+        
+        // Вежливые слова
+        { ru: "Пожалуйста!", de: "Bitte!", required: ["bitte"] },
+        { ru: "Спасибо!", de: "Danke!", required: ["danke"] },
+        { ru: "Извините!", de: "Entschuldigung!", required: ["entschuldigung"] },
+        
+        // Утверждения
+        { ru: "Да", de: "Ja", required: ["ja"] },
+        { ru: "Нет", de: "Nein", required: ["nein"] },
+        { ru: "Возможно", de: "Vielleicht", required: ["vielleicht"] },
+        { ru: "Конечно", de: "Natürlich", required: ["natürlich"] },
+        { ru: "Точно", de: "Genau", required: ["genau"] },
+        { ru: "Без проблем.", de: "Kein Problem.", required: ["kein", "problem"] },
+        
+        // Представление и знакомство
+        { ru: "Привет! Меня зовут Анна.", de: "Hallo! Ich heiße Anna.", required: ["hallo", "ich", "heiße"] },
+        { ru: "Меня зовут Анна.", de: "Ich heiße Anna.", required: ["ich", "heiße"] },
+        { ru: "Как тебя зовут?", de: "Wie heißt du?", required: ["wie", "heißt", "du"] },
+        { ru: "Я Анна.", de: "Ich bin Anna.", required: ["ich", "bin"] },
+        { ru: "Ты мой друг.", de: "Du bist mein Freund.", required: ["du", "bist", "mein", "freund"] },
+        { ru: "Это мой друг.", de: "Das ist mein Freund.", required: ["das", "ist", "mein", "freund"] },
+        { ru: "Это моя подруга.", de: "Das ist meine Freundin.", required: ["das", "ist", "meine", "freundin"] },
+        { ru: "Он мой брат.", de: "Er ist mein Bruder.", required: ["er", "ist", "mein", "bruder"] },
+        { ru: "Она моя сестра.", de: "Sie ist meine Schwester.", required: ["sie", "ist", "meine", "schwester"] },
+        { ru: "Мой отец.", de: "Mein Vater.", required: ["mein", "vater"] },
+        { ru: "Моя мать.", de: "Meine Mutter.", required: ["meine", "mutter"] },
+        { ru: "Это моя семья.", de: "Das ist meine Familie.", required: ["das", "ist", "meine", "familie"] },
+        { ru: "Мы друзья.", de: "Wir sind Freunde.", required: ["wir", "sind", "freunde"] },
+        { ru: "Мы счастливы.", de: "Wir sind glücklich.", required: ["wir", "sind", "glücklich"] },
+        
+        // Вопросы о месте
+        { ru: "Где ты?", de: "Wo bist du?", required: ["wo", "bist", "du"] },
+        { ru: "Я здесь.", de: "Ich bin hier.", required: ["ich", "bin", "hier"] },
+        { ru: "Я из России.", de: "Ich komme aus Russland.", required: ["ich", "komme", "aus", "russland"] },
+        { ru: "Я из Германии.", de: "Ich komme aus Deutschland.", required: ["ich", "komme", "aus", "deutschland"] },
+        { ru: "Где ты живёшь?", de: "Wo wohnst du?", required: ["wo", "wohnst", "du"] },
+        
+        // Предметы
+        { ru: "Это моя книга.", de: "Das ist mein Buch.", required: ["das", "ist", "mein", "buch"] },
+        { ru: "Это мой дом.", de: "Das ist mein Haus.", required: ["das", "ist", "mein", "haus"] },
+        { ru: "Это моя квартира.", de: "Das ist meine Wohnung.", required: ["das", "ist", "meine", "wohnung"] },
+        { ru: "Это моя комната.", de: "Das ist mein Zimmer.", required: ["das", "ist", "mein", "zimmer"] },
+        { ru: "Это моя кухня.", de: "Das ist meine Küche.", required: ["das", "ist", "meine", "küche"] },
+        
+        // Вещи
+        { ru: "Стол.", de: "Der Tisch.", required: ["der", "tisch"] },
+        { ru: "Стул.", de: "Der Stuhl.", required: ["der", "stuhl"] },
+        { ru: "Кровать.", de: "Das Bett.", required: ["das", "bett"] },
+        { ru: "Собака.", de: "Der Hund.", required: ["der", "hund"] },
+        { ru: "Кошка.", de: "Die Katze.", required: ["die", "katze"] },
+        
+        // Состояния
+        { ru: "Я устал.", de: "Ich bin müde.", required: ["ich", "bin", "müde"] },
+        { ru: "Я голоден.", de: "Ich habe Hunger.", required: ["ich", "habe", "hunger"] },
+        
+        // Вопросы
+        { ru: "Как дела?", de: "Wie geht es dir?", required: ["wie", "geht", "es", "dir"] },
+        { ru: "У меня всё хорошо.", de: "Mir geht es gut.", required: ["mir", "geht", "es", "gut"] },
+        { ru: "У тебя есть время?", de: "Hast du Zeit?", required: ["hast", "du", "zeit"] },
+        
+        // Ответы
+        { ru: "Спасибо, хорошо!", de: "Danke, gut!", required: ["danke", "gut"] }
+    ];
 
-    if (trainerSentences.length === 0) {
+    // ===== ФИЛЬТРУЕМ ШАБЛОНЫ =====
+    // Оставляем только те, где все слова есть в лексике урока
+    const availableTemplates = templates.filter(template => {
+        const words = template.de.toLowerCase().replace(/[.,!?;:]/g, '').split(/\s+/);
+        return words.every(w => {
+            const cleanW = w.replace(/[.,!?;:]/g, '');
+            return wordMap[cleanW] !== undefined;
+        });
+    });
+
+    if (availableTemplates.length === 0) {
         container.innerHTML = `
             <div style="text-align: center; padding: 40px; color: #999;">
-                <div style="font-size: 48px; margin-bottom: 15px;">⚠️</div>
-                <div>Не удалось создать предложения для тренажёра.</div>
+                <div style="font-size: 48px; margin-bottom: 15px;">📝</div>
+                <div>Недостаточно подходящих слов для осмысленных предложений.</div>
                 <div style="font-size: 14px; margin-top: 10px;">Попробуйте другой урок.</div>
             </div>
         `;
         return;
     }
+
+    // Перемешиваем и берём до 10 предложений
+    const shuffled = [...availableTemplates];
+    for (let i = shuffled.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+    }
+    trainerSentences = shuffled.slice(0, 10);
 
     trainerIndex = 0;
     trainerDirection = 'ru_to_de';
@@ -81,17 +156,34 @@ function showTrainerSentence(container) {
     }
 
     trainerCurrentSentence = trainerSentences[trainerIndex];
+    
+    // Разбиваем предложение на отдельные слова (убираем знаки препинания для разбивки)
+    const deWords = trainerCurrentSentence.de.replace(/[.,!?;:]/g, '').split(/\s+/);
+    const ruWords = trainerCurrentSentence.ru.replace(/[.,!?;:]/g, '').split(/\s+/);
+
+    // Создаём массив объектов для перемешивания
+    const words = deWords.map((w, i) => ({
+        de: w,
+        ru: ruWords[i] || w,
+        originalIndex: i
+    }));
+
+    // Перемешиваем слова
+    const shuffledWords = [...words];
+    for (let i = shuffledWords.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [shuffledWords[i], shuffledWords[j]] = [shuffledWords[j], shuffledWords[i]];
+    }
+
     trainerSelectedWords = [];
-    trainerAvailableWords = [...trainerCurrentSentence.shuffled];
+    trainerAvailableWords = shuffledWords;
     trainerActiveWords = {};
     trainerAvailableWords.forEach(w => { trainerActiveWords[w.de] = true; });
     trainerHintIndex = 0;
-    trainerHintWords = trainerCurrentSentence.original.map(w => w.de);
+    trainerHintWords = deWords;
 
     const isRuToDe = trainerDirection === 'ru_to_de';
-    const questionText = isRuToDe 
-        ? trainerCurrentSentence.original.map(w => w.ru).join(' ')
-        : trainerCurrentSentence.original.map(w => w.de).join(' ');
+    const questionText = isRuToDe ? trainerCurrentSentence.ru : trainerCurrentSentence.de;
 
     let html = `
         <div style="text-align: center;">
@@ -103,7 +195,7 @@ function showTrainerSentence(container) {
                 <div style="font-size: 20px; font-weight: bold;">${questionText}</div>
             </div>
             <div style="background: #FFFFFF; border: 2px solid #E0E0E0; border-radius: 16px; padding: 15px; margin: 10px 0; text-align: center; font-weight: bold; font-size: 20px; min-height: 60px; color: #1A1A1A;" id="trainerResult">
-                ${trainerSelectedWords.join(' ') || 'Нажмите на слова, чтобы собрать предложение'}
+                ${trainerSelectedWords.map(w => w.de).join(' ') || 'Нажмите на слова, чтобы собрать предложение'}
             </div>
             <div style="display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin: 15px 0;" id="trainerWordsContainer">
                 ${trainerAvailableWords.map(word => `
@@ -143,8 +235,11 @@ function showTrainerSentence(container) {
             const word = this.getAttribute('data-word');
             if (trainerActiveWords[word]) {
                 trainerActiveWords[word] = false;
-                trainerSelectedWords.push(word);
-                updateTrainerDisplay(container);
+                const foundWord = trainerAvailableWords.find(w => w.de === word);
+                if (foundWord) {
+                    trainerSelectedWords.push(foundWord);
+                    updateTrainerDisplay(container);
+                }
             }
         };
     });
@@ -152,7 +247,7 @@ function showTrainerSentence(container) {
     document.getElementById('trainerUndoBtn').onclick = function() {
         if (trainerSelectedWords.length > 0) {
             const lastWord = trainerSelectedWords.pop();
-            trainerActiveWords[lastWord] = true;
+            trainerActiveWords[lastWord.de] = true;
             updateTrainerDisplay(container);
         }
     };
@@ -173,8 +268,8 @@ function showTrainerSentence(container) {
             return;
         }
 
-        const correctAnswer = trainerCurrentSentence.original.map(w => w.de).join(' ');
-        const userAnswer = trainerSelectedWords.join(' ');
+        const correctAnswer = trainerCurrentSentence.de;
+        const userAnswer = trainerSelectedWords.map(w => w.de).join(' ');
         const result = document.getElementById('trainerResult');
 
         if (userAnswer === correctAnswer) {
@@ -186,7 +281,7 @@ function showTrainerSentence(container) {
             }, 500);
         } else {
             result.style.backgroundColor = '#FFCDD2';
-            trainerSelectedWords.forEach(w => { trainerActiveWords[w] = true; });
+            trainerSelectedWords.forEach(w => { trainerActiveWords[w.de] = true; });
             trainerSelectedWords = [];
             setTimeout(() => {
                 result.style.backgroundColor = '#FFFFFF';
@@ -196,8 +291,7 @@ function showTrainerSentence(container) {
     };
 
     document.getElementById('trainerSpeakBtn').onclick = function() {
-        const text = trainerCurrentSentence.original.map(w => w.de).join(' ');
-        speak(text);
+        speak(trainerCurrentSentence.de);
     };
 
     document.getElementById('trainerHintBtn').onclick = function() {
@@ -230,7 +324,7 @@ function updateTrainerDisplay(container) {
     const result = document.getElementById('trainerResult');
     const wordsContainer = document.getElementById('trainerWordsContainer');
     if (result) {
-        result.textContent = trainerSelectedWords.join(' ') || 'Нажмите на слова, чтобы собрать предложение';
+        result.textContent = trainerSelectedWords.map(w => w.de).join(' ') || 'Нажмите на слова, чтобы собрать предложение';
         result.style.backgroundColor = '#FFFFFF';
     }
     if (wordsContainer) {
@@ -243,8 +337,11 @@ function updateTrainerDisplay(container) {
                 btn.onclick = function() {
                     if (trainerActiveWords[word.de]) {
                         trainerActiveWords[word.de] = false;
-                        trainerSelectedWords.push(word.de);
-                        updateTrainerDisplay(container);
+                        const foundWord = trainerAvailableWords.find(w => w.de === word.de);
+                        if (foundWord) {
+                            trainerSelectedWords.push(foundWord);
+                            updateTrainerDisplay(container);
+                        }
                     }
                 };
                 wordsContainer.appendChild(btn);

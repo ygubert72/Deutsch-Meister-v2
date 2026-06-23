@@ -1,5 +1,5 @@
 // ====================================================================
-// app.js — ГЛАВНОЕ ПРИЛОЖЕНИЕ (без перезагрузок)
+// app.js — ВСЯ ЛОГИКА ПРИЛОЖЕНИЯ
 // ====================================================================
 
 // ========== ДАННЫЕ УРОКОВ ==========
@@ -115,12 +115,10 @@ function updateCounter() {
         const vocabCount = currentLesson.vocabulary ? currentLesson.vocabulary.length : 0;
         const practiceCount = currentLesson.practice ? currentLesson.practice.length : 0;
         el.textContent = `Слов: ${vocabCount} | Упражнений: ${practiceCount}`;
-    } else if (currentLevel) {
+    } else {
         const data = COURSE_DATA[currentLevel];
         const lessonsCount = data && data.lessons ? data.lessons.length : 0;
         el.textContent = `Уровень ${currentLevel} | Уроков: ${lessonsCount}`;
-    } else {
-        el.textContent = 'Deutsch-Meister';
     }
 }
 
@@ -135,7 +133,6 @@ function renderLevel(level) {
             <div style="text-align: center; padding: 40px; color: #999;">
                 <div style="font-size: 48px; margin-bottom: 15px;">📝</div>
                 <div>Уроки для уровня ${level} пока не добавлены.</div>
-                <div style="font-size: 14px; margin-top: 10px;">Скоро они появятся!</div>
             </div>
         `;
         document.getElementById('modeIndicator').textContent = `Курс ${level}`;
@@ -189,9 +186,7 @@ function renderLesson(level, lessonId) {
 
     document.querySelectorAll('.mode-btn').forEach(btn => {
         btn.onclick = function() {
-            document.querySelectorAll('.mode-btn').forEach(b => {
-                b.classList.remove('active');
-            });
+            document.querySelectorAll('.mode-btn').forEach(b => b.classList.remove('active'));
             this.classList.add('active');
             renderMode(this.getAttribute('data-mode'), lesson);
         };
@@ -358,7 +353,7 @@ function renderDictation(container, lesson) {
 function initApp() {
     console.log('🚀 Запуск Deutsch-Meister...');
     
-    // Настраиваем кнопки уровней (десктоп)
+    // Кнопки уровней (десктоп)
     document.querySelectorAll('#levelsContainer .btn-level').forEach(btn => {
         btn.onclick = function() {
             document.querySelectorAll('#levelsContainer .btn-level').forEach(b => b.classList.remove('active'));
@@ -367,7 +362,7 @@ function initApp() {
         };
     });
     
-    // Настраиваем кнопки уровней (мобильные)
+    // Кнопки уровней (мобильные)
     document.querySelectorAll('#levelsContainerMobile .btn-level').forEach(btn => {
         btn.onclick = function() {
             document.querySelectorAll('#levelsContainerMobile .btn-level').forEach(b => b.classList.remove('active'));
@@ -376,20 +371,13 @@ function initApp() {
         };
     });
     
-    // Настраиваем кнопки режимов (старые)
-    document.querySelectorAll('.mode-btn:not([data-level])').forEach(btn => {
-        btn.onclick = function() {
-            alert('Этот режим будет доступен в следующей версии. Используйте уроки для изучения!');
-        };
-    });
-    
-    // Загружаем уровень A1 по умолчанию
+    // Загружаем A1
     renderLevel('A1');
     
     console.log('✅ Deutsch-Meister готов!');
 }
 
-// Запускаем приложение
+// Запуск
 document.addEventListener('DOMContentLoaded', function() {
     initApp();
 });

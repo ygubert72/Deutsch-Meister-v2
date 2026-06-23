@@ -48,6 +48,17 @@
         .word-btn:hover { background: #d0e2fc; }
         .mobile-menu { display: none; }
         .menu-overlay { display: none; }
+
+        /* ===== ЗЕЛЁНАЯ КНОПКА ВХОДА ===== */
+        .btn-login {
+            background: #4CAF50 !important;
+            color: white !important;
+            border-color: #388E3C !important;
+        }
+        .btn-login:hover {
+            background: #388E3C !important;
+        }
+
         @media (max-width: 768px) {
             .sidebar { display: none; }
             .hamburger-btn { display: block; }
@@ -67,9 +78,10 @@
 <body>
 
 <div class="app" id="app">
+    <!-- Боковая панель (десктоп) -->
     <div class="sidebar">
         <div class="sidebar-content">
-            <button id="loginBtn" class="btn" style="margin-bottom: 10px;">🔐 Войти</button>
+            <button id="loginBtn" class="btn btn-login" style="margin-bottom: 10px;">🔐 Войти</button>
             <div id="userInfo" style="display: none; margin: 10px 0; padding: 8px; background: #E8F0FE; border-radius: 8px; text-align: center; font-size: 12px;"></div>
             <div style="margin: 15px 0 5px 0; font-size: 12px; color: #666; text-align: center; font-weight: bold;">📚 УРОВНИ</div>
             <div class="levels-container" id="levelsContainer">
@@ -83,6 +95,7 @@
         </div>
     </div>
 
+    <!-- Основная область -->
     <div class="main">
         <div class="top-bar">
             <div class="top-bar-left">
@@ -95,6 +108,7 @@
     </div>
 </div>
 
+<!-- Мобильное меню -->
 <div class="menu-overlay" id="menuOverlay"></div>
 <div class="mobile-menu" id="mobileMenu">
     <div class="mobile-menu-header">
@@ -102,7 +116,7 @@
         <button class="close-menu-btn" id="closeMenuBtn">✕</button>
     </div>
     <div class="sidebar-content">
-        <button id="loginBtnMobile" class="btn" style="margin-bottom: 10px;">🔐 Войти</button>
+        <button id="loginBtnMobile" class="btn btn-login" style="margin-bottom: 10px;">🔐 Войти</button>
         <div id="userInfoMobile" style="display: none; margin: 10px 0; padding: 8px; background: #E8F0FE; border-radius: 8px; text-align: center; font-size: 12px;"></div>
         <div style="margin: 15px 0 5px 0; font-size: 12px; color: #666; text-align: center; font-weight: bold;">📚 УРОВНИ</div>
         <div class="levels-container" id="levelsContainerMobile">

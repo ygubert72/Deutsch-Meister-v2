@@ -1,5 +1,5 @@
 // ====================================================================
-// app.js — ПОЛНАЯ ВЕРСИЯ С ТРЕНАЖЁРОМ
+// app.js — ПОЛНАЯ ВЕРСИЯ
 // ====================================================================
 
 // ========== СОСТОЯНИЕ ==========
@@ -116,8 +116,9 @@ function renderLesson(lesson) {
         <h2>📖 Урок ${lesson.id}: ${lesson.title}</h2>
         <div class="mode-buttons">
             <button class="mode-btn active" data-mode="grammar">📘 Грамматика</button>
-            <button class="mode-btn" data-mode="vocabulary">📚 Слова</button>
+            <button class="mode-btn" data-mode="vocabulary">📚 Лексика</button>
             <button class="mode-btn" data-mode="practice">✍️ Практика</button>
+            <button class="mode-btn" data-mode="quiz">🎯 Тренировка</button>
             <button class="mode-btn" data-mode="trainer">🏋️ Тренажёр</button>
             <button class="mode-btn" data-mode="dictation">✏️ Диктант</button>
         </div>
@@ -155,6 +156,9 @@ function renderMode(mode, lesson) {
         case 'practice':
             renderPractice(container, lesson);
             break;
+        case 'quiz':
+            renderQuiz(container, lesson);
+            break;
         case 'trainer':
             renderTrainer(container, lesson);
             break;
@@ -187,7 +191,7 @@ function renderGrammar(container, lesson) {
     container.innerHTML = html;
 }
 
-// ========== СЛОВА ==========
+// ========== ЛЕКСИКА ==========
 function renderVocabulary(container, lesson) {
     const vocab = lesson.vocabulary || [];
     if (vocab.length === 0) {
@@ -263,6 +267,127 @@ function renderPractice(container, lesson) {
             }
         };
     });
+}
+
+// ========== ТРЕНИРОВКА (ВИКТОРИНА/ТЕСТ) ==========
+let quizWords = [];
+let quizIndex = 0;
+let quizCurrentWord = null;
+let quizDirection = 'de_to_ru';
+
+function renderQuiz(container, lesson) {
+    const vocab = lesson.vocabulary || [];
+    if (vocab.length === 0) {
+        container.innerHTML = '<div>Нет слов для тренировки.</div>';
+        return;
+    }
+
+    quizWords = [...vocab];
+    quizIndex = 0;
+    quizDirection = 'de_to_ru';
+
+    let html = `
+        <div style="text-align: center;">
+            <button class="dir-btn" id="quizDirBtn" style="background: #3B6FE0; color: white; padding: 8px 20px; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; margin-bottom: 15px;">
+                ${quizDirection === 'de_to_ru' ? '🇩🇪→🇷🇺' : '🇷🇺→🇩🇪'}
+            </button>
+            <div style="background: #FFFFFF; border-radius: 20px; box-shadow: 0 8px 24px rgba(0,0,0,0.1); max-width: 550px; margin: 15px auto; min-height: 150px; display: flex; align-items: center; justify-content: center; text-align: center; padding: 20px;">
+                <div style="font-size: 32px; font-weight: bold; color: #1A1A1A;" id="quizQuestion">Загрузка...</div>
+            </div>
+            <div class="quiz-grid" id="quizGrid" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; max-width: 700px; margin: 20px auto;"></div>
+            <div style="font-size: 14px; color: #888; margin-top: 10px;" id="quizProgress">0 / 0</div>
+            <div style="display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; margin-top: 15px;">
+                <button class="ctrl-btn" id="quizResetBtn">🔄 НАЧАТЬ ЗАНОВО</button>
+            </div>
+        </div>
+    `;
+
+    container.innerHTML = html;
+
+    document.getElementById('quizDirBtn').onclick = function() {
+        quizDirection = quizDirection === 'de_to_ru' ? 'ru_to_de' : 'de_to_ru';
+        this.textContent = quizDirection === 'de_to_ru' ? '🇩🇪→🇷🇺' : '🇷🇺→🇩🇪';
+        quizIndex = 0;
+        showQuizQuestion();
+    };
+
+    document.getElementById('quizResetBtn').onclick = function() {
+        quizIndex = 0;
+        showQuizQuestion();
+    };
+
+    showQuizQuestion();
+}
+
+function showQuizQuestion() {
+    if (quizWords.length === 0) {
+        document.getElementById('quizQuestion').textContent = '🎉 Нет слов для тренировки!';
+        document.getElementById('quizGrid').innerHTML = '';
+        document.getElementById('quizProgress').textContent = '0 / 0';
+        return;
+    }
+
+    if (quizIndex >= quizWords.length) {
+        document.getElementById('quizQuestion').textContent = '🎉 Поздравляем! Вы прошли все слова!';
+        document.getElementById('quizGrid').innerHTML = `
+            <div style="grid-column: span 2; text-align: center; padding: 20px; color: #4CAF50; font-weight: bold; font-size: 18px;">
+                ✅ Отлично! Нажмите "Начать заново", чтобы повторить.
+            </div>
+        `;
+        document.getElementById('quizProgress').textContent = `${quizWords.length} / ${quizWords.length}`;
+        return;
+    }
+
+    quizCurrentWord = quizWords[quizIndex];
+    const isDeToRu = quizDirection === 'de_to_ru';
+    const question = isDeToRu ? quizCurrentWord.de : quizCurrentWord.ru;
+    const correctAnswer = isDeToRu ? quizCurrentWord.ru : quizCurrentWord.de;
+
+    document.getElementById('quizQuestion').textContent = question;
+    document.getElementById('quizProgress').textContent = `${quizIndex + 1} / ${quizWords.length}`;
+
+    const allWords = [...quizWords];
+    const otherWords = allWords.filter(w => w !== quizCurrentWord);
+    const shuffled = [...otherWords];
+    for (let i = shuffled.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+    }
+    const options = [quizCurrentWord, ...shuffled.slice(0, 5)];
+    for (let i = options.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [options[i], options[j]] = [options[j], options[i]];
+    }
+
+    const grid = document.getElementById('quizGrid');
+    grid.innerHTML = '';
+    options.forEach((opt) => {
+        const btn = document.createElement('button');
+        btn.className = 'quiz-opt';
+        btn.textContent = isDeToRu ? opt.ru : opt.de;
+        btn.style.cssText = 'padding: 16px; background: #FFFFFF; border: 2px solid #D0D0D0; border-radius: 16px; cursor: pointer; font-size: 16px; transition: all 0.05s linear; text-align: center; box-shadow: 0 3px 4px rgba(0,0,0,0.1);';
+        btn.onclick = function() {
+            const isCorrect = isDeToRu ? (opt.ru === correctAnswer) : (opt.de === correctAnswer);
+            if (isCorrect) {
+                this.style.background = '#C8E6C9';
+                this.style.borderColor = '#4CAF50';
+                setTimeout(() => {
+                    quizIndex++;
+                    showQuizQuestion();
+                }, 400);
+            } else {
+                this.style.background = '#FFCDD2';
+                this.style.borderColor = '#F44336';
+                setTimeout(() => {
+                    this.style.background = '#FFFFFF';
+                    this.style.borderColor = '#D0D0D0';
+                }, 500);
+            }
+        };
+        grid.appendChild(btn);
+    });
+
+    speak(question);
 }
 
 // ========== ТРЕНАЖЁР ==========

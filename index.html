@@ -67,12 +67,10 @@
 <body>
 
 <div class="app" id="app">
-    <!-- Боковая панель (десктоп) -->
     <div class="sidebar">
         <div class="sidebar-content">
             <button id="loginBtn" class="btn" style="margin-bottom: 10px;">🔐 Войти</button>
             <div id="userInfo" style="display: none; margin: 10px 0; padding: 8px; background: #E8F0FE; border-radius: 8px; text-align: center; font-size: 12px;"></div>
-            
             <div style="margin: 15px 0 5px 0; font-size: 12px; color: #666; text-align: center; font-weight: bold;">📚 УРОВНИ</div>
             <div class="levels-container" id="levelsContainer">
                 <button data-level="A1" class="btn btn-level active">A1</button>
@@ -81,12 +79,10 @@
                 <button data-level="B2" class="btn btn-level">B2</button>
                 <button data-level="C1" class="btn btn-level">C1</button>
             </div>
-            
             <button id="shareBtnDesktop" class="btn share-btn" style="margin-top: 15px;">🔗 ПОДЕЛИТЬСЯ</button>
         </div>
     </div>
 
-    <!-- Основная область -->
     <div class="main">
         <div class="top-bar">
             <div class="top-bar-left">
@@ -99,7 +95,6 @@
     </div>
 </div>
 
-<!-- Мобильное меню -->
 <div class="menu-overlay" id="menuOverlay"></div>
 <div class="mobile-menu" id="mobileMenu">
     <div class="mobile-menu-header">
@@ -109,7 +104,6 @@
     <div class="sidebar-content">
         <button id="loginBtnMobile" class="btn" style="margin-bottom: 10px;">🔐 Войти</button>
         <div id="userInfoMobile" style="display: none; margin: 10px 0; padding: 8px; background: #E8F0FE; border-radius: 8px; text-align: center; font-size: 12px;"></div>
-        
         <div style="margin: 15px 0 5px 0; font-size: 12px; color: #666; text-align: center; font-weight: bold;">📚 УРОВНИ</div>
         <div class="levels-container" id="levelsContainerMobile">
             <button data-level="A1" class="btn btn-level active">A1</button>
@@ -118,15 +112,21 @@
             <button data-level="B2" class="btn btn-level">B2</button>
             <button data-level="C1" class="btn btn-level">C1</button>
         </div>
-        
         <button id="shareBtnMobile" class="btn share-btn" style="margin-top: 15px;">🔗 ПОДЕЛИТЬСЯ</button>
     </div>
 </div>
 
-<!-- ===== ПОДКЛЮЧЕНИЕ СКРИПТОВ ===== -->
+<!-- ===== ПОДКЛЮЧЕНИЕ СКРИПТОВ (МОДУЛЬНАЯ СТРУКТУРА) ===== -->
 <script src="js/config.js"></script>
 <script src="js/utils.js"></script>
 <script src="js/logger.js"></script>
+<script src="js/speak.js"></script>
+<script src="js/grammarMode.js"></script>
+<script src="js/vocabularyMode.js"></script>
+<script src="js/practiceMode.js"></script>
+<script src="js/quizMode.js"></script>
+<script src="js/trainerMode.js"></script>
+<script src="js/dictationMode.js"></script>
 <script src="js/app.js"></script>
 
 <script>
@@ -166,7 +166,6 @@
         };
     });
 
-    // ===== ЗАГРУЗКА =====
     console.log('✅ Страница загружена');
 </script>
 

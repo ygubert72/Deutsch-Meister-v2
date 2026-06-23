@@ -30,8 +30,20 @@ function renderDictation(container, lesson) {
             const sentence = sentences[index];
 
             if (!input || !result) return;
-            const userAnswer = input.value.trim().toLowerCase().replace(/\s+/g, ' ');
-            const correctAnswer = sentence.de.toLowerCase().replace(/\s+/g, ' ');
+            
+            // Нормализуем ответ: убираем запятые, точки, лишние пробелы
+            // но сохраняем заглавные буквы (важно для немецких существительных)
+            function normalizeAnswer(text) {
+                return text
+                    .trim()
+                    .replace(/,/g, '')        // убираем запятые
+                    .replace(/\.$/, '')       // убираем точку в конце
+                    .replace(/\s+/g, ' ')     // нормализуем пробелы
+                    .trim();
+            }
+
+            const userAnswer = normalizeAnswer(input.value);
+            const correctAnswer = normalizeAnswer(sentence.de);
 
             if (userAnswer === correctAnswer) {
                 result.innerHTML = '✅ Правильно!';

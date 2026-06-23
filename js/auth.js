@@ -68,7 +68,6 @@ function initFirebase() {
         if (typeof updateCounter === 'function') {
             updateCounter();
         }
-        // НЕ вызываем renderGrammar() здесь!
     });
 }
 
@@ -88,17 +87,31 @@ async function loadUserData(uid) {
     }
 }
 
-// ========== ПРОВЕРКА ДОСТУПА К УРОВНЮ ==========
+// ========== ПРОВЕРКА ДОСТУПА К УРОВНЮ (ИСПРАВЛЕНО) ==========
 window.hasAccessToLevel = function(level) {
+    // Админ имеет доступ ко всем уровням
     if (auth.currentUser && auth.currentUser.email === 'ygubert72@gmail.com') {
         return true;
     }
+    
+    // Уровни A1 и A2 доступны всем
     if (level === 'A1' || level === 'A2') {
         return true;
     }
-    if (currentUserData && currentUserData.hasPremiumAccess === true) {
-        return true;
+    
+    // Уровни B1, B2, C1 требуют премиум-доступа
+    if (level === 'B1' || level === 'B2' || level === 'C1') {
+        // Если пользователь не авторизован — нет доступа
+        if (!auth.currentUser) {
+            return false;
+        }
+        // Проверяем премиум-доступ
+        if (currentUserData && currentUserData.hasPremiumAccess === true) {
+            return true;
+        }
+        return false;
     }
+    
     return false;
 };
 
@@ -218,6 +231,10 @@ function updateUI(user) {
         const hasPremium = currentUserData && currentUserData.hasPremiumAccess === true;
         const isAdmin = user.email === 'ygubert72@gmail.com';
         
+        if (window.AdminUI) {
+            window.AdminUI.updateAdminButtonVisibility(isAdmin);
+        }
+        
         const premiumButtonHtml = (!isAdmin) ? `
             <div style="margin-top:8px;">
                 ${!hasPremium 
@@ -241,10 +258,6 @@ function updateUI(user) {
         userInfo.innerHTML = userInfoHtml;
         if (userInfoMobile) userInfoMobile.innerHTML = userInfoHtml;
         
-        if (isAdmin && window.AdminUI) {
-            window.AdminUI.addAdminButton();
-        }
-        
         if (!isAdmin && !hasPremium) {
             setTimeout(() => {
                 const payBtn = document.getElementById('premiumPayBtn');
@@ -259,6 +272,10 @@ function updateUI(user) {
         userInfo.style.display = 'block';
         if (userInfoMobile) userInfoMobile.style.display = 'block';
         
+        if (window.AdminUI) {
+            window.AdminUI.updateAdminButtonVisibility(false);
+        }
+        
         const guestHtml = `
             <div style="background:#E8F0FE; border-radius:8px; padding:8px; text-align:center;">
                 <div style="font-size:14px; font-weight:bold;">👋 Гостевой режим</div>
@@ -271,11 +288,6 @@ function updateUI(user) {
         
         loginBtn.onclick = () => showLoginModal();
         if (loginBtnMobile) loginBtnMobile.onclick = () => showLoginModal();
-        
-        const oldAdminBtn = document.getElementById('adminBtn');
-        if (oldAdminBtn) oldAdminBtn.remove();
-        const oldAdminBtnMobile = document.getElementById('adminBtnMobile');
-        if (oldAdminBtnMobile) oldAdminBtnMobile.remove();
     }
 }
 

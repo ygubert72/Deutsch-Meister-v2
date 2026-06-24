@@ -70,9 +70,11 @@ async function loadLesson(lessonId) {
         if (!response.ok) throw new Error('Файл урока не найден');
         const lesson = await response.json();
         console.log('✅ Урок загружен:', lesson.title);
+        
+        // ===== ВАЖНО: УСТАНАВЛИВАЕМ currentLesson ДО renderLesson =====
         currentLesson = lesson;
         renderLesson(lesson);
-        saveState();
+        saveState(); // Теперь сохраняется lessonId
     } catch(e) {
         console.error('Ошибка загрузки урока:', e);
         document.getElementById('content').innerHTML = `
@@ -133,7 +135,7 @@ function renderLevel() {
 
 // ========== ОТОБРАЖЕНИЕ УРОКА ==========
 function renderLesson(lesson) {
-    currentLesson = lesson;
+    // currentLesson уже установлен в loadLesson
     saveState();
 
     let html = `
@@ -164,17 +166,19 @@ function renderLesson(lesson) {
         };
     });
 
-    // Восстанавливаем сохранённый режим
-    const savedState = loadState();
-    if (savedState && savedState.mode && savedState.lessonId === lesson.id) {
-        const modeBtn = document.querySelector(`.mode-btn[data-mode="${savedState.mode}"]`);
-        if (modeBtn) {
+    // ==== ВОССТАНОВЛЕНИЕ РЕЖИМА ПОСЛЕ ЗАГРУЗКИ УРОКА ====
+    if (!isRestoring) {
+        const savedState = loadState();
+        if (savedState && savedState.mode && savedState.lessonId === lesson.id) {
             console.log('🔄 Восстановление режима:', savedState.mode);
-            document.querySelectorAll('.mode-btn').forEach(b => b.classList.remove('active'));
-            modeBtn.classList.add('active');
-            currentMode = savedState.mode;
-            renderMode(savedState.mode, lesson);
-            return;
+            const modeBtn = document.querySelector(`.mode-btn[data-mode="${savedState.mode}"]`);
+            if (modeBtn) {
+                document.querySelectorAll('.mode-btn').forEach(b => b.classList.remove('active'));
+                modeBtn.classList.add('active');
+                currentMode = savedState.mode;
+                renderMode(savedState.mode, lesson);
+                return;
+            }
         }
     }
 

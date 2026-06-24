@@ -206,7 +206,7 @@ function showTrainerSentence(container) {
             </div>
             <div style="display: grid; grid-template-columns: repeat(6, 1fr); gap: 10px; max-width: 700px; margin: 15px auto;" id="trainerWordsContainer">
                 ${trainerAvailableWords.map(word => `
-                    <button class="word-btn" data-word="${word.display}" style="padding: 12px 8px; font-size: 14px; text-align: center; min-height: 48px; display: flex; align-items: center; justify-content: center; ${!trainerActiveWords[word.display] ? 'opacity: 0.4; pointer-events: none;' : ''}">
+                    <button class="word-btn" data-word="${word.display}" style="padding: 12px 8px; font-size: 14px; text-align: center; min-height: 48px; display: flex; align-items: center; justify-content: center; border-radius: 40px; ${!trainerActiveWords[word.display] ? 'opacity: 0.4; pointer-events: none;' : ''}">
                         ${word.display}
                     </button>
                 `).join('')}
@@ -284,12 +284,6 @@ function showTrainerSentence(container) {
         const normalizedUser = userAnswer.replace(/[.,!?;:]/g, '').trim();
         const normalizedCorrect = correctAnswerForCheck.replace(/[.,!?;:]/g, '').trim();
 
-        console.log('🔍 Проверка:', {
-            user: normalizedUser,
-            correct: normalizedCorrect,
-            direction: trainerDirection
-        });
-
         if (normalizedUser === normalizedCorrect) {
             result.style.backgroundColor = '#C8E6C9';
             setTimeout(() => {
@@ -359,8 +353,8 @@ function updateTrainerDisplay(container) {
             btn.className = 'word-btn';
             btn.textContent = word.display;
             btn.style.cssText = isActive 
-                ? 'padding: 12px 8px; font-size: 14px; text-align: center; min-height: 48px; display: flex; align-items: center; justify-content: center; background: #E8F0FE; border: 2px solid #D0D0D0; border-radius: 8px; cursor: pointer;'
-                : 'padding: 12px 8px; font-size: 14px; text-align: center; min-height: 48px; display: flex; align-items: center; justify-content: center; background: #E8F0FE; border: 2px solid #D0D0D0; border-radius: 8px; cursor: default; opacity: 0.4; pointer-events: none;';
+                ? 'padding: 12px 8px; font-size: 14px; text-align: center; min-height: 48px; display: flex; align-items: center; justify-content: center; background: #E8F0FE; border: 2px solid #D0D0D0; border-radius: 40px; cursor: pointer;'
+                : 'padding: 12px 8px; font-size: 14px; text-align: center; min-height: 48px; display: flex; align-items: center; justify-content: center; background: #E8F0FE; border: 2px solid #D0D0D0; border-radius: 40px; cursor: default; opacity: 0.4; pointer-events: none;';
             if (isActive) {
                 btn.onclick = function() {
                     if (trainerActiveWords[word.display]) {

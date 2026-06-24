@@ -139,16 +139,16 @@ function showTrainerSentence(container) {
     const deWords = trainerCurrentSentence.de.replace(/[.,!?;:]/g, '').split(/\s+/);
     const ruWords = trainerCurrentSentence.ru.replace(/[.,!?;:]/g, '').split(/\s+/);
 
-    // ===== ПРАВИЛЬНЫЕ СЛОВА ДЛЯ ВЫБОРА (ВСЕГДА ПОКАЗЫВАЕМ НЕМЕЦКИЕ СЛОВА) =====
+    // ===== ПРАВИЛЬНЫЕ СЛОВА ДЛЯ ВЫБОРА (ЗАВИСИТ ОТ НАПРАВЛЕНИЯ) =====
     const correctWords = deWords.map((w, i) => ({
-        display: w,
+        display: isRuToDe ? w : (ruWords[i] || w),  // ← УЧИТЫВАЕМ НАПРАВЛЕНИЕ
         de: w,
         ru: ruWords[i] || w,
         isCorrect: true,
         originalIndex: i
     }));
 
-    // ===== ДИСТРАКТОРЫ =====
+    // ===== ДИСТРАКТОРЫ (ЗАВИСИТ ОТ НАПРАВЛЕНИЯ) =====
     const allWords = [...allVocabWords];
     const shuffledAll = [...allWords];
     for (let i = shuffledAll.length - 1; i > 0; i--) {
@@ -164,7 +164,7 @@ function showTrainerSentence(container) {
         })
         .slice(0, 12 - deWords.length)
         .map(w => ({
-            display: w.de,
+            display: isRuToDe ? w.de : w.ru,  // ← УЧИТЫВАЕМ НАПРАВЛЕНИЕ
             de: w.de,
             ru: w.ru,
             isCorrect: false,

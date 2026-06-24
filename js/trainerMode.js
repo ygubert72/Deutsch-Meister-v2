@@ -81,7 +81,6 @@ function renderTrainer(container, lesson) {
             return;
         }
         
-        // Берём все шаблоны
         const availableTemplates = templates;
         
         if (availableTemplates.length === 0) {
@@ -139,16 +138,14 @@ function showTrainerSentence(container) {
     const deWords = trainerCurrentSentence.de.replace(/[.,!?;:]/g, '').split(/\s+/);
     const ruWords = trainerCurrentSentence.ru.replace(/[.,!?;:]/g, '').split(/\s+/);
 
-    // ===== ПРАВИЛЬНЫЕ СЛОВА ДЛЯ ВЫБОРА (ЗАВИСИТ ОТ НАПРАВЛЕНИЯ) =====
     const correctWords = deWords.map((w, i) => ({
-        display: isRuToDe ? w : (ruWords[i] || w),  // ← УЧИТЫВАЕМ НАПРАВЛЕНИЕ
+        display: isRuToDe ? w : (ruWords[i] || w),
         de: w,
         ru: ruWords[i] || w,
         isCorrect: true,
         originalIndex: i
     }));
 
-    // ===== ДИСТРАКТОРЫ (ЗАВИСИТ ОТ НАПРАВЛЕНИЯ) =====
     const allWords = [...allVocabWords];
     const shuffledAll = [...allWords];
     for (let i = shuffledAll.length - 1; i > 0; i--) {
@@ -164,14 +161,13 @@ function showTrainerSentence(container) {
         })
         .slice(0, 12 - deWords.length)
         .map(w => ({
-            display: isRuToDe ? w.de : w.ru,  // ← УЧИТЫВАЕМ НАПРАВЛЕНИЕ
+            display: isRuToDe ? w.de : w.ru,
             de: w.de,
             ru: w.ru,
             isCorrect: false,
             originalIndex: -1
         }));
 
-    // ===== ОБЪЕДИНЯЕМ И ПЕРЕМЕШИВАЕМ =====
     const allWordsForChoice = [...correctWords, ...distractors];
     for (let i = allWordsForChoice.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
@@ -192,11 +188,23 @@ function showTrainerSentence(container) {
     const textColor = hasWords ? '#1A1A1A' : '#CCCCCC';
     const fontWeight = hasWords ? 'bold' : 'normal';
 
+    // ===== КНОПКА НАПРАВЛЕНИЯ В ШАПКЕ =====
+    const headerControls = document.getElementById('modeHeaderControls');
+    if (headerControls) {
+        headerControls.innerHTML = `
+            <button id="trainerDirBtn" class="dir-btn" style="background: #3B6FE0; color: white; padding: 6px 14px; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; font-size: 13px; box-shadow: 0 2px 4px rgba(0,0,0,0.2);">
+                ${trainerDirection === 'ru_to_de' ? '🇷🇺→🇩🇪' : '🇩🇪→🇷🇺'}
+            </button>
+        `;
+        document.getElementById('trainerDirBtn').onclick = function() {
+            trainerDirection = trainerDirection === 'ru_to_de' ? 'de_to_ru' : 'ru_to_de';
+            this.textContent = trainerDirection === 'ru_to_de' ? '🇷🇺→🇩🇪' : '🇩🇪→🇷🇺';
+            showTrainerSentence(container);
+        };
+    }
+
     let html = `
         <div style="text-align: center;">
-            <button class="dir-btn" id="trainerDirBtn" style="background: #3B6FE0; color: white; padding: 8px 20px; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; margin-bottom: 15px;">
-                ${isRuToDe ? '🇷🇺→🇩🇪' : '🇩🇪→🇷🇺'}
-            </button>
             <div style="background: #E8F0FE; border-radius: 20px; padding: 20px; margin-bottom: 15px;">
                 <div style="font-size: 14px; color: #666; margin-bottom: 5px;">${isRuToDe ? 'Составьте предложение на немецком:' : 'Составьте предложение на русском:'}</div>
                 <div style="font-size: 20px; font-weight: bold;">${questionText}</div>
@@ -231,12 +239,7 @@ function showTrainerSentence(container) {
 
     container.innerHTML = html;
 
-    document.getElementById('trainerDirBtn').onclick = function() {
-        trainerDirection = trainerDirection === 'ru_to_de' ? 'de_to_ru' : 'ru_to_de';
-        this.textContent = trainerDirection === 'ru_to_de' ? '🇷🇺→🇩🇪' : '🇩🇪→🇷🇺';
-        showTrainerSentence(container);
-    };
-
+    // Привязываем обработчики к кнопкам внутри контейнера
     container.querySelectorAll('#trainerWordsContainer .word-btn').forEach(btn => {
         btn.onclick = function() {
             const word = this.getAttribute('data-word');
@@ -275,12 +278,10 @@ function showTrainerSentence(container) {
             return;
         }
 
-        // ===== ПРОВЕРКА С УДАЛЕНИЕМ ЗНАКОВ ПРЕПИНАНИЯ =====
         const userAnswer = trainerSelectedWords.map(w => w.display).join(' ');
         const result = document.getElementById('trainerResult');
         const correctAnswerForCheck = isRuToDe ? trainerCurrentSentence.de : trainerCurrentSentence.ru;
 
-        // Убираем все знаки препинания и лишние пробелы
         const normalizedUser = userAnswer.replace(/[.,!?;:]/g, '').trim();
         const normalizedCorrect = correctAnswerForCheck.replace(/[.,!?;:]/g, '').trim();
 

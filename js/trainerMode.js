@@ -134,21 +134,14 @@ function showTrainerSentence(container) {
 
     trainerCurrentSentence = trainerSentences[trainerIndex];
     
-    // ===== ОПРЕДЕЛЯЕМ НАПРАВЛЕНИЕ =====
     const isRuToDe = trainerDirection === 'ru_to_de';
     
-    // ===== ПРАВИЛЬНЫЙ ОТВЕТ =====
-    const correctAnswer = isRuToDe ? trainerCurrentSentence.de : trainerCurrentSentence.ru;
-    
-    // ===== СЛОВА ДЛЯ ВОПРОСА =====
     const deWords = trainerCurrentSentence.de.replace(/[.,!?;:]/g, '').split(/\s+/);
     const ruWords = trainerCurrentSentence.ru.replace(/[.,!?;:]/g, '').split(/\s+/);
 
-    // ===== ПРАВИЛЬНЫЕ СЛОВА ДЛЯ ВЫБОРА =====
-    // Если Ru→De: показываем немецкие слова
-    // Если De→Ru: показываем русские слова
+    // ===== ПРАВИЛЬНЫЕ СЛОВА ДЛЯ ВЫБОРА (ВСЕГДА ПОКАЗЫВАЕМ НЕМЕЦКИЕ СЛОВА) =====
     const correctWords = deWords.map((w, i) => ({
-        display: isRuToDe ? w : (ruWords[i] || w),
+        display: w,
         de: w,
         ru: ruWords[i] || w,
         isCorrect: true,
@@ -171,7 +164,7 @@ function showTrainerSentence(container) {
         })
         .slice(0, 12 - deWords.length)
         .map(w => ({
-            display: isRuToDe ? w.de : w.ru,
+            display: w.de,
             de: w.de,
             ru: w.ru,
             isCorrect: false,
@@ -192,7 +185,6 @@ function showTrainerSentence(container) {
     trainerHintIndex = 0;
     trainerHintWords = deWords;
 
-    // ===== ВОПРОС =====
     const questionText = isRuToDe ? trainerCurrentSentence.ru : trainerCurrentSentence.de;
 
     const hasWords = trainerSelectedWords.length > 0;
@@ -283,12 +275,22 @@ function showTrainerSentence(container) {
             return;
         }
 
-        // ===== ПРОВЕРКА =====
+        // ===== ПРОВЕРКА С УДАЛЕНИЕМ ЗНАКОВ ПРЕПИНАНИЯ =====
         const userAnswer = trainerSelectedWords.map(w => w.display).join(' ');
         const result = document.getElementById('trainerResult');
         const correctAnswerForCheck = isRuToDe ? trainerCurrentSentence.de : trainerCurrentSentence.ru;
 
-        if (userAnswer === correctAnswerForCheck) {
+        // Убираем все знаки препинания и лишние пробелы
+        const normalizedUser = userAnswer.replace(/[.,!?;:]/g, '').trim();
+        const normalizedCorrect = correctAnswerForCheck.replace(/[.,!?;:]/g, '').trim();
+
+        console.log('🔍 Проверка:', {
+            user: normalizedUser,
+            correct: normalizedCorrect,
+            direction: trainerDirection
+        });
+
+        if (normalizedUser === normalizedCorrect) {
             result.style.backgroundColor = '#C8E6C9';
             setTimeout(() => {
                 result.style.backgroundColor = '#FFFFFF';

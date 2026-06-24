@@ -137,7 +137,10 @@ function renderLesson(lesson) {
     saveState();
 
     let html = `
-        <button class="back-btn" onclick="renderLevel()">← К СПИСКУ УРОКОВ</button>
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+            <button class="back-btn" onclick="renderLevel()">← К СПИСКУ УРОКОВ</button>
+            <div id="modeHeaderControls"></div>
+        </div>
         <h2>📖 Урок ${lesson.id}: ${lesson.title}</h2>
         <div class="mode-buttons">
             <button class="mode-btn active" data-mode="grammar">📘 Грамматика</button>
@@ -164,8 +167,7 @@ function renderLesson(lesson) {
         };
     });
 
-    // ==== ВОССТАНОВЛЕНИЕ РЕЖИМА ПОСЛЕ ЗАГРУЗКИ УРОКА (ПЕРЕМЕЩЕНО В КОНЕЦ) ====
-    // Теперь этот блок выполняется после того, как все обработчики на кнопки добавлены
+    // ==== ВОССТАНОВЛЕНИЕ РЕЖИМА ПОСЛЕ ЗАГРУЗКИ УРОКА ====
     if (!isRestoring) {
         const savedState = loadState();
         if (savedState && savedState.mode && savedState.lessonId === lesson.id) {
@@ -181,7 +183,6 @@ function renderLesson(lesson) {
         }
     }
 
-    // Если режим не восстановился — по умолчанию Грамматика
     renderMode('grammar', lesson);
 }
 
@@ -191,6 +192,12 @@ function renderMode(mode, lesson) {
     if (!container) return;
 
     window.currentLesson = lesson;
+
+    // Очищаем контролы в шапке перед загрузкой нового режима
+    const headerControls = document.getElementById('modeHeaderControls');
+    if (headerControls) {
+        headerControls.innerHTML = '';
+    }
 
     switch(mode) {
         case 'grammar':
@@ -244,7 +251,6 @@ function renderMode(mode, lesson) {
 function initApp() {
     console.log('🚀 Запуск Deutsch-Meister...');
     
-    // Кнопки уровней (десктоп)
     document.querySelectorAll('#levelsContainer .btn-level').forEach(btn => {
         btn.onclick = function() {
             document.querySelectorAll('#levelsContainer .btn-level').forEach(b => b.classList.remove('active'));
@@ -254,7 +260,6 @@ function initApp() {
         };
     });
     
-    // Кнопки уровней (мобильные)
     document.querySelectorAll('#levelsContainerMobile .btn-level').forEach(btn => {
         btn.onclick = function() {
             document.querySelectorAll('#levelsContainerMobile .btn-level').forEach(b => b.classList.remove('active'));
@@ -264,13 +269,11 @@ function initApp() {
         };
     });
     
-    // ==== ВОССТАНОВЛЕНИЕ СОСТОЯНИЯ ====
     const savedState = loadState();
     if (savedState && savedState.level) {
         console.log('🔄 Восстановление состояния:', savedState);
         currentLevel = savedState.level;
         
-        // Активируем кнопку уровня
         document.querySelectorAll('#levelsContainer .btn-level, #levelsContainerMobile .btn-level').forEach(btn => {
             if (btn.getAttribute('data-level') === currentLevel) {
                 btn.classList.add('active');
@@ -279,10 +282,8 @@ function initApp() {
             }
         });
         
-        // Загружаем уровень
         loadLevel(currentLevel);
         
-        // Если был открыт урок — загружаем его после загрузки курса
         if (savedState.lessonId) {
             const checkCourse = setInterval(() => {
                 if (courseData && courseData.lessons) {
@@ -290,7 +291,6 @@ function initApp() {
                     const lessonExists = courseData.lessons.some(l => l.id === savedState.lessonId);
                     if (lessonExists) {
                         console.log('🔄 Загрузка сохранённого урока:', savedState.lessonId);
-                        // Убедимся, что currentMode установлен до загрузки урока
                         if (savedState.mode) {
                             currentMode = savedState.mode;
                         }
@@ -302,7 +302,6 @@ function initApp() {
                 }
             }, 100);
             
-            // Таймаут на случай ошибки
             setTimeout(() => {
                 clearInterval(checkCourse);
                 if (!currentLesson && courseData && courseData.lessons && courseData.lessons.length > 0) {
@@ -312,7 +311,6 @@ function initApp() {
             }, 3000);
         }
     } else {
-        // Если состояния нет — загружаем A1
         console.log('📂 Состояния нет, загружаем A1 по умолчанию');
         loadLevel('A1');
     }

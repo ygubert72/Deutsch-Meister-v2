@@ -70,11 +70,9 @@ async function loadLesson(lessonId) {
         if (!response.ok) throw new Error('Файл урока не найден');
         const lesson = await response.json();
         console.log('✅ Урок загружен:', lesson.title);
-        
-        // ===== ВАЖНО: УСТАНАВЛИВАЕМ currentLesson ДО renderLesson =====
         currentLesson = lesson;
         renderLesson(lesson);
-        saveState(); // Теперь сохраняется lessonId
+        saveState();
     } catch(e) {
         console.error('Ошибка загрузки урока:', e);
         document.getElementById('content').innerHTML = `
@@ -135,7 +133,7 @@ function renderLevel() {
 
 // ========== ОТОБРАЖЕНИЕ УРОКА ==========
 function renderLesson(lesson) {
-    // currentLesson уже установлен в loadLesson
+    currentLesson = lesson;
     saveState();
 
     let html = `
@@ -166,7 +164,8 @@ function renderLesson(lesson) {
         };
     });
 
-    // ==== ВОССТАНОВЛЕНИЕ РЕЖИМА ПОСЛЕ ЗАГРУЗКИ УРОКА ====
+    // ==== ВОССТАНОВЛЕНИЕ РЕЖИМА ПОСЛЕ ЗАГРУЗКИ УРОКА (ПЕРЕМЕЩЕНО В КОНЕЦ) ====
+    // Теперь этот блок выполняется после того, как все обработчики на кнопки добавлены
     if (!isRestoring) {
         const savedState = loadState();
         if (savedState && savedState.mode && savedState.lessonId === lesson.id) {
@@ -182,6 +181,7 @@ function renderLesson(lesson) {
         }
     }
 
+    // Если режим не восстановился — по умолчанию Грамматика
     renderMode('grammar', lesson);
 }
 
@@ -285,11 +285,15 @@ function initApp() {
         // Если был открыт урок — загружаем его после загрузки курса
         if (savedState.lessonId) {
             const checkCourse = setInterval(() => {
-                if (courseData) {
+                if (courseData && courseData.lessons) {
                     clearInterval(checkCourse);
                     const lessonExists = courseData.lessons.some(l => l.id === savedState.lessonId);
                     if (lessonExists) {
                         console.log('🔄 Загрузка сохранённого урока:', savedState.lessonId);
+                        // Убедимся, что currentMode установлен до загрузки урока
+                        if (savedState.mode) {
+                            currentMode = savedState.mode;
+                        }
                         loadLesson(savedState.lessonId);
                     } else if (courseData.lessons.length > 0) {
                         console.log('⚠️ Сохранённый урок не найден, загружаем первый');

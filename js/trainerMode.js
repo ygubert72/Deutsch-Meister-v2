@@ -1,5 +1,5 @@
 // ====================================================================
-// trainerMode.js — Тренажёр (12 слов для сборки предложения)
+// trainerMode.js — Тренажёр (12 слов, сетка 6×2)
 // ====================================================================
 
 let trainerSentences = [];
@@ -81,14 +81,12 @@ function renderTrainer(container, lesson) {
             return;
         }
         
-        // Создаём карту слов для быстрого поиска
         const wordMap = {};
         allVocabWords.forEach(w => {
             const key = w.de.toLowerCase().replace(/[.,!?;:]/g, '');
             wordMap[key] = w;
         });
         
-        // Фильтруем шаблоны
         const availableTemplates = templates.filter(template => {
             const words = template.de.toLowerCase().replace(/[.,!?;:]/g, '').split(/\s+/);
             return words.every(w => {
@@ -108,7 +106,6 @@ function renderTrainer(container, lesson) {
             return;
         }
         
-        // Перемешиваем и берём до 20 предложений
         const shuffled = [...availableTemplates];
         for (let i = shuffled.length - 1; i > 0; i--) {
             const j = Math.floor(Math.random() * (i + 1));
@@ -148,11 +145,10 @@ function showTrainerSentence(container) {
 
     trainerCurrentSentence = trainerSentences[trainerIndex];
     
-    // ==== 1. БЕРЁМ ПРАВИЛЬНЫЕ СЛОВА ====
     const deWords = trainerCurrentSentence.de.replace(/[.,!?;:]/g, '').split(/\s+/);
     const ruWords = trainerCurrentSentence.ru.replace(/[.,!?;:]/g, '').split(/\s+/);
 
-    // ==== 2. СОЗДАЁМ МАССИВ ПРАВИЛЬНЫХ СЛОВ ====
+    // ==== СОЗДАЁМ ПРАВИЛЬНЫЕ СЛОВА ====
     const correctWords = deWords.map((w, i) => ({
         de: w,
         ru: ruWords[i] || w,
@@ -160,8 +156,7 @@ function showTrainerSentence(container) {
         originalIndex: i
     }));
 
-    // ==== 3. ДОБАВЛЯЕМ СЛОВА-ДИСТРАКТОРЫ (ЛИШНИЕ) ====
-    // Берём случайные слова из лексики, которых нет в правильном предложении
+    // ==== ДОБАВЛЯЕМ ДИСТРАКТОРЫ ДО 12 СЛОВ ====
     const allWords = [...allVocabWords];
     const shuffledAll = [...allWords];
     for (let i = shuffledAll.length - 1; i > 0; i--) {
@@ -169,14 +164,13 @@ function showTrainerSentence(container) {
         [shuffledAll[i], shuffledAll[j]] = [shuffledAll[j], shuffledAll[i]];
     }
     
-    // Фильтруем: исключаем слова, которые уже есть в правильном предложении
     const correctDeWords = new Set(deWords.map(w => w.toLowerCase()));
     const distractors = shuffledAll
         .filter(w => {
             const key = w.de.toLowerCase().replace(/[.,!?;:]/g, '');
             return !correctDeWords.has(key) && key.length > 0;
         })
-        .slice(0, 12 - deWords.length) // берём столько, сколько нужно до 12
+        .slice(0, 12 - deWords.length)
         .map(w => ({
             de: w.de,
             ru: w.ru,
@@ -184,14 +178,13 @@ function showTrainerSentence(container) {
             originalIndex: -1
         }));
 
-    // ==== 4. ОБЪЕДИНЯЕМ И ПЕРЕМЕШИВАЕМ ====
+    // ==== ОБЪЕДИНЯЕМ И ПЕРЕМЕШИВАЕМ ====
     const allWordsForChoice = [...correctWords, ...distractors];
     for (let i = allWordsForChoice.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
         [allWordsForChoice[i], allWordsForChoice[j]] = [allWordsForChoice[j], allWordsForChoice[i]];
     }
 
-    // ==== 5. ИНИЦИАЛИЗИРУЕМ СОСТОЯНИЕ ====
     trainerSelectedWords = [];
     trainerAvailableWords = allWordsForChoice;
     trainerActiveWords = {};
@@ -219,9 +212,10 @@ function showTrainerSentence(container) {
             <div style="background: #FFFFFF; border: 2px solid #E0E0E0; border-radius: 16px; padding: 15px; margin: 10px 0; text-align: center; font-size: 20px; min-height: 60px; color: ${textColor}; font-weight: ${fontWeight};" id="trainerResult">
                 ${displayText}
             </div>
-            <div style="display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin: 15px 0;" id="trainerWordsContainer">
+            <!-- ===== СЕТКА 6×2 ДЛЯ СЛОВ ===== -->
+            <div style="display: grid; grid-template-columns: repeat(6, 1fr); gap: 10px; max-width: 700px; margin: 15px auto;" id="trainerWordsContainer">
                 ${trainerAvailableWords.map(word => `
-                    <button class="word-btn" data-word="${word.de}" style="${!trainerActiveWords[word.de] ? 'opacity: 0.4; pointer-events: none;' : ''}">
+                    <button class="word-btn" data-word="${word.de}" style="padding: 12px 8px; font-size: 14px; text-align: center; min-height: 48px; display: flex; align-items: center; justify-content: center; ${!trainerActiveWords[word.de] ? 'opacity: 0.4; pointer-events: none;' : ''}">
                         ${word.de}
                     </button>
                 `).join('')}
@@ -246,7 +240,7 @@ function showTrainerSentence(container) {
 
     container.innerHTML = html;
 
-    // ==== ОБРАБОТЧИКИ СОБЫТИЙ ====
+    // ==== ОБРАБОТЧИКИ ====
 
     document.getElementById('trainerDirBtn').onclick = function() {
         trainerDirection = trainerDirection === 'ru_to_de' ? 'de_to_ru' : 'ru_to_de';
@@ -365,8 +359,8 @@ function updateTrainerDisplay(container) {
             btn.className = 'word-btn';
             btn.textContent = word.de;
             btn.style.cssText = isActive 
-                ? 'padding: 10px 18px; background: #E8F0FE; border: 2px solid #D0D0D0; border-radius: 40px; cursor: pointer; font-size: 14px;'
-                : 'padding: 10px 18px; background: #E8F0FE; border: 2px solid #D0D0D0; border-radius: 40px; cursor: default; font-size: 14px; opacity: 0.4; pointer-events: none;';
+                ? 'padding: 12px 8px; font-size: 14px; text-align: center; min-height: 48px; display: flex; align-items: center; justify-content: center; background: #E8F0FE; border: 2px solid #D0D0D0; border-radius: 8px; cursor: pointer;'
+                : 'padding: 12px 8px; font-size: 14px; text-align: center; min-height: 48px; display: flex; align-items: center; justify-content: center; background: #E8F0FE; border: 2px solid #D0D0D0; border-radius: 8px; cursor: default; opacity: 0.4; pointer-events: none;';
             if (isActive) {
                 btn.onclick = function() {
                     if (trainerActiveWords[word.de]) {

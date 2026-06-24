@@ -6,9 +6,6 @@
 let currentLevel = 'A1';
 let currentLesson = null;
 let courseData = null;
-// currentMode объявлен в config.js
-
-// ========== ФЛАГ ДЛЯ ВОССТАНОВЛЕНИЯ ==========
 let isRestoring = false;
 
 // ========== СОХРАНЕНИЕ СОСТОЯНИЯ ==========
@@ -73,6 +70,7 @@ async function loadLesson(lessonId) {
         if (!response.ok) throw new Error('Файл урока не найден');
         const lesson = await response.json();
         console.log('✅ Урок загружен:', lesson.title);
+        currentLesson = lesson;
         renderLesson(lesson);
         saveState();
     } catch(e) {
@@ -155,7 +153,6 @@ function renderLesson(lesson) {
     document.getElementById('modeIndicator').textContent = `Урок ${lesson.id}: ${lesson.title}`;
     updateCounter();
 
-    // Обработчики для кнопок режимов
     document.querySelectorAll('.mode-btn').forEach(btn => {
         btn.onclick = function() {
             document.querySelectorAll('.mode-btn').forEach(b => b.classList.remove('active'));
@@ -167,23 +164,20 @@ function renderLesson(lesson) {
         };
     });
 
-    // ==== ВОССТАНОВЛЕНИЕ РЕЖИМА ПОСЛЕ ЗАГРУЗКИ УРОКА ====
-    if (!isRestoring) {
-        const savedState = loadState();
-        if (savedState && savedState.mode && savedState.lessonId === lesson.id) {
+    // Восстанавливаем сохранённый режим
+    const savedState = loadState();
+    if (savedState && savedState.mode && savedState.lessonId === lesson.id) {
+        const modeBtn = document.querySelector(`.mode-btn[data-mode="${savedState.mode}"]`);
+        if (modeBtn) {
             console.log('🔄 Восстановление режима:', savedState.mode);
-            const modeBtn = document.querySelector(`.mode-btn[data-mode="${savedState.mode}"]`);
-            if (modeBtn) {
-                document.querySelectorAll('.mode-btn').forEach(b => b.classList.remove('active'));
-                modeBtn.classList.add('active');
-                currentMode = savedState.mode;
-                renderMode(savedState.mode, lesson);
-                return;
-            }
+            document.querySelectorAll('.mode-btn').forEach(b => b.classList.remove('active'));
+            modeBtn.classList.add('active');
+            currentMode = savedState.mode;
+            renderMode(savedState.mode, lesson);
+            return;
         }
     }
 
-    // По умолчанию — Грамматика
     renderMode('grammar', lesson);
 }
 
@@ -202,18 +196,18 @@ function renderMode(mode, lesson) {
                 container.innerHTML = '<div>Режим "Грамматика" загружается...</div>';
             }
             break;
-        case 'vocabulary':
-            if (typeof renderVocabulary === 'function') {
-                renderVocabulary(container, lesson);
-            } else {
-                container.innerHTML = '<div>Режим "Лексика" загружается...</div>';
-            }
-            break;
         case 'practice':
             if (typeof renderPractice === 'function') {
                 renderPractice(container, lesson);
             } else {
                 container.innerHTML = '<div>Режим "Практика" загружается...</div>';
+            }
+            break;
+        case 'vocabulary':
+            if (typeof renderVocabulary === 'function') {
+                renderVocabulary(container, lesson);
+            } else {
+                container.innerHTML = '<div>Режим "Лексика" загружается...</div>';
             }
             break;
         case 'quiz':
@@ -242,41 +236,6 @@ function renderMode(mode, lesson) {
     }
 }
 
-// ========== ВОССТАНОВЛЕНИЕ ПОСЛЕ ПОЛНОЙ ЗАГРУЗКИ ==========
-function restoreStateAfterLoad() {
-    const savedState = loadState();
-    if (!savedState) return;
-
-    console.log('🔄 Восстановление состояния после загрузки:', savedState);
-    
-    // Устанавливаем уровень
-    currentLevel = savedState.level || 'A1';
-    
-    // Активируем кнопку уровня
-    document.querySelectorAll('#levelsContainer .btn-level, #levelsContainerMobile .btn-level').forEach(btn => {
-        if (btn.getAttribute('data-level') === currentLevel) {
-            btn.classList.add('active');
-        } else {
-            btn.classList.remove('active');
-        }
-    });
-
-    // Если есть сохранённый урок — загружаем его
-    if (savedState.lessonId && courseData) {
-        const lessonExists = courseData.lessons.some(l => l.id === savedState.lessonId);
-        if (lessonExists) {
-            isRestoring = true;
-            console.log('🔄 Загрузка сохранённого урока:', savedState.lessonId);
-            loadLesson(savedState.lessonId);
-            setTimeout(() => { isRestoring = false; }, 500);
-            return;
-        }
-    }
-    
-    // Если урока нет — показываем список
-    renderLevel();
-}
-
 // ========== ИНИЦИАЛИЗАЦИЯ ==========
 function initApp() {
     console.log('🚀 Запуск Deutsch-Meister...');
@@ -301,32 +260,54 @@ function initApp() {
         };
     });
     
-    // Загружаем уровень A1 (или сохранённый)
+    // ==== ВОССТАНОВЛЕНИЕ СОСТОЯНИЯ ====
     const savedState = loadState();
-    if (savedState) {
-        currentLevel = savedState.level || 'A1';
-        console.log('📂 Загружаем сохранённый уровень:', currentLevel);
+    if (savedState && savedState.level) {
+        console.log('🔄 Восстановление состояния:', savedState);
+        currentLevel = savedState.level;
+        
+        // Активируем кнопку уровня
+        document.querySelectorAll('#levelsContainer .btn-level, #levelsContainerMobile .btn-level').forEach(btn => {
+            if (btn.getAttribute('data-level') === currentLevel) {
+                btn.classList.add('active');
+            } else {
+                btn.classList.remove('active');
+            }
+        });
+        
+        // Загружаем уровень
+        loadLevel(currentLevel);
+        
+        // Если был открыт урок — загружаем его после загрузки курса
+        if (savedState.lessonId) {
+            const checkCourse = setInterval(() => {
+                if (courseData) {
+                    clearInterval(checkCourse);
+                    const lessonExists = courseData.lessons.some(l => l.id === savedState.lessonId);
+                    if (lessonExists) {
+                        console.log('🔄 Загрузка сохранённого урока:', savedState.lessonId);
+                        loadLesson(savedState.lessonId);
+                    } else if (courseData.lessons.length > 0) {
+                        console.log('⚠️ Сохранённый урок не найден, загружаем первый');
+                        loadLesson(courseData.lessons[0].id);
+                    }
+                }
+            }, 100);
+            
+            // Таймаут на случай ошибки
+            setTimeout(() => {
+                clearInterval(checkCourse);
+                if (!currentLesson && courseData && courseData.lessons && courseData.lessons.length > 0) {
+                    console.log('⏰ Таймаут, загружаем первый урок');
+                    loadLesson(courseData.lessons[0].id);
+                }
+            }, 3000);
+        }
+    } else {
+        // Если состояния нет — загружаем A1
+        console.log('📂 Состояния нет, загружаем A1 по умолчанию');
+        loadLevel('A1');
     }
-    
-    // Загружаем уровень
-    loadLevel(currentLevel);
-    
-    // После загрузки курса восстанавливаем состояние
-    const checkCourse = setInterval(() => {
-        if (courseData) {
-            clearInterval(checkCourse);
-            console.log('✅ Курс загружен, восстанавливаем состояние...');
-            restoreStateAfterLoad();
-        }
-    }, 200);
-    
-    // Таймаут на случай ошибки
-    setTimeout(() => {
-        clearInterval(checkCourse);
-        if (!courseData) {
-            console.warn('⚠️ Таймаут загрузки курса');
-        }
-    }, 5000);
     
     console.log('✅ Deutsch-Meister готов!');
 }

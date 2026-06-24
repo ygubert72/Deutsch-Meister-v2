@@ -1,5 +1,5 @@
 // ====================================================================
-// trainerMode.js — Тренажёр (шаблоны из файла урока)
+// trainerMode.js — Тренажёр (12 слов для сборки предложения)
 // ====================================================================
 
 let trainerSentences = [];
@@ -55,7 +55,6 @@ function renderTrainer(container, lesson) {
         </div>
     `;
     
-    // Берём шаблоны из самого урока
     const templates = lesson.trainer?.templates || [];
     
     if (templates.length === 0) {
@@ -68,7 +67,6 @@ function renderTrainer(container, lesson) {
         return;
     }
     
-    // Загружаем слова из всех пройденных уроков
     loadAllVocabulary(currentLevel, lessonId).then(vocab => {
         allVocabWords = vocab;
         
@@ -83,7 +81,7 @@ function renderTrainer(container, lesson) {
             return;
         }
         
-        // Создаём карту слов
+        // Создаём карту слов для быстрого поиска
         const wordMap = {};
         allVocabWords.forEach(w => {
             const key = w.de.toLowerCase().replace(/[.,!?;:]/g, '');
@@ -150,23 +148,52 @@ function showTrainerSentence(container) {
 
     trainerCurrentSentence = trainerSentences[trainerIndex];
     
+    // ==== 1. БЕРЁМ ПРАВИЛЬНЫЕ СЛОВА ====
     const deWords = trainerCurrentSentence.de.replace(/[.,!?;:]/g, '').split(/\s+/);
     const ruWords = trainerCurrentSentence.ru.replace(/[.,!?;:]/g, '').split(/\s+/);
 
-    const words = deWords.map((w, i) => ({
+    // ==== 2. СОЗДАЁМ МАССИВ ПРАВИЛЬНЫХ СЛОВ ====
+    const correctWords = deWords.map((w, i) => ({
         de: w,
         ru: ruWords[i] || w,
+        isCorrect: true,
         originalIndex: i
     }));
 
-    const shuffledWords = [...words];
-    for (let i = shuffledWords.length - 1; i > 0; i--) {
+    // ==== 3. ДОБАВЛЯЕМ СЛОВА-ДИСТРАКТОРЫ (ЛИШНИЕ) ====
+    // Берём случайные слова из лексики, которых нет в правильном предложении
+    const allWords = [...allVocabWords];
+    const shuffledAll = [...allWords];
+    for (let i = shuffledAll.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
-        [shuffledWords[i], shuffledWords[j]] = [shuffledWords[j], shuffledWords[i]];
+        [shuffledAll[i], shuffledAll[j]] = [shuffledAll[j], shuffledAll[i]];
+    }
+    
+    // Фильтруем: исключаем слова, которые уже есть в правильном предложении
+    const correctDeWords = new Set(deWords.map(w => w.toLowerCase()));
+    const distractors = shuffledAll
+        .filter(w => {
+            const key = w.de.toLowerCase().replace(/[.,!?;:]/g, '');
+            return !correctDeWords.has(key) && key.length > 0;
+        })
+        .slice(0, 12 - deWords.length) // берём столько, сколько нужно до 12
+        .map(w => ({
+            de: w.de,
+            ru: w.ru,
+            isCorrect: false,
+            originalIndex: -1
+        }));
+
+    // ==== 4. ОБЪЕДИНЯЕМ И ПЕРЕМЕШИВАЕМ ====
+    const allWordsForChoice = [...correctWords, ...distractors];
+    for (let i = allWordsForChoice.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [allWordsForChoice[i], allWordsForChoice[j]] = [allWordsForChoice[j], allWordsForChoice[i]];
     }
 
+    // ==== 5. ИНИЦИАЛИЗИРУЕМ СОСТОЯНИЕ ====
     trainerSelectedWords = [];
-    trainerAvailableWords = shuffledWords;
+    trainerAvailableWords = allWordsForChoice;
     trainerActiveWords = {};
     trainerAvailableWords.forEach(w => { trainerActiveWords[w.de] = true; });
     trainerHintIndex = 0;
@@ -194,7 +221,7 @@ function showTrainerSentence(container) {
             </div>
             <div style="display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin: 15px 0;" id="trainerWordsContainer">
                 ${trainerAvailableWords.map(word => `
-                    <button class="word-btn" data-word="${word.de}">
+                    <button class="word-btn" data-word="${word.de}" style="${!trainerActiveWords[word.de] ? 'opacity: 0.4; pointer-events: none;' : ''}">
                         ${word.de}
                     </button>
                 `).join('')}
@@ -218,6 +245,8 @@ function showTrainerSentence(container) {
     `;
 
     container.innerHTML = html;
+
+    // ==== ОБРАБОТЧИКИ СОБЫТИЙ ====
 
     document.getElementById('trainerDirBtn').onclick = function() {
         trainerDirection = trainerDirection === 'ru_to_de' ? 'de_to_ru' : 'ru_to_de';
@@ -331,10 +360,14 @@ function updateTrainerDisplay(container) {
     if (wordsContainer) {
         wordsContainer.innerHTML = '';
         trainerAvailableWords.forEach(word => {
-            if (trainerActiveWords[word.de]) {
-                const btn = document.createElement('button');
-                btn.className = 'word-btn';
-                btn.textContent = word.de;
+            const isActive = trainerActiveWords[word.de];
+            const btn = document.createElement('button');
+            btn.className = 'word-btn';
+            btn.textContent = word.de;
+            btn.style.cssText = isActive 
+                ? 'padding: 10px 18px; background: #E8F0FE; border: 2px solid #D0D0D0; border-radius: 40px; cursor: pointer; font-size: 14px;'
+                : 'padding: 10px 18px; background: #E8F0FE; border: 2px solid #D0D0D0; border-radius: 40px; cursor: default; font-size: 14px; opacity: 0.4; pointer-events: none;';
+            if (isActive) {
                 btn.onclick = function() {
                     if (trainerActiveWords[word.de]) {
                         trainerActiveWords[word.de] = false;
@@ -345,8 +378,8 @@ function updateTrainerDisplay(container) {
                         }
                     }
                 };
-                wordsContainer.appendChild(btn);
             }
+            wordsContainer.appendChild(btn);
         });
     }
 }

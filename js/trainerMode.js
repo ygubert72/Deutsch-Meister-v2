@@ -148,7 +148,6 @@ function showTrainerSentence(container) {
     const deWords = trainerCurrentSentence.de.replace(/[.,!?;:]/g, '').split(/\s+/);
     const ruWords = trainerCurrentSentence.ru.replace(/[.,!?;:]/g, '').split(/\s+/);
 
-    // ==== СОЗДАЁМ ПРАВИЛЬНЫЕ СЛОВА ====
     const correctWords = deWords.map((w, i) => ({
         de: w,
         ru: ruWords[i] || w,
@@ -156,7 +155,6 @@ function showTrainerSentence(container) {
         originalIndex: i
     }));
 
-    // ==== ДОБАВЛЯЕМ ДИСТРАКТОРЫ ДО 12 СЛОВ ====
     const allWords = [...allVocabWords];
     const shuffledAll = [...allWords];
     for (let i = shuffledAll.length - 1; i > 0; i--) {
@@ -178,7 +176,6 @@ function showTrainerSentence(container) {
             originalIndex: -1
         }));
 
-    // ==== ОБЪЕДИНЯЕМ И ПЕРЕМЕШИВАЕМ ====
     const allWordsForChoice = [...correctWords, ...distractors];
     for (let i = allWordsForChoice.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
@@ -212,7 +209,6 @@ function showTrainerSentence(container) {
             <div style="background: #FFFFFF; border: 2px solid #E0E0E0; border-radius: 16px; padding: 15px; margin: 10px 0; text-align: center; font-size: 20px; min-height: 60px; color: ${textColor}; font-weight: ${fontWeight};" id="trainerResult">
                 ${displayText}
             </div>
-            <!-- ===== СЕТКА 6×2 ДЛЯ СЛОВ ===== -->
             <div style="display: grid; grid-template-columns: repeat(6, 1fr); gap: 10px; max-width: 700px; margin: 15px auto;" id="trainerWordsContainer">
                 ${trainerAvailableWords.map(word => `
                     <button class="word-btn" data-word="${word.de}" style="padding: 12px 8px; font-size: 14px; text-align: center; min-height: 48px; display: flex; align-items: center; justify-content: center; ${!trainerActiveWords[word.de] ? 'opacity: 0.4; pointer-events: none;' : ''}">
@@ -239,8 +235,6 @@ function showTrainerSentence(container) {
     `;
 
     container.innerHTML = html;
-
-    // ==== ОБРАБОТЧИКИ ====
 
     document.getElementById('trainerDirBtn').onclick = function() {
         trainerDirection = trainerDirection === 'ru_to_de' ? 'de_to_ru' : 'ru_to_de';

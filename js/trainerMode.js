@@ -15,7 +15,7 @@ let allVocabWords = [];
 
 // ===== КОНТЕЙНЕР ДЛЯ ИЗУЧЕННЫХ ФРАЗ =====
 let trainerStudiedSentences = {};
-let currentLessonId = null;
+let trainerCurrentLessonId = null; // <--- ИЗМЕНЕНО: уникальное имя
 
 // ===== ЗАГРУЗКА ВСЕХ СЛОВ ИЗ ПРОЙДЕННЫХ УРОКОВ =====
 async function loadAllVocabulary(level, currentLessonId) {
@@ -61,7 +61,7 @@ function getStudiedSentencesList() {
 // ===== СОХРАНЕНИЕ СОСТОЯНИЯ ИЗУЧЕННЫХ ФРАЗ =====
 function saveTrainerState() {
     try {
-        localStorage.setItem('dm_trainer_studied_' + currentLessonId, JSON.stringify(trainerStudiedSentences));
+        localStorage.setItem('dm_trainer_studied_' + trainerCurrentLessonId, JSON.stringify(trainerStudiedSentences));
     } catch(e) {}
 }
 
@@ -165,7 +165,7 @@ function showTrainerContainer() {
                 if (trainerSentences.length === 0) {
                     trainerSentences = [...templates];
                     trainerStudiedSentences = {};
-                    localStorage.removeItem('dm_trainer_studied_' + currentLessonId);
+                    localStorage.removeItem('dm_trainer_studied_' + trainerCurrentLessonId);
                 }
                 
                 if (trainerIndex >= trainerSentences.length) {
@@ -206,7 +206,7 @@ function showTrainerContainer() {
 // ===== ОСНОВНАЯ ФУНКЦИЯ РЕНДЕРИНГА =====
 function renderTrainer(container, lesson) {
     const lessonId = lesson.id || 1;
-    currentLessonId = lessonId;
+    trainerCurrentLessonId = lessonId; // <--- ИЗМЕНЕНО
     
     // Загружаем состояние изученных фраз
     loadTrainerState(lessonId);

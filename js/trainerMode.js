@@ -411,4 +411,200 @@ function showTrainerSentence(container) {
             </div>
             <div style="display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; margin: 15px 0;">
                 <button class="ctrl-btn" id="trainerStudyBtn" style="padding: 6px 14px; background: #4CAF50; color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; font-size: 12px;">✅ ИЗУЧЕНО</button>
-                <button class="ctrl-btn" id="trainerContainerBtn" style="padding: 6px 14px; background: #FF9800; color: white; border: none; border-radius: 8px; cursor
+                <button class="ctrl-btn" id="trainerContainerBtn" style="padding: 6px 14px; background: #FF9800; color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; font-size: 12px;">📦 В КОНТЕЙНЕР</button>
+                <button class="ctrl-btn" id="trainerPrevBtn" style="padding: 6px 14px; background: #E8F0FE; border: 2px solid #D0D0D0; border-radius: 8px; cursor: pointer; font-weight: bold; font-size: 12px;">◀ НАЗАД</button>
+                <button class="ctrl-btn" id="trainerNextBtn" style="padding: 6px 14px; background: #E8F0FE; border: 2px solid #D0D0D0; border-radius: 8px; cursor: pointer; font-weight: bold; font-size: 12px;">ВПЕРЕД ▶</button>
+                <button class="ctrl-btn" id="trainerResetStartBtn" style="padding: 6px 14px; background: #E8F0FE; border: 2px solid #D0D0D0; border-radius: 8px; cursor: pointer; font-weight: bold; font-size: 12px;">⏮ В НАЧАЛО</button>
+                <div style="font-size: 14px; color: #888; display: flex; align-items: center; margin-left: 10px;">${trainerIndex + 1} / ${trainerSentences.length}</div>
+            </div>
+        </div>
+    `;
+
+    container.innerHTML = html;
+
+    // ===== ОБРАБОТЧИКИ КНОПОК =====
+    container.querySelectorAll('#trainerWordsContainer .word-btn').forEach(btn => {
+        btn.onclick = function() {
+            const word = this.getAttribute('data-word');
+            if (trainerActiveWords[word]) {
+                trainerActiveWords[word] = false;
+                const foundWord = trainerAvailableWords.find(w => w.display === word);
+                if (foundWord) {
+                    trainerSelectedWords.push(foundWord);
+                    updateTrainerDisplay(container);
+                }
+            }
+        };
+    });
+
+    document.getElementById('trainerUndoBtn').onclick = function() {
+        if (trainerSelectedWords.length > 0) {
+            const lastWord = trainerSelectedWords.pop();
+            trainerActiveWords[lastWord.display] = true;
+            updateTrainerDisplay(container);
+        }
+    };
+
+    document.getElementById('trainerResetBtn').onclick = function() {
+        trainerSelectedWords = [];
+        trainerAvailableWords.forEach(w => { trainerActiveWords[w.display] = true; });
+        updateTrainerDisplay(container);
+        document.getElementById('trainerHintLabel').textContent = '';
+        trainerHintIndex = 0;
+    };
+
+    document.getElementById('trainerCheckBtn').onclick = function() {
+        if (trainerSelectedWords.length === 0) {
+            const result = document.getElementById('trainerResult');
+            result.style.backgroundColor = '#FFCDD2';
+            setTimeout(() => result.style.backgroundColor = '#FFFFFF', 500);
+            return;
+        }
+
+        const userAnswer = trainerSelectedWords.map(w => w.display).join(' ');
+        const result = document.getElementById('trainerResult');
+        const correctAnswerForCheck = isRuToDe ? trainerCurrentSentence.de : trainerCurrentSentence.ru;
+
+        const normalizedUser = userAnswer.replace(/[.,!?;:]/g, '').trim().toLowerCase();
+        const normalizedCorrect = correctAnswerForCheck.replace(/[.,!?;:]/g, '').trim().toLowerCase();
+
+        if (normalizedUser === normalizedCorrect) {
+            result.style.backgroundColor = '#C8E6C9';
+            result.textContent = '✅ ПРАВИЛЬНО!';
+            
+            setTimeout(() => {
+                result.style.backgroundColor = '#FFFFFF';
+                trainerIndex++;
+                showTrainerSentence(container);
+            }, 500);
+        } else {
+            result.style.backgroundColor = '#FFCDD2';
+            result.textContent = '❌ НЕПРАВИЛЬНО. Попробуйте снова!';
+            
+            setTimeout(() => {
+                result.style.backgroundColor = '#FFFFFF';
+                trainerSelectedWords.forEach(w => { trainerActiveWords[w.display] = true; });
+                trainerSelectedWords = [];
+                updateTrainerDisplay(container);
+                const hasWords = trainerSelectedWords.length > 0;
+                const displayText = trainerSelectedWords.map(w => w.display).join(' ') || 'Нажмите на слова, чтобы собрать предложение';
+                result.textContent = displayText;
+                result.style.color = hasWords ? '#1A1A1A' : '#CCCCCC';
+                result.style.fontWeight = hasWords ? 'bold' : 'normal';
+            }, 800);
+        }
+    };
+
+    document.getElementById('trainerSpeakBtn').onclick = function() {
+        speak(trainerCurrentSentence.de);
+    };
+
+    document.getElementById('trainerHintBtn').onclick = function() {
+        const hintLabel = document.getElementById('trainerHintLabel');
+        if (trainerHintIndex < trainerHintWords.length) {
+            const currentHint = trainerHintWords.slice(0, trainerHintIndex + 1).join(' ');
+            hintLabel.textContent = '💡 ' + currentHint;
+            trainerHintIndex++;
+        } else {
+            hintLabel.textContent = '💡 Полное предложение: ' + trainerHintWords.join(' ');
+        }
+    };
+
+    document.getElementById('trainerStudyBtn').onclick = function() {
+        if (trainerCurrentSentence) {
+            const key = trainerCurrentSentence.de + '|' + trainerCurrentSentence.ru;
+            trainerStudiedSentences[key] = true;
+            saveTrainerState();
+            
+            trainerSentences = trainerSentences.filter(t => {
+                const k = t.de + '|' + t.ru;
+                return k !== key;
+            });
+            
+            if (trainerSentences.length === 0) {
+                document.getElementById('trainerResult').textContent = '🎉 Все фразы изучены!';
+                document.getElementById('trainerWordsContainer').innerHTML = '';
+                document.getElementById('trainerPrevBtn').disabled = true;
+                document.getElementById('trainerNextBtn').disabled = true;
+                document.getElementById('trainerStudyBtn').disabled = true;
+                document.getElementById('trainerContainerBtn').disabled = true;
+                return;
+            }
+            
+            if (trainerIndex >= trainerSentences.length) {
+                trainerIndex = 0;
+            }
+            showTrainerSentence(container);
+        }
+    };
+
+    document.getElementById('trainerContainerBtn').onclick = function() {
+        const studied = getStudiedSentencesList();
+        if (!studied || studied.length === 0) {
+            alert('📦 Контейнер пуст\n\nВыучите фразы, чтобы они появились здесь.');
+            return;
+        }
+        showTrainerContainer();
+    };
+
+    document.getElementById('trainerPrevBtn').onclick = function() {
+        if (trainerIndex > 0) {
+            trainerIndex--;
+            showTrainerSentence(container);
+        }
+    };
+
+    document.getElementById('trainerNextBtn').onclick = function() {
+        if (trainerIndex + 1 < trainerSentences.length) {
+            trainerIndex++;
+            showTrainerSentence(container);
+        }
+    };
+
+    document.getElementById('trainerResetStartBtn').onclick = function() {
+        if (trainerSentences.length > 0) {
+            trainerIndex = 0;
+            showTrainerSentence(container);
+        }
+    };
+}
+
+function updateTrainerDisplay(container) {
+    const result = document.getElementById('trainerResult');
+    const wordsContainer = document.getElementById('trainerWordsContainer');
+    
+    if (result) {
+        const hasWords = trainerSelectedWords.length > 0;
+        const displayText = trainerSelectedWords.map(w => w.display).join(' ') || 'Нажмите на слова, чтобы собрать предложение';
+        result.textContent = displayText;
+        result.style.color = hasWords ? '#1A1A1A' : '#CCCCCC';
+        result.style.fontWeight = hasWords ? 'bold' : 'normal';
+        result.style.backgroundColor = '#FFFFFF';
+    }
+    
+    if (wordsContainer) {
+        wordsContainer.innerHTML = '';
+        trainerAvailableWords.forEach(word => {
+            const isActive = trainerActiveWords[word.display];
+            const btn = document.createElement('button');
+            btn.className = 'word-btn';
+            btn.textContent = word.display;
+            btn.style.cssText = isActive 
+                ? 'padding: 12px 8px; font-size: 14px; text-align: center; min-height: 48px; display: flex; align-items: center; justify-content: center; background: #E8F0FE; border: 2px solid #D0D0D0; border-radius: 40px; cursor: pointer;'
+                : 'padding: 12px 8px; font-size: 14px; text-align: center; min-height: 48px; display: flex; align-items: center; justify-content: center; background: #E8F0FE; border: 2px solid #D0D0D0; border-radius: 40px; cursor: default; opacity: 0.4; pointer-events: none;';
+            if (isActive) {
+                btn.onclick = function() {
+                    if (trainerActiveWords[word.display]) {
+                        trainerActiveWords[word.display] = false;
+                        const foundWord = trainerAvailableWords.find(w => w.display === word.display);
+                        if (foundWord) {
+                            trainerSelectedWords.push(foundWord);
+                            updateTrainerDisplay(container);
+                        }
+                    }
+                };
+            }
+            wordsContainer.appendChild(btn);
+        });
+    }
+}

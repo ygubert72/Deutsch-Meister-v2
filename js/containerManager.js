@@ -7,18 +7,17 @@ function showContainerModal(config) {
     if (oldModal) oldModal.remove();
     
     const {
-        title,           // "📦 КОНТЕЙНЕР (X слов)" или "📦 КОНТЕЙНЕР (X фраз)"
-        items,           // массив объектов с полями display и id
-        onReturnItem,    // функция при возврате одного элемента (принимает id)
-        onReturnAll,     // функция для кнопки "Вернуть всё"
-        emptyMessage,    // "📭 Контейнер пуст"
-        itemTemplate     // функция для отображения элемента
+        title,
+        items,
+        onReturnItem,
+        onReturnAll,
+        emptyMessage,
+        itemTemplate
     } = config;
     
-    // Если items пуст — показываем сообщение
     const isEmpty = !items || items.length === 0;
     
-    // Создаём модалку через createElement (надёжнее, чем innerHTML)
+    // Создаём модалку через createElement (надёжнее)
     const modal = document.createElement('div');
     modal.id = 'containerModal';
     modal.style.cssText = `
@@ -53,7 +52,7 @@ function showContainerModal(config) {
     // Заголовок
     const header = document.createElement('div');
     header.style.cssText = 'padding: 15px 20px; border-bottom: 1px solid #ddd; text-align: center; flex-shrink: 0;';
-    header.innerHTML = `<h3 style="margin: 0;">${title || '📦 КОНТЕЙНЕР (' + items.length + ')'}</h3>`;
+    header.innerHTML = `<h3 style="margin: 0;">${title || '📦 КОНТЕЙНЕР (' + (items?.length || 0) + ')'}</h3>`;
     modalContent.appendChild(header);
     
     // Список элементов
@@ -63,9 +62,9 @@ function showContainerModal(config) {
     if (isEmpty) {
         itemsContainer.innerHTML = `<div style="text-align:center; padding:40px; color:#999;">${emptyMessage || '📭 Контейнер пуст'}</div>`;
     } else {
-        items.forEach((item, index) => {
+        items.forEach((item) => {
             const display = itemTemplate ? itemTemplate(item) : (item.display || item);
-            const itemId = item.id || item.de || item.key || index;
+            const itemId = item.id || item.de || item.key || item.display;
             
             const div = document.createElement('div');
             div.style.cssText = 'display: flex; justify-content: space-between; align-items: center; padding: 10px 20px; border-bottom: 1px solid #f0f0f0;';
@@ -78,12 +77,7 @@ function showContainerModal(config) {
             btn.addEventListener('click', function() {
                 const id = this.getAttribute('data-id');
                 if (onReturnItem) {
-                    onReturnItem(id, function() {
-                        // После возврата обновляем контейнер
-                        modal.remove();
-                        // Пересоздаем контейнер с обновленными данными
-                        showContainerModal(config);
-                    });
+                    onReturnItem(id);
                 }
             });
             
@@ -103,15 +97,15 @@ function showContainerModal(config) {
     
     modal.appendChild(modalContent);
     document.body.appendChild(modal);
+    console.log('✅ Модалка добавлена в DOM');
     
     // Обработчик "ВЕРНУТЬ ВСЁ"
     document.getElementById('returnAllBtn').addEventListener('click', function() {
         if (!confirm('Вернуть все элементы из контейнера?')) return;
         if (onReturnAll) {
-            onReturnAll(function() {
-                modal.remove();
-            });
+            onReturnAll();
         }
+        modal.remove();
     });
     
     // Обработчик "ЗАКРЫТЬ"

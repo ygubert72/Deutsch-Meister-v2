@@ -129,7 +129,13 @@ function saveQuizState() {
 }
 
 function getStudiedWordsList() {
-    const vocab = window.currentLesson?.vocabulary || [];
+    // Используем переданный lesson из глобальной переменной
+    const lesson = window.currentLesson;
+    if (!lesson) {
+        console.warn('currentLesson не найден');
+        return [];
+    }
+    const vocab = lesson.vocabulary || [];
     return vocab.filter(word => quizStudiedWords[word.de]);
 }
 
@@ -163,7 +169,6 @@ function showQuizContainer() {
         display: flex;
         flex-direction: column;
         margin: 20px;
-        overflow-y: auto;
     `;
 
     function renderContainerContent() {
@@ -204,8 +209,11 @@ function showQuizContainer() {
                 const wordDe = this.getAttribute('data-word');
                 delete quizStudiedWords[wordDe];
                 saveQuizState();
-                const vocab = window.currentLesson?.vocabulary || [];
-                quizWords = vocab.filter(w => !quizStudiedWords[w.de]);
+                const lesson = window.currentLesson;
+                if (lesson) {
+                    const vocab = lesson.vocabulary || [];
+                    quizWords = vocab.filter(w => !quizStudiedWords[w.de]);
+                }
                 if (quizWords.length > 0 && quizIndex >= quizWords.length) {
                     quizIndex = 0;
                 }
@@ -219,10 +227,16 @@ function showQuizContainer() {
 
         document.getElementById('returnAllBtn').onclick = function() {
             if (!confirm('Вернуть все слова из контейнера?')) return;
-            const vocab = window.currentLesson?.vocabulary || [];
-            vocab.forEach(word => { delete quizStudiedWords[word.de]; });
+            const lesson = window.currentLesson;
+            if (lesson) {
+                const vocab = lesson.vocabulary || [];
+                vocab.forEach(word => { delete quizStudiedWords[word.de]; });
+            }
             saveQuizState();
-            quizWords = [...vocab];
+            const lesson2 = window.currentLesson;
+            if (lesson2) {
+                quizWords = [...lesson2.vocabulary];
+            }
             quizIndex = 0;
             modal.remove();
             showQuizQuestion();

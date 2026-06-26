@@ -7,7 +7,7 @@ let currentLevel = 'A1';
 let currentLesson = null;
 let courseData = null;
 let isRestoring = false;
-let currentActiveMode = 'grammar'; // <--- ДОБАВЛЕНО: отслеживаем текущий активный режим
+let currentActiveMode = 'grammar';
 
 // ========== СОХРАНЕНИЕ СОСТОЯНИЯ ==========
 function saveState() {
@@ -87,7 +87,7 @@ async function loadLesson(lessonId) {
     }
 }
 
-// ========== ОБНОВЛЕНИЕ СЧЁТЧИКА (ИСПРАВЛЕНО) ==========
+// ========== ОБНОВЛЕНИЕ СЧЁТЧИКА ==========
 function updateCounter() {
     const el = document.getElementById('counter');
     if (!el) return;
@@ -101,14 +101,12 @@ function updateCounter() {
         return;
     }
     
-    // Определяем, какой режим сейчас активен
     const activeMode = currentActiveMode || currentMode || 'grammar';
     let count = 0;
     let label = '';
     
     switch(activeMode) {
         case 'grammar':
-            // Для грамматики считаем количество примеров
             const examples = currentLesson.examples || [];
             count = examples.length;
             label = 'примеров';
@@ -127,8 +125,8 @@ function updateCounter() {
             break;
             
         case 'quiz':
-            const quizWords = currentLesson.quiz?.words || currentLesson.vocabulary || [];
-            count = quizWords.length;
+            const quizWordsList = currentLesson.quiz?.words || currentLesson.vocabulary || [];
+            count = quizWordsList.length;
             label = 'слов';
             break;
             
@@ -145,13 +143,11 @@ function updateCounter() {
             break;
             
         default:
-            // Если режим не распознан, показываем общее количество слов
             const totalVocab = currentLesson.vocabulary || [];
             count = totalVocab.length;
             label = 'слов';
     }
     
-    // Формируем текст счетчика
     let modeName = '';
     switch(activeMode) {
         case 'grammar': modeName = 'Грамматика'; break;
@@ -219,7 +215,6 @@ function renderLesson(lesson) {
     document.getElementById('content').innerHTML = html;
     document.getElementById('modeIndicator').textContent = `Урок ${lesson.id}: ${lesson.title}`;
     
-    // Устанавливаем начальный режим и обновляем счетчик
     currentActiveMode = 'grammar';
     updateCounter();
 
@@ -229,14 +224,13 @@ function renderLesson(lesson) {
             this.classList.add('active');
             const mode = this.getAttribute('data-mode');
             currentMode = mode;
-            currentActiveMode = mode; // <--- ДОБАВЛЕНО: обновляем активный режим
+            currentActiveMode = mode;
             saveState();
             renderMode(mode, lesson);
-            updateCounter(); // <--- ДОБАВЛЕНО: обновляем счетчик при смене режима
+            updateCounter();
         };
     });
 
-    // ==== ВОССТАНОВЛЕНИЕ РЕЖИМА ПОСЛЕ ЗАГРУЗКИ УРОКА ====
     if (!isRestoring) {
         const savedState = loadState();
         if (savedState && savedState.mode && savedState.lessonId === lesson.id) {
@@ -246,9 +240,9 @@ function renderLesson(lesson) {
                 document.querySelectorAll('.mode-btn').forEach(b => b.classList.remove('active'));
                 modeBtn.classList.add('active');
                 currentMode = savedState.mode;
-                currentActiveMode = savedState.mode; // <--- ДОБАВЛЕНО
+                currentActiveMode = savedState.mode;
                 renderMode(savedState.mode, lesson);
-                updateCounter(); // <--- ДОБАВЛЕНО: обновляем счетчик после восстановления
+                updateCounter();
                 return;
             }
         }
@@ -264,7 +258,6 @@ function renderMode(mode, lesson) {
 
     window.currentLesson = lesson;
 
-    // Очищаем контролы в шапке перед загрузкой нового режима
     const headerControls = document.getElementById('modeHeaderControls');
     if (headerControls) {
         headerControls.innerHTML = '';
@@ -317,7 +310,6 @@ function renderMode(mode, lesson) {
             container.innerHTML = '<div>Режим не найден</div>';
     }
     
-    // Обновляем счетчик после загрузки режима
     updateCounter();
 }
 

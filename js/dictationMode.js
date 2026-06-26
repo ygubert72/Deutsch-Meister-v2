@@ -70,9 +70,10 @@ function renderDictation(container, lesson) {
                         ПРОВЕРИТЬ
                     </button>
                     
+                    <!-- КНОПКА ПОДСКАЗКА - СВЕТЛО-ГОЛУБАЯ -->
                     <button class="hint-btn" data-dict-index="${index}" 
                             ${isCompleted ? 'disabled style="opacity: 0.5; cursor: not-allowed;"' : ''}
-                            style="padding: 8px 20px; background: ${isCompleted ? '#9E9E9E' : '#3B6FE0'}; color: white; border: none; border-radius: 8px; cursor: ${isCompleted ? 'not-allowed' : 'pointer'}; font-weight: bold; white-space: nowrap;">
+                            style="padding: 8px 20px; background: ${isCompleted ? '#E0E0E0' : '#E8F0FE'}; color: ${isCompleted ? '#999' : '#333'}; border: ${isCompleted ? 'none' : '2px solid #D0D0D0'}; border-radius: 8px; cursor: ${isCompleted ? 'not-allowed' : 'pointer'}; font-weight: bold; white-space: nowrap;">
                         💡 ПОДСКАЗКА
                     </button>
                     
@@ -93,35 +94,11 @@ function renderDictation(container, lesson) {
     const resetBtn = document.getElementById('resetDictationBtn');
     if (resetBtn) {
         resetBtn.addEventListener('click', function() {
-            if (!confirm('Вы уверены, что хотите сбросить весь прогресс в диктанте? Все выполненные предложения будут очищены.')) return;
+            if (!confirm('Вы уверены, что хотите сбросить весь прогресс в диктанте?')) return;
             
             dictationCompleted = {};
             saveDictationProgress(dictationCurrentLessonId);
             renderDictation(container, lesson);
-            
-            const notification = document.createElement('div');
-            notification.style.cssText = `
-                position: fixed;
-                bottom: 20px;
-                left: 50%;
-                transform: translateX(-50%);
-                background: #4CAF50;
-                color: white;
-                padding: 12px 24px;
-                border-radius: 12px;
-                font-weight: bold;
-                box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-                z-index: 9999;
-                animation: fadeIn 0.3s ease;
-            `;
-            notification.textContent = '✅ Прогресс сброшен! Можно начинать заново.';
-            document.body.appendChild(notification);
-            
-            setTimeout(() => {
-                notification.style.opacity = '0';
-                notification.style.transition = 'opacity 0.5s';
-                setTimeout(() => notification.remove(), 500);
-            }, 2000);
         });
     }
 

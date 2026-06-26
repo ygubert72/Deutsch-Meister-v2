@@ -67,15 +67,17 @@ function renderDictation(container, lesson) {
                        style="width: 100%; padding: 10px; border: 2px solid ${isCompleted ? '#4CAF50' : '#D0D0D0'}; border-radius: 8px; font-size: 16px; box-sizing: border-box; margin: 8px 0; ${inputStyle}">
                 
                 <div style="display: flex; gap: 10px; flex-wrap: wrap; align-items: center; margin: 4px 0 8px 0;">
+                    <!-- Кнопка ПРОВЕРИТЬ — синий (НЕ ТРОГАЕМ) -->
                     <button class="check-btn" data-dict-index="${index}" 
                             ${isCompleted ? 'disabled style="opacity: 0.5; cursor: not-allowed;"' : ''}
                             style="padding: 8px 20px; background: ${isCompleted ? '#9E9E9E' : '#3B6FE0'}; color: white; border: none; border-radius: 8px; cursor: ${isCompleted ? 'not-allowed' : 'pointer'}; font-weight: bold; white-space: nowrap;">
                         ПРОВЕРИТЬ
                     </button>
                     
+                    <!-- Кнопка ПОДСКАЗКА — светло-голубая (как в Тренажере) -->
                     <button class="hint-btn" data-dict-index="${index}" 
                             ${isCompleted ? 'disabled style="opacity: 0.5; cursor: not-allowed;"' : ''}
-                            style="padding: 8px 20px; background: ${isCompleted ? '#9E9E9E' : '#FF9800'}; color: white; border: none; border-radius: 8px; cursor: ${isCompleted ? 'not-allowed' : 'pointer'}; font-weight: bold; white-space: nowrap;">
+                            style="padding: 8px 20px; background: ${isCompleted ? '#E0E0E0' : '#E8F0FE'}; color: ${isCompleted ? '#999' : '#3B6FE0'}; border: ${isCompleted ? 'none' : '2px solid #D0D0D0'}; border-radius: 8px; cursor: ${isCompleted ? 'not-allowed' : 'pointer'}; font-weight: bold; white-space: nowrap;">
                         💡 ПОДСКАЗКА
                     </button>
                     
@@ -96,17 +98,13 @@ function renderDictation(container, lesson) {
     // ===== ОБРАБОТЧИК ДЛЯ КНОПКИ "СБРОСИТЬ ПРОГРЕСС" =====
     const resetBtn = document.getElementById('resetDictationBtn');
     if (resetBtn) {
-        resetBtn.onclick = function() {
+        resetBtn.addEventListener('click', function() {
             if (!confirm('Вы уверены, что хотите сбросить весь прогресс в диктанте? Все выполненные предложения будут очищены.')) return;
             
-            // Очищаем прогресс
             dictationCompleted = {};
             saveDictationProgress(dictationCurrentLessonId);
-            
-            // Перерисовываем
             renderDictation(container, lesson);
             
-            // Показываем уведомление
             const notification = document.createElement('div');
             notification.style.cssText = `
                 position: fixed;
@@ -130,12 +128,12 @@ function renderDictation(container, lesson) {
                 notification.style.transition = 'opacity 0.5s';
                 setTimeout(() => notification.remove(), 500);
             }, 2000);
-        };
+        });
     }
 
     // ===== ОБРАБОТЧИК ДЛЯ КНОПКИ "ПРОВЕРИТЬ" =====
     container.querySelectorAll('.check-btn[data-dict-index]').forEach(btn => {
-        btn.onclick = function() {
+        btn.addEventListener('click', function() {
             const index = parseInt(this.getAttribute('data-dict-index'));
             const input = container.querySelector(`.practice-input[data-dict-index="${index}"]`);
             const result = container.querySelector(`.practice-result[data-dict-index="${index}"]`);
@@ -156,7 +154,6 @@ function renderDictation(container, lesson) {
             const correctAnswer = normalizeAnswer(sentence.de);
 
             if (userAnswer === correctAnswer) {
-                // СОХРАНЯЕМ ПРОГРЕСС
                 dictationCompleted[index] = true;
                 saveDictationProgress(dictationCurrentLessonId);
                 
@@ -179,7 +176,6 @@ function renderDictation(container, lesson) {
                     hintDisplay.style.color = '#4CAF50';
                 }
                 
-                // Обновляем прогресс
                 setTimeout(() => {
                     renderDictation(container, lesson);
                 }, 500);
@@ -190,12 +186,12 @@ function renderDictation(container, lesson) {
                 input.style.borderColor = '#F44336';
                 input.style.backgroundColor = '#FFEBEE';
             }
-        };
+        });
     });
 
     // ===== ОБРАБОТЧИК ДЛЯ КНОПКИ "ПОДСКАЗКА" =====
     container.querySelectorAll('.hint-btn[data-dict-index]').forEach(btn => {
-        btn.onclick = function() {
+        btn.addEventListener('click', function() {
             const index = parseInt(this.getAttribute('data-dict-index'));
             const input = container.querySelector(`.practice-input[data-dict-index="${index}"]`);
             const hintDisplay = container.querySelector(`.hint-display[data-dict-index="${index}"]`);
@@ -281,7 +277,7 @@ function renderDictation(container, lesson) {
             
             input.focus();
             input.setSelectionRange(input.value.length, input.value.length);
-        };
+        });
     });
 
     // ===== ОБРАБОТЧИК ДЛЯ ИЗМЕНЕНИЙ В ПОЛЕ ВВОДА =====

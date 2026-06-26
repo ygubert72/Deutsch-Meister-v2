@@ -71,152 +71,127 @@ function renderQuiz(container, lesson) {
                 ${quizDirection === 'de_to_ru' ? 'De → Ru' : 'Ru → De'}
             </button>
         `;
-        document.getElementById('quizDirBtn').addEventListener('click', function() {
-            quizDirection = quizDirection === 'de_to_ru' ? 'ru_to_de' : 'de_to_ru';
-            this.textContent = quizDirection === 'de_to_ru' ? 'De → Ru' : 'Ru → De';
-            showQuizQuestion();
+        const dirBtn = document.getElementById('quizDirBtn');
+        if (dirBtn) {
+            dirBtn.addEventListener('click', function() {
+                quizDirection = quizDirection === 'de_to_ru' ? 'ru_to_de' : 'de_to_ru';
+                this.textContent = quizDirection === 'de_to_ru' ? 'De → Ru' : 'Ru → De';
+                showQuizQuestion();
+            });
+        }
+    }
+
+    // ===== ОБРАБОТЧИКИ С ПРОВЕРКОЙ НА СУЩЕСТВОВАНИЕ =====
+    const studyBtn = document.getElementById('quizStudyBtn');
+    if (studyBtn) {
+        studyBtn.addEventListener('click', function() {
+            if (quizCurrentWord) {
+                quizStudiedWords[quizCurrentWord.de] = true;
+                saveQuizState();
+                quizWords = quizWords.filter(w => w.de !== quizCurrentWord.de);
+                if (quizWords.length === 0) {
+                    document.getElementById('quizQuestion').textContent = '🎉 Все слова изучены!';
+                    document.getElementById('quizGrid').innerHTML = '';
+                    document.getElementById('quizProgress').textContent = '0 / 0';
+                    return;
+                }
+                if (quizIndex >= quizWords.length) quizIndex = 0;
+                showQuizQuestion();
+            }
         });
     }
 
-    // ===== ОБРАБОТЧИКИ =====
-    document.getElementById('quizStudyBtn').addEventListener('click', function() {
-        if (quizCurrentWord) {
-            quizStudiedWords[quizCurrentWord.de] = true;
-            saveQuizState();
-            quizWords = quizWords.filter(w => w.de !== quizCurrentWord.de);
-            if (quizWords.length === 0) {
-                document.getElementById('quizQuestion').textContent = '🎉 Все слова изучены!';
-                document.getElementById('quizGrid').innerHTML = '';
-                document.getElementById('quizProgress').textContent = '0 / 0';
+    const containerBtn = document.getElementById('quizContainerBtn');
+    if (containerBtn) {
+        containerBtn.addEventListener('click', function() {
+            const studied = getStudiedWordsList();
+            if (!studied || studied.length === 0) {
+                alert('📦 Контейнер пуст\n\nВыучите слова, чтобы они появились здесь.');
                 return;
             }
-            if (quizIndex >= quizWords.length) quizIndex = 0;
-            showQuizQuestion();
-        }
-    });
-
-    document.getElementById('quizContainerBtn').addEventListener('click', function() {
-        const studied = getStudiedWordsList();
-        if (!studied || studied.length === 0) {
-            alert('📦 Контейнер пуст\n\nВыучите слова, чтобы они появились здесь.');
-            return;
-        }
-        
-        // Используем универсальный контейнер
-        if (window.ContainerManager) {
-            window.ContainerManager.show({
-                title: `📦 КОНТЕЙНЕР (${studied.length} слов)`,
-                items: studied,
-                emptyMessage: '📭 Контейнер пуст',
-                itemTemplate: function(word) {
-                    return `<strong>${word.de}</strong> — ${word.ru}`;
-                },
-                onReturnItem: function(wordDe) {
-                    delete quizStudiedWords[wordDe];
-                    saveQuizState();
-                    const lesson = currentLessonData || window.currentLesson;
-                    if (lesson) {
-                        const vocab = lesson.vocabulary || [];
-                        quizWords = vocab.filter(w => !quizStudiedWords[w.de]);
-                    }
-                    if (quizWords.length > 0 && quizIndex >= quizWords.length) {
+            
+            if (window.ContainerManager) {
+                window.ContainerManager.show({
+                    title: `📦 КОНТЕЙНЕР (${studied.length} слов)`,
+                    items: studied,
+                    emptyMessage: '📭 Контейнер пуст',
+                    itemTemplate: function(word) {
+                        return `<strong>${word.de}</strong> — ${word.ru}`;
+                    },
+                    onReturnItem: function(wordDe) {
+                        delete quizStudiedWords[wordDe];
+                        saveQuizState();
+                        const lesson = currentLessonData || window.currentLesson;
+                        if (lesson) {
+                            const vocab = lesson.vocabulary || [];
+                            quizWords = vocab.filter(w => !quizStudiedWords[w.de]);
+                        }
+                        if (quizWords.length > 0 && quizIndex >= quizWords.length) {
+                            quizIndex = 0;
+                        }
+                        const studiedNew = getStudiedWordsList();
+                        if (studiedNew.length === 0) {
+                            const modal = document.getElementById('containerModal');
+                            if (modal) modal.remove();
+                            if (quizWords.length > 0) showQuizQuestion();
+                        } else {
+                            const modal = document.getElementById('containerModal');
+                            if (modal) modal.remove();
+                            document.getElementById('quizContainerBtn')?.click();
+                        }
+                    },
+                    onReturnAll: function() {
+                        const lesson = currentLessonData || window.currentLesson;
+                        if (lesson) {
+                            const vocab = lesson.vocabulary || [];
+                            vocab.forEach(word => { delete quizStudiedWords[word.de]; });
+                        }
+                        saveQuizState();
+                        const lesson2 = currentLessonData || window.currentLesson;
+                        if (lesson2) {
+                            quizWords = [...lesson2.vocabulary];
+                        }
                         quizIndex = 0;
+                        const modal = document.getElementById('containerModal');
+                        if (modal) modal.remove();
+                        showQuizQuestion();
                     }
-                    // Обновляем контейнер
-                    const studiedNew = getStudiedWordsList();
-                    if (studiedNew.length === 0) {
-                        document.getElementById('containerModal')?.remove();
-                        if (quizWords.length > 0) showQuizQuestion();
-                    } else {
-                        // Переоткрываем контейнер с обновленными данными
-                        document.getElementById('containerModal')?.remove();
-                        window.ContainerManager.show({
-                            title: `📦 КОНТЕЙНЕР (${studiedNew.length} слов)`,
-                            items: studiedNew,
-                            emptyMessage: '📭 Контейнер пуст',
-                            itemTemplate: function(word) {
-                                return `<strong>${word.de}</strong> — ${word.ru}`;
-                            },
-                            onReturnItem: function(wordDe) {
-                                delete quizStudiedWords[wordDe];
-                                saveQuizState();
-                                const lesson = currentLessonData || window.currentLesson;
-                                if (lesson) {
-                                    const vocab = lesson.vocabulary || [];
-                                    quizWords = vocab.filter(w => !quizStudiedWords[w.de]);
-                                }
-                                if (quizWords.length > 0 && quizIndex >= quizWords.length) {
-                                    quizIndex = 0;
-                                }
-                                const studiedNew2 = getStudiedWordsList();
-                                if (studiedNew2.length === 0) {
-                                    document.getElementById('containerModal')?.remove();
-                                    if (quizWords.length > 0) showQuizQuestion();
-                                } else {
-                                    document.getElementById('containerModal')?.remove();
-                                    // Рекурсивно вызываем этот же обработчик
-                                    document.getElementById('quizContainerBtn')?.click();
-                                }
-                            },
-                            onReturnAll: function() {
-                                const lesson = currentLessonData || window.currentLesson;
-                                if (lesson) {
-                                    const vocab = lesson.vocabulary || [];
-                                    vocab.forEach(word => { delete quizStudiedWords[word.de]; });
-                                }
-                                saveQuizState();
-                                const lesson2 = currentLessonData || window.currentLesson;
-                                if (lesson2) {
-                                    quizWords = [...lesson2.vocabulary];
-                                }
-                                quizIndex = 0;
-                                document.getElementById('containerModal')?.remove();
-                                showQuizQuestion();
-                            }
-                        });
-                    }
-                },
-                onReturnAll: function() {
-                    const lesson = currentLessonData || window.currentLesson;
-                    if (lesson) {
-                        const vocab = lesson.vocabulary || [];
-                        vocab.forEach(word => { delete quizStudiedWords[word.de]; });
-                    }
-                    saveQuizState();
-                    const lesson2 = currentLessonData || window.currentLesson;
-                    if (lesson2) {
-                        quizWords = [...lesson2.vocabulary];
-                    }
-                    quizIndex = 0;
-                    document.getElementById('containerModal')?.remove();
-                    showQuizQuestion();
-                }
-            });
-        } else {
-            alert('❌ Ошибка: ContainerManager не загружен');
-        }
-    });
+                });
+            } else {
+                alert('❌ Ошибка: ContainerManager не загружен');
+            }
+        });
+    }
 
-    document.getElementById('quizPrevBtn').addEventListener('click', function() {
-        if (quizWords.length > 0 && quizIndex > 0) {
-            quizIndex--;
-            showQuizQuestion();
-        }
-    });
+    const prevBtn = document.getElementById('quizPrevBtn');
+    if (prevBtn) {
+        prevBtn.addEventListener('click', function() {
+            if (quizWords.length > 0 && quizIndex > 0) {
+                quizIndex--;
+                showQuizQuestion();
+            }
+        });
+    }
 
-    document.getElementById('quizNextBtn').addEventListener('click', function() {
-        if (quizWords.length > 0) {
-            quizIndex = (quizIndex + 1) % quizWords.length;
-            showQuizQuestion();
-        }
-    });
+    const nextBtn = document.getElementById('quizNextBtn');
+    if (nextBtn) {
+        nextBtn.addEventListener('click', function() {
+            if (quizWords.length > 0) {
+                quizIndex = (quizIndex + 1) % quizWords.length;
+                showQuizQuestion();
+            }
+        });
+    }
 
-    document.getElementById('quizResetStartBtn').addEventListener('click', function() {
-        if (quizWords.length > 0) {
-            quizIndex = 0;
-            showQuizQuestion();
-        }
-    });
+    const resetBtn = document.getElementById('quizResetStartBtn');
+    if (resetBtn) {
+        resetBtn.addEventListener('click', function() {
+            if (quizWords.length > 0) {
+                quizIndex = 0;
+                showQuizQuestion();
+            }
+        });
+    }
 
     showQuizQuestion();
 }
@@ -236,9 +211,12 @@ function getStudiedWordsList() {
 
 function showQuizQuestion() {
     if (quizWords.length === 0) {
-        document.getElementById('quizQuestion').textContent = '🎉 Все слова изучены!';
-        document.getElementById('quizGrid').innerHTML = '';
-        document.getElementById('quizProgress').textContent = '0 / 0';
+        const questionEl = document.getElementById('quizQuestion');
+        if (questionEl) questionEl.textContent = '🎉 Все слова изучены!';
+        const gridEl = document.getElementById('quizGrid');
+        if (gridEl) gridEl.innerHTML = '';
+        const progressEl = document.getElementById('quizProgress');
+        if (progressEl) progressEl.textContent = '0 / 0';
         return;
     }
 
@@ -247,8 +225,11 @@ function showQuizQuestion() {
     const question = isDeToRu ? quizCurrentWord.de : quizCurrentWord.ru;
     const correctAnswer = isDeToRu ? quizCurrentWord.ru : quizCurrentWord.de;
 
-    document.getElementById('quizQuestion').textContent = question;
-    document.getElementById('quizProgress').textContent = `${quizIndex + 1} / ${quizWords.length}`;
+    const questionEl = document.getElementById('quizQuestion');
+    if (questionEl) questionEl.textContent = question;
+    
+    const progressEl = document.getElementById('quizProgress');
+    if (progressEl) progressEl.textContent = `${quizIndex + 1} / ${quizWords.length}`;
 
     const allWords = [...quizWords];
     const otherWords = allWords.filter(w => w !== quizCurrentWord);
@@ -264,6 +245,7 @@ function showQuizQuestion() {
     }
 
     const grid = document.getElementById('quizGrid');
+    if (!grid) return;
     grid.innerHTML = '';
     options.forEach((opt) => {
         const btn = document.createElement('button');

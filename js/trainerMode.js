@@ -12,12 +12,10 @@ let trainerHintIndex = 0;
 let trainerHintWords = [];
 let trainerDirection = 'ru_to_de';
 let allVocabWords = [];
-
-// ===== КОНТЕЙНЕР ДЛЯ ИЗУЧЕННЫХ ФРАЗ =====
 let trainerStudiedSentences = {};
 let trainerCurrentLessonId = null;
+let trainerCurrentLessonData = null; // <--- СОХРАНЯЕМ ДАННЫЕ УРОКА
 
-// ===== ЗАГРУЗКА ВСЕХ СЛОВ ИЗ ПРОЙДЕННЫХ УРОКОВ =====
 async function loadAllVocabulary(level, currentLessonId) {
     try {
         const response = await fetch(`docs/course/${level}/index.json`);
@@ -25,10 +23,8 @@ async function loadAllVocabulary(level, currentLessonId) {
         const courseData = await response.json();
         
         let allWords = [];
-        
         for (const lessonInfo of courseData.lessons) {
             if (lessonInfo.id > currentLessonId) break;
-            
             try {
                 const lessonResponse = await fetch(`docs/course/${level}/lessons/${lessonInfo.file}`);
                 if (lessonResponse.ok) {
@@ -37,25 +33,17 @@ async function loadAllVocabulary(level, currentLessonId) {
                         allWords = allWords.concat(lessonData.vocabulary);
                     }
                 }
-            } catch(e) {
-                console.warn('Не удалось загрузить урок:', lessonInfo.id);
-            }
+            } catch(e) {}
         }
-        
         return allWords;
     } catch(e) {
-        console.error('Ошибка загрузки лексики:', e);
         return [];
     }
 }
 
-// ===== ПОЛУЧЕНИЕ СПИСКА ИЗУЧЕННЫХ ФРАЗ =====
 function getStudiedSentencesList() {
-    const lesson = window.currentLesson;
-    if (!lesson) {
-        console.warn('currentLesson не найден');
-        return [];
-    }
+    const lesson = trainerCurrentLessonData || window.currentLesson;
+    if (!lesson) return [];
     const templates = lesson.trainer?.templates || [];
     return templates.filter(sentence => {
         const key = sentence.de + '|' + sentence.ru;
@@ -63,14 +51,12 @@ function getStudiedSentencesList() {
     });
 }
 
-// ===== СОХРАНЕНИЕ СОСТОЯНИЯ ИЗУЧЕННЫХ ФРАЗ =====
 function saveTrainerState() {
     try {
         localStorage.setItem('dm_trainer_studied_' + trainerCurrentLessonId, JSON.stringify(trainerStudiedSentences));
     } catch(e) {}
 }
 
-// ===== ЗАГРУЗКА СОСТОЯНИЯ ИЗУЧЕННЫХ ФРАЗ =====
 function loadTrainerState(lessonId) {
     try {
         const saved = localStorage.getItem('dm_trainer_studied_' + lessonId);
@@ -84,7 +70,6 @@ function loadTrainerState(lessonId) {
     }
 }
 
-// ===== ОТОБРАЖЕНИЕ КОНТЕЙНЕРА ИЗУЧЕННЫХ ФРАЗ =====
 function showTrainerContainer() {
     const oldModal = document.getElementById('containerModal');
     if (oldModal) oldModal.remove();
@@ -152,13 +137,14 @@ function showTrainerContainer() {
         modalContent.innerHTML = html;
         modal.appendChild(modalContent);
 
+        // ===== НАЗНАЧАЕМ ОБРАБОТЧИКИ ПОСЛЕ ВСТАВКИ HTML =====
         modalContent.querySelectorAll('.unstudy-btn').forEach(btn => {
             btn.onclick = function() {
                 const key = this.getAttribute('data-key');
                 delete trainerStudiedSentences[key];
                 saveTrainerState();
                 
-                const lesson = window.currentLesson;
+                const lesson = trainerCurrentLessonData || window.currentLesson;
                 if (lesson) {
                     const templates = lesson.trainer?.templates || [];
                     trainerSentences = templates.filter(t => {
@@ -168,7 +154,7 @@ function showTrainerContainer() {
                 }
                 
                 if (trainerSentences.length === 0) {
-                    const lesson2 = window.currentLesson;
+                    const lesson2 = trainerCurrentLessonData || window.currentLesson;
                     if (lesson2) {
                         trainerSentences = [...lesson2.trainer.templates];
                         trainerStudiedSentences = {};
@@ -188,32 +174,38 @@ function showTrainerContainer() {
             };
         });
 
-        document.getElementById('returnAllBtn').onclick = function() {
-            if (!confirm('Вернуть все фразы из контейнера?')) return;
-            const lesson = window.currentLesson;
-            if (lesson) {
-                const templates = lesson.trainer?.templates || [];
-                templates.forEach(t => {
-                    const key = t.de + '|' + t.ru;
-                    delete trainerStudiedSentences[key];
-                });
-            }
-            saveTrainerState();
-            const lesson2 = window.currentLesson;
-            if (lesson2) {
-                trainerSentences = [...lesson2.trainer.templates];
-            }
-            trainerIndex = 0;
-            modal.remove();
-            const container = document.getElementById('modeContent');
-            if (container) {
-                showTrainerSentence(container);
-            }
-        };
+        const returnAllBtn = document.getElementById('returnAllBtn');
+        if (returnAllBtn) {
+            returnAllBtn.onclick = function() {
+                if (!confirm('Вернуть все фразы из контейнера?')) return;
+                const lesson = trainerCurrentLessonData || window.currentLesson;
+                if (lesson) {
+                    const templates = lesson.trainer?.templates || [];
+                    templates.forEach(t => {
+                        const key = t.de + '|' + t.ru;
+                        delete trainerStudiedSentences[key];
+                    });
+                }
+                saveTrainerState();
+                const lesson2 = trainerCurrentLessonData || window.currentLesson;
+                if (lesson2) {
+                    trainerSentences = [...lesson2.trainer.templates];
+                }
+                trainerIndex = 0;
+                modal.remove();
+                const container = document.getElementById('modeContent');
+                if (container) {
+                    showTrainerSentence(container);
+                }
+            };
+        }
 
-        document.getElementById('closeContainerBtn').onclick = function() {
-            modal.remove();
-        };
+        const closeBtn = document.getElementById('closeContainerBtn');
+        if (closeBtn) {
+            closeBtn.onclick = function() {
+                modal.remove();
+            };
+        }
 
         modal.onclick = function(e) {
             if (e.target === modal) modal.remove();
@@ -223,8 +215,9 @@ function showTrainerContainer() {
     renderContainerContent();
 }
 
-// ===== ОСНОВНАЯ ФУНКЦИЯ РЕНДЕРИНГА =====
 function renderTrainer(container, lesson) {
+    // СОХРАНЯЕМ ДАННЫЕ УРОКА
+    trainerCurrentLessonData = lesson;
     const lessonId = lesson.id || 1;
     trainerCurrentLessonId = lessonId;
     
@@ -238,7 +231,6 @@ function renderTrainer(container, lesson) {
     `;
     
     const templates = lesson.trainer?.templates || [];
-    
     if (templates.length === 0) {
         container.innerHTML = `
             <div style="text-align: center; padding: 40px; color: #999;">
@@ -297,7 +289,6 @@ function renderTrainer(container, lesson) {
         trainerDirection = 'ru_to_de';
         showTrainerSentence(container);
     }).catch(e => {
-        console.error('Ошибка загрузки слов:', e);
         container.innerHTML = `
             <div style="text-align: center; padding: 40px; color: #999;">
                 <div style="font-size: 48px; margin-bottom: 15px;">❌</div>
@@ -308,7 +299,6 @@ function renderTrainer(container, lesson) {
     });
 }
 
-// ===== ОТОБРАЖЕНИЕ ТЕКУЩЕГО ЗАДАНИЯ =====
 function showTrainerSentence(container) {
     if (trainerIndex >= trainerSentences.length) {
         container.innerHTML = `
@@ -421,201 +411,4 @@ function showTrainerSentence(container) {
             </div>
             <div style="display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; margin: 15px 0;">
                 <button class="ctrl-btn" id="trainerStudyBtn" style="padding: 6px 14px; background: #4CAF50; color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; font-size: 12px;">✅ ИЗУЧЕНО</button>
-                <button class="ctrl-btn" id="trainerContainerBtn" style="padding: 6px 14px; background: #FF9800; color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; font-size: 12px;">📦 В КОНТЕЙНЕР</button>
-                <button class="ctrl-btn" id="trainerPrevBtn" style="padding: 6px 14px; background: #E8F0FE; border: 2px solid #D0D0D0; border-radius: 8px; cursor: pointer; font-weight: bold; font-size: 12px;">◀ НАЗАД</button>
-                <button class="ctrl-btn" id="trainerNextBtn" style="padding: 6px 14px; background: #E8F0FE; border: 2px solid #D0D0D0; border-radius: 8px; cursor: pointer; font-weight: bold; font-size: 12px;">ВПЕРЕД ▶</button>
-                <button class="ctrl-btn" id="trainerResetStartBtn" style="padding: 6px 14px; background: #E8F0FE; border: 2px solid #D0D0D0; border-radius: 8px; cursor: pointer; font-weight: bold; font-size: 12px;">⏮ В НАЧАЛО</button>
-                <div style="font-size: 14px; color: #888; display: flex; align-items: center; margin-left: 10px;">${trainerIndex + 1} / ${trainerSentences.length}</div>
-            </div>
-        </div>
-    `;
-
-    container.innerHTML = html;
-
-    // ===== ОБРАБОТЧИКИ КНОПОК =====
-
-    container.querySelectorAll('#trainerWordsContainer .word-btn').forEach(btn => {
-        btn.onclick = function() {
-            const word = this.getAttribute('data-word');
-            if (trainerActiveWords[word]) {
-                trainerActiveWords[word] = false;
-                const foundWord = trainerAvailableWords.find(w => w.display === word);
-                if (foundWord) {
-                    trainerSelectedWords.push(foundWord);
-                    updateTrainerDisplay(container);
-                }
-            }
-        };
-    });
-
-    document.getElementById('trainerUndoBtn').onclick = function() {
-        if (trainerSelectedWords.length > 0) {
-            const lastWord = trainerSelectedWords.pop();
-            trainerActiveWords[lastWord.display] = true;
-            updateTrainerDisplay(container);
-        }
-    };
-
-    document.getElementById('trainerResetBtn').onclick = function() {
-        trainerSelectedWords = [];
-        trainerAvailableWords.forEach(w => { trainerActiveWords[w.display] = true; });
-        updateTrainerDisplay(container);
-        document.getElementById('trainerHintLabel').textContent = '';
-        trainerHintIndex = 0;
-    };
-
-    document.getElementById('trainerCheckBtn').onclick = function() {
-        if (trainerSelectedWords.length === 0) {
-            const result = document.getElementById('trainerResult');
-            result.style.backgroundColor = '#FFCDD2';
-            setTimeout(() => result.style.backgroundColor = '#FFFFFF', 500);
-            return;
-        }
-
-        const userAnswer = trainerSelectedWords.map(w => w.display).join(' ');
-        const result = document.getElementById('trainerResult');
-        const correctAnswerForCheck = isRuToDe ? trainerCurrentSentence.de : trainerCurrentSentence.ru;
-
-        const normalizedUser = userAnswer.replace(/[.,!?;:]/g, '').trim().toLowerCase();
-        const normalizedCorrect = correctAnswerForCheck.replace(/[.,!?;:]/g, '').trim().toLowerCase();
-
-        if (normalizedUser === normalizedCorrect) {
-            result.style.backgroundColor = '#C8E6C9';
-            result.textContent = '✅ ПРАВИЛЬНО!';
-            
-            setTimeout(() => {
-                result.style.backgroundColor = '#FFFFFF';
-                trainerIndex++;
-                showTrainerSentence(container);
-            }, 500);
-        } else {
-            result.style.backgroundColor = '#FFCDD2';
-            result.textContent = '❌ НЕПРАВИЛЬНО. Попробуйте снова!';
-            
-            setTimeout(() => {
-                result.style.backgroundColor = '#FFFFFF';
-                trainerSelectedWords.forEach(w => { trainerActiveWords[w.display] = true; });
-                trainerSelectedWords = [];
-                updateTrainerDisplay(container);
-                const hasWords = trainerSelectedWords.length > 0;
-                const displayText = trainerSelectedWords.map(w => w.display).join(' ') || 'Нажмите на слова, чтобы собрать предложение';
-                result.textContent = displayText;
-                result.style.color = hasWords ? '#1A1A1A' : '#CCCCCC';
-                result.style.fontWeight = hasWords ? 'bold' : 'normal';
-            }, 800);
-        }
-    };
-
-    document.getElementById('trainerSpeakBtn').onclick = function() {
-        speak(trainerCurrentSentence.de);
-    };
-
-    document.getElementById('trainerHintBtn').onclick = function() {
-        const hintLabel = document.getElementById('trainerHintLabel');
-        if (trainerHintIndex < trainerHintWords.length) {
-            const currentHint = trainerHintWords.slice(0, trainerHintIndex + 1).join(' ');
-            hintLabel.textContent = '💡 ' + currentHint;
-            trainerHintIndex++;
-        } else {
-            hintLabel.textContent = '💡 Полное предложение: ' + trainerHintWords.join(' ');
-        }
-    };
-
-    document.getElementById('trainerStudyBtn').onclick = function() {
-        if (trainerCurrentSentence) {
-            const key = trainerCurrentSentence.de + '|' + trainerCurrentSentence.ru;
-            trainerStudiedSentences[key] = true;
-            saveTrainerState();
-            
-            trainerSentences = trainerSentences.filter(t => {
-                const k = t.de + '|' + t.ru;
-                return k !== key;
-            });
-            
-            if (trainerSentences.length === 0) {
-                document.getElementById('trainerResult').textContent = '🎉 Все фразы изучены!';
-                document.getElementById('trainerWordsContainer').innerHTML = '';
-                document.getElementById('trainerPrevBtn').disabled = true;
-                document.getElementById('trainerNextBtn').disabled = true;
-                document.getElementById('trainerStudyBtn').disabled = true;
-                document.getElementById('trainerContainerBtn').disabled = true;
-                return;
-            }
-            
-            if (trainerIndex >= trainerSentences.length) {
-                trainerIndex = 0;
-            }
-            showTrainerSentence(container);
-        }
-    };
-
-    document.getElementById('trainerContainerBtn').onclick = function() {
-        const studied = getStudiedSentencesList();
-        if (!studied || studied.length === 0) {
-            alert('📦 Контейнер пуст\n\nВыучите фразы, чтобы они появились здесь.');
-            return;
-        }
-        showTrainerContainer();
-    };
-
-    document.getElementById('trainerPrevBtn').onclick = function() {
-        if (trainerIndex > 0) {
-            trainerIndex--;
-            showTrainerSentence(container);
-        }
-    };
-
-    document.getElementById('trainerNextBtn').onclick = function() {
-        if (trainerIndex + 1 < trainerSentences.length) {
-            trainerIndex++;
-            showTrainerSentence(container);
-        }
-    };
-
-    document.getElementById('trainerResetStartBtn').onclick = function() {
-        if (trainerSentences.length > 0) {
-            trainerIndex = 0;
-            showTrainerSentence(container);
-        }
-    };
-}
-
-function updateTrainerDisplay(container) {
-    const result = document.getElementById('trainerResult');
-    const wordsContainer = document.getElementById('trainerWordsContainer');
-    
-    if (result) {
-        const hasWords = trainerSelectedWords.length > 0;
-        const displayText = trainerSelectedWords.map(w => w.display).join(' ') || 'Нажмите на слова, чтобы собрать предложение';
-        result.textContent = displayText;
-        result.style.color = hasWords ? '#1A1A1A' : '#CCCCCC';
-        result.style.fontWeight = hasWords ? 'bold' : 'normal';
-        result.style.backgroundColor = '#FFFFFF';
-    }
-    
-    if (wordsContainer) {
-        wordsContainer.innerHTML = '';
-        trainerAvailableWords.forEach(word => {
-            const isActive = trainerActiveWords[word.display];
-            const btn = document.createElement('button');
-            btn.className = 'word-btn';
-            btn.textContent = word.display;
-            btn.style.cssText = isActive 
-                ? 'padding: 12px 8px; font-size: 14px; text-align: center; min-height: 48px; display: flex; align-items: center; justify-content: center; background: #E8F0FE; border: 2px solid #D0D0D0; border-radius: 40px; cursor: pointer;'
-                : 'padding: 12px 8px; font-size: 14px; text-align: center; min-height: 48px; display: flex; align-items: center; justify-content: center; background: #E8F0FE; border: 2px solid #D0D0D0; border-radius: 40px; cursor: default; opacity: 0.4; pointer-events: none;';
-            if (isActive) {
-                btn.onclick = function() {
-                    if (trainerActiveWords[word.display]) {
-                        trainerActiveWords[word.display] = false;
-                        const foundWord = trainerAvailableWords.find(w => w.display === word.display);
-                        if (foundWord) {
-                            trainerSelectedWords.push(foundWord);
-                            updateTrainerDisplay(container);
-                        }
-                    }
-                };
-            }
-            wordsContainer.appendChild(btn);
-        });
-    }
-}
+                <button class="ctrl-btn" id="trainerContainerBtn" style="padding: 6px 14px; background: #FF9800; color: white; border: none; border-radius: 8px; cursor

@@ -18,20 +18,11 @@ let wordsProgress = {};
 let sentencesProgress = {};
 let grammarProgress = { A1: [], A2: [], B1: [], B2: [], C1: [] };
 
-// ========== ПРОВЕРКА, АВТОРИЗОВАН ЛИ ПОЛЬЗОВАТЕЛЬ ==========
-function isUserAuthenticated() {
-    if (typeof window.isAuthenticated === 'function') {
-        return window.isAuthenticated();
-    }
-    return false;
-}
-
 function saveProgress() {
-    // ВСЕГДА сохраняем в памяти сессии (для гостей это единственное место)
-    sessionStorage.setItem('dm_words_progress', JSON.stringify(wordsProgress));
-    sessionStorage.setItem('dm_sentences_progress', JSON.stringify(sentencesProgress));
-    sessionStorage.setItem('dm_grammar_progress', JSON.stringify(grammarProgress));
-    sessionStorage.setItem('dm_config', JSON.stringify({
+    localStorage.setItem('dm_words_progress', JSON.stringify(wordsProgress));
+    localStorage.setItem('dm_sentences_progress', JSON.stringify(sentencesProgress));
+    localStorage.setItem('dm_grammar_progress', JSON.stringify(grammarProgress));
+    localStorage.setItem('dm_config', JSON.stringify({
         last_level: AppConfig.currentLevel,
         show_language: AppConfig.show_language,
         quiz_direction: AppConfig.quiz_direction,
@@ -39,25 +30,21 @@ function saveProgress() {
         last_mode: currentMode
     }));
     
-    // Если пользователь авторизован — сохраняем В ОБЛАКО (Firestore)
+    // Сохраняем прогресс в облако, если пользователь авторизован
     if (window.saveUserProgressToFirebase) {
         window.saveUserProgressToFirebase();
     }
 }
 
 function loadProgress() {
-    // Пытаемся загрузить из сессии (только если есть)
     try {
-        const wp = sessionStorage.getItem('dm_words_progress');
+        const wp = localStorage.getItem('dm_words_progress');
         if (wp) wordsProgress = JSON.parse(wp);
-        
-        const sp = sessionStorage.getItem('dm_sentences_progress');
+        const sp = localStorage.getItem('dm_sentences_progress');
         if (sp) sentencesProgress = JSON.parse(sp);
-        
-        const gp = sessionStorage.getItem('dm_grammar_progress');
+        const gp = localStorage.getItem('dm_grammar_progress');
         if (gp) grammarProgress = JSON.parse(gp);
-        
-        const cfg = sessionStorage.getItem('dm_config');
+        const cfg = localStorage.getItem('dm_config');
         if (cfg) {
             const parsed = JSON.parse(cfg);
             AppConfig.currentLevel = parsed.last_level || 'A1';
@@ -66,9 +53,7 @@ function loadProgress() {
             AppConfig.sentence_lang_from = parsed.sentence_lang_from || 'ru';
             currentMode = parsed.last_mode || 'grammar';
         }
-    } catch(e) {
-        // Если ошибка — просто игнорируем
-    }
+    } catch(e) {}
     
     ['A1','A2','B1','B2','C1'].forEach(lvl => {
         if (!wordsProgress[lvl]) wordsProgress[lvl] = [];
@@ -77,58 +62,43 @@ function loadProgress() {
     });
 }
 
-// ========== СБРОС ПРОГРЕССА ГОСТЯ (при загрузке страницы) ==========
-function resetGuestProgress() {
-    // Проверяем, авторизован ли пользователь
-    if (isUserAuthenticated()) {
-        return; // Если авторизован — ничего не сбрасываем
-    }
-    
-    // Сбрасываем прогресс гостя
-    wordsProgress = {};
-    sentencesProgress = {};
-    grammarProgress = {};
-    
-    ['A1','A2','B1','B2','C1'].forEach(lvl => {
-        wordsProgress[lvl] = [];
-        sentencesProgress[lvl] = [];
-        grammarProgress[lvl] = [];
-    });
-    
-    // Очищаем сессию
-    sessionStorage.removeItem('dm_words_progress');
-    sessionStorage.removeItem('dm_sentences_progress');
-    sessionStorage.removeItem('dm_grammar_progress');
-    sessionStorage.removeItem('dm_config');
-    
-    // Но сохраняем текущий уровень и режим (чтобы интерфейс не сбрасывался)
-    sessionStorage.setItem('dm_guest_config', JSON.stringify({
-        last_level: 'A1',
-        last_mode: 'grammar'
-    }));
-    
-    // Загружаем только конфиг из гостевых настроек
-    try {
-        const cfg = sessionStorage.getItem('dm_guest_config');
-        if (cfg) {
-            const parsed = JSON.parse(cfg);
-            AppConfig.currentLevel = parsed.last_level || 'A1';
-            currentMode = parsed.last_mode || 'grammar';
-        }
-    } catch(e) {}
-}
-
+// ===== ИСПРАВЛЕННАЯ ФУНКЦИЯ SPEAK =====
 function speak(text) {
     if (!text || !window.speechSynthesis) return;
-    const clean = text.replace(/[^\w\s\-äöüßÄÖÜ]/g, '');
-    if (!clean.trim()) return;
-    const utterance = new SpeechSynthesisUtterance(clean);
-    utterance.lang = 'de-DE';
-    utterance.rate = 0.9;
-    window.speechSynthesis.cancel();
-    window.speechSynthesis.speak(utterance);
+    
+    try {
+        // Очищаем текст от лишних символов, но сохраняем немецкие буквы
+        const clean = text.replace(/[^\w\s\-äöüßÄÖÜ]/g, '');
+        if (!clean.trim()) return;
+        
+        // Отменяем предыдущую речь
+        window.speechSynthesis.cancel();
+        
+        const utterance = new SpeechSynthesisUtterance(clean);
+        utterance.lang = 'de-DE';
+        utterance.rate = 0.9;      // Скорость речи
+        utterance.pitch = 1.0;     // Нормальная высота тона (без эха)
+        utterance.volume = 1.0;    // Максимальная громкость
+        
+        // Пытаемся найти немецкий голос для более естественного звучания
+        const voices = window.speechSynthesis.getVoices();
+        const germanVoice = voices.find(voice => voice.lang === 'de-DE');
+        if (germanVoice) {
+            utterance.voice = germanVoice;
+        }
+        
+        window.speechSynthesis.speak(utterance);
+    } catch(e) {
+        console.log('Ошибка озвучки:', e);
+    }
 }
 
-// Экспортируем функции для использования в других файлах
-window.isUserAuthenticated = isUserAuthenticated;
-window.resetGuestProgress = resetGuestProgress;
+// Предзагрузка голосов (некоторые браузеры загружают их асинхронно)
+if (window.speechSynthesis) {
+    // Загружаем голоса сразу
+    window.speechSynthesis.getVoices();
+    // И при изменении списка голосов тоже загружаем
+    window.speechSynthesis.onvoiceschanged = function() {
+        window.speechSynthesis.getVoices();
+    };
+}

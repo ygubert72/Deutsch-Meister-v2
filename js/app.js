@@ -7,6 +7,7 @@ let currentLevel = 'A1';
 let currentLesson = null;
 let courseData = null;
 let isRestoring = false;
+let currentActiveMode = 'grammar'; // <--- ДОБАВЛЕНО: отслеживаем текущий активный режим
 
 // ========== СОХРАНЕНИЕ СОСТОЯНИЯ ==========
 function saveState() {
@@ -86,20 +87,83 @@ async function loadLesson(lessonId) {
     }
 }
 
-// ========== ОБНОВЛЕНИЕ СЧЁТЧИКА ==========
+// ========== ОБНОВЛЕНИЕ СЧЁТЧИКА (ИСПРАВЛЕНО) ==========
 function updateCounter() {
     const el = document.getElementById('counter');
     if (!el) return;
     
-    if (currentLesson) {
-        const vocabCount = currentLesson.vocabulary ? currentLesson.vocabulary.length : 0;
-        const practiceCount = currentLesson.practice ? currentLesson.practice.length : 0;
-        el.textContent = `Слов: ${vocabCount} | Упражнений: ${practiceCount}`;
-    } else if (courseData) {
-        el.textContent = `Уровень ${currentLevel} | Уроков: ${courseData.lessons.length}`;
-    } else {
-        el.textContent = 'Загрузка...';
+    if (!currentLesson) {
+        if (courseData) {
+            el.textContent = `Уровень ${currentLevel} | Уроков: ${courseData.lessons.length}`;
+        } else {
+            el.textContent = 'Загрузка...';
+        }
+        return;
     }
+    
+    // Определяем, какой режим сейчас активен
+    const activeMode = currentActiveMode || currentMode || 'grammar';
+    let count = 0;
+    let label = '';
+    
+    switch(activeMode) {
+        case 'grammar':
+            // Для грамматики считаем количество примеров
+            const examples = currentLesson.examples || [];
+            count = examples.length;
+            label = 'примеров';
+            break;
+            
+        case 'vocabulary':
+            const vocab = currentLesson.vocabulary || [];
+            count = vocab.length;
+            label = 'слов';
+            break;
+            
+        case 'practice':
+            const practice = currentLesson.practice || [];
+            count = practice.length;
+            label = 'упражнений';
+            break;
+            
+        case 'quiz':
+            const quizWords = currentLesson.quiz?.words || currentLesson.vocabulary || [];
+            count = quizWords.length;
+            label = 'слов';
+            break;
+            
+        case 'trainer':
+            const trainerTemplates = currentLesson.trainer?.templates || [];
+            count = trainerTemplates.length;
+            label = 'фраз';
+            break;
+            
+        case 'dictation':
+            const dictation = currentLesson.dictation || [];
+            count = dictation.length;
+            label = 'предложений';
+            break;
+            
+        default:
+            // Если режим не распознан, показываем общее количество слов
+            const totalVocab = currentLesson.vocabulary || [];
+            count = totalVocab.length;
+            label = 'слов';
+    }
+    
+    // Формируем текст счетчика
+    let modeName = '';
+    switch(activeMode) {
+        case 'grammar': modeName = 'Грамматика'; break;
+        case 'vocabulary': modeName = 'Лексика'; break;
+        case 'practice': modeName = 'Практика'; break;
+        case 'quiz': modeName = 'Тренировка'; break;
+        case 'trainer': modeName = 'Тренажёр'; break;
+        case 'dictation': modeName = 'Диктант'; break;
+        default: modeName = activeMode;
+    }
+    
+    el.textContent = `${modeName}: ${count} ${label}`;
 }
 
 // ========== ОТОБРАЖЕНИЕ УРОВНЕЙ ==========
@@ -154,6 +218,9 @@ function renderLesson(lesson) {
     `;
     document.getElementById('content').innerHTML = html;
     document.getElementById('modeIndicator').textContent = `Урок ${lesson.id}: ${lesson.title}`;
+    
+    // Устанавливаем начальный режим и обновляем счетчик
+    currentActiveMode = 'grammar';
     updateCounter();
 
     document.querySelectorAll('.mode-btn').forEach(btn => {
@@ -162,8 +229,10 @@ function renderLesson(lesson) {
             this.classList.add('active');
             const mode = this.getAttribute('data-mode');
             currentMode = mode;
+            currentActiveMode = mode; // <--- ДОБАВЛЕНО: обновляем активный режим
             saveState();
             renderMode(mode, lesson);
+            updateCounter(); // <--- ДОБАВЛЕНО: обновляем счетчик при смене режима
         };
     });
 
@@ -177,7 +246,9 @@ function renderLesson(lesson) {
                 document.querySelectorAll('.mode-btn').forEach(b => b.classList.remove('active'));
                 modeBtn.classList.add('active');
                 currentMode = savedState.mode;
+                currentActiveMode = savedState.mode; // <--- ДОБАВЛЕНО
                 renderMode(savedState.mode, lesson);
+                updateCounter(); // <--- ДОБАВЛЕНО: обновляем счетчик после восстановления
                 return;
             }
         }
@@ -245,6 +316,9 @@ function renderMode(mode, lesson) {
         default:
             container.innerHTML = '<div>Режим не найден</div>';
     }
+    
+    // Обновляем счетчик после загрузки режима
+    updateCounter();
 }
 
 // ========== ИНИЦИАЛИЗАЦИЯ ==========
@@ -293,6 +367,7 @@ function initApp() {
                         console.log('🔄 Загрузка сохранённого урока:', savedState.lessonId);
                         if (savedState.mode) {
                             currentMode = savedState.mode;
+                            currentActiveMode = savedState.mode;
                         }
                         loadLesson(savedState.lessonId);
                     } else if (courseData.lessons.length > 0) {

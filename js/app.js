@@ -318,6 +318,7 @@ function initApp() {
     console.log('✅ Deutsch-Meister готов!');
 }
 
+// Запускаем приложение
 document.addEventListener('DOMContentLoaded', function() {
     initApp();
 });

@@ -3,104 +3,170 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, viewport-fit=cover">
+    
     <title>Deutsch-Meister</title>
-    <link rel="manifest" href="manifest.json">
-    <link rel="icon" type="image/svg+xml" href="icons/icon.svg">
-    <link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192x192.png">
-    <link rel="icon" type="image/png" sizes="512x512" href="icons/icon-512x512.png">
-    <link rel="apple-touch-icon" href="icons/icon-192x192.png">
+    
+    <link rel="manifest" href="/Deutsch-Meister/manifest.json">
+    
+    <link rel="icon" type="image/svg+xml" href="/Deutsch-Meister/icons/icon.svg">
+    <link rel="icon" type="image/png" sizes="192x192" href="/Deutsch-Meister/icons/icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="/Deutsch-Meister/icons/icon-512x512.png">
+    <link rel="apple-touch-icon" href="/Deutsch-Meister/icons/icon-192x192.png">
+    <link rel="apple-touch-icon-precomposed" href="/Deutsch-Meister/icons/icon-192x192.png">
+    
     <meta name="theme-color" content="#3B6FE0">
-    <link rel="stylesheet" href="css/style.css">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-title" content="Deutsch-Meister">
+    <meta name="application-name" content="Deutsch-Meister">
+    <meta name="msapplication-TileColor" content="#3B6FE0">
+    <meta name="msapplication-TileImage" content="/Deutsch-Meister/icons/icon-144x144.png">
+    
+    <link rel="stylesheet" href="/Deutsch-Meister/css/style.css">
+    
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Segoe UI', sans-serif; background: #f5f5f5; overflow: hidden; }
-        .app { display: flex; height: 100vh; opacity: 1; }
-        .sidebar { width: 300px; background: #FFFFFF; border-right: 1px solid #E0E0E0; overflow-y: auto; display: flex; flex-direction: column; }
-        .sidebar-content { padding: 16px; flex: 1; }
-        .btn { width: 100%; padding: 10px 12px; margin: 5px 0; background: #E8F0FE; border: 2px solid #D0D0D0; border-radius: 8px; cursor: pointer; font-weight: bold; font-size: 14px; font-family: inherit; }
-        .btn.active { background: #3B6FE0; color: white; border-color: #2B5BC7; }
-        .btn-level { width: 60px; margin: 4px; padding: 8px 0; display: inline-block; }
-        .levels-container { display: flex; flex-wrap: wrap; justify-content: center; gap: 6px; margin: 10px 0; }
-        .main { flex: 1; display: flex; flex-direction: column; overflow: hidden; }
-        .top-bar { padding: 8px 20px; background: #F8F8F8; border-bottom: 1px solid #E0E0E0; display: flex; align-items: center; justify-content: space-between; }
-        .content { flex: 1; overflow-y: auto; padding: 20px; }
-        .hamburger-btn { display: none; background: none; border: none; font-size: 28px; cursor: pointer; padding: 5px 10px; color: #3B6FE0; }
-        .mode-indicator { font-size: 14px; color: #333; }
-        .top-bar-left { display: flex; align-items: center; gap: 10px; }
-        #counter { font-size: 12px; color: #888; }
-        .share-btn { background: #4CAF50; color: white; border-color: #388E3C; }
-        .lesson-btn { display: block; width: 100%; padding: 15px; margin: 8px 0; background: #E8F0FE; border: 2px solid #D0D0D0; border-radius: 8px; cursor: pointer; text-align: left; font-size: 16px; }
-        .lesson-btn:hover { background: #d0e2fc; }
-        .back-btn { padding: 10px 20px; background: #3B6FE0; color: white; border: none; border-radius: 8px; cursor: pointer; margin-bottom: 15px; }
-        .mode-buttons { display: flex; gap: 10px; flex-wrap: wrap; margin: 15px 0; }
-        .mode-btn { padding: 10px 20px; background: #E8F0FE; border: 2px solid #D0D0D0; border-radius: 8px; cursor: pointer; font-weight: bold; }
-        .mode-btn.active { background: #3B6FE0; color: white; border-color: #2B5BC7; }
-        .speak-btn { background: #4CAF50; color: white; border: none; border-radius: 20px; padding: 4px 12px; cursor: pointer; margin-left: 10px; }
-        .vocab-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-        .vocab-item { background: #f8f9fa; padding: 12px; border-radius: 8px; display: flex; justify-content: space-between; align-items: center; }
-        .practice-item { background: #f8f9fa; padding: 15px; border-radius: 8px; margin: 10px 0; }
-        .practice-input { width: 100%; padding: 10px; border: 2px solid #D0D0D0; border-radius: 8px; margin: 8px 0; font-size: 16px; }
-        .check-btn { padding: 8px 20px; background: #3B6FE0; color: white; border: none; border-radius: 8px; cursor: pointer; }
-        .result-correct { color: #4CAF50; font-weight: bold; }
-        .result-wrong { color: #F44336; font-weight: bold; }
-        .dictation-item { background: #f8f9fa; padding: 15px; border-radius: 8px; margin: 10px 0; }
-        .word-btn { padding: 10px 18px; background: #E8F0FE; border: 2px solid #D0D0D0; border-radius: 40px; cursor: pointer; font-size: 14px; }
-        .word-btn:hover { background: #d0e2fc; }
-        .mobile-menu { display: none; }
-        .menu-overlay { display: none; }
-
-        /* ===== ЗЕЛЁНАЯ КНОПКА ВХОДА ===== */
-        .btn-login {
-            background: #4CAF50 !important;
-            color: white !important;
-            border-color: #388E3C !important;
+        .app { 
+            opacity: 0; 
+            transition: opacity 0.3s ease;
+            display: none;
         }
-        .btn-login:hover {
-            background: #388E3C !important;
+        .app.loaded { 
+            opacity: 1; 
+            display: flex;
+        }
+        
+        #loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #F8F8F8;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 999999;
+            transition: opacity 0.5s ease;
+        }
+        #loader.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+        
+        .loader-spinner {
+            width: 60px;
+            height: 60px;
+            border: 5px solid #E0E0E0;
+            border-top: 5px solid #3B6FE0;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .loader-text {
+            margin-top: 20px;
+            font-size: 16px;
+            color: #666;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+        }
+        
+        .loader-logo {
+            font-size: 48px;
+            margin-bottom: 15px;
+        }
+        
+        .loader-dots::after {
+            content: '';
+            animation: dots 1.2s steps(4, end) infinite;
+        }
+        
+        @keyframes dots {
+            0% { content: ''; }
+            25% { content: '.'; }
+            50% { content: '..'; }
+            75% { content: '...'; }
+            100% { content: ''; }
         }
 
+        .install-banner {
+            display: none;
+            background: #3B6FE0;
+            color: white;
+            padding: 12px 16px;
+            border-radius: 12px;
+            margin: 10px 0;
+            text-align: center;
+            font-weight: bold;
+            font-size: 14px;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(59,111,224,0.3);
+            transition: all 0.2s;
+        }
+        .install-banner:hover {
+            transform: scale(1.02);
+            box-shadow: 0 6px 16px rgba(59,111,224,0.4);
+        }
+        .install-banner .sub {
+            font-size: 11px;
+            font-weight: normal;
+            opacity: 0.8;
+            display: block;
+            margin-top: 4px;
+        }
+        
         @media (max-width: 768px) {
-            .sidebar { display: none; }
-            .hamburger-btn { display: block; }
-            .app { flex-direction: column; }
-            .main { width: 100%; height: 100vh; }
-            .content { padding: 12px; }
-            .vocab-grid { grid-template-columns: 1fr; }
-            .mobile-menu { display: block; position: fixed; top: 0; left: 0; width: 280px; height: 100%; background: white; z-index: 999; transform: translateX(-100%); transition: transform 0.3s; overflow-y: auto; }
-            .mobile-menu.open { transform: translateX(0); }
-            .menu-overlay { display: block; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 998; opacity: 0; visibility: hidden; transition: opacity 0.3s; }
-            .menu-overlay.show { opacity: 1; visibility: visible; }
-            .mobile-menu-header { display: flex; justify-content: space-between; padding: 15px; border-bottom: 1px solid #E0E0E0; }
-            .close-menu-btn { background: none; border: none; font-size: 28px; cursor: pointer; }
+            .install-banner {
+                display: block;
+            }
         }
     </style>
 </head>
 <body>
 
-<div class="app" id="app">
-    <!-- Боковая панель (десктоп) -->
+<div id="loader">
+    <div class="loader-logo">🇩🇪</div>
+    <div class="loader-spinner"></div>
+    <div class="loader-text">Загрузка<span class="loader-dots"></span></div>
+</div>
+
+<div class="app">
     <div class="sidebar">
         <div class="sidebar-content">
             <button id="loginBtn" class="btn btn-login" style="margin-bottom: 10px;">🔐 Войти</button>
             <div id="userInfo" style="display: none; margin: 10px 0; padding: 8px; background: #E8F0FE; border-radius: 8px; text-align: center; font-size: 12px;"></div>
-            <div style="margin: 15px 0 5px 0; font-size: 12px; color: #666; text-align: center; font-weight: bold;">📚 УРОВНИ</div>
             <div class="levels-container" id="levelsContainer">
-                <button data-level="A1" class="btn btn-level active">A1</button>
+                <button data-level="A1" class="btn btn-level">A1</button>
                 <button data-level="A2" class="btn btn-level">A2</button>
                 <button data-level="B1" class="btn btn-level">B1</button>
                 <button data-level="B2" class="btn btn-level">B2</button>
                 <button data-level="C1" class="btn btn-level">C1</button>
             </div>
-            <button id="shareBtnDesktop" class="btn share-btn" style="margin-top: 15px;">🔗 ПОДЕЛИТЬСЯ</button>
+            <button data-mode="grammar" class="btn mode-btn">ГРАММАТИКА</button>
+            <button data-mode="cards" class="btn mode-btn">КАРТОЧКИ</button>
+            <button data-mode="quiz" class="btn mode-btn">ТЕСТ</button>
+            <button data-mode="sentences" class="btn mode-btn">ТРЕНАЖЁР</button>
+            
+            <div class="install-banner" id="installBanner">
+                📱 Установить приложение
+                <span class="sub">Быстрый доступ с главного экрана</span>
+            </div>
+            
+            <!-- КНОПКА ПОДЕЛИТЬСЯ (без инлайн-стилей) -->
+            <button id="shareBtnDesktop" data-share="true" class="btn share-btn" style="margin-top: 10px;">🔗 ПОДЕЛИТЬСЯ</button>
         </div>
     </div>
-
-    <!-- Основная область -->
+    
     <div class="main">
         <div class="top-bar">
             <div class="top-bar-left">
                 <button class="hamburger-btn" id="hamburgerBtn">☰</button>
-                <span id="modeIndicator" class="mode-indicator">Курс A1</span>
+                <span id="modeIndicator" class="mode-indicator">Грамматика A1</span>
             </div>
             <span id="counter">Загрузка...</span>
         </div>
@@ -108,7 +174,6 @@
     </div>
 </div>
 
-<!-- Мобильное меню -->
 <div class="menu-overlay" id="menuOverlay"></div>
 <div class="mobile-menu" id="mobileMenu">
     <div class="mobile-menu-header">
@@ -116,72 +181,139 @@
         <button class="close-menu-btn" id="closeMenuBtn">✕</button>
     </div>
     <div class="sidebar-content">
-        <button id="loginBtnMobile" class="btn btn-login" style="margin-bottom: 10px;">🔐 Войти</button>
+        <button id="loginBtnMobile" class="btn btn-login-mobile" style="margin-bottom: 10px;">🔐 Войти</button>
         <div id="userInfoMobile" style="display: none; margin: 10px 0; padding: 8px; background: #E8F0FE; border-radius: 8px; text-align: center; font-size: 12px;"></div>
-        <div style="margin: 15px 0 5px 0; font-size: 12px; color: #666; text-align: center; font-weight: bold;">📚 УРОВНИ</div>
         <div class="levels-container" id="levelsContainerMobile">
-            <button data-level="A1" class="btn btn-level active">A1</button>
+            <button data-level="A1" class="btn btn-level">A1</button>
             <button data-level="A2" class="btn btn-level">A2</button>
             <button data-level="B1" class="btn btn-level">B1</button>
             <button data-level="B2" class="btn btn-level">B2</button>
             <button data-level="C1" class="btn btn-level">C1</button>
         </div>
-        <button id="shareBtnMobile" class="btn share-btn" style="margin-top: 15px;">🔗 ПОДЕЛИТЬСЯ</button>
+        <button data-mode="grammar" class="btn mode-btn">ГРАММАТИКА</button>
+        <button data-mode="cards" class="btn mode-btn">КАРТОЧКИ</button>
+        <button data-mode="quiz" class="btn mode-btn">ТЕСТ</button>
+        <button data-mode="sentences" class="btn mode-btn">ТРЕНАЖЁР</button>
+        
+        <div class="install-banner" id="installBannerMobile">
+            📱 Установить приложение
+            <span class="sub">Быстрый доступ с главного экрана</span>
+        </div>
+        
+        <!-- МОБИЛЬНАЯ КНОПКА ПОДЕЛИТЬСЯ (без инлайн-стилей) -->
+        <button id="shareBtnMobile" data-share="true" class="btn share-btn" style="margin-top: 10px;">🔗 ПОДЕЛИТЬСЯ</button>
     </div>
 </div>
 
-<!-- ===== ПОДКЛЮЧЕНИЕ СКРИПТОВ (МОДУЛЬНАЯ СТРУКТУРА) ===== -->
-<script src="js/config.js"></script>
-<script src="js/utils.js"></script>
-<script src="js/logger.js"></script>
-<script src="js/containerManager.js"></script>
-<script src="js/speak.js"></script>
-<script src="js/grammarMode.js"></script>
-<script src="js/vocabularyMode.js"></script>
-<script src="js/practiceMode.js"></script>
-<script src="js/quizMode.js"></script>
-<script src="js/trainerMode.js"></script>
-<script src="js/dictationMode.js"></script>
-<script src="js/app.js"></script>
+<script src="/Deutsch-Meister/js/config.js"></script>
+<script src="/Deutsch-Meister/js/utils.js"></script>
+<script src="/Deutsch-Meister/js/logger.js"></script>
+<script src="/Deutsch-Meister/js/containerManager.js"></script>
+<script src="/Deutsch-Meister/js/carousel.js"></script>
+<script src="/Deutsch-Meister/js/wordsManager.js"></script>
+<script src="/Deutsch-Meister/js/sentencesManager.js"></script>
+<script src="/Deutsch-Meister/js/cardsMode.js"></script>
+<script src="/Deutsch-Meister/js/quizMode.js"></script>
+<script src="/Deutsch-Meister/js/sentencesMode.js"></script>
+<script src="/Deutsch-Meister/js/grammarMode.js"></script>
+<script src="/Deutsch-Meister/js/app.js"></script>
+<script src="/Deutsch-Meister/js/auth.js"></script>
+<script src="/Deutsch-Meister/js/userService.js"></script>
+<script src="/Deutsch-Meister/js/activityTracker.js"></script>
+<script src="/Deutsch-Meister/js/adminUI.js"></script>
 
 <script>
-    // ===== МОБИЛЬНОЕ МЕНЮ =====
-    document.getElementById('hamburgerBtn').onclick = function() {
-        document.getElementById('mobileMenu').classList.add('open');
-        document.getElementById('menuOverlay').classList.add('show');
-        document.body.style.overflow = 'hidden';
-    };
-    document.getElementById('closeMenuBtn').onclick = function() {
-        document.getElementById('mobileMenu').classList.remove('open');
-        document.getElementById('menuOverlay').classList.remove('show');
-        document.body.style.overflow = '';
-    };
-    document.getElementById('menuOverlay').onclick = function() {
-        document.getElementById('mobileMenu').classList.remove('open');
-        document.getElementById('menuOverlay').classList.remove('show');
-        document.body.style.overflow = '';
-    };
+    function isMobile() {
+        return window.innerWidth <= 768;
+    }
 
-    // ===== КНОПКА ПОДЕЛИТЬСЯ =====
-    document.querySelectorAll('.share-btn').forEach(function(btn) {
-        btn.onclick = function() {
-            if (navigator.share) {
-                navigator.share({
-                    title: 'Deutsch-Meister',
-                    text: '🇩🇪 Учите немецкий язык с Deutsch-Meister!',
-                    url: window.location.href
-                }).catch(function() {});
-            } else {
-                navigator.clipboard.writeText(window.location.href).then(function() {
-                    alert('✅ Ссылка скопирована!');
-                }).catch(function() {
-                    prompt('Скопируйте ссылку:', window.location.href);
+    if ('serviceWorker' in navigator) {
+        window.addEventListener('load', function() {
+            navigator.serviceWorker.register('/Deutsch-Meister/sw.js')
+                .then(function(registration) {
+                    console.log('✅ Service Worker зарегистрирован:', registration.scope);
+                })
+                .catch(function(error) {
+                    console.log('❌ Ошибка регистрации Service Worker:', error);
                 });
-            }
-        };
+        });
+    }
+    
+    let deferredPrompt = null;
+    
+    window.addEventListener('beforeinstallprompt', function(e) {
+        e.preventDefault();
+        deferredPrompt = e;
+        if (isMobile()) {
+            document.querySelectorAll('.install-banner').forEach(function(banner) {
+                banner.style.display = 'block';
+            });
+        }
     });
-
-    console.log('✅ Страница загружена');
+    
+    document.querySelectorAll('.install-banner').forEach(function(banner) {
+        banner.addEventListener('click', function() {
+            if (deferredPrompt) {
+                deferredPrompt.prompt();
+                deferredPrompt.userChoice.then(function(choiceResult) {
+                    if (choiceResult.outcome === 'accepted') {
+                        console.log('✅ Пользователь установил приложение');
+                    } else {
+                        console.log('❌ Пользователь отказался от установки');
+                    }
+                    deferredPrompt = null;
+                    document.querySelectorAll('.install-banner').forEach(function(b) {
+                        b.style.display = 'none';
+                    });
+                });
+            } else {
+                showInstallInstructions();
+            }
+        });
+    });
+    
+    function showInstallInstructions() {
+        var isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+        var isAndroid = /Android/.test(navigator.userAgent);
+        var message = '📱 Чтобы установить приложение:\n\n';
+        if (isIOS) {
+            message += '1. Нажмите кнопку "Поделиться" (квадрат со стрелкой)\n';
+            message += '2. Пролистайте вниз и выберите "На экран «Домой»"\n';
+            message += '3. Нажмите "Добавить"';
+        } else if (isAndroid) {
+            message += '1. Нажмите на три точки в правом верхнем углу\n';
+            message += '2. Выберите "Добавить на главный экран"\n';
+            message += '3. Нажмите "Добавить"';
+        } else {
+            message += 'Откройте этот сайт в браузере на телефоне,\n';
+            message += 'чтобы установить приложение.';
+        }
+        alert(message);
+    }
+    
+    window.addEventListener('appinstalled', function() {
+        document.querySelectorAll('.install-banner').forEach(function(banner) {
+            banner.style.display = 'none';
+        });
+        deferredPrompt = null;
+        console.log('✅ Приложение установлено!');
+    });
+    
+    window.addEventListener('load', function() {
+        document.querySelector('.app').classList.add('loaded');
+        setTimeout(function() {
+            document.getElementById('loader').classList.add('hidden');
+        }, 300);
+    });
+    
+    setTimeout(function() {
+        var content = document.querySelector('.content');
+        if (content) {
+            content.style.overflowY = 'auto';
+            content.style.webkitOverflowScrolling = 'touch';
+            content.style.paddingBottom = '50px';
+        }
+    }, 500);
 </script>
 
 </body>

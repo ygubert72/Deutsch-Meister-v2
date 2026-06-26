@@ -15,7 +15,10 @@ function renderVocabulary(container, lesson) {
         html += `
             <div class="vocab-item">
                 <span><strong>${word.de}</strong> — ${word.ru}</span>
-                <button class="speak-btn" onclick="speak('${safeText}')">🔊</button>
+                <button class="speak-btn" onclick="speak('${safeText}')" 
+                        style="background: #3B6FE0; color: white; border: none; border-radius: 8px; padding: 6px 14px; cursor: pointer; font-size: 13px; font-weight: bold; box-shadow: 0 4px 0 #1a3f8a; transition: all 0.05s linear;">
+                    🔊
+                </button>
             </div>
         `;
     });

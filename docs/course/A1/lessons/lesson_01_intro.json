@@ -60,7 +60,6 @@
     {"de": "der Schrank", "ru": "шкаф"},
     {"de": "die Treppe", "ru": "лестница"},
     {"de": "der Garten", "ru": "сад"},
-    {"de": "die Blume", "ru": "цветок"},
     {"de": "der Vogel", "ru": "птица"},
     {"de": "der Fisch", "ru": "рыба"},
     {"de": "das Pferd", "ru": "лошадь"},
@@ -79,7 +78,7 @@
     {"question": "Вставьте артикль (der/die/das):", "sentence": "___ Tisch ist rund.", "answer": "der", "hint": "Tisch — мужской род → der"},
     {"question": "Вставьте артикль (der/die/das):", "sentence": "___ Blume ist rot.", "answer": "die", "hint": "Blume — женский род → die"},
     {"question": "Вставьте артикль (der/die/das):", "sentence": "___ Buch ist interessant.", "answer": "das", "hint": "Buch — средний род → das"},
-    {"question": "Вставьте артикль (der/die/das):", "sentence": "___ Hund ist treu.", "answer": "der", "hint": "Hund — мужской род → der"},
+    {"question": "Вставьте артикль (der/die/das):", "sentence": "___ Hund ist groß.", "answer": "der", "hint": "Hund — мужской род → der"},
     {"question": "Вставьте артикль (der/die/das):", "sentence": "___ Katze schläft.", "answer": "die", "hint": "Katze — женский род → die"},
     {"question": "Вставьте артикль (der/die/das):", "sentence": "___ Auto ist schnell.", "answer": "das", "hint": "Auto — средний род → das"},
     {"question": "Вставьте артикль (der/die/das):", "sentence": "___ Apfel ist grün.", "answer": "der", "hint": "Apfel — мужской род → der"},
@@ -101,7 +100,7 @@
     {"ru": "Стол круглый.", "de": "Der Tisch ist rund."},
     {"ru": "Цветок красный.", "de": "Die Blume ist rot."},
     {"ru": "Книга интересная.", "de": "Das Buch ist interessant."},
-    {"ru": "Собака верная.", "de": "Der Hund ist treu."}
+    {"ru": "Собака большая.", "de": "Der Hund ist groß."}
   ],
   "trainer": {
     "templates": [

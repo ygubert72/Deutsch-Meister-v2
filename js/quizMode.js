@@ -8,15 +8,18 @@ let quizCurrentWord = null;
 let quizDirection = 'de_to_ru';
 let quizStudiedWords = {};
 let currentLessonId = null;
+let currentLessonData = null;
 
 function renderQuiz(container, lesson) {
+    // СОХРАНЯЕМ ДАННЫЕ УРОКА
+    currentLessonData = lesson;
+    currentLessonId = lesson.id || 1;
+    
     const vocab = lesson.vocabulary || [];
     if (vocab.length === 0) {
         container.innerHTML = '<div>Нет слов для тренировки.</div>';
         return;
     }
-
-    currentLessonId = lesson.id || 1;
 
     try {
         const saved = localStorage.getItem('dm_quiz_studied_' + currentLessonId);
@@ -129,12 +132,8 @@ function saveQuizState() {
 }
 
 function getStudiedWordsList() {
-    // Используем переданный lesson из глобальной переменной
-    const lesson = window.currentLesson;
-    if (!lesson) {
-        console.warn('currentLesson не найден');
-        return [];
-    }
+    const lesson = currentLessonData || window.currentLesson;
+    if (!lesson) return [];
     const vocab = lesson.vocabulary || [];
     return vocab.filter(word => quizStudiedWords[word.de]);
 }
@@ -204,12 +203,14 @@ function showQuizContainer() {
         modalContent.innerHTML = html;
         modal.appendChild(modalContent);
 
+        // ===== НАЗНАЧАЕМ ОБРАБОТЧИКИ ПОСЛЕ ВСТАВКИ HTML =====
+        // Кнопки "ВЕРНУТЬ"
         modalContent.querySelectorAll('.unstudy-btn').forEach(btn => {
             btn.onclick = function() {
                 const wordDe = this.getAttribute('data-word');
                 delete quizStudiedWords[wordDe];
                 saveQuizState();
-                const lesson = window.currentLesson;
+                const lesson = currentLessonData || window.currentLesson;
                 if (lesson) {
                     const vocab = lesson.vocabulary || [];
                     quizWords = vocab.filter(w => !quizStudiedWords[w.de]);
@@ -225,27 +226,36 @@ function showQuizContainer() {
             };
         });
 
-        document.getElementById('returnAllBtn').onclick = function() {
-            if (!confirm('Вернуть все слова из контейнера?')) return;
-            const lesson = window.currentLesson;
-            if (lesson) {
-                const vocab = lesson.vocabulary || [];
-                vocab.forEach(word => { delete quizStudiedWords[word.de]; });
-            }
-            saveQuizState();
-            const lesson2 = window.currentLesson;
-            if (lesson2) {
-                quizWords = [...lesson2.vocabulary];
-            }
-            quizIndex = 0;
-            modal.remove();
-            showQuizQuestion();
-        };
+        // Кнопка "ВЕРНУТЬ ВСЁ"
+        const returnAllBtn = document.getElementById('returnAllBtn');
+        if (returnAllBtn) {
+            returnAllBtn.onclick = function() {
+                if (!confirm('Вернуть все слова из контейнера?')) return;
+                const lesson = currentLessonData || window.currentLesson;
+                if (lesson) {
+                    const vocab = lesson.vocabulary || [];
+                    vocab.forEach(word => { delete quizStudiedWords[word.de]; });
+                }
+                saveQuizState();
+                const lesson2 = currentLessonData || window.currentLesson;
+                if (lesson2) {
+                    quizWords = [...lesson2.vocabulary];
+                }
+                quizIndex = 0;
+                modal.remove();
+                showQuizQuestion();
+            };
+        }
 
-        document.getElementById('closeContainerBtn').onclick = function() {
-            modal.remove();
-        };
+        // Кнопка "ЗАКРЫТЬ"
+        const closeBtn = document.getElementById('closeContainerBtn');
+        if (closeBtn) {
+            closeBtn.onclick = function() {
+                modal.remove();
+            };
+        }
 
+        // Закрытие по клику на фон
         modal.onclick = function(e) {
             if (e.target === modal) modal.remove();
         };

@@ -15,27 +15,38 @@ function renderDictation(container, lesson) {
     const hintStates = {};
     
     sentences.forEach((s, index) => {
-        hintStates[index] = 0; // 0 показанных слов
+        hintStates[index] = 0;
         const deWords = s.de.split(/\s+/);
         
         html += `
             <div class="dictation-item" id="dictation-item-${index}">
                 <div><strong>${index + 1}.</strong> ${s.ru}</div>
-                <div style="display: flex; gap: 10px; flex-wrap: wrap; align-items: center;">
-                    <input type="text" class="practice-input" data-dict-index="${index}" 
-                           placeholder="Введите перевод..." autocomplete="off" 
-                           style="flex: 1; min-width: 200px;">
-                    <button class="check-btn" data-dict-index="${index}">ПРОВЕРИТЬ</button>
+                
+                <!-- Поле ввода (на всю ширину) -->
+                <input type="text" class="practice-input" data-dict-index="${index}" 
+                       placeholder="Введите перевод..." autocomplete="off" 
+                       style="width: 100%; padding: 10px; border: 2px solid #D0D0D0; border-radius: 8px; font-size: 16px; box-sizing: border-box; margin: 8px 0;">
+                
+                <!-- Кнопки + текст подсказки в одну строку -->
+                <div style="display: flex; gap: 10px; flex-wrap: wrap; align-items: center; margin: 4px 0 8px 0;">
+                    <button class="check-btn" data-dict-index="${index}" 
+                            style="padding: 8px 20px; background: #3B6FE0; color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; white-space: nowrap;">
+                        ПРОВЕРИТЬ
+                    </button>
+                    
                     <button class="hint-btn" data-dict-index="${index}" 
-                            style="padding: 8px 16px; background: #FF9800; color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: bold;">
+                            style="padding: 8px 20px; background: #FF9800; color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; white-space: nowrap;">
                         💡 ПОДСКАЗКА
                     </button>
+                    
+                    <span class="hint-display" data-dict-index="${index}" 
+                          style="font-size: 14px; color: #666; font-style: italic; white-space: nowrap;">
+                        💡 Нажмите "Подсказка", чтобы добавить следующее слово
+                    </span>
                 </div>
-                <div class="practice-result" data-dict-index="${index}"></div>
-                <div class="hint-display" data-dict-index="${index}" 
-                     style="margin-top: 8px; font-size: 14px; color: #666; min-height: 24px; font-style: italic;">
-                    💡 Нажмите "Подсказка", чтобы добавить следующее слово
-                </div>
+                
+                <!-- Результат проверки -->
+                <div class="practice-result" data-dict-index="${index}" style="margin-top: 4px;"></div>
             </div>
         `;
     });
@@ -102,14 +113,12 @@ function renderDictation(container, lesson) {
             
             if (!input || !hintDisplay) return;
             
-            // Если предложение уже правильно введено, не даем подсказки
             if (input.disabled) {
                 hintDisplay.textContent = '✅ Предложение уже введено верно!';
                 hintDisplay.style.color = '#4CAF50';
                 return;
             }
             
-            // Очищаем сообщение об ошибке, если оно было
             if (result) {
                 result.innerHTML = '';
                 result.className = 'practice-result';
@@ -117,14 +126,10 @@ function renderDictation(container, lesson) {
             
             const deWords = sentence.de.split(/\s+/);
             
-            // Проверяем, сколько слов уже показано
-            // Сравниваем текущий ввод с правильным предложением по словам
             let currentWords = input.value.trim().split(/\s+/).filter(w => w.length > 0);
             
-            // Считаем, сколько слов из начала предложения уже введено правильно
             let matchedWords = 0;
             for (let i = 0; i < Math.min(currentWords.length, deWords.length); i++) {
-                // Нормализуем оба слова для сравнения (убираем знаки препинания)
                 const currentWord = currentWords[i].replace(/[.,!?;:]/g, '').toLowerCase();
                 const correctWord = deWords[i].replace(/[.,!?;:]/g, '').toLowerCase();
                 if (currentWord === correctWord) {
@@ -134,20 +139,16 @@ function renderDictation(container, lesson) {
                 }
             }
             
-            // Если пользователь уже ввел все слова правильно, но не нажал "Проверить"
             if (matchedWords === deWords.length) {
                 hintDisplay.textContent = '✅ Вы уже ввели все слова! Нажмите "Проверить".';
                 hintDisplay.style.color = '#4CAF50';
                 return;
             }
             
-            // Определяем, сколько слов уже показано подсказками
-            // Берем максимум из: количество совпавших слов + 1 (если подсказок еще не было)
             let hintCount = Math.max(matchedWords, hintStates[index] || 0);
             
-            // Если все слова уже показаны
             if (hintCount >= deWords.length) {
-                hintDisplay.textContent = '💡 Показано всё предложение!';
+                hintDisplay.textContent = '💡 Показано всё предложение! Нажмите "Проверить".';
                 hintDisplay.style.color = '#FF9800';
                 this.disabled = true;
                 this.style.opacity = '0.5';
@@ -155,21 +156,14 @@ function renderDictation(container, lesson) {
                 return;
             }
             
-            // Добавляем следующее слово к подсказке
             hintCount++;
             hintStates[index] = hintCount;
             
-            // Формируем подсказку: правильные слова из начала предложения
             const hintWords = deWords.slice(0, hintCount);
             const hintText = hintWords.join(' ');
             
-            // Если пользователь уже что-то ввел, но не совпадает с началом предложения,
-            // мы все равно заменяем его ввод на подсказку (чтобы не было каши)
-            // Но если пользователь ввел что-то свое, а потом попросил подсказку,
-            // мы добавляем следующее слово к тому, что он уже ввел
             const userWords = input.value.trim().split(/\s+/).filter(w => w.length > 0);
             
-            // Проверяем, совпадает ли ввод пользователя с началом правильного предложения
             let userMatches = true;
             for (let i = 0; i < Math.min(userWords.length, deWords.length); i++) {
                 const userWord = userWords[i].replace(/[.,!?;:]/g, '').toLowerCase();
@@ -181,26 +175,20 @@ function renderDictation(container, lesson) {
             }
             
             if (userMatches && userWords.length > 0 && userWords.length < deWords.length) {
-                // Если пользователь уже начал вводить правильно, добавляем следующее слово
                 const remainingWords = deWords.slice(userWords.length, hintCount);
                 input.value = userWords.join(' ') + ' ' + remainingWords.join(' ');
             } else {
-                // Иначе показываем подсказку с самого начала
                 input.value = hintText;
             }
             
-            // Обновляем отображение подсказки
             const remaining = deWords.length - hintCount;
             hintDisplay.textContent = `💡 Показано ${hintCount} из ${deWords.length} слов. Осталось: ${remaining}`;
             hintDisplay.style.color = '#FF9800';
             
-            // Подсвечиваем поле ввода
             input.style.borderColor = '#FF9800';
             input.style.backgroundColor = '#FFF3E0';
             
-            // Фокусируем поле ввода, чтобы пользователь мог сразу продолжить ввод
             input.focus();
-            // Ставим курсор в конец поля
             input.setSelectionRange(input.value.length, input.value.length);
         };
     });
@@ -212,13 +200,10 @@ function renderDictation(container, lesson) {
             const sentence = sentences[index];
             const deWords = sentence.de.split(/\s+/);
             
-            // Если поле не disabled
             if (!this.disabled) {
-                // Сбрасываем подсветку, если пользователь начал вводить сам
                 this.style.borderColor = '#D0D0D0';
                 this.style.backgroundColor = '';
                 
-                // Проверяем, сколько слов пользователь уже ввел правильно
                 const userWords = this.value.trim().split(/\s+/).filter(w => w.length > 0);
                 let matchedWords = 0;
                 for (let i = 0; i < Math.min(userWords.length, deWords.length); i++) {
@@ -231,12 +216,10 @@ function renderDictation(container, lesson) {
                     }
                 }
                 
-                // Обновляем счетчик подсказок, если пользователь ввел больше слов, чем было показано
                 if (matchedWords > (hintStates[index] || 0)) {
                     hintStates[index] = matchedWords;
                 }
                 
-                // Обновляем отображение подсказки
                 const hintDisplay = container.querySelector(`.hint-display[data-dict-index="${index}"]`);
                 if (hintDisplay && matchedWords < deWords.length) {
                     const shown = hintStates[index] || 0;

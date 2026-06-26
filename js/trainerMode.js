@@ -15,7 +15,7 @@ let allVocabWords = [];
 
 // ===== КОНТЕЙНЕР ДЛЯ ИЗУЧЕННЫХ ФРАЗ =====
 let trainerStudiedSentences = {};
-let trainerCurrentLessonId = null; // <--- ИЗМЕНЕНО: уникальное имя
+let trainerCurrentLessonId = null;
 
 // ===== ЗАГРУЗКА ВСЕХ СЛОВ ИЗ ПРОЙДЕННЫХ УРОКОВ =====
 async function loadAllVocabulary(level, currentLessonId) {
@@ -147,19 +147,16 @@ function showTrainerContainer() {
         modalContent.innerHTML = html;
         modal.appendChild(modalContent);
 
-        // Обработчики для кнопок "ВЕРНУТЬ"
         modalContent.querySelectorAll('.unstudy-btn').forEach(btn => {
             btn.onclick = function() {
                 const key = this.getAttribute('data-key');
                 delete trainerStudiedSentences[key];
                 saveTrainerState();
                 
-                // Обновляем список заданий
                 const templates = window.currentLesson?.trainer?.templates || [];
-                const allSentences = templates.map(t => t.de + '|' + t.ru);
                 trainerSentences = templates.filter(t => {
-                    const key = t.de + '|' + t.ru;
-                    return !trainerStudiedSentences[key];
+                    const k = t.de + '|' + t.ru;
+                    return !trainerStudiedSentences[k];
                 });
                 
                 if (trainerSentences.length === 0) {
@@ -206,9 +203,8 @@ function showTrainerContainer() {
 // ===== ОСНОВНАЯ ФУНКЦИЯ РЕНДЕРИНГА =====
 function renderTrainer(container, lesson) {
     const lessonId = lesson.id || 1;
-    trainerCurrentLessonId = lessonId; // <--- ИЗМЕНЕНО
+    trainerCurrentLessonId = lessonId;
     
-    // Загружаем состояние изученных фраз
     loadTrainerState(lessonId);
     
     container.innerHTML = `
@@ -230,13 +226,11 @@ function renderTrainer(container, lesson) {
         return;
     }
     
-    // Фильтруем уже изученные фразы
     const availableTemplates = templates.filter(t => {
         const key = t.de + '|' + t.ru;
         return !trainerStudiedSentences[key];
     });
     
-    // Если все фразы изучены, показываем все заново
     let finalTemplates = availableTemplates;
     if (finalTemplates.length === 0) {
         finalTemplates = [...templates];
@@ -269,7 +263,6 @@ function renderTrainer(container, lesson) {
             return;
         }
         
-        // Перемешиваем задания
         const shuffled = [...finalTemplates];
         for (let i = shuffled.length - 1; i > 0; i--) {
             const j = Math.floor(Math.random() * (i + 1));
@@ -363,7 +356,6 @@ function showTrainerSentence(container) {
     const textColor = hasWords ? '#1A1A1A' : '#CCCCCC';
     const fontWeight = hasWords ? 'bold' : 'normal';
 
-    // ===== КНОПКА НАПРАВЛЕНИЯ В ШАПКЕ =====
     const headerControls = document.getElementById('modeHeaderControls');
     if (headerControls) {
         headerControls.innerHTML = `
@@ -419,7 +411,6 @@ function showTrainerSentence(container) {
 
     // ===== ОБРАБОТЧИКИ КНОПОК =====
 
-    // Слова для выбора
     container.querySelectorAll('#trainerWordsContainer .word-btn').forEach(btn => {
         btn.onclick = function() {
             const word = this.getAttribute('data-word');
@@ -434,7 +425,6 @@ function showTrainerSentence(container) {
         };
     });
 
-    // Вернуть слово
     document.getElementById('trainerUndoBtn').onclick = function() {
         if (trainerSelectedWords.length > 0) {
             const lastWord = trainerSelectedWords.pop();
@@ -443,7 +433,6 @@ function showTrainerSentence(container) {
         }
     };
 
-    // Сбросить всё
     document.getElementById('trainerResetBtn').onclick = function() {
         trainerSelectedWords = [];
         trainerAvailableWords.forEach(w => { trainerActiveWords[w.display] = true; });
@@ -452,7 +441,7 @@ function showTrainerSentence(container) {
         trainerHintIndex = 0;
     };
 
-    // Проверить
+    // ===== ИСПРАВЛЕНА КНОПКА "ПРОВЕРИТЬ" =====
     document.getElementById('trainerCheckBtn').onclick = function() {
         if (trainerSelectedWords.length === 0) {
             const result = document.getElementById('trainerResult');
@@ -465,33 +454,46 @@ function showTrainerSentence(container) {
         const result = document.getElementById('trainerResult');
         const correctAnswerForCheck = isRuToDe ? trainerCurrentSentence.de : trainerCurrentSentence.ru;
 
-        const normalizedUser = userAnswer.replace(/[.,!?;:]/g, '').trim();
-        const normalizedCorrect = correctAnswerForCheck.replace(/[.,!?;:]/g, '').trim();
+        const normalizedUser = userAnswer.replace(/[.,!?;:]/g, '').trim().toLowerCase();
+        const normalizedCorrect = correctAnswerForCheck.replace(/[.,!?;:]/g, '').trim().toLowerCase();
 
         if (normalizedUser === normalizedCorrect) {
+            // ПРАВИЛЬНО! Автоматически переходим к следующему заданию
             result.style.backgroundColor = '#C8E6C9';
+            result.textContent = '✅ ПРАВИЛЬНО!';
+            
+            // Автоматический переход через 500ms
             setTimeout(() => {
                 result.style.backgroundColor = '#FFFFFF';
-                // Отмечаем как изученное, но не переходим автоматически
-                // Пользователь сам решит, нажать "ИЗУЧЕНО" или перейти дальше
+                // Переходим к следующему заданию
+                trainerIndex++;
+                showTrainerSentence(container);
             }, 500);
         } else {
+            // НЕПРАВИЛЬНО - сбрасываем и даем попробовать снова
             result.style.backgroundColor = '#FFCDD2';
-            trainerSelectedWords.forEach(w => { trainerActiveWords[w.display] = true; });
-            trainerSelectedWords = [];
+            result.textContent = '❌ НЕПРАВИЛЬНО. Попробуйте снова!';
+            
             setTimeout(() => {
                 result.style.backgroundColor = '#FFFFFF';
+                // Сбрасываем выбранные слова, но остаемся на том же задании
+                trainerSelectedWords.forEach(w => { trainerActiveWords[w.display] = true; });
+                trainerSelectedWords = [];
                 updateTrainerDisplay(container);
-            }, 500);
+                // Восстанавливаем текст результата
+                const hasWords = trainerSelectedWords.length > 0;
+                const displayText = trainerSelectedWords.map(w => w.display).join(' ') || 'Нажмите на слова, чтобы собрать предложение';
+                result.textContent = displayText;
+                result.style.color = hasWords ? '#1A1A1A' : '#CCCCCC';
+                result.style.fontWeight = hasWords ? 'bold' : 'normal';
+            }, 800);
         }
     };
 
-    // Озвучить
     document.getElementById('trainerSpeakBtn').onclick = function() {
         speak(trainerCurrentSentence.de);
     };
 
-    // Подсказка
     document.getElementById('trainerHintBtn').onclick = function() {
         const hintLabel = document.getElementById('trainerHintLabel');
         if (trainerHintIndex < trainerHintWords.length) {
@@ -503,23 +505,19 @@ function showTrainerSentence(container) {
         }
     };
 
-    // ===== НОВЫЕ КНОПКИ =====
-
-    // ИЗУЧЕНО
+    // ===== ИЗУЧЕНО =====
     document.getElementById('trainerStudyBtn').onclick = function() {
         if (trainerCurrentSentence) {
             const key = trainerCurrentSentence.de + '|' + trainerCurrentSentence.ru;
             trainerStudiedSentences[key] = true;
             saveTrainerState();
             
-            // Удаляем из текущего списка
             trainerSentences = trainerSentences.filter(t => {
                 const k = t.de + '|' + t.ru;
                 return k !== key;
             });
             
             if (trainerSentences.length === 0) {
-                // Если все фразы изучены
                 document.getElementById('trainerResult').textContent = '🎉 Все фразы изучены!';
                 document.getElementById('trainerWordsContainer').innerHTML = '';
                 document.getElementById('trainerPrevBtn').disabled = true;
@@ -536,7 +534,7 @@ function showTrainerSentence(container) {
         }
     };
 
-    // В КОНТЕЙНЕР
+    // ===== В КОНТЕЙНЕР =====
     document.getElementById('trainerContainerBtn').onclick = function() {
         const studied = getStudiedSentencesList();
         if (!studied || studied.length === 0) {
@@ -546,7 +544,7 @@ function showTrainerSentence(container) {
         showTrainerContainer();
     };
 
-    // НАЗАД
+    // ===== НАЗАД =====
     document.getElementById('trainerPrevBtn').onclick = function() {
         if (trainerIndex > 0) {
             trainerIndex--;
@@ -554,7 +552,7 @@ function showTrainerSentence(container) {
         }
     };
 
-    // ВПЕРЕД
+    // ===== ВПЕРЕД =====
     document.getElementById('trainerNextBtn').onclick = function() {
         if (trainerIndex + 1 < trainerSentences.length) {
             trainerIndex++;
@@ -562,7 +560,7 @@ function showTrainerSentence(container) {
         }
     };
 
-    // В НАЧАЛО
+    // ===== В НАЧАЛО =====
     document.getElementById('trainerResetStartBtn').onclick = function() {
         if (trainerSentences.length > 0) {
             trainerIndex = 0;

@@ -21,6 +21,11 @@
       "id": 4,
       "title": "Глагол haben и винительный падеж (Akkusativ)",
       "file": "lesson_04_haben_akkusativ.json"
+    },
+    {
+      "id": 5,
+      "title": "Правильные глаголы в настоящем времени (Präsens)",
+      "file": "lesson_05_regelmaessige_verben.json"
     }
   ]
 }

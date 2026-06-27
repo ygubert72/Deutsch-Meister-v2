@@ -1,31 +1,73 @@
 {
   "level": "A1",
   "title": "Немецкий для начинающих",
+  "description": "Базовый уровень немецкого языка. Вы научитесь представляться, говорить о себе, семье, работе, хобби, делать покупки и ориентироваться в городе.",
   "lessons": [
     {
       "id": 1,
       "title": "Определённые артикли: der, die, das",
-      "file": "lesson_01_intro.json"
+      "description": "Изучаем определённые артикли в немецком языке: der, die, das. Учимся определять род существительных.",
+      "grammar": "lessons/lesson_01_intro.json",
+      "vocabulary": "vocabulary/vocab_01.json",
+      "practice": "practice/practice_01.json",
+      "trainer": "trainer/trainer_01.json",
+      "dictation": "dictation/dictation_01.json",
+      "quiz": "quiz/quiz_01.json"
     },
     {
       "id": 2,
       "title": "Неопределённые артикли: ein, eine. Отрицание: kein, keine",
-      "file": "lesson_02_ein_kein.json"
+      "description": "Изучаем неопределённые и отрицательные артикли. Учимся говорить 'один', 'одна', 'никакой', 'никакая'.",
+      "grammar": "lessons/lesson_02_ein_kein.json",
+      "vocabulary": "vocabulary/vocab_02.json",
+      "practice": "practice/practice_02.json",
+      "trainer": "trainer/trainer_02.json",
+      "dictation": "dictation/dictation_02.json",
+      "quiz": "quiz/quiz_02.json"
     },
     {
       "id": 3,
       "title": "Личные местоимения и глагол sein",
-      "file": "lesson_03_pronomen_sein.json"
+      "description": "Изучаем личные местоимения (ich, du, er, sie, es, wir, ihr, sie) и спряжение глагола sein (быть).",
+      "grammar": "lessons/lesson_03_pronomen_sein.json",
+      "vocabulary": "vocabulary/vocab_03.json",
+      "practice": "practice/practice_03.json",
+      "trainer": "trainer/trainer_03.json",
+      "dictation": "dictation/dictation_03.json",
+      "quiz": "quiz/quiz_03.json"
     },
     {
       "id": 4,
       "title": "Глагол haben и винительный падеж (Akkusativ)",
-      "file": "lesson_04_haben_akkusativ.json"
+      "description": "Изучаем спряжение глагола haben (иметь) и винительный падеж (Akkusativ) с определёнными и неопределёнными артиклями.",
+      "grammar": "lessons/lesson_04_haben_akkusativ.json",
+      "vocabulary": "vocabulary/vocab_04.json",
+      "practice": "practice/practice_04.json",
+      "trainer": "trainer/trainer_04.json",
+      "dictation": "dictation/dictation_04.json",
+      "quiz": "quiz/quiz_04.json"
     },
     {
       "id": 5,
       "title": "Правильные глаголы в настоящем времени (Präsens)",
-      "file": "lesson_05_regelmaessige_verben.json"
+      "description": "Изучаем спряжение правильных (слабых) глаголов в настоящем времени. Учимся образовывать формы для всех лиц.",
+      "grammar": "lessons/lesson_05_regelmaessige_verben.json",
+      "vocabulary": "vocabulary/vocab_05.json",
+      "practice": "practice/practice_05.json",
+      "trainer": "trainer/trainer_05.json",
+      "dictation": "dictation/dictation_05.json",
+      "quiz": "quiz/quiz_05.json"
+    },
+    {
+      "id": 6,
+      "title": "Сильные глаголы с изменением корневой гласной e → i / ie",
+      "description": "Изучаем сильные глаголы с изменением корневой гласной e → i (helfen, sprechen, essen, geben, nehmen, treffen, vergessen, werden, brechen) и e → ie (sehen, lesen) в формах du и er/sie/es.",
+      "grammar": "lessons/lesson_06.json",
+      "vocabulary": "vocabulary/vocab_06.json",
+      "practice": "practice/practice_06.json",
+      "trainer": "trainer/trainer_06.json",
+      "dictation": "dictation/dictation_06.json",
+      "quiz": "quiz/quiz_06.json"
     }
   ]
 }

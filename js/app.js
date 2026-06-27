@@ -91,15 +91,69 @@ function updateCounter() {
     const el = document.getElementById('counter');
     if (!el) return;
     
-    if (currentLesson) {
-        const vocabCount = currentLesson.vocabulary ? currentLesson.vocabulary.length : 0;
-        const practiceCount = currentLesson.practice ? currentLesson.practice.length : 0;
-        el.textContent = `Слов: ${vocabCount} | Упражнений: ${practiceCount}`;
-    } else if (courseData) {
-        el.textContent = `Уровень ${currentLevel} | Уроков: ${courseData.lessons.length}`;
-    } else {
-        el.textContent = 'Загрузка...';
+    const activeMode = currentMode || 'grammar';
+    
+    // Для Грамматики — убираем счетчик полностью
+    if (activeMode === 'grammar') {
+        el.textContent = '';
+        el.style.display = 'none';
+        return;
     }
+    
+    // Показываем счетчик для остальных режимов
+    el.style.display = 'inline';
+    
+    if (!currentLesson) {
+        if (courseData) {
+            el.textContent = `Уровень ${currentLevel} | Уроков: ${courseData.lessons.length}`;
+        } else {
+            el.textContent = 'Загрузка...';
+        }
+        return;
+    }
+    
+    let count = 0;
+    let label = '';
+    
+    switch(activeMode) {
+        case 'vocabulary':
+            const vocab = currentLesson.vocabulary || [];
+            count = vocab.length;
+            label = 'слов';
+            break;
+            
+        case 'practice':
+            const practice = currentLesson.practice || [];
+            count = practice.length;
+            label = 'упражнений';
+            break;
+            
+        case 'quiz':
+            const quizWordsList = currentLesson.quiz?.words || currentLesson.vocabulary || [];
+            count = quizWordsList.length;
+            label = 'слов';
+            break;
+            
+        case 'trainer':
+            const trainerTemplates = currentLesson.trainer?.templates || [];
+            count = trainerTemplates.length;
+            label = 'фраз';
+            break;
+            
+        case 'dictation':
+            const dictation = currentLesson.dictation || [];
+            count = dictation.length;
+            label = 'предложений';
+            break;
+            
+        default:
+            // Если вдруг какой-то неизвестный режим
+            const totalVocab = currentLesson.vocabulary || [];
+            count = totalVocab.length;
+            label = 'слов';
+    }
+    
+    el.textContent = `${count} ${label}`;
 }
 
 // ========== ОТОБРАЖЕНИЕ УРОВНЕЙ ==========
@@ -164,6 +218,7 @@ function renderLesson(lesson) {
             currentMode = mode;
             saveState();
             renderMode(mode, lesson);
+            updateCounter(); // Обновляем счетчик при переключении режима
         };
     });
 
@@ -178,6 +233,7 @@ function renderLesson(lesson) {
                 modeBtn.classList.add('active');
                 currentMode = savedState.mode;
                 renderMode(savedState.mode, lesson);
+                updateCounter(); // Обновляем счетчик при восстановлении
                 return;
             }
         }
@@ -245,6 +301,8 @@ function renderMode(mode, lesson) {
         default:
             container.innerHTML = '<div>Режим не найден</div>';
     }
+    
+    updateCounter(); // Обновляем счетчик после загрузки режима
 }
 
 // ========== ИНИЦИАЛИЗАЦИЯ ==========
@@ -269,9 +327,7 @@ function initApp() {
         };
     });
     
-    // ===== ВОССТАНОВЛЕНИЕ СОСТОЯНИЯ =====
     const savedState = loadState();
-    
     if (savedState && savedState.level) {
         console.log('🔄 Восстановление состояния:', savedState);
         currentLevel = savedState.level;
@@ -284,30 +340,18 @@ function initApp() {
             }
         });
         
-        // Загружаем уровень
         loadLevel(currentLevel);
         
-        // Если есть сохраненный урок — загружаем его
         if (savedState.lessonId !== null && savedState.lessonId !== undefined) {
-            console.log('🔄 Будет загружен урок:', savedState.lessonId);
-            
-            // Ждем загрузки курса и загружаем урок
             const checkCourse = setInterval(() => {
                 if (courseData && courseData.lessons) {
                     clearInterval(checkCourse);
-                    
-                    // Проверяем, существует ли сохраненный урок
                     const lessonExists = courseData.lessons.some(l => l.id === savedState.lessonId);
-                    
                     if (lessonExists) {
                         console.log('🔄 Загрузка сохранённого урока:', savedState.lessonId);
-                        
-                        // Восстанавливаем режим
                         if (savedState.mode) {
                             currentMode = savedState.mode;
                         }
-                        
-                        // Загружаем урок
                         loadLesson(savedState.lessonId);
                     } else if (courseData.lessons.length > 0) {
                         console.log('⚠️ Сохранённый урок не найден, загружаем первый');
@@ -316,7 +360,6 @@ function initApp() {
                 }
             }, 100);
             
-            // Таймаут на случай, если курс не загрузился
             setTimeout(() => {
                 clearInterval(checkCourse);
                 if (!currentLesson && courseData && courseData.lessons && courseData.lessons.length > 0) {
@@ -326,7 +369,6 @@ function initApp() {
             }, 3000);
         } else {
             console.log('📂 Нет сохранённого урока, показываем список');
-            // Если нет сохраненного урока, но уровень загружен — показываем список
             setTimeout(() => {
                 if (courseData && !currentLesson) {
                     renderLevel();

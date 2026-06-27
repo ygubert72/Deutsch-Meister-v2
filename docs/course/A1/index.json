@@ -6,6 +6,11 @@
       "id": 1,
       "title": "Определённые артикли: der, die, das",
       "file": "lesson_01_intro.json"
+    },
+    {
+      "id": 2,
+      "title": "Неопределённые артикли: ein, eine. Отрицание: kein, keine",
+      "file": "lesson_02_ein_kein.json"
     }
   ]
 }

@@ -16,31 +16,158 @@ let trainerStudiedSentences = {};
 let trainerCurrentLessonId = null;
 let trainerCurrentLessonData = null;
 
+// ===== НОВАЯ ФУНКЦИЯ ДЛЯ ЗАГРУЗКИ ВСЕХ СЛОВ =====
 async function loadAllVocabulary(level, currentLessonId) {
+    let allWords = [];
+    
     try {
+        // Сначала пытаемся загрузить index.json
         const response = await fetch(`docs/course/${level}/index.json`);
         if (!response.ok) throw new Error('Курс не найден');
         const courseData = await response.json();
         
-        let allWords = [];
         for (const lessonInfo of courseData.lessons) {
             if (lessonInfo.id > currentLessonId) break;
+            
+            let vocab = [];
+            
+            // Пытаемся загрузить лексику из отдельного файла (новый формат)
             try {
-                const lessonResponse = await fetch(`docs/course/${level}/lessons/${lessonInfo.file}`);
-                if (lessonResponse.ok) {
-                    const lessonData = await lessonResponse.json();
-                    if (lessonData.vocabulary) {
-                        allWords = allWords.concat(lessonData.vocabulary);
-                    }
+                const paddedId = String(lessonInfo.id).padStart(2, '0');
+                const vocabResponse = await fetch(`docs/course/${level}/vocabulary/vocab_${paddedId}.json`);
+                if (vocabResponse.ok) {
+                    vocab = await vocabResponse.json();
+                    console.log(`✅ Лексика урока ${lessonInfo.id} загружена из отдельного файла для тренажёра`);
                 }
             } catch(e) {}
+            
+            // Если не загрузилась — пробуем старый формат
+            if (!vocab || vocab.length === 0) {
+                try {
+                    const lessonResponse = await fetch(`docs/course/${level}/lessons/${lessonInfo.file}`);
+                    if (lessonResponse.ok) {
+                        const lessonData = await lessonResponse.json();
+                        vocab = lessonData.vocabulary || [];
+                    }
+                } catch(e) {}
+            }
+            
+            if (vocab.length > 0) {
+                allWords = allWords.concat(vocab);
+            }
         }
-        return allWords;
     } catch(e) {
-        return [];
+        console.log('ℹ️ Ошибка загрузки лексики для тренажёра:', e.message);
     }
+    
+    return allWords;
 }
 
+// ===== НОВАЯ ФУНКЦИЯ ДЛЯ ЗАГРУЗКИ ФРАЗ =====
+async function loadTrainerTemplates(lesson) {
+    // Если фразы уже есть — возвращаем
+    if (lesson.trainer && lesson.trainer.templates && lesson.trainer.templates.length > 0) {
+        return lesson.trainer.templates;
+    }
+    
+    // Пробуем загрузить из отдельного файла
+    if (lesson.id) {
+        try {
+            const paddedId = String(lesson.id).padStart(2, '0');
+            const response = await fetch(`docs/course/${currentLevel}/trainer/trainer_${paddedId}.json`);
+            if (response.ok) {
+                const data = await response.json();
+                // Сохраняем в lesson
+                if (!lesson.trainer) lesson.trainer = {};
+                lesson.trainer.templates = data;
+                console.log(`✅ Фразы тренажёра урока ${lesson.id} загружены из отдельного файла`);
+                return data;
+            }
+        } catch(e) {
+            console.log(`ℹ️ Отдельный файл тренажёра для урока ${lesson.id} не найден`);
+        }
+    }
+    
+    return [];
+}
+
+async function renderTrainer(container, lesson) {
+    trainerCurrentLessonData = lesson;
+    const lessonId = lesson.id || 1;
+    trainerCurrentLessonId = lessonId;
+    
+    loadTrainerState(lessonId);
+    
+    container.innerHTML = `
+        <div style="text-align: center; padding: 40px; color: #999;">
+            <div style="font-size: 48px; margin-bottom: 15px;">⏳</div>
+            <div>Загрузка слов для тренажёра...</div>
+        </div>
+    `;
+    
+    // Загружаем фразы
+    let templates = await loadTrainerTemplates(lesson);
+    
+    if (!templates || templates.length === 0) {
+        container.innerHTML = `
+            <div style="text-align: center; padding: 40px; color: #999;">
+                <div style="font-size: 48px; margin-bottom: 15px;">📝</div>
+                <div>Для этого урока нет шаблонов для тренажёра.</div>
+            </div>
+        `;
+        return;
+    }
+    
+    const availableTemplates = templates.filter(t => {
+        const key = t.de + '|' + t.ru;
+        return !trainerStudiedSentences[key];
+    });
+    
+    let finalTemplates = availableTemplates;
+    if (finalTemplates.length === 0) {
+        finalTemplates = [...templates];
+        trainerStudiedSentences = {};
+        localStorage.removeItem('dm_trainer_studied_' + lessonId);
+    }
+    
+    const vocab = await loadAllVocabulary(currentLevel, lessonId);
+    allVocabWords = vocab;
+    
+    if (allVocabWords.length < 5) {
+        container.innerHTML = `
+            <div style="text-align: center; padding: 40px; color: #999;">
+                <div style="font-size: 48px; margin-bottom: 15px;">📝</div>
+                <div>Недостаточно слов для тренажёра.</div>
+                <div style="font-size: 14px; margin-top: 10px;">Пройдите больше уроков, чтобы увеличить количество слов.</div>
+            </div>
+        `;
+        return;
+    }
+    
+    if (finalTemplates.length === 0) {
+        container.innerHTML = `
+            <div style="text-align: center; padding: 40px; color: #999;">
+                <div style="font-size: 48px; margin-bottom: 15px;">📝</div>
+                <div>Нет шаблонов для тренажёра.</div>
+                <div style="font-size: 14px; margin-top: 10px;">Попробуйте другой урок.</div>
+            </div>
+        `;
+        return;
+    }
+    
+    const shuffled = [...finalTemplates];
+    for (let i = shuffled.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+    }
+    
+    trainerSentences = shuffled;
+    trainerIndex = 0;
+    trainerDirection = 'ru_to_de';
+    showTrainerSentence(container);
+}
+
+// ===== ВСЁ, ЧТО НИЖЕ — ОРИГИНАЛЬНЫЙ КОД БЕЗ ИЗМЕНЕНИЙ =====
 function getStudiedSentencesList() {
     const lesson = trainerCurrentLessonData || window.currentLesson;
     if (!lesson) return [];
@@ -111,13 +238,11 @@ function showTrainerContainer() {
         const studied = getStudiedSentencesList();
         console.log('📦 Рендеринг контейнера, фраз:', studied.length);
         
-        // Заголовок
         const header = document.createElement('div');
         header.style.cssText = 'padding: 15px 20px; border-bottom: 1px solid #ddd; text-align: center; flex-shrink: 0;';
         header.innerHTML = `<h3 style="margin: 0;">📦 КОНТЕЙНЕР (${studied.length} фраз)</h3>`;
         modalContent.appendChild(header);
 
-        // Список фраз
         const itemsContainer = document.createElement('div');
         itemsContainer.style.cssText = 'overflow-y: auto; flex: 1; padding: 5px 0;';
         
@@ -175,7 +300,6 @@ function showTrainerContainer() {
         }
         modalContent.appendChild(itemsContainer);
 
-        // Нижняя панель
         const footer = document.createElement('div');
         footer.style.cssText = 'padding: 15px 20px; border-top: 1px solid #ddd; display: flex; gap: 10px; flex-shrink: 0;';
         footer.innerHTML = `
@@ -188,7 +312,6 @@ function showTrainerContainer() {
         document.body.appendChild(modal);
         console.log('✅ Модалка добавлена в DOM');
 
-        // ===== НАЗНАЧАЕМ ОБРАБОТЧИКИ ПОСЛЕ ВСТАВКИ =====
         const returnAllBtn = document.getElementById('returnAllBtn');
         if (returnAllBtn) {
             returnAllBtn.addEventListener('click', function() {
@@ -229,89 +352,6 @@ function showTrainerContainer() {
     }
 
     renderContainerContent();
-}
-
-function renderTrainer(container, lesson) {
-    trainerCurrentLessonData = lesson;
-    const lessonId = lesson.id || 1;
-    trainerCurrentLessonId = lessonId;
-    
-    loadTrainerState(lessonId);
-    
-    container.innerHTML = `
-        <div style="text-align: center; padding: 40px; color: #999;">
-            <div style="font-size: 48px; margin-bottom: 15px;">⏳</div>
-            <div>Загрузка слов для тренажёра...</div>
-        </div>
-    `;
-    
-    const templates = lesson.trainer?.templates || [];
-    if (templates.length === 0) {
-        container.innerHTML = `
-            <div style="text-align: center; padding: 40px; color: #999;">
-                <div style="font-size: 48px; margin-bottom: 15px;">📝</div>
-                <div>Для этого урока нет шаблонов для тренажёра.</div>
-            </div>
-        `;
-        return;
-    }
-    
-    const availableTemplates = templates.filter(t => {
-        const key = t.de + '|' + t.ru;
-        return !trainerStudiedSentences[key];
-    });
-    
-    let finalTemplates = availableTemplates;
-    if (finalTemplates.length === 0) {
-        finalTemplates = [...templates];
-        trainerStudiedSentences = {};
-        localStorage.removeItem('dm_trainer_studied_' + lessonId);
-    }
-    
-    loadAllVocabulary(currentLevel, lessonId).then(vocab => {
-        allVocabWords = vocab;
-        
-        if (allVocabWords.length < 5) {
-            container.innerHTML = `
-                <div style="text-align: center; padding: 40px; color: #999;">
-                    <div style="font-size: 48px; margin-bottom: 15px;">📝</div>
-                    <div>Недостаточно слов для тренажёра.</div>
-                    <div style="font-size: 14px; margin-top: 10px;">Пройдите больше уроков, чтобы увеличить количество слов.</div>
-                </div>
-            `;
-            return;
-        }
-        
-        if (finalTemplates.length === 0) {
-            container.innerHTML = `
-                <div style="text-align: center; padding: 40px; color: #999;">
-                    <div style="font-size: 48px; margin-bottom: 15px;">📝</div>
-                    <div>Нет шаблонов для тренажёра.</div>
-                    <div style="font-size: 14px; margin-top: 10px;">Попробуйте другой урок.</div>
-                </div>
-            `;
-            return;
-        }
-        
-        const shuffled = [...finalTemplates];
-        for (let i = shuffled.length - 1; i > 0; i--) {
-            const j = Math.floor(Math.random() * (i + 1));
-            [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
-        }
-        
-        trainerSentences = shuffled;
-        trainerIndex = 0;
-        trainerDirection = 'ru_to_de';
-        showTrainerSentence(container);
-    }).catch(e => {
-        container.innerHTML = `
-            <div style="text-align: center; padding: 40px; color: #999;">
-                <div style="font-size: 48px; margin-bottom: 15px;">❌</div>
-                <div>Ошибка загрузки слов для тренажёра.</div>
-                <div style="font-size: 14px; margin-top: 10px;">${e.message}</div>
-            </div>
-        `;
-    });
 }
 
 function showTrainerSentence(container) {
@@ -437,7 +477,6 @@ function showTrainerSentence(container) {
 
     container.innerHTML = html;
 
-    // ===== ОБРАБОТЧИКИ КНОПОК =====
     document.querySelectorAll('#trainerWordsContainer .word-btn').forEach(btn => {
         btn.addEventListener('click', function() {
             const word = this.getAttribute('data-word');
@@ -553,14 +592,11 @@ function showTrainerSentence(container) {
         }
     });
 
-    // ===== ИСПРАВЛЕННАЯ КНОПКА "В КОНТЕЙНЕР" =====
     const containerBtn = document.getElementById('trainerContainerBtn');
     if (containerBtn) {
-        // Удаляем старые обработчики
         containerBtn.onclick = null;
         containerBtn.removeEventListener('click', containerBtn._handler);
         
-        // Создаем новый обработчик
         containerBtn._handler = function() {
             console.log('📦 Кнопка "В КОНТЕЙНЕР" нажата (Тренажер)');
             const studied = getStudiedSentencesList();

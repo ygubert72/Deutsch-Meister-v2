@@ -68,6 +68,17 @@
       "trainer": "trainer/trainer_06.json",
       "dictation": "dictation/dictation_06.json",
       "quiz": "quiz/quiz_06.json"
+    },
+    {
+      "id": 7,
+      "title": "Сильные глаголы с изменением корневой гласной a → ä",
+      "description": "Изучаем сильные глаголы с изменением корневой гласной a → ä (fahren, schlafen, tragen, waschen, fallen, lassen, laufen, halten) в формах du и er/sie/es.",
+      "grammar": "lessons/lesson_07.json",
+      "vocabulary": "vocabulary/vocab_07.json",
+      "practice": "practice/practice_07.json",
+      "trainer": "trainer/trainer_07.json",
+      "dictation": "dictation/dictation_07.json",
+      "quiz": "quiz/quiz_07.json"
     }
   ]
 }

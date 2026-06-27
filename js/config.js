@@ -62,43 +62,5 @@ function loadProgress() {
     });
 }
 
-// ===== ИСПРАВЛЕННАЯ ФУНКЦИЯ SPEAK =====
-function speak(text) {
-    if (!text || !window.speechSynthesis) return;
-    
-    try {
-        // Очищаем текст от лишних символов, но сохраняем немецкие буквы
-        const clean = text.replace(/[^\w\s\-äöüßÄÖÜ]/g, '');
-        if (!clean.trim()) return;
-        
-        // Отменяем предыдущую речь
-        window.speechSynthesis.cancel();
-        
-        const utterance = new SpeechSynthesisUtterance(clean);
-        utterance.lang = 'de-DE';
-        utterance.rate = 0.9;      // Скорость речи
-        utterance.pitch = 1.0;     // Нормальная высота тона (без эха)
-        utterance.volume = 1.0;    // Максимальная громкость
-        
-        // Пытаемся найти немецкий голос для более естественного звучания
-        const voices = window.speechSynthesis.getVoices();
-        const germanVoice = voices.find(voice => voice.lang === 'de-DE');
-        if (germanVoice) {
-            utterance.voice = germanVoice;
-        }
-        
-        window.speechSynthesis.speak(utterance);
-    } catch(e) {
-        console.log('Ошибка озвучки:', e);
-    }
-}
-
-// Предзагрузка голосов (некоторые браузеры загружают их асинхронно)
-if (window.speechSynthesis) {
-    // Загружаем голоса сразу
-    window.speechSynthesis.getVoices();
-    // И при изменении списка голосов тоже загружаем
-    window.speechSynthesis.onvoiceschanged = function() {
-        window.speechSynthesis.getVoices();
-    };
-}
+// Функция speak() УДАЛЕНА — теперь она в speak.js
+// ВСЕ ВЫЗОВЫ speak() будут использовать функцию из speak.js

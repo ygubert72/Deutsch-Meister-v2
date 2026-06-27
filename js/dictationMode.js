@@ -5,17 +5,50 @@
 let dictationCurrentLessonId = null;
 let dictationCompleted = {};
 
-function renderDictation(container, lesson) {
+// ===== НОВАЯ ФУНКЦИЯ ДЛЯ ЗАГРУЗКИ ДИКТАНТА =====
+async function loadDictationData(lesson) {
+    // Если диктант уже есть — возвращаем
+    if (lesson.dictation && lesson.dictation.length > 0) {
+        return lesson.dictation;
+    }
+    
+    // Пробуем загрузить из отдельного файла
+    if (lesson.id) {
+        try {
+            const paddedId = String(lesson.id).padStart(2, '0');
+            const response = await fetch(`docs/course/${currentLevel}/dictation/dictation_${paddedId}.json`);
+            if (response.ok) {
+                const data = await response.json();
+                lesson.dictation = data;
+                console.log(`✅ Диктант урока ${lesson.id} загружен из отдельного файла`);
+                return data;
+            }
+        } catch(e) {
+            console.log(`ℹ️ Отдельный файл диктанта для урока ${lesson.id} не найден`);
+        }
+    }
+    
+    return [];
+}
+
+async function renderDictation(container, lesson) {
     const lessonId = lesson.id || 1;
     dictationCurrentLessonId = lessonId;
     
     loadDictationProgress(lessonId);
     
-    const sentences = lesson.dictation || [];
-    if (sentences.length === 0) {
-        container.innerHTML = '<div>Нет предложений для диктанта</div>';
+    // Показываем загрузку
+    container.innerHTML = '<div style="text-align: center; padding: 40px; color: #999;">⏳ Загрузка диктанта...</div>';
+    
+    // Загружаем диктант
+    let sentences = await loadDictationData(lesson);
+    
+    if (!sentences || sentences.length === 0) {
+        container.innerHTML = '<div style="text-align: center; padding: 40px; color: #999;">📭 Нет предложений для диктанта</div>';
         return;
     }
+
+    // ===== ВСЁ, ЧТО НИЖЕ — ОРИГИНАЛЬНЫЙ КОД БЕЗ ИЗМЕНЕНИЙ =====
 
     let completedCount = Object.values(dictationCompleted).filter(v => v === true).length;
     const total = sentences.length;

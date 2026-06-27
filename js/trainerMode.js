@@ -71,6 +71,8 @@ function loadTrainerState(lessonId) {
 }
 
 function showTrainerContainer() {
+    console.log('📦 showTrainerContainer вызван');
+    
     const oldModal = document.getElementById('containerModal');
     if (oldModal) oldModal.remove();
 
@@ -107,101 +109,119 @@ function showTrainerContainer() {
 
     function renderContainerContent() {
         const studied = getStudiedSentencesList();
-        let html = `
-            <div style="padding: 15px 20px; border-bottom: 1px solid #ddd; text-align: center; flex-shrink: 0;">
-                <h3 style="margin: 0;">📦 КОНТЕЙНЕР (${studied.length} фраз)</h3>
-            </div>
-            <div style="overflow-y: auto; flex: 1; padding: 5px 0;" id="containerItems">
-        `;
+        console.log('📦 Рендеринг контейнера, фраз:', studied.length);
+        
+        // Заголовок
+        const header = document.createElement('div');
+        header.style.cssText = 'padding: 15px 20px; border-bottom: 1px solid #ddd; text-align: center; flex-shrink: 0;';
+        header.innerHTML = `<h3 style="margin: 0;">📦 КОНТЕЙНЕР (${studied.length} фраз)</h3>`;
+        modalContent.appendChild(header);
 
+        // Список фраз
+        const itemsContainer = document.createElement('div');
+        itemsContainer.style.cssText = 'overflow-y: auto; flex: 1; padding: 5px 0;';
+        
         if (studied.length === 0) {
-            html += `<div style="text-align:center; padding:40px; color:#999;">📭 Контейнер пуст</div>`;
+            itemsContainer.innerHTML = `<div style="text-align:center; padding:40px; color:#999;">📭 Контейнер пуст</div>`;
         } else {
             studied.forEach((sentence) => {
                 const key = sentence.de + '|' + sentence.ru;
-                html += `
-                    <div style="display: flex; justify-content: space-between; align-items: center; padding: 10px 20px; border-bottom: 1px solid #f0f0f0;">
-                        <span><strong>${sentence.de}</strong> — ${sentence.ru}</span>
-                        <button class="unstudy-btn" data-key="${key}" style="padding: 4px 14px; background: #F44336; color: white; border: none; border-radius: 8px; cursor: pointer; font-size: 12px; font-weight: bold;">✕ ВЕРНУТЬ</button>
-                    </div>
+                const item = document.createElement('div');
+                item.style.cssText = 'display: flex; justify-content: space-between; align-items: center; padding: 10px 20px; border-bottom: 1px solid #f0f0f0;';
+                item.innerHTML = `
+                    <span><strong>${sentence.de}</strong> — ${sentence.ru}</span>
+                    <button class="unstudy-btn" data-key="${key}" style="padding: 4px 14px; background: #F44336; color: white; border: none; border-radius: 8px; cursor: pointer; font-size: 12px; font-weight: bold;">✕ ВЕРНУТЬ</button>
                 `;
+                
+                const btn = item.querySelector('.unstudy-btn');
+                btn.addEventListener('click', function() {
+                    const key = this.getAttribute('data-key');
+                    console.log('🔄 Возвращаем фразу:', key);
+                    delete trainerStudiedSentences[key];
+                    saveTrainerState();
+                    
+                    const lesson = trainerCurrentLessonData || window.currentLesson;
+                    if (lesson) {
+                        const templates = lesson.trainer?.templates || [];
+                        trainerSentences = templates.filter(t => {
+                            const k = t.de + '|' + t.ru;
+                            return !trainerStudiedSentences[k];
+                        });
+                    }
+                    
+                    if (trainerSentences.length === 0) {
+                        const lesson2 = trainerCurrentLessonData || window.currentLesson;
+                        if (lesson2) {
+                            trainerSentences = [...lesson2.trainer.templates];
+                            trainerStudiedSentences = {};
+                            localStorage.removeItem('dm_trainer_studied_' + trainerCurrentLessonId);
+                        }
+                    }
+                    
+                    if (trainerIndex >= trainerSentences.length) {
+                        trainerIndex = 0;
+                    }
+                    
+                    modal.remove();
+                    showTrainerContainer();
+                    const container = document.getElementById('modeContent');
+                    if (container) {
+                        showTrainerSentence(container);
+                    }
+                });
+                
+                itemsContainer.appendChild(item);
             });
         }
+        modalContent.appendChild(itemsContainer);
 
-        html += `
-            </div>
-            <div style="padding: 15px 20px; border-top: 1px solid #ddd; display: flex; gap: 10px; flex-shrink: 0;">
-                <button id="returnAllBtn" style="flex: 1; padding: 10px; background: #FF9800; color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: bold;">🔄 ВЕРНУТЬ ВСЁ</button>
-                <button id="closeContainerBtn" style="flex: 1; padding: 10px; background: #ddd; border: none; border-radius: 8px; cursor: pointer; font-weight: bold;">ЗАКРЫТЬ</button>
-            </div>
+        // Нижняя панель
+        const footer = document.createElement('div');
+        footer.style.cssText = 'padding: 15px 20px; border-top: 1px solid #ddd; display: flex; gap: 10px; flex-shrink: 0;';
+        footer.innerHTML = `
+            <button id="returnAllBtn" style="flex: 1; padding: 10px; background: #FF9800; color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: bold;">🔄 ВЕРНУТЬ ВСЁ</button>
+            <button id="closeContainerBtn" style="flex: 1; padding: 10px; background: #ddd; border: none; border-radius: 8px; cursor: pointer; font-weight: bold;">ЗАКРЫТЬ</button>
         `;
+        modalContent.appendChild(footer);
 
-        modalContent.innerHTML = html;
         modal.appendChild(modalContent);
+        document.body.appendChild(modal);
+        console.log('✅ Модалка добавлена в DOM');
 
-        modalContent.querySelectorAll('.unstudy-btn').forEach(btn => {
-            btn.addEventListener('click', function() {
-                const key = this.getAttribute('data-key');
-                delete trainerStudiedSentences[key];
-                saveTrainerState();
-                
+        // ===== НАЗНАЧАЕМ ОБРАБОТЧИКИ ПОСЛЕ ВСТАВКИ =====
+        const returnAllBtn = document.getElementById('returnAllBtn');
+        if (returnAllBtn) {
+            returnAllBtn.addEventListener('click', function() {
+                if (!confirm('Вернуть все фразы из контейнера?')) return;
+                console.log('🔄 Возвращаем все фразы');
                 const lesson = trainerCurrentLessonData || window.currentLesson;
                 if (lesson) {
                     const templates = lesson.trainer?.templates || [];
-                    trainerSentences = templates.filter(t => {
-                        const k = t.de + '|' + t.ru;
-                        return !trainerStudiedSentences[k];
+                    templates.forEach(t => {
+                        const key = t.de + '|' + t.ru;
+                        delete trainerStudiedSentences[key];
                     });
                 }
-                
-                if (trainerSentences.length === 0) {
-                    const lesson2 = trainerCurrentLessonData || window.currentLesson;
-                    if (lesson2) {
-                        trainerSentences = [...lesson2.trainer.templates];
-                        trainerStudiedSentences = {};
-                        localStorage.removeItem('dm_trainer_studied_' + trainerCurrentLessonId);
-                    }
+                saveTrainerState();
+                const lesson2 = trainerCurrentLessonData || window.currentLesson;
+                if (lesson2) {
+                    trainerSentences = [...lesson2.trainer.templates];
                 }
-                
-                if (trainerIndex >= trainerSentences.length) {
-                    trainerIndex = 0;
-                }
-                
+                trainerIndex = 0;
                 modal.remove();
-                showTrainerContainer();
                 const container = document.getElementById('modeContent');
                 if (container) {
                     showTrainerSentence(container);
                 }
             });
-        });
+        }
 
-        document.getElementById('returnAllBtn').addEventListener('click', function() {
-            if (!confirm('Вернуть все фразы из контейнера?')) return;
-            const lesson = trainerCurrentLessonData || window.currentLesson;
-            if (lesson) {
-                const templates = lesson.trainer?.templates || [];
-                templates.forEach(t => {
-                    const key = t.de + '|' + t.ru;
-                    delete trainerStudiedSentences[key];
-                });
-            }
-            saveTrainerState();
-            const lesson2 = trainerCurrentLessonData || window.currentLesson;
-            if (lesson2) {
-                trainerSentences = [...lesson2.trainer.templates];
-            }
-            trainerIndex = 0;
-            modal.remove();
-            const container = document.getElementById('modeContent');
-            if (container) {
-                showTrainerSentence(container);
-            }
-        });
-
-        document.getElementById('closeContainerBtn').addEventListener('click', function() {
-            modal.remove();
-        });
+        const closeBtn = document.getElementById('closeContainerBtn');
+        if (closeBtn) {
+            closeBtn.addEventListener('click', function() {
+                modal.remove();
+            });
+        }
 
         modal.addEventListener('click', function(e) {
             if (e.target === modal) modal.remove();
@@ -417,6 +437,7 @@ function showTrainerSentence(container) {
 
     container.innerHTML = html;
 
+    // ===== ОБРАБОТЧИКИ КНОПОК =====
     document.querySelectorAll('#trainerWordsContainer .word-btn').forEach(btn => {
         btn.addEventListener('click', function() {
             const word = this.getAttribute('data-word');
@@ -532,14 +553,35 @@ function showTrainerSentence(container) {
         }
     });
 
-    document.getElementById('trainerContainerBtn').addEventListener('click', function() {
-        const studied = getStudiedSentencesList();
-        if (!studied || studied.length === 0) {
-            alert('📦 Контейнер пуст\n\nВыучите фразы, чтобы они появились здесь.');
-            return;
-        }
-        showTrainerContainer();
-    });
+    // ===== ИСПРАВЛЕННАЯ КНОПКА "В КОНТЕЙНЕР" =====
+    const containerBtn = document.getElementById('trainerContainerBtn');
+    if (containerBtn) {
+        // Удаляем старые обработчики
+        containerBtn.onclick = null;
+        containerBtn.removeEventListener('click', containerBtn._handler);
+        
+        // Создаем новый обработчик
+        containerBtn._handler = function() {
+            console.log('📦 Кнопка "В КОНТЕЙНЕР" нажата (Тренажер)');
+            const studied = getStudiedSentencesList();
+            console.log('📦 Изученных фраз:', studied?.length);
+            
+            if (!studied || studied.length === 0) {
+                alert('📦 Контейнер пуст\n\nВыучите фразы, чтобы они появились здесь.');
+                return;
+            }
+            
+            if (typeof showTrainerContainer === 'function') {
+                showTrainerContainer();
+            } else {
+                console.error('❌ showTrainerContainer не найдена!');
+                alert('Ошибка: функция контейнера не найдена');
+            }
+        };
+        
+        containerBtn.addEventListener('click', containerBtn._handler);
+        console.log('✅ Кнопка "В КОНТЕЙНЕР" (Тренажер) перепривязана!');
+    }
 
     document.getElementById('trainerPrevBtn').addEventListener('click', function() {
         if (trainerIndex > 0) {

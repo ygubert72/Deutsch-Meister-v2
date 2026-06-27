@@ -86,14 +86,14 @@ async function loadLesson(lessonId) {
     }
 }
 
-// ========== ОБНОВЛЕНИЕ СЧЁТЧИКА ==========
+// ========== ОБНОВЛЕНИЕ СЧЁТЧИКА (РАБОЧАЯ ВЕРСИЯ) ==========
 function updateCounter() {
     const el = document.getElementById('counter');
     if (!el) return;
     
     const activeMode = currentMode || 'grammar';
     
-    // Для Грамматики — убираем счетчик полностью
+    // Грамматика — скрываем счетчик
     if (activeMode === 'grammar') {
         el.textContent = '';
         el.style.display = 'none';
@@ -117,39 +117,27 @@ function updateCounter() {
     
     switch(activeMode) {
         case 'vocabulary':
-            const vocab = currentLesson.vocabulary || [];
-            count = vocab.length;
+            count = currentLesson.vocabulary?.length || 0;
             label = 'слов';
             break;
-            
         case 'practice':
-            const practice = currentLesson.practice || [];
-            count = practice.length;
+            count = currentLesson.practice?.length || 0;
             label = 'упражнений';
             break;
-            
         case 'quiz':
-            const quizWordsList = currentLesson.quiz?.words || currentLesson.vocabulary || [];
-            count = quizWordsList.length;
+            count = currentLesson.quiz?.words?.length || currentLesson.vocabulary?.length || 0;
             label = 'слов';
             break;
-            
         case 'trainer':
-            const trainerTemplates = currentLesson.trainer?.templates || [];
-            count = trainerTemplates.length;
+            count = currentLesson.trainer?.templates?.length || 0;
             label = 'фраз';
             break;
-            
         case 'dictation':
-            const dictation = currentLesson.dictation || [];
-            count = dictation.length;
+            count = currentLesson.dictation?.length || 0;
             label = 'предложений';
             break;
-            
         default:
-            // Если вдруг какой-то неизвестный режим
-            const totalVocab = currentLesson.vocabulary || [];
-            count = totalVocab.length;
+            count = currentLesson.vocabulary?.length || 0;
             label = 'слов';
     }
     
@@ -218,11 +206,11 @@ function renderLesson(lesson) {
             currentMode = mode;
             saveState();
             renderMode(mode, lesson);
-            updateCounter(); // Обновляем счетчик при переключении режима
+            updateCounter();
         };
     });
 
-    // ==== ВОССТАНОВЛЕНИЕ РЕЖИМА ПОСЛЕ ЗАГРУЗКИ УРОКА ====
+    // ВОССТАНОВЛЕНИЕ РЕЖИМА
     if (!isRestoring) {
         const savedState = loadState();
         if (savedState && savedState.mode && savedState.lessonId === lesson.id) {
@@ -233,7 +221,7 @@ function renderLesson(lesson) {
                 modeBtn.classList.add('active');
                 currentMode = savedState.mode;
                 renderMode(savedState.mode, lesson);
-                updateCounter(); // Обновляем счетчик при восстановлении
+                updateCounter();
                 return;
             }
         }
@@ -249,7 +237,6 @@ function renderMode(mode, lesson) {
 
     window.currentLesson = lesson;
 
-    // Очищаем контролы в шапке перед загрузкой нового режима
     const headerControls = document.getElementById('modeHeaderControls');
     if (headerControls) {
         headerControls.innerHTML = '';
@@ -302,7 +289,7 @@ function renderMode(mode, lesson) {
             container.innerHTML = '<div>Режим не найден</div>';
     }
     
-    updateCounter(); // Обновляем счетчик после загрузки режима
+    updateCounter();
 }
 
 // ========== ИНИЦИАЛИЗАЦИЯ ==========
@@ -328,6 +315,7 @@ function initApp() {
     });
     
     const savedState = loadState();
+    
     if (savedState && savedState.level) {
         console.log('🔄 Восстановление состояния:', savedState);
         currentLevel = savedState.level;
@@ -340,12 +328,13 @@ function initApp() {
             }
         });
         
+        // ВСЕГДА ЗАГРУЖАЕМ УРОВЕНЬ
         loadLevel(currentLevel);
         
+        // ЕСЛИ ЕСТЬ УРОК — ЗАГРУЖАЕМ ЕГО
         if (savedState.lessonId !== null && savedState.lessonId !== undefined) {
-            const checkCourse = setInterval(() => {
+            setTimeout(() => {
                 if (courseData && courseData.lessons) {
-                    clearInterval(checkCourse);
                     const lessonExists = courseData.lessons.some(l => l.id === savedState.lessonId);
                     if (lessonExists) {
                         console.log('🔄 Загрузка сохранённого урока:', savedState.lessonId);
@@ -358,17 +347,10 @@ function initApp() {
                         loadLesson(courseData.lessons[0].id);
                     }
                 }
-            }, 100);
-            
-            setTimeout(() => {
-                clearInterval(checkCourse);
-                if (!currentLesson && courseData && courseData.lessons && courseData.lessons.length > 0) {
-                    console.log('⏰ Таймаут, загружаем первый урок');
-                    loadLesson(courseData.lessons[0].id);
-                }
-            }, 3000);
+            }, 150);
         } else {
-            console.log('📂 Нет сохранённого урока, показываем список');
+            console.log('📂 На главной странице');
+            // Убеждаемся, что показан список уроков
             setTimeout(() => {
                 if (courseData && !currentLesson) {
                     renderLevel();

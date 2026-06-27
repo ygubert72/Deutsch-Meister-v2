@@ -70,7 +70,7 @@ async function loadLevel(level) {
     }
 }
 
-// ========== ЗАГРУЗКА УРОКА (НОВАЯ ВЕРСИЯ) ==========
+// ========== ЗАГРУЗКА УРОКА ==========
 async function loadLesson(lessonId) {
     console.log('📖 Загрузка урока:', lessonId);
     try {
@@ -218,15 +218,13 @@ async function loadLesson(lessonId) {
     }
 }
 
-// ========== ЗАГРУЗКА ДАННЫХ ДЛЯ РЕЖИМА (НОВАЯ ФУНКЦИЯ) ==========
+// ========== ЗАГРУЗКА ДАННЫХ ДЛЯ РЕЖИМА ==========
 async function loadModeData(mode, lessonId) {
-    // Если данные уже есть в кеше — возвращаем
     if (lessonDataCache[mode]) {
         console.log(`📦 Данные для режима ${mode} взяты из кеша`);
         return lessonDataCache[mode];
     }
     
-    // Если нет — пытаемся загрузить
     const paddedId = String(lessonId).padStart(2, '0');
     const paths = {
         vocabulary: `docs/course/${currentLevel}/vocabulary/vocab_${paddedId}.json`,
@@ -252,7 +250,7 @@ async function loadModeData(mode, lessonId) {
     }
 }
 
-// ========== ОБНОВЛЕНИЕ СЧЁТЧИКА ==========
+// ========== ОБНОВЛЕНИЕ СЧЁТЧИКА (ИСПРАВЛЕНАЯ ВЕРСИЯ) ==========
 function updateCounter() {
     const el = document.getElementById('counter');
     if (!el) return;
@@ -281,29 +279,43 @@ function updateCounter() {
     let count = 0;
     let label = '';
     
+    // Получаем данные из lessonDataCache (если есть) или из currentLesson
+    let dataSource = null;
+    
     switch(activeMode) {
         case 'vocabulary':
-            count = currentLesson.vocabulary?.length || 0;
+            dataSource = lessonDataCache?.vocabulary || currentLesson.vocabulary || [];
+            count = dataSource.length || 0;
             label = 'слов';
             break;
+            
         case 'practice':
-            count = currentLesson.practice?.length || 0;
+            dataSource = lessonDataCache?.practice || currentLesson.practice || [];
+            count = dataSource.length || 0;
             label = 'упражнений';
             break;
+            
         case 'quiz':
-            count = currentLesson.quiz?.words?.length || currentLesson.vocabulary?.length || 0;
+            dataSource = lessonDataCache?.quiz?.words || currentLesson.quiz?.words || currentLesson.vocabulary || [];
+            count = dataSource.length || 0;
             label = 'слов';
             break;
+            
         case 'trainer':
-            count = currentLesson.trainer?.templates?.length || 0;
+            dataSource = lessonDataCache?.trainer?.templates || currentLesson.trainer?.templates || [];
+            count = dataSource.length || 0;
             label = 'фраз';
             break;
+            
         case 'dictation':
-            count = currentLesson.dictation?.length || 0;
+            dataSource = lessonDataCache?.dictation || currentLesson.dictation || [];
+            count = dataSource.length || 0;
             label = 'предложений';
             break;
+            
         default:
-            count = currentLesson.vocabulary?.length || 0;
+            dataSource = currentLesson.vocabulary || [];
+            count = dataSource.length || 0;
             label = 'слов';
     }
     
@@ -494,10 +506,8 @@ function initApp() {
             }
         });
         
-        // ВСЕГДА ЗАГРУЖАЕМ УРОВЕНЬ
         loadLevel(currentLevel);
         
-        // ЕСЛИ ЕСТЬ УРОК — ЗАГРУЖАЕМ ЕГО
         if (savedState.lessonId !== null && savedState.lessonId !== undefined) {
             setTimeout(() => {
                 if (courseData && courseData.lessons) {
@@ -516,7 +526,6 @@ function initApp() {
             }, 150);
         } else {
             console.log('📂 На главной странице');
-            // Убеждаемся, что показан список уроков
             setTimeout(() => {
                 if (courseData && !currentLesson) {
                     renderLevel();

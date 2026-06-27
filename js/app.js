@@ -8,6 +8,16 @@ let currentLesson = null;
 let courseData = null;
 let isRestoring = false;
 
+// Хранилище загруженных данных для текущего урока
+let lessonDataCache = {
+    grammar: null,
+    vocabulary: null,
+    practice: null,
+    quiz: null,
+    trainer: null,
+    dictation: null
+};
+
 // ========== СОХРАНЕНИЕ СОСТОЯНИЯ ==========
 function saveState() {
     try {
@@ -60,16 +70,138 @@ async function loadLevel(level) {
     }
 }
 
+// ========== ЗАГРУЗКА УРОКА (НОВАЯ ВЕРСИЯ) ==========
 async function loadLesson(lessonId) {
     console.log('📖 Загрузка урока:', lessonId);
     try {
         const lessonInfo = courseData.lessons.find(l => l.id === lessonId);
         if (!lessonInfo) throw new Error('Урок не найден');
         
-        const response = await fetch(`docs/course/${currentLevel}/lessons/${lessonInfo.file}`);
-        if (!response.ok) throw new Error('Файл урока не найден');
-        const lesson = await response.json();
-        console.log('✅ Урок загружен:', lesson.title);
+        // Сбрасываем кеш
+        lessonDataCache = {
+            grammar: null,
+            vocabulary: null,
+            practice: null,
+            quiz: null,
+            trainer: null,
+            dictation: null
+        };
+        
+        // Пытаемся загрузить основной файл урока (старый формат)
+        let lesson = null;
+        try {
+            const response = await fetch(`docs/course/${currentLevel}/lessons/${lessonInfo.file}`);
+            if (response.ok) {
+                lesson = await response.json();
+                console.log('✅ Урок загружен (старый формат):', lesson.title);
+                
+                // Заполняем кеш данными из старого формата
+                lessonDataCache.grammar = lesson;
+                lessonDataCache.vocabulary = lesson.vocabulary || null;
+                lessonDataCache.practice = lesson.practice || null;
+                lessonDataCache.quiz = lesson.quiz || null;
+                lessonDataCache.trainer = lesson.trainer || null;
+                lessonDataCache.dictation = lesson.dictation || null;
+            }
+        } catch(e) {
+            console.log('ℹ️ Старый формат не найден, пробуем новый');
+        }
+        
+        // Если старый формат не загрузился, пробуем новый (раздельный)
+        if (!lesson) {
+            lesson = {
+                id: lessonId,
+                title: lessonInfo.title,
+                level: currentLevel
+            };
+            
+            // Загружаем грамматику
+            try {
+                const grammarResponse = await fetch(`docs/course/${currentLevel}/lessons/lesson_${String(lessonId).padStart(2, '0')}.json`);
+                if (grammarResponse.ok) {
+                    const grammarData = await grammarResponse.json();
+                    lesson.grammar = grammarData.grammar || '';
+                    lesson.examples = grammarData.examples || [];
+                    lessonDataCache.grammar = grammarData;
+                    console.log('✅ Грамматика загружена (новый формат)');
+                }
+            } catch(e) {
+                console.log('ℹ️ Грамматика не найдена');
+            }
+            
+            // Загружаем лексику
+            try {
+                const vocabResponse = await fetch(`docs/course/${currentLevel}/vocabulary/vocab_${String(lessonId).padStart(2, '0')}.json`);
+                if (vocabResponse.ok) {
+                    const vocabData = await vocabResponse.json();
+                    lesson.vocabulary = vocabData;
+                    lessonDataCache.vocabulary = vocabData;
+                    console.log('✅ Лексика загружена (новый формат)');
+                }
+            } catch(e) {
+                console.log('ℹ️ Лексика не найдена');
+            }
+            
+            // Загружаем практику
+            try {
+                const practiceResponse = await fetch(`docs/course/${currentLevel}/practice/practice_${String(lessonId).padStart(2, '0')}.json`);
+                if (practiceResponse.ok) {
+                    const practiceData = await practiceResponse.json();
+                    lesson.practice = practiceData;
+                    lessonDataCache.practice = practiceData;
+                    console.log('✅ Практика загружена (новый формат)');
+                }
+            } catch(e) {
+                console.log('ℹ️ Практика не найдена');
+            }
+            
+            // Загружаем тренировку (quiz)
+            try {
+                const quizResponse = await fetch(`docs/course/${currentLevel}/quiz/quiz_${String(lessonId).padStart(2, '0')}.json`);
+                if (quizResponse.ok) {
+                    const quizData = await quizResponse.json();
+                    lesson.quiz = quizData;
+                    lessonDataCache.quiz = quizData;
+                    console.log('✅ Тренировка загружена (новый формат)');
+                }
+            } catch(e) {
+                console.log('ℹ️ Тренировка не найдена');
+            }
+            
+            // Загружаем тренажёр
+            try {
+                const trainerResponse = await fetch(`docs/course/${currentLevel}/trainer/trainer_${String(lessonId).padStart(2, '0')}.json`);
+                if (trainerResponse.ok) {
+                    const trainerData = await trainerResponse.json();
+                    lesson.trainer = trainerData;
+                    lessonDataCache.trainer = trainerData;
+                    console.log('✅ Тренажёр загружен (новый формат)');
+                }
+            } catch(e) {
+                console.log('ℹ️ Тренажёр не найден');
+            }
+            
+            // Загружаем диктант
+            try {
+                const dictationResponse = await fetch(`docs/course/${currentLevel}/dictation/dictation_${String(lessonId).padStart(2, '0')}.json`);
+                if (dictationResponse.ok) {
+                    const dictationData = await dictationResponse.json();
+                    lesson.dictation = dictationData;
+                    lessonDataCache.dictation = dictationData;
+                    console.log('✅ Диктант загружен (новый формат)');
+                }
+            } catch(e) {
+                console.log('ℹ️ Диктант не найден');
+            }
+            
+            // Проверяем, есть ли хоть какие-то данные
+            if (!lesson.grammar && !lesson.vocabulary && !lesson.practice && !lesson.quiz && !lesson.trainer && !lesson.dictation) {
+                throw new Error('Не удалось загрузить данные урока в новом формате');
+            }
+            
+            console.log('✅ Урок загружен (новый формат):', lesson.title);
+        }
+        
         currentLesson = lesson;
         renderLesson(lesson);
         saveState();
@@ -86,7 +218,41 @@ async function loadLesson(lessonId) {
     }
 }
 
-// ========== ОБНОВЛЕНИЕ СЧЁТЧИКА (РАБОЧАЯ ВЕРСИЯ) ==========
+// ========== ЗАГРУЗКА ДАННЫХ ДЛЯ РЕЖИМА (НОВАЯ ФУНКЦИЯ) ==========
+async function loadModeData(mode, lessonId) {
+    // Если данные уже есть в кеше — возвращаем
+    if (lessonDataCache[mode]) {
+        console.log(`📦 Данные для режима ${mode} взяты из кеша`);
+        return lessonDataCache[mode];
+    }
+    
+    // Если нет — пытаемся загрузить
+    const paddedId = String(lessonId).padStart(2, '0');
+    const paths = {
+        vocabulary: `docs/course/${currentLevel}/vocabulary/vocab_${paddedId}.json`,
+        practice: `docs/course/${currentLevel}/practice/practice_${paddedId}.json`,
+        quiz: `docs/course/${currentLevel}/quiz/quiz_${paddedId}.json`,
+        trainer: `docs/course/${currentLevel}/trainer/trainer_${paddedId}.json`,
+        dictation: `docs/course/${currentLevel}/dictation/dictation_${paddedId}.json`
+    };
+    
+    const path = paths[mode];
+    if (!path) return null;
+    
+    try {
+        const response = await fetch(path);
+        if (!response.ok) throw new Error('Файл не найден');
+        const data = await response.json();
+        lessonDataCache[mode] = data;
+        console.log(`✅ Данные для режима ${mode} загружены`);
+        return data;
+    } catch(e) {
+        console.log(`ℹ️ Данные для режима ${mode} не найдены`);
+        return null;
+    }
+}
+
+// ========== ОБНОВЛЕНИЕ СЧЁТЧИКА ==========
 function updateCounter() {
     const el = document.getElementById('counter');
     if (!el) return;

@@ -1,14 +1,40 @@
 // ====================================================================
-// practiceMode.js — Практика
+// practiceMode.js — Практика (с поддержкой раздельной структуры)
 // ====================================================================
 
-function renderPractice(container, lesson) {
-    const exercises = lesson.practice || [];
-    if (exercises.length === 0) {
-        container.innerHTML = '<div>Упражнений нет</div>';
+async function renderPractice(container, lesson) {
+    // Показываем загрузку
+    container.innerHTML = '<div style="text-align: center; padding: 40px; color: #999;">⏳ Загрузка упражнений...</div>';
+    
+    // Пытаемся получить практику из кеша или загрузить отдельно
+    let exercises = lesson.practice || [];
+    
+    // Если практика пустая — пробуем загрузить из отдельного файла
+    if (exercises.length === 0 && lesson.id) {
+        try {
+            const paddedId = String(lesson.id).padStart(2, '0');
+            const response = await fetch(`docs/course/${currentLevel}/practice/practice_${paddedId}.json`);
+            if (response.ok) {
+                const data = await response.json();
+                exercises = data;
+                // Сохраняем в lesson, чтобы при повторном открытии не грузить заново
+                lesson.practice = exercises;
+                console.log(`✅ Практика урока ${lesson.id} загружена из отдельного файла`);
+            } else {
+                console.log(`ℹ️ Отдельный файл практики для урока ${lesson.id} не найден`);
+            }
+        } catch(e) {
+            console.log(`ℹ️ Ошибка загрузки практики для урока ${lesson.id}:`, e.message);
+        }
+    }
+    
+    // Если всё ещё пусто — показываем сообщение
+    if (!exercises || exercises.length === 0) {
+        container.innerHTML = '<div style="text-align: center; padding: 40px; color: #999;">📭 Упражнений нет</div>';
         return;
     }
 
+    // ===== ВСЁ, ЧТО НИЖЕ — ОРИГИНАЛЬНЫЙ КОД БЕЗ ИЗМЕНЕНИЙ =====
     let html = '<h3>✍️ Упражнения</h3>';
     exercises.forEach((ex, index) => {
         html += `

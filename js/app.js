@@ -95,7 +95,6 @@ async function loadLesson(lessonId) {
                 lesson = await response.json();
                 console.log('✅ Урок загружен (старый формат):', lesson.title);
                 
-                // Заполняем кеш данными из старого формата
                 lessonDataCache.grammar = lesson;
                 lessonDataCache.vocabulary = lesson.vocabulary || null;
                 lessonDataCache.practice = lesson.practice || null;
@@ -194,7 +193,6 @@ async function loadLesson(lessonId) {
                 console.log('ℹ️ Диктант не найден');
             }
             
-            // Проверяем, есть ли хоть какие-то данные
             if (!lesson.grammar && !lesson.vocabulary && !lesson.practice && !lesson.quiz && !lesson.trainer && !lesson.dictation) {
                 throw new Error('Не удалось загрузить данные урока в новом формате');
             }
@@ -250,7 +248,7 @@ async function loadModeData(mode, lessonId) {
     }
 }
 
-// ========== ОБНОВЛЕНИЕ СЧЁТЧИКА (ИСПРАВЛЕНАЯ ВЕРСИЯ) ==========
+// ========== ОБНОВЛЕНИЕ СЧЁТЧИКА (ГАРАНТИРОВАННО РАБОЧАЯ ВЕРСИЯ) ==========
 function updateCounter() {
     const el = document.getElementById('counter');
     if (!el) return;
@@ -279,37 +277,129 @@ function updateCounter() {
     let count = 0;
     let label = '';
     
-    // Получаем данные из lessonDataCache (если есть) или из currentLesson
+    // Получаем данные из кеша (самый надёжный источник)
     let dataSource = null;
+    const lessonId = currentLesson.id;
+    const paddedId = String(lessonId).padStart(2, '0');
     
     switch(activeMode) {
         case 'vocabulary':
-            dataSource = lessonDataCache?.vocabulary || currentLesson.vocabulary || [];
-            count = dataSource.length || 0;
+            // Сначала кеш, потом currentLesson, потом загрузка
+            if (lessonDataCache.vocabulary) {
+                dataSource = lessonDataCache.vocabulary;
+            } else if (currentLesson.vocabulary) {
+                dataSource = currentLesson.vocabulary;
+            } else {
+                // Пытаемся загрузить синхронно (но это асинхронно, поэтому используем fallback)
+                fetch(`docs/course/${currentLevel}/vocabulary/vocab_${paddedId}.json`)
+                    .then(r => r.ok ? r.json() : null)
+                    .then(data => {
+                        if (data) {
+                            lessonDataCache.vocabulary = data;
+                            currentLesson.vocabulary = data;
+                            updateCounter();
+                        }
+                    })
+                    .catch(() => {});
+                dataSource = [];
+            }
+            count = dataSource?.length || 0;
             label = 'слов';
             break;
             
         case 'practice':
-            dataSource = lessonDataCache?.practice || currentLesson.practice || [];
-            count = dataSource.length || 0;
+            if (lessonDataCache.practice) {
+                dataSource = lessonDataCache.practice;
+            } else if (currentLesson.practice) {
+                dataSource = currentLesson.practice;
+            } else {
+                fetch(`docs/course/${currentLevel}/practice/practice_${paddedId}.json`)
+                    .then(r => r.ok ? r.json() : null)
+                    .then(data => {
+                        if (data) {
+                            lessonDataCache.practice = data;
+                            currentLesson.practice = data;
+                            updateCounter();
+                        }
+                    })
+                    .catch(() => {});
+                dataSource = [];
+            }
+            count = dataSource?.length || 0;
             label = 'упражнений';
             break;
             
         case 'quiz':
-            dataSource = lessonDataCache?.quiz?.words || currentLesson.quiz?.words || currentLesson.vocabulary || [];
-            count = dataSource.length || 0;
+            if (lessonDataCache.quiz) {
+                dataSource = lessonDataCache.quiz?.words || lessonDataCache.quiz;
+            } else if (currentLesson.quiz) {
+                dataSource = currentLesson.quiz?.words || currentLesson.quiz;
+            } else {
+                fetch(`docs/course/${currentLevel}/quiz/quiz_${paddedId}.json`)
+                    .then(r => r.ok ? r.json() : null)
+                    .then(data => {
+                        if (data) {
+                            lessonDataCache.quiz = data;
+                            currentLesson.quiz = data;
+                            updateCounter();
+                        }
+                    })
+                    .catch(() => {});
+                dataSource = [];
+            }
+            // Если dataSource — объект с полем words, берём words
+            if (dataSource && dataSource.words) {
+                dataSource = dataSource.words;
+            }
+            count = dataSource?.length || 0;
             label = 'слов';
             break;
             
         case 'trainer':
-            dataSource = lessonDataCache?.trainer?.templates || currentLesson.trainer?.templates || [];
-            count = dataSource.length || 0;
+            if (lessonDataCache.trainer) {
+                dataSource = lessonDataCache.trainer?.templates || lessonDataCache.trainer;
+            } else if (currentLesson.trainer) {
+                dataSource = currentLesson.trainer?.templates || currentLesson.trainer;
+            } else {
+                fetch(`docs/course/${currentLevel}/trainer/trainer_${paddedId}.json`)
+                    .then(r => r.ok ? r.json() : null)
+                    .then(data => {
+                        if (data) {
+                            lessonDataCache.trainer = data;
+                            currentLesson.trainer = data;
+                            updateCounter();
+                        }
+                    })
+                    .catch(() => {});
+                dataSource = [];
+            }
+            // Если dataSource — объект с полем templates, берём templates
+            if (dataSource && dataSource.templates) {
+                dataSource = dataSource.templates;
+            }
+            count = dataSource?.length || 0;
             label = 'фраз';
             break;
             
         case 'dictation':
-            dataSource = lessonDataCache?.dictation || currentLesson.dictation || [];
-            count = dataSource.length || 0;
+            if (lessonDataCache.dictation) {
+                dataSource = lessonDataCache.dictation;
+            } else if (currentLesson.dictation) {
+                dataSource = currentLesson.dictation;
+            } else {
+                fetch(`docs/course/${currentLevel}/dictation/dictation_${paddedId}.json`)
+                    .then(r => r.ok ? r.json() : null)
+                    .then(data => {
+                        if (data) {
+                            lessonDataCache.dictation = data;
+                            currentLesson.dictation = data;
+                            updateCounter();
+                        }
+                    })
+                    .catch(() => {});
+                dataSource = [];
+            }
+            count = dataSource?.length || 0;
             label = 'предложений';
             break;
             
@@ -384,7 +474,8 @@ function renderLesson(lesson) {
             currentMode = mode;
             saveState();
             renderMode(mode, lesson);
-            updateCounter();
+            // Обновляем счетчик после переключения
+            setTimeout(updateCounter, 100);
         };
     });
 
@@ -399,7 +490,7 @@ function renderLesson(lesson) {
                 modeBtn.classList.add('active');
                 currentMode = savedState.mode;
                 renderMode(savedState.mode, lesson);
-                updateCounter();
+                setTimeout(updateCounter, 100);
                 return;
             }
         }
@@ -467,7 +558,8 @@ function renderMode(mode, lesson) {
             container.innerHTML = '<div>Режим не найден</div>';
     }
     
-    updateCounter();
+    // Обновляем счетчик после загрузки режима
+    setTimeout(updateCounter, 200);
 }
 
 // ========== ИНИЦИАЛИЗАЦИЯ ==========
@@ -536,6 +628,10 @@ function initApp() {
         console.log('📂 Состояния нет, загружаем A1 по умолчанию');
         loadLevel('A1');
     }
+    
+    // Принудительное обновление счетчика через 1 секунду
+    setTimeout(updateCounter, 1000);
+    setTimeout(updateCounter, 2000);
     
     console.log('✅ Deutsch-Meister готов!');
 }

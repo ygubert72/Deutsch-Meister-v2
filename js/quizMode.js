@@ -10,13 +10,44 @@ let quizStudiedWords = {};
 let currentLessonId = null;
 let currentLessonData = null;
 
-function renderQuiz(container, lesson) {
+// ===== НОВАЯ ФУНКЦИЯ ДЛЯ ЗАГРУЗКИ ЛЕКСИКИ =====
+async function loadQuizVocabulary(lesson) {
+    // Если лексика уже есть — возвращаем
+    if (lesson.vocabulary && lesson.vocabulary.length > 0) {
+        return lesson.vocabulary;
+    }
+    
+    // Пробуем загрузить из отдельного файла
+    if (lesson.id) {
+        try {
+            const paddedId = String(lesson.id).padStart(2, '0');
+            const response = await fetch(`docs/course/${currentLevel}/vocabulary/vocab_${paddedId}.json`);
+            if (response.ok) {
+                const data = await response.json();
+                lesson.vocabulary = data;
+                console.log(`✅ Лексика для quiz урока ${lesson.id} загружена из отдельного файла`);
+                return data;
+            }
+        } catch(e) {
+            console.log(`ℹ️ Не удалось загрузить лексику для quiz урока ${lesson.id}`);
+        }
+    }
+    
+    return [];
+}
+
+async function renderQuiz(container, lesson) {
     currentLessonData = lesson;
     currentLessonId = lesson.id || 1;
     
-    const vocab = lesson.vocabulary || [];
-    if (vocab.length === 0) {
-        container.innerHTML = '<div>Нет слов для тренировки.</div>';
+    // Показываем загрузку
+    container.innerHTML = '<div style="text-align: center; padding: 40px; color: #999;">⏳ Загрузка слов...</div>';
+    
+    // Загружаем лексику
+    let vocab = await loadQuizVocabulary(lesson);
+    
+    if (!vocab || vocab.length === 0) {
+        container.innerHTML = '<div style="text-align: center; padding: 40px; color: #999;">📭 Нет слов для тренировки</div>';
         return;
     }
 

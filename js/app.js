@@ -269,7 +269,9 @@ function initApp() {
         };
     });
     
+    // ===== ВОССТАНОВЛЕНИЕ СОСТОЯНИЯ =====
     const savedState = loadState();
+    
     if (savedState && savedState.level) {
         console.log('🔄 Восстановление состояния:', savedState);
         currentLevel = savedState.level;
@@ -282,18 +284,30 @@ function initApp() {
             }
         });
         
+        // Загружаем уровень
         loadLevel(currentLevel);
         
-        if (savedState.lessonId) {
+        // Если есть сохраненный урок — загружаем его
+        if (savedState.lessonId !== null && savedState.lessonId !== undefined) {
+            console.log('🔄 Будет загружен урок:', savedState.lessonId);
+            
+            // Ждем загрузки курса и загружаем урок
             const checkCourse = setInterval(() => {
                 if (courseData && courseData.lessons) {
                     clearInterval(checkCourse);
+                    
+                    // Проверяем, существует ли сохраненный урок
                     const lessonExists = courseData.lessons.some(l => l.id === savedState.lessonId);
+                    
                     if (lessonExists) {
                         console.log('🔄 Загрузка сохранённого урока:', savedState.lessonId);
+                        
+                        // Восстанавливаем режим
                         if (savedState.mode) {
                             currentMode = savedState.mode;
                         }
+                        
+                        // Загружаем урок
                         loadLesson(savedState.lessonId);
                     } else if (courseData.lessons.length > 0) {
                         console.log('⚠️ Сохранённый урок не найден, загружаем первый');
@@ -302,6 +316,7 @@ function initApp() {
                 }
             }, 100);
             
+            // Таймаут на случай, если курс не загрузился
             setTimeout(() => {
                 clearInterval(checkCourse);
                 if (!currentLesson && courseData && courseData.lessons && courseData.lessons.length > 0) {
@@ -309,6 +324,14 @@ function initApp() {
                     loadLesson(courseData.lessons[0].id);
                 }
             }, 3000);
+        } else {
+            console.log('📂 Нет сохранённого урока, показываем список');
+            // Если нет сохраненного урока, но уровень загружен — показываем список
+            setTimeout(() => {
+                if (courseData && !currentLesson) {
+                    renderLevel();
+                }
+            }, 200);
         }
     } else {
         console.log('📂 Состояния нет, загружаем A1 по умолчанию');
@@ -318,7 +341,6 @@ function initApp() {
     console.log('✅ Deutsch-Meister готов!');
 }
 
-// Запускаем приложение
 document.addEventListener('DOMContentLoaded', function() {
     initApp();
 });

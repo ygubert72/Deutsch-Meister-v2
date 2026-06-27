@@ -11,6 +11,11 @@
       "id": 2,
       "title": "Неопределённые артикли: ein, eine. Отрицание: kein, keine",
       "file": "lesson_02_ein_kein.json"
+    },
+    {
+      "id": 3,
+      "title": "Личные местоимения и глагол sein",
+      "file": "lesson_03_pronomen_sein.json"
     }
   ]
 }

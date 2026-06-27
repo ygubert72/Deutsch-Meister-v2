@@ -16,6 +16,11 @@
       "id": 3,
       "title": "Личные местоимения и глагол sein",
       "file": "lesson_03_pronomen_sein.json"
+    },
+    {
+      "id": 4,
+      "title": "Глагол haben и винительный падеж (Akkusativ)",
+      "file": "lesson_04_haben_akkusativ.json"
     }
   ]
 }

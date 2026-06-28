@@ -29,7 +29,7 @@
       "id": 3,
       "title": "Личные местоимения и глагол sein",
       "description": "Изучаем личные местоимения (ich, du, er, sie, es, wir, ihr, sie) и спряжение глагола sein (быть).",
-      "grammar": "lessons/lesson_03_pronomen_sein.json",
+      "grammar": "lessons/lesson_03_personalpronomen_sein.json",
       "vocabulary": "vocabulary/vocab_03.json",
       "practice": "practice/practice_03.json",
       "trainer": "trainer/trainer_03.json",

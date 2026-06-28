@@ -79,6 +79,72 @@
       "trainer": "trainer/trainer_07.json",
       "dictation": "dictation/dictation_07.json",
       "quiz": "quiz/quiz_07.json"
+    },
+    {
+      "id": 8,
+      "title": "Порядок слов в предложении. Глагол на 2-м месте",
+      "description": "Изучаем самое важное правило немецкого языка — глагол всегда на втором месте. Инверсия, вопросы, отрицание.",
+      "grammar": "lessons/lesson_08.json",
+      "vocabulary": "vocabulary/vocab_08.json",
+      "practice": "practice/practice_08.json",
+      "trainer": "trainer/trainer_08.json",
+      "dictation": "dictation/dictation_08.json",
+      "quiz": "quiz/quiz_08.json"
+    },
+    {
+      "id": 9,
+      "title": "Модальные глаголы (können, wollen, müssen)",
+      "description": "Изучаем модальные глаголы: können (мочь), wollen (хотеть), müssen (должен). Учимся выражать возможность, желание и необходимость.",
+      "grammar": "lessons/lesson_09_modalverben_1.json",
+      "vocabulary": "vocabulary/vocab_09.json",
+      "practice": "practice/practice_09.json",
+      "trainer": "trainer/trainer_09.json",
+      "dictation": "dictation/dictation_09.json",
+      "quiz": "quiz/quiz_09.json"
+    },
+    {
+      "id": 10,
+      "title": "Модальные глаголы (dürfen, sollen, mögen)",
+      "description": "Изучаем модальные глаголы: dürfen (иметь разрешение), sollen (должен по заданию), mögen (любить, нравиться).",
+      "grammar": "lessons/lesson_10_modalverben_2.json",
+      "vocabulary": "vocabulary/vocab_10.json",
+      "practice": "practice/practice_10.json",
+      "trainer": "trainer/trainer_10.json",
+      "dictation": "dictation/dictation_10.json",
+      "quiz": "quiz/quiz_10.json"
+    },
+    {
+      "id": 11,
+      "title": "Предлоги с дательным падежом (Dativ)",
+      "description": "Изучаем предлоги, которые требуют дательного падежа: aus, bei, mit, nach, seit, von, zu. Учимся правильно использовать Dativ.",
+      "grammar": "lessons/lesson_11_dativ_prepositionen.json",
+      "vocabulary": "vocabulary/vocab_11.json",
+      "practice": "practice/practice_11.json",
+      "trainer": "trainer/trainer_11.json",
+      "dictation": "dictation/dictation_11.json",
+      "quiz": "quiz/quiz_11.json"
+    },
+    {
+      "id": 12,
+      "title": "Предлоги с винительным падежом (Akkusativ)",
+      "description": "Изучаем предлоги, которые требуют винительного падежа: durch, für, gegen, ohne, um. Учимся правильно использовать Akkusativ.",
+      "grammar": "lessons/lesson_12_akkusativ_prepositionen.json",
+      "vocabulary": "vocabulary/vocab_12.json",
+      "practice": "practice/practice_12.json",
+      "trainer": "trainer/trainer_12.json",
+      "dictation": "dictation/dictation_12.json",
+      "quiz": "quiz/quiz_12.json"
+    },
+    {
+      "id": 13,
+      "title": "Предлоги с двумя падежами (Wechselpräpositionen)",
+      "description": "Изучаем предлоги, которые требуют либо Dativ, либо Akkusativ в зависимости от значения: in, an, auf, unter, über, neben, vor, zwischen, hinter.",
+      "grammar": "lessons/lesson_13_wechselprepositionen.json",
+      "vocabulary": "vocabulary/vocab_13.json",
+      "practice": "practice/practice_13.json",
+      "trainer": "trainer/trainer_13.json",
+      "dictation": "dictation/dictation_13.json",
+      "quiz": "quiz/quiz_13.json"
     }
   ]
 }

@@ -453,12 +453,12 @@ function renderLesson(lesson) {
         </div>
         <h2>📖 Урок ${lesson.id}: ${lesson.title}</h2>
         <div class="mode-buttons">
-            <button class="mode-btn active" data-mode="grammar">📘 Грамматика</button>
-            <button class="mode-btn" data-mode="practice">✍️ Практика</button>
-            <button class="mode-btn" data-mode="vocabulary">📚 Лексика</button>
-            <button class="mode-btn" data-mode="quiz">🎯 Тренировка</button>
-            <button class="mode-btn" data-mode="trainer">🏋️ Тренажёр</button>
-            <button class="mode-btn" data-mode="dictation">✏️ Диктант</button>
+            <button class="mode-btn active" data-mode="grammar">📘 Grammatik</button>
+            <button class="mode-btn" data-mode="practice">✍️ Übungen</button>
+            <button class="mode-btn" data-mode="vocabulary">📚 Wörterbuch</button>
+            <button class="mode-btn" data-mode="quiz">🎯 Test</button>
+            <button class="mode-btn" data-mode="trainer">🧩 Satzbau</button>
+            <button class="mode-btn" data-mode="dictation">✏️ Diktat</button>
         </div>
         <div id="modeContent"></div>
     `;

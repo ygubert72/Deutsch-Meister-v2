@@ -1,5 +1,5 @@
 // ====================================================================
-// quizMode.js — Тренировка (выбор перевода из 6 вариантов)
+// quizMode.js — Тест (выбор перевода из 6 вариантов)
 // ====================================================================
 
 let quizWords = [];
@@ -10,44 +10,15 @@ let quizStudiedWords = {};
 let currentLessonId = null;
 let currentLessonData = null;
 
-// ===== НОВАЯ ФУНКЦИЯ ДЛЯ ЗАГРУЗКИ ЛЕКСИКИ =====
-async function loadQuizVocabulary(lesson) {
-    // Если лексика уже есть — возвращаем
-    if (lesson.vocabulary && lesson.vocabulary.length > 0) {
-        return lesson.vocabulary;
-    }
-    
-    // Пробуем загрузить из отдельного файла
-    if (lesson.id) {
-        try {
-            const paddedId = String(lesson.id).padStart(2, '0');
-            const response = await fetch(`docs/course/${currentLevel}/vocabulary/vocab_${paddedId}.json`);
-            if (response.ok) {
-                const data = await response.json();
-                lesson.vocabulary = data;
-                console.log(`✅ Лексика для quiz урока ${lesson.id} загружена из отдельного файла`);
-                return data;
-            }
-        } catch(e) {
-            console.log(`ℹ️ Не удалось загрузить лексику для quiz урока ${lesson.id}`);
-        }
-    }
-    
-    return [];
-}
-
-async function renderQuiz(container, lesson) {
+function renderQuiz(container, lesson) {
     currentLessonData = lesson;
     currentLessonId = lesson.id || 1;
     
-    // Показываем загрузку
-    container.innerHTML = '<div style="text-align: center; padding: 40px; color: #999;">⏳ Загрузка слов...</div>';
+    // Берем слова для теста из загруженного урока
+    let quizData = lesson.quiz || [];
     
-    // Загружаем лексику
-    let vocab = await loadQuizVocabulary(lesson);
-    
-    if (!vocab || vocab.length === 0) {
-        container.innerHTML = '<div style="text-align: center; padding: 40px; color: #999;">📭 Нет слов для тренировки</div>';
+    if (!quizData || quizData.length === 0) {
+        container.innerHTML = '<div style="text-align: center; padding: 40px; color: #999;">📭 Нет слов для теста</div>';
         return;
     }
 
@@ -62,9 +33,9 @@ async function renderQuiz(container, lesson) {
         quizStudiedWords = {};
     }
 
-    quizWords = vocab.filter(word => !quizStudiedWords[word.de]);
+    quizWords = quizData.filter(word => !quizStudiedWords[word.de]);
     if (quizWords.length === 0) {
-        quizWords = [...vocab];
+        quizWords = [...quizData];
         quizStudiedWords = {};
         localStorage.removeItem('dm_quiz_studied_' + currentLessonId);
     }
@@ -163,7 +134,7 @@ function saveQuizState() {
 function getStudiedWordsList() {
     const lesson = currentLessonData || window.currentLesson;
     if (!lesson) return [];
-    const vocab = lesson.vocabulary || [];
+    const vocab = lesson.quiz || [];
     return vocab.filter(word => quizStudiedWords[word.de]);
 }
 
@@ -230,7 +201,7 @@ function showQuizContainer() {
                 saveQuizState();
                 const lesson = currentLessonData || window.currentLesson;
                 if (lesson) {
-                    const vocab = lesson.vocabulary || [];
+                    const vocab = lesson.quiz || [];
                     quizWords = vocab.filter(w => !quizStudiedWords[w.de]);
                 }
                 if (quizWords.length > 0 && quizIndex >= quizWords.length) {
@@ -263,13 +234,13 @@ function showQuizContainer() {
         if (!confirm('Вернуть все слова из контейнера?')) return;
         const lesson = currentLessonData || window.currentLesson;
         if (lesson) {
-            const vocab = lesson.vocabulary || [];
+            const vocab = lesson.quiz || [];
             vocab.forEach(word => { delete quizStudiedWords[word.de]; });
         }
         saveQuizState();
         const lesson2 = currentLessonData || window.currentLesson;
         if (lesson2) {
-            quizWords = [...lesson2.vocabulary];
+            quizWords = [...lesson2.quiz];
         }
         quizIndex = 0;
         modal.remove();

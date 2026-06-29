@@ -1,40 +1,15 @@
 // ====================================================================
-// practiceMode.js — Практика (с поддержкой раздельной структуры)
+// practiceMode.js — Упражнения (вставка пропущенных слов)
 // ====================================================================
 
-async function renderPractice(container, lesson) {
-    // Показываем загрузку
-    container.innerHTML = '<div style="text-align: center; padding: 40px; color: #999;">⏳ Загрузка упражнений...</div>';
+function renderPractice(container, lesson) {
+    const exercises = lesson.practice || [];
     
-    // Пытаемся получить практику из кеша или загрузить отдельно
-    let exercises = lesson.practice || [];
-    
-    // Если практика пустая — пробуем загрузить из отдельного файла
-    if (exercises.length === 0 && lesson.id) {
-        try {
-            const paddedId = String(lesson.id).padStart(2, '0');
-            const response = await fetch(`docs/course/${currentLevel}/practice/practice_${paddedId}.json`);
-            if (response.ok) {
-                const data = await response.json();
-                exercises = data;
-                // Сохраняем в lesson, чтобы при повторном открытии не грузить заново
-                lesson.practice = exercises;
-                console.log(`✅ Практика урока ${lesson.id} загружена из отдельного файла`);
-            } else {
-                console.log(`ℹ️ Отдельный файл практики для урока ${lesson.id} не найден`);
-            }
-        } catch(e) {
-            console.log(`ℹ️ Ошибка загрузки практики для урока ${lesson.id}:`, e.message);
-        }
-    }
-    
-    // Если всё ещё пусто — показываем сообщение
     if (!exercises || exercises.length === 0) {
         container.innerHTML = '<div style="text-align: center; padding: 40px; color: #999;">📭 Упражнений нет</div>';
         return;
     }
 
-    // ===== ВСЁ, ЧТО НИЖЕ — ОРИГИНАЛЬНЫЙ КОД БЕЗ ИЗМЕНЕНИЙ =====
     let html = '<h3>✍️ Упражнения</h3>';
     exercises.forEach((ex, index) => {
         html += `
@@ -44,6 +19,7 @@ async function renderPractice(container, lesson) {
                 <input type="text" class="practice-input" data-index="${index}" placeholder="Введите ответ..." autocomplete="off">
                 <button class="check-btn" data-index="${index}">ПРОВЕРИТЬ</button>
                 <div class="practice-result" data-index="${index}"></div>
+                ${ex.hint ? `<div style="font-size: 12px; color: #888; margin-top: 4px;">💡 Подсказка: ${ex.hint}</div>` : ''}
             </div>
         `;
     });
@@ -57,8 +33,13 @@ async function renderPractice(container, lesson) {
             const exercise = exercises[index];
 
             if (!input || !result) return;
-            const userAnswer = input.value.trim().toLowerCase();
-            const correctAnswer = exercise.answer.toLowerCase();
+            
+            function normalizeAnswer(text) {
+                return text.trim().toLowerCase().replace(/\s+/g, ' ');
+            }
+
+            const userAnswer = normalizeAnswer(input.value);
+            const correctAnswer = normalizeAnswer(exercise.answer);
 
             if (userAnswer === correctAnswer) {
                 result.innerHTML = '✅ Правильно!';

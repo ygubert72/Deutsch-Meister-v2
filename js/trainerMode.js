@@ -1,5 +1,5 @@
 // ====================================================================
-// trainerMode.js — Тренажёр (12 слов, сетка 6×2)
+// trainerMode.js — Тренажёр (сборка фраз из слов)
 // ====================================================================
 
 let trainerSentences = [];
@@ -16,103 +16,35 @@ let trainerStudiedSentences = {};
 let trainerCurrentLessonId = null;
 let trainerCurrentLessonData = null;
 
-// ===== НОВАЯ ФУНКЦИЯ ДЛЯ ЗАГРУЗКИ ВСЕХ СЛОВ =====
-async function loadAllVocabulary(level, currentLessonId) {
-    let allWords = [];
-    
-    try {
-        // Сначала пытаемся загрузить index.json
-        const response = await fetch(`docs/course/${level}/index.json`);
-        if (!response.ok) throw new Error('Курс не найден');
-        const courseData = await response.json();
-        
-        for (const lessonInfo of courseData.lessons) {
-            if (lessonInfo.id > currentLessonId) break;
-            
-            let vocab = [];
-            
-            // Пытаемся загрузить лексику из отдельного файла (новый формат)
-            try {
-                const paddedId = String(lessonInfo.id).padStart(2, '0');
-                const vocabResponse = await fetch(`docs/course/${level}/vocabulary/vocab_${paddedId}.json`);
-                if (vocabResponse.ok) {
-                    vocab = await vocabResponse.json();
-                    console.log(`✅ Лексика урока ${lessonInfo.id} загружена из отдельного файла для тренажёра`);
-                }
-            } catch(e) {}
-            
-            // Если не загрузилась — пробуем старый формат
-            if (!vocab || vocab.length === 0) {
-                try {
-                    const lessonResponse = await fetch(`docs/course/${level}/lessons/${lessonInfo.file}`);
-                    if (lessonResponse.ok) {
-                        const lessonData = await lessonResponse.json();
-                        vocab = lessonData.vocabulary || [];
-                    }
-                } catch(e) {}
-            }
-            
-            if (vocab.length > 0) {
-                allWords = allWords.concat(vocab);
-            }
-        }
-    } catch(e) {
-        console.log('ℹ️ Ошибка загрузки лексики для тренажёра:', e.message);
-    }
-    
-    return allWords;
-}
-
-// ===== НОВАЯ ФУНКЦИЯ ДЛЯ ЗАГРУЗКИ ФРАЗ =====
-async function loadTrainerTemplates(lesson) {
-    // Если фразы уже есть — возвращаем
-    if (lesson.trainer && lesson.trainer.templates && lesson.trainer.templates.length > 0) {
-        return lesson.trainer.templates;
-    }
-    
-    // Пробуем загрузить из отдельного файла
-    if (lesson.id) {
-        try {
-            const paddedId = String(lesson.id).padStart(2, '0');
-            const response = await fetch(`docs/course/${currentLevel}/trainer/trainer_${paddedId}.json`);
-            if (response.ok) {
-                const data = await response.json();
-                // Сохраняем в lesson
-                if (!lesson.trainer) lesson.trainer = {};
-                lesson.trainer.templates = data;
-                console.log(`✅ Фразы тренажёра урока ${lesson.id} загружены из отдельного файла`);
-                return data;
-            }
-        } catch(e) {
-            console.log(`ℹ️ Отдельный файл тренажёра для урока ${lesson.id} не найден`);
-        }
-    }
-    
-    return [];
-}
-
-async function renderTrainer(container, lesson) {
+function renderTrainer(container, lesson) {
     trainerCurrentLessonData = lesson;
     const lessonId = lesson.id || 1;
     trainerCurrentLessonId = lessonId;
     
     loadTrainerState(lessonId);
     
-    container.innerHTML = `
-        <div style="text-align: center; padding: 40px; color: #999;">
-            <div style="font-size: 48px; margin-bottom: 15px;">⏳</div>
-            <div>Загрузка слов для тренажёра...</div>
-        </div>
-    `;
-    
-    // Загружаем фразы
-    let templates = await loadTrainerTemplates(lesson);
+    // Берем фразы из загруженного урока
+    let templates = lesson.trainer || [];
     
     if (!templates || templates.length === 0) {
         container.innerHTML = `
             <div style="text-align: center; padding: 40px; color: #999;">
                 <div style="font-size: 48px; margin-bottom: 15px;">📝</div>
                 <div>Для этого урока нет шаблонов для тренажёра.</div>
+            </div>
+        `;
+        return;
+    }
+    
+    // Берем все слова из vocabulary для подсказок
+    allVocabWords = lesson.vocabulary || [];
+    
+    if (allVocabWords.length < 5) {
+        container.innerHTML = `
+            <div style="text-align: center; padding: 40px; color: #999;">
+                <div style="font-size: 48px; margin-bottom: 15px;">📝</div>
+                <div>Недостаточно слов для тренажёра.</div>
+                <div style="font-size: 14px; margin-top: 10px;">Пройдите больше уроков, чтобы увеличить количество слов.</div>
             </div>
         `;
         return;
@@ -130,31 +62,6 @@ async function renderTrainer(container, lesson) {
         localStorage.removeItem('dm_trainer_studied_' + lessonId);
     }
     
-    const vocab = await loadAllVocabulary(currentLevel, lessonId);
-    allVocabWords = vocab;
-    
-    if (allVocabWords.length < 5) {
-        container.innerHTML = `
-            <div style="text-align: center; padding: 40px; color: #999;">
-                <div style="font-size: 48px; margin-bottom: 15px;">📝</div>
-                <div>Недостаточно слов для тренажёра.</div>
-                <div style="font-size: 14px; margin-top: 10px;">Пройдите больше уроков, чтобы увеличить количество слов.</div>
-            </div>
-        `;
-        return;
-    }
-    
-    if (finalTemplates.length === 0) {
-        container.innerHTML = `
-            <div style="text-align: center; padding: 40px; color: #999;">
-                <div style="font-size: 48px; margin-bottom: 15px;">📝</div>
-                <div>Нет шаблонов для тренажёра.</div>
-                <div style="font-size: 14px; margin-top: 10px;">Попробуйте другой урок.</div>
-            </div>
-        `;
-        return;
-    }
-    
     const shuffled = [...finalTemplates];
     for (let i = shuffled.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
@@ -167,11 +74,10 @@ async function renderTrainer(container, lesson) {
     showTrainerSentence(container);
 }
 
-// ===== ВСЁ, ЧТО НИЖЕ — ОРИГИНАЛЬНЫЙ КОД БЕЗ ИЗМЕНЕНИЙ =====
 function getStudiedSentencesList() {
     const lesson = trainerCurrentLessonData || window.currentLesson;
     if (!lesson) return [];
-    const templates = lesson.trainer?.templates || [];
+    const templates = lesson.trainer || [];
     return templates.filter(sentence => {
         const key = sentence.de + '|' + sentence.ru;
         return trainerStudiedSentences[key] === true;
@@ -267,7 +173,7 @@ function showTrainerContainer() {
                     
                     const lesson = trainerCurrentLessonData || window.currentLesson;
                     if (lesson) {
-                        const templates = lesson.trainer?.templates || [];
+                        const templates = lesson.trainer || [];
                         trainerSentences = templates.filter(t => {
                             const k = t.de + '|' + t.ru;
                             return !trainerStudiedSentences[k];
@@ -277,7 +183,7 @@ function showTrainerContainer() {
                     if (trainerSentences.length === 0) {
                         const lesson2 = trainerCurrentLessonData || window.currentLesson;
                         if (lesson2) {
-                            trainerSentences = [...lesson2.trainer.templates];
+                            trainerSentences = [...lesson2.trainer];
                             trainerStudiedSentences = {};
                             localStorage.removeItem('dm_trainer_studied_' + trainerCurrentLessonId);
                         }
@@ -319,7 +225,7 @@ function showTrainerContainer() {
                 console.log('🔄 Возвращаем все фразы');
                 const lesson = trainerCurrentLessonData || window.currentLesson;
                 if (lesson) {
-                    const templates = lesson.trainer?.templates || [];
+                    const templates = lesson.trainer || [];
                     templates.forEach(t => {
                         const key = t.de + '|' + t.ru;
                         delete trainerStudiedSentences[key];
@@ -328,7 +234,7 @@ function showTrainerContainer() {
                 saveTrainerState();
                 const lesson2 = trainerCurrentLessonData || window.currentLesson;
                 if (lesson2) {
-                    trainerSentences = [...lesson2.trainer.templates];
+                    trainerSentences = [...lesson2.trainer];
                 }
                 trainerIndex = 0;
                 modal.remove();

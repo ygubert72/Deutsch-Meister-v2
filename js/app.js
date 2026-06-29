@@ -8,16 +8,6 @@ let currentLesson = null;
 let courseData = null;
 let isRestoring = false;
 
-// Хранилище загруженных данных для текущего урока
-let lessonDataCache = {
-    grammar: null,
-    vocabulary: null,
-    practice: null,
-    quiz: null,
-    trainer: null,
-    dictation: null
-};
-
 // ========== СОХРАНЕНИЕ СОСТОЯНИЯ ==========
 function saveState() {
     try {
@@ -52,7 +42,7 @@ async function loadLevel(level) {
     currentLevel = level;
     console.log('📚 Загрузка уровня:', level);
     try {
-        const response = await fetch(`docs/course/${level}/index.json`);
+        const response = await fetch(`docs/${level}/index.json`);
         if (!response.ok) throw new Error('Курс не найден');
         courseData = await response.json();
         console.log('✅ Курс загружен:', courseData.title);
@@ -77,132 +67,58 @@ async function loadLesson(lessonId) {
         const lessonInfo = courseData.lessons.find(l => l.id === lessonId);
         if (!lessonInfo) throw new Error('Урок не найден');
         
-        // Сбрасываем кеш
-        lessonDataCache = {
-            grammar: null,
-            vocabulary: null,
-            practice: null,
-            quiz: null,
-            trainer: null,
-            dictation: null
+        let lesson = {
+            id: lessonId,
+            title: lessonInfo.title,
+            level: currentLevel
         };
         
-        // Пытаемся загрузить основной файл урока (старый формат)
-        let lesson = null;
+        // 1. Загружаем ГРАММАТИКУ из папки grammar/
         try {
-            const response = await fetch(`docs/course/${currentLevel}/lessons/${lessonInfo.file}`);
-            if (response.ok) {
-                lesson = await response.json();
-                console.log('✅ Урок загружен (старый формат):', lesson.title);
-                
-                lessonDataCache.grammar = lesson;
-                lessonDataCache.vocabulary = lesson.vocabulary || null;
-                lessonDataCache.practice = lesson.practice || null;
-                lessonDataCache.quiz = lesson.quiz || null;
-                lessonDataCache.trainer = lesson.trainer || null;
-                lessonDataCache.dictation = lesson.dictation || null;
+            const grammarFile = `docs/${currentLevel}/grammar/${lessonInfo.file}`;
+            console.log('📂 Загрузка грамматики:', grammarFile);
+            const grammarResponse = await fetch(grammarFile);
+            if (grammarResponse.ok) {
+                const grammarData = await grammarResponse.json();
+                lesson.grammar = grammarData.grammar || '';
+                lesson.examples = grammarData.examples || [];
+                console.log('✅ Грамматика загружена');
+            } else {
+                console.log('ℹ️ Файл грамматики не найден:', grammarFile);
             }
         } catch(e) {
-            console.log('ℹ️ Старый формат не найден, пробуем новый');
+            console.log('ℹ️ Ошибка загрузки грамматики:', e.message);
         }
         
-        // Если старый формат не загрузился, пробуем новый (раздельный)
-        if (!lesson) {
-            lesson = {
-                id: lessonId,
-                title: lessonInfo.title,
-                level: currentLevel
-            };
-            
-            // Загружаем грамматику
-            try {
-                const grammarResponse = await fetch(`docs/course/${currentLevel}/lessons/lesson_${String(lessonId).padStart(2, '0')}.json`);
-                if (grammarResponse.ok) {
-                    const grammarData = await grammarResponse.json();
-                    lesson.grammar = grammarData.grammar || '';
-                    lesson.examples = grammarData.examples || [];
-                    lessonDataCache.grammar = grammarData;
-                    console.log('✅ Грамматика загружена (новый формат)');
-                }
-            } catch(e) {
-                console.log('ℹ️ Грамматика не найдена');
+        // 2. Загружаем ВСЁ ОСТАЛЬНОЕ из папки lessons/
+        try {
+            const lessonFile = `docs/${currentLevel}/lessons/lesson_${String(lessonId).padStart(2, '0')}.json`;
+            console.log('📂 Загрузка урока:', lessonFile);
+            const lessonResponse = await fetch(lessonFile);
+            if (lessonResponse.ok) {
+                const lessonData = await lessonResponse.json();
+                lesson.vocabulary = lessonData.vocabulary || [];
+                lesson.practice = lessonData.practice || [];
+                lesson.quiz = lessonData.quiz || [];
+                lesson.trainer = lessonData.trainer || [];
+                lesson.dictation = lessonData.dictation || [];
+                console.log('✅ Урок загружен (vocabulary, practice, quiz, trainer, dictation)');
+            } else {
+                console.log('ℹ️ Файл урока не найден:', lessonFile);
             }
-            
-            // Загружаем лексику
-            try {
-                const vocabResponse = await fetch(`docs/course/${currentLevel}/vocabulary/vocab_${String(lessonId).padStart(2, '0')}.json`);
-                if (vocabResponse.ok) {
-                    const vocabData = await vocabResponse.json();
-                    lesson.vocabulary = vocabData;
-                    lessonDataCache.vocabulary = vocabData;
-                    console.log('✅ Лексика загружена (новый формат)');
-                }
-            } catch(e) {
-                console.log('ℹ️ Лексика не найдена');
-            }
-            
-            // Загружаем практику
-            try {
-                const practiceResponse = await fetch(`docs/course/${currentLevel}/practice/practice_${String(lessonId).padStart(2, '0')}.json`);
-                if (practiceResponse.ok) {
-                    const practiceData = await practiceResponse.json();
-                    lesson.practice = practiceData;
-                    lessonDataCache.practice = practiceData;
-                    console.log('✅ Практика загружена (новый формат)');
-                }
-            } catch(e) {
-                console.log('ℹ️ Практика не найдена');
-            }
-            
-            // Загружаем тренировку (quiz)
-            try {
-                const quizResponse = await fetch(`docs/course/${currentLevel}/quiz/quiz_${String(lessonId).padStart(2, '0')}.json`);
-                if (quizResponse.ok) {
-                    const quizData = await quizResponse.json();
-                    lesson.quiz = quizData;
-                    lessonDataCache.quiz = quizData;
-                    console.log('✅ Тренировка загружена (новый формат)');
-                }
-            } catch(e) {
-                console.log('ℹ️ Тренировка не найдена');
-            }
-            
-            // Загружаем тренажёр
-            try {
-                const trainerResponse = await fetch(`docs/course/${currentLevel}/trainer/trainer_${String(lessonId).padStart(2, '0')}.json`);
-                if (trainerResponse.ok) {
-                    const trainerData = await trainerResponse.json();
-                    lesson.trainer = trainerData;
-                    lessonDataCache.trainer = trainerData;
-                    console.log('✅ Тренажёр загружен (новый формат)');
-                }
-            } catch(e) {
-                console.log('ℹ️ Тренажёр не найден');
-            }
-            
-            // Загружаем диктант
-            try {
-                const dictationResponse = await fetch(`docs/course/${currentLevel}/dictation/dictation_${String(lessonId).padStart(2, '0')}.json`);
-                if (dictationResponse.ok) {
-                    const dictationData = await dictationResponse.json();
-                    lesson.dictation = dictationData;
-                    lessonDataCache.dictation = dictationData;
-                    console.log('✅ Диктант загружен (новый формат)');
-                }
-            } catch(e) {
-                console.log('ℹ️ Диктант не найден');
-            }
-            
-            if (!lesson.grammar && !lesson.vocabulary && !lesson.practice && !lesson.quiz && !lesson.trainer && !lesson.dictation) {
-                throw new Error('Не удалось загрузить данные урока в новом формате');
-            }
-            
-            console.log('✅ Урок загружен (новый формат):', lesson.title);
+        } catch(e) {
+            console.log('ℹ️ Ошибка загрузки урока:', e.message);
         }
         
+        if (!lesson.grammar && !lesson.vocabulary && !lesson.practice && !lesson.quiz && !lesson.trainer && !lesson.dictation) {
+            throw new Error('Не удалось загрузить данные урока');
+        }
+        
+        console.log('✅ Урок загружен:', lesson.title);
         currentLesson = lesson;
         renderLesson(lesson);
         saveState();
+        
     } catch(e) {
         console.error('Ошибка загрузки урока:', e);
         document.getElementById('content').innerHTML = `
@@ -216,53 +132,19 @@ async function loadLesson(lessonId) {
     }
 }
 
-// ========== ЗАГРУЗКА ДАННЫХ ДЛЯ РЕЖИМА ==========
-async function loadModeData(mode, lessonId) {
-    if (lessonDataCache[mode]) {
-        console.log(`📦 Данные для режима ${mode} взяты из кеша`);
-        return lessonDataCache[mode];
-    }
-    
-    const paddedId = String(lessonId).padStart(2, '0');
-    const paths = {
-        vocabulary: `docs/course/${currentLevel}/vocabulary/vocab_${paddedId}.json`,
-        practice: `docs/course/${currentLevel}/practice/practice_${paddedId}.json`,
-        quiz: `docs/course/${currentLevel}/quiz/quiz_${paddedId}.json`,
-        trainer: `docs/course/${currentLevel}/trainer/trainer_${paddedId}.json`,
-        dictation: `docs/course/${currentLevel}/dictation/dictation_${paddedId}.json`
-    };
-    
-    const path = paths[mode];
-    if (!path) return null;
-    
-    try {
-        const response = await fetch(path);
-        if (!response.ok) throw new Error('Файл не найден');
-        const data = await response.json();
-        lessonDataCache[mode] = data;
-        console.log(`✅ Данные для режима ${mode} загружены`);
-        return data;
-    } catch(e) {
-        console.log(`ℹ️ Данные для режима ${mode} не найдены`);
-        return null;
-    }
-}
-
-// ========== ОБНОВЛЕНИЕ СЧЁТЧИКА (ГАРАНТИРОВАННО РАБОЧАЯ ВЕРСИЯ) ==========
+// ========== ОБНОВЛЕНИЕ СЧЁТЧИКА ==========
 function updateCounter() {
     const el = document.getElementById('counter');
     if (!el) return;
     
     const activeMode = currentMode || 'grammar';
     
-    // Грамматика — скрываем счетчик
     if (activeMode === 'grammar') {
         el.textContent = '';
         el.style.display = 'none';
         return;
     }
     
-    // Показываем счетчик для остальных режимов
     el.style.display = 'inline';
     
     if (!currentLesson) {
@@ -277,139 +159,47 @@ function updateCounter() {
     let count = 0;
     let label = '';
     
-    // Получаем данные из кеша (самый надёжный источник)
-    let dataSource = null;
-    const lessonId = currentLesson.id;
-    const paddedId = String(lessonId).padStart(2, '0');
-    
     switch(activeMode) {
         case 'vocabulary':
-            // Сначала кеш, потом currentLesson, потом загрузка
-            if (lessonDataCache.vocabulary) {
-                dataSource = lessonDataCache.vocabulary;
-            } else if (currentLesson.vocabulary) {
-                dataSource = currentLesson.vocabulary;
-            } else {
-                // Пытаемся загрузить синхронно (но это асинхронно, поэтому используем fallback)
-                fetch(`docs/course/${currentLevel}/vocabulary/vocab_${paddedId}.json`)
-                    .then(r => r.ok ? r.json() : null)
-                    .then(data => {
-                        if (data) {
-                            lessonDataCache.vocabulary = data;
-                            currentLesson.vocabulary = data;
-                            updateCounter();
-                        }
-                    })
-                    .catch(() => {});
-                dataSource = [];
-            }
-            count = dataSource?.length || 0;
+            count = currentLesson.vocabulary?.length || 0;
             label = 'слов';
             break;
-            
         case 'practice':
-            if (lessonDataCache.practice) {
-                dataSource = lessonDataCache.practice;
-            } else if (currentLesson.practice) {
-                dataSource = currentLesson.practice;
-            } else {
-                fetch(`docs/course/${currentLevel}/practice/practice_${paddedId}.json`)
-                    .then(r => r.ok ? r.json() : null)
-                    .then(data => {
-                        if (data) {
-                            lessonDataCache.practice = data;
-                            currentLesson.practice = data;
-                            updateCounter();
-                        }
-                    })
-                    .catch(() => {});
-                dataSource = [];
-            }
-            count = dataSource?.length || 0;
+            count = currentLesson.practice?.length || 0;
             label = 'упражнений';
             break;
-            
         case 'quiz':
-            if (lessonDataCache.quiz) {
-                dataSource = lessonDataCache.quiz?.words || lessonDataCache.quiz;
-            } else if (currentLesson.quiz) {
-                dataSource = currentLesson.quiz?.words || currentLesson.quiz;
+            const quizData = currentLesson.quiz;
+            if (quizData && quizData.words) {
+                count = quizData.words.length;
+            } else if (Array.isArray(quizData)) {
+                count = quizData.length;
             } else {
-                fetch(`docs/course/${currentLevel}/quiz/quiz_${paddedId}.json`)
-                    .then(r => r.ok ? r.json() : null)
-                    .then(data => {
-                        if (data) {
-                            lessonDataCache.quiz = data;
-                            currentLesson.quiz = data;
-                            updateCounter();
-                        }
-                    })
-                    .catch(() => {});
-                dataSource = [];
+                count = 0;
             }
-            // Если dataSource — объект с полем words, берём words
-            if (dataSource && dataSource.words) {
-                dataSource = dataSource.words;
-            }
-            count = dataSource?.length || 0;
             label = 'слов';
             break;
-            
         case 'trainer':
-            if (lessonDataCache.trainer) {
-                dataSource = lessonDataCache.trainer?.templates || lessonDataCache.trainer;
-            } else if (currentLesson.trainer) {
-                dataSource = currentLesson.trainer?.templates || currentLesson.trainer;
+            const trainerData = currentLesson.trainer;
+            if (trainerData && trainerData.templates) {
+                count = trainerData.templates.length;
+            } else if (Array.isArray(trainerData)) {
+                count = trainerData.length;
             } else {
-                fetch(`docs/course/${currentLevel}/trainer/trainer_${paddedId}.json`)
-                    .then(r => r.ok ? r.json() : null)
-                    .then(data => {
-                        if (data) {
-                            lessonDataCache.trainer = data;
-                            currentLesson.trainer = data;
-                            updateCounter();
-                        }
-                    })
-                    .catch(() => {});
-                dataSource = [];
+                count = 0;
             }
-            // Если dataSource — объект с полем templates, берём templates
-            if (dataSource && dataSource.templates) {
-                dataSource = dataSource.templates;
-            }
-            count = dataSource?.length || 0;
             label = 'фраз';
             break;
-            
         case 'dictation':
-            if (lessonDataCache.dictation) {
-                dataSource = lessonDataCache.dictation;
-            } else if (currentLesson.dictation) {
-                dataSource = currentLesson.dictation;
-            } else {
-                fetch(`docs/course/${currentLevel}/dictation/dictation_${paddedId}.json`)
-                    .then(r => r.ok ? r.json() : null)
-                    .then(data => {
-                        if (data) {
-                            lessonDataCache.dictation = data;
-                            currentLesson.dictation = data;
-                            updateCounter();
-                        }
-                    })
-                    .catch(() => {});
-                dataSource = [];
-            }
-            count = dataSource?.length || 0;
+            count = currentLesson.dictation?.length || 0;
             label = 'предложений';
             break;
-            
         default:
-            dataSource = currentLesson.vocabulary || [];
-            count = dataSource.length || 0;
-            label = 'слов';
+            count = 0;
+            label = '';
     }
     
-    el.textContent = `${count} ${label}`;
+    el.textContent = count > 0 ? `${count} ${label}` : '';
 }
 
 // ========== ОТОБРАЖЕНИЕ УРОВНЕЙ ==========
@@ -474,7 +264,6 @@ function renderLesson(lesson) {
             currentMode = mode;
             saveState();
             renderMode(mode, lesson);
-            // Обновляем счетчик после переключения
             setTimeout(updateCounter, 100);
         };
     });
@@ -537,7 +326,7 @@ function renderMode(mode, lesson) {
             if (typeof renderQuiz === 'function') {
                 renderQuiz(container, lesson);
             } else {
-                container.innerHTML = '<div>Режим "Тренировка" загружается...</div>';
+                container.innerHTML = '<div>Режим "Тест" загружается...</div>';
             }
             break;
         case 'trainer':
@@ -558,7 +347,6 @@ function renderMode(mode, lesson) {
             container.innerHTML = '<div>Режим не найден</div>';
     }
     
-    // Обновляем счетчик после загрузки режима
     setTimeout(updateCounter, 200);
 }
 
@@ -629,7 +417,6 @@ function initApp() {
         loadLevel('A1');
     }
     
-    // Принудительное обновление счетчика через 1 секунду
     setTimeout(updateCounter, 1000);
     setTimeout(updateCounter, 2000);
     

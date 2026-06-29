@@ -62,7 +62,10 @@
     {"de": "schön", "ru": "красивый"},
     {"de": "neu", "ru": "новый"},
     {"de": "alt", "ru": "старый"},
-    {"de": "jung", "ru": "молодой"}
+    {"de": "jung", "ru": "молодой"},
+    {"de": "rund", "ru": "круглый"},
+    {"de": "rot", "ru": "красный"},
+    {"de": "interessant", "ru": "интересный"}
   ],
   "practice": [
     {"type": "transform", "question": "Вставьте артикль:", "sentence": "___ Mann ist groß.", "answer": "der", "hint": "Mann — мужской род → der"},
@@ -74,17 +77,17 @@
     {"type": "transform", "question": "Вставьте артикль:", "sentence": "___ Tisch ist rund.", "answer": "der", "hint": "Tisch — мужской род → der"},
     {"type": "transform", "question": "Вставьте артикль:", "sentence": "___ Blume ist rot.", "answer": "die", "hint": "Blume — женский род → die"},
     {"type": "transform", "question": "Вставьте артикль:", "sentence": "___ Buch ist interessant.", "answer": "das", "hint": "Buch — средний род → das"},
-    {"type": "transform", "question": "Вставьте артикль:", "sentence": "___ Hund ist treu.", "answer": "der", "hint": "Hund — мужской род → der"},
-    {"type": "transform", "question": "Вставьте артикль:", "sentence": "___ Katze ist süß.", "answer": "die", "hint": "Katze — женский род → die"},
-    {"type": "transform", "question": "Вставьте артикль:", "sentence": "___ Auto ist schnell.", "answer": "das", "hint": "Auto — средний род → das"},
-    {"type": "transform", "question": "Вставьте артикль:", "sentence": "___ Apfel ist grün.", "answer": "der", "hint": "Apfel — мужской род → der"},
-    {"type": "transform", "question": "Вставьте артикль:", "sentence": "___ Sonne scheint.", "answer": "die", "hint": "Sonne — женский род → die"},
+    {"type": "transform", "question": "Вставьте артикль:", "sentence": "___ Hund ist groß.", "answer": "der", "hint": "Hund — мужской род → der"},
+    {"type": "transform", "question": "Вставьте артикль:", "sentence": "___ Katze ist klein.", "answer": "die", "hint": "Katze — женский род → die"},
+    {"type": "transform", "question": "Вставьте артикль:", "sentence": "___ Auto ist neu.", "answer": "das", "hint": "Auto — средний род → das"},
+    {"type": "transform", "question": "Вставьте артикль:", "sentence": "___ Apfel ist rot.", "answer": "der", "hint": "Apfel — мужской род → der"},
+    {"type": "transform", "question": "Вставьте артикль:", "sentence": "___ Sonne ist groß.", "answer": "die", "hint": "Sonne — женский род → die"},
     {"type": "transform", "question": "Вставьте артикль:", "sentence": "___ Wasser ist kalt.", "answer": "das", "hint": "Wasser — средний род → das"},
-    {"type": "transform", "question": "Вставьте артикль:", "sentence": "___ Baum ist hoch.", "answer": "der", "hint": "Baum — мужской род → der"},
-    {"type": "transform", "question": "Вставьте артикль:", "sentence": "___ Lampe ist hell.", "answer": "die", "hint": "Lampe — женский род → die"},
-    {"type": "transform", "question": "Вставьте артикль:", "sentence": "___ Fenster ist offen.", "answer": "das", "hint": "Fenster — средний род → das"},
-    {"type": "transform", "question": "Вставьте артикль:", "sentence": "___ Stuhl ist bequem.", "answer": "der", "hint": "Stuhl — мужской род → der"},
-    {"type": "transform", "question": "Вставьте артикль:", "sentence": "___ Tür ist zu.", "answer": "die", "hint": "Tür — женский род → die"}
+    {"type": "transform", "question": "Вставьте артикль:", "sentence": "___ Baum ist groß.", "answer": "der", "hint": "Baum — мужской род → der"},
+    {"type": "transform", "question": "Вставьте артикль:", "sentence": "___ Lampe ist neu.", "answer": "die", "hint": "Lampe — женский род → die"},
+    {"type": "transform", "question": "Вставьте артикль:", "sentence": "___ Fenster ist groß.", "answer": "das", "hint": "Fenster — средний род → das"},
+    {"type": "transform", "question": "Вставьте артикль:", "sentence": "___ Stuhl ist alt.", "answer": "der", "hint": "Stuhl — мужской род → der"},
+    {"type": "transform", "question": "Вставьте артикль:", "sentence": "___ Tür ist neu.", "answer": "die", "hint": "Tür — женский род → die"}
   ],
   "quiz": [
     {"de": "der Mann", "ru": "мужчина"},
@@ -149,7 +152,10 @@
     {"de": "schön", "ru": "красивый"},
     {"de": "neu", "ru": "новый"},
     {"de": "alt", "ru": "старый"},
-    {"de": "jung", "ru": "молодой"}
+    {"de": "jung", "ru": "молодой"},
+    {"de": "rund", "ru": "круглый"},
+    {"de": "rot", "ru": "красный"},
+    {"de": "interessant", "ru": "интересный"}
   ],
   "trainer": [
     {"de": "Der Mann ist groß.", "ru": "Мужчина высокий."},
@@ -161,17 +167,17 @@
     {"de": "Der Tisch ist rund.", "ru": "Стол круглый."},
     {"de": "Die Blume ist rot.", "ru": "Цветок красный."},
     {"de": "Das Buch ist interessant.", "ru": "Книга интересная."},
-    {"de": "Der Hund ist treu.", "ru": "Собака верная."},
-    {"de": "Die Katze ist süß.", "ru": "Кошка милая."},
-    {"de": "Das Auto ist schnell.", "ru": "Машина быстрая."},
-    {"de": "Der Apfel ist grün.", "ru": "Яблоко зелёное."},
-    {"de": "Die Sonne scheint.", "ru": "Солнце светит."},
+    {"de": "Der Hund ist groß.", "ru": "Собака большая."},
+    {"de": "Die Katze ist klein.", "ru": "Кошка маленькая."},
+    {"de": "Das Auto ist neu.", "ru": "Машина новая."},
+    {"de": "Der Apfel ist rot.", "ru": "Яблоко красное."},
+    {"de": "Die Sonne ist groß.", "ru": "Солнце большое."},
     {"de": "Das Wasser ist kalt.", "ru": "Вода холодная."},
-    {"de": "Der Baum ist hoch.", "ru": "Дерево высокое."},
-    {"de": "Die Lampe ist hell.", "ru": "Лампа яркая."},
-    {"de": "Das Fenster ist offen.", "ru": "Окно открыто."},
-    {"de": "Der Stuhl ist bequem.", "ru": "Стул удобный."},
-    {"de": "Die Tür ist zu.", "ru": "Дверь закрыта."}
+    {"de": "Der Baum ist groß.", "ru": "Дерево высокое."},
+    {"de": "Die Lampe ist neu.", "ru": "Лампа новая."},
+    {"de": "Das Fenster ist groß.", "ru": "Окно большое."},
+    {"de": "Der Stuhl ist alt.", "ru": "Стул старый."},
+    {"de": "Die Tür ist neu.", "ru": "Дверь новая."}
   ],
   "dictation": [
     {"de": "Der Mann ist groß.", "ru": "Мужчина высокий."},
@@ -181,8 +187,8 @@
     {"de": "Der Tisch ist rund.", "ru": "Стол круглый."},
     {"de": "Die Blume ist rot.", "ru": "Цветок красный."},
     {"de": "Das Buch ist interessant.", "ru": "Книга интересная."},
-    {"de": "Der Hund ist treu.", "ru": "Собака верная."},
-    {"de": "Die Katze ist süß.", "ru": "Кошка милая."},
-    {"de": "Das Auto ist schnell.", "ru": "Машина быстрая."}
+    {"de": "Der Hund ist groß.", "ru": "Собака большая."},
+    {"de": "Die Katze ist klein.", "ru": "Кошка маленькая."},
+    {"de": "Das Auto ist neu.", "ru": "Машина новая."}
   ]
 }

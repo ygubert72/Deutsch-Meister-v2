@@ -62,10 +62,7 @@
     {"de": "schön", "ru": "красивый"},
     {"de": "neu", "ru": "новый"},
     {"de": "alt", "ru": "старый"},
-    {"de": "jung", "ru": "молодой"},
-    {"de": "rund", "ru": "круглый"},
-    {"de": "rot", "ru": "красный"},
-    {"de": "interessant", "ru": "интересный"}
+    {"de": "jung", "ru": "молодой"}
   ],
   "practice": [
     {"type": "transform", "question": "Вставьте артикль:", "sentence": "___ Mann ist groß.", "answer": "der", "hint": "Mann — мужской род → der"},
@@ -152,10 +149,7 @@
     {"de": "schön", "ru": "красивый"},
     {"de": "neu", "ru": "новый"},
     {"de": "alt", "ru": "старый"},
-    {"de": "jung", "ru": "молодой"},
-    {"de": "rund", "ru": "круглый"},
-    {"de": "rot", "ru": "красный"},
-    {"de": "interessant", "ru": "интересный"}
+    {"de": "jung", "ru": "молодой"}
   ],
   "trainer": [
     {"de": "Der Mann ist groß.", "ru": "Мужчина высокий."},

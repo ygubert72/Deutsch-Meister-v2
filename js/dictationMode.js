@@ -1,54 +1,23 @@
 // ====================================================================
-// dictationMode.js — Диктант (правописание) с подсказками и сохранением прогресса
+// dictationMode.js — Диктант (правописание)
 // ====================================================================
 
 let dictationCurrentLessonId = null;
 let dictationCompleted = {};
 
-// ===== НОВАЯ ФУНКЦИЯ ДЛЯ ЗАГРУЗКИ ДИКТАНТА =====
-async function loadDictationData(lesson) {
-    // Если диктант уже есть — возвращаем
-    if (lesson.dictation && lesson.dictation.length > 0) {
-        return lesson.dictation;
-    }
-    
-    // Пробуем загрузить из отдельного файла
-    if (lesson.id) {
-        try {
-            const paddedId = String(lesson.id).padStart(2, '0');
-            const response = await fetch(`docs/course/${currentLevel}/dictation/dictation_${paddedId}.json`);
-            if (response.ok) {
-                const data = await response.json();
-                lesson.dictation = data;
-                console.log(`✅ Диктант урока ${lesson.id} загружен из отдельного файла`);
-                return data;
-            }
-        } catch(e) {
-            console.log(`ℹ️ Отдельный файл диктанта для урока ${lesson.id} не найден`);
-        }
-    }
-    
-    return [];
-}
-
-async function renderDictation(container, lesson) {
+function renderDictation(container, lesson) {
     const lessonId = lesson.id || 1;
     dictationCurrentLessonId = lessonId;
     
     loadDictationProgress(lessonId);
     
-    // Показываем загрузку
-    container.innerHTML = '<div style="text-align: center; padding: 40px; color: #999;">⏳ Загрузка диктанта...</div>';
-    
-    // Загружаем диктант
-    let sentences = await loadDictationData(lesson);
+    // Берем предложения из загруженного урока
+    let sentences = lesson.dictation || [];
     
     if (!sentences || sentences.length === 0) {
         container.innerHTML = '<div style="text-align: center; padding: 40px; color: #999;">📭 Нет предложений для диктанта</div>';
         return;
     }
-
-    // ===== ВСЁ, ЧТО НИЖЕ — ОРИГИНАЛЬНЫЙ КОД БЕЗ ИЗМЕНЕНИЙ =====
 
     let completedCount = Object.values(dictationCompleted).filter(v => v === true).length;
     const total = sentences.length;
@@ -103,7 +72,6 @@ async function renderDictation(container, lesson) {
                         ПРОВЕРИТЬ
                     </button>
                     
-                    <!-- КНОПКА ПОДСКАЗКА - СВЕТЛО-ГОЛУБАЯ -->
                     <button class="hint-btn" data-dict-index="${index}" 
                             ${isCompleted ? 'disabled style="opacity: 0.5; cursor: not-allowed;"' : ''}
                             style="padding: 8px 20px; background: ${isCompleted ? '#E0E0E0' : '#E8F0FE'}; color: ${isCompleted ? '#999' : '#333'}; border: ${isCompleted ? 'none' : '2px solid #D0D0D0'}; border-radius: 8px; cursor: ${isCompleted ? 'not-allowed' : 'pointer'}; font-weight: bold; white-space: nowrap;">

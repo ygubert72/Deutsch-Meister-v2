@@ -1,34 +1,10 @@
 // ====================================================================
-// vocabularyMode.js — Лексика (с поддержкой раздельной структуры)
+// vocabularyMode.js — Словарь (список слов с озвучкой)
 // ====================================================================
 
-async function renderVocabulary(container, lesson) {
-    // Показываем загрузку
-    container.innerHTML = '<div style="text-align: center; padding: 40px; color: #999;">⏳ Загрузка слов...</div>';
+function renderVocabulary(container, lesson) {
+    const vocab = lesson.vocabulary || [];
     
-    // Пытаемся получить лексику из кеша или загрузить отдельно
-    let vocab = lesson.vocabulary || [];
-    
-    // Если лексика пустая — пробуем загрузить из отдельного файла
-    if (vocab.length === 0 && lesson.id) {
-        try {
-            const paddedId = String(lesson.id).padStart(2, '0');
-            const response = await fetch(`docs/course/${currentLevel}/vocabulary/vocab_${paddedId}.json`);
-            if (response.ok) {
-                const data = await response.json();
-                vocab = data;
-                // Сохраняем в lesson, чтобы при повторном открытии не грузить заново
-                lesson.vocabulary = vocab;
-                console.log(`✅ Лексика урока ${lesson.id} загружена из отдельного файла`);
-            } else {
-                console.log(`ℹ️ Отдельный файл лексики для урока ${lesson.id} не найден`);
-            }
-        } catch(e) {
-            console.log(`ℹ️ Ошибка загрузки лексики для урока ${lesson.id}:`, e.message);
-        }
-    }
-    
-    // Если всё ещё пусто — показываем сообщение
     if (!vocab || vocab.length === 0) {
         container.innerHTML = '<div style="text-align: center; padding: 40px; color: #999;">📭 Слова не загружены</div>';
         return;

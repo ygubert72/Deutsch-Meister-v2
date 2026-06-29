@@ -32,19 +32,16 @@
     {"de": "das Brot", "ru": "хлеб"},
     {"de": "der Garten", "ru": "сад"},
     {"de": "die Küche", "ru": "кухня"},
-    {"de": "das Zimmer", "ru": "комната"},
     {"de": "der Ball", "ru": "мяч"},
     {"de": "die Uhr", "ru": "часы"},
     {"de": "das Spielzeug", "ru": "игрушка"},
     {"de": "der Lehrer", "ru": "учитель"},
     {"de": "die Lehrerin", "ru": "учительница"},
-    {"de": "das Kind", "ru": "ребёнок"},
     {"de": "der Freund", "ru": "друг"},
     {"de": "die Freundin", "ru": "подруга"},
     {"de": "das Mädchen", "ru": "девочка"},
     {"de": "der Junge", "ru": "мальчик"},
     {"de": "die Schule", "ru": "школа"},
-    {"de": "das Klassenzimmer", "ru": "классная комната"},
     {"de": "der Bleistift", "ru": "карандаш"},
     {"de": "die Tafel", "ru": "доска"},
     {"de": "das Heft", "ru": "тетрадь"},
@@ -53,18 +50,20 @@
     {"de": "das Lineal", "ru": "линейка"},
     {"de": "der Kuli", "ru": "ручка"},
     {"de": "die Mappe", "ru": "папка"},
-    {"de": "das Buch", "ru": "книга"},
     {"de": "der Papierkorb", "ru": "корзина для бумаг"},
-    {"de": "die Lampe", "ru": "лампа"},
-    {"de": "das Fenster", "ru": "окно"},
     {"de": "der Computer", "ru": "компьютер"},
     {"de": "die Tastatur", "ru": "клавиатура"},
     {"de": "das Handy", "ru": "мобильный телефон"},
     {"de": "der Fernseher", "ru": "телевизор"},
     {"de": "die Fernbedienung", "ru": "пульт"},
-    {"de": "das Radio", "ru": "радио"}
+    {"de": "das Radio", "ru": "радио"},
+    {"de": "groß", "ru": "большой"},
+    {"de": "klein", "ru": "маленький"},
+    {"de": "schön", "ru": "красивый"},
+    {"de": "neu", "ru": "новый"},
+    {"de": "alt", "ru": "старый"},
+    {"de": "jung", "ru": "молодой"}
   ],
-
   "practice": [
     {"type": "transform", "question": "Вставьте артикль:", "sentence": "___ Mann ist groß.", "answer": "der", "hint": "Mann — мужской род → der"},
     {"type": "transform", "question": "Вставьте артикль:", "sentence": "___ Frau ist schön.", "answer": "die", "hint": "Frau — женский род → die"},
@@ -82,12 +81,11 @@
     {"type": "transform", "question": "Вставьте артикль:", "sentence": "___ Sonne scheint.", "answer": "die", "hint": "Sonne — женский род → die"},
     {"type": "transform", "question": "Вставьте артикль:", "sentence": "___ Wasser ist kalt.", "answer": "das", "hint": "Wasser — средний род → das"},
     {"type": "transform", "question": "Вставьте артикль:", "sentence": "___ Baum ist hoch.", "answer": "der", "hint": "Baum — мужской род → der"},
-    {"type": "transform", "question": "Переведите на немецкий:", "sentence": "мужчина", "answer": "der Mann", "hint": "мужчина → der Mann"},
-    {"type": "transform", "question": "Переведите на немецкий:", "sentence": "женщина", "answer": "die Frau", "hint": "женщина → die Frau"},
-    {"type": "transform", "question": "Переведите на немецкий:", "sentence": "ребёнок", "answer": "das Kind", "hint": "ребёнок → das Kind"},
-    {"type": "transform", "question": "Переведите на немецкий:", "sentence": "дом", "answer": "das Haus", "hint": "дом → das Haus"}
+    {"type": "transform", "question": "Вставьте артикль:", "sentence": "___ Lampe ist hell.", "answer": "die", "hint": "Lampe — женский род → die"},
+    {"type": "transform", "question": "Вставьте артикль:", "sentence": "___ Fenster ist offen.", "answer": "das", "hint": "Fenster — средний род → das"},
+    {"type": "transform", "question": "Вставьте артикль:", "sentence": "___ Stuhl ist bequem.", "answer": "der", "hint": "Stuhl — мужской род → der"},
+    {"type": "transform", "question": "Вставьте артикль:", "sentence": "___ Tür ist zu.", "answer": "die", "hint": "Tür — женский род → die"}
   ],
-
   "quiz": [
     {"de": "der Mann", "ru": "мужчина"},
     {"de": "die Frau", "ru": "женщина"},
@@ -131,7 +129,6 @@
     {"de": "das Mädchen", "ru": "девочка"},
     {"de": "der Junge", "ru": "мальчик"},
     {"de": "die Schule", "ru": "школа"},
-    {"de": "das Klassenzimmer", "ru": "классная комната"},
     {"de": "der Bleistift", "ru": "карандаш"},
     {"de": "die Tafel", "ru": "доска"},
     {"de": "das Heft", "ru": "тетрадь"},
@@ -146,9 +143,14 @@
     {"de": "das Handy", "ru": "мобильный телефон"},
     {"de": "der Fernseher", "ru": "телевизор"},
     {"de": "die Fernbedienung", "ru": "пульт"},
-    {"de": "das Radio", "ru": "радио"}
+    {"de": "das Radio", "ru": "радио"},
+    {"de": "groß", "ru": "большой"},
+    {"de": "klein", "ru": "маленький"},
+    {"de": "schön", "ru": "красивый"},
+    {"de": "neu", "ru": "новый"},
+    {"de": "alt", "ru": "старый"},
+    {"de": "jung", "ru": "молодой"}
   ],
-
   "trainer": [
     {"de": "Der Mann ist groß.", "ru": "Мужчина высокий."},
     {"de": "Die Frau ist schön.", "ru": "Женщина красивая."},
@@ -171,7 +173,6 @@
     {"de": "Der Stuhl ist bequem.", "ru": "Стул удобный."},
     {"de": "Die Tür ist zu.", "ru": "Дверь закрыта."}
   ],
-
   "dictation": [
     {"de": "Der Mann ist groß.", "ru": "Мужчина высокий."},
     {"de": "Die Frau ist schön.", "ru": "Женщина красивая."},

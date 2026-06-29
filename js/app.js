@@ -80,7 +80,7 @@ async function loadLesson(lessonId) {
             const grammarResponse = await fetch(grammarFile);
             if (grammarResponse.ok) {
                 const grammarData = await grammarResponse.json();
-                lesson.grammar = grammarData.grammar || '';
+                lesson.grammar = grammarData.theory || grammarData.grammar || '';
                 lesson.examples = grammarData.examples || [];
                 console.log('✅ Грамматика загружена');
             } else {

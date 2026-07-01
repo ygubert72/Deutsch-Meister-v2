@@ -73,7 +73,7 @@ async function loadLesson(lessonId) {
             level: currentLevel
         };
         
-        // 1. Загружаем ГРАММАТИКУ из папки grammar/
+        // 1. Загружаем ГРАММАТИКУ
         try {
             const grammarFile = `docs/${currentLevel}/grammar/${lessonInfo.file}`;
             console.log('📂 Загрузка грамматики:', grammarFile);
@@ -90,7 +90,7 @@ async function loadLesson(lessonId) {
             console.log('ℹ️ Ошибка загрузки грамматики:', e.message);
         }
         
-        // 2. Загружаем ВСЁ ОСТАЛЬНОЕ из папки lessons/
+        // 2. Загружаем ВСЁ ОСТАЛЬНОЕ
         try {
             const lessonFile = `docs/${currentLevel}/lessons/lesson_${String(lessonId).padStart(2, '0')}.json`;
             console.log('📂 Загрузка урока:', lessonFile);

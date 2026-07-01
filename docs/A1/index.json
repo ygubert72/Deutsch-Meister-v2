@@ -4,68 +4,78 @@
   "lessons": [
     {
       "id": 1,
-      "title": "Определённые артикли: der, die, das",
-      "file": "01_artikel.json"
+      "title": "Алфавит, произношение и приветствия",
+      "file": "01_grammar.json"
     },
     {
       "id": 2,
-      "title": "Неопределённые артикли: ein, eine. Отрицание: kein, keine",
-      "file": "02_ein_kein.json"
+      "title": "Числительные, страны и языки",
+      "file": "02_grammar.json"
     },
     {
       "id": 3,
-      "title": "Личные местоимения и глагол sein (быть, находиться)",
-      "file": "03_pronomen_sein.json"
+      "title": "Время, дни недели и месяцы",
+      "file": "03_grammar.json"
     },
     {
       "id": 4,
-      "title": "Глагол haben (иметь) и винительный падеж (Akkusativ)",
-      "file": "04_haben_akkusativ.json"
+      "title": "Семья и притяжательные местоимения",
+      "file": "04_grammar.json"
     },
     {
       "id": 5,
-      "title": "Правильные глаголы в настоящем времени (Präsens)",
-      "file": "05_regelmaessige_verben.json"
+      "title": "Хобби, свободное время и глаголы",
+      "file": "05_grammar.json"
     },
     {
       "id": 6,
-      "title": "Сильные глаголы с изменением корневой гласной e → i / ie",
-      "file": "06_e_zu_i_ie.json"
+      "title": "Описание внешности и характера",
+      "file": "06_grammar.json"
     },
     {
       "id": 7,
-      "title": "Сильные глаголы с изменением корневой гласной a → ä",
-      "file": "07_a_zu_ae.json"
+      "title": "Комнаты и мебель",
+      "file": "07_grammar.json"
     },
     {
       "id": 8,
-      "title": "Порядок слов в предложении. Глагол на 2-м месте",
-      "file": "08_word_order.json"
+      "title": "Предлоги места (Wo? — Dativ)",
+      "file": "08_grammar.json"
     },
     {
       "id": 9,
-      "title": "Вопросительные предложения. W-Fragen",
-      "file": "09_w_fragen.json"
+      "title": "Предлоги направления (Wohin? — Akkusativ)",
+      "file": "09_grammar.json"
     },
     {
       "id": 10,
-      "title": "Предлоги с Dativ (aus, bei, mit, nach, von, zu, seit)",
-      "file": "10_dativ_prepositions.json"
+      "title": "Продукты питания и напитки",
+      "file": "10_grammar.json"
     },
     {
       "id": 11,
-      "title": "Предлоги с Akkusativ (durch, für, gegen, ohne, um, bis, entlang)",
-      "file": "11_akkusativ_prepositions.json"
+      "title": "В кафе и ресторане",
+      "file": "11_grammar.json"
     },
     {
       "id": 12,
-      "title": "Perfekt — прошедшее разговорное время",
-      "file": "12_perfekt.json"
+      "title": "Распорядок дня и отделяемые приставки",
+      "file": "12_grammar.json"
     },
     {
       "id": 13,
-      "title": "Модальные глаголы: können, müssen, wollen, möchten, dürfen, sollen",
-      "file": "13_modalverben.json"
+      "title": "Профессии и обязанности",
+      "file": "13_grammar.json"
+    },
+    {
+      "id": 14,
+      "title": "Модальные глаголы müssen, können, wollen",
+      "file": "14_grammar.json"
+    },
+    {
+      "id": 15,
+      "title": "Письменная коммуникация: письма и анкеты",
+      "file": "15_grammar.json"
     }
   ]
 }

@@ -65,13 +65,13 @@
     {"type": "transform", "question": "Вставьте правильную форму глагола möchten:", "sentence": "Ich ___ Fußball spielen.", "answer": "möchte", "hint": "Я хотел бы поиграть в футбол."},
     {"type": "transform", "question": "Вставьте правильную форму глагола möchten:", "sentence": "___ du Musik hören?", "answer": "Möchtest", "hint": "Ты хотел бы послушать музыку?"},
     {"type": "transform", "question": "Сделайте вопрос с möchten:", "sentence": "___ ihr ins Kino gehen?", "answer": "Möchtet", "hint": "Вы хотели бы пойти в кино?"},
-    {"type": "transform", "question": "Переведите на немецкий:", "sentence": "Я люблю играть в футбол.", "answer": "ich spiele gern fußball", "hint": "Я люблю играть в футбол."},
-    {"type": "transform", "question": "Переведите на немецкий:", "sentence": "Ты любишь слушать музыку.", "answer": "du hörst gerne musik", "hint": "Ты любишь слушать музыку."},
-    {"type": "transform", "question": "Переведите на немецкий:", "sentence": "Он читает книгу.", "answer": "er liest ein buch", "hint": "Он читает книгу."},
-    {"type": "transform", "question": "Переведите на немецкий:", "sentence": "Я хотел бы пойти в кино.", "answer": "ich möchte ins kino gehen", "hint": "Я хотел бы пойти в кино."},
-    {"type": "transform", "question": "Переведите на немецкий:", "sentence": "Какое у тебя хобби?", "answer": "was ist dein hobby", "hint": "Какое у тебя хобби?"},
-    {"type": "transform", "question": "Переведите на немецкий:", "sentence": "Моё хобби — плавание.", "answer": "mein hobby ist schwimmen", "hint": "Моё хобби — плавание."},
-    {"type": "transform", "question": "Переведите на немецкий:", "sentence": "Мы хотели бы путешествовать.", "answer": "wir möchten reisen", "hint": "Мы хотели бы путешествовать."}
+    {"type": "transform", "question": "Вставьте правильную форму глагола singen:", "sentence": "Ich ___ ein Lied.", "answer": "singe", "hint": "Я пою песню."},
+    {"type": "transform", "question": "Вставьте правильную форму глагола reisen:", "sentence": "Wir ___ gerne.", "answer": "reisen", "hint": "Мы любим путешествовать."},
+    {"type": "transform", "question": "Вставьте правильное наречие частотности:", "sentence": "Ich ___ spiele Fußball. (часто)", "answer": "oft", "hint": "Я часто играю в футбол."},
+    {"type": "transform", "question": "Вставьте правильное наречие частотности:", "sentence": "Sie ___ sieht fern. (иногда)", "answer": "manchmal", "hint": "Она иногда смотрит телевизор."},
+    {"type": "transform", "question": "Вставьте правильное наречие частотности:", "sentence": "Ich ___ höre laute Musik. (никогда)", "answer": "nie", "hint": "Я никогда не слушаю громкую музыку."},
+    {"type": "transform", "question": "Сделайте предложение с möchten:", "sentence": "Ich ___ ein Geschenk kaufen.", "answer": "möchte", "hint": "Я хотел бы купить подарок."},
+    {"type": "transform", "question": "Сделайте вопрос с möchten:", "sentence": "___ du mitkommen?", "answer": "Möchtest", "hint": "Ты хотел бы пойти с нами?"}
   ],
   "quiz": [
     {"de": "das Hobby", "ru": "хобби"},

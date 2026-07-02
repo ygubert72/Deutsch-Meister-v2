@@ -66,9 +66,9 @@
     {"type": "transform", "question": "Вставьте притяжательное местоимение:", "sentence": "Das ist ___ Schwester. (твоя)", "answer": "deine", "hint": "Это твоя сестра."},
     {"type": "transform", "question": "Вставьте притяжательное местоимение:", "sentence": "Das ist ___ Kind. (его)", "answer": "sein", "hint": "Это его ребёнок."},
     {"type": "transform", "question": "Вставьте притяжательное местоимение:", "sentence": "Das ist ___ Mutter. (её)", "answer": "ihre", "hint": "Это её мать."},
-    {"type": "transform", "question": "Сделайте вопрос с haben:", "sentence": "___ du einen Bruder?", "answer": "Hast", "hint": "У тебя есть брат?"},
-    {"type": "transform", "question": "Сделайте вопрос с heißen:", "sentence": "Wie ___ du?", "answer": "heißt", "hint": "Как тебя зовут?"},
-    {"type": "transform", "question": "Сделайте вопрос с haben:", "sentence": "___ Sie Kinder?", "answer": "Haben", "hint": "У Вас есть дети?"},
+    {"type": "transform", "question": "Составьте вопрос с haben:", "sentence": "___ du einen Bruder?", "answer": "Hast", "hint": "У тебя есть брат?"},
+    {"type": "transform", "question": "Составьте вопрос с heißen:", "sentence": "Wie ___ du?", "answer": "heißt", "hint": "Как тебя зовут?"},
+    {"type": "transform", "question": "Составьте вопрос с haben:", "sentence": "___ Sie Kinder?", "answer": "Haben", "hint": "У Вас есть дети?"},
     {"type": "transform", "question": "Переделайте в отрицание (kein/keine):", "sentence": "Ich habe einen Bruder.", "answer": "Ich habe keinen Bruder", "hint": "У меня нет брата."},
     {"type": "transform", "question": "Переделайте в отрицание (kein/keine):", "sentence": "Ich habe eine Schwester.", "answer": "Ich habe keine Schwester", "hint": "У меня нет сестры."}
   ],

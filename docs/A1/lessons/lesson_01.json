@@ -63,13 +63,13 @@
     {"type": "transform", "question": "Переделайте в отрицание:", "sentence": "Ich bin Anna.", "answer": "Ich bin nicht Anna", "hint": "Я не Анна."},
     {"type": "transform", "question": "Переделайте в отрицание:", "sentence": "Er ist mein Bruder.", "answer": "Er ist nicht mein Bruder", "hint": "Он не мой брат."},
     {"type": "transform", "question": "Переделайте в отрицание:", "sentence": "Das ist ein Buch.", "answer": "Das ist nicht ein Buch", "hint": "Это не книга."},
-    {"type": "transform", "question": "Переведите на немецкий:", "sentence": "Привет, я Анна.", "answer": "hallo ich bin anna", "hint": "Привет, я Анна."},
-    {"type": "transform", "question": "Переведите на немецкий:", "sentence": "Добрый день, я Том.", "answer": "guten tag ich bin tom", "hint": "Добрый день, я Том."},
-    {"type": "transform", "question": "Переведите на немецкий:", "sentence": "Это мой брат.", "answer": "das ist mein bruder", "hint": "Это мой брат."},
-    {"type": "transform", "question": "Переведите на немецкий:", "sentence": "Ты Анна?", "answer": "bist du anna", "hint": "Ты Анна?"},
-    {"type": "transform", "question": "Переведите на немецкий:", "sentence": "Да, я Анна.", "answer": "ja ich bin anna", "hint": "Да, я Анна."},
-    {"type": "transform", "question": "Переведите на немецкий:", "sentence": "Как дела?", "answer": "wie geht es dir", "hint": "Как дела?"},
-    {"type": "transform", "question": "Переведите на немецкий:", "sentence": "Спасибо, хорошо!", "answer": "danke gut", "hint": "Спасибо, хорошо!"}
+    {"type": "transform", "question": "Вставьте правильное местоимение:", "sentence": "___ bin Anna.", "answer": "Ich", "hint": "Я Анна."},
+    {"type": "transform", "question": "Вставьте правильное местоимение:", "sentence": "___ bist Tom.", "answer": "Du", "hint": "Ты Том."},
+    {"type": "transform", "question": "Вставьте правильное местоимение:", "sentence": "___ ist mein Bruder.", "answer": "Er", "hint": "Он мой брат."},
+    {"type": "transform", "question": "Вставьте правильное местоимение:", "sentence": "___ ist meine Schwester.", "answer": "Sie", "hint": "Она моя сестра."},
+    {"type": "transform", "question": "Вставьте правильное местоимение:", "sentence": "___ sind hier.", "answer": "Wir", "hint": "Мы здесь."},
+    {"type": "transform", "question": "Вставьте правильное местоимение:", "sentence": "___ seid laut.", "answer": "Ihr", "hint": "Вы громкие."},
+    {"type": "transform", "question": "Вставьте правильное местоимение:", "sentence": "___ sind da.", "answer": "Sie", "hint": "Они там."}
   ],
   "quiz": [
     {"de": "Hallo", "ru": "привет"},

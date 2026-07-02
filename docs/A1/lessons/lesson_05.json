@@ -64,14 +64,14 @@
     {"type": "transform", "question": "Вставьте правильную форму глагола tanzen:", "sentence": "Wir ___ gern.", "answer": "tanzen", "hint": "Мы любим танцевать."},
     {"type": "transform", "question": "Вставьте правильную форму глагола möchten:", "sentence": "Ich ___ Fußball spielen.", "answer": "möchte", "hint": "Я хотел бы поиграть в футбол."},
     {"type": "transform", "question": "Вставьте правильную форму глагола möchten:", "sentence": "___ du Musik hören?", "answer": "Möchtest", "hint": "Ты хотел бы послушать музыку?"},
-    {"type": "transform", "question": "Сделайте вопрос с möchten:", "sentence": "___ ihr ins Kino gehen?", "answer": "Möchtet", "hint": "Вы хотели бы пойти в кино?"},
+    {"type": "transform", "question": "Составьте вопрос с möchten:", "sentence": "___ ihr ins Kino gehen?", "answer": "Möchtet", "hint": "Вы хотели бы пойти в кино?"},
     {"type": "transform", "question": "Вставьте правильную форму глагола singen:", "sentence": "Ich ___ ein Lied.", "answer": "singe", "hint": "Я пою песню."},
     {"type": "transform", "question": "Вставьте правильную форму глагола reisen:", "sentence": "Wir ___ gerne.", "answer": "reisen", "hint": "Мы любим путешествовать."},
     {"type": "transform", "question": "Вставьте правильное наречие частотности:", "sentence": "Ich ___ spiele Fußball. (часто)", "answer": "oft", "hint": "Я часто играю в футбол."},
     {"type": "transform", "question": "Вставьте правильное наречие частотности:", "sentence": "Sie ___ sieht fern. (иногда)", "answer": "manchmal", "hint": "Она иногда смотрит телевизор."},
     {"type": "transform", "question": "Вставьте правильное наречие частотности:", "sentence": "Ich ___ höre laute Musik. (никогда)", "answer": "nie", "hint": "Я никогда не слушаю громкую музыку."},
-    {"type": "transform", "question": "Сделайте предложение с möchten:", "sentence": "Ich ___ ein Geschenk kaufen.", "answer": "möchte", "hint": "Я хотел бы купить подарок."},
-    {"type": "transform", "question": "Сделайте вопрос с möchten:", "sentence": "___ du mitkommen?", "answer": "Möchtest", "hint": "Ты хотел бы пойти с нами?"}
+    {"type": "transform", "question": "Составьте предложение с möchten:", "sentence": "Ich ___ ein Geschenk kaufen.", "answer": "möchte", "hint": "Я хотел бы купить подарок."},
+    {"type": "transform", "question": "Составьте вопрос с möchten:", "sentence": "___ du mitkommen?", "answer": "Möchtest", "hint": "Ты хотел бы пойти с нами?"}
   ],
   "quiz": [
     {"de": "das Hobby", "ru": "хобби"},

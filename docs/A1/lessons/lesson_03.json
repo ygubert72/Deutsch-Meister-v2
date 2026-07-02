@@ -34,7 +34,6 @@
     {"de": "die Stunde", "ru": "час"},
     {"de": "die Minute", "ru": "минута"},
     {"de": "die Sekunde", "ru": "секунда"},
-    {"de": "die Zeit", "ru": "время"},
     {"de": "der Monat", "ru": "месяц"},
     {"de": "die Woche", "ru": "неделя"},
     {"de": "der Tag", "ru": "день"},
@@ -109,7 +108,6 @@
     {"de": "die Stunde", "ru": "час"},
     {"de": "die Minute", "ru": "минута"},
     {"de": "die Sekunde", "ru": "секунда"},
-    {"de": "das Jahr", "ru": "год"},
     {"de": "der Monat", "ru": "месяц"},
     {"de": "die Woche", "ru": "неделя"},
     {"de": "der Tag", "ru": "день"},
@@ -155,9 +153,18 @@
     {"de": "Wann stehst du auf?", "ru": "Когда ты встаёшь?"},
     {"de": "Um 8 Uhr habe ich Zeit.", "ru": "В 8 часов у меня есть время."},
     {"de": "Die Woche hat sieben Tage.", "ru": "В неделе семь дней."},
-    {"de": "Das Jahr hat zwölf Monate.", "ru": "В году двенадцать месяцев."},
     {"de": "Der Film beginnt um 20 Uhr.", "ru": "Фильм начинается в 20 часов."},
-    {"de": "Bis bald!", "ru": "До скорого!"}
+    {"de": "Bis bald!", "ru": "До скорого!"},
+    {"de": "Es ist Viertel vor acht.", "ru": "Без четверти восемь."},
+    {"de": "Um 10 Uhr habe ich einen Termin.", "ru": "В 10 часов у меня встреча."},
+    {"de": "Am Samstag habe ich frei.", "ru": "В субботу я свободен."},
+    {"de": "Im Februar ist es oft kalt.", "ru": "В феврале часто холодно."},
+    {"de": "Im August ist es sehr warm.", "ru": "В августе очень тепло."},
+    {"de": "Morgens gehe ich spazieren.", "ru": "Утром я иду гулять."},
+    {"de": "Abends lese ich ein Buch.", "ru": "Вечером я читаю книгу."},
+    {"de": "Nachts ist es ruhig.", "ru": "Ночью тихо."},
+    {"de": "Der Unterricht beginnt um 9 Uhr.", "ru": "Занятия начинаются в 9 часов."},
+    {"de": "Ich habe um 12 Uhr Mittagspause.", "ru": "У меня обеденный перерыв в 12 часов."}
   ],
   "dictation": [
     {"de": "Wie spät ist es?", "ru": "Который час?"},
@@ -174,6 +181,11 @@
     {"de": "Morgens trinke ich Kaffee.", "ru": "Утром я пью кофе."},
     {"de": "Abends sehe ich fern.", "ru": "Вечером я смотрю телевизор."},
     {"de": "Wann stehst du auf?", "ru": "Когда ты встаёшь?"},
-    {"de": "Die Woche hat sieben Tage.", "ru": "В неделе семь дней."}
+    {"de": "Die Woche hat sieben Tage.", "ru": "В неделе семь дней."},
+    {"de": "Es ist Viertel vor acht.", "ru": "Без четверти восемь."},
+    {"de": "Am Samstag habe ich frei.", "ru": "В субботу я свободен."},
+    {"de": "Im August ist es sehr warm.", "ru": "В августе очень тепло."},
+    {"de": "Der Unterricht beginnt um 9 Uhr.", "ru": "Занятия начинаются в 9 часов."},
+    {"de": "Ich habe um 12 Uhr Mittagspause.", "ru": "У меня обеденный перерыв в 12 часов."}
   ]
 }

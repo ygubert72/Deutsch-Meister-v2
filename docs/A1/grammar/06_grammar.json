@@ -25,16 +25,16 @@
     {"type": "transform", "question": "Вставьте правильную форму прилагательного с haben:", "sentence": "Meine Mutter hat ___ Augen. (braun)", "answer": "braune", "hint": "У моей матери карие глаза."},
     {"type": "transform", "question": "Вставьте правильную форму прилагательного:", "sentence": "Mein Freund ist ___. (nett)", "answer": "nett", "hint": "Мой друг добрый."},
     {"type": "transform", "question": "Вставьте правильную форму прилагательного:", "sentence": "Meine Freundin ist ___. (lustig)", "answer": "lustig", "hint": "Моя подруга весёлая."},
-    {"type": "transform", "question": "Сделайте предложение с haben:", "sentence": "Sie ___ blaue Augen.", "answer": "hat", "hint": "У неё синие глаза."},
-    {"type": "transform", "question": "Сделайте предложение с haben:", "sentence": "Ich ___ braune Haare.", "answer": "habe", "hint": "У меня каштановые волосы."},
-    {"type": "transform", "question": "Переведите на немецкий:", "sentence": "Мой брат высокий.", "answer": "mein bruder ist groß", "hint": "Мой брат высокий."},
-    {"type": "transform", "question": "Переведите на немецкий:", "sentence": "Моя сестра стройная.", "answer": "meine schwester ist schlank", "hint": "Моя сестра стройная."},
-    {"type": "transform", "question": "Переведите на немецкий:", "sentence": "У него синие глаза.", "answer": "er hat blaue augen", "hint": "У него синие глаза."},
-    {"type": "transform", "question": "Переведите на немецкий:", "sentence": "У неё светлые волосы.", "answer": "sie hat blonde haare", "hint": "У неё светлые волосы."},
-    {"type": "transform", "question": "Переведите на немецкий:", "sentence": "Мой отец старый.", "answer": "mein vater ist alt", "hint": "Мой отец старый."},
-    {"type": "transform", "question": "Переведите на немецкий:", "sentence": "Моя мать маленькая.", "answer": "meine mutter ist klein", "hint": "Моя мать маленькая."},
-    {"type": "transform", "question": "Переведите на немецкий:", "sentence": "Как он выглядит?", "answer": "wie sieht er aus", "hint": "Как он выглядит?"},
-    {"type": "transform", "question": "Переведите на немецкий:", "sentence": "Он очень дружелюбный.", "answer": "er ist sehr freundlich", "hint": "Он очень дружелюбный."},
-    {"type": "transform", "question": "Переведите на немецкий:", "sentence": "Она очень умная.", "answer": "sie ist sehr klug", "hint": "Она очень умная."}
+    {"type": "transform", "question": "Составьте предложение с haben:", "sentence": "Sie ___ blaue Augen.", "answer": "hat", "hint": "У неё синие глаза."},
+    {"type": "transform", "question": "Составьте предложение с haben:", "sentence": "Ich ___ braune Haare.", "answer": "habe", "hint": "У меня каштановые волосы."},
+    {"type": "transform", "question": "Вставьте правильную форму прилагательного:", "sentence": "Die Frau ist ___. (jung)", "answer": "jung", "hint": "Женщина молодая."},
+    {"type": "transform", "question": "Вставьте правильную форму прилагательного:", "sentence": "Der Mann ist ___. (alt)", "answer": "alt", "hint": "Мужчина старый."},
+    {"type": "transform", "question": "Вставьте правильную форму прилагательного с haben:", "sentence": "Das Kind hat ___ Augen. (groß)", "answer": "große", "hint": "У ребёнка большие глаза."},
+    {"type": "transform", "question": "Вставьте правильную форму прилагательного с haben:", "sentence": "Mein Opa hat ___ Haare. (weiß)", "answer": "weiße", "hint": "У моего дедушки белые волосы."},
+    {"type": "transform", "question": "Вставьте правильную форму прилагательного:", "sentence": "Er ist sehr ___. (freundlich)", "answer": "freundlich", "hint": "Он очень дружелюбный."},
+    {"type": "transform", "question": "Вставьте правильную форму прилагательного:", "sentence": "Sie ist sehr ___. (klug)", "answer": "klug", "hint": "Она очень умная."},
+    {"type": "transform", "question": "Составьте вопрос:", "sentence": "___ sieht er aus?", "answer": "Wie", "hint": "Как он выглядит?"},
+    {"type": "transform", "question": "Вставьте правильную форму прилагательного с haben:", "sentence": "Ich habe ___ Haare. (schwarz)", "answer": "schwarze", "hint": "У меня чёрные волосы."},
+    {"type": "transform", "question": "Вставьте правильную форму прилагательного:", "sentence": "Mein Bruder ist nicht ___. (dick)", "answer": "dick", "hint": "Мой брат не полный."}
   ]
 }

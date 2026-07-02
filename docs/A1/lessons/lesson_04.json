@@ -64,13 +64,13 @@
     {"type": "transform", "question": "Вставьте притяжательное местоимение:", "sentence": "Das ist ___ Mutter. (моя)", "answer": "meine", "hint": "Это моя мать."},
     {"type": "transform", "question": "Вставьте притяжательное местоимение:", "sentence": "Das ist ___ Bruder. (твой)", "answer": "dein", "hint": "Это твой брат."},
     {"type": "transform", "question": "Вставьте притяжательное местоимение:", "sentence": "Das ist ___ Schwester. (твоя)", "answer": "deine", "hint": "Это твоя сестра."},
+    {"type": "transform", "question": "Вставьте притяжательное местоимение:", "sentence": "Das ist ___ Kind. (его)", "answer": "sein", "hint": "Это его ребёнок."},
+    {"type": "transform", "question": "Вставьте притяжательное местоимение:", "sentence": "Das ist ___ Mutter. (её)", "answer": "ihre", "hint": "Это её мать."},
     {"type": "transform", "question": "Сделайте вопрос с haben:", "sentence": "___ du einen Bruder?", "answer": "Hast", "hint": "У тебя есть брат?"},
     {"type": "transform", "question": "Сделайте вопрос с heißen:", "sentence": "Wie ___ du?", "answer": "heißt", "hint": "Как тебя зовут?"},
-    {"type": "transform", "question": "Переведите на немецкий:", "sentence": "Это моя семья.", "answer": "das ist meine familie", "hint": "Это моя семья."},
-    {"type": "transform", "question": "Переведите на немецкий:", "sentence": "У меня есть брат.", "answer": "ich habe einen bruder", "hint": "У меня есть брат."},
-    {"type": "transform", "question": "Переведите на немецкий:", "sentence": "Мою мать зовут Мария.", "answer": "meine mutter heißt maria", "hint": "Мою мать зовут Мария."},
-    {"type": "transform", "question": "Переведите на немецкий:", "sentence": "Как зовут твоего брата?", "answer": "wie heißt dein bruder", "hint": "Как зовут твоего брата?"},
-    {"type": "transform", "question": "Переведите на немецкий:", "sentence": "У тебя есть сестра?", "answer": "hast du eine schwester", "hint": "У тебя есть сестра?"}
+    {"type": "transform", "question": "Сделайте вопрос с haben:", "sentence": "___ Sie Kinder?", "answer": "Haben", "hint": "У Вас есть дети?"},
+    {"type": "transform", "question": "Переделайте в отрицание (kein/keine):", "sentence": "Ich habe einen Bruder.", "answer": "Ich habe keinen Bruder", "hint": "У меня нет брата."},
+    {"type": "transform", "question": "Переделайте в отрицание (kein/keine):", "sentence": "Ich habe eine Schwester.", "answer": "Ich habe keine Schwester", "hint": "У меня нет сестры."}
   ],
   "quiz": [
     {"de": "die Familie", "ru": "семья"},

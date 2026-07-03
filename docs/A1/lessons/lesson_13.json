@@ -104,7 +104,17 @@
     {"de": "Ich möchte eine Fortbildung machen.", "ru": "Я хочу пройти курсы повышения квалификации."},
     {"de": "Ich möchte mein Deutsch verbessern.", "ru": "Я хочу улучшить свой немецкий."},
     {"de": "Deutsch ist wichtig für den Beruf.", "ru": "Немецкий важен для профессии."},
-    {"de": "Ich spreche Deutsch auf der Arbeit.", "ru": "Я говорю по-немецки на работе."}
+    {"de": "Ich spreche Deutsch auf der Arbeit.", "ru": "Я говорю по-немецки на работе."},
+    {"de": "Ich arbeite in einem großen Büro.", "ru": "Я работаю в большом офисе."},
+    {"de": "Ich habe einen netten Chef.", "ru": "У меня хороший начальник."},
+    {"de": "Meine Kollegen sind freundlich.", "ru": "Мои коллеги дружелюбные."},
+    {"de": "Ich habe eine interessante Aufgabe.", "ru": "У меня интересная задача."},
+    {"de": "Ich muss viel organisieren.", "ru": "Я должен много организовывать."},
+    {"de": "Meine Arbeit ist manchmal stressig.", "ru": "Моя работа иногда стрессовая."},
+    {"de": "Ich arbeite gern mit Menschen.", "ru": "Я люблю работать с людьми."},
+    {"de": "Ich arbeite gern am Computer.", "ru": "Я люблю работать за компьютером."},
+    {"de": "Ich möchte mal im Ausland arbeiten.", "ru": "Я хотел бы когда-нибудь работать за границей."},
+    {"de": "Mein Job ist sehr abwechslungsreich.", "ru": "Моя работа очень разнообразная."}
   ],
   "dictation": [
     {"de": "Was sind Sie von Beruf?", "ru": "Кто Вы по профессии?"},
@@ -135,6 +145,26 @@
     {"de": "Ich will glücklich sein.", "ru": "Я хочу быть счастливым."},
     {"de": "Geld ist nicht alles.", "ru": "Деньги — не всё."},
     {"de": "Arbeit macht Spaß.", "ru": "Работа доставляет удовольствие."},
-    {"de": "Ich bin zufrieden mit meinem Beruf.", "ru": "Я доволен своей профессией."}
+    {"de": "Ich bin zufrieden mit meinem Beruf.", "ru": "Я доволен своей профессией."},
+    {"de": "Ich arbeite in einem großen Büro.", "ru": "Я работаю в большом офисе."},
+    {"de": "Ich habe einen netten Chef.", "ru": "У меня хороший начальник."},
+    {"de": "Meine Kollegen sind freundlich.", "ru": "Мои коллеги дружелюбные."},
+    {"de": "Ich habe eine interessante Aufgabe.", "ru": "У меня интересная задача."},
+    {"de": "Ich muss viel organisieren.", "ru": "Я должен много организовывать."},
+    {"de": "Meine Arbeit ist manchmal stressig.", "ru": "Моя работа иногда стрессовая."},
+    {"de": "Ich arbeite gern mit Menschen.", "ru": "Я люблю работать с людьми."},
+    {"de": "Ich arbeite gern am Computer.", "ru": "Я люблю работать за компьютером."},
+    {"de": "Ich möchte mal im Ausland arbeiten.", "ru": "Я хотел бы когда-нибудь работать за границей."},
+    {"de": "Mein Job ist sehr abwechslungsreich.", "ru": "Моя работа очень разнообразная."},
+    {"de": "Ich bin Ingenieur.", "ru": "Я инженер."},
+    {"de": "Ich bin Sekretärin.", "ru": "Я секретарша."},
+    {"de": "Ich bin Verkäufer.", "ru": "Я продавец."},
+    {"de": "Ich bin Student.", "ru": "Я студент."},
+    {"de": "Ich arbeite als Sekretärin.", "ru": "Я работаю секретаршей."},
+    {"de": "Ich arbeite als Verkäufer.", "ru": "Я работаю продавцом."},
+    {"de": "Ich arbeite in der Firma.", "ru": "Я работаю в фирме."},
+    {"de": "Mein Bruder ist Ingenieur.", "ru": "Мой брат — инженер."},
+    {"de": "Meine Schwester ist Studentin.", "ru": "Моя сестра — студентка."},
+    {"de": "Der Lehrer unterrichtet Deutsch.", "ru": "Учитель преподаёт немецкий."}
   ]
 }

@@ -7,14 +7,16 @@
     {"de": "der Sohn", "ru": "сын"},
     {"de": "die Tochter", "ru": "дочь"},
     {"de": "das Kind", "ru": "ребёнок"},
+    {"de": "der Großvater", "ru": "дедушка"},
+    {"de": "die Großmutter", "ru": "бабушка"},
     {"de": "die Familie", "ru": "семья"},
     {"de": "mein", "ru": "мой"},
     {"de": "meine", "ru": "моя"},
     {"de": "dein", "ru": "твой"},
     {"de": "sein", "ru": "его"},
     {"de": "ihr", "ru": "её"},
-    {"de": "haben", "ru": "иметь"},
-    {"de": "habe", "ru": "имею"}
+    {"de": "unser", "ru": "наш"},
+    {"de": "haben", "ru": "иметь"}
   ],
   "trainer": [
     {"de": "Das ist mein Vater.", "ru": "Это мой отец."},
@@ -73,6 +75,11 @@
     {"de": "Das ist meine Oma.", "ru": "Это моя бабушка."},
     {"de": "Meine Eltern wohnen in Berlin.", "ru": "Мои родители живут в Берлине."},
     {"de": "Die Familie ist groß.", "ru": "Семья большая."},
-    {"de": "Ich habe zwei Brüder.", "ru": "У меня два брата."}
+    {"de": "Ich habe zwei Brüder.", "ru": "У меня два брата."},
+    {"de": "Sie hat drei Schwestern.", "ru": "У неё три сестры."},
+    {"de": "Das sind meine Geschwister.", "ru": "Это мои братья и сёстры."},
+    {"de": "Hast du Geschwister?", "ru": "У тебя есть братья и сёстры?"},
+    {"de": "Ja, ich habe einen Bruder und eine Schwester.", "ru": "Да, у меня есть брат и сестра."},
+    {"de": "Ich habe keine Kinder.", "ru": "У меня нет детей."}
   ]
 }

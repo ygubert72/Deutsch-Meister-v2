@@ -7,16 +7,19 @@
     {"de": "der Sohn", "ru": "сын"},
     {"de": "die Tochter", "ru": "дочь"},
     {"de": "das Kind", "ru": "ребёнок"},
-    {"de": "der Großvater", "ru": "дедушка"},
-    {"de": "die Großmutter", "ru": "бабушка"},
     {"de": "die Familie", "ru": "семья"},
     {"de": "mein", "ru": "мой"},
     {"de": "meine", "ru": "моя"},
     {"de": "dein", "ru": "твой"},
+    {"de": "deine", "ru": "твоя"},
     {"de": "sein", "ru": "его"},
+    {"de": "seine", "ru": "его"},
     {"de": "ihr", "ru": "её"},
+    {"de": "ihre", "ru": "её"},
     {"de": "unser", "ru": "наш"},
-    {"de": "haben", "ru": "иметь"}
+    {"de": "haben", "ru": "иметь"},
+    {"de": "habe", "ru": "имею"},
+    {"de": "hast", "ru": "имеешь"}
   ],
   "trainer": [
     {"de": "Das ist mein Vater.", "ru": "Это мой отец."},
@@ -27,8 +30,7 @@
     {"de": "Das ist meine Schwester.", "ru": "Это моя сестра."},
     {"de": "Mein Bruder heißt Tom.", "ru": "Моего брата зовут Том."},
     {"de": "Meine Schwester heißt Anna.", "ru": "Мою сестру зовут Анна."},
-    {"de": "Das ist mein Kind.", "ru": "Это мой ребёнок."},
-    {"de": "Das ist unsere Familie.", "ru": "Это наша семья."},
+    {"de": "Das ist unser Kind.", "ru": "Это наш ребёнок."},
     {"de": "Hast du einen Bruder?", "ru": "У тебя есть брат?"},
     {"de": "Ja, ich habe einen Bruder.", "ru": "Да, у меня есть брат."},
     {"de": "Nein, ich habe keinen Bruder.", "ru": "Нет, у меня нет брата."},
@@ -58,7 +60,9 @@
     {"de": "Ja, ich habe einen Bruder und eine Schwester.", "ru": "Да, у меня есть брат и сестра."},
     {"de": "Ich habe keine Kinder.", "ru": "У меня нет детей."},
     {"de": "Sie ist meine Tante.", "ru": "Она моя тётя."},
-    {"de": "Er ist mein Onkel.", "ru": "Он мой дядя."}
+    {"de": "Er ist mein Onkel.", "ru": "Он мой дядя."},
+    {"de": "Meine Familie kommt aus Berlin.", "ru": "Моя семья из Берлина."},
+    {"de": "Wir sind eine glückliche Familie.", "ru": "Мы счастливая семья."}
   ],
   "dictation": [
     {"de": "Das ist mein Vater.", "ru": "Это мой отец."},
@@ -68,8 +72,7 @@
     {"de": "Mein Bruder heißt Tom.", "ru": "Моего брата зовут Том."},
     {"de": "Hast du einen Bruder?", "ru": "У тебя есть брат?"},
     {"de": "Ja, ich habe einen Bruder.", "ru": "Да, у меня есть брат."},
-    {"de": "Das ist mein Kind.", "ru": "Это мой ребёнок."},
-    {"de": "Das ist unsere Familie.", "ru": "Это наша семья."},
+    {"de": "Das ist unser Kind.", "ru": "Это наш ребёнок."},
     {"de": "Wir haben eine große Familie.", "ru": "У нас большая семья."},
     {"de": "Das ist mein Opa.", "ru": "Это мой дедушка."},
     {"de": "Das ist meine Oma.", "ru": "Это моя бабушка."},
@@ -80,6 +83,7 @@
     {"de": "Das sind meine Geschwister.", "ru": "Это мои братья и сёстры."},
     {"de": "Hast du Geschwister?", "ru": "У тебя есть братья и сёстры?"},
     {"de": "Ja, ich habe einen Bruder und eine Schwester.", "ru": "Да, у меня есть брат и сестра."},
-    {"de": "Ich habe keine Kinder.", "ru": "У меня нет детей."}
+    {"de": "Ich habe keine Kinder.", "ru": "У меня нет детей."},
+    {"de": "Wir sind eine glückliche Familie.", "ru": "Мы счастливая семья."}
   ]
 }

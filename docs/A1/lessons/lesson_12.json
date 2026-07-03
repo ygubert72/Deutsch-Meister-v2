@@ -135,6 +135,22 @@
     {"de": "Ich arbeite jeden Tag von 8 bis 17 Uhr.", "ru": "Я работаю каждый день с 8 до 17 часов."},
     {"de": "Am Samstag schlafe ich lange.", "ru": "В субботу я долго сплю."},
     {"de": "Am Sonntag gehe ich spazieren.", "ru": "В воскресенье я гуляю."},
-    {"de": "Ich stehe früh auf.", "ru": "Я встаю рано."}
+    {"de": "Ich stehe früh auf.", "ru": "Я встаю рано."},
+    {"de": "Ich gehe spät ins Bett.", "ru": "Я ложусь спать поздно."},
+    {"de": "Jeden Tag stehe ich um 7 Uhr auf.", "ru": "Каждый день я встаю в 7 часов."},
+    {"de": "Jeden Tag frühstücke ich.", "ru": "Каждый день я завтракаю."},
+    {"de": "Jeden Tag arbeite ich.", "ru": "Каждый день я работаю."},
+    {"de": "Jeden Tag koche ich.", "ru": "Каждый день я готовлю."},
+    {"de": "Ich trinke morgens Kaffee.", "ru": "Утром я пью кофе."},
+    {"de": "Ich esse morgens ein Brötchen.", "ru": "Утром я ем булочку."},
+    {"de": "Ich dusche morgens.", "ru": "Утром я принимаю душ."},
+    {"de": "Ich putze meine Zähne.", "ru": "Я чищу зубы."},
+    {"de": "Ich ziehe mich an.", "ru": "Я одеваюсь."},
+    {"de": "Ich gehe zur Arbeit.", "ru": "Я иду на работу."},
+    {"de": "Ich komme um 18 Uhr nach Hause.", "ru": "Я возвращаюсь домой в 18 часов."},
+    {"de": "Ich mache das Abendessen.", "ru": "Я готовлю ужин."},
+    {"de": "Ich lese ein Buch.", "ru": "Я читаю книгу."},
+    {"de": "Ich höre Musik.", "ru": "Я слушаю музыку."},
+    {"de": "Ich gehe um 22 Uhr ins Bett.", "ru": "Я ложусь спать в 22 часа."}
   ]
 }

@@ -2,11 +2,10 @@
   "lesson": 2,
   "title": "Числительные, страны и языки",
   "level": "A1",
-  "theory": "<h3>📌 Числительные 0–20</h3><table border='1' cellpadding='8' style='border-collapse: collapse; width: 100%;'><tr style='background: #3B6FE0; color: white;'><th>Число</th><th>Немецкий</th></tr><tr style='background: #E3F2FD;'><td>0</td><td><span style='color:#2E7D32;font-weight:bold;'>null</span></td></tr><tr style='background: #F5F5F5;'><td>1</td><td><span style='color:#2E7D32;font-weight:bold;'>eins</span></td></tr><tr style='background: #E3F2FD;'><td>2</td><td><span style='color:#2E7D32;font-weight:bold;'>zwei</span></td></tr><tr style='background: #F5F5F5;'><td>3</td><td><span style='color:#2E7D32;font-weight:bold;'>drei</span></td></tr><tr style='background: #E3F2FD;'><td>4</td><td><span style='color:#2E7D32;font-weight:bold;'>vier</span></td></tr><tr style='background: #F5F5F5;'><td>5</td><td><span style='color:#2E7D32;font-weight:bold;'>fünf</span></td></tr><tr style='background: #E3F2FD;'><td>6</td><td><span style='color:#2E7D32;font-weight:bold;'>sechs</span></td></tr><tr style='background: #F5F5F5;'><td>7</td><td><span style='color:#2E7D32;font-weight:bold;'>sieben</span></td></tr><tr style='background: #E3F2FD;'><td>8</td><td><span style='color:#2E7D32;font-weight:bold;'>acht</span></td></tr><tr style='background: #F5F5F5;'><td>9</td><td><span style='color:#2E7D32;font-weight:bold;'>neun</span></td></tr><tr style='background: #E3F2FD;'><td>10</td><td><span style='color:#2E7D32;font-weight:bold;'>zehn</span></td></tr></table><h3>📌 Числительные 21–100</h3><p><strong>Правило:</strong> единицы + und + десятки</p><ul><li>21 — <span style='color:#2E7D32;font-weight:bold;'>einundzwanzig</span></li><li>100 — <span style='color:#2E7D32;font-weight:bold;'>hundert</span></li></ul><h3>📌 Страны и языки</h3><table border='1' cellpadding='10' style='border-collapse: collapse; width: 100%;'><tr style='background: #3B6FE0; color: white;'><th>Страна</th><th>Язык</th></tr><tr style='background: #E3F2FD;'><td><span style='color:#2E7D32;font-weight:bold;'>Deutschland</span></td><td><span style='color:#2E7D32;font-weight:bold;'>Deutsch</span></td></tr><tr style='background: #F5F5F5;'><td><span style='color:#2E7D32;font-weight:bold;'>Russland</span></td><td><span style='color:#2E7D32;font-weight:bold;'>Russisch</span></td></tr></table><h3>📌 Глаголы wohnen и kommen</h3><table border='1' cellpadding='12' style='border-collapse: collapse; width: 100%;'><tr style='background: #3B6FE0; color: white;'><th>Местоимение</th><th>wohnen</th><th>kommen</th></tr><tr style='background: #E3F2FD;'><td><strong>ich</strong></td><td><span style='color:#2E7D32;font-weight:bold;'>wohne</span></td><td><span style='color:#2E7D32;font-weight:bold;'>komme</span></td></tr><tr style='background: #F5F5F5;'><td><strong>du</strong></td><td><span style='color:#2E7D32;font-weight:bold;'>wohnst</span></td><td><span style='color:#2E7D32;font-weight:bold;'>kommst</span></td></tr></table>",
+  "theory": "... (ваша теория с числами, странами, wohnen/kommen) ...",
   "examples": [
     {"de": "Ich komme aus Russland.", "ru": "Я из России."},
-    {"de": "Ich wohne in Berlin.", "ru": "Я живу в Берлине."},
-    {"de": "Woher kommst du?", "ru": "Откуда ты?"}
+    {"de": "Ich wohne in Berlin.", "ru": "Я живу в Берлине."}
   ],
   "vocabulary": [
     {"de": "eins", "ru": "один"},
@@ -17,18 +16,27 @@
     {"de": "zehn", "ru": "десять"},
     {"de": "Deutschland", "ru": "Германия"},
     {"de": "Russland", "ru": "Россия"},
+    {"de": "die Türkei", "ru": "Турция"},
     {"de": "Deutsch", "ru": "немецкий язык"},
     {"de": "wohnen", "ru": "жить"},
     {"de": "wohne", "ru": "живу"},
     {"de": "wohnst", "ru": "живёшь"},
+    {"de": "wohnt", "ru": "живёт"},
     {"de": "kommen", "ru": "приходить"},
     {"de": "komme", "ru": "прихожу"},
-    {"de": "kommst", "ru": "приходишь"}
+    {"de": "kommst", "ru": "приходишь"},
+    {"de": "kommt", "ru": "приходит"}
   ],
   "practice": [
     {"type": "fill", "question": "Вставьте правильную форму wohnen:", "sentence": "Ich ___ in Berlin.", "answer": "wohne", "hint": "Я живу в Берлине."},
+    {"type": "fill", "question": "Вставьте правильную форму wohnen:", "sentence": "Du ___ in München.", "answer": "wohnst", "hint": "Ты живёшь в Мюнхене."},
+    {"type": "fill", "question": "Вставьте правильную форму wohnen:", "sentence": "Er ___ in Hamburg.", "answer": "wohnt", "hint": "Он живёт в Гамбурге."},
     {"type": "fill", "question": "Вставьте правильную форму kommen:", "sentence": "Ich ___ aus Russland.", "answer": "komme", "hint": "Я из России."},
-    {"type": "fill", "question": "Вставьте правильную форму:", "sentence": "Du ___ aus der Türkei.", "answer": "kommst", "hint": "Ты из Турции."},
-    {"type": "question", "question": "Составьте вопрос с Woher:", "sentence": "___ kommst du?", "answer": "Woher", "hint": "Откуда ты?"}
+    {"type": "fill", "question": "Вставьте правильную форму kommen:", "sentence": "Du ___ aus der Türkei.", "answer": "kommst", "hint": "Ты из Турции."},
+    {"type": "fill", "question": "Вставьте правильную форму kommen:", "sentence": "Sie (она) ___ aus Finnland.", "answer": "kommt", "hint": "Она из Финляндии."},
+    {"type": "fill", "question": "Вставьте правильную форму глагола:", "sentence": "Wir ___ in Berlin.", "answer": "wohnen", "hint": "Мы живём в Берлине."},
+    {"type": "fill", "question": "Вставьте правильную форму глагола:", "sentence": "Ihr ___ aus Russland.", "answer": "kommt", "hint": "Вы из России."},
+    {"type": "question", "question": "Сделайте вопрос с Woher:", "sentence": "___ kommst du?", "answer": "Woher", "hint": "Откуда ты?"},
+    {"type": "question", "question": "Сделайте вопрос с Wo:", "sentence": "___ wohnst du?", "answer": "Wo", "hint": "Где ты живёшь?"}
   ]
 }

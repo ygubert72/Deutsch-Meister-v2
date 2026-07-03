@@ -103,7 +103,17 @@
     {"de": "Ich brauche Hilfe beim Ausfüllen.", "ru": "Мне нужна помощь с заполнением."},
     {"de": "Kannst du mir beim Ausfüllen helfen?", "ru": "Ты можешь мне помочь с заполнением?"},
     {"de": "Wie schreibt man das auf Deutsch?", "ru": "Как это пишется по-немецки?"},
-    {"de": "Wie sagt man das auf Deutsch?", "ru": "Как это сказать по-немецки?"}
+    {"de": "Wie sagt man das auf Deutsch?", "ru": "Как это сказать по-немецки?"},
+    {"de": "Ich habe eine neue E-Mail bekommen.", "ru": "Я получил новое электронное письмо."},
+    {"de": "Die Post ist heute angekommen.", "ru": "Почта пришла сегодня."},
+    {"de": "Meine Adresse hat sich geändert.", "ru": "Мой адрес изменился."},
+    {"de": "Ich habe meine Telefonnummer vergessen.", "ru": "Я забыл свой номер телефона."},
+    {"de": "Kann ich Ihre E-Mail-Adresse haben?", "ru": "Могу я получить Ваш email?"},
+    {"de": "Das Formular muss unterschrieben werden.", "ru": "Анкету нужно подписать."},
+    {"de": "Ich habe das Formular unterschrieben.", "ru": "Я подписал анкету."},
+    {"de": "Bitte senden Sie mir die Unterlagen.", "ru": "Пожалуйста, отправьте мне документы."},
+    {"de": "Ich habe die Unterlagen bekommen.", "ru": "Я получил документы."},
+    {"de": "Ich möchte meine Adresse ändern.", "ru": "Я хочу изменить свой адрес."}
   ],
   "dictation": [
     {"de": "Liebe Anna,", "ru": "Дорогая Анна,"},
@@ -134,6 +144,27 @@
     {"de": "Ich habe eine Frage.", "ru": "У меня есть вопрос."},
     {"de": "Das Formular ist ausgefüllt.", "ru": "Анкета заполнена."},
     {"de": "Bitte füllen Sie das Formular aus.", "ru": "Пожалуйста, заполните анкету."},
-    {"de": "Ich habe das Formular ausgefüllt.", "ru": "Я заполнил анкету."}
+    {"de": "Ich habe das Formular ausgefüllt.", "ru": "Я заполнил анкету."},
+    {"de": "Ich schreibe einen Brief an meine Oma.", "ru": "Я пишу письмо моей бабушке."},
+    {"de": "Ich schreibe eine E-Mail an meinen Freund.", "ru": "Я пишу электронное письмо моему другу."},
+    {"de": "Ich schicke dir eine Postkarte.", "ru": "Я отправлю тебе открытку."},
+    {"de": "Die Postkarte ist aus Berlin.", "ru": "Открытка из Берлина."},
+    {"de": "Die Postkarte ist schön.", "ru": "Открытка красивая."},
+    {"de": "Ich habe eine neue E-Mail bekommen.", "ru": "Я получил новое электронное письмо."},
+    {"de": "Die Post ist heute angekommen.", "ru": "Почта пришла сегодня."},
+    {"de": "Meine Adresse hat sich geändert.", "ru": "Мой адрес изменился."},
+    {"de": "Kann ich Ihre E-Mail-Adresse haben?", "ru": "Могу я получить Ваш email?"},
+    {"de": "Ich habe das Formular unterschrieben.", "ru": "Я подписал анкету."},
+    {"de": "Bitte senden Sie mir die Unterlagen.", "ru": "Пожалуйста, отправьте мне документы."},
+    {"de": "Ich habe die Unterlagen bekommen.", "ru": "Я получил документы."},
+    {"de": "Ich möchte meine Adresse ändern.", "ru": "Я хочу изменить свой адрес."},
+    {"de": "Meine Telefonnummer ist 0151 987654.", "ru": "Мой номер телефона — 0151 987654."},
+    {"de": "Mein Geburtsdatum ist der 15. Mai 1995.", "ru": "Моя дата рождения — 15 мая 1995."},
+    {"de": "Mein Geburtsort ist München.", "ru": "Моё место рождения — Мюнхен."},
+    {"de": "Meine Anschrift ist Hauptstraße 5.", "ru": "Мой адрес — Хауптштрассе 5."},
+    {"de": "Ich sende die E-Mail heute ab.", "ru": "Я отправляю email сегодня."},
+    {"de": "Die E-Mail ist schon angekommen.", "ru": "Email уже получен."},
+    {"de": "Ich warte noch auf deine Antwort.", "ru": "Я всё ещё жду твоего ответа."},
+    {"de": "Ich habe deine Antwort bekommen.", "ru": "Я получил твой ответ."}
   ]
 }

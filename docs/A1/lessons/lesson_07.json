@@ -83,7 +83,10 @@
     {"de": "Sie sieht die Küche.", "ru": "Она видит кухню."},
     {"de": "Wir sehen das Haus.", "ru": "Мы видим дом."},
     {"de": "Das ist mein Traumhaus.", "ru": "Это мой дом мечты."},
-    {"de": "Ich möchte ein Haus mit Garten.", "ru": "Я хотел бы дом с садом."}
+    {"de": "Ich möchte ein Haus mit Garten.", "ru": "Я хотел бы дом с садом."},
+    {"de": "Die Wohnung ist im ersten Stock.", "ru": "Квартира на первом этаже."},
+    {"de": "Das Haus hat zwei Stockwerke.", "ru": "Дом имеет два этажа."},
+    {"de": "Im Erdgeschoss ist die Küche.", "ru": "На первом этаже кухня."}
   ],
   "dictation": [
     {"de": "Das ist das Wohnzimmer.", "ru": "Это гостиная."},
@@ -115,6 +118,11 @@
     {"de": "Sie sieht die Küche.", "ru": "Она видит кухню."},
     {"de": "Wir sehen das Haus.", "ru": "Мы видим дом."},
     {"de": "Das ist mein Traumhaus.", "ru": "Это мой дом мечты."},
-    {"de": "Ich möchte ein Haus mit Garten.", "ru": "Я хотел бы дом с садом."}
+    {"de": "Ich möchte ein Haus mit Garten.", "ru": "Я хотел бы дом с садом."},
+    {"de": "Die Wohnung ist im ersten Stock.", "ru": "Квартира на первом этаже."},
+    {"de": "Das Haus hat zwei Stockwerke.", "ru": "Дом имеет два этажа."},
+    {"de": "Im Erdgeschoss ist die Küche.", "ru": "На первом этаже кухня."},
+    {"de": "Das Wohnzimmer ist sehr gemütlich.", "ru": "Гостиная очень уютная."},
+    {"de": "Das Schlafzimmer ist ruhig.", "ru": "Спальня тихая."}
   ]
 }

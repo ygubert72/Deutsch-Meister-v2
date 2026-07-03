@@ -172,14 +172,6 @@ function updateCounter() {
     let label = '';
     
     switch(activeMode) {
-        case 'vocabulary':
-            count = currentLesson.vocabulary?.length || 0;
-            label = 'слов';
-            break;
-        case 'practice':
-            count = currentLesson.practice?.length || 0;
-            label = 'упражнений';
-            break;
         case 'quiz':
             const quizData = currentLesson.quiz;
             if (quizData && quizData.words) {
@@ -256,8 +248,6 @@ function renderLesson(lesson) {
         <h2>📖 Урок ${lesson.id}: ${lesson.title}</h2>
         <div class="mode-buttons">
             <button class="mode-btn active" data-mode="grammar">📘 Грамматика</button>
-            <button class="mode-btn" data-mode="practice">✍️ Упражнения</button>
-            <button class="mode-btn" data-mode="vocabulary">📚 Словарь</button>
             <button class="mode-btn" data-mode="quiz">🎯 Тест</button>
             <button class="mode-btn" data-mode="trainer">🧩 Тренажер</button>
             <button class="mode-btn" data-mode="dictation">✏️ Диктант</button>
@@ -318,20 +308,6 @@ function renderMode(mode, lesson) {
                 renderGrammar(container, lesson);
             } else {
                 container.innerHTML = '<div>Режим "Грамматика" загружается...</div>';
-            }
-            break;
-        case 'practice':
-            if (typeof renderPractice === 'function') {
-                renderPractice(container, lesson);
-            } else {
-                container.innerHTML = '<div>Режим "Практика" загружается...</div>';
-            }
-            break;
-        case 'vocabulary':
-            if (typeof renderVocabulary === 'function') {
-                renderVocabulary(container, lesson);
-            } else {
-                container.innerHTML = '<div>Режим "Лексика" загружается...</div>';
             }
             break;
         case 'quiz':

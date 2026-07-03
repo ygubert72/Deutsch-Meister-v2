@@ -82,7 +82,6 @@
     {"de": "Ich hätte gern ein Eis.", "ru": "Я хотел бы мороженое."},
     {"de": "Ich hätte gern einen Espresso.", "ru": "Я хотел бы эспрессо."},
     {"de": "Ich hätte gern einen Cappuccino.", "ru": "Я хотел бы капучино."},
-    {"de": "Ich hätte gern einen Latte Macchiato.", "ru": "Я хотел бы латте макиато."},
     {"de": "Ich hätte gern einen Früchtetee.", "ru": "Я хотел бы фруктовый чай."},
     {"de": "Ich hätte gern einen Kräutertee.", "ru": "Я хотел бы травяной чай."},
     {"de": "Ich hätte gern einen Apfelsaft.", "ru": "Я хотел бы яблочный сок."},
@@ -101,7 +100,15 @@
     {"de": "Kann ich einen Tisch reservieren?", "ru": "Могу я забронировать столик?"},
     {"de": "Ja, gern.", "ru": "Да, конечно."},
     {"de": "Um wie viel Uhr?", "ru": "На сколько часов?"},
-    {"de": "Um 19 Uhr.", "ru": "На 19 часов."}
+    {"de": "Um 19 Uhr.", "ru": "На 19 часов."},
+    {"de": "Ich möchte einen Tisch im Nichtraucherbereich.", "ru": "Я хотел бы столик в зоне для некурящих."},
+    {"de": "Haben Sie heute Abend noch einen Tisch frei?", "ru": "У Вас есть ещё свободный столик на сегодня вечером?"},
+    {"de": "Ich möchte gerne etwas Bestellen.", "ru": "Я хотел бы кое-что заказать."},
+    {"de": "Können Sie mir etwas empfehlen?", "ru": "Вы можете мне что-нибудь порекомендовать?"},
+    {"de": "Ich hätte gern die Tageskarte.", "ru": "Я хотел бы меню дня."},
+    {"de": "Was ist das Tagesgericht?", "ru": "Какое сегодня фирменное блюдо?"},
+    {"de": "Ich nehme das gleiche Gericht.", "ru": "Я возьму то же блюдо."},
+    {"de": "Kann ich bitte die Speisekarte haben?", "ru": "Можно мне, пожалуйста, меню?"}
   ],
   "dictation": [
     {"de": "Ich möchte einen Kaffee.", "ru": "Я хотел бы кофе."},
@@ -133,6 +140,25 @@
     {"de": "Ich esse kein Fleisch.", "ru": "Я не ем мясо."},
     {"de": "Kann ich einen Tisch reservieren?", "ru": "Могу я забронировать столик?"},
     {"de": "Ja, gern.", "ru": "Да, конечно."},
-    {"de": "Um wie viel Uhr?", "ru": "На сколько часов?"}
+    {"de": "Um wie viel Uhr?", "ru": "На сколько часов?"},
+    {"de": "Um 19 Uhr.", "ru": "На 19 часов."},
+    {"de": "Ich möchte einen Tisch im Nichtraucherbereich.", "ru": "Я хотел бы столик в зоне для некурящих."},
+    {"de": "Haben Sie heute Abend noch einen Tisch frei?", "ru": "У Вас есть ещё свободный столик на сегодня вечером?"},
+    {"de": "Ich möchte gerne etwas Bestellen.", "ru": "Я хотел бы кое-что заказать."},
+    {"de": "Können Sie mir etwas empfehlen?", "ru": "Вы можете мне что-нибудь порекомендовать?"},
+    {"de": "Ich hätte gern die Tageskarte.", "ru": "Я хотел бы меню дня."},
+    {"de": "Was ist das Tagesgericht?", "ru": "Какое сегодня фирменное блюдо?"},
+    {"de": "Ich nehme das gleiche Gericht.", "ru": "Я возьму то же блюдо."},
+    {"de": "Kann ich bitte die Speisekarte haben?", "ru": "Можно мне, пожалуйста, меню?"},
+    {"de": "Ich hätte gern eine Flasche Wasser.", "ru": "Я хотел бы бутылку воды."},
+    {"de": "Ich hätte gern eine Tasse Kaffee.", "ru": "Я хотел бы чашку кофе."},
+    {"de": "Ich hätte gern einen Teller Suppe.", "ru": "Я хотел бы тарелку супа."},
+    {"de": "Ich hätte gern einen Hamburger.", "ru": "Я хотел бы гамбургер."},
+    {"de": "Ich hätte gern ein Schnitzel.", "ru": "Я хотел бы шницель."},
+    {"de": "Ich hätte gern einen Fisch.", "ru": "Я хотел бы рыбу."},
+    {"de": "Ich hätte gern ein Steak.", "ru": "Я хотел бы стейк."},
+    {"de": "Ich hätte gern einen Obstsalat.", "ru": "Я хотел бы фруктовый салат."},
+    {"de": "Ich hätte gern einen Kuchen.", "ru": "Я хотел бы пирог."},
+    {"de": "Ich hätte gern einen Espresso.", "ru": "Я хотел бы эспрессо."}
   ]
 }

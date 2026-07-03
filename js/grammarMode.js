@@ -30,7 +30,7 @@ function renderGrammar(container, lesson) {
 
     // 3. СЛОВАРЬ
     if (lesson.vocabulary && lesson.vocabulary.length) {
-        html += `<h4 style="margin-top: 20px;">📚 Слова к уроку:</h4><div class="vocab-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">`;
+        html += `<h4 style="margin-top: 20px;">📚 Лексика к уроку:</h4><div class="vocab-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">`;
         lesson.vocabulary.forEach(word => {
             const safeText = word.de.replace(/'/g, "\\'");
             html += `

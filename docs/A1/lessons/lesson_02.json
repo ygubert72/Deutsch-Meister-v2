@@ -3,10 +3,12 @@
     {"de": "eins", "ru": "один"},
     {"de": "zwei", "ru": "два"},
     {"de": "drei", "ru": "три"},
+    {"de": "vier", "ru": "четыре"},
     {"de": "fünf", "ru": "пять"},
     {"de": "zehn", "ru": "десять"},
     {"de": "Deutschland", "ru": "Германия"},
     {"de": "Russland", "ru": "Россия"},
+    {"de": "die Türkei", "ru": "Турция"},
     {"de": "Deutsch", "ru": "немецкий язык"},
     {"de": "wohnen", "ru": "жить"},
     {"de": "kommen", "ru": "приходить"}
@@ -14,15 +16,35 @@
   "trainer": [
     {"de": "Ich komme aus Russland.", "ru": "Я из России."},
     {"de": "Ich wohne in Berlin.", "ru": "Я живу в Берлине."},
+    {"de": "Ich heiße Anna.", "ru": "Меня зовут Анна."},
     {"de": "Woher kommst du?", "ru": "Откуда ты?"},
-    {"de": "Kommst du aus Deutschland?", "ru": "Ты из Германии?"},
-    {"de": "Ja, ich komme aus Deutschland.", "ru": "Да, я из Германии."}
+    {"de": "Ich komme aus der Türkei.", "ru": "Я из Турции."},
+    {"de": "Ich wohne in München.", "ru": "Я живу в Мюнхене."},
+    {"de": "Er kommt aus Finnland.", "ru": "Он из Финляндии."},
+    {"de": "Sie wohnt in Hamburg.", "ru": "Она живёт в Гамбурге."},
+    {"de": "Wir kommen aus Russland.", "ru": "Мы из России."},
+    {"de": "Wir wohnen in Berlin.", "ru": "Мы живём в Берлине."},
+    {"de": "Kommst du aus Russland?", "ru": "Ты из России?"},
+    {"de": "Nein, ich komme aus der Türkei.", "ru": "Нет, я из Турции."},
+    {"de": "Sprechen Sie Deutsch?", "ru": "Вы говорите по-немецки?"},
+    {"de": "Ja, ich spreche Deutsch.", "ru": "Да, я говорю по-немецки."},
+    {"de": "Ich spreche Russisch und Deutsch.", "ru": "Я говорю по-русски и по-немецки."},
+    {"de": "Ich bin 25 Jahre alt.", "ru": "Мне 25 лет."},
+    {"de": "Du bist 30 Jahre alt.", "ru": "Тебе 30 лет."},
+    {"de": "Wir sind aus Deutschland.", "ru": "Мы из Германии."},
+    {"de": "Sie kommt aus Mexiko.", "ru": "Она из Мексики."},
+    {"de": "Er wohnt in Köln.", "ru": "Он живёт в Кёльне."}
   ],
   "dictation": [
     {"de": "Ich komme aus Russland.", "ru": "Я из России."},
     {"de": "Ich wohne in Berlin.", "ru": "Я живу в Берлине."},
     {"de": "Woher kommst du?", "ru": "Откуда ты?"},
-    {"de": "Kommst du aus Deutschland?", "ru": "Ты из Германии?"},
-    {"de": "Ja, ich komme aus Deutschland.", "ru": "Да, я из Германии."}
+    {"de": "Ich komme aus der Türkei.", "ru": "Я из Турции."},
+    {"de": "Kommst du aus Russland?", "ru": "Ты из России?"},
+    {"de": "Nein, ich komme aus der Türkei.", "ru": "Нет, я из Турции."},
+    {"de": "Sprechen Sie Deutsch?", "ru": "Вы говорите по-немецки?"},
+    {"de": "Ja, ich spreche Deutsch.", "ru": "Да, я говорю по-немецки."},
+    {"de": "Ich bin 25 Jahre alt.", "ru": "Мне 25 лет."},
+    {"de": "Er wohnt in Köln.", "ru": "Он живёт в Кёльне."}
   ]
 }

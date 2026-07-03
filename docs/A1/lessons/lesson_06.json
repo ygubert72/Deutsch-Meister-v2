@@ -79,7 +79,11 @@
     {"de": "Ich habe schwarze Haare.", "ru": "У меня чёрные волосы."},
     {"de": "Du hast blaue Augen.", "ru": "У тебя голубые глаза."},
     {"de": "Wir sind jung.", "ru": "Мы молодые."},
-    {"de": "Sie sind alt.", "ru": "Они старые."}
+    {"de": "Sie sind alt.", "ru": "Они старые."},
+    {"de": "Mein Bruder ist 1,85 m groß.", "ru": "Мой брат 1,85 м ростом."},
+    {"de": "Meine Schwester ist 1,70 m groß.", "ru": "Моя сестра 1,70 м ростом."},
+    {"de": "Er hat eine Glatze.", "ru": "У него лысина."},
+    {"de": "Sie hat lockige Haare.", "ru": "У неё кудрявые волосы."}
   ],
   "dictation": [
     {"de": "Er ist groß und hat blaue Augen.", "ru": "Он высокий и у него голубые глаза."},
@@ -111,6 +115,6 @@
     {"de": "Du hast blaue Augen.", "ru": "У тебя голубые глаза."},
     {"de": "Wir sind jung.", "ru": "Мы молодые."},
     {"de": "Sie sind alt.", "ru": "Они старые."},
-    {"de": "Er ist nicht hässlich.", "ru": "Он не некрасивый."}
+    {"de": "Er hat eine Glatze.", "ru": "У него лысина."}
   ]
 }

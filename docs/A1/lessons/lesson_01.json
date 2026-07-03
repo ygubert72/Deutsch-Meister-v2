@@ -20,9 +20,11 @@
     {"de": "Hallo, ich bin Anna.", "ru": "Привет, я Анна."},
     {"de": "Guten Tag, ich bin Tom.", "ru": "Добрый день, я Том."},
     {"de": "Das ist mein Bruder.", "ru": "Это мой брат."},
+    {"de": "Das ist meine Schwester.", "ru": "Это моя сестра."},
     {"de": "Bist du Anna?", "ru": "Ты Анна?"},
     {"de": "Ja, ich bin Anna.", "ru": "Да, я Анна."},
     {"de": "Sind Sie Herr Müller?", "ru": "Вы господин Мюллер?"},
+    {"de": "Nein, ich bin nicht Herr Müller.", "ru": "Нет, я не господин Мюллер."},
     {"de": "Wie geht es dir?", "ru": "Как дела?"},
     {"de": "Danke, gut!", "ru": "Спасибо, хорошо!"}
   ],

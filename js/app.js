@@ -60,7 +60,7 @@ async function loadLevel(level) {
     }
 }
 
-// ========== ЗАГРУЗКА УРОКА ==========
+// ========== ЗАГРУЗКА УРОКА (ОБЪЕДИНЁННЫЙ ФОРМАТ) ==========
 async function loadLesson(lessonId) {
     console.log('📖 Загрузка урока:', lessonId);
     try {
@@ -73,48 +73,60 @@ async function loadLesson(lessonId) {
             level: currentLevel
         };
         
-        // 1. Загружаем ГРАММАТИКУ
+        // 1. Загружаем ГРАММАТИКУ + ЛЕКСИКУ + УПРАЖНЕНИЯ
         try {
-            const grammarFile = `docs/${currentLevel}/grammar/${lessonInfo.file}`;
+            const grammarFile = `docs/${currentLevel}/grammar/${String(lessonId).padStart(2, '0')}_grammar.json`;
             console.log('📂 Загрузка грамматики:', grammarFile);
             const grammarResponse = await fetch(grammarFile);
             if (grammarResponse.ok) {
                 const grammarData = await grammarResponse.json();
                 lesson.grammar = grammarData.theory || grammarData.grammar || '';
                 lesson.examples = grammarData.examples || [];
-                console.log('✅ Грамматика загружена');
+                lesson.vocabulary = grammarData.vocabulary || [];
+                lesson.practice = grammarData.practice || [];
+                console.log('✅ Грамматика + лексика + упражнения загружены');
             } else {
                 console.log('ℹ️ Файл грамматики не найден:', grammarFile);
+                lesson.grammar = '<div style="text-align:center;padding:40px;color:#999;">📭 Грамматика не загружена</div>';
+                lesson.vocabulary = [];
+                lesson.practice = [];
             }
         } catch(e) {
             console.log('ℹ️ Ошибка загрузки грамматики:', e.message);
+            lesson.grammar = '<div style="text-align:center;padding:40px;color:#999;">📭 Грамматика не загружена</div>';
+            lesson.vocabulary = [];
+            lesson.practice = [];
         }
         
-        // 2. Загружаем ВСЁ ОСТАЛЬНОЕ
+        // 2. Загружаем ТЕСТ + ТРЕНАЖЁР + ДИКТАНТ
         try {
             const lessonFile = `docs/${currentLevel}/lessons/lesson_${String(lessonId).padStart(2, '0')}.json`;
-            console.log('📂 Загрузка урока:', lessonFile);
+            console.log('📂 Загрузка тренировок:', lessonFile);
             const lessonResponse = await fetch(lessonFile);
             if (lessonResponse.ok) {
                 const lessonData = await lessonResponse.json();
-                lesson.vocabulary = lessonData.vocabulary || [];
-                lesson.practice = lessonData.practice || [];
                 lesson.quiz = lessonData.quiz || [];
                 lesson.trainer = lessonData.trainer || [];
                 lesson.dictation = lessonData.dictation || [];
-                console.log('✅ Урок загружен (vocabulary, practice, quiz, trainer, dictation)');
+                console.log('✅ Тест, тренажёр, диктант загружены');
             } else {
-                console.log('ℹ️ Файл урока не найден:', lessonFile);
+                console.log('ℹ️ Файл тренировок не найден:', lessonFile);
+                lesson.quiz = [];
+                lesson.trainer = [];
+                lesson.dictation = [];
             }
         } catch(e) {
-            console.log('ℹ️ Ошибка загрузки урока:', e.message);
+            console.log('ℹ️ Ошибка загрузки тренировок:', e.message);
+            lesson.quiz = [];
+            lesson.trainer = [];
+            lesson.dictation = [];
         }
         
-        if (!lesson.grammar && !lesson.vocabulary && !lesson.practice && !lesson.quiz && !lesson.trainer && !lesson.dictation) {
+        if (!lesson.grammar && lesson.vocabulary.length === 0 && lesson.practice.length === 0 && lesson.quiz.length === 0 && lesson.trainer.length === 0 && lesson.dictation.length === 0) {
             throw new Error('Не удалось загрузить данные урока');
         }
         
-        console.log('✅ Урок загружен:', lesson.title);
+        console.log('✅ Урок загружен полностью:', lesson.title);
         currentLesson = lesson;
         renderLesson(lesson);
         saveState();

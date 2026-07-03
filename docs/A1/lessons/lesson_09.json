@@ -125,6 +125,26 @@
     {"de": "Leg das Buch auf den Tisch!", "ru": "Положи книгу на стол!"},
     {"de": "Stell die Lampe auf den Tisch!", "ru": "Поставь лампу на стол!"},
     {"de": "Geh in die Küche!", "ru": "Иди на кухню!"},
-    {"de": "Fahr nach Berlin!", "ru": "Поезжай в Берлин!"}
+    {"de": "Fahr nach Berlin!", "ru": "Поезжай в Берлин!"},
+    {"de": "Ich möchte ins Kino gehen.", "ru": "Я хотел бы пойти в кино."},
+    {"de": "Ich möchte nach Berlin fahren.", "ru": "Я хотел бы поехать в Берлин."},
+    {"de": "Ich möchte das Buch auf den Tisch legen.", "ru": "Я хотел бы положить книгу на стол."},
+    {"de": "Ich möchte die Lampe auf den Tisch stellen.", "ru": "Я хотел бы поставить лампу на стол."},
+    {"de": "Wo ist der Schlüssel?", "ru": "Где ключ?"},
+    {"de": "Der Schlüssel liegt auf dem Tisch.", "ru": "Ключ лежит на столе."},
+    {"de": "Wohin legst du den Schlüssel?", "ru": "Куда ты кладёшь ключ?"},
+    {"de": "Ich lege den Schlüssel auf den Tisch.", "ru": "Я кладу ключ на стол."},
+    {"de": "Ich gehe in die Stadt.", "ru": "Я иду в город."},
+    {"de": "Ich fahre in die Stadt.", "ru": "Я еду в город."},
+    {"de": "Ich gehe zum Bahnhof.", "ru": "Я иду на вокзал."},
+    {"de": "Ich fahre zum Flughafen.", "ru": "Я еду в аэропорт."},
+    {"de": "Wohin gehst du morgen?", "ru": "Куда ты идёшь завтра?"},
+    {"de": "Ich gehe morgen zur Arbeit.", "ru": "Завтра я иду на работу."},
+    {"de": "Wohin fährst du nächste Woche?", "ru": "Куда ты едешь на следующей неделе?"},
+    {"de": "Ich fahre nächste Woche nach Köln.", "ru": "На следующей неделе я еду в Кёльн."},
+    {"de": "Ich lege die Zeitung auf den Tisch.", "ru": "Я кладу газету на стол."},
+    {"de": "Ich gehe in den Park.", "ru": "Я иду в парк."},
+    {"de": "Ich fahre ans Meer.", "ru": "Я еду на море."},
+    {"de": "Ich lege den Schlüssel in die Tasche.", "ru": "Я кладу ключ в сумку."}
   ]
 }

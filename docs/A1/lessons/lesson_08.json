@@ -98,7 +98,8 @@
     {"de": "Die Blumen stehen auf dem Fensterbrett.", "ru": "Цветы стоят на подоконнике."},
     {"de": "Der Teppich liegt auf dem Boden.", "ru": "Ковёр лежит на полу."},
     {"de": "Die Schuhe stehen unter dem Bett.", "ru": "Туфли стоят под кроватью."},
-    {"de": "Der Ball liegt unter dem Tisch.", "ru": "Мяч лежит под столом."}
+    {"de": "Der Ball liegt unter dem Tisch.", "ru": "Мяч лежит под столом."},
+    {"de": "Die Schlüssel liegen auf dem Tisch.", "ru": "Ключи лежат на столе."}
   ],
   "dictation": [
     {"de": "Die Lampe steht auf dem Tisch.", "ru": "Лампа стоит на столе."},
@@ -130,6 +131,16 @@
     {"de": "Die Gardinen hängen vor dem Fenster.", "ru": "Шторы висят перед окном."},
     {"de": "Die Blumen stehen auf dem Fensterbrett.", "ru": "Цветы стоят на подоконнике."},
     {"de": "Der Teppich liegt auf dem Boden.", "ru": "Ковёр лежит на полу."},
-    {"de": "Die Schuhe stehen unter dem Bett.", "ru": "Туфли стоят под кроватью."}
+    {"de": "Die Schuhe stehen unter dem Bett.", "ru": "Туфли стоят под кроватью."},
+    {"de": "Die Schlüssel liegen auf dem Tisch.", "ru": "Ключи лежат на столе."},
+    {"de": "Der Kugelschreiber liegt auf dem Tisch.", "ru": "Ручка лежит на столе."},
+    {"de": "Das Heft liegt auf dem Tisch.", "ru": "Тетрадь лежит на столе."},
+    {"de": "Die Zeitung liegt auf dem Tisch.", "ru": "Газета лежит на столе."},
+    {"de": "Das Handy liegt auf dem Bett.", "ru": "Телефон лежит на кровати."},
+    {"de": "Die Tasche steht hinter dem Stuhl.", "ru": "Сумка стоит за стулом."},
+    {"de": "Der Schlüssel liegt vor der Tür.", "ru": "Ключ лежит перед дверью."},
+    {"de": "Im Wohnzimmer gibt es einen Tisch.", "ru": "В гостиной есть стол."},
+    {"de": "Im Wohnzimmer gibt es ein Sofa.", "ru": "В гостиной есть диван."},
+    {"de": "Im Schlafzimmer gibt es ein Bett.", "ru": "В спальне есть кровать."}
   ]
 }

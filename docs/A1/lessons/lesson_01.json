@@ -10,30 +10,49 @@
     {"de": "Danke", "ru": "спасибо"},
     {"de": "ich", "ru": "я"},
     {"de": "du", "ru": "ты"},
-    {"de": "bin", "ru": "есть (я)"},
-    {"de": "bist", "ru": "есть (ты)"},
-    {"de": "ist", "ru": "есть (он/она/оно)"},
-    {"de": "sind", "ru": "есть (мы/они/Вы)"},
-    {"de": "seid", "ru": "есть (вы)"}
+    {"de": "er", "ru": "он"},
+    {"de": "sie", "ru": "она"},
+    {"de": "wir", "ru": "мы"},
+    {"de": "heißen", "ru": "называться"},
+    {"de": "Name", "ru": "имя"},
+    {"de": "ja", "ru": "да"},
+    {"de": "nein", "ru": "нет"},
+    {"de": "und", "ru": "и"}
   ],
   "trainer": [
     {"de": "Hallo, ich bin Anna.", "ru": "Привет, я Анна."},
     {"de": "Guten Tag, ich bin Tom.", "ru": "Добрый день, я Том."},
+    {"de": "Ich heiße Maria.", "ru": "Меня зовут Мария."},
     {"de": "Das ist mein Bruder.", "ru": "Это мой брат."},
     {"de": "Das ist meine Schwester.", "ru": "Это моя сестра."},
     {"de": "Bist du Anna?", "ru": "Ты Анна?"},
     {"de": "Ja, ich bin Anna.", "ru": "Да, я Анна."},
+    {"de": "Nein, ich bin nicht Anna.", "ru": "Нет, я не Анна."},
     {"de": "Sind Sie Herr Müller?", "ru": "Вы господин Мюллер?"},
     {"de": "Nein, ich bin nicht Herr Müller.", "ru": "Нет, я не господин Мюллер."},
-    {"de": "Wie geht es dir?", "ru": "Как дела?"},
-    {"de": "Danke, gut!", "ru": "Спасибо, хорошо!"}
+    {"de": "Wie heißt du?", "ru": "Как тебя зовут?"},
+    {"de": "Und wie heißt du?", "ru": "А как тебя зовут?"},
+    {"de": "Ist das dein Bruder?", "ru": "Это твой брат?"},
+    {"de": "Ja, das ist mein Bruder.", "ru": "Да, это мой брат."},
+    {"de": "Danke, gut!", "ru": "Спасибо, хорошо!"},
+    {"de": "Auf Wiedersehen, Herr Müller!", "ru": "До свидания, господин Мюллер!"},
+    {"de": "Guten Morgen, Frau Schmidt!", "ru": "Доброе утро, госпожа Шмидт!"},
+    {"de": "Guten Abend, Herr Müller!", "ru": "Добрый вечер, господин Мюллер!"},
+    {"de": "Tschüss, Maria!", "ru": "Пока, Мария!"},
+    {"de": "Bitte schön!", "ru": "Пожалуйста! (в ответ на благодарность)"}
   ],
   "dictation": [
     {"de": "Hallo, ich bin Anna.", "ru": "Привет, я Анна."},
     {"de": "Guten Tag, ich bin Tom.", "ru": "Добрый день, я Том."},
+    {"de": "Ich heiße Maria.", "ru": "Меня зовут Мария."},
     {"de": "Das ist mein Bruder.", "ru": "Это мой брат."},
     {"de": "Bist du Anna?", "ru": "Ты Анна?"},
     {"de": "Ja, ich bin Anna.", "ru": "Да, я Анна."},
-    {"de": "Sind Sie Herr Müller?", "ru": "Вы господин Мюллер?"}
+    {"de": "Nein, ich bin nicht Anna.", "ru": "Нет, я не Анна."},
+    {"de": "Sind Sie Herr Müller?", "ru": "Вы господин Мюллер?"},
+    {"de": "Wie heißt du?", "ru": "Как тебя зовут?"},
+    {"de": "Ist das dein Bruder?", "ru": "Это твой брат?"},
+    {"de": "Danke, gut!", "ru": "Спасибо, хорошо!"},
+    {"de": "Auf Wiedersehen, Herr Müller!", "ru": "До свидания, господин Мюллер!"}
   ]
 }

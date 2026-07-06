@@ -57,14 +57,14 @@
   ],
   "practice": [
     {"type": "fill", "question": "Вставьте правильную форму глагола essen:", "sentence": "Ich ___ gern Brot.", "answer": "esse", "hint": "Я люблю есть хлеб."},
-    {"type": "fill", "question": "Вставьте правильную форму глагола essen:", "sentence": "Du ___ gern Obst.", "answer": "isst", "hint": "Ты любишь есть фрукты."},
-    {"type": "fill", "question": "Вставьте правильную форму глагола trinken:", "sentence": "Ich ___ gern Kaffee.", "answer": "trinke", "hint": "Я люблю пить кофе."},
-    {"type": "fill", "question": "Вставьте правильную форму глагола trinken:", "sentence": "Du ___ gern Tee.", "answer": "trinkst", "hint": "Ты любишь пить чай."},
-    {"type": "fill", "question": "Вставьте правильную форму глагола möchten:", "sentence": "Ich ___ ein Brötchen.", "answer": "möchte", "hint": "Я хочу булочку."},
     {"type": "fill", "question": "Вставьте правильную форму глагола möchten:", "sentence": "Du ___ einen Kaffee.", "answer": "möchtest", "hint": "Ты хочешь кофе."},
+    {"type": "fill", "question": "Вставьте правильное слово:", "sentence": "Hast du ___? (жажда)", "answer": "Durst", "hint": "Ты хочешь пить?"},
+    {"type": "fill", "question": "Вставьте правильную форму глагола trinken:", "sentence": "Ich ___ gern Kaffee.", "answer": "trinke", "hint": "Я люблю пить кофе."},
     {"type": "fill", "question": "Вставьте правильное слово:", "sentence": "Zum ___ esse ich Brot. (завтрак)", "answer": "Frühstück", "hint": "На завтрак я ем хлеб."},
-    {"type": "fill", "question": "Вставьте правильное слово:", "sentence": "Zum ___ esse ich Suppe. (обед)", "answer": "Mittagessen", "hint": "На обед я ем суп."},
+    {"type": "fill", "question": "Вставьте правильную форму глагола essen:", "sentence": "Du ___ gern Obst.", "answer": "isst", "hint": "Ты любишь есть фрукты."},
     {"type": "fill", "question": "Вставьте правильное слово:", "sentence": "Hast du ___? (голод)", "answer": "Hunger", "hint": "Ты голоден?"},
-    {"type": "fill", "question": "Вставьте правильное слово:", "sentence": "Hast du ___? (жажда)", "answer": "Durst", "hint": "Ты хочешь пить?"}
+    {"type": "fill", "question": "Вставьте правильную форму глагола möchten:", "sentence": "Ich ___ ein Brötchen.", "answer": "möchte", "hint": "Я хочу булочку."},
+    {"type": "fill", "question": "Вставьте правильное слово:", "sentence": "Zum ___ esse ich Suppe. (обед)", "answer": "Mittagessen", "hint": "На обед я ем суп."},
+    {"type": "fill", "question": "Вставьте правильную форму глагола trinken:", "sentence": "Du ___ gern Tee.", "answer": "trinkst", "hint": "Ты любишь пить чай."}
   ]
 }

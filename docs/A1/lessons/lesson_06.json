@@ -5,36 +5,39 @@
     {"de": "Das sind meine Eltern.", "ru": "Это мои родители."},
     {"de": "Das ist mein Bruder.", "ru": "Это мой брат."},
     {"de": "Das ist meine Schwester.", "ru": "Это моя сестра."},
+
     {"de": "Hast du Geschwister?", "ru": "У тебя есть братья и сёстры?"},
     {"de": "Ja, ich habe einen Bruder.", "ru": "Да, у меня есть брат."},
     {"de": "Nein, ich habe keine Geschwister.", "ru": "Нет, у меня нет братьев и сестёр."},
+
     {"de": "Hast du ein Kind?", "ru": "У тебя есть ребёнок?"},
     {"de": "Ja, ich habe ein Kind.", "ru": "Да, у меня есть ребёнок."},
     {"de": "Nein, ich habe kein Kind.", "ru": "Нет, у меня нет ребёнка."},
+
     {"de": "Wie alt ist deine Schwester?", "ru": "Сколько лет твоей сестре?"},
     {"de": "Meine Schwester ist 15 Jahre alt.", "ru": "Моей сестре 15 лет."},
     {"de": "Wie alt ist dein Bruder?", "ru": "Сколько лет твоему брату?"},
     {"de": "Mein Bruder ist 20 Jahre alt.", "ru": "Моему брату 20 лет."},
+
     {"de": "Das ist mein Opa.", "ru": "Это мой дедушка."},
     {"de": "Das ist meine Oma.", "ru": "Это моя бабушка."},
     {"de": "Das ist mein Onkel.", "ru": "Это мой дядя."},
     {"de": "Das ist meine Tante.", "ru": "Это моя тётя."},
+
     {"de": "Seine Mutter wohnt in Berlin.", "ru": "Его мать живёт в Берлине."},
     {"de": "Ihre Eltern kommen aus Russland.", "ru": "Её родители из России."},
     {"de": "Meine Eltern wohnen in München.", "ru": "Мои родители живут в Мюнхене."},
-    {"de": "Deine Familie ist schön.", "ru": "Твоя семья красивая."},
     {"de": "Unsere Familie kommt aus Deutschland.", "ru": "Наша семья из Германии."},
     {"de": "Ihre Familie wohnt in Köln.", "ru": "Ваша семья живёт в Кёльне."},
+
     {"de": "Ich habe einen Sohn.", "ru": "У меня есть сын."},
     {"de": "Mein Sohn ist 5 Jahre alt.", "ru": "Моему сыну 5 лет."},
     {"de": "Sie hat eine Tochter.", "ru": "У неё есть дочь."},
     {"de": "Ihre Tochter ist 3 Jahre alt.", "ru": "Её дочери 3 года."},
     {"de": "Er hat zwei Kinder.", "ru": "У него двое детей."},
-    {"de": "Seine Kinder sind klein.", "ru": "Его дети маленькие."},
+
     {"de": "Wer ist das?", "ru": "Кто это?"},
     {"de": "Das ist mein Bruder.", "ru": "Это мой брат."},
     {"de": "Haben Sie Kinder?", "ru": "У Вас есть дети?"},
-    {"de": "Ja, ich habe einen Sohn und eine Tochter.", "ru": "Да, у меня есть сын и дочь."},
-    {"de": "Das ist mein Großvater.", "ru": "Это мой дедушка."},
-    {"de": "Das ist meine Großmutter.", "ru": "Это моя бабушка."}
+    {"de": "Ja, ich habe einen Sohn und eine Tochter.", "ru": "Да, у меня есть сын и дочь."}
 ]

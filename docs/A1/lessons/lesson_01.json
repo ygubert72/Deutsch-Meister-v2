@@ -1,41 +1,26 @@
 {
   "quiz": [
-    {"de": "Hallo", "ru": "привет"},
-    {"de": "Guten Tag", "ru": "добрый день"},
-    {"de": "Guten Morgen", "ru": "доброе утро"},
-    {"de": "Guten Abend", "ru": "добрый вечер"},
-    {"de": "Gute Nacht", "ru": "спокойной ночи"},
-    {"de": "Tschüss", "ru": "пока"},
-    {"de": "Auf Wiedersehen", "ru": "до свидания"},
-    {"de": "Bitte", "ru": "пожалуйста"},
-    {"de": "Danke", "ru": "спасибо"},
-    {"de": "Entschuldigung", "ru": "извините"},
-    {"de": "ja", "ru": "да"},
-    {"de": "nein", "ru": "нет"}
+    {"de": "Auto", "ru": "машина"},
+    {"de": "Berlin", "ru": "Берлин"},
+    {"de": "Volkswagen", "ru": "Фольксваген"},
+    {"de": "Deutschland", "ru": "Германия"},
+    {"de": "Mutter", "ru": "мать"},
+    {"de": "Vater", "ru": "отец"}
   ],
   "trainer": [
-    {"de": "Hallo!", "ru": "Привет!"},
-    {"de": "Guten Tag!", "ru": "Добрый день!"},
-    {"de": "Guten Morgen!", "ru": "Доброе утро!"},
-    {"de": "Guten Abend!", "ru": "Добрый вечер!"},
-    {"de": "Gute Nacht!", "ru": "Спокойной ночи!"},
-    {"de": "Tschüss!", "ru": "Пока!"},
-    {"de": "Auf Wiedersehen!", "ru": "До свидания!"},
-    {"de": "Bitte schön!", "ru": "Пожалуйста!"},
-    {"de": "Danke schön!", "ru": "Большое спасибо!"},
-    {"de": "Entschuldigung!", "ru": "Извините!"},
-    {"de": "Ja, bitte!", "ru": "Да, пожалуйста!"},
-    {"de": "Nein, danke!", "ru": "Нет, спасибо!"}
+    {"de": "Das ist ein Auto.", "ru": "Это машина."},
+    {"de": "Berlin ist eine Stadt.", "ru": "Берлин — город."},
+    {"de": "Das ist ein Volkswagen.", "ru": "Это Фольксваген."},
+    {"de": "Deutschland ist ein Land.", "ru": "Германия — страна."},
+    {"de": "Das ist meine Mutter.", "ru": "Это моя мать."},
+    {"de": "Das ist mein Vater.", "ru": "Это мой отец."}
   ],
   "dictation": [
-    {"de": "Hallo!", "ru": "Привет!"},
-    {"de": "Guten Tag!", "ru": "Добрый день!"},
-    {"de": "Guten Morgen!", "ru": "Доброе утро!"},
-    {"de": "Guten Abend!", "ru": "Добрый вечер!"},
-    {"de": "Gute Nacht!", "ru": "Спокойной ночи!"},
-    {"de": "Tschüss!", "ru": "Пока!"},
-    {"de": "Auf Wiedersehen!", "ru": "До свидания!"},
-    {"de": "Bitte schön!", "ru": "Пожалуйста!"},
-    {"de": "Danke schön!", "ru": "Большое спасибо!"}
+    {"de": "Auto", "ru": "машина"},
+    {"de": "Berlin", "ru": "Берлин"},
+    {"de": "Volkswagen", "ru": "Фольксваген"},
+    {"de": "Deutschland", "ru": "Германия"},
+    {"de": "Mutter", "ru": "мать"},
+    {"de": "Vater", "ru": "отец"}
   ]
 }

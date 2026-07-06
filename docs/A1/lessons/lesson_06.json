@@ -5,14 +5,13 @@
     {"de": "Das sind meine Eltern.", "ru": "Это мои родители."},
     {"de": "Das ist mein Bruder.", "ru": "Это мой брат."},
     {"de": "Das ist meine Schwester.", "ru": "Это моя сестра."},
-
+    
     {"de": "Hast du Geschwister?", "ru": "У тебя есть братья и сёстры?"},
     {"de": "Ja, ich habe einen Bruder.", "ru": "Да, у меня есть брат."},
-    {"de": "Nein, ich habe keine Geschwister.", "ru": "Нет, у меня нет братьев и сестёр."},
+    {"de": "Ich habe eine Schwester.", "ru": "У меня есть сестра."},
 
     {"de": "Hast du ein Kind?", "ru": "У тебя есть ребёнок?"},
     {"de": "Ja, ich habe ein Kind.", "ru": "Да, у меня есть ребёнок."},
-    {"de": "Nein, ich habe kein Kind.", "ru": "Нет, у меня нет ребёнка."},
 
     {"de": "Wie alt ist deine Schwester?", "ru": "Сколько лет твоей сестре?"},
     {"de": "Meine Schwester ist 15 Jahre alt.", "ru": "Моей сестре 15 лет."},
@@ -23,6 +22,8 @@
     {"de": "Das ist meine Oma.", "ru": "Это моя бабушка."},
     {"de": "Das ist mein Onkel.", "ru": "Это мой дядя."},
     {"de": "Das ist meine Tante.", "ru": "Это моя тётя."},
+    {"de": "Das ist mein Großvater.", "ru": "Это мой дедушка."},
+    {"de": "Das ist meine Großmutter.", "ru": "Это моя бабушка."},
 
     {"de": "Seine Mutter wohnt in Berlin.", "ru": "Его мать живёт в Берлине."},
     {"de": "Ihre Eltern kommen aus Russland.", "ru": "Её родители из России."},

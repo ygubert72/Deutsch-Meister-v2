@@ -33,11 +33,11 @@
   ],
   "practice": [
     {"type": "fill", "question": "Вставьте правильное слово:", "sentence": "Ich ___ gern eine Pizza. (хотел бы)", "answer": "hätte", "hint": "Я бы хотел пиццу."},
-    {"type": "fill", "question": "Вставьте правильное слово:", "sentence": "Die ___, bitte. (меню)", "answer": "Speisekarte", "hint": "Меню, пожалуйста."},
-    {"type": "fill", "question": "Вставьте правильное слово:", "sentence": "Die ___, bitte. (счёт)", "answer": "Rechnung", "hint": "Счёт, пожалуйста."},
-    {"type": "fill", "question": "Вставьте правильное слово:", "sentence": "___ etwas? (ещё)", "answer": "Noch", "hint": "Ещё что-то?"},
-    {"type": "fill", "question": "Вставьте правильное слово:", "sentence": "___ oder getrennt? (вместе)", "answer": "Zusammen", "hint": "Вместе или раздельно?"},
     {"type": "fill", "question": "Вставьте правильную форму глагола:", "sentence": "Ich ___ eine Suppe. (заказываю)", "answer": "bestelle", "hint": "Я заказываю суп."},
-    {"type": "fill", "question": "Вставьте правильное слово:", "sentence": "Der ___ bringt die Speisekarte. (официант)", "answer": "Kellner", "hint": "Официант приносит меню."}
+    {"type": "fill", "question": "Вставьте правильное слово:", "sentence": "Die ___, bitte. (меню)", "answer": "Speisekarte", "hint": "Меню, пожалуйста."},
+    {"type": "fill", "question": "Вставьте правильное слово:", "sentence": "Der ___ bringt die Speisekarte. (официант)", "answer": "Kellner", "hint": "Официант приносит меню."},
+    {"type": "fill", "question": "Вставьте правильное слово:", "sentence": "___ oder getrennt? (вместе)", "answer": "Zusammen", "hint": "Вместе или раздельно?"},
+    {"type": "fill", "question": "Вставьте правильное слово:", "sentence": "Die ___, bitte. (счёт)", "answer": "Rechnung", "hint": "Счёт, пожалуйста."},
+    {"type": "fill", "question": "Вставьте правильное слово:", "sentence": "___ etwas? (ещё)", "answer": "Noch", "hint": "Ещё что-то?"}
   ]
 }

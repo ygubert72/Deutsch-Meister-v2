@@ -27,7 +27,8 @@
     {"de": "das Fenster", "ru": "окно"},
     {"de": "die Wand", "ru": "стена"},
     {"de": "der Boden", "ru": "пол"},
-    {"de": "die Decke", "ru": "потолок"}
+    {"de": "die Decke", "ru": "потолок"},
+    {"de": "gibt es", "ru": "есть / имеется"}
   ],
   "examples": [
     {"de": "In meinem Zimmer gibt es einen Tisch.", "ru": "В моей комнате есть стол."},
@@ -42,13 +43,12 @@
     {"de": "Das Schlafzimmer ist klein.", "ru": "Спальня маленькая."},
     {"de": "Die Tür ist braun.", "ru": "Дверь коричневая."},
     {"de": "Das Fenster ist groß.", "ru": "Окно большое."},
-    {"de": "Die Wand ist weiß.", "ru": "Стена белая."},
-    {"de": "Der Boden ist braun.", "ru": "Пол коричневый."}
+    {"de": "Die Wand ist weiß.", "ru": "Стена белая."}
   ],
   "practice": [
-    {"type": "fill", "question": "Вставьте правильное слово (es gibt):", "sentence": "In meinem Zimmer ___ einen Tisch.", "answer": "gibt es", "hint": "В моей комнате есть стол."},
-    {"type": "fill", "question": "Вставьте правильное слово (es gibt):", "sentence": "Im Wohnzimmer ___ ein Sofa.", "answer": "gibt es", "hint": "В гостиной есть диван."},
-    {"type": "fill", "question": "Вставьте правильное слово (es gibt):", "sentence": "In der Küche ___ einen Tisch.", "answer": "gibt es", "hint": "На кухне есть стол."},
+    {"type": "fill", "question": "Вставьте правильное слово (gibt es):", "sentence": "In meinem Zimmer ___ einen Tisch.", "answer": "gibt es", "hint": "В моей комнате есть стол."},
+    {"type": "fill", "question": "Вставьте правильное слово (gibt es):", "sentence": "Im Wohnzimmer ___ ein Sofa.", "answer": "gibt es", "hint": "В гостиной есть диван."},
+    {"type": "fill", "question": "Вставьте правильное слово (gibt es):", "sentence": "In der Küche ___ einen Tisch.", "answer": "gibt es", "hint": "На кухне есть стол."},
     {"type": "fill", "question": "Вставьте правильный артикль или слово:", "sentence": "In meinem Zimmer gibt es ___ Tisch.", "answer": "einen", "hint": "В моей комнате есть стол (Akkusativ)."},
     {"type": "fill", "question": "Вставьте правильный артикль или слово:", "sentence": "Im Wohnzimmer gibt es ___ Sofa.", "answer": "ein", "hint": "В гостиной есть диван (Akkusativ)."},
     {"type": "fill", "question": "Вставьте правильный артикль или слово:", "sentence": "In der Küche gibt es ___ Tisch.", "answer": "einen", "hint": "На кухне есть стол (Akkusativ)."},
@@ -61,10 +61,11 @@
     {"type": "fill", "question": "Вставьте правильное прилагательное:", "sentence": "Das Wohnzimmer ist ___. (большое)", "answer": "groß", "hint": "Гостиная большая."},
     {"type": "fill", "question": "Вставьте правильное прилагательное:", "sentence": "Das Schlafzimmer ist ___. (маленькое)", "answer": "klein", "hint": "Спальня маленькая."},
     {"type": "fill", "question": "Вставьте правильный цвет:", "sentence": "Die Tür ist ___. (коричневая)", "answer": "braun", "hint": "Дверь коричневая."},
-    {"type": "fill", "question": "Вставьте правильный цвет:", "sentence": "Das Fenster ist ___. (большое)", "answer": "groß", "hint": "Окно большое."},
+    {"type": "fill", "question": "Вставьте правильное слово:", "sentence": "Das Fenster ist ___. (большое)", "answer": "groß", "hint": "Окно большое."},
     {"type": "transform", "question": "Переделайте предложение с es gibt:", "sentence": "In meinem Zimmer ist ein Tisch.", "answer": "In meinem Zimmer gibt es einen Tisch.", "hint": "В моей комнате есть стол."},
     {"type": "transform", "question": "Переделайте предложение с es gibt:", "sentence": "Im Wohnzimmer ist ein Sofa.", "answer": "Im Wohnzimmer gibt es ein Sofa.", "hint": "В гостиной есть диван."},
     {"type": "transform", "question": "Переделайте в отрицание (kein/keine):", "sentence": "In meinem Zimmer gibt es einen Tisch.", "answer": "In meinem Zimmer gibt es keinen Tisch.", "hint": "В моей комнате нет стола."},
-    {"type": "transform", "question": "Переделайте в отрицание (kein/keine):", "sentence": "Im Wohnzimmer gibt es ein Sofa.", "answer": "Im Wohnzimmer gibt es kein Sofa.", "hint": "В гостиной нет дивана."}
+    {"type": "transform", "question": "Переделайте в отрицание (kein/keine):", "sentence": "Im Wohnzimmer gibt es ein Sofa.", "answer": "Im Wohnzimmer gibt es kein Sofa.", "hint": "В гостиной нет дивана."},
+    {"type": "transform", "question": "Замените местоимение ich на er:", "sentence": "In meinem Zimmer gibt es einen Tisch.", "answer": "In seinem Zimmer gibt es einen Tisch.", "hint": "В его комнате есть стол."}
   ]
 }

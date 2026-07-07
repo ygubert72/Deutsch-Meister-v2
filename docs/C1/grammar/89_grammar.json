@@ -1,0 +1,49 @@
+{
+  "lesson": 89,
+  "title": "Межкультурная коммуникация и глобальные вызовы",
+  "level": "C1",
+  "theory": "<h3>🌍 Межкультурная коммуникация</h3><table border='1' cellpadding='8' style='border-collapse: collapse; width: 100%; margin: 10px 0;'><tr style='background: #3B6FE0; color: white;'><th>Русский</th><th>Немецкий</th></tr><tr style='background: #E3F2FD;'><td>культура</td><td><strong>die Kultur</strong></td></tr><tr style='background: #F5F5F5;'><td>коммуникация</td><td><strong>die Kommunikation</strong></td></tr><tr style='background: #E3F2FD;'><td>интеграция</td><td><strong>die Integration</strong></td></tr><tr style='background: #F5F5F5'><td>идентичность</td><td><strong>die Identität</strong></td></tr><tr style='background: #E3F2FD'><td>разнообразие</td><td><strong>die Diversität</strong></td></tr><tr style='background: #F5F5F5'><td>терпимость</td><td><strong>die Toleranz</strong></td></tr><tr style='background: #E3F2FD'><td>предрассудок</td><td><strong>das Vorurteil</strong></td></tr><tr style='background: #F5F5F5'><td>стереотип</td><td><strong>das Stereotyp</strong></td></tr></table><h3>🌱 Глобальные вызовы</h3><table border='1' cellpadding='8' style='border-collapse: collapse; width: 100%; margin: 10px 0;'><tr style='background: #3B6FE0; color: white;'><th>Русский</th><th>Немецкий</th></tr><tr style='background: #E3F2FD;'><td>глобализация</td><td><strong>die Globalisierung</strong></td></tr><tr style='background: #F5F5F5;'><td>миграция</td><td><strong>die Migration</strong></td></tr><tr style='background: #E3F2FD;'><td>изменение климата</td><td><strong>der Klimawandel</strong></td></tr><tr style='background: #F5F5F5'><td>устойчивость</td><td><strong>die Nachhaltigkeit</strong></td></tr><tr style='background: #E3F2FD'><td>социальное неравенство</td><td><strong>die soziale Ungleichheit</strong></td></tr><tr style='background: #F5F5F5'><td>мир</td><td><strong>der Frieden</strong></td></tr><tr style='background: #E3F2FD'><td>сотрудничество</td><td><strong>die Zusammenarbeit</strong></td></tr></table><h3>📌 Юмор и ирония в немецком языке</h3><p>В немецком языке юмор часто строится на иронии, преувеличении и игре слов.</p><div class='info-box' style='background: #E8F0FE; padding: 15px; border-radius: 12px; margin: 15px 0;'><strong>📌 ПРИМЕРЫ:</strong><br>• <span style='color:#2E7D32;font-weight:bold;'>Das ist ja typisch deutsch!</span> (иронично о пунктуальности)<br>• <span style='color:#2E7D32;font-weight:bold;'>Das ist eine gute Frage! Aber ich habe keine Ahnung.</span><br>• <span style='color:#2E7D32;font-weight:bold;'>Ich bin nicht pessimistisch, ich bin realistisch.</span> (ирония)</div>",
+  "vocabulary": [
+    {"de": "die Kultur", "ru": "культура"},
+    {"de": "die Kommunikation", "ru": "коммуникация"},
+    {"de": "die Integration", "ru": "интеграция"},
+    {"de": "die Identität", "ru": "идентичность"},
+    {"de": "die Diversität", "ru": "разнообразие"},
+    {"de": "die Toleranz", "ru": "терпимость"},
+    {"de": "das Vorurteil", "ru": "предрассудок"},
+    {"de": "das Stereotyp", "ru": "стереотип"},
+    {"de": "die Globalisierung", "ru": "глобализация"},
+    {"de": "die Migration", "ru": "миграция"},
+    {"de": "der Klimawandel", "ru": "изменение климата"},
+    {"de": "die Nachhaltigkeit", "ru": "устойчивость"},
+    {"de": "die soziale Ungleichheit", "ru": "социальное неравенство"},
+    {"de": "der Frieden", "ru": "мир"},
+    {"de": "die Zusammenarbeit", "ru": "сотрудничество"},
+    {"de": "kommunizieren", "ru": "общаться"},
+    {"de": "integrieren", "ru": "интегрировать"},
+    {"de": "tolerieren", "ru": "терпеть"},
+    {"de": "akzeptieren", "ru": "принимать"},
+    {"de": "respektieren", "ru": "уважать"},
+    {"de": "anpassen", "ru": "адаптироваться"},
+    {"de": "verstehen", "ru": "понимать"},
+    {"de": "überwinden", "ru": "преодолевать"},
+    {"de": "bewältigen", "ru": "справляться"}
+  ],
+  "examples": [
+    {"de": "Das ist ja typisch deutsch!", "ru": "Это же типично по-немецки! (иронично)"},
+    {"de": "Das ist eine gute Frage! Aber ich habe keine Ahnung.", "ru": "Это хороший вопрос! Но я понятия не имею."},
+    {"de": "Ich bin nicht pessimistisch, ich bin realistisch.", "ru": "Я не пессимист, я реалист. (ирония)"},
+    {"de": "Die Globalisierung verändert die Welt.", "ru": "Глобализация меняет мир."},
+    {"de": "Die Integration ist ein wichtiger Prozess.", "ru": "Интеграция — важный процесс."},
+    {"de": "Toleranz ist die Grundlage des Zusammenlebens.", "ru": "Терпимость — основа совместной жизни."}
+  ],
+  "practice": [
+    {"type": "fill", "question": "Вставьте правильное слово (межкультурная лексика):", "sentence": "Die ___ ist die Grundlage des Zusammenlebens. (Toleranz)", "answer": "Toleranz", "hint": "Терпимость — основа совместной жизни."},
+    {"type": "fill", "question": "Вставьте правильное слово (глобальные вызовы):", "sentence": "Die ___ verändert die Welt. (Globalisierung)", "answer": "Globalisierung", "hint": "Глобализация меняет мир."},
+    {"type": "fill", "question": "Вставьте правильное слово (глобальные вызовы):", "sentence": "Die ___ ist ein wichtiger Prozess. (Integration)", "answer": "Integration", "hint": "Интеграция — важный процесс."},
+    {"type": "fill", "question": "Вставьте правильное слово (глобальные вызовы):", "sentence": "Der ___ ist eine große Herausforderung. (Klimawandel)", "answer": "Klimawandel", "hint": "Изменение климата — большой вызов."},
+    {"type": "fill", "question": "Вставьте правильное слово (межкультурная лексика):", "sentence": "___ sind oft schwer abzulegen. (Vorurteile)", "answer": "Vorurteile", "hint": "Предрассудки часто трудно искоренить."},
+    {"type": "fill", "question": "Вставьте правильное слово (межкультурная лексика):", "sentence": "Die ___ von Kulturen ist bereichernd. (Diversität)", "answer": "Diversität", "hint": "Разнообразие культур обогащает."},
+    {"type": "transform", "question": "Переделайте предложение с иронией:", "sentence": "Die Deutschen sind pünktlich.", "answer": "Das ist ja typisch deutsch!", "hint": "Это же типично по-немецки! (иронично)"}
+  ]
+}

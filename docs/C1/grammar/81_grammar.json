@@ -1,0 +1,49 @@
+{
+  "lesson": 81,
+  "title": "Структура научного текста",
+  "level": "C1",
+  "theory": "<h3>📌 Структура научного текста</h3><div class='info-box' style='background: #E8F0FE; padding: 15px; border-radius: 12px; margin: 15px 0;'><strong>1. EINLEITUNG (введение)</strong><br>• Thema und Forschungsfrage vorstellen<br>• Relevanz des Themas begründen<br>• Ziel der Arbeit formulieren</div><div class='info-box' style='background: #E8F0FE; padding: 15px; border-radius: 12px; margin: 15px 0;'><strong>2. HAUPTTEIL (основная часть)</strong><br>• Theoretische Grundlagen<br>• Methodik<br>• Analyse und Ergebnisse</div><div class='info-box' style='background: #E8F0FE; padding: 15px; border-radius: 12px; margin: 15px 0;'><strong>3. DISKUSSION (обсуждение)</strong><br>• Interpretation der Ergebnisse<br>• Vergleich mit anderen Studien<br>• Limitationen</div><div class='info-box' style='background: #E8F0FE; padding: 15px; border-radius: 12px; margin: 15px 0;'><strong>4. SCHLUSS (заключение)</strong><br>• Zusammenfassung<br>• Ausblick</div><h3>📌 Сложные предлоги с Genitiv</h3><table border='1' cellpadding='10' style='border-collapse: collapse; width: 100%; margin: 15px 0;'><tr style='background: #3B6FE0; color: white;'><th>Предлог</th><th>Значение</th><th>Пример</th></tr><tr style='background: #E3F2FD;'><td><strong>anlässlich</strong></td><td>по поводу</td><td>anlässlich der Konferenz</td></tr><tr style='background: #F5F5F5;'><td><strong>bezüglich</strong></td><td>относительно</td><td>bezüglich Ihrer Anfrage</td></tr><tr style='background: #E3F2FD;'><td><strong>hinsichtlich</strong></td><td>в отношении</td><td>hinsichtlich der Ergebnisse</td></tr><tr style='background: #F5F5F5;'><td><strong>aufgrund</strong></td><td>на основании</td><td>aufgrund der Daten</td></tr><tr style='background: #E3F2FD;'><td><strong>im Hinblick auf</strong></td><td>ввиду</td><td>im Hinblick auf die Zukunft</td></tr></table>",
+  "vocabulary": [
+    {"de": "die Einleitung", "ru": "введение"},
+    {"de": "die Hypothese", "ru": "гипотеза"},
+    {"de": "die Methode", "ru": "метод"},
+    {"de": "die Analyse", "ru": "анализ"},
+    {"de": "die Diskussion", "ru": "обсуждение"},
+    {"de": "das Literaturverzeichnis", "ru": "список литературы"},
+    {"de": "das Abstract", "ru": "аннотация"},
+    {"de": "die These", "ru": "тезис"},
+    {"de": "die Argumentation", "ru": "аргументация"},
+    {"de": "analysieren", "ru": "анализировать"},
+    {"de": "interpretieren", "ru": "интерпретировать"},
+    {"de": "evaluieren", "ru": "оценивать"},
+    {"de": "diskutieren", "ru": "обсуждать"},
+    {"de": "argumentieren", "ru": "аргументировать"},
+    {"de": "belegen", "ru": "подтверждать / доказывать"},
+    {"de": "widerlegen", "ru": "опровергать"},
+    {"de": "zitieren", "ru": "цитировать"},
+    {"de": "anlässlich", "ru": "по поводу"},
+    {"de": "bezüglich", "ru": "относительно"},
+    {"de": "hinsichtlich", "ru": "в отношении"},
+    {"de": "aufgrund", "ru": "на основании"},
+    {"de": "im Hinblick auf", "ru": "ввиду"}
+  ],
+  "examples": [
+    {"de": "Anlässlich der Konferenz wurde eine neue Studie vorgestellt.", "ru": "По поводу конференции было представлено новое исследование."},
+    {"de": "Bezüglich Ihrer Anfrage sende ich Ihnen die Unterlagen.", "ru": "Относительно Вашего запроса я высылаю Вам документы."},
+    {"de": "Hinsichtlich der Ergebnisse sind weitere Untersuchungen nötig.", "ru": "В отношении результатов необходимы дальнейшие исследования."},
+    {"de": "Aufgrund der Daten kann die Hypothese bestätigt werden.", "ru": "На основании данных гипотеза может быть подтверждена."},
+    {"de": "Im Hinblick auf die Zukunft sind Reformen notwendig.", "ru": "Ввиду будущего реформы необходимы."},
+    {"de": "Die These wurde durch die Analyse bestätigt.", "ru": "Тезис был подтверждён анализом."}
+  ],
+  "practice": [
+    {"type": "fill", "question": "Вставьте правильный предлог с Genitiv:", "sentence": "___ der Konferenz wurde eine neue Studie vorgestellt. (по поводу)", "answer": "Anlässlich", "hint": "По поводу конференции было представлено новое исследование."},
+    {"type": "fill", "question": "Вставьте правильный предлог с Genitiv:", "sentence": "___ Ihrer Anfrage sende ich Ihnen die Unterlagen. (относительно)", "answer": "Bezüglich", "hint": "Относительно Вашего запроса я высылаю Вам документы."},
+    {"type": "fill", "question": "Вставьте правильный предлог с Genitiv:", "sentence": "___ der Ergebnisse sind weitere Untersuchungen nötig. (в отношении)", "answer": "Hinsichtlich", "hint": "В отношении результатов необходимы дальнейшие исследования."},
+    {"type": "fill", "question": "Вставьте правильный предлог с Genitiv:", "sentence": "___ der Daten kann die Hypothese bestätigt werden. (на основании)", "answer": "Aufgrund", "hint": "На основании данных гипотеза может быть подтверждена."},
+    {"type": "fill", "question": "Вставьте правильную форму глагола (Passiv):", "sentence": "Die These ___ durch die Analyse bestätigt. (werden)", "answer": "wurde", "hint": "Тезис был подтверждён анализом."},
+    {"type": "fill", "question": "Вставьте правильное слово:", "sentence": "Die ___ wurde durch die Analyse bestätigt. (гипотеза)", "answer": "Hypothese", "hint": "Гипотеза была подтверждена анализом."},
+    {"type": "fill", "question": "Вставьте правильное слово:", "sentence": "Die ___ ist klar und überzeugend. (аргументация)", "answer": "Argumentation", "hint": "Аргументация ясна и убедительна."},
+    {"type": "transform", "question": "Переделайте предложение, используя сложный предлог с Genitiv:", "sentence": "Es gab eine Konferenz. Eine neue Studie wurde vorgestellt.", "answer": "Anlässlich der Konferenz wurde eine neue Studie vorgestellt.", "hint": "По поводу конференции было представлено новое исследование."},
+    {"type": "transform", "question": "Переделайте предложение в Passiv:", "sentence": "Die Analyse bestätigte die These.", "answer": "Die These wurde durch die Analyse bestätigt.", "hint": "Тезис был подтверждён анализом."}
+  ]
+}

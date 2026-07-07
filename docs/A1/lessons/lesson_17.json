@@ -63,15 +63,12 @@
   "dictation": [
     {"de": "Liebe Anna,", "ru": "Дорогая Анна,"},
     {"de": "Ich heiße Maria und komme aus Russland.", "ru": "Меня зовут Мария, я из России."},
-    {"de": "Ich wohne in Berlin.", "ru": "Я живу в Берлине."},
-    {"de": "Viele Grüße", "ru": "С наилучшими пожеланиями"},
     {"de": "Mein Vorname ist Anna.", "ru": "Моё имя Анна."},
     {"de": "Mein Nachname ist Müller.", "ru": "Моя фамилия Мюллер."},
     {"de": "Ich bin 25 Jahre alt.", "ru": "Мне 25 лет."},
     {"de": "Ich arbeite als Lehrerin.", "ru": "Я работаю учительницей."},
     {"de": "Lieber Tom,", "ru": "Дорогой Том,"},
     {"de": "Meine Adresse ist Berliner Straße 5.", "ru": "Мой адрес — Берлинер Штрассе 5."},
-    {"de": "Mein Beruf ist Lehrer.", "ru": "Моя профессия — учитель."},
     {"de": "Meine Telefonnummer ist 0176 123456.", "ru": "Мой номер телефона 0176 123456."},
     {"de": "Meine E-Mail ist anna@mail.de.", "ru": "Моя электронная почта anna@mail.de."},
     {"de": "Liebe Grüße", "ru": "С любовью / приветом"},
@@ -80,6 +77,9 @@
     {"de": "Mein Geburtsdatum ist der 15. Mai.", "ru": "Моя дата рождения — 15 мая."},
     {"de": "Ich spreche Deutsch und Russisch.", "ru": "Я говорю по-немецки и по-русски."},
     {"de": "Was ist deine Telefonnummer?", "ru": "Какой у тебя номер телефона?"},
-    {"de": "Ich schreibe einen Brief.", "ru": "Я пишу письмо."}
+    {"de": "Ich schreibe einen Brief.", "ru": "Я пишу письмо."},
+    {"de": "Mein Vater ist Arzt.", "ru": "Мой отец — врач."},
+    {"de": "Ich wohne in München.", "ru": "Я живу в Мюнхене."},
+    {"de": "Viele Grüße von mir!", "ru": "Привет от меня!"}
   ]
 }

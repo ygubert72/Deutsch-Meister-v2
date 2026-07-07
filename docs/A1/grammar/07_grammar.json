@@ -64,6 +64,7 @@
     {"type": "transform", "question": "Сделайте вопрос с Was machst du:", "sentence": "Ich spiele Fußball.", "answer": "Was machst du?", "hint": "Что ты делаешь?"},
     {"type": "transform", "question": "Переделайте в отрицание (nicht):", "sentence": "Ich spiele gern Fußball.", "answer": "Ich spiele nicht gern Fußball.", "hint": "Я не люблю играть в футбол."},
     {"type": "transform", "question": "Замените местоимение ich на er:", "sentence": "Ich lese gern Bücher.", "answer": "Er liest gern Bücher.", "hint": "Он любит читать книги."},
-    {"type": "transform", "question": "Замените местоимение ich на wir:", "sentence": "Ich gehe ins Kino.", "answer": "Wir gehen ins Kino.", "hint": "Мы идём в кино."}
+    {"type": "transform", "question": "Замените местоимение ich на wir:", "sentence": "Ich gehe ins Kino.", "answer": "Wir gehen ins Kino.", "hint": "Мы идём в кино."},
+    {"type": "transform", "question": "Переделайте в вопрос с Was machst du in deiner Freizeit:", "sentence": "Ich lese gern Bücher.", "answer": "Was machst du in deiner Freizeit?", "hint": "Что ты делаешь в свободное время?"}
   ]
 }

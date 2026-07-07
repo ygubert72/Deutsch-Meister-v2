@@ -2,7 +2,7 @@
   "lesson": 15,
   "title": "Профессии и обязанности",
   "level": "A1",
-  "theory": "<h3>👨‍💼 Профессии</h3><p>Основные названия профессий:</p><table border='1' cellpadding='8' style='border-collapse: collapse; width: 100%; margin: 10px 0;'><tr style='background: #3B6FE0; color: white;'><th>Русский</th><th>Немецкий</th></tr><tr style='background: #E3F2FD;'><td>учитель</td><td><strong>der Lehrer / die Lehrerin</strong></td></tr><tr style='background: #F5F5F5;'><td>врач</td><td><strong>der Arzt / die Ärztin</strong></td></tr><tr style='background: #E3F2FD;'><td>инженер</td><td><strong>der Ingenieur / die Ingenieurin</strong></td></tr><tr style='background: #F5F5F5;'><td>секретарь</td><td><strong>der Sekretär / die Sekretärin</strong></td></tr><tr style='background: #E3F2FD;'><td>продавец</td><td><strong>der Verkäufer / die Verkäuferin</strong></td></tr><tr style='background: #F5F5F5;'><td>полицейский</td><td><strong>der Polizist / die Polizistin</strong></td></tr><tr style='background: #E3F2FD;'><td>медсестра / санитар</td><td><strong>der Krankenpfleger / die Krankenschwester</strong></td></tr><tr style='background: #F5F5F5;'><td>судья</td><td><strong>der Richter / die Richterin</strong></td></tr><tr style='background: #E3F2FD;'><td>адвокат</td><td><strong>der Anwalt / die Anwältin</strong></td></tr><tr style='background: #F5F5F5;'><td>архитектор</td><td><strong>der Architekt / die Architektin</strong></td></tr><tr style='background: #E3F2FD;'><td>официант</td><td><strong>der Kellner / die Kellnerin</strong></td></tr><tr style='background: #F5F5F5;'><td>повар</td><td><strong>der Koch / die Köchin</strong></td></tr><tr style='background: #E3F2FD;'><td>водитель</td><td><strong>der Fahrer / die Fahrerin</strong></td></tr><tr style='background: #F5F5F5;'><td>пилот</td><td><strong>der Pilot / die Pilotin</strong></td></tr></table><div class='info-box' style='background: #E8F0FE; padding: 15px; border-radius: 12px; margin: 15px 0;'><strong>📌 КАК СПРОСИТЬ О ПРОФЕССИИ:</strong><br>• <span style='color:#2E7D32;font-weight:bold;'>Was bist du von Beruf?</span> — Кто ты по профессии?<br>• <span style='color:#2E7D32;font-weight:bold;'>Was sind Sie von Beruf?</span> — Кто Вы по профессии?<br>• <span style='color:#2E7D32;font-weight:bold;'>Was machst du beruflich?</span> — Чем ты занимаешься?</div><h3>📌 Конструкция <span style='color:#2E7D32;font-weight:bold;'>als</span></h3><p>Для ответа на вопрос о профессии используется предлог <strong>als</strong>:</p><ul><li><span style='color:#2E7D32;font-weight:bold;'>Ich arbeite als Lehrer.</span> — Я работаю учителем.</li><li><span style='color:#2E7D32;font-weight:bold;'>Meine Mutter arbeitet als Ärztin.</span> — Моя мама работает врачом.</li><li><span style='color:#2E7D32;font-weight:bold;'>Er arbeitet als Kellner.</span> — Он работает официантом.</li></ul><h3>📌 Конструкция <span style='color:#2E7D32;font-weight:bold;'>bei / in</span></h3><p>Для указания места работы используются предлоги <strong>bei</strong> (в компании/учреждении) и <strong>in</strong> (в здании/городе):</p><ul><li><span style='color:#2E7D32;font-weight:bold;'>Ich arbeite bei einer Firma.</span> — Я работаю в фирме.</li><li><span style='color:#2E7D32;font-weight:bold;'>Mein Vater arbeitet in einer Schule.</span> — Мой отец работает в школе.</li><li><span style='color:#2E7D32;font-weight:bold;'>Sie arbeitet in einem Krankenhaus.</span> — Она работает в больнице.</li></ul>",
+  "theory": "<h3>👨‍💼 Профессии</h3><p>Основные названия профессий:</p><table border='1' cellpadding='8' style='border-collapse: collapse; width: 100%; margin: 10px 0;'><tr style='background: #3B6FE0; color: white;'><th>Русский</th><th>Немецкий</th></tr><tr style='background: #E3F2FD;'><td>учитель</td><td><strong>der Lehrer / die Lehrerin</strong></td></tr><tr style='background: #F5F5F5;'><td>врач</td><td><strong>der Arzt / die Ärztin</strong></td></tr><tr style='background: #E3F2FD;'><td>инженер</td><td><strong>der Ingenieur</strong></td></tr><tr style='background: #F5F5F5;'><td>секретарь</td><td><strong>der Sekretär / die Sekretärin</strong></td></tr><tr style='background: #E3F2FD;'><td>продавец</td><td><strong>der Verkäufer / die Verkäuferin</strong></td></tr><tr style='background: #F5F5F5;'><td>полицейский</td><td><strong>der Polizist</strong></td></tr><tr style='background: #E3F2FD;'><td>повар</td><td><strong>der Koch / die Köchin</strong></td></tr><tr style='background: #F5F5F5;'><td>водитель</td><td><strong>der Fahrer</strong></td></tr></table><div class='info-box' style='background: #E8F0FE; padding: 15px; border-radius: 12px; margin: 15px 0;'><strong>📌 КАК СПРОСИТЬ О ПРОФЕССИИ:</strong><br>• <span style='color:#2E7D32;font-weight:bold;'>Was bist du von Beruf?</span> — Кто ты по профессии?<br>• <span style='color:#2E7D32;font-weight:bold;'>Was sind Sie von Beruf?</span> — Кто Вы по профессии?<br>• <span style='color:#2E7D32;font-weight:bold;'>Was machst du beruflich?</span> — Чем ты занимаешься?</div><h3>📌 Конструкция <span style='color:#2E7D32;font-weight:bold;'>als</span></h3><p>Для ответа на вопрос о профессии используется предлог <strong>als</strong>:</p><ul><li><span style='color:#2E7D32;font-weight:bold;'>Ich arbeite als Lehrer.</span> — Я работаю учителем.</li><li><span style='color:#2E7D32;font-weight:bold;'>Meine Mutter arbeitet als Ärztin.</span> — Моя мама работает врачом.</li><li><span style='color:#2E7D32;font-weight:bold;'>Er arbeitet als Koch.</span> — Он работает поваром.</li></ul><h3>📌 Конструкция <span style='color:#2E7D32;font-weight:bold;'>bei / in</span></h3><p>Для указания места работы используются предлоги <strong>bei</strong> (в компании/учреждении) и <strong>in</strong> (в здании/городе):</p><ul><li><span style='color:#2E7D32;font-weight:bold;'>Ich arbeite bei einer Firma.</span> — Я работаю в фирме.</li><li><span style='color:#2E7D32;font-weight:bold;'>Mein Vater arbeitet in einer Schule.</span> — Мой отец работает в школе.</li><li><span style='color:#2E7D32;font-weight:bold;'>Sie arbeitet in einem Krankenhaus.</span> — Она работает в больнице.</li></ul>",
   "vocabulary": [
     {"de": "der Lehrer", "ru": "учитель"},
     {"de": "die Lehrerin", "ru": "учительница"},
@@ -14,15 +14,9 @@
     {"de": "der Verkäufer", "ru": "продавец"},
     {"de": "die Verkäuferin", "ru": "продавщица"},
     {"de": "der Polizist", "ru": "полицейский"},
-    {"de": "der Krankenpfleger", "ru": "медбрат"},
-    {"de": "die Krankenschwester", "ru": "медсестра"},
-    {"de": "der Richter", "ru": "судья"},
-    {"de": "der Anwalt", "ru": "адвокат"},
-    {"de": "der Architekt", "ru": "архитектор"},
     {"de": "der Koch", "ru": "повар"},
     {"de": "die Köchin", "ru": "повариха"},
     {"de": "der Fahrer", "ru": "водитель"},
-    {"de": "der Pilot", "ru": "пилот"},
     {"de": "arbeiten als", "ru": "работать кем"},
     {"de": "arbeiten bei", "ru": "работать в (компания)"},
     {"de": "arbeiten in", "ru": "работать в (место)"},
@@ -31,9 +25,7 @@
     {"de": "das Büro", "ru": "офис"},
     {"de": "die Firma", "ru": "фирма"},
     {"de": "das Restaurant", "ru": "ресторан"},
-    {"de": "der Supermarkt", "ru": "супермаркет"},
-    {"de": "die Bank", "ru": "банк"},
-    {"de": "die Universität", "ru": "университет"}
+    {"de": "der Supermarkt", "ru": "супермаркет"}
   ],
   "examples": [
     {"de": "Was bist du von Beruf?", "ru": "Кто ты по профессии?"},
@@ -43,20 +35,19 @@
     {"de": "Mein Vater arbeitet bei einer Bank.", "ru": "Мой отец работает в банке."},
     {"de": "Sie arbeitet in einem Krankenhaus.", "ru": "Она работает в больнице."},
     {"de": "Er ist von Beruf Ingenieur.", "ru": "Он по профессии инженер."},
-    {"de": "Ich arbeite in einer Schule.", "ru": "Я работаю в школе."},
-    {"de": "Was machst du beruflich?", "ru": "Чем ты занимаешься?"}
+    {"de": "Ich arbeite in einer Schule.", "ru": "Я работаю в школе."}
   ],
   "practice": [
     {"type": "fill", "question": "Вставьте правильную профессию:", "sentence": "Ich bin von Beruf ___. (учитель)", "answer": "Lehrer", "hint": "Я учитель."},
     {"type": "fill", "question": "Вставьте правильную профессию:", "sentence": "Mein Vater ist ___. (врач)", "answer": "Arzt", "hint": "Мой отец врач."},
     {"type": "fill", "question": "Вставьте правильную профессию:", "sentence": "Meine Mutter arbeitet als ___. (секретарша)", "answer": "Sekretärin", "hint": "Моя мама работает секретарём."},
     {"type": "fill", "question": "Вставьте правильную профессию:", "sentence": "Er arbeitet als ___. (инженер)", "answer": "Ingenieur", "hint": "Он работает инженером."},
+    {"type": "fill", "question": "Вставьте правильную профессию:", "sentence": "Meine Schwester ist ___. (продавщица)", "answer": "Verkäuferin", "hint": "Моя сестра продавщица."},
     {"type": "fill", "question": "Вставьте правильный предлог (als/bei/in):", "sentence": "Ich arbeite ___ Lehrer.", "answer": "als", "hint": "Я работаю учителем."},
     {"type": "fill", "question": "Вставьте правильный предлог (als/bei/in):", "sentence": "Mein Vater arbeitet ___ einer Bank.", "answer": "bei", "hint": "Мой отец работает в банке."},
     {"type": "fill", "question": "Вставьте правильный предлог (als/bei/in):", "sentence": "Sie arbeitet ___ einem Krankenhaus.", "answer": "in", "hint": "Она работает в больнице."},
     {"type": "fill", "question": "Вставьте правильный предлог (als/bei/in):", "sentence": "Ich arbeite ___ einer Firma.", "answer": "bei", "hint": "Я работаю в фирме."},
     {"type": "fill", "question": "Вставьте правильное место работы:", "sentence": "Meine Mutter arbeitet in einer ___. (школа)", "answer": "Schule", "hint": "Моя мама работает в школе."},
-    {"type": "fill", "question": "Вставьте правильное место работы:", "sentence": "Er arbeitet in einem ___. (ресторан)", "answer": "Restaurant", "hint": "Он работает в ресторане."},
     {"type": "fill", "question": "Вставьте правильный вопрос:", "sentence": "___ bist du von Beruf?", "answer": "Was", "hint": "Кто ты по профессии?"},
     {"type": "fill", "question": "Вставьте правильный вопрос:", "sentence": "___ arbeitest du?", "answer": "Wo", "hint": "Где ты работаешь?"},
     {"type": "transform", "question": "Переделайте в вопрос с Was:", "sentence": "Ich bin Lehrer.", "answer": "Was bist du von Beruf?", "hint": "Кто ты по профессии?"},

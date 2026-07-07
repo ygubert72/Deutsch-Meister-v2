@@ -1,0 +1,45 @@
+{
+  "lesson": 86,
+  "title": "Публичные выступления и модерация дискуссий",
+  "level": "C1",
+  "theory": "<h3>📌 Структура публичного выступления</h3><div class='info-box' style='background: #E8F0FE; padding: 15px; border-radius: 12px; margin: 15px 0;'><strong>1. ERÖFFNUNG (открытие)</strong><br>• Thema vorstellen<br>• Relevanz begründen<br>• Interesse wecken</div><div class='info-box' style='background: #E8F0FE; padding: 15px; border-radius: 12px; margin: 15px 0;'><strong>2. HAUPTTEIL (основная часть)</strong><br>• Argumente strukturiert präsentieren<br>• Beispiele geben<br>• Visualisierungen nutzen</div><div class='info-box' style='background: #E8F0FE; padding: 15px; border-radius: 12px; margin: 15px 0;'><strong>3. SCHLUSS (заключение)</strong><br>• Zusammenfassung<br>• Fazit<br>• Ausblick</div><h3>📌 Эмфатические частицы</h3><table border='1' cellpadding='10' style='border-collapse: collapse; width: 100%; margin: 15px 0;'><tr style='background: #3B6FE0; color: white;'><th>Частица</th><th>Значение</th><th>Пример</th></tr><tr style='background: #E3F2FD;'><td><strong>gerade</strong></td><td>как раз, именно</td><td>Das ist gerade das Problem!</td></tr><tr style='background: #F5F5F5;'><td><strong>eben</strong></td><td>как раз, просто</td><td>Das ist eben so.</td></tr><tr style='background: #E3F2FD;'><td><strong>doch</strong></td><td>же, всё же</td><td>Das ist doch klar!</td></tr><tr style='background: #F5F5F5'><td><strong>halt</strong></td><td>просто, ну</td><td>Das ist halt so.</td></tr><tr style='background: #E3F2FD'><td><strong>ja</strong></td><td>же, ведь</td><td>Das ist ja interessant!</td></tr></table>",
+  "vocabulary": [
+    {"de": "die Eröffnung", "ru": "открытие"},
+    {"de": "die Moderation", "ru": "модерация"},
+    {"de": "die Diskussionsleitung", "ru": "руководство дискуссией"},
+    {"de": "die Gesprächsführung", "ru": "ведение разговора"},
+    {"de": "der Redebeitrag", "ru": "выступление"},
+    {"de": "die Wortmeldung", "ru": "реплика"},
+    {"de": "die Emphase", "ru": "эмфаза"},
+    {"de": "die Wiederholung", "ru": "повтор"},
+    {"de": "der Dreischritt", "ru": "трёхступенчатость"},
+    {"de": "die Überleitung", "ru": "переход"},
+    {"de": "moderieren", "ru": "модерировать"},
+    {"de": "leiten", "ru": "вести"},
+    {"de": "eröffnen", "ru": "открывать"},
+    {"de": "zusammenfassen", "ru": "резюмировать"},
+    {"de": "überleiten", "ru": "переходить"},
+    {"de": "visualisieren", "ru": "визуализировать"},
+    {"de": "überzeugen", "ru": "убеждать"},
+    {"de": "argumentieren", "ru": "аргументировать"}
+  ],
+  "examples": [
+    {"de": "Gerade das ist das Problem!", "ru": "Как раз в этом проблема!"},
+    {"de": "Das ist doch klar!", "ru": "Это же ясно!"},
+    {"de": "Das ist ja interessant!", "ru": "Это ведь интересно!"},
+    {"de": "Ich möchte die Diskussion mit einer Frage eröffnen.", "ru": "Я хотел бы открыть дискуссию вопросом."},
+    {"de": "Die Moderation der Diskussion war sehr professionell.", "ru": "Модерация дискуссии была очень профессиональной."},
+    {"de": "Abschließend möchte ich die wichtigsten Punkte zusammenfassen.", "ru": "В заключение я хотел бы резюмировать самые важные пункты."}
+  ],
+  "practice": [
+    {"type": "fill", "question": "Вставьте правильную эмфатическую частицу:", "sentence": "___ das ist das Problem! (как раз)", "answer": "Gerade", "hint": "Как раз в этом проблема!"},
+    {"type": "fill", "question": "Вставьте правильную эмфатическую частицу:", "sentence": "Das ist ___ klar! (же)", "answer": "doch", "hint": "Это же ясно!"},
+    {"type": "fill", "question": "Вставьте правильную эмфатическую частицу:", "sentence": "Das ist ___ interessant! (ведь)", "answer": "ja", "hint": "Это ведь интересно!"},
+    {"type": "fill", "question": "Вставьте правильную эмфатическую частицу:", "sentence": "Das ist ___ so. (просто)", "answer": "eben", "hint": "Это просто так."},
+    {"type": "fill", "question": "Вставьте правильное слово (структура выступления):", "sentence": "Ich möchte die Diskussion mit einer Frage ___. (eröffnen)", "answer": "eröffnen", "hint": "Я хотел бы открыть дискуссию вопросом."},
+    {"type": "fill", "question": "Вставьте правильное слово:", "sentence": "Die ___ der Diskussion war sehr professionell. (Moderation)", "answer": "Moderation", "hint": "Модерация дискуссии была очень профессиональной."},
+    {"type": "fill", "question": "Вставьте правильное слово:", "sentence": "Abschließend möchte ich die wichtigsten Punkte ___. (zusammenfassen)", "answer": "zusammenfassen", "hint": "В заключение я хотел бы резюмировать самые важные пункты."},
+    {"type": "transform", "question": "Переделайте предложение с эмфатической частицей (gerade):", "sentence": "Das ist das Problem.", "answer": "Gerade das ist das Problem!", "hint": "Как раз в этом проблема!"},
+    {"type": "transform", "question": "Переделайте предложение с эмфатической частицей (doch):", "sentence": "Das ist klar.", "answer": "Das ist doch klar!", "hint": "Это же ясно!"}
+  ]
+}

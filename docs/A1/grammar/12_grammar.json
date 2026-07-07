@@ -57,14 +57,24 @@
   ],
   "practice": [
     {"type": "fill", "question": "Вставьте правильную форму глагола essen:", "sentence": "Ich ___ gern Brot.", "answer": "esse", "hint": "Я люблю есть хлеб."},
-    {"type": "fill", "question": "Вставьте правильную форму глагола möchten:", "sentence": "Du ___ einen Kaffee.", "answer": "möchtest", "hint": "Ты хочешь кофе."},
-    {"type": "fill", "question": "Вставьте правильное слово:", "sentence": "Hast du ___? (жажда)", "answer": "Durst", "hint": "Ты хочешь пить?"},
-    {"type": "fill", "question": "Вставьте правильную форму глагола trinken:", "sentence": "Ich ___ gern Kaffee.", "answer": "trinke", "hint": "Я люблю пить кофе."},
-    {"type": "fill", "question": "Вставьте правильное слово:", "sentence": "Zum ___ esse ich Brot. (завтрак)", "answer": "Frühstück", "hint": "На завтрак я ем хлеб."},
     {"type": "fill", "question": "Вставьте правильную форму глагола essen:", "sentence": "Du ___ gern Obst.", "answer": "isst", "hint": "Ты любишь есть фрукты."},
+    {"type": "fill", "question": "Вставьте правильную форму глагола essen:", "sentence": "Er ___ gern Fleisch.", "answer": "isst", "hint": "Он любит есть мясо."},
+    {"type": "fill", "question": "Вставьте правильную форму глагола trinken:", "sentence": "Ich ___ gern Kaffee.", "answer": "trinke", "hint": "Я люблю пить кофе."},
+    {"type": "fill", "question": "Вставьте правильную форму глагола trinken:", "sentence": "Du ___ gern Tee.", "answer": "trinkst", "hint": "Ты любишь пить чай."},
+    {"type": "fill", "question": "Вставьте правильную форму глагола trinken:", "sentence": "Sie ___ gern Wasser.", "answer": "trinkt", "hint": "Она любит пить воду."},
+    {"type": "fill", "question": "Вставьте правильную форму глагола möchten:", "sentence": "Ich ___ einen Kaffee.", "answer": "möchte", "hint": "Я хочу кофе."},
+    {"type": "fill", "question": "Вставьте правильную форму глагола möchten:", "sentence": "Du ___ ein Brötchen.", "answer": "möchtest", "hint": "Ты хочешь булочку."},
+    {"type": "fill", "question": "Вставьте правильную форму глагола möchten:", "sentence": "Wir ___ eine Pizza.", "answer": "möchten", "hint": "Мы хотим пиццу."},
     {"type": "fill", "question": "Вставьте правильное слово:", "sentence": "Hast du ___? (голод)", "answer": "Hunger", "hint": "Ты голоден?"},
-    {"type": "fill", "question": "Вставьте правильную форму глагола möchten:", "sentence": "Ich ___ ein Brötchen.", "answer": "möchte", "hint": "Я хочу булочку."},
+    {"type": "fill", "question": "Вставьте правильное слово:", "sentence": "Hast du ___? (жажда)", "answer": "Durst", "hint": "Ты хочешь пить?"},
+    {"type": "fill", "question": "Вставьте правильное слово:", "sentence": "Zum ___ esse ich Brot. (завтрак)", "answer": "Frühstück", "hint": "На завтрак я ем хлеб."},
     {"type": "fill", "question": "Вставьте правильное слово:", "sentence": "Zum ___ esse ich Suppe. (обед)", "answer": "Mittagessen", "hint": "На обед я ем суп."},
-    {"type": "fill", "question": "Вставьте правильную форму глагола trinken:", "sentence": "Du ___ gern Tee.", "answer": "trinkst", "hint": "Ты любишь пить чай."}
+    {"type": "fill", "question": "Вставьте правильный продукт:", "sentence": "Die ___ ist gelb. (банан)", "answer": "Banane", "hint": "Банан жёлтый."},
+    {"type": "fill", "question": "Вставьте правильный продукт:", "sentence": "Der ___ ist rot. (яблоко)", "answer": "Apfel", "hint": "Яблоко красное."},
+    {"type": "transform", "question": "Переделайте в вопрос с Möchtest du:", "sentence": "Ich möchte einen Kaffee.", "answer": "Möchtest du einen Kaffee?", "hint": "Ты хочешь кофе?"},
+    {"type": "transform", "question": "Переделайте в отрицание (kein/keine):", "sentence": "Ich esse gern Fleisch.", "answer": "Ich esse kein Fleisch.", "hint": "Я не ем мясо."},
+    {"type": "transform", "question": "Переделайте в отрицание (kein/keine):", "sentence": "Ich trinke gern Bier.", "answer": "Ich trinke kein Bier.", "hint": "Я не пью пиво."},
+    {"type": "transform", "question": "Замените местоимение ich на er:", "sentence": "Ich esse gern Brot.", "answer": "Er isst gern Brot.", "hint": "Он любит есть хлеб."},
+    {"type": "transform", "question": "Замените местоимение ich на wir:", "sentence": "Ich trinke gern Kaffee.", "answer": "Wir trinken gern Kaffee.", "hint": "Мы любим пить кофе."}
   ]
 }

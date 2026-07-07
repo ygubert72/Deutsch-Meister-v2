@@ -1,0 +1,43 @@
+{
+  "lesson": 61,
+  "title": "Пассив в сложных временных формах",
+  "level": "B2",
+  "theory": "<h3>📌 Пассив в немецком языке — обзор</h3><p>В немецком языке есть <strong>два типа пассива</strong>:</p><div class='info-box' style='background: #E8F0FE; padding: 15px; border-radius: 12px; margin: 15px 0;'><strong>📌 VORGANGSPASSIV (процесс)</strong><br>Описывает <strong>действие</strong> (процесс).<br><span style='color:#2E7D32;font-weight:bold;'>Das Haus <u>wird</u> gebaut.</span> — Дом строится (процесс).</div><div class='info-box' style='background: #E8F0FE; padding: 15px; border-radius: 12px; margin: 15px 0;'><strong>📌 ZUSTANDSPASSIV (результат)</strong><br>Описывает <strong>результат</strong> действия (состояние).<br><span style='color:#2E7D32;font-weight:bold;'>Das Haus <u>ist</u> gebaut.</span> — Дом построен (результат).</div><h3>📌 Формы Vorgangspassiv</h3><table border='1' cellpadding='10' style='border-collapse: collapse; width: 100%; margin: 15px 0;'><tr style='background: #3B6FE0; color: white;'><th>Время</th><th>Формула</th><th>Пример</th></tr><tr style='background: #E3F2FD;'><td><strong>Präsens</strong></td><td>wird + Partizip II</td><td>Das Haus wird gebaut.</td></tr><tr style='background: #F5F5F5;'><td><strong>Präteritum</strong></td><td>wurde + Partizip II</td><td>Das Haus wurde gebaut.</td></tr><tr style='background: #E3F2FD;'><td><strong>Perfekt</strong></td><td>ist + Partizip II + worden</td><td>Das Haus ist gebaut worden.</td></tr><tr style='background: #F5F5F5;'><td><strong>Futur I</strong></td><td>wird + Partizip II + werden</td><td>Das Haus wird gebaut werden.</td></tr></table><h3>📌 Zustandspassiv</h3><table border='1' cellpadding='10' style='border-collapse: collapse; width: 100%; margin: 15px 0;'><tr style='background: #3B6FE0; color: white;'><th>Время</th><th>Формула</th><th>Пример</th></tr><tr style='background: #E3F2FD;'><td><strong>Präsens</strong></td><td>ist + Partizip II</td><td>Das Haus ist gebaut.</td></tr><tr style='background: #F5F5F5;'><td><strong>Präteritum</strong></td><td>war + Partizip II</td><td>Das Haus war gebaut.</td></tr></table>",
+  "vocabulary": [
+    {"de": "die Forschung", "ru": "исследование"},
+    {"de": "das Experiment", "ru": "эксперимент"},
+    {"de": "die Analyse", "ru": "анализ"},
+    {"de": "die Methode", "ru": "метод"},
+    {"de": "das Ergebnis", "ru": "результат"},
+    {"de": "die Studie", "ru": "исследование / изучение"},
+    {"de": "der Prozess", "ru": "процесс"},
+    {"de": "der Zustand", "ru": "состояние"},
+    {"de": "durchführen", "ru": "проводить"},
+    {"de": "untersuchen", "ru": "исследовать"},
+    {"de": "auswerten", "ru": "оценивать / анализировать"},
+    {"de": "veröffentlichen", "ru": "публиковать"},
+    {"de": "bestätigen", "ru": "подтверждать"},
+    {"de": "widerlegen", "ru": "опровергать"}
+  ],
+  "examples": [
+    {"de": "Das Haus wird gebaut.", "ru": "Дом строится (процесс)."},
+    {"de": "Das Haus wurde gebaut.", "ru": "Дом строился (прошлое)."},
+    {"de": "Das Haus ist gebaut worden.", "ru": "Дом был построен (Perfekt Passiv)."},
+    {"de": "Das Haus wird gebaut werden.", "ru": "Дом будет построен (Futur Passiv)."},
+    {"de": "Das Haus ist gebaut.", "ru": "Дом построен (Zustandspassiv)."},
+    {"de": "Die Studie wurde von Forschern durchgeführt.", "ru": "Исследование было проведено учёными."},
+    {"de": "Die Ergebnisse sind veröffentlicht worden.", "ru": "Результаты были опубликованы."},
+    {"de": "Die Methode ist in der Wissenschaft etabliert.", "ru": "Метод утверждён в науке (Zustandspassiv)."}
+  ],
+  "practice": [
+    {"type": "fill", "question": "Вставьте правильную форму Vorgangspassiv (Präteritum):", "sentence": "Das Haus ___ gebaut. (werden)", "answer": "wurde", "hint": "Дом строился (Präteritum Passiv)."},
+    {"type": "fill", "question": "Вставьте правильную форму Vorgangspassiv (Futur I):", "sentence": "Das Haus ___ gebaut ___. (werden)", "answer": "wird werden", "hint": "Дом будет построен (Futur Passiv)."},
+    {"type": "fill", "question": "Вставьте правильную форму Vorgangspassiv (Perfekt):", "sentence": "Das Haus ist gebaut ___. (werden)", "answer": "worden", "hint": "Дом был построен (Perfekt Passiv)."},
+    {"type": "fill", "question": "Вставьте правильную форму Zustandspassiv (Präsens):", "sentence": "Das Haus ___ gebaut. (sein)", "answer": "ist", "hint": "Дом построен (Zustandspassiv)."},
+    {"type": "fill", "question": "Вставьте правильную форму Zustandspassiv (Präteritum):", "sentence": "Das Haus ___ gebaut. (sein)", "answer": "war", "hint": "Дом был построен (Zustandspassiv Präteritum)."},
+    {"type": "fill", "question": "Вставьте правильную форму Vorgangspassiv (Präsens):", "sentence": "Die Studie ___ von Forschern durchgeführt. (werden)", "answer": "wird", "hint": "Исследование проводится учёными."},
+    {"type": "fill", "question": "Вставьте правильное слово (worden/geworden):", "sentence": "Das Haus ist gebaut ___.", "answer": "worden", "hint": "В Vorgangspassiv Perfekt используется worden (без g-)."},
+    {"type": "transform", "question": "Переделайте активное предложение в Passiv (Präteritum):", "sentence": "Die Forscher führten die Studie durch.", "answer": "Die Studie wurde von Forschern durchgeführt.", "hint": "Исследование было проведено учёными."},
+    {"type": "transform", "question": "Переделайте активное предложение в Passiv (Futur I):", "sentence": "Die Forscher werden die Studie durchführen.", "answer": "Die Studie wird von Forschern durchgeführt werden.", "hint": "Исследование будет проведено учёными."}
+  ]
+}

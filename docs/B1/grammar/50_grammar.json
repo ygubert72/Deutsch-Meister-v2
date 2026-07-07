@@ -1,0 +1,44 @@
+{
+  "lesson": 50,
+  "title": "Условные предложения 1-го типа",
+  "level": "B1",
+  "theory": "<h3>📌 Что такое условные предложения 1-го типа?</h3><p>Условные предложения 1-го типа описывают <strong>реальные условия</strong> — то, что может произойти в будущем.</p><div class='info-box' style='background: #E8F0FE; padding: 15px; border-radius: 12px; margin: 15px 0;'><strong>📌 КОНСТРУКЦИЯ:</strong><br><span style='color:#2E7D32;font-weight:bold;'>Wenn + Präsens, (dann) + Präsens/Futur I</span><br><br>• <span style='color:#2E7D32;font-weight:bold;'>Wenn ich genug Geld habe, werde ich reisen.</span><br>Если у меня будет достаточно денег, я поеду путешествовать.<br><br>• <span style='color:#2E7D32;font-weight:bold;'>Wenn du heute kommst, gehen wir ins Kino.</span><br>Если ты сегодня придёшь, мы пойдём в кино.</div><h3>📌 <span style='color:#2E7D32;font-weight:bold;'>wenn</span> — условие (если) vs <span style='color:#2E7D32;font-weight:bold;'>wenn</span> — время (когда)</h3><table border='1' cellpadding='10' style='border-collapse: collapse; width: 100%; margin: 15px 0;'><tr style='background: #3B6FE0; color: white;'><th>Значение</th><th>Пример</th></tr><tr style='background: #E3F2FD;'><td><strong>условие (если)</strong></td><td>Wenn ich Zeit habe, helfe ich dir. (если у меня будет время)</td></tr><tr style='background: #F5F5F5;'><td><strong>время (когда)</strong></td><td>Wenn ich Zeit habe, lese ich ein Buch. (когда у меня есть время)</td></tr></table><div class='warning-box' style='background: #FFF3E0; padding: 15px; border-radius: 12px; margin: 15px 0; border-left: 5px solid #FF9800;'><strong>💡 ВАЖНО!</strong><br>• В придаточном с <strong>wenn</strong> глагол стоит <strong>в конце</strong>.<br>• В главном предложении <strong>глагол на 2-м месте</strong>.</div>",
+  "vocabulary": [
+    {"de": "wenn", "ru": "если / когда"},
+    {"de": "dann", "ru": "тогда"},
+    {"de": "die Karriere", "ru": "карьера"},
+    {"de": "die Familie", "ru": "семья"},
+    {"de": "die Zukunft", "ru": "будущее"},
+    {"de": "der Traum", "ru": "мечта"},
+    {"de": "der Wunsch", "ru": "желание"},
+    {"de": "der Plan", "ru": "план"},
+    {"de": "das Ziel", "ru": "цель"},
+    {"de": "heiraten", "ru": "жениться / выходить замуж"},
+    {"de": "kaufen", "ru": "покупать"},
+    {"de": "bauen", "ru": "строить"},
+    {"de": "sparen", "ru": "копить"},
+    {"de": "verdienen", "ru": "зарабатывать"},
+    {"de": "das Studium", "ru": "учёба"},
+    {"de": "der Beruf", "ru": "профессия"}
+  ],
+  "examples": [
+    {"de": "Wenn ich genug Geld habe, werde ich reisen.", "ru": "Если у меня будет достаточно денег, я поеду путешествовать."},
+    {"de": "Wenn du heute kommst, gehen wir ins Kino.", "ru": "Если ты сегодня придёшь, мы пойдём в кино."},
+    {"de": "Wenn ich Zeit habe, helfe ich dir.", "ru": "Если у меня будет время, я помогу тебе."},
+    {"de": "Wenn ich die Prüfung bestehe, werde ich feiern.", "ru": "Если я сдам экзамен, я буду праздновать."},
+    {"de": "Wenn du fleißig lernst, wirst du Erfolg haben.", "ru": "Если ты будешь усердно учиться, у тебя будет успех."},
+    {"de": "Wenn ich nächstes Jahr nach Deutschland fahre, besuche ich Berlin.", "ru": "Если я поеду в Германию в следующем году, я посещу Берлин."}
+  ],
+  "practice": [
+    {"type": "fill", "question": "Вставьте правильную форму глагола в придаточном:", "sentence": "Wenn ich genug Geld ___, werde ich reisen. (haben)", "answer": "habe", "hint": "Если у меня будет достаточно денег, я поеду путешествовать."},
+    {"type": "fill", "question": "Вставьте правильную форму глагола в придаточном:", "sentence": "Wenn du heute ___, gehen wir ins Kino. (kommen)", "answer": "kommst", "hint": "Если ты сегодня придёшь, мы пойдём в кино."},
+    {"type": "fill", "question": "Вставьте правильную форму глагола в главном предложении:", "sentence": "Wenn ich Zeit habe, ___ ich dir. (helfen)", "answer": "helfe", "hint": "Если у меня будет время, я помогу тебе."},
+    {"type": "fill", "question": "Вставьте правильную форму глагола в главном предложении:", "sentence": "Wenn ich die Prüfung bestehe, ___ ich feiern. (werden)", "answer": "werde", "hint": "Если я сдам экзамен, я буду праздновать."},
+    {"type": "fill", "question": "Вставьте правильное слово:", "sentence": "Wenn ich nächstes Jahr nach Deutschland fahre, ___ ich Berlin. (besuchen)", "answer": "besuche", "hint": "Если я поеду в Германию в следующем году, я посещу Берлин."},
+    {"type": "fill", "question": "Вставьте правильное слово (wenn/wann):", "sentence": "___ ich genug Geld habe, werde ich reisen. (если)", "answer": "Wenn", "hint": "Если у меня будет достаточно денег, я поеду путешествовать."},
+    {"type": "fill", "question": "Вставьте правильное слово (wenn/wann):", "sentence": "___ ich Zeit habe, lese ich ein Buch. (когда, всегда)", "answer": "Wenn", "hint": "Когда у меня есть время, я читаю книгу."},
+    {"type": "fill", "question": "Вставьте правильное слово:", "sentence": "Wenn ich genug Geld habe, ___ werde ich reisen. (тогда)", "answer": "dann", "hint": "Если у меня будет достаточно денег, тогда я поеду путешествовать."},
+    {"type": "transform", "question": "Переделайте предложение с wenn (условие):", "sentence": "Ich habe genug Geld. Ich werde reisen.", "answer": "Wenn ich genug Geld habe, werde ich reisen.", "hint": "Если у меня будет достаточно денег, я поеду путешествовать."},
+    {"type": "transform", "question": "Переделайте предложение с wenn (условие):", "sentence": "Du kommst heute. Wir gehen ins Kino.", "answer": "Wenn du heute kommst, gehen wir ins Kino.", "hint": "Если ты сегодня придёшь, мы пойдём в кино."}
+  ]
+}

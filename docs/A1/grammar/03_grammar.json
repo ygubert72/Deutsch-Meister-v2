@@ -59,6 +59,7 @@
     {"type": "transform", "question": "Переделайте утверждение в вопрос (глагол на 1-е место):", "sentence": "Du bist Anna.", "answer": "Bist du Anna?", "hint": "Ты Анна?"},
     {"type": "transform", "question": "Переделайте в отрицание (nicht):", "sentence": "Ich bin Anna.", "answer": "Ich bin nicht Anna.", "hint": "Я не Анна."},
     {"type": "transform", "question": "Замените местоимение ich на du:", "sentence": "Ich bin Anna.", "answer": "Du bist Anna.", "hint": "Ты Анна."},
-    {"type": "transform", "question": "Замените местоимение ich на wir:", "sentence": "Ich bin hier.", "answer": "Wir sind hier.", "hint": "Мы здесь."}
+    {"type": "transform", "question": "Замените местоимение ich на wir:", "sentence": "Ich bin hier.", "answer": "Wir sind hier.", "hint": "Мы здесь."},
+    {"type": "transform", "question": "Переделайте формальное обращение в неформальное:", "sentence": "Sind Sie Herr Müller?", "answer": "Bist du Herr Müller?", "hint": "Ты господин Мюллер?"}
   ]
 }

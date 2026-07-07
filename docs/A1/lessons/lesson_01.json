@@ -8,19 +8,27 @@
     {"de": "Vater", "ru": "отец"}
   ],
   "trainer": [
-    {"de": "Auto", "ru": "машина"},
-    {"de": "Berlin", "ru": "Берлин"},
-    {"de": "Volkswagen", "ru": "Фольксваген"},
-    {"de": "Deutschland", "ru": "Германия"},
-    {"de": "Mutter", "ru": "мать"},
-    {"de": "Vater", "ru": "отец"}
+    {"de": "Das ist ein Auto.", "ru": "Это машина."},
+    {"de": "Das ist ein Volkswagen.", "ru": "Это Фольксваген."},
+    {"de": "Das ist Berlin.", "ru": "Это Берлин."},
+    {"de": "Das ist Deutschland.", "ru": "Это Германия."},
+    {"de": "Das ist meine Mutter.", "ru": "Это моя мать."},
+    {"de": "Das ist mein Vater.", "ru": "Это мой отец."},
+    {"de": "Das Auto ist in Berlin.", "ru": "Машина в Берлине."},
+    {"de": "Mein Vater kommt aus Deutschland.", "ru": "Мой отец из Германии."},
+    {"de": "Meine Mutter fährt einen Volkswagen.", "ru": "Моя мать водит Фольксваген."},
+    {"de": "Das Auto ist von meinem Vater.", "ru": "Машина моего отца."}
   ],
   "dictation": [
-    {"de": "Auto", "ru": "машина"},
-    {"de": "Berlin", "ru": "Берлин"},
-    {"de": "Volkswagen", "ru": "Фольксваген"},
-    {"de": "Deutschland", "ru": "Германия"},
-    {"de": "Mutter", "ru": "мать"},
-    {"de": "Vater", "ru": "отец"}
+    {"de": "Das ist ein Auto.", "ru": "Это машина."},
+    {"de": "Das ist ein Volkswagen.", "ru": "Это Фольксваген."},
+    {"de": "Das ist Berlin.", "ru": "Это Берлин."},
+    {"de": "Das ist Deutschland.", "ru": "Это Германия."},
+    {"de": "Das ist meine Mutter.", "ru": "Это моя мать."},
+    {"de": "Das ist mein Vater.", "ru": "Это мой отец."},
+    {"de": "Das Auto ist in Berlin.", "ru": "Машина в Берлине."},
+    {"de": "Mein Vater kommt aus Deutschland.", "ru": "Мой отец из Германии."},
+    {"de": "Meine Mutter fährt einen Volkswagen.", "ru": "Моя мать водит Фольксваген."},
+    {"de": "Das Auto ist von meinem Vater.", "ru": "Машина моего отца."}
   ]
 }

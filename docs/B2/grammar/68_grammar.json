@@ -1,0 +1,48 @@
+{
+  "lesson": 68,
+  "title": "Право и обязанности",
+  "level": "B2",
+  "theory": "<h3>📌 Условные предложения 2-го типа (Konjunktiv II)</h3><p>Условные предложения 2-го типа описывают <strong>нереальные / гипотетические ситуации</strong> в настоящем или будущем.</p><div class='info-box' style='background: #E8F0FE; padding: 15px; border-radius: 12px; margin: 15px 0;'><strong>📌 КОНСТРУКЦИЯ:</strong><br><span style='color:#2E7D32;font-weight:bold;'>Wenn + Präteritum Konjunktiv II, (dann) + würde + Infinitiv</span><br><br>• <span style='color:#2E7D32;font-weight:bold;'>Wenn ich mehr Zeit hätte, würde ich mehr reisen.</span><br>Если бы у меня было больше времени, я бы больше путешествовал.<br><br>• <span style='color:#2E7D32;font-weight:bold;'>Wenn ich reich wäre, würde ich ein Haus kaufen.</span><br>Если бы я был богат, я бы купил дом.</div><h3>📌 Сравнение с условными 1-го типа</h3><table border='1' cellpadding='10' style='border-collapse: collapse; width: 100%; margin: 15px 0;'><tr style='background: #3B6FE0; color: white;'><th>Тип</th><th>Значение</th><th>Пример</th></tr><tr style='background: #E3F2FD;'><td><strong>Тип 1</strong></td><td>реальное условие</td><td>Wenn ich Zeit habe, helfe ich dir.</td></tr><tr style='background: #F5F5F5;'><td><strong>Тип 2</strong></td><td>нереальное условие</td><td>Wenn ich Zeit hätte, würde ich dir helfen.</td></tr></table>",
+  "vocabulary": [
+    {"de": "der Vertrag", "ru": "договор"},
+    {"de": "die Haftung", "ru": "ответственность"},
+    {"de": "die Zustimmung", "ru": "согласие"},
+    {"de": "die Klage", "ru": "иск"},
+    {"de": "das Urteil", "ru": "приговор"},
+    {"de": "der Anspruch", "ru": "требование / право"},
+    {"de": "die Pflicht", "ru": "обязанность"},
+    {"de": "die Rechte", "ru": "права"},
+    {"de": "der Anwalt", "ru": "адвокат"},
+    {"de": "der Richter", "ru": "судья"},
+    {"de": "das Gesetz", "ru": "закон"},
+    {"de": "die Verfassung", "ru": "конституция"},
+    {"de": "unterschreiben", "ru": "подписывать"},
+    {"de": "verklagen", "ru": "подавать в суд"},
+    {"de": "verurteilen", "ru": "осуждать"},
+    {"de": "zustimmen", "ru": "соглашаться"},
+    {"de": "ablehnen", "ru": "отклонять"},
+    {"de": "einhalten", "ru": "соблюдать"},
+    {"de": "verletzen", "ru": "нарушать"},
+    {"de": "schützen", "ru": "защищать"},
+    {"de": "fordern", "ru": "требовать"}
+  ],
+  "examples": [
+    {"de": "Wenn ich mehr Zeit hätte, würde ich mehr reisen.", "ru": "Если бы у меня было больше времени, я бы больше путешествовал."},
+    {"de": "Wenn ich reich wäre, würde ich ein Haus kaufen.", "ru": "Если бы я был богат, я бы купил дом."},
+    {"de": "Wenn ich jünger wäre, würde ich studieren.", "ru": "Если бы я был моложе, я бы учился."},
+    {"de": "Der Vertrag muss unterschrieben werden.", "ru": "Договор должен быть подписан."},
+    {"de": "Der Richter hat das Urteil gesprochen.", "ru": "Судья вынес приговор."},
+    {"de": "Die Rechte der Bürger müssen geschützt werden.", "ru": "Права граждан должны быть защищены."}
+  ],
+  "practice": [
+    {"type": "fill", "question": "Вставьте правильную форму Konjunktiv II (Präteritum):", "sentence": "Wenn ich mehr Zeit ___, würde ich mehr reisen. (haben)", "answer": "hätte", "hint": "Если бы у меня было больше времени, я бы больше путешествовал."},
+    {"type": "fill", "question": "Вставьте правильную форму Konjunktiv II (Präteritum):", "sentence": "Wenn ich reich ___, würde ich ein Haus kaufen. (sein)", "answer": "wäre", "hint": "Если бы я был богат, я бы купил дом."},
+    {"type": "fill", "question": "Вставьте правильную форму Konjunktiv II (würde):", "sentence": "Wenn ich jünger wäre, ___ ich studieren. (werden)", "answer": "würde", "hint": "Если бы я был моложе, я бы учился."},
+    {"type": "fill", "question": "Вставьте правильную форму глагола в Konjunktiv II:", "sentence": "Wenn ich mehr Geld ___, würde ich reisen. (haben)", "answer": "hätte", "hint": "Если бы у меня было больше денег, я бы путешествовал."},
+    {"type": "fill", "question": "Вставьте правильное слово:", "sentence": "Der ___ muss unterschrieben werden. (договор)", "answer": "Vertrag", "hint": "Договор должен быть подписан."},
+    {"type": "fill", "question": "Вставьте правильное слово:", "sentence": "Der ___ hat das Urteil gesprochen. (судья)", "answer": "Richter", "hint": "Судья вынес приговор."},
+    {"type": "fill", "question": "Вставьте правильное слово:", "sentence": "Die Rechte der Bürger müssen ___ werden. (schützen)", "answer": "geschützt", "hint": "Права граждан должны быть защищены."},
+    {"type": "transform", "question": "Переделайте предложение в условное 2-го типа:", "sentence": "Ich habe nicht viel Zeit. Ich reise nicht viel.", "answer": "Wenn ich mehr Zeit hätte, würde ich mehr reisen.", "hint": "Если бы у меня было больше времени, я бы больше путешествовал."},
+    {"type": "transform", "question": "Переделайте предложение в условное 2-го типа:", "sentence": "Ich bin nicht reich. Ich kaufe kein Haus.", "answer": "Wenn ich reich wäre, würde ich ein Haus kaufen.", "hint": "Если бы я был богат, я бы купил дом."}
+  ]
+}

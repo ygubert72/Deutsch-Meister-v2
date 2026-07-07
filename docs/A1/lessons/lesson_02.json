@@ -1,5 +1,9 @@
 {
-  "quiz": [
+  "lesson": 2,
+  "title": "Приветствия и прощания",
+  "level": "A1",
+  "theory": "<h3>🇩🇪 Приветствия</h3><p>В немецком языке есть <strong>формальные</strong> и <strong>неформальные</strong> приветствия:</p><table border='1' cellpadding='10' style='border-collapse: collapse; width: 100%; margin: 10px 0;'><tr style='background: #3B6FE0; color: white;'><th>Немецкий</th><th>Произношение</th><th>Перевод</th><th>Когда использовать</th></tr><tr style='background: #E3F2FD;'><td><strong>Hallo</strong></td><td>[хало]</td><td>Привет</td><td>Неформальное, с друзьями, знакомыми</td></tr><tr style='background: #F5F5F5;'><td><strong>Guten Tag</strong></td><td>[гутэн таг]</td><td>Добрый день</td><td>Формальное, с 10–11 до 18 часов</td></tr><tr style='background: #E3F2FD;'><td><strong>Guten Morgen</strong></td><td>[гутэн моргэн]</td><td>Доброе утро</td><td>Формальное, до 10–11 часов</td></tr><tr style='background: #F5F5F5;'><td><strong>Guten Abend</strong></td><td>[гутэн абэнд]</td><td>Добрый вечер</td><td>Формальное, после 18 часов</td></tr><tr style='background: #E3F2FD;'><td><strong>Gute Nacht</strong></td><td>[гутэ нахт]</td><td>Спокойной ночи</td><td>Перед сном</td></tr></table><h3>🇩🇪 Прощания</h3><table border='1' cellpadding='10' style='border-collapse: collapse; width: 100%; margin: 10px 0;'><tr style='background: #3B6FE0; color: white;'><th>Немецкий</th><th>Произношение</th><th>Перевод</th><th>Когда использовать</th></tr><tr style='background: #E3F2FD;'><td><strong>Tschüss</strong></td><td>[чюс]</td><td>Пока</td><td>Неформальное</td></tr><tr style='background: #F5F5F5;'><td><strong>Auf Wiedersehen</strong></td><td>[ауф видэзээн]</td><td>До свидания</td><td>Формальное</td></tr></table><div class='info-box' style='background: #E8F0FE; padding: 15px; border-radius: 12px; margin: 15px 0;'><strong>📌 ВАЖНО!</strong><br>• В Германии принято различать <strong>du</strong> (ты) для друзей и знакомых, и <strong>Sie</strong> (Вы) для незнакомых людей и в официальной обстановке. <strong>Sie</strong> всегда пишется с <strong>большой буквы</strong>!<br>• <strong>Gute Nacht</strong> говорят только перед сном, а не при прощании вечером.</div><h3>🙏 Вежливые слова</h3><table border='1' cellpadding='10' style='border-collapse: collapse; width: 100%; margin: 10px 0;'><tr style='background: #3B6FE0; color: white;'><th>Немецкий</th><th>Произношение</th><th>Перевод</th></tr><tr style='background: #E3F2FD;'><td><strong>Bitte</strong></td><td>[битэ]</td><td>Пожалуйста (просьба или ответ на Danke)</td></tr><tr style='background: #F5F5F5;'><td><strong>Danke</strong></td><td>[данкэ]</td><td>Спасибо</td></tr><tr style='background: #E3F2FD;'><td><strong>Danke schön</strong></td><td>[данкэ шён]</td><td>Большое спасибо</td></tr><tr style='background: #F5F5F5;'><td><strong>Bitte schön</strong></td><td>[битэ шён]</td><td>Пожалуйста (в ответ на благодарность)</td></tr><tr style='background: #E3F2FD;'><td><strong>Entschuldigung</strong></td><td>[энтшульдигунг]</td><td>Извините</td></tr><tr style='background: #F5F5F5;'><td><strong>Verzeihung</strong></td><td>[фэрцайунг]</td><td>Простите</td></tr><tr style='background: #E3F2FD;'><td><strong>kein Problem</strong></td><td>[кайн проблэм]</td><td>Без проблем</td></tr></table><div class='warning-box' style='background: #FFF3E0; padding: 15px; border-radius: 12px; margin: 15px 0; border-left: 5px solid #FF9800;'><strong>💡 УДАРЕНИЕ В СЛОВАХ:</strong><br>• <strong>Hallo</strong> — ударение на <strong>первый</strong> слог: <strong>HA</strong>llo<br>• <strong>Tschüss</strong> — ударение на <strong>единственный</strong> слог: Tschüss<br>• <strong>Auf Wiedersehen</strong> — ударение на <strong>второй</strong> слог: auf Wie<strong>der</strong>sehen</div>",
+  "vocabulary": [
     {"de": "Hallo", "ru": "привет"},
     {"de": "Guten Tag", "ru": "добрый день"},
     {"de": "Guten Morgen", "ru": "доброе утро"},
@@ -9,13 +13,15 @@
     {"de": "Auf Wiedersehen", "ru": "до свидания"},
     {"de": "Bitte", "ru": "пожалуйста"},
     {"de": "Danke", "ru": "спасибо"},
+    {"de": "Danke schön", "ru": "большое спасибо"},
+    {"de": "Bitte schön", "ru": "пожалуйста (в ответ на Danke)"},
     {"de": "Entschuldigung", "ru": "извините"},
     {"de": "Verzeihung", "ru": "простите"},
     {"de": "kein Problem", "ru": "без проблем"},
     {"de": "ja", "ru": "да"},
     {"de": "nein", "ru": "нет"}
   ],
-  "trainer": [
+  "examples": [
     {"de": "Hallo!", "ru": "Привет!"},
     {"de": "Guten Tag!", "ru": "Добрый день!"},
     {"de": "Guten Morgen!", "ru": "Доброе утро!"},
@@ -33,16 +39,29 @@
     {"de": "Ja, bitte!", "ru": "Да, пожалуйста!"},
     {"de": "Nein, danke!", "ru": "Нет, спасибо!"}
   ],
-  "dictation": [
-    {"de": "Hallo!", "ru": "Привет!"},
-    {"de": "Guten Tag!", "ru": "Добрый день!"},
-    {"de": "Guten Morgen!", "ru": "Доброе утро!"},
-    {"de": "Guten Abend!", "ru": "Добрый вечер!"},
-    {"de": "Gute Nacht!", "ru": "Спокойной ночи!"},
-    {"de": "Tschüss!", "ru": "Пока!"},
-    {"de": "Auf Wiedersehen!", "ru": "До свидания!"},
-    {"de": "Bitte!", "ru": "Пожалуйста!"},
-    {"de": "Danke!", "ru": "Спасибо!"},
-    {"de": "Entschuldigung!", "ru": "Извините!"}
+  "practice": [
+    {"type": "question", "question": "Как сказать 'привет' по-немецки?", "sentence": "___!", "answer": "Hallo", "hint": "Неформальное приветствие."},
+    {"type": "question", "question": "Как сказать 'добрый день' по-немецки?", "sentence": "___!", "answer": "Guten Tag", "hint": "Формальное приветствие днём."},
+    {"type": "question", "question": "Как сказать 'доброе утро' по-немецки?", "sentence": "___!", "answer": "Guten Morgen", "hint": "Формальное приветствие утром."},
+    {"type": "question", "question": "Как сказать 'добрый вечер' по-немецки?", "sentence": "___!", "answer": "Guten Abend", "hint": "Формальное приветствие вечером."},
+    {"type": "question", "question": "Как сказать 'спокойной ночи' по-немецки?", "sentence": "___!", "answer": "Gute Nacht", "hint": "Перед сном."},
+    {"type": "question", "question": "Как сказать 'пока' по-немецки?", "sentence": "___!", "answer": "Tschüss", "hint": "Неформальное прощание."},
+    {"type": "question", "question": "Как сказать 'до свидания' по-немецки?", "sentence": "___!", "answer": "Auf Wiedersehen", "hint": "Формальное прощание."},
+    {"type": "question", "question": "Как сказать 'пожалуйста' по-немецки?", "sentence": "___!", "answer": "Bitte", "hint": "Вежливое слово для просьбы или ответа на Danke."},
+    {"type": "question", "question": "Как сказать 'спасибо' по-немецки?", "sentence": "___!", "answer": "Danke", "hint": "Благодарность."},
+    {"type": "question", "question": "Как сказать 'извините' по-немецки?", "sentence": "___!", "answer": "Entschuldigung", "hint": "Извинение."},
+    {"type": "question", "question": "Как сказать 'простите' по-немецки?", "sentence": "___!", "answer": "Verzeihung", "hint": "Извинение (более вежливо)."},
+    {"type": "question", "question": "Как сказать 'без проблем' по-немецки?", "sentence": "___!", "answer": "kein Problem", "hint": "Ответ на извинение."},
+    {"type": "question", "question": "Как сказать 'большое спасибо' по-немецки?", "sentence": "___!", "answer": "Danke schön", "hint": "Благодарность."},
+    {"type": "question", "question": "Как ответить на 'Danke'?", "sentence": "___!", "answer": "Bitte schön", "hint": "Вежливый ответ на благодарность."},
+    {"type": "question", "question": "Как сказать 'да' по-немецки?", "sentence": "___!", "answer": "ja", "hint": "Согласие."},
+    {"type": "question", "question": "Как сказать 'нет' по-немецки?", "sentence": "___!", "answer": "nein", "hint": "Отрицание."},
+    {"type": "question", "question": "В слове 'Hallo' ударение падает на какой слог?", "sentence": "На ___ слог", "answer": "первый", "hint": "HAllo"},
+    {"type": "question", "question": "В слове 'Auf Wiedersehen' ударение падает на какой слог?", "sentence": "На ___ слог", "answer": "второй", "hint": "auf WieDERsehen"},
+    {"type": "question", "question": "Как сказать 'Да, пожалуйста' по-немецки?", "sentence": "___!", "answer": "Ja, bitte", "hint": "Согласие с просьбой."},
+    {"type": "question", "question": "Как сказать 'Нет, спасибо' по-немецки?", "sentence": "___!", "answer": "Nein, danke", "hint": "Вежливый отказ."},
+    {"type": "transform", "question": "Переделайте формальное приветствие в неформальное:", "sentence": "Guten Tag!", "answer": "Hallo!", "hint": "Неформальное приветствие — Hallo!"},
+    {"type": "transform", "question": "Переделайте неформальное прощание в формальное:", "sentence": "Tschüss!", "answer": "Auf Wiedersehen!", "hint": "Формальное прощание — Auf Wiedersehen!"},
+    {"type": "transform", "question": "Замените 'Bitte' на 'Bitte schön' в ответе на благодарность:", "sentence": "Danke! — Bitte!", "answer": "Danke! — Bitte schön!", "hint": "Вежливый ответ на благодарность."}
   ]
 }

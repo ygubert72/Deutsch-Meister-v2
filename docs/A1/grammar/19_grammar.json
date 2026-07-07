@@ -1,0 +1,46 @@
+{
+  "lesson": 19,
+  "title": "Профессиональные обязанности и навыки",
+  "level": "A1",
+  "theory": "<h3>💼 Профессиональная лексика</h3><table border='1' cellpadding='8' style='border-collapse: collapse; width: 100%; margin: 10px 0;'><tr style='background: #3B6FE0; color: white;'><th>Русский</th><th>Немецкий</th></tr><tr style='background: #E3F2FD;'><td>профессиональный опыт</td><td><strong>die Berufserfahrung</strong></td></tr><tr style='background: #F5F5F5;'><td>образование</td><td><strong>die Ausbildung</strong></td></tr><tr style='background: #E3F2FD;'><td>квалификация</td><td><strong>die Qualifikation</strong></td></tr><tr style='background: #F5F5F5;'><td>работа в команде</td><td><strong>die Teamarbeit</strong></td></tr><tr style='background: #E3F2FD;'><td>встреча</td><td><strong>der Termin</strong></td></tr><tr style='background: #F5F5F5;'><td>коллега</td><td><strong>der Kollege / die Kollegin</strong></td></tr></table><h3>📌 Глаголы с предлогами</h3><p>В немецком языке многие глаголы используются с определёнными предлогами:</p><table border='1' cellpadding='10' style='border-collapse: collapse; width: 100%; margin: 15px 0;'><tr style='background: #3B6FE0; color: white;'><th>Глагол + предлог</th><th>Перевод</th><th>Пример</th></tr><tr style='background: #E3F2FD;'><td><strong>sich interessieren für</strong></td><td>интересоваться чем-то</td><td>Ich interessiere mich für Sprachen.</td></tr><tr style='background: #F5F5F5;'><td><strong>arbeiten bei</strong></td><td>работать в (компания)</td><td>Ich arbeite bei einer Firma.</td></tr><tr style='background: #E3F2FD;'><td><strong>sprechen mit</strong></td><td>говорить с кем-то</td><td>Ich spreche mit meinem Kollegen.</td></tr><tr style='background: #F5F5F5;'><td><strong>danken für</strong></td><td>благодарить за</td><td>Ich danke dir für die Hilfe.</td></tr></table><div class='info-box' style='background: #E8F0FE; padding: 15px; border-radius: 12px; margin: 15px 0;'><strong>📌 ВАЖНО!</strong><br>• Предлог <strong>всегда</strong> идёт после глагола.<br>• В вопросах предлог остаётся с глаголом: <em>Für was interessierst du dich?</em></div>",
+  "vocabulary": [
+    {"de": "die Berufserfahrung", "ru": "профессиональный опыт"},
+    {"de": "die Ausbildung", "ru": "образование"},
+    {"de": "die Qualifikation", "ru": "квалификация"},
+    {"de": "die Teamarbeit", "ru": "работа в команде"},
+    {"de": "der Termin", "ru": "встреча"},
+    {"de": "der Kollege", "ru": "коллега"},
+    {"de": "die Kollegin", "ru": "коллега (жен.)"},
+    {"de": "sich interessieren für", "ru": "интересоваться"},
+    {"de": "arbeiten bei", "ru": "работать в (компания)"},
+    {"de": "sprechen mit", "ru": "говорить с"},
+    {"de": "danken für", "ru": "благодарить за"},
+    {"de": "die Firma", "ru": "фирма"},
+    {"de": "das Büro", "ru": "офис"},
+    {"de": "die Arbeit", "ru": "работа"}
+  ],
+  "examples": [
+    {"de": "Ich interessiere mich für Sprachen.", "ru": "Я интересуюсь языками."},
+    {"de": "Ich arbeite bei einer großen Firma.", "ru": "Я работаю в большой фирме."},
+    {"de": "Ich spreche mit meinem Kollegen.", "ru": "Я говорю с моим коллегой."},
+    {"de": "Ich danke dir für die Hilfe.", "ru": "Я благодарю тебя за помощь."},
+    {"de": "Ich habe viel Berufserfahrung.", "ru": "У меня большой профессиональный опыт."},
+    {"de": "Meine Ausbildung ist abgeschlossen.", "ru": "Моё образование завершено."},
+    {"de": "Wir haben einen Termin.", "ru": "У нас встреча."},
+    {"de": "Teamarbeit ist wichtig.", "ru": "Работа в команде важна."}
+  ],
+  "practice": [
+    {"type": "fill", "question": "Вставьте правильный предлог (für/bei/mit):", "sentence": "Ich interessiere mich ___ Sprachen.", "answer": "für", "hint": "Я интересуюсь языками."},
+    {"type": "fill", "question": "Вставьте правильный предлог (für/bei/mit):", "sentence": "Ich arbeite ___ einer Firma.", "answer": "bei", "hint": "Я работаю в фирме."},
+    {"type": "fill", "question": "Вставьте правильный предлог (für/bei/mit):", "sentence": "Ich spreche ___ meinem Kollegen.", "answer": "mit", "hint": "Я говорю с моим коллегой."},
+    {"type": "fill", "question": "Вставьте правильный предлог (für/bei/mit):", "sentence": "Ich danke dir ___ die Hilfe.", "answer": "für", "hint": "Я благодарю тебя за помощь."},
+    {"type": "fill", "question": "Вставьте правильное слово:", "sentence": "Ich habe viel ___. (профессиональный опыт)", "answer": "Berufserfahrung", "hint": "У меня большой профессиональный опыт."},
+    {"type": "fill", "question": "Вставьте правильное слово:", "sentence": "Meine ___ ist abgeschlossen. (образование)", "answer": "Ausbildung", "hint": "Моё образование завершено."},
+    {"type": "fill", "question": "Вставьте правильное слово:", "sentence": "Wir haben einen ___. (встреча)", "answer": "Termin", "hint": "У нас встреча."},
+    {"type": "fill", "question": "Вставьте правильное слово:", "sentence": "___ ist wichtig. (работа в команде)", "answer": "Teamarbeit", "hint": "Работа в команде важна."},
+    {"type": "fill", "question": "Вставьте правильную форму глагола (модальный):", "sentence": "Ich ___ Deutsch lernen. (должен)", "answer": "muss", "hint": "Я должен учить немецкий."},
+    {"type": "fill", "question": "Вставьте правильную форму глагола (модальный):", "sentence": "___ du mir helfen? (можешь)", "answer": "Kannst", "hint": "Ты можешь мне помочь?"},
+    {"type": "transform", "question": "Переделайте предложение с 'interessieren für':", "sentence": "Ich mag Sprachen.", "answer": "Ich interessiere mich für Sprachen.", "hint": "Я интересуюсь языками."},
+    {"type": "transform", "question": "Переделайте предложение с 'danken für':", "sentence": "Danke für die Hilfe.", "answer": "Ich danke dir für die Hilfe.", "hint": "Я благодарю тебя за помощь."}
+  ]
+}

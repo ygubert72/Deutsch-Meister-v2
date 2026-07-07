@@ -1,29 +1,23 @@
 {
   "lesson": 16,
-  "title": "Модальные глаголы müssen, können, wollen",
+  "title": "Модальные глаголы müssen и können",
   "level": "A1",
-  "theory": "<h3>📌 Модальные глаголы</h3><p>Модальные глаголы выражают <strong>отношение к действию</strong>: долженствование, возможность, желание.</p><h3>📌 Глагол <span style='color:#2E7D32;font-weight:bold;'>müssen</span> (должен, вынужден)</h3><table border='1' cellpadding='10' style='border-collapse: collapse; width: 100%; margin: 15px 0;'><tr style='background: #3B6FE0; color: white;'><th>Местоимение</th><th>Форма</th><th>Пример</th></tr><tr style='background: #E3F2FD;'><td><strong>ich</strong></td><td><span style='color:#2E7D32;font-weight:bold;'>muss</span></td><td>Ich muss arbeiten.</td></tr><tr style='background: #F5F5F5;'><td><strong>du</strong></td><td><span style='color:#2E7D32;font-weight:bold;'>musst</span></td><td>Du musst lernen.</td></tr><tr style='background: #E3F2FD;'><td><strong>er/sie/es</strong></td><td><span style='color:#2E7D32;font-weight:bold;'>muss</span></td><td>Er muss früh aufstehen.</td></tr><tr style='background: #F5F5F5;'><td><strong>wir</strong></td><td><span style='color:#2E7D32;font-weight:bold;'>müssen</span></td><td>Wir müssen einkaufen.</td></tr><tr style='background: #E3F2FD;'><td><strong>ihr</strong></td><td><span style='color:#2E7D32;font-weight:bold;'>müsst</span></td><td>Ihr müsst helfen.</td></tr><tr style='background: #F5F5F5;'><td><strong>sie/Sie</strong></td><td><span style='color:#2E7D32;font-weight:bold;'>müssen</span></td><td>Sie müssen die Rechnung bezahlen.</td></tr></table><h3>📌 Глагол <span style='color:#2E7D32;font-weight:bold;'>können</span> (мочь, уметь)</h3><table border='1' cellpadding='10' style='border-collapse: collapse; width: 100%; margin: 15px 0;'><tr style='background: #3B6FE0; color: white;'><th>Местоимение</th><th>Форма</th><th>Пример</th></tr><tr style='background: #E3F2FD;'><td><strong>ich</strong></td><td><span style='color:#2E7D32;font-weight:bold;'>kann</span></td><td>Ich kann Deutsch sprechen.</td></tr><tr style='background: #F5F5F5;'><td><strong>du</strong></td><td><span style='color:#2E7D32;font-weight:bold;'>kannst</span></td><td>Du kannst gut kochen.</td></tr><tr style='background: #E3F2FD;'><td><strong>er/sie/es</strong></td><td><span style='color:#2E7D32;font-weight:bold;'>kann</span></td><td>Sie kann Tennis spielen.</td></tr><tr style='background: #F5F5F5;'><td><strong>wir</strong></td><td><span style='color:#2E7D32;font-weight:bold;'>können</span></td><td>Wir können morgen kommen.</td></tr><tr style='background: #E3F2FD;'><td><strong>ihr</strong></td><td><span style='color:#2E7D32;font-weight:bold;'>könnt</span></td><td>Ihr könnt mich anrufen.</td></tr><tr style='background: #F5F5F5;'><td><strong>sie/Sie</strong></td><td><span style='color:#2E7D32;font-weight:bold;'>können</span></td><td>Sie können hier parken.</td></tr></table><h3>📌 Глагол <span style='color:#2E7D32;font-weight:bold;'>wollen</span> (хотеть)</h3><table border='1' cellpadding='10' style='border-collapse: collapse; width: 100%; margin: 15px 0;'><tr style='background: #3B6FE0; color: white;'><th>Местоимение</th><th>Форма</th><th>Пример</th></tr><tr style='background: #E3F2FD;'><td><strong>ich</strong></td><td><span style='color:#2E7D32;font-weight:bold;'>will</span></td><td>Ich will Arzt werden.</td></tr><tr style='background: #F5F5F5;'><td><strong>du</strong></td><td><span style='color:#2E7D32;font-weight:bold;'>willst</span></td><td>Was willst du essen?</td></tr><tr style='background: #E3F2FD;'><td><strong>er/sie/es</strong></td><td><span style='color:#2E7D32;font-weight:bold;'>will</span></td><td>Er will nach Berlin fahren.</td></tr><tr style='background: #F5F5F5;'><td><strong>wir</strong></td><td><span style='color:#2E7D32;font-weight:bold;'>wollen</span></td><td>Wir wollen heute kochen.</td></tr><tr style='background: #E3F2FD;'><td><strong>ihr</strong></td><td><span style='color:#2E7D32;font-weight:bold;'>wollt</span></td><td>Wollt ihr ins Kino gehen?</td></tr><tr style='background: #F5F5F5;'><td><strong>sie/Sie</strong></td><td><span style='color:#2E7D32;font-weight:bold;'>wollen</span></td><td>Sie wollen morgen kommen.</td></tr></table><div class='info-box' style='background: #E8F0FE; padding: 15px; border-radius: 12px; margin: 15px 0;'><strong>📌 ВАЖНО!</strong><br>• Модальный глагол стоит на <strong>2-м месте</strong> в предложении.<br>• Второй глагол (инфинитив) стоит в <strong>конце</strong> предложения.<br>• <span style='color:#2E7D32;font-weight:bold;'>Ich <u>muss</u> heute arbeiten.</span> — Я должен сегодня работать.</div>",
+  "theory": "<h3>📌 Модальные глаголы</h3><p>Модальные глаголы выражают <strong>отношение к действию</strong>: долженствование, возможность.</p><h3>📌 Глагол <span style='color:#2E7D32;font-weight:bold;'>müssen</span> (должен, вынужден)</h3><table border='1' cellpadding='10' style='border-collapse: collapse; width: 100%; margin: 15px 0;'><tr style='background: #3B6FE0; color: white;'><th>Местоимение</th><th>Форма</th><th>Пример</th></tr><tr style='background: #E3F2FD;'><td><strong>ich</strong></td><td><span style='color:#2E7D32;font-weight:bold;'>muss</span></td><td>Ich muss arbeiten.</td></tr><tr style='background: #F5F5F5;'><td><strong>du</strong></td><td><span style='color:#2E7D32;font-weight:bold;'>musst</span></td><td>Du musst lernen.</td></tr><tr style='background: #E3F2FD;'><td><strong>er/sie/es</strong></td><td><span style='color:#2E7D32;font-weight:bold;'>muss</span></td><td>Er muss früh aufstehen.</td></tr><tr style='background: #F5F5F5;'><td><strong>wir</strong></td><td><span style='color:#2E7D32;font-weight:bold;'>müssen</span></td><td>Wir müssen einkaufen.</td></tr><tr style='background: #E3F2FD;'><td><strong>ihr</strong></td><td><span style='color:#2E7D32;font-weight:bold;'>müsst</span></td><td>Ihr müsst helfen.</td></tr><tr style='background: #F5F5F5;'><td><strong>sie/Sie</strong></td><td><span style='color:#2E7D32;font-weight:bold;'>müssen</span></td><td>Sie müssen die Rechnung bezahlen.</td></tr></table><h3>📌 Глагол <span style='color:#2E7D32;font-weight:bold;'>können</span> (мочь, уметь)</h3><table border='1' cellpadding='10' style='border-collapse: collapse; width: 100%; margin: 15px 0;'><tr style='background: #3B6FE0; color: white;'><th>Местоимение</th><th>Форма</th><th>Пример</th></tr><tr style='background: #E3F2FD;'><td><strong>ich</strong></td><td><span style='color:#2E7D32;font-weight:bold;'>kann</span></td><td>Ich kann Deutsch sprechen.</td></tr><tr style='background: #F5F5F5;'><td><strong>du</strong></td><td><span style='color:#2E7D32;font-weight:bold;'>kannst</span></td><td>Du kannst gut kochen.</td></tr><tr style='background: #E3F2FD;'><td><strong>er/sie/es</strong></td><td><span style='color:#2E7D32;font-weight:bold;'>kann</span></td><td>Sie kann Tennis spielen.</td></tr><tr style='background: #F5F5F5;'><td><strong>wir</strong></td><td><span style='color:#2E7D32;font-weight:bold;'>können</span></td><td>Wir können morgen kommen.</td></tr><tr style='background: #E3F2FD;'><td><strong>ihr</strong></td><td><span style='color:#2E7D32;font-weight:bold;'>könnt</span></td><td>Ihr könnt mich anrufen.</td></tr><tr style='background: #F5F5F5;'><td><strong>sie/Sie</strong></td><td><span style='color:#2E7D32;font-weight:bold;'>können</span></td><td>Sie können hier parken.</td></tr></table><div class='info-box' style='background: #E8F0FE; padding: 15px; border-radius: 12px; margin: 15px 0;'><strong>📌 ВАЖНО!</strong><br>• Модальный глагол стоит на <strong>2-м месте</strong> в предложении.<br>• Второй глагол (инфинитив) стоит в <strong>конце</strong> предложения.<br>• <span style='color:#2E7D32;font-weight:bold;'>Ich <u>muss</u> heute arbeiten.</span> — Я должен сегодня работать.</div>",
   "vocabulary": [
     {"de": "müssen", "ru": "должен"},
     {"de": "können", "ru": "мочь / уметь"},
-    {"de": "wollen", "ru": "хотеть"},
     {"de": "arbeiten", "ru": "работать"},
-    {"de": "lernen", "ru": "учиться"},
+    {"de": "lernen", "ru": "учиться / учить"},
     {"de": "helfen", "ru": "помогать"},
     {"de": "einkaufen", "ru": "делать покупки"},
     {"de": "kochen", "ru": "готовить"},
     {"de": "aufstehen", "ru": "вставать"},
     {"de": "schlafen", "ru": "спать"},
     {"de": "sprechen", "ru": "говорить"},
-    {"de": "fahren", "ru": "ехать"},
-    {"de": "gehen", "ru": "идти"},
-    {"de": "werden", "ru": "становиться"},
     {"de": "die Arbeit", "ru": "работа"},
     {"de": "die Aufgabe", "ru": "задание"},
-    {"de": "die Hilfe", "ru": "помощь"},
     {"de": "heute", "ru": "сегодня"},
-    {"de": "morgen", "ru": "завтра"},
-    {"de": "am Wochenende", "ru": "в выходные"}
+    {"de": "morgen", "ru": "завтра"}
   ],
   "examples": [
     {"de": "Ich muss heute arbeiten.", "ru": "Я должен сегодня работать."},
@@ -32,9 +26,6 @@
     {"de": "Ich kann Deutsch sprechen.", "ru": "Я умею говорить по-немецки."},
     {"de": "Kannst du mir helfen?", "ru": "Ты можешь мне помочь?"},
     {"de": "Sie kann gut kochen.", "ru": "Она умеет хорошо готовить."},
-    {"de": "Ich will Arzt werden.", "ru": "Я хочу стать врачом."},
-    {"de": "Was willst du essen?", "ru": "Что ты хочешь есть?"},
-    {"de": "Er will nach Berlin fahren.", "ru": "Он хочет поехать в Берлин."},
     {"de": "Wir müssen einkaufen gehen.", "ru": "Мы должны пойти за покупками."},
     {"de": "Ihr könnt mich anrufen.", "ru": "Вы можете мне позвонить."}
   ],
@@ -45,17 +36,13 @@
     {"type": "fill", "question": "Вставьте правильную форму глагола können:", "sentence": "Ich ___ Deutsch sprechen.", "answer": "kann", "hint": "Я умею говорить по-немецки."},
     {"type": "fill", "question": "Вставьте правильную форму глагола können:", "sentence": "___ du mir helfen?", "answer": "Kannst", "hint": "Ты можешь мне помочь?"},
     {"type": "fill", "question": "Вставьте правильную форму глагола können:", "sentence": "Sie ___ gut kochen.", "answer": "kann", "hint": "Она умеет хорошо готовить."},
-    {"type": "fill", "question": "Вставьте правильную форму глагола wollen:", "sentence": "Ich ___ Arzt werden.", "answer": "will", "hint": "Я хочу стать врачом."},
-    {"type": "fill", "question": "Вставьте правильную форму глагола wollen:", "sentence": "Was ___ du essen?", "answer": "willst", "hint": "Что ты хочешь есть?"},
-    {"type": "fill", "question": "Вставьте правильную форму глагола wollen:", "sentence": "Wir ___ ins Kino gehen.", "answer": "wollen", "hint": "Мы хотим пойти в кино."},
-    {"type": "fill", "question": "Вставьте правильный модальный глагол (müssen/können/wollen):", "sentence": "Ich ___ Deutsch lernen. (должен)", "answer": "muss", "hint": "Я должен учить немецкий."},
-    {"type": "fill", "question": "Вставьте правильный модальный глагол (müssen/können/wollen):", "sentence": "___ du mir helfen? (можешь)", "answer": "Kannst", "hint": "Ты можешь мне помочь?"},
-    {"type": "fill", "question": "Вставьте правильный модальный глагол (müssen/können/wollen):", "sentence": "Ich ___ eine Pizza. (хочу)", "answer": "will", "hint": "Я хочу пиццу."},
-    {"type": "fill", "question": "Вставьте правильный модальный глагол (müssen/können/wollen):", "sentence": "Wir ___ heute einkaufen. (должны)", "answer": "müssen", "hint": "Мы должны сегодня делать покупки."},
     {"type": "fill", "question": "Вставьте правильную форму глагола müssen:", "sentence": "Ihr ___ die Aufgabe machen.", "answer": "müsst", "hint": "Вы должны сделать задание."},
+    {"type": "fill", "question": "Вставьте правильную форму глагола müssen:", "sentence": "Er ___ früh aufstehen.", "answer": "muss", "hint": "Он должен рано встать."},
+    {"type": "fill", "question": "Вставьте правильную форму глагола können:", "sentence": "Wir ___ morgen kommen.", "answer": "können", "hint": "Мы можем прийти завтра."},
+    {"type": "fill", "question": "Вставьте правильную форму глагола können:", "sentence": "___ Sie Deutsch sprechen?", "answer": "Können", "hint": "Вы умеете говорить по-немецки?"},
     {"type": "transform", "question": "Переделайте предложение с модальным глаголом (müssen):", "sentence": "Ich arbeite heute.", "answer": "Ich muss heute arbeiten.", "hint": "Я должен сегодня работать."},
     {"type": "transform", "question": "Переделайте предложение с модальным глаголом (können):", "sentence": "Ich helfe dir.", "answer": "Ich kann dir helfen.", "hint": "Я могу тебе помочь."},
-    {"type": "transform", "question": "Переделайте предложение с модальным глаголом (wollen):", "sentence": "Ich werde Arzt.", "answer": "Ich will Arzt werden.", "hint": "Я хочу стать врачом."},
-    {"type": "transform", "question": "Переделайте в вопрос с kannst:", "sentence": "Du kannst mir helfen.", "answer": "Kannst du mir helfen?", "hint": "Ты можешь мне помочь?"}
+    {"type": "transform", "question": "Переделайте в вопрос с kannst:", "sentence": "Du kannst mir helfen.", "answer": "Kannst du mir helfen?", "hint": "Ты можешь мне помочь?"},
+    {"type": "transform", "question": "Переделайте в вопрос с musst:", "sentence": "Du musst heute arbeiten.", "answer": "Musst du heute arbeiten?", "hint": "Ты должен сегодня работать?"}
   ]
 }

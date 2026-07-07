@@ -1,0 +1,46 @@
+{
+  "lesson": 65,
+  "title": "Аргументация и дискуссионная лексика",
+  "level": "B2",
+  "theory": "<h3>📌 Сложные союзы для аргументации</h3><table border='1' cellpadding='10' style='border-collapse: collapse; width: 100%; margin: 15px 0;'><tr style='background: #3B6FE0; color: white;'><th>Союз</th><th>Значение</th><th>Пример</th></tr><tr style='background: #E3F2FD;'><td><strong>nicht nur…sondern auch</strong></td><td>не только…но и</td><td>Er spricht nicht nur Deutsch, sondern auch Englisch.</td></tr><tr style='background: #F5F5F5;'><td><strong>zwar…aber</strong></td><td>правда…но</td><td>Das ist zwar teuer, aber es lohnt sich.</td></tr><tr style='background: #E3F2FD;'><td><strong>je…desto</strong></td><td>чем…тем</td><td>Je mehr ich lerne, desto besser werde ich.</td></tr><tr style='background: #F5F5F5;'><td><strong>einerseits…andererseits</strong></td><td>с одной стороны…с другой</td><td>Einerseits ist es praktisch, andererseits ist es teuer.</td></tr></table><h3>📌 Дискуссионная лексика</h3><table border='1' cellpadding='8' style='border-collapse: collapse; width: 100%; margin: 10px 0;'><tr style='background: #3B6FE0; color: white;'><th>Русский</th><th>Немецкий</th></tr><tr style='background: #E3F2FD;'><td>тезис</td><td><strong>die These</strong></td></tr><tr style='background: #F5F5F5;'><td>аргумент</td><td><strong>das Argument</strong></td></tr><tr style='background: #E3F2FD;'><td>контраргумент</td><td><strong>das Gegenargument</strong></td></tr><tr style='background: #F5F5F5'><td>вывод</td><td><strong>die Schlussfolgerung</strong></td></tr><tr style='background: #E3F2FD'><td>итог</td><td><strong>das Fazit</strong></td></tr><tr style='background: #F5F5F5'><td>резюме</td><td><strong>die Zusammenfassung</strong></td></tr><tr style='background: #E3F2FD'><td>точка зрения</td><td><strong>der Standpunkt</strong></td></tr><tr style='background: #F5F5F5'><td>мнение</td><td><strong>die Meinung</strong></td></tr></table>",
+  "vocabulary": [
+    {"de": "die These", "ru": "тезис"},
+    {"de": "das Argument", "ru": "аргумент"},
+    {"de": "das Gegenargument", "ru": "контраргумент"},
+    {"de": "die Schlussfolgerung", "ru": "вывод"},
+    {"de": "das Fazit", "ru": "итог"},
+    {"de": "die Zusammenfassung", "ru": "резюме"},
+    {"de": "der Standpunkt", "ru": "точка зрения"},
+    {"de": "die Meinung", "ru": "мнение"},
+    {"de": "argumentieren", "ru": "аргументировать"},
+    {"de": "begründen", "ru": "обосновывать"},
+    {"de": "widerlegen", "ru": "опровергать"},
+    {"de": "zustimmen", "ru": "соглашаться"},
+    {"de": "widersprechen", "ru": "возражать"},
+    {"de": "überzeugen", "ru": "убеждать"},
+    {"de": "diskutieren", "ru": "обсуждать"},
+    {"de": "nicht nur...sondern auch", "ru": "не только...но и"},
+    {"de": "zwar...aber", "ru": "правда...но"},
+    {"de": "je...desto", "ru": "чем...тем"},
+    {"de": "einerseits...andererseits", "ru": "с одной стороны...с другой"}
+  ],
+  "examples": [
+    {"de": "Er spricht nicht nur Deutsch, sondern auch Englisch.", "ru": "Он говорит не только по-немецки, но и по-английски."},
+    {"de": "Das ist zwar teuer, aber es lohnt sich.", "ru": "Это правда дорого, но оно того стоит."},
+    {"de": "Je mehr ich lerne, desto besser werde ich.", "ru": "Чем больше я учу, тем лучше я становлюсь."},
+    {"de": "Einerseits ist es praktisch, andererseits ist es teuer.", "ru": "С одной стороны, это практично, с другой стороны, это дорого."},
+    {"de": "Ich stimme dir zu, aber ich habe einen anderen Standpunkt.", "ru": "Я согласен с тобой, но у меня другая точка зрения."},
+    {"de": "Das Argument ist nicht überzeugend.", "ru": "Аргумент не убедителен."}
+  ],
+  "practice": [
+    {"type": "fill", "question": "Вставьте правильный союз (nicht nur...sondern auch):", "sentence": "Er spricht ___ Deutsch, ___ Englisch.", "answer": "nicht nur, sondern auch", "hint": "Он говорит не только по-немецки, но и по-английски."},
+    {"type": "fill", "question": "Вставьте правильный союз (zwar...aber):", "sentence": "Das ist ___ teuer, ___ es lohnt sich.", "answer": "zwar, aber", "hint": "Это правда дорого, но оно того стоит."},
+    {"type": "fill", "question": "Вставьте правильный союз (je...desto):", "sentence": "___ mehr ich lerne, ___ besser werde ich.", "answer": "Je, desto", "hint": "Чем больше я учу, тем лучше я становлюсь."},
+    {"type": "fill", "question": "Вставьте правильный союз (einerseits...andererseits):", "sentence": "___ ist es praktisch, ___ ist es teuer.", "answer": "Einerseits, andererseits", "hint": "С одной стороны, это практично, с другой стороны, это дорого."},
+    {"type": "fill", "question": "Вставьте правильное слово:", "sentence": "Ich stimme dir ___. (соглашаться)", "answer": "zu", "hint": "Я согласен с тобой."},
+    {"type": "fill", "question": "Вставьте правильное слово:", "sentence": "Das Argument ist nicht ___. (убедительный)", "answer": "überzeugend", "hint": "Аргумент не убедителен."},
+    {"type": "fill", "question": "Вставьте правильное слово:", "sentence": "Ich habe einen anderen ___. (точка зрения)", "answer": "Standpunkt", "hint": "У меня другая точка зрения."},
+    {"type": "transform", "question": "Переделайте предложение с 'nicht nur...sondern auch':", "sentence": "Er spricht Deutsch. Er spricht Englisch.", "answer": "Er spricht nicht nur Deutsch, sondern auch Englisch.", "hint": "Он говорит не только по-немецки, но и по-английски."},
+    {"type": "transform", "question": "Переделайте предложение с 'zwar...aber':", "sentence": "Das ist teuer. Es lohnt sich.", "answer": "Das ist zwar teuer, aber es lohnt sich.", "hint": "Это правда дорого, но оно того стоит."}
+  ]
+}

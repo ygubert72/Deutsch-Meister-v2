@@ -1,0 +1,45 @@
+{
+  "lesson": 84,
+  "title": "Управление проектами и деловая лексика",
+  "level": "C1",
+  "theory": "<h3>📌 Лексика управления проектами</h3><table border='1' cellpadding='8' style='border-collapse: collapse; width: 100%; margin: 10px 0;'><tr style='background: #3B6FE0; color: white;'><th>Русский</th><th>Немецкий</th></tr><tr style='background: #E3F2FD;'><td>проект</td><td><strong>das Projekt</strong></td></tr><tr style='background: #F5F5F5;'><td>цель</td><td><strong>das Ziel</strong></td></tr><tr style='background: #E3F2FD;'><td>веха</td><td><strong>der Meilenstein</strong></td></tr><tr style='background: #F5F5F5;'><td>ресурс</td><td><strong>die Ressource</strong></td></tr><tr style='background: #E3F2FD;'><td>бюджет</td><td><strong>das Budget</strong></td></tr><tr style='background: #F5F5F5'><td>график</td><td><strong>der Zeitplan</strong></td></tr><tr style='background: #E3F2FD'><td>команда</td><td><strong>das Team</strong></td></tr><tr style='background: #F5F5F5'><td>ответственность</td><td><strong>die Verantwortung</strong></td></tr><tr style='background: #E3F2FD'><td>крайний срок</td><td><strong>die Deadline</strong></td></tr><tr style='background: #F5F5F5'><td>приоритет</td><td><strong>die Priorität</strong></td></tr></table><h3>📌 Erweiterte Infinitivsätze (сложные инфинитивные конструкции)</h3><div class='info-box' style='background: #E8F0FE; padding: 15px; border-radius: 12px; margin: 15px 0;'><strong>📌 КОНСТРУКЦИЯ:</strong><br><span style='color:#2E7D32;font-weight:bold;'>Es ist wichtig, das Projekt rechtzeitig abzuschließen.</span><br>Важно завершить проект вовремя.<br><br><span style='color:#2E7D32;font-weight:bold;'>Wir haben uns entschieden, das Budget zu erhöhen.</span><br>Мы решили увеличить бюджет.<br><br><span style='color:#2E7D32;font-weight:bold;'>Sie hat vorgeschlagen, den Zeitplan zu ändern.</span><br>Она предложила изменить график.</div>",
+  "vocabulary": [
+    {"de": "das Projekt", "ru": "проект"},
+    {"de": "das Ziel", "ru": "цель"},
+    {"de": "der Meilenstein", "ru": "веха"},
+    {"de": "die Ressource", "ru": "ресурс"},
+    {"de": "das Budget", "ru": "бюджет"},
+    {"de": "der Zeitplan", "ru": "график"},
+    {"de": "das Team", "ru": "команда"},
+    {"de": "die Verantwortung", "ru": "ответственность"},
+    {"de": "die Deadline", "ru": "крайний срок"},
+    {"de": "die Priorität", "ru": "приоритет"},
+    {"de": "der Stakeholder", "ru": "заинтересованная сторона"},
+    {"de": "das Deliverable", "ru": "результат"},
+    {"de": "planen", "ru": "планировать"},
+    {"de": "koordinieren", "ru": "координировать"},
+    {"de": "delegieren", "ru": "делегировать"},
+    {"de": "überwachen", "ru": "контролировать"},
+    {"de": "evaluieren", "ru": "оценивать"},
+    {"de": "umsetzen", "ru": "реализовывать"},
+    {"de": "optimieren", "ru": "оптимизировать"}
+  ],
+  "examples": [
+    {"de": "Es ist wichtig, das Projekt rechtzeitig abzuschließen.", "ru": "Важно завершить проект вовремя."},
+    {"de": "Wir haben uns entschieden, das Budget zu erhöhen.", "ru": "Мы решили увеличить бюджет."},
+    {"de": "Sie hat vorgeschlagen, den Zeitplan zu ändern.", "ru": "Она предложила изменить график."},
+    {"de": "Das Team hat die Verantwortung für das Projekt.", "ru": "Команда несёт ответственность за проект."},
+    {"de": "Die Deadline muss eingehalten werden.", "ru": "Крайний срок должен быть соблюдён."},
+    {"de": "Die Ressourcen wurden optimal genutzt.", "ru": "Ресурсы были оптимально использованы."}
+  ],
+  "practice": [
+    {"type": "fill", "question": "Вставьте правильную форму инфинитивной конструкции:", "sentence": "Es ist wichtig, das Projekt rechtzeitig ___. (abschließen)", "answer": "abzuschließen", "hint": "Важно завершить проект вовремя."},
+    {"type": "fill", "question": "Вставьте правильную форму инфинитивной конструкции:", "sentence": "Wir haben uns entschieden, das Budget ___. (erhöhen)", "answer": "zu erhöhen", "hint": "Мы решили увеличить бюджет."},
+    {"type": "fill", "question": "Вставьте правильную форму инфинитивной конструкции:", "sentence": "Sie hat vorgeschlagen, den Zeitplan ___. (ändern)", "answer": "zu ändern", "hint": "Она предложила изменить график."},
+    {"type": "fill", "question": "Вставьте правильное слово:", "sentence": "Das Team hat die ___ für das Projekt. (Verantwortung)", "answer": "Verantwortung", "hint": "Команда несёт ответственность за проект."},
+    {"type": "fill", "question": "Вставьте правильное слово:", "sentence": "Die ___ muss eingehalten werden. (Deadline)", "answer": "Deadline", "hint": "Крайний срок должен быть соблюдён."},
+    {"type": "fill", "question": "Вставьте правильное слово:", "sentence": "Die ___ wurden optimal genutzt. (Ressourcen)", "answer": "Ressourcen", "hint": "Ресурсы были оптимально использованы."},
+    {"type": "transform", "question": "Переделайте предложение с инфинитивной конструкцией:", "sentence": "Man sollte das Projekt rechtzeitig abschließen.", "answer": "Es ist wichtig, das Projekt rechtzeitig abzuschließen.", "hint": "Важно завершить проект вовремя."},
+    {"type": "transform", "question": "Переделайте предложение в Passiv:", "sentence": "Das Team hat die Verantwortung.", "answer": "Die Verantwortung wird vom Team getragen.", "hint": "Ответственность несётся командой."}
+  ]
+}

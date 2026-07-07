@@ -39,7 +39,11 @@
     {"de": "Das ist ein Kind.", "ru": "Это ребёнок."},
     {"de": "Das ist der Mann.", "ru": "Это тот мужчина."},
     {"de": "Das ist die Frau.", "ru": "Это та женщина."},
-    {"de": "Das ist das Kind.", "ru": "Это тот ребёнок."}
+    {"de": "Das ist das Kind.", "ru": "Это тот ребёнок."},
+    {"de": "Guten Tag! Ich bin Anna.", "ru": "Добрый день! Я Анна."},
+    {"de": "Tschüss! Das ist mein Vater.", "ru": "Пока! Это мой отец."},
+    {"de": "Hallo! Mein Name ist Tom.", "ru": "Привет! Меня зовут Том."},
+    {"de": "Auf Wiedersehen! Das ist mein Auto.", "ru": "До свидания! Это моя машина."}
   ],
   "dictation": [
     {"de": "Ich bin Anna.", "ru": "Я Анна."},
@@ -51,6 +55,10 @@
     {"de": "Sind Sie Herr Müller?", "ru": "Вы господин Мюллер?"},
     {"de": "Das ist ein Mann.", "ru": "Это мужчина."},
     {"de": "Das ist eine Frau.", "ru": "Это женщина."},
-    {"de": "Das ist ein Kind.", "ru": "Это ребёнок."}
+    {"de": "Das ist ein Kind.", "ru": "Это ребёнок."},
+    {"de": "Guten Tag! Ich bin Anna.", "ru": "Добрый день! Я Анна."},
+    {"de": "Tschüss! Das ist mein Vater.", "ru": "Пока! Это мой отец."},
+    {"de": "Hallo! Mein Name ist Tom.", "ru": "Привет! Меня зовут Том."},
+    {"de": "Auf Wiedersehen! Das ist mein Auto.", "ru": "До свидания! Это моя машина."}
   ]
 }

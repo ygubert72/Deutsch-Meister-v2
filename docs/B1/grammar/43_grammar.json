@@ -1,0 +1,44 @@
+{
+  "lesson": 43,
+  "title": "Написание резюме и сопроводительного письма",
+  "level": "B1",
+  "theory": "<h3>📝 Структура сопроводительного письма</h3><div class='info-box' style='background: #E8F0FE; padding: 15px; border-radius: 12px; margin: 15px 0;'><strong>1. КОНТАКТНАЯ ИНФОРМАЦИЯ (Kontaktdaten)</strong><br>• Ihr Name, Adresse, Telefonnummer, E-Mail</div><div class='info-box' style='background: #E8F0FE; padding: 15px; border-radius: 12px; margin: 15px 0;'><strong>2. ПРИВЕТСТВИЕ (Anrede)</strong><br>• <span style='color:#2E7D32;font-weight:bold;'>Sehr geehrte Damen und Herren,</span> — для неизвестных<br>• <span style='color:#2E7D32;font-weight:bold;'>Sehr geehrte Frau Müller,</span> — для женщины<br>• <span style='color:#2E7D32;font-weight:bold;'>Sehr geehrter Herr Schmidt,</span> — для мужчины</div><div class='info-box' style='background: #E8F0FE; padding: 15px; border-radius: 12px; margin: 15px 0;'><strong>3. ОСНОВНАЯ ЧАСТЬ (Hauptteil)</strong><br>• <span style='color:#2E7D32;font-weight:bold;'>Hiermit bewerbe ich mich auf die Stelle als...</span><br>• <span style='color:#2E7D32;font-weight:bold;'>Ich habe Berufserfahrung als...</span><br>• <span style='color:#2E7D32;font-weight:bold;'>Meine Qualifikationen umfassen...</span></div><div class='info-box' style='background: #E8F0FE; padding: 15px; border-radius: 12px; margin: 15px 0;'><strong>4. ПРОЩАНИЕ (Grußformel)</strong><br>• <span style='color:#2E7D32;font-weight:bold;'>Mit freundlichen Grüßen</span><br>• <span style='color:#2E7D32;font-weight:bold;'>Mit freundlichen Grüßen</span> + Ihr Name</div><h3>📌 Важные клише</h3><table border='1' cellpadding='10' style='border-collapse: collapse; width: 100%; margin: 15px 0;'><tr style='background: #3B6FE0; color: white;'><th>Немецкий</th><th>Перевод</th></tr><tr style='background: #E3F2FD;'><td><strong>Sehr geehrte Damen und Herren,</strong></td><td>Уважаемые дамы и господа,</td></tr><tr style='background: #F5F5F5;'><td><strong>hiermit bewerbe ich mich</strong></td><td>настоящим я подаю заявку</td></tr><tr style='background: #E3F2FD;'><td><strong>ich habe Berufserfahrung</strong></td><td>у меня есть профессиональный опыт</td></tr><tr style='background: #F5F5F5;'><td><strong>ich verfüge über Kenntnisse</strong></td><td>я обладаю знаниями</td></tr><tr style='background: #E3F2FD;'><td><strong>Mit freundlichen Grüßen</strong></td><td>С уважением</td></tr></table>",
+  "vocabulary": [
+    {"de": "der Lebenslauf", "ru": "резюме"},
+    {"de": "das Anschreiben", "ru": "сопроводительное письмо"},
+    {"de": "die Bewerbung", "ru": "заявка"},
+    {"de": "die Anlage", "ru": "приложение"},
+    {"de": "die Unterschrift", "ru": "подпись"},
+    {"de": "die Kenntnisse", "ru": "знания"},
+    {"de": "die Fähigkeiten", "ru": "навыки"},
+    {"de": "die Interessen", "ru": "интересы"},
+    {"de": "sich bewerben", "ru": "подавать заявку"},
+    {"de": "verfügen über", "ru": "обладать (чем-то)"},
+    {"de": "erwähnen", "ru": "упоминать"},
+    {"de": "anfügen", "ru": "прилагать"},
+    {"de": "unterschreiben", "ru": "подписывать"},
+    {"de": "Sehr geehrte", "ru": "Уважаемая (для женщин)"},
+    {"de": "Sehr geehrter", "ru": "Уважаемый (для мужчин)"},
+    {"de": "Mit freundlichen Grüßen", "ru": "С уважением"}
+  ],
+  "examples": [
+    {"de": "Sehr geehrte Damen und Herren,", "ru": "Уважаемые дамы и господа,"},
+    {"de": "Hiermit bewerbe ich mich auf die Stelle als Ingenieur.", "ru": "Настоящим я подаю заявку на должность инженера."},
+    {"de": "Ich habe Berufserfahrung als Lehrer.", "ru": "У меня есть профессиональный опыт учителя."},
+    {"de": "Ich verfüge über gute Deutschkenntnisse.", "ru": "Я обладаю хорошими знаниями немецкого языка."},
+    {"de": "Mit freundlichen Grüßen", "ru": "С уважением"},
+    {"de": "Ich habe meinen Lebenslauf beigefügt.", "ru": "Я приложил своё резюме."}
+  ],
+  "practice": [
+    {"type": "fill", "question": "Вставьте правильное приветствие:", "sentence": "___ Damen und Herren,", "answer": "Sehr geehrte", "hint": "Уважаемые дамы и господа,"},
+    {"type": "fill", "question": "Вставьте правильное слово:", "sentence": "Hiermit ___ ich mich auf die Stelle.", "answer": "bewerbe", "hint": "Настоящим я подаю заявку на должность."},
+    {"type": "fill", "question": "Вставьте правильный предлог:", "sentence": "Ich bewerbe mich ___ die Stelle.", "answer": "auf", "hint": "Я подаю заявку на должность."},
+    {"type": "fill", "question": "Вставьте правильный предлог:", "sentence": "Ich verfüge ___ guten Deutschkenntnissen.", "answer": "über", "hint": "Я обладаю хорошими знаниями немецкого языка."},
+    {"type": "fill", "question": "Вставьте правильный предлог:", "sentence": "Ich habe Berufserfahrung ___ Lehrer.", "answer": "als", "hint": "У меня есть профессиональный опыт учителя."},
+    {"type": "fill", "question": "Вставьте правильное прощание:", "sentence": "___ freundlichen Grüßen", "answer": "Mit", "hint": "С уважением"},
+    {"type": "fill", "question": "Вставьте правильное слово:", "sentence": "Ich habe meinen Lebenslauf ___. (anfügen)", "answer": "beigefügt", "hint": "Я приложил своё резюме."},
+    {"type": "fill", "question": "Вставьте правильное слово:", "sentence": "Ich habe die Bewerbung ___. (unterschreiben)", "answer": "unterschrieben", "hint": "Я подписал заявку."},
+    {"type": "transform", "question": "Переделайте предложение в официальное приветствие:", "sentence": "Hallo!", "answer": "Sehr geehrte Damen und Herren,", "hint": "Уважаемые дамы и господа,"},
+    {"type": "transform", "question": "Переделайте предложение с 'hiermit':", "sentence": "Ich bewerbe mich auf die Stelle.", "answer": "Hiermit bewerbe ich mich auf die Stelle.", "hint": "Настоящим я подаю заявку на должность."}
+  ]
+}

@@ -1,0 +1,47 @@
+{
+  "lesson": 64,
+  "title": "Политическая система и общественные процессы",
+  "level": "B2",
+  "theory": "<h3>🏛️ Политические институты Германии</h3><table border='1' cellpadding='8' style='border-collapse: collapse; width: 100%; margin: 10px 0;'><tr style='background: #3B6FE0; color: white;'><th>Русский</th><th>Немецкий</th></tr><tr style='background: #E3F2FD;'><td>Бундестаг</td><td><strong>der Bundestag</strong></td></tr><tr style='background: #F5F5F5;'><td>Бундесрат</td><td><strong>der Bundesrat</strong></td></tr><tr style='background: #E3F2FD;'><td>канцлер</td><td><strong>der Kanzler / die Kanzlerin</strong></td></tr><tr style='background: #F5F5F5;'><td>партия</td><td><strong>die Partei</strong></td></tr><tr style='background: #E3F2FD;'><td>выборы</td><td><strong>die Wahl</strong></td></tr><tr style='background: #F5F5F5;'><td>реформа</td><td><strong>die Reform</strong></td></tr><tr style='background: #E3F2FD;'><td>демократия</td><td><strong>die Demokratie</strong></td></tr><tr style='background: #F5F5F5;'><td>парламент</td><td><strong>das Parlament</strong></td></tr><tr style='background: #E3F2FD;'><td>закон</td><td><strong>das Gesetz</strong></td></tr><tr style='background: #F5F5F5;'><td>конституция</td><td><strong>die Verfassung</strong></td></tr><tr style='background: #E3F2FD;'><td>избиратель</td><td><strong>der Wähler</strong></td></tr></table><h3>📌 Konjunktiv I в новостях</h3><p><strong>Konjunktiv I</strong> используется в новостях и репортажах для передачи <strong>косвенной речи</strong>.</p><div class='info-box' style='background: #E8F0FE; padding: 15px; border-radius: 12px; margin: 15px 0;'><strong>📌 ПРИМЕРЫ:</strong><br>• <span style='color:#2E7D32;font-weight:bold;'>Der Kanzler sagte, die Reform <u>sei</u> wichtig.</span><br>Канцлер сказал, что реформа важна.<br><br>• <span style='color:#2E7D32;font-weight:bold;'>Die Partei erklärte, sie <u>werde</u> die Steuern senken.</span><br>Партия заявила, что снизит налоги.<br><br>• <span style='color:#2E7D32;font-weight:bold;'>Der Minister betonte, das Gesetz <u>müsse</u> verabschiedet werden.</span><br>Министр подчеркнул, что закон должен быть принят.</div>",
+  "vocabulary": [
+    {"de": "der Bundestag", "ru": "Бундестаг"},
+    {"de": "der Bundesrat", "ru": "Бундесрат"},
+    {"de": "der Kanzler", "ru": "канцлер"},
+    {"de": "die Kanzlerin", "ru": "канцлер (жен.)"},
+    {"de": "die Partei", "ru": "партия"},
+    {"de": "die Wahl", "ru": "выборы"},
+    {"de": "die Reform", "ru": "реформа"},
+    {"de": "die Demokratie", "ru": "демократия"},
+    {"de": "das Parlament", "ru": "парламент"},
+    {"de": "das Gesetz", "ru": "закон"},
+    {"de": "die Verfassung", "ru": "конституция"},
+    {"de": "der Wähler", "ru": "избиратель"},
+    {"de": "wählen", "ru": "выбирать / голосовать"},
+    {"de": "abstimmen", "ru": "голосовать"},
+    {"de": "regieren", "ru": "править"},
+    {"de": "verabschieden", "ru": "принимать (закон)"},
+    {"de": "reformieren", "ru": "реформировать"},
+    {"de": "vertreten", "ru": "представлять"},
+    {"de": "demonstrieren", "ru": "демонстрировать / протестовать"}
+  ],
+  "examples": [
+    {"de": "Der Kanzler sagte, die Reform sei wichtig.", "ru": "Канцлер сказал, что реформа важна."},
+    {"de": "Die Partei erklärte, sie werde die Steuern senken.", "ru": "Партия заявила, что снизит налоги."},
+    {"de": "Der Minister betonte, das Gesetz müsse verabschiedet werden.", "ru": "Министр подчеркнул, что закон должен быть принят."},
+    {"de": "Die Wahl findet im nächsten Jahr statt.", "ru": "Выборы состоятся в следующем году."},
+    {"de": "Die Demokratie ist ein wichtiger Wert.", "ru": "Демократия — важная ценность."},
+    {"de": "Das Gesetz wurde vom Parlament verabschiedet.", "ru": "Закон был принят парламентом."}
+  ],
+  "practice": [
+    {"type": "fill", "question": "Вставьте правильную форму Konjunktiv I:", "sentence": "Der Kanzler sagte, die Reform ___ wichtig. (sein)", "answer": "sei", "hint": "Канцлер сказал, что реформа важна."},
+    {"type": "fill", "question": "Вставьте правильную форму Konjunktiv I:", "sentence": "Die Partei erklärte, sie ___ die Steuern senken. (werden)", "answer": "werde", "hint": "Партия заявила, что снизит налоги."},
+    {"type": "fill", "question": "Вставьте правильную форму Konjunktiv I:", "sentence": "Der Minister betonte, das Gesetz ___ verabschiedet werden. (müssen)", "answer": "müsse", "hint": "Министр подчеркнул, что закон должен быть принят."},
+    {"type": "fill", "question": "Вставьте правильную форму Konjunktiv I:", "sentence": "Die Politikerin sagte, sie ___ für die Reform. (sein)", "answer": "sei", "hint": "Политик сказала, что она за реформу."},
+    {"type": "fill", "question": "Вставьте правильное слово:", "sentence": "Die ___ findet im nächsten Jahr statt. (выборы)", "answer": "Wahl", "hint": "Выборы состоятся в следующем году."},
+    {"type": "fill", "question": "Вставьте правильное слово:", "sentence": "Das Gesetz wurde vom ___ verabschiedet. (парламент)", "answer": "Parlament", "hint": "Закон был принят парламентом."},
+    {"type": "fill", "question": "Вставьте правильное слово:", "sentence": "Die ___ ist ein wichtiger Wert. (демократия)", "answer": "Demokratie", "hint": "Демократия — важная ценности."},
+    {"type": "transform", "question": "Переделайте прямую речь в косвенную (Konjunktiv I):", "sentence": "Der Kanzler sagte: 'Die Reform ist wichtig.'", "answer": "Der Kanzler sagte, die Reform sei wichtig.", "hint": "Канцлер сказал, что реформа важна."},
+    {"type": "transform", "question": "Переделайте прямую речь в косвенную (Konjunktiv I):", "sentence": "Die Partei erklärte: 'Wir werden die Steuern senken.'", "answer": "Die Partei erklärte, sie werde die Steuern senken.", "hint": "Партия заявила, что снизит налоги."},
+    {"type": "transform", "question": "Переделайте предложение в Passiv:", "sentence": "Das Parlament verabschiedet das Gesetz.", "answer": "Das Gesetz wird vom Parlament verabschiedet.", "hint": "Закон принимается парламентом."}
+  ]
+}

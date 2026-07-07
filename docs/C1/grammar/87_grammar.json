@@ -1,0 +1,46 @@
+{
+  "lesson": 87,
+  "title": "Немецкая философия и интеллектуальный дискурс",
+  "level": "C1",
+  "theory": "<h3>📌 Философские понятия</h3><table border='1' cellpadding='8' style='border-collapse: collapse; width: 100%; margin: 10px 0;'><tr style='background: #3B6FE0; color: white;'><th>Русский</th><th>Немецкий</th></tr><tr style='background: #E3F2FD;'><td>разум</td><td><strong>die Vernunft</strong></td></tr><tr style='background: #F5F5F5;'><td>этика</td><td><strong>die Ethik</strong></td></tr><tr style='background: #E3F2FD;'><td>мораль</td><td><strong>die Moral</strong></td></tr><tr style='background: #F5F5F5;'><td>свобода</td><td><strong>die Freiheit</strong></td></tr><tr style='background: #E3F2FD;'><td>ответственность</td><td><strong>die Verantwortung</strong></td></tr><tr style='background: #F5F5F5;'><td>существование</td><td><strong>die Existenz</strong></td></tr><tr style='background: #E3F2FD;'><td>сознание</td><td><strong>das Bewusstsein</strong></td></tr><tr style='background: #F5F5F5;'><td>познание</td><td><strong>die Erkenntnis</strong></td></tr><tr style='background: #E3F2FD;'><td>истина</td><td><strong>die Wahrheit</strong></td></tr><tr style='background: #F5F5F5'><td>справедливость</td><td><strong>die Gerechtigkeit</strong></td></tr><tr style='background: #E3F2FD'><td>достоинство</td><td><strong>die Würde</strong></td></tr><tr style='background: #F5F5F5'><td>смысл</td><td><strong>der Sinn</strong></td></tr></table><h3>📌 Konjunktiv II в философских гипотезах</h3><div class='info-box' style='background: #E8F0FE; padding: 15px; border-radius: 12px; margin: 15px 0;'><strong>📌 ПРИМЕРЫ:</strong><br>• <span style='color:#2E7D32;font-weight:bold;'>Wenn der Mensch wirklich frei wäre, würde er anders handeln.</span><br>Если бы человек действительно был свободен, он бы поступал иначе.<br><br>• <span style='color:#2E7D32;font-weight:bold;'>Kant argumentierte, dass die Vernunft die Grundlage der Moral sei.</span><br>Кант аргументировал, что разум является основой морали.<br><br>• <span style='color:#2E7D32;font-weight:bold;'>Die Wahrheit wäre ohne Zweifel nicht zu erkennen.</span><br>Истину нельзя было бы познать без сомнения.</div>",
+  "vocabulary": [
+    {"de": "die Vernunft", "ru": "разум"},
+    {"de": "die Ethik", "ru": "этика"},
+    {"de": "die Moral", "ru": "мораль"},
+    {"de": "die Freiheit", "ru": "свобода"},
+    {"de": "die Verantwortung", "ru": "ответственность"},
+    {"de": "die Existenz", "ru": "существование"},
+    {"de": "das Bewusstsein", "ru": "сознание"},
+    {"de": "die Erkenntnis", "ru": "познание"},
+    {"de": "die Wahrheit", "ru": "истина"},
+    {"de": "die Gerechtigkeit", "ru": "справедливость"},
+    {"de": "die Würde", "ru": "достоинство"},
+    {"de": "der Sinn", "ru": "смысл"},
+    {"de": "erkennen", "ru": "познавать"},
+    {"de": "verstehen", "ru": "понимать"},
+    {"de": "begreifen", "ru": "постигать"},
+    {"de": "reflektieren", "ru": "рефлексировать"},
+    {"de": "hinterfragen", "ru": "подвергать сомнению"},
+    {"de": "argumentieren", "ru": "аргументировать"},
+    {"de": "urteilen", "ru": "судить"},
+    {"de": "interpretieren", "ru": "интерпретировать"}
+  ],
+  "examples": [
+    {"de": "Wenn der Mensch wirklich frei wäre, würde er anders handeln.", "ru": "Если бы человек действительно был свободен, он бы поступал иначе."},
+    {"de": "Kant argumentierte, dass die Vernunft die Grundlage der Moral sei.", "ru": "Кант аргументировал, что разум является основой морали."},
+    {"de": "Die Wahrheit wäre ohne Zweifel nicht zu erkennen.", "ru": "Истину нельзя было бы познать без сомнения."},
+    {"de": "Die Würde des Menschen ist unantastbar.", "ru": "Достоинство человека неприкосновенно."},
+    {"de": "Die Freiheit des Individuums ist ein zentraler Wert.", "ru": "Свобода личности — центральная ценность."},
+    {"de": "Die Ethik beschäftigt sich mit dem moralischen Handeln.", "ru": "Этика занимается моральным действием."}
+  ],
+  "practice": [
+    {"type": "fill", "question": "Вставьте правильную форму Konjunktiv II:", "sentence": "Wenn der Mensch wirklich frei ___, würde er anders handeln. (sein)", "answer": "wäre", "hint": "Если бы человек действительно был свободен, он бы поступал иначе."},
+    {"type": "fill", "question": "Вставьте правильную форму Konjunktiv I:", "sentence": "Kant argumentierte, dass die Vernunft die Grundlage der Moral ___. (sein)", "answer": "sei", "hint": "Кант аргументировал, что разум является основой морали."},
+    {"type": "fill", "question": "Вставьте правильную форму Konjunktiv II:", "sentence": "Die Wahrheit ___ ohne Zweifel nicht zu erkennen. (sein)", "answer": "wäre", "hint": "Истину нельзя было бы познать без сомнения."},
+    {"type": "fill", "question": "Вставьте правильное слово:", "sentence": "Die ___ des Menschen ist unantastbar. (Würde)", "answer": "Würde", "hint": "Достоинство человека неприкосновенно."},
+    {"type": "fill", "question": "Вставьте правильное слово:", "sentence": "Die ___ des Individuums ist ein zentraler Wert. (Freiheit)", "answer": "Freiheit", "hint": "Свобода личности — центральная ценность."},
+    {"type": "fill", "question": "Вставьте правильное слово:", "sentence": "Die ___ beschäftigt sich mit dem moralischen Handeln. (Ethik)", "answer": "Ethik", "hint": "Этика занимается моральным действием."},
+    {"type": "transform", "question": "Переделайте предложение с Konjunktiv II (философская гипотеза):", "sentence": "Der Mensch ist nicht wirklich frei. Er handelt anders.", "answer": "Wenn der Mensch wirklich frei wäre, würde er anders handeln.", "hint": "Если бы человек действительно был свободен, он бы поступал иначе."},
+    {"type": "transform", "question": "Переделайте предложение в косвенную речь (Konjunktiv I):", "sentence": "Kant sagt: 'Die Vernunft ist die Grundlage der Moral.'", "answer": "Kant argumentierte, dass die Vernunft die Grundlage der Moral sei.", "hint": "Кант аргументировал, что разум является основой морали."}
+  ]
+}

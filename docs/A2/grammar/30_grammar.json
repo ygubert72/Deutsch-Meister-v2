@@ -1,0 +1,48 @@
+{
+  "lesson": 30,
+  "title": "Культурные мероприятия",
+  "level": "A2",
+  "theory": "<h3>🎭 Культурные мероприятия</h3><table border='1' cellpadding='8' style='border-collapse: collapse; width: 100%; margin: 10px 0;'><tr style='background: #3B6FE0; color: white;'><th>Русский</th><th>Немецкий</th></tr><tr style='background: #E3F2FD;'><td>кинотеатр</td><td><strong>das Kino</strong></td></tr><tr style='background: #F5F5F5;'><td>театр</td><td><strong>das Theater</strong></td></tr><tr style='background: #E3F2FD;'><td>музей</td><td><strong>das Museum</strong></td></tr><tr style='background: #F5F5F5;'><td>выставка</td><td><strong>die Ausstellung</strong></td></tr><tr style='background: #E3F2FD;'><td>концерт</td><td><strong>das Konzert</strong></td></tr><tr style='background: #F5F5F5;'><td>опера</td><td><strong>die Oper</strong></td></tr><tr style='background: #E3F2FD;'><td>фильм</td><td><strong>der Film</strong></td></tr><tr style='background: #F5F5F5;'><td>музыка</td><td><strong>die Musik</strong></td></tr></table><h3>📌 Придаточные с <span style='color:#2E7D32;font-weight:bold;'>dass</span></h3><p><strong>dass</strong> — это союз, который вводит придаточное предложение. <strong>Глагол в придаточном стоит в конце!</strong></p><div class='info-box' style='background: #E8F0FE; padding: 15px; border-radius: 12px; margin: 15px 0;'><strong>📌 КАК РАБОТАЕТ dass:</strong><br><span style='color:#2E7D32;font-weight:bold;'>Ich finde, <u>dass</u> der Film gut <u>ist</u>.</span><br>Я считаю, что фильм хороший.<br><br><span style='color:#2E7D32;font-weight:bold;'>Ich denke, <u>dass</u> das Konzert morgen <u>ist</u>.</span><br>Я думаю, что концерт завтра.</div><div class='warning-box' style='background: #FFF3E0; padding: 15px; border-radius: 12px; margin: 15px 0; border-left: 5px solid #FF9800;'><strong>💡 ВАЖНО!</strong><br>• В придаточном с <strong>dass</strong> глагол <strong>всегда</strong> стоит в конце.<br>• Главное предложение и придаточное разделяются <strong>запятой</strong>.</div>",
+  "vocabulary": [
+    {"de": "das Kino", "ru": "кинотеатр"},
+    {"de": "das Theater", "ru": "театр"},
+    {"de": "das Museum", "ru": "музей"},
+    {"de": "die Ausstellung", "ru": "выставка"},
+    {"de": "das Konzert", "ru": "концерт"},
+    {"de": "die Oper", "ru": "опера"},
+    {"de": "der Film", "ru": "фильм"},
+    {"de": "die Musik", "ru": "музыка"},
+    {"de": "besuchen", "ru": "посещать"},
+    {"de": "finden", "ru": "находить / считать"},
+    {"de": "denken", "ru": "думать"},
+    {"de": "dass", "ru": "что"},
+    {"de": "interessant", "ru": "интересный"},
+    {"de": "langweilig", "ru": "скучный"},
+    {"de": "schön", "ru": "красивый / прекрасный"},
+    {"de": "die Karte", "ru": "билет"},
+    {"de": "die Vorstellung", "ru": "сеанс / представление"}
+  ],
+  "examples": [
+    {"de": "Ich finde, dass der Film gut ist.", "ru": "Я считаю, что фильм хороший."},
+    {"de": "Ich denke, dass das Konzert morgen ist.", "ru": "Я думаю, что концерт завтра."},
+    {"de": "Ich möchte ins Kino gehen.", "ru": "Я хочу пойти в кино."},
+    {"de": "Wir haben das Museum besucht.", "ru": "Мы посетили музей."},
+    {"de": "Die Ausstellung war interessant.", "ru": "Выставка была интересной."},
+    {"de": "Ich finde, dass die Musik schön ist.", "ru": "Я считаю, что музыка красивая."},
+    {"de": "Ich werde nächstes Wochenende ins Theater gehen.", "ru": "Я пойду в театр в следующие выходные."},
+    {"de": "Hast du die Karten für das Konzert?", "ru": "У тебя есть билеты на концерт?"}
+  ],
+  "practice": [
+    {"type": "fill", "question": "Вставьте правильное слово (dass):", "sentence": "Ich finde, ___ der Film gut ist.", "answer": "dass", "hint": "Я считаю, что фильм хороший."},
+    {"type": "fill", "question": "Вставьте правильное слово (dass):", "sentence": "Ich denke, ___ das Konzert morgen ist.", "answer": "dass", "hint": "Я думаю, что концерт завтра."},
+    {"type": "fill", "question": "Вставьте правильную форму глагола:", "sentence": "Ich finde, dass der Film gut ___ (sein)", "answer": "ist", "hint": "Я считаю, что фильм хороший (глагол в конце)."},
+    {"type": "fill", "question": "Вставьте правильную форму глагола:", "sentence": "Ich denke, dass das Konzert morgen ___ (sein)", "answer": "ist", "hint": "Я думаю, что концерт завтра (глагол в конце)."},
+    {"type": "fill", "question": "Вставьте правильное слово:", "sentence": "Ich möchte ins ___ gehen. (кинотеатр)", "answer": "Kino", "hint": "Я хочу пойти в кино."},
+    {"type": "fill", "question": "Вставьте правильное слово:", "sentence": "Ich möchte ins ___ gehen. (театр)", "answer": "Theater", "hint": "Я хочу пойти в театр."},
+    {"type": "fill", "question": "Вставьте правильную форму глагола:", "sentence": "Ich ___ das Museum besucht. (Perfekt)", "answer": "habe", "hint": "Я посетил музей."},
+    {"type": "fill", "question": "Вставьте правильное слово:", "sentence": "Die ___ war interessant. (выставка)", "answer": "Ausstellung", "hint": "Выставка была интересной."},
+    {"type": "transform", "question": "Переделайте предложение с dass:", "sentence": "Der Film ist gut.", "answer": "Ich finde, dass der Film gut ist.", "hint": "Я считаю, что фильм хороший."},
+    {"type": "transform", "question": "Переделайте предложение с dass:", "sentence": "Das Konzert ist morgen.", "answer": "Ich denke, dass das Konzert morgen ist.", "hint": "Я думаю, что концерт завтра."},
+    {"type": "transform", "question": "Переделайте предложение в Futur I:", "sentence": "Ich gehe ins Kino.", "answer": "Ich werde ins Kino gehen.", "hint": "Я пойду в кино."}
+  ]
+}

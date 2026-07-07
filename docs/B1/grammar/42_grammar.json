@@ -1,0 +1,43 @@
+{
+  "lesson": 42,
+  "title": "Описание профессионального опыта",
+  "level": "B1",
+  "theory": "<h3>💼 Что такое Plusquamperfekt?</h3><p><strong>Plusquamperfekt</strong> — это <strong>предпрошедшее</strong> время. Оно используется, когда нужно показать, что одно действие <strong>произошло раньше</strong> другого действия в прошлом.</p><div class='info-box' style='background: #E8F0FE; padding: 15px; border-radius: 12px; margin: 15px 0;'><strong>📌 КАК ОБРАЗОВАТЬ PLUSQUAMPERFEKT:</strong><br><span style='color:#2E7D32;font-weight:bold;'>haben/sein</span> (в Präteritum) + <span style='color:#2E7D32;font-weight:bold;'>Partizip II</span> (в конце предложения)<br><br>• с <strong>haben</strong>: <em>Ich <u>hatte</u> gearbeitet.</em><br>• с <strong>sein</strong>: <em>Ich <u>war</u> gefahren.</em></div><div class='info-box' style='background: #E8F0FE; padding: 15px; border-radius: 12px; margin: 15px 0;'><strong>📌 КОГДА ИСПОЛЬЗОВАТЬ?</strong><br><span style='color:#2E7D32;font-weight:bold;'>Nachdem ich mein Studium abgeschlossen <u>hatte</u>, suchte ich einen Job.</span><br>После того как я закончил учёбу, я искал работу.</div><h3>📌 Сравнение времён</h3><table border='1' cellpadding='10' style='border-collapse: collapse; width: 100%; margin: 15px 0;'><tr style='background: #3B6FE0; color: white;'><th>Время</th><th>Пример</th><th>Когда использовать</th></tr><tr style='background: #E3F2FD;'><td><strong>Präteritum</strong></td><td>Ich arbeitete.</td><td>Письменная речь, рассказ</td></tr><tr style='background: #F5F5F5;'><td><strong>Perfekt</strong></td><td>Ich habe gearbeitet.</td><td>Разговорная речь, прошлое</td></tr><tr style='background: #E3F2FD;'><td><strong>Plusquamperfekt</strong></td><td>Ich hatte gearbeitet.</td><td>Действие, которое было раньше другого</td></tr></table><div class='warning-box' style='background: #FFF3E0; padding: 15px; border-radius: 12px; margin: 15px 0; border-left: 5px solid #FF9800;'><strong>💡 ВАЖНО!</strong><br>• Plusquamperfekt используется с <strong>nachdem</strong> (после того как)<br>• В главном предложении обычно стоит <strong>Präteritum</strong> или <strong>Perfekt</strong></div>",
+  "vocabulary": [
+    {"de": "die Berufserfahrung", "ru": "профессиональный опыт"},
+    {"de": "das Praktikum", "ru": "практика / стажировка"},
+    {"de": "die Fortbildung", "ru": "повышение квалификации"},
+    {"de": "die Bewerbung", "ru": "заявка / резюме"},
+    {"de": "die Qualifikation", "ru": "квалификация"},
+    {"de": "die Stelle", "ru": "должность / место"},
+    {"de": "die Karriere", "ru": "карьера"},
+    {"de": "der Job", "ru": "работа"},
+    {"de": "absolvieren", "ru": "завершать (учебу)"},
+    {"de": "sich bewerben", "ru": "подавать заявку"},
+    {"de": "einstellen", "ru": "нанимать"},
+    {"de": "kündigen", "ru": "увольняться / увольнять"},
+    {"de": "wechseln", "ru": "менять"},
+    {"de": "sich weiterbilden", "ru": "повышать квалификацию"},
+    {"de": "nachdem", "ru": "после того как"},
+    {"de": "die Erfahrung", "ru": "опыт"}
+  ],
+  "examples": [
+    {"de": "Nachdem ich mein Studium abgeschlossen hatte, suchte ich einen Job.", "ru": "После того как я закончил учёбу, я искал работу."},
+    {"de": "Ich hatte vorher in einer Firma gearbeitet.", "ru": "Я раньше работал в фирме."},
+    {"de": "Nachdem sie die Fortbildung gemacht hatte, bekam sie eine neue Stelle.", "ru": "После того как она прошла повышение квалификации, она получила новую должность."},
+    {"de": "Ich habe mich bei einer großen Firma beworben.", "ru": "Я подал заявку в большую фирму."},
+    {"de": "Mein Bruder hat den Job gewechselt.", "ru": "Мой брат сменил работу."},
+    {"de": "Ich hatte schon viele Bewerbungen geschrieben.", "ru": "Я уже написал много заявок."}
+  ],
+  "practice": [
+    {"type": "fill", "question": "Вставьте правильную форму Plusquamperfekt:", "sentence": "Nachdem ich mein Studium abgeschlossen ___, suchte ich einen Job. (haben)", "answer": "hatte", "hint": "После того как я закончил учёбу, я искал работу."},
+    {"type": "fill", "question": "Вставьте правильную форму Plusquamperfekt:", "sentence": "Ich ___ vorher in einer Firma gearbeitet. (haben)", "answer": "hatte", "hint": "Я раньше работал в фирме."},
+    {"type": "fill", "question": "Вставьте правильную форму Plusquamperfekt:", "sentence": "Nachdem sie die Fortbildung gemacht ___, bekam sie eine neue Stelle. (haben)", "answer": "hatte", "hint": "После того как она прошла повышение квалификации, она получила новую должность."},
+    {"type": "fill", "question": "Вставьте правильную форму Plusquamperfekt:", "sentence": "Ich ___ schon viele Bewerbungen geschrieben. (haben)", "answer": "hatte", "hint": "Я уже написал много заявок."},
+    {"type": "fill", "question": "Вставьте правильный союз (nachdem/weil):", "sentence": "___ ich mein Studium abgeschlossen hatte, suchte ich einen Job.", "answer": "Nachdem", "hint": "После того как я закончил учёбу, я искал работу."},
+    {"type": "fill", "question": "Вставьте правильное слово:", "sentence": "Ich habe mich bei einer großen Firma ___. (bewerben)", "answer": "beworben", "hint": "Я подал заявку в большую фирму."},
+    {"type": "fill", "question": "Вставьте правильное слово:", "sentence": "Mein Bruder hat den Job ___. (wechseln)", "answer": "gewechselt", "hint": "Мой брат сменил работу."},
+    {"type": "fill", "question": "Вставьте правильное слово:", "sentence": "Ich habe viel ___ in meinem Beruf. (Erfahrung)", "answer": "Erfahrung", "hint": "У меня большой опыт в моей профессии."},
+    {"type": "transform", "question": "Переделайте предложение в Plusquamperfekt:", "sentence": "Ich habe mein Studium abgeschlossen. Ich suchte einen Job.", "answer": "Nachdem ich mein Studium abgeschlossen hatte, suchte ich einen Job.", "hint": "После того как я закончил учёбу, я искал работу."}
+  ]
+}

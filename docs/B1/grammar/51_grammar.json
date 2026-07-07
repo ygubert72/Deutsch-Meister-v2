@@ -1,0 +1,45 @@
+{
+  "lesson": 51,
+  "title": "Инфинитивные конструкции (um…zu, ohne…zu, statt…zu)",
+  "level": "B1",
+  "theory": "<h3>📌 Что такое инфинитивные конструкции?</h3><p>Инфинитивные конструкции с <strong>zu</strong> позволяют соединять два действия в одно предложение.</p><div class='info-box' style='background: #E8F0FE; padding: 15px; border-radius: 12px; margin: 15px 0;'><strong>📌 КОНСТРУКЦИИ:</strong><br>• <span style='color:#2E7D32;font-weight:bold;'>um…zu</span> — чтобы (цель)<br>• <span style='color:#2E7D32;font-weight:bold;'>ohne…zu</span> — без того чтобы<br>• <span style='color:#2E7D32;font-weight:bold;'>statt…zu</span> — вместо того чтобы</div><div class='info-box' style='background: #E8F0FE; padding: 15px; border-radius: 12px; margin: 15px 0;'><strong>📌 ПРИМЕРЫ:</strong><br>• <span style='color:#2E7D32;font-weight:bold;'>Ich treibe Sport, <u>um</u> fit zu bleiben.</span><br>Я занимаюсь спортом, чтобы оставаться в форме.<br><br>• <span style='color:#2E7D32;font-weight:bold;'>Er geht, <u>ohne</u> etwas zu sagen.</span><br>Он уходит, ничего не сказав.<br><br>• <span style='color:#2E7D32;font-weight:bold;'><u>Statt</u> zu rauchen, sollte man Sport treiben.</span><br>Вместо того чтобы курить, следует заниматься спортом.</div>",
+  "vocabulary": [
+    {"de": "um...zu", "ru": "чтобы"},
+    {"de": "ohne...zu", "ru": "без того чтобы"},
+    {"de": "statt...zu", "ru": "вместо того чтобы"},
+    {"de": "fit bleiben", "ru": "оставаться в форме"},
+    {"de": "trainieren", "ru": "тренироваться"},
+    {"de": "laufen", "ru": "бегать"},
+    {"de": "entspannen", "ru": "расслабляться"},
+    {"de": "rauchen", "ru": "курить"},
+    {"de": "abnehmen", "ru": "худеть"},
+    {"de": "zunehmen", "ru": "набирать вес"},
+    {"de": "die Gesundheit", "ru": "здоровье"},
+    {"de": "der Sport", "ru": "спорт"},
+    {"de": "die Ernährung", "ru": "питание"},
+    {"de": "der Stress", "ru": "стресс"},
+    {"de": "die Entspannung", "ru": "расслабление"},
+    {"de": "die Gewohnheit", "ru": "привычка"}
+  ],
+  "examples": [
+    {"de": "Ich treibe Sport, um fit zu bleiben.", "ru": "Я занимаюсь спортом, чтобы оставаться в форме."},
+    {"de": "Er geht, ohne etwas zu sagen.", "ru": "Он уходит, ничего не сказав."},
+    {"de": "Statt zu rauchen, sollte man Sport treiben.", "ru": "Вместо того чтобы курить, следует заниматься спортом."},
+    {"de": "Ich laufe jeden Morgen, um gesund zu bleiben.", "ru": "Я бегаю каждое утро, чтобы оставаться здоровым."},
+    {"de": "Sie hat gegessen, ohne zu bezahlen.", "ru": "Она поела, не заплатив."},
+    {"de": "Statt zu Hause zu bleiben, bin ich ins Kino gegangen.", "ru": "Вместо того чтобы остаться дома, я пошёл в кино."}
+  ],
+  "practice": [
+    {"type": "fill", "question": "Вставьте правильную конструкцию (um...zu/ohne...zu/statt...zu):", "sentence": "Ich treibe Sport, ___ fit zu bleiben.", "answer": "um", "hint": "Я занимаюсь спортом, чтобы оставаться в форме."},
+    {"type": "fill", "question": "Вставьте правильную конструкцию (um...zu/ohne...zu/statt...zu):", "sentence": "Er geht, ___ etwas zu sagen.", "answer": "ohne", "hint": "Он уходит, ничего не сказав."},
+    {"type": "fill", "question": "Вставьте правильную конструкцию (um...zu/ohne...zu/statt...zu):", "sentence": "___ zu rauchen, sollte man Sport treiben.", "answer": "Statt", "hint": "Вместо того чтобы курить, следует заниматься спортом."},
+    {"type": "fill", "question": "Вставьте правильную форму глагола:", "sentence": "Ich treibe Sport, um fit ___ bleiben. (zu + Infinitiv)", "answer": "zu", "hint": "Я занимаюсь спортом, чтобы оставаться в форме."},
+    {"type": "fill", "question": "Вставьте правильное слово:", "sentence": "Ich laufe jeden Morgen, um gesund ___ bleiben. (zu + Infinitiv)", "answer": "zu", "hint": "Я бегаю каждое утро, чтобы оставаться здоровым."},
+    {"type": "fill", "question": "Вставьте правильную форму глагола:", "sentence": "Sie hat gegessen, ohne ___ bezahlen.", "answer": "zu", "hint": "Она поела, не заплатив."},
+    {"type": "fill", "question": "Вставьте правильное слово:", "sentence": "Ich möchte gesund ___. (bleiben)", "answer": "bleiben", "hint": "Я хочу оставаться здоровым."},
+    {"type": "fill", "question": "Вставьте правильное слово:", "sentence": "Er hat versucht, mit dem Rauchen ___ aufhören.", "answer": "zu", "hint": "Он попытался бросить курить."},
+    {"type": "transform", "question": "Переделайте предложение с um...zu:", "sentence": "Ich treibe Sport. Ich will fit bleiben.", "answer": "Ich treibe Sport, um fit zu bleiben.", "hint": "Я занимаюсь спортом, чтобы оставаться в форме."},
+    {"type": "transform", "question": "Переделайте предложение с ohne...zu:", "sentence": "Er geht. Er sagt nichts.", "answer": "Er geht, ohne etwas zu sagen.", "hint": "Он уходит, ничего не сказав."},
+    {"type": "transform", "question": "Переделайте предложение с statt...zu:", "sentence": "Er raucht. Er sollte Sport treiben.", "answer": "Statt zu rauchen, sollte man Sport treiben.", "hint": "Вместо того чтобы курить, следует заниматься спортом."}
+  ]
+}

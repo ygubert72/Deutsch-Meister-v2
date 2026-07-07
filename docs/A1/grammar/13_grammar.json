@@ -19,7 +19,11 @@
     {"de": "die Rechnung", "ru": "счёт"},
     {"de": "noch", "ru": "ещё"},
     {"de": "zusammen", "ru": "вместе"},
-    {"de": "getrennt", "ru": "раздельно"}
+    {"de": "getrennt", "ru": "раздельно"},
+    {"de": "hätte gern", "ru": "хотел бы"},
+    {"de": "die Pizza", "ru": "пицца"},
+    {"de": "der Salat", "ru": "салат"},
+    {"de": "die Suppe", "ru": "суп"}
   ],
   "examples": [
     {"de": "Ich hätte gern eine Pizza.", "ru": "Я бы хотел пиццу."},
@@ -38,6 +42,15 @@
     {"type": "fill", "question": "Вставьте правильное слово:", "sentence": "Der ___ bringt die Speisekarte. (официант)", "answer": "Kellner", "hint": "Официант приносит меню."},
     {"type": "fill", "question": "Вставьте правильное слово:", "sentence": "___ oder getrennt? (вместе)", "answer": "Zusammen", "hint": "Вместе или раздельно?"},
     {"type": "fill", "question": "Вставьте правильное слово:", "sentence": "Die ___, bitte. (счёт)", "answer": "Rechnung", "hint": "Счёт, пожалуйста."},
-    {"type": "fill", "question": "Вставьте правильное слово:", "sentence": "___ etwas? (ещё)", "answer": "Noch", "hint": "Ещё что-то?"}
+    {"type": "fill", "question": "Вставьте правильное слово:", "sentence": "___ etwas? (ещё)", "answer": "Noch", "hint": "Ещё что-то?"},
+    {"type": "fill", "question": "Вставьте правильную форму глагола bestellen:", "sentence": "Ich ___ einen Kaffee.", "answer": "bestelle", "hint": "Я заказываю кофе."},
+    {"type": "fill", "question": "Вставьте правильную форму глагола bestellen:", "sentence": "Wir ___ eine Pizza.", "answer": "bestellen", "hint": "Мы заказываем пиццу."},
+    {"type": "fill", "question": "Вставьте правильное слово (посуда):", "sentence": "Die ___ ist auf dem Tisch. (тарелка)", "answer": "Teller", "hint": "Тарелка на столе."},
+    {"type": "fill", "question": "Вставьте правильное слово (посуда):", "sentence": "Das ___ ist scharf. (нож)", "answer": "Messer", "hint": "Нож острый."},
+    {"type": "fill", "question": "Вставьте правильное слово (посуда):", "sentence": "Die ___ ist voll Wasser. (чашка)", "answer": "Tasse", "hint": "Чашка полна воды."},
+    {"type": "transform", "question": "Переделайте в вежливую форму с 'hätte gern':", "sentence": "Ich möchte eine Pizza.", "answer": "Ich hätte gern eine Pizza.", "hint": "Я бы хотел пиццу."},
+    {"type": "transform", "question": "Переделайте в вопрос с 'Noch etwas':", "sentence": "Möchten Sie noch etwas?", "answer": "Noch etwas?", "hint": "Ещё что-то?"},
+    {"type": "transform", "question": "Переделайте в отрицание (kein/keine):", "sentence": "Ich möchte einen Kaffee.", "answer": "Ich möchte keinen Kaffee.", "hint": "Я не хочу кофе."},
+    {"type": "transform", "question": "Замените местоимение ich на wir:", "sentence": "Ich bezahle die Rechnung.", "answer": "Wir bezahlen die Rechnung.", "hint": "Мы платим счёт."}
   ]
 }

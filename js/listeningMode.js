@@ -54,19 +54,12 @@ function renderDialog(container) {
 
     // Функция озвучивания (БЕЗ имён говорящих!)
     function speakDialog() {
-        // 1. Убираем имена спикеров (Anna:, Tom:, etc.)
         let cleanText = dialog.text
-            .replace(/^[A-ZÄÖÜ][a-zäöüß]*:\s*/gm, '') // Убираем "Name: " в начале каждой строки
-            .trim();
-        
-        // 2. Убираем лишние переносы
-        cleanText = cleanText.replace(/\n/g, ' ');
-        
-        // 3. Убираем лишние пробелы
-        cleanText = cleanText.replace(/\s+/g, ' ').trim();
-        
-        // 4. Оставляем только немецкие символы
-        cleanText = cleanText.replace(/[^a-zA-ZäöüßÄÖÜ\s,?!.]/g, '');
+            .replace(/^[A-ZÄÖÜ][a-zäöüß]*:\s*/gm, '')
+            .trim()
+            .replace(/\n/g, ' ')
+            .replace(/\s+/g, ' ')
+            .replace(/[^a-zA-ZäöüßÄÖÜ\s,?!.]/g, '');
         
         if (typeof window.speak === 'function') {
             window.speak(cleanText);
@@ -156,10 +149,10 @@ function renderDialog(container) {
     });
     html += `</div>`;
 
-    // НАВИГАЦИЯ И ПРОВЕРКА
+    // НАВИГАЦИЯ + ПРОВЕРКА (В ОДНОЙ СТРОКЕ)
     html += `
-        <div style="display: flex; gap: 10px; flex-wrap: wrap; justify-content: space-between;">
-            <div>
+        <div style="display: flex; gap: 10px; flex-wrap: wrap; justify-content: space-between; align-items: center;">
+            <div style="display: flex; gap: 10px; flex-wrap: wrap;">
                 <button onclick="window.prevListeningDialog()" ${currentDialogIndex === 0 ? 'disabled style="opacity: 0.5; cursor: not-allowed;"' : ''} 
                         style="padding: 8px 20px; background: #E8F0FE; border: 2px solid #D0D0D0; border-radius: 8px; cursor: pointer; font-weight: bold;">
                     ◀ НАЗАД
@@ -168,14 +161,12 @@ function renderDialog(container) {
                         style="padding: 8px 20px; background: #E8F0FE; border: 2px solid #D0D0D0; border-radius: 8px; cursor: pointer; font-weight: bold;">
                     ВПЕРЕД ▶
                 </button>
-            </div>
-            <div>
                 <button onclick="window.checkListeningAnswers()" style="padding: 8px 20px; background: #3B6FE0; color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: bold;">
                     ✅ ПРОВЕРИТЬ
                 </button>
             </div>
+            <div id="listeningResult" style="font-weight: bold; font-size: 14px; min-height: 24px;"></div>
         </div>
-        <div id="listeningResult" style="margin-top: 15px; font-weight: bold;"></div>
     `;
 
     container.innerHTML = html;

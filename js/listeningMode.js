@@ -101,8 +101,12 @@ function renderDialog(container) {
             
             <!-- ТЕКСТ ДИАЛОГА (СКРЫТ ПО УМОЛЧАНИЮ) -->
             ${isTextVisible ? `
-                <div style="background: white; border-radius: 8px; padding: 15px; margin: 10px 0; font-family: monospace; line-height: 1.8; border: 2px solid #FF9800; white-space: pre-wrap; padding-left: 0;">
-                    ${displayText}
+                <div style="background: white; border-radius: 8px; padding: 12px 15px; margin: 10px 0; border: 2px solid #FF9800;">
+                    ${displayText.split('\n').map(line => `
+                        <div style="font-family: monospace; font-size: 14px; line-height: 1.8; padding: 0; margin: 0; ${line.trim() === '' ? 'height: 6px;' : ''}">
+                            ${line || '&nbsp;'}
+                        </div>
+                    `).join('')}
                 </div>
             ` : `
                 <div style="background: #f0f0f0; border-radius: 8px; padding: 15px; margin: 10px 0; text-align: center; color: #999; border: 2px dashed #ccc;">

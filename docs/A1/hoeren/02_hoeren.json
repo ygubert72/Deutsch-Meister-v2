@@ -1,0 +1,41 @@
+{
+  "lesson": 2,
+  "level": "A1",
+  "title": "Приветствия и прощания",
+  "dialogs": [
+    {
+      "id": "dialog_1",
+      "title": "Begrüßung",
+      "text": "Person A: Guten Morgen! Wie geht es dir?\nPerson B: Guten Morgen! Danke, gut! Und dir?\nPerson A: Mir geht es auch gut!",
+      "questions": [
+        {
+          "question": "Wie geht es Person B?",
+          "options": ["Gut", "Schlecht", "Müde"],
+          "answer": 0
+        },
+        {
+          "question": "Wie geht es Person A?",
+          "options": ["Gut", "Schlecht", "Müde"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "dialog_2",
+      "title": "Verabschiedung",
+      "text": "Person A: Tschüss! Bis morgen!\nPerson B: Auf Wiedersehen! Bis morgen!",
+      "questions": [
+        {
+          "question": "Was sagt Person A zum Abschied?",
+          "options": ["Hallo", "Tschüss", "Bitte"],
+          "answer": 1
+        },
+        {
+          "question": "Was sagt Person B zum Abschied?",
+          "options": ["Hallo", "Tschüss", "Auf Wiedersehen"],
+          "answer": 2
+        }
+      ]
+    }
+  ]
+}

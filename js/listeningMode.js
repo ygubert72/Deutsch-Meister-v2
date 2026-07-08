@@ -5,6 +5,7 @@
 let listeningData = null;
 let currentDialogIndex = 0;
 let selectedAnswers = {};
+let isTextVisible = false;
 
 // ========== ОСНОВНАЯ ФУНКЦИЯ ==========
 function renderListening(container, lesson) {
@@ -25,6 +26,7 @@ function renderListening(container, lesson) {
             listeningData = data;
             currentDialogIndex = 0;
             selectedAnswers = {};
+            isTextVisible = false;
             renderDialog(container);
         })
         .catch(error => {
@@ -50,7 +52,7 @@ function renderDialog(container) {
     const dialog = dialogs[currentDialogIndex];
     const total = dialogs.length;
 
-    // Озвучивание диалога
+    // Функция озвучивания
     function speakDialog() {
         const cleanText = dialog.text.replace(/[^a-zA-ZäöüßÄÖÜ\s,?!.\n]/g, '');
         if (typeof window.speak === 'function') {
@@ -60,8 +62,15 @@ function renderDialog(container) {
         }
     }
 
-    // Сохраняем функцию для вызова из HTML
     window._speakDialog = speakDialog;
+
+    // Функция показа/скрытия текста
+    function toggleText() {
+        isTextVisible = !isTextVisible;
+        renderDialog(container);
+    }
+
+    window._toggleText = toggleText;
 
     let html = `
         <div style="background: #f8f9fa; border-radius: 12px; padding: 20px; margin-bottom: 15px;">
@@ -69,21 +78,31 @@ function renderDialog(container) {
                 <h4 style="margin: 0;">🎧 ${dialog.title}</h4>
                 <span style="font-size: 14px; color: #888;">${currentDialogIndex + 1} / ${total}</span>
             </div>
-            <div style="background: white; border-radius: 8px; padding: 15px; margin: 10px 0; font-family: monospace; white-space: pre-wrap; line-height: 1.8; border: 1px solid #E0E0E0;">
-                ${dialog.text}
-            </div>
-            <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+            
+            <!-- КНОПКИ УПРАВЛЕНИЯ -->
+            <div style="display: flex; gap: 10px; flex-wrap: wrap; margin: 10px 0;">
                 <button onclick="window._speakDialog()" style="padding: 8px 20px; background: #3B6FE0; color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: bold;">
                     🔊 ПРОСЛУШАТЬ
                 </button>
-                <button onclick="window._speakDialog()" style="padding: 8px 20px; background: #4CAF50; color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: bold;">
-                    🔁 ПОВТОРИТЬ
+                <button onclick="window._toggleText()" style="padding: 8px 20px; background: #FF9800; color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: bold;">
+                    ${isTextVisible ? '🙈 СКРЫТЬ ТЕКСТ' : '📖 ПОКАЗАТЬ ТЕКСТ'}
                 </button>
             </div>
+            
+            <!-- ТЕКСТ ДИАЛОГА (СКРЫТ ПО УМОЛЧАНИЮ) -->
+            ${isTextVisible ? `
+                <div style="background: white; border-radius: 8px; padding: 15px; margin: 10px 0; font-family: monospace; white-space: pre-wrap; line-height: 1.8; border: 2px solid #FF9800;">
+                    ${dialog.text}
+                </div>
+            ` : `
+                <div style="background: #f0f0f0; border-radius: 8px; padding: 15px; margin: 10px 0; text-align: center; color: #999; border: 2px dashed #ccc;">
+                    🔒 Текст скрыт. Нажмите "Показать текст", чтобы увидеть диалог.
+                </div>
+            `}
         </div>
     `;
 
-    // Вопросы
+    // ВОПРОСЫ (всегда видны)
     html += `<div style="margin-bottom: 20px;">`;
     dialog.questions.forEach((q, qIndex) => {
         const selected = selectedAnswers[dialog.id]?.[qIndex];
@@ -110,7 +129,7 @@ function renderDialog(container) {
     });
     html += `</div>`;
 
-    // Навигация и проверка
+    // НАВИГАЦИЯ И ПРОВЕРКА
     html += `
         <div style="display: flex; gap: 10px; flex-wrap: wrap; justify-content: space-between;">
             <div>
@@ -147,6 +166,8 @@ function selectListeningAnswer(dialogId, qIndex, value) {
 function prevListeningDialog() {
     if (currentDialogIndex > 0) {
         currentDialogIndex--;
+        selectedAnswers = {};
+        isTextVisible = false;
         const container = document.getElementById('modeContent');
         if (container) renderDialog(container);
     }
@@ -155,6 +176,8 @@ function prevListeningDialog() {
 function nextListeningDialog() {
     if (listeningData && currentDialogIndex < listeningData.dialogs.length - 1) {
         currentDialogIndex++;
+        selectedAnswers = {};
+        isTextVisible = false;
         const container = document.getElementById('modeContent');
         if (container) renderDialog(container);
     }

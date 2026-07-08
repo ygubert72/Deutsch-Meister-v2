@@ -52,9 +52,22 @@ function renderDialog(container) {
     const dialog = dialogs[currentDialogIndex];
     const total = dialogs.length;
 
-    // Функция озвучивания
+    // Функция озвучивания (БЕЗ имён говорящих!)
     function speakDialog() {
-        const cleanText = dialog.text.replace(/[^a-zA-ZäöüßÄÖÜ\s,?!.\n]/g, '');
+        // 1. Убираем имена спикеров (Anna:, Tom:, etc.)
+        let cleanText = dialog.text
+            .replace(/^[A-ZÄÖÜ][a-zäöüß]*:\s*/gm, '') // Убираем "Name: " в начале каждой строки
+            .trim();
+        
+        // 2. Убираем лишние переносы
+        cleanText = cleanText.replace(/\n/g, ' ');
+        
+        // 3. Убираем лишние пробелы
+        cleanText = cleanText.replace(/\s+/g, ' ').trim();
+        
+        // 4. Оставляем только немецкие символы
+        cleanText = cleanText.replace(/[^a-zA-ZäöüßÄÖÜ\s,?!.]/g, '');
+        
         if (typeof window.speak === 'function') {
             window.speak(cleanText);
         } else {
@@ -72,7 +85,7 @@ function renderDialog(container) {
 
     window._toggleText = toggleText;
 
-    // Очищаем текст от лишних пробелов в начале строк
+    // Очищаем текст от лишних пробелов в начале строк (для отображения)
     function cleanText(text) {
         return text
             .split('\n')

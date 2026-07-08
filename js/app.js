@@ -198,6 +198,11 @@ function updateCounter() {
             count = currentLesson.dictation?.length || 0;
             label = 'предложений';
             break;
+        case 'listening':
+            // Для аудирования показываем количество диалогов (если загружены)
+            // Временное решение — показываем сообщение
+            el.textContent = '🎧 Аудирование';
+            return;
         default:
             count = 0;
             label = '';
@@ -251,6 +256,7 @@ function renderLesson(lesson) {
             <button class="mode-btn" data-mode="quiz">🎯 Тест</button>
             <button class="mode-btn" data-mode="trainer">🧩 Тренажер</button>
             <button class="mode-btn" data-mode="dictation">✏️ Диктант</button>
+            <button class="mode-btn" data-mode="listening">🎧 Аудирование</button>
         </div>
         <div id="modeContent"></div>
     `;
@@ -329,6 +335,13 @@ function renderMode(mode, lesson) {
                 renderDictation(container, lesson);
             } else {
                 container.innerHTML = '<div>Режим "Диктант" загружается...</div>';
+            }
+            break;
+        case 'listening':
+            if (typeof renderListening === 'function') {
+                renderListening(container, lesson);
+            } else {
+                container.innerHTML = '<div>Режим "Аудирование" загружается...</div>';
             }
             break;
         default:

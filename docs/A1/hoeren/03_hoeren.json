@@ -1,0 +1,58 @@
+{
+  "lesson": 3,
+  "level": "A1",
+  "title": "Глагол sein и знакомство",
+  "dialogs": [
+    {
+      "id": "dialog_1",
+      "title": "Vorstellung",
+      "text": "Anna: Hallo! Ich bin Anna. Wie heißt du?\nTom: Ich bin Tom. Freut mich!\nAnna: Freut mich auch!",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Anna", "Tom", "Maria"],
+          "answer": 0
+        },
+        {
+          "question": "Wie heißt der Mann?",
+          "options": ["Anna", "Tom", "Maria"],
+          "answer": 1
+        }
+      ]
+    },
+    {
+      "id": "dialog_2",
+      "title": "Alter und Herkunft",
+      "text": "Maria: Guten Tag! Ich bin Maria. Ich komme aus Russland.\nPeter: Guten Tag! Ich bin Peter. Ich komme aus Deutschland.\nMaria: Ich bin 25 Jahre alt. Und du?\nPeter: Ich bin 28 Jahre alt.",
+      "questions": [
+        {
+          "question": "Woher kommt Maria?",
+          "options": ["Aus Deutschland", "Aus Russland", "Aus Italien"],
+          "answer": 1
+        },
+        {
+          "question": "Wie alt ist Peter?",
+          "options": ["25 Jahre", "28 Jahre", "30 Jahre"],
+          "answer": 1
+        }
+      ]
+    },
+    {
+      "id": "dialog_3",
+      "title": "Familie",
+      "text": "Julia: Ist das deine Schwester?\nMax: Ja, das ist meine Schwester. Sie heißt Lisa.\nJulia: Ist Lisa deine ältere Schwester?\nMax: Nein, sie ist meine jüngere Schwester.",
+      "questions": [
+        {
+          "question": "Wie heißt die Schwester von Max?",
+          "options": ["Julia", "Lisa", "Anna"],
+          "answer": 1
+        },
+        {
+          "question": "Ist Lisa die ältere Schwester von Max?",
+          "options": ["Ja", "Nein", "Weiß nicht"],
+          "answer": 1
+        }
+      ]
+    }
+  ]
+}

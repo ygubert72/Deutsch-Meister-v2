@@ -199,8 +199,6 @@ function updateCounter() {
             label = 'предложений';
             break;
         case 'listening':
-            // Для аудирования показываем количество диалогов (если загружены)
-            // Временное решение — показываем сообщение
             el.textContent = '🎧 Аудирование';
             return;
         default:
@@ -245,6 +243,27 @@ function renderLesson(lesson) {
     currentLesson = lesson;
     saveState();
 
+    // Проверяем наличие файла аудирования
+    const lessonId = lesson.id || 1;
+    const level = lesson.level || 'A1';
+    const hoerenPath = `docs/${level}/hoeren/${String(lessonId).padStart(2, '0')}_hoeren.json`;
+    
+    // Показываем кнопку "Аудирование" только если файл существует
+    fetch(hoerenPath, { method: 'HEAD' })
+        .then(response => {
+            const hasListening = response.ok;
+            buildLessonHTML(lesson, hasListening);
+        })
+        .catch(() => {
+            buildLessonHTML(lesson, false);
+        });
+}
+
+function buildLessonHTML(lesson, hasListening) {
+    const listeningButtonHtml = hasListening 
+        ? `<button class="mode-btn" data-mode="listening">🎧 Аудирование</button>` 
+        : '';
+
     let html = `
         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
             <button class="back-btn" onclick="renderLevel()">← К СПИСКУ УРОКОВ</button>
@@ -256,7 +275,7 @@ function renderLesson(lesson) {
             <button class="mode-btn" data-mode="quiz">🎯 Тест</button>
             <button class="mode-btn" data-mode="trainer">🧩 Тренажер</button>
             <button class="mode-btn" data-mode="dictation">✏️ Диктант</button>
-            <button class="mode-btn" data-mode="listening">🎧 Аудирование</button>
+            ${listeningButtonHtml}
         </div>
         <div id="modeContent"></div>
     `;

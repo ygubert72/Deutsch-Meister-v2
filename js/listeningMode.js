@@ -1,0 +1,199 @@
+// ====================================================================
+// listeningMode.js — Аудирование (Hörverstehen)
+// ====================================================================
+
+let listeningData = null;
+let currentDialogIndex = 0;
+let selectedAnswers = {};
+
+// ========== ОСНОВНАЯ ФУНКЦИЯ ==========
+function renderListening(container, lesson) {
+    const lessonId = lesson.id || 1;
+    const level = lesson.level || 'A1';
+    
+    const filePath = `docs/${level}/hoeren/${String(lessonId).padStart(2, '0')}_hoeren.json`;
+    console.log('🎧 Загрузка аудирования:', filePath);
+    
+    fetch(filePath)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Файл аудирования не найден');
+            }
+            return response.json();
+        })
+        .then(data => {
+            listeningData = data;
+            currentDialogIndex = 0;
+            selectedAnswers = {};
+            renderDialog(container);
+        })
+        .catch(error => {
+            console.error('❌ Ошибка загрузки аудирования:', error);
+            container.innerHTML = `
+                <div style="text-align: center; padding: 40px; color: #999;">
+                    <div style="font-size: 48px; margin-bottom: 15px;">🎧</div>
+                    <div>Раздел аудирования для этого урока пока не готов.</div>
+                    <div style="font-size: 14px; margin-top: 10px;">Скоро появится!</div>
+                </div>
+            `;
+        });
+}
+
+// ========== ОТОБРАЖЕНИЕ ДИАЛОГА ==========
+function renderDialog(container) {
+    if (!listeningData || !listeningData.dialogs || listeningData.dialogs.length === 0) {
+        container.innerHTML = '<div style="text-align:center;padding:40px;color:#999;">📭 Нет диалогов для этого урока</div>';
+        return;
+    }
+
+    const dialogs = listeningData.dialogs;
+    const dialog = dialogs[currentDialogIndex];
+    const total = dialogs.length;
+
+    // Озвучивание диалога
+    function speakDialog() {
+        const cleanText = dialog.text.replace(/[^a-zA-ZäöüßÄÖÜ\s,?!.\n]/g, '');
+        if (typeof window.speak === 'function') {
+            window.speak(cleanText);
+        } else {
+            console.warn('⚠️ speak.js не загружен');
+        }
+    }
+
+    // Сохраняем функцию для вызова из HTML
+    window._speakDialog = speakDialog;
+
+    let html = `
+        <div style="background: #f8f9fa; border-radius: 12px; padding: 20px; margin-bottom: 15px;">
+            <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
+                <h4 style="margin: 0;">🎧 ${dialog.title}</h4>
+                <span style="font-size: 14px; color: #888;">${currentDialogIndex + 1} / ${total}</span>
+            </div>
+            <div style="background: white; border-radius: 8px; padding: 15px; margin: 10px 0; font-family: monospace; white-space: pre-wrap; line-height: 1.8; border: 1px solid #E0E0E0;">
+                ${dialog.text}
+            </div>
+            <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+                <button onclick="window._speakDialog()" style="padding: 8px 20px; background: #3B6FE0; color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: bold;">
+                    🔊 ПРОСЛУШАТЬ
+                </button>
+                <button onclick="window._speakDialog()" style="padding: 8px 20px; background: #4CAF50; color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: bold;">
+                    🔁 ПОВТОРИТЬ
+                </button>
+            </div>
+        </div>
+    `;
+
+    // Вопросы
+    html += `<div style="margin-bottom: 20px;">`;
+    dialog.questions.forEach((q, qIndex) => {
+        const selected = selectedAnswers[dialog.id]?.[qIndex];
+        html += `
+            <div style="background: white; border-radius: 8px; padding: 15px; margin-bottom: 12px; border: 2px solid #E0E0E0;">
+                <div style="font-weight: bold; margin-bottom: 8px;">${qIndex + 1}. ${q.question}</div>
+                <div style="display: flex; flex-direction: column; gap: 6px;">
+        `;
+        q.options.forEach((option, oIndex) => {
+            const isSelected = selected === oIndex;
+            html += `
+                <label style="display: flex; align-items: center; gap: 10px; padding: 6px 12px; background: ${isSelected ? '#E3F2FD' : '#f5f5f5'}; border-radius: 6px; cursor: pointer;">
+                    <input type="radio" name="q_${dialog.id}_${qIndex}" value="${oIndex}" 
+                           ${isSelected ? 'checked' : ''}
+                           onchange="window.selectListeningAnswer('${dialog.id}', ${qIndex}, ${oIndex})">
+                    ${option}
+                </label>
+            `;
+        });
+        html += `
+                </div>
+            </div>
+        `;
+    });
+    html += `</div>`;
+
+    // Навигация и проверка
+    html += `
+        <div style="display: flex; gap: 10px; flex-wrap: wrap; justify-content: space-between;">
+            <div>
+                <button onclick="window.prevListeningDialog()" ${currentDialogIndex === 0 ? 'disabled style="opacity: 0.5; cursor: not-allowed;"' : ''} 
+                        style="padding: 8px 20px; background: #E8F0FE; border: 2px solid #D0D0D0; border-radius: 8px; cursor: pointer; font-weight: bold;">
+                    ◀ НАЗАД
+                </button>
+                <button onclick="window.nextListeningDialog()" ${currentDialogIndex === total - 1 ? 'disabled style="opacity: 0.5; cursor: not-allowed;"' : ''}
+                        style="padding: 8px 20px; background: #E8F0FE; border: 2px solid #D0D0D0; border-radius: 8px; cursor: pointer; font-weight: bold;">
+                    ВПЕРЕД ▶
+                </button>
+            </div>
+            <div>
+                <button onclick="window.checkListeningAnswers()" style="padding: 8px 20px; background: #3B6FE0; color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: bold;">
+                    ✅ ПРОВЕРИТЬ
+                </button>
+            </div>
+        </div>
+        <div id="listeningResult" style="margin-top: 15px; font-weight: bold;"></div>
+    `;
+
+    container.innerHTML = html;
+}
+
+// ========== ВЫБОР ОТВЕТА ==========
+function selectListeningAnswer(dialogId, qIndex, value) {
+    if (!selectedAnswers[dialogId]) {
+        selectedAnswers[dialogId] = {};
+    }
+    selectedAnswers[dialogId][qIndex] = value;
+}
+
+// ========== ПЕРЕКЛЮЧЕНИЕ ДИАЛОГОВ ==========
+function prevListeningDialog() {
+    if (currentDialogIndex > 0) {
+        currentDialogIndex--;
+        const container = document.getElementById('modeContent');
+        if (container) renderDialog(container);
+    }
+}
+
+function nextListeningDialog() {
+    if (listeningData && currentDialogIndex < listeningData.dialogs.length - 1) {
+        currentDialogIndex++;
+        const container = document.getElementById('modeContent');
+        if (container) renderDialog(container);
+    }
+}
+
+// ========== ПРОВЕРКА ОТВЕТОВ ==========
+function checkListeningAnswers() {
+    if (!listeningData) return;
+    const dialog = listeningData.dialogs[currentDialogIndex];
+    let correct = 0;
+    const total = dialog.questions.length;
+
+    dialog.questions.forEach((q, qIndex) => {
+        const userAnswer = selectedAnswers[dialog.id]?.[qIndex];
+        if (userAnswer !== undefined && userAnswer === q.answer) {
+            correct++;
+        }
+    });
+
+    const resultEl = document.getElementById('listeningResult');
+    if (resultEl) {
+        if (correct === total) {
+            resultEl.innerHTML = `🎉 Все правильно! (${correct}/${total})`;
+            resultEl.style.color = '#4CAF50';
+        } else if (correct === 0) {
+            resultEl.innerHTML = `❌ Ни одного правильного ответа. Попробуйте снова! (${correct}/${total})`;
+            resultEl.style.color = '#F44336';
+        } else {
+            resultEl.innerHTML = `⚠️ Правильно: ${correct} из ${total}. Попробуйте еще раз!`;
+            resultEl.style.color = '#FF9800';
+        }
+    }
+}
+
+// ========== ЭКСПОРТ ==========
+window.renderListening = renderListening;
+window.selectListeningAnswer = selectListeningAnswer;
+window.prevListeningDialog = prevListeningDialog;
+window.nextListeningDialog = nextListeningDialog;
+window.checkListeningAnswers = checkListeningAnswers;
+
+console.log('🎧 listeningMode.js загружен');

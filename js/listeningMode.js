@@ -72,6 +72,16 @@ function renderDialog(container) {
 
     window._toggleText = toggleText;
 
+    // Очищаем текст от лишних пробелов в начале строк
+    function cleanText(text) {
+        return text
+            .split('\n')
+            .map(line => line.trim())
+            .join('\n');
+    }
+
+    const displayText = cleanText(dialog.text);
+
     let html = `
         <div style="background: #f8f9fa; border-radius: 12px; padding: 20px; margin-bottom: 15px;">
             <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
@@ -91,8 +101,8 @@ function renderDialog(container) {
             
             <!-- ТЕКСТ ДИАЛОГА (СКРЫТ ПО УМОЛЧАНИЮ) -->
             ${isTextVisible ? `
-                <div style="background: white; border-radius: 8px; padding: 15px; margin: 10px 0; font-family: monospace; white-space: pre-wrap; line-height: 1.8; border: 2px solid #FF9800;">
-                    ${dialog.text}
+                <div style="background: white; border-radius: 8px; padding: 15px; margin: 10px 0; font-family: monospace; line-height: 1.8; border: 2px solid #FF9800; white-space: pre-wrap; padding-left: 0;">
+                    ${displayText}
                 </div>
             ` : `
                 <div style="background: #f0f0f0; border-radius: 8px; padding: 15px; margin: 10px 0; text-align: center; color: #999; border: 2px dashed #ccc;">

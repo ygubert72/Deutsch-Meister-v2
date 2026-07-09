@@ -1,5 +1,5 @@
 // ====================================================================
-// listeningMode.js — Аудирование (Hörverstehen) с Yandex TTS
+// listeningMode.js — Аудирование (Hörverstehen) с speak.js
 // ====================================================================
 
 let listeningData = null;
@@ -42,31 +42,6 @@ function renderListening(container, lesson) {
         });
 }
 
-// ========== ОЧИСТКА ТЕКСТА ОТ ИМЁН ==========
-function cleanTextFromNames(text) {
-    return text
-        .replace(/^[A-ZÄÖÜ][a-zäöüß]*:\s*/gm, '')
-        .trim()
-        .replace(/\n/g, ' ')
-        .replace(/\s+/g, ' ')
-        .trim();
-}
-
-// ========== РАЗБОР ДИАЛОГА НА РЕПЛИКИ ==========
-function parseDialog(text) {
-    const lines = text.split('\n').filter(line => line.trim() !== '');
-    return lines.map(line => {
-        const match = line.match(/^([A-ZÄÖÜ][a-zäöüß]*):\s*(.*)/);
-        if (match) {
-            return {
-                speaker: match[1],
-                text: match[2].trim()
-            };
-        }
-        return null;
-    }).filter(s => s !== null);
-}
-
 // ========== ОЗВУЧИВАНИЕ ТЕКУЩЕГО ДИАЛОГА ==========
 function speakCurrentDialog() {
     if (!listeningData) {
@@ -88,61 +63,20 @@ function speakCurrentDialog() {
     
     console.log('🎤 Озвучивание диалога:', dialog.title);
     
-    const speeches = parseDialog(dialog.text);
+    // Очищаем текст от имён и объединяем в одну строку
+    const cleanText = dialog.text
+        .split('\n')
+        .map(line => line.replace(/^[A-ZÄÖÜ][a-zäöüß]*:\s*/, ''))
+        .filter(line => line.trim() !== '')
+        .join(' ');
     
-    if (speeches.length === 0) {
-        console.warn('⚠️ Не удалось разобрать диалог на реплики');
-        return;
+    console.log('🔊 Текст:', cleanText);
+    
+    if (typeof window.speak === 'function') {
+        window.speak(cleanText);
+    } else {
+        console.warn('⚠️ speak.js не загружен');
     }
-    
-    // ВОСПРОИЗВЕДЕНИЕ РЕПЛИК ПО ОЧЕРЕДИ
-    let index = 0;
-    
-    function playNext() {
-        if (index >= speeches.length) {
-            console.log('✅ Озвучка диалога завершена');
-            return;
-        }
-        
-        const speech = speeches[index];
-        const cleanText = cleanTextFromNames(speech.text);
-        
-        console.log(`🗣️ ${speech.speaker}: ${cleanText}`);
-        
-        // Пытаемся использовать Yandex TTS
-        if (typeof window.speakWithYandex === 'function') {
-            const voice = window.getVoiceForSpeaker ? window.getVoiceForSpeaker(speech.speaker) : null;
-            window.speakWithYandex(cleanText, voice)
-                .then(() => {
-                    index++;
-                    setTimeout(playNext, 400);
-                })
-                .catch((error) => {
-                    console.warn('⚠️ Yandex TTS ошибка, переключаемся на fallback:', error);
-                    if (typeof window.speak === 'function') {
-                        window.speak(cleanText);
-                        index++;
-                        setTimeout(playNext, 600);
-                    } else {
-                        index++;
-                        setTimeout(playNext, 100);
-                    }
-                });
-        } 
-        // Fallback на speak.js
-        else if (typeof window.speak === 'function') {
-            window.speak(cleanText);
-            index++;
-            setTimeout(playNext, 600);
-        } 
-        else {
-            console.warn('⚠️ Озвучка не доступна');
-            index++;
-            setTimeout(playNext, 100);
-        }
-    }
-    
-    playNext();
 }
 
 window._speakDialog = speakCurrentDialog;

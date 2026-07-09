@@ -42,7 +42,32 @@ function renderListening(container, lesson) {
         });
 }
 
-// ========== ОЗВУЧИВАНИЕ ТЕКУЩЕГО ДИАЛОГА (С ПОДДЕРЖКОЙ AZURE) ==========
+// ========== ОЧИСТКА ТЕКСТА ОТ ИМЁН ==========
+function cleanTextFromNames(text) {
+    return text
+        .replace(/^[A-ZÄÖÜ][a-zäöüß]*:\s*/gm, '')   // Убираем "Name: "
+        .trim()
+        .replace(/\n/g, ' ')                          // Убираем переносы строк
+        .replace(/\s+/g, ' ')                         // Убираем лишние пробелы
+        .trim();
+}
+
+// ========== РАЗБОР ДИАЛОГА НА РЕПЛИКИ ==========
+function parseDialog(text) {
+    const lines = text.split('\n').filter(line => line.trim() !== '');
+    return lines.map(line => {
+        const match = line.match(/^([A-ZÄÖÜ][a-zäöüß]*):\s*(.*)/);
+        if (match) {
+            return {
+                speaker: match[1],
+                text: match[2].trim()
+            };
+        }
+        return null;
+    }).filter(s => s !== null);
+}
+
+// ========== ОЗВУЧИВАНИЕ ТЕКУЩЕГО ДИАЛОГА ==========
 function speakCurrentDialog() {
     if (!listeningData) {
         console.warn('⚠️ listeningData не загружен');
@@ -63,18 +88,8 @@ function speakCurrentDialog() {
     
     console.log('🎤 Озвучивание диалога:', dialog.title);
     
-    // Разбиваем диалог на реплики
-    const lines = dialog.text.split('\n').filter(line => line.trim() !== '');
-    const speeches = lines.map(line => {
-        const match = line.match(/^([A-ZÄÖÜ][a-zäöüß]*):\s*(.*)/);
-        if (match) {
-            return {
-                speaker: match[1],
-                text: match[2].trim()
-            };
-        }
-        return null;
-    }).filter(s => s !== null);
+    // Разбираем диалог на реплики
+    const speeches = parseDialog(dialog.text);
     
     if (speeches.length === 0) {
         console.warn('⚠️ Не удалось разобрать диалог на реплики');
@@ -93,19 +108,21 @@ function speakCurrentDialog() {
         const speech = speeches[index];
         console.log(`🗣️ ${speech.speaker}: ${speech.text}`);
         
+        // Очищаем текст от имён ДО озвучивания
+        const cleanText = cleanTextFromNames(speech.text);
+        
         // 1. Пытаемся использовать Azure TTS
         if (typeof window.speakWithAzure === 'function') {
             const voice = window.getVoiceForSpeaker ? window.getVoiceForSpeaker(speech.speaker) : null;
-            window.speakWithAzure(speech.text, voice)
+            window.speakWithAzure(cleanText, voice)
                 .then(() => {
                     index++;
                     setTimeout(playNext, 300);
                 })
                 .catch((error) => {
                     console.warn('⚠️ Azure TTS ошибка, переключаемся на fallback:', error);
-                    // Fallback на speak.js
                     if (typeof window.speak === 'function') {
-                        window.speak(speech.text);
+                        window.speak(cleanText);
                         index++;
                         setTimeout(playNext, 500);
                     } else {
@@ -116,7 +133,7 @@ function speakCurrentDialog() {
         } 
         // 2. Fallback на speak.js
         else if (typeof window.speak === 'function') {
-            window.speak(speech.text);
+            window.speak(cleanText);
             index++;
             setTimeout(playNext, 500);
         } 

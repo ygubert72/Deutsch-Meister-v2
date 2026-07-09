@@ -42,7 +42,7 @@ function renderListening(container, lesson) {
         });
 }
 
-// ========== ОЗВУЧИВАНИЕ ТЕКУЩЕГО ДИАЛОГА ==========
+// ========== ОЗВУЧИВАНИЕ ТЕКУЩЕГО ДИАЛОГА (С ПОДДЕРЖКОЙ AZURE) ==========
 function speakCurrentDialog() {
     if (!listeningData) {
         console.warn('⚠️ listeningData не загружен');
@@ -63,21 +63,72 @@ function speakCurrentDialog() {
     
     console.log('🎤 Озвучивание диалога:', dialog.title);
     
-    // Используем speakDialog из azureTTS.js или fallback
-    if (typeof window.speakDialog === 'function') {
-        window.speakDialog(dialog.text);
-    } else if (typeof window.speak === 'function') {
-        // Fallback на старую озвучку
-        const cleanText = dialog.text
-            .replace(/^[A-ZÄÖÜ][a-zäöüß]*:\s*/gm, '')
-            .trim()
-            .replace(/\n/g, ' ')
-            .replace(/\s+/g, ' ')
-            .trim();
-        window.speak(cleanText);
-    } else {
-        console.warn('⚠️ Озвучка не доступна');
+    // Разбиваем диалог на реплики
+    const lines = dialog.text.split('\n').filter(line => line.trim() !== '');
+    const speeches = lines.map(line => {
+        const match = line.match(/^([A-ZÄÖÜ][a-zäöüß]*):\s*(.*)/);
+        if (match) {
+            return {
+                speaker: match[1],
+                text: match[2].trim()
+            };
+        }
+        return null;
+    }).filter(s => s !== null);
+    
+    if (speeches.length === 0) {
+        console.warn('⚠️ Не удалось разобрать диалог на реплики');
+        return;
     }
+    
+    // ВОСПРОИЗВЕДЕНИЕ РЕПЛИК ПО ОЧЕРЕДИ
+    let index = 0;
+    
+    function playNext() {
+        if (index >= speeches.length) {
+            console.log('✅ Озвучка диалога завершена');
+            return;
+        }
+        
+        const speech = speeches[index];
+        console.log(`🗣️ ${speech.speaker}: ${speech.text}`);
+        
+        // 1. Пытаемся использовать Azure TTS
+        if (typeof window.speakWithAzure === 'function') {
+            const voice = window.getVoiceForSpeaker ? window.getVoiceForSpeaker(speech.speaker) : null;
+            window.speakWithAzure(speech.text, voice)
+                .then(() => {
+                    index++;
+                    setTimeout(playNext, 300);
+                })
+                .catch((error) => {
+                    console.warn('⚠️ Azure TTS ошибка, переключаемся на fallback:', error);
+                    // Fallback на speak.js
+                    if (typeof window.speak === 'function') {
+                        window.speak(speech.text);
+                        index++;
+                        setTimeout(playNext, 500);
+                    } else {
+                        index++;
+                        setTimeout(playNext, 100);
+                    }
+                });
+        } 
+        // 2. Fallback на speak.js
+        else if (typeof window.speak === 'function') {
+            window.speak(speech.text);
+            index++;
+            setTimeout(playNext, 500);
+        } 
+        // 3. Если ничего нет
+        else {
+            console.warn('⚠️ Озвучка не доступна');
+            index++;
+            setTimeout(playNext, 100);
+        }
+    }
+    
+    playNext();
 }
 
 window._speakDialog = speakCurrentDialog;

@@ -199,8 +199,15 @@ function updateCounter() {
             label = 'предложений';
             break;
         case 'listening':
-            el.textContent = '🎧 Аудирование';
-            return;
+            // Показываем количество диалогов, если они уже загружены
+            if (window.listeningData && window.listeningData.dialogs) {
+                count = window.listeningData.dialogs.length;
+                label = 'диалогов';
+            } else {
+                el.textContent = '🎧 Аудирование';
+                return;
+            }
+            break;
         default:
             count = 0;
             label = '';

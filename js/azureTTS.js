@@ -24,10 +24,11 @@ function initAzureTTS(key, region) {
     console.log('🎤 Azure TTS инициализирован');
 }
 
-// ========== ОЗВУЧКА ==========
+// ========== ОЗВУЧКА (ВОЗВРАЩАЕТ PROMISE) ==========
 async function speakWithAzure(text, voice = preferredVoice) {
     if (!text) return;
 
+    // Если Azure не готов — используем fallback (speak.js)
     if (!isAzureReady || !AZURE_KEY || AZURE_KEY === 'YOUR_AZURE_KEY') {
         console.warn('⚠️ Azure не настроен, используем fallback');
         if (window.speak) {
@@ -37,6 +38,7 @@ async function speakWithAzure(text, voice = preferredVoice) {
         return;
     }
 
+    // Проверяем кэш
     const cachedAudio = await getCachedAudio(text, voice);
     if (cachedAudio) {
         console.log('📦 Воспроизведение из кэша');

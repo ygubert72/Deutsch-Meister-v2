@@ -42,67 +42,45 @@ function renderListening(container, lesson) {
         });
 }
 
-// ========== ОЗВУЧИВАНИЕ ДИАЛОГА ПО РЕПЛИКАМ ==========
-function speakDialog() {
-    if (!listeningData) return;
-    const dialog = listeningData.dialogs[currentDialogIndex];
-    if (!dialog) return;
-    
-    // 1. Разбиваем диалог на отдельные реплики
-    const lines = dialog.text.split('\n').filter(line => line.trim() !== '');
-    
-    if (lines.length === 0) return;
-    
-    // 2. Определяем, кто говорит в каждой реплике
-    const speeches = lines.map(line => {
-        const match = line.match(/^([A-ZÄÖÜ][a-zäöüß]*):\s*(.*)/);
-        if (match) {
-            return {
-                speaker: match[1],
-                text: match[2].trim()
-            };
-        }
-        return null;
-    }).filter(s => s !== null);
-    
-    if (speeches.length === 0) return;
-    
-    // 3. Озвучиваем реплики последовательно (одну за другой)
-    let index = 0;
-    
-    function speakNext() {
-        if (index >= speeches.length) return;
-        
-        const speech = speeches[index];
-        const voice = window.getVoiceForSpeaker ? window.getVoiceForSpeaker(speech.speaker) : null;
-        
-        console.log(`🗣️ ${speech.speaker}: ${speech.text}`);
-        
-        if (typeof window.speakWithAzure === 'function') {
-            window.speakWithAzure(speech.text, voice)
-                .then(() => {
-                    index++;
-                    setTimeout(speakNext, 300);
-                })
-                .catch(() => {
-                    index++;
-                    setTimeout(speakNext, 100);
-                });
-        } else if (typeof window.speak === 'function') {
-            window.speak(speech.text);
-            index++;
-            setTimeout(speakNext, 500);
-        } else {
-            console.warn('⚠️ Озвучка не доступна');
-            index++;
-            setTimeout(speakNext, 100);
-        }
+// ========== ОЗВУЧИВАНИЕ ТЕКУЩЕГО ДИАЛОГА ==========
+function speakCurrentDialog() {
+    if (!listeningData) {
+        console.warn('⚠️ listeningData не загружен');
+        return;
     }
     
-    speakNext();
+    const dialogs = listeningData.dialogs;
+    if (!dialogs || dialogs.length === 0) {
+        console.warn('⚠️ Нет диалогов');
+        return;
+    }
+    
+    const dialog = dialogs[currentDialogIndex];
+    if (!dialog) {
+        console.warn('⚠️ Диалог не найден, индекс:', currentDialogIndex);
+        return;
+    }
+    
+    console.log('🎤 Озвучивание диалога:', dialog.title);
+    
+    // Используем speakDialog из azureTTS.js или fallback
+    if (typeof window.speakDialog === 'function') {
+        window.speakDialog(dialog.text);
+    } else if (typeof window.speak === 'function') {
+        // Fallback на старую озвучку
+        const cleanText = dialog.text
+            .replace(/^[A-ZÄÖÜ][a-zäöüß]*:\s*/gm, '')
+            .trim()
+            .replace(/\n/g, ' ')
+            .replace(/\s+/g, ' ')
+            .trim();
+        window.speak(cleanText);
+    } else {
+        console.warn('⚠️ Озвучка не доступна');
+    }
 }
 
-window._speakDialog = speakDialog;
+window._speakDialog = speakCurrentDialog;
 
 // ========== ОТОБРАЖЕНИЕ ДИАЛОГА ==========
 function renderDialog(container) {

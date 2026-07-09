@@ -130,12 +130,14 @@
     </div>
 </div>
 
-<!-- ===== ПОДКЛЮЧЕНИЕ СКРИПТОВ (МОДУЛЬНАЯ СТРУКТУРА) ===== -->
+<!-- ===== ПОДКЛЮЧЕНИЕ СКРИПТОВ ===== -->
+<script src="https://cdn.jsdelivr.net/npm/dexie@3.2.4/dist/dexie.min.js"></script>
 <script src="js/config.js"></script>
 <script src="js/utils.js"></script>
 <script src="js/logger.js"></script>
 <script src="js/containerManager.js"></script>
 <script src="js/speak.js"></script>
+<script src="js/yandexTTS.js"></script>
 <script src="js/grammarMode.js"></script>
 <script src="js/vocabularyMode.js"></script>
 <script src="js/practiceMode.js"></script>
@@ -181,6 +183,13 @@
             }
         };
     });
+
+    // ===== АВТОМАТИЧЕСКАЯ ИНИЦИАЛИЗАЦИЯ YANDEX TTS =====
+    // Если ты уже получил ключи, можешь вставить их здесь вместо "ТВОЙ_API_КЛЮЧ" и "ТВОЙ_FOLDER_ID"
+    // Или вызови в консоли: initYandexTTS('КЛЮЧ', 'FOLDER_ID')
+    if (typeof initYandexTTS === 'function') {
+        console.log('✅ Yandex TTS доступен. Для настройки вызови: initYandexTTS("КЛЮЧ", "FOLDER_ID")');
+    }
 
     console.log('✅ Страница загружена');
 </script>

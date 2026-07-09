@@ -1,0 +1,92 @@
+{
+  "lesson": 9,
+  "level": "A1",
+  "title": "Комнаты и мебель",
+  "dialogs": [
+    {
+      "id": "dialog_1",
+      "title": "Mein Zimmer",
+      "text": "Anna: Zeig mir dein Zimmer!\nTom: Das ist mein Zimmer. Es ist nicht sehr groß.\nAnna: Was gibt es in deinem Zimmer?\nTom: Hier gibt es einen Tisch, einen Stuhl und ein Bett.\nAnna: Und was ist das da?\nTom: Das ist mein Schrank.",
+      "questions": [
+        {
+          "question": "Ist Toms Zimmer groß?",
+          "options": ["Ja, es ist groß", "Nein, es ist klein", "Es ist mittelgroß"],
+          "answer": 1
+        },
+        {
+          "question": "Was gibt es in Toms Zimmer?",
+          "options": ["Einen Tisch und ein Bett", "Einen Tisch, einen Stuhl und ein Bett", "Nur ein Bett"],
+          "answer": 1
+        }
+      ]
+    },
+    {
+      "id": "dialog_2",
+      "title": "Das Wohnzimmer",
+      "text": "Maria: Wie sieht euer Wohnzimmer aus?\nPeter: Unser Wohnzimmer ist groß und hell.\nMaria: Was steht dort?\nPeter: Da steht ein großes Sofa und ein Fernseher.\nMaria: Gibt es auch einen Tisch?\nPeter: Ja, dort steht auch ein Tisch.",
+      "questions": [
+        {
+          "question": "Wie ist das Wohnzimmer von Peter?",
+          "options": ["Es ist klein und dunkel", "Es ist groß und hell", "Es ist klein und hell"],
+          "answer": 1
+        },
+        {
+          "question": "Was steht im Wohnzimmer von Peter?",
+          "options": ["Ein Sofa und ein Tisch", "Ein Sofa, ein Tisch und ein Fernseher", "Nur ein Fernseher"],
+          "answer": 1
+        }
+      ]
+    },
+    {
+      "id": "dialog_3",
+      "title": "Die Küche",
+      "text": "Julia: Wo ist deine Mutter?\nMax: Sie ist in der Küche.\nJulia: Was macht sie dort?\nMax: Sie kocht das Abendessen.\nJulia: riecht das gut!\nMax: Ja, sie kocht sehr gut.",
+      "questions": [
+        {
+          "question": "Wo ist die Mutter von Max?",
+          "options": ["Im Wohnzimmer", "In der Küche", "Im Schlafzimmer"],
+          "answer": 1
+        },
+        {
+          "question": "Was macht die Mutter von Max in der Küche?",
+          "options": ["Sie liest", "Sie kocht", "Sie schläft"],
+          "answer": 1
+        }
+      ]
+    },
+    {
+      "id": "dialog_4",
+      "title": "Das Schlafzimmer",
+      "text": "Tom: Das ist mein Schlafzimmer.\nAnna: Es ist sehr gemütlich!\nTom: Ja, ich schlafe gut hier.\nAnna: Hast du ein großes Bett?\nTom: Ja, mein Bett ist groß und bequem.\nAnna: Das ist schön!",
+      "questions": [
+        {
+          "question": "Wie ist Toms Schlafzimmer?",
+          "options": ["Es ist groß", "Es ist gemütlich", "Es ist klein"],
+          "answer": 1
+        },
+        {
+          "question": "Wie ist Toms Bett?",
+          "options": ["Es ist klein", "Es ist groß und bequem", "Es ist alt"],
+          "answer": 1
+        }
+      ]
+    },
+    {
+      "id": "dialog_5",
+      "title": "Der Garten",
+      "text": "Anna: Habt ihr einen Garten?\nTom: Ja, wir haben einen großen Garten.\nAnna: Was gibt es da?\nTom: Da gibt es viele Blumen und Bäume.\nAnna: Das ist wunderschön!\nTom: Ja, ich sitze gern im Garten.",
+      "questions": [
+        {
+          "question": "Hat Tom einen Garten?",
+          "options": ["Ja", "Nein", "Weiß nicht"],
+          "answer": 0
+        },
+        {
+          "question": "Was gibt es im Garten von Tom?",
+          "options": ["Nur Bäume", "Viele Blumen und Bäume", "Nur Blumen"],
+          "answer": 1
+        }
+      ]
+    }
+  ]
+}

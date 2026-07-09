@@ -6,15 +6,15 @@
     {
       "id": "dialog_1",
       "title": "Begrüßung",
-      "text": "Person A: Guten Morgen! Wie geht es dir?\nPerson B: Guten Morgen! Danke, gut! Und dir?\nPerson A: Mir geht es auch gut!",
+      "text": "Anna: Guten Morgen! Wie geht es dir?\nTom: Guten Morgen! Danke, gut! Und dir?\nAnna: Mir geht es auch gut!",
       "questions": [
         {
-          "question": "Wie geht es Person B?",
+          "question": "Wie geht es Tom?",
           "options": ["Gut", "Schlecht", "Müde"],
           "answer": 0
         },
         {
-          "question": "Wie geht es Person A?",
+          "question": "Wie geht es Anna?",
           "options": ["Gut", "Schlecht", "Müde"],
           "answer": 0
         }
@@ -23,15 +23,15 @@
     {
       "id": "dialog_2",
       "title": "Verabschiedung",
-      "text": "Person A: Tschüss! Bis morgen!\nPerson B: Auf Wiedersehen! Bis morgen!",
+      "text": "Anna: Tschüss! Bis morgen!\nTom: Auf Wiedersehen! Bis morgen!",
       "questions": [
         {
-          "question": "Was sagt Person A zum Abschied?",
+          "question": "Was sagt Anna zum Abschied?",
           "options": ["Hallo", "Tschüss", "Bitte"],
           "answer": 1
         },
         {
-          "question": "Was sagt Person B zum Abschied?",
+          "question": "Was sagt Tom zum Abschied?",
           "options": ["Hallo", "Tschüss", "Auf Wiedersehen"],
           "answer": 2
         }

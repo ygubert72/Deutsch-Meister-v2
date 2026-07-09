@@ -3,10 +3,10 @@
 // ====================================================================
 
 // 🔑 НАСТРОЙКИ — замени на свои!
-const AZURE_KEY = 'YOUR_AZURE_KEY';           // Твой API-ключ
-const AZURE_REGION = 'eastus';                // Твой регион
-const AZURE_VOICE_FEMALE = 'de-DE-KatjaNeural';   // Женский голос
-const AZURE_VOICE_MALE = 'de-DE-ConradNeural';     // Мужской голос
+const AZURE_KEY = 'YOUR_AZURE_KEY';
+const AZURE_REGION = 'eastus';
+const AZURE_VOICE_FEMALE = 'de-DE-KatjaNeural';
+const AZURE_VOICE_MALE = 'de-DE-ConradNeural';
 
 // ========== СОСТОЯНИЕ ==========
 let isAzureReady = false;
@@ -28,30 +28,31 @@ function initAzureTTS(key, region) {
 async function speakWithAzure(text, voice = preferredVoice) {
     if (!text) return;
 
-    // Если Azure не готов — используем fallback (speak.js)
     if (!isAzureReady || !AZURE_KEY || AZURE_KEY === 'YOUR_AZURE_KEY') {
         console.warn('⚠️ Azure не настроен, используем fallback');
-        if (window.speak) window.speak(text);
+        if (window.speak) {
+            window.speak(text);
+            return new Promise(resolve => setTimeout(resolve, 1000));
+        }
         return;
     }
 
-    // 1. Проверяем кэш в IndexedDB
     const cachedAudio = await getCachedAudio(text, voice);
     if (cachedAudio) {
         console.log('📦 Воспроизведение из кэша');
-        playAudio(cachedAudio);
-        return;
+        return playAudio(cachedAudio);
     }
 
-    // 2. Если кэша нет — запрашиваем у Azure
     try {
         const audioData = await fetchFromAzure(text, voice);
         await saveToCache(text, voice, audioData);
-        playAudio(audioData);
+        return playAudio(audioData);
     } catch (error) {
         console.error('❌ Ошибка Azure TTS:', error);
-        // Fallback на speak.js при ошибке
-        if (window.speak) window.speak(text);
+        if (window.speak) {
+            window.speak(text);
+            return new Promise(resolve => setTimeout(resolve, 1000));
+        }
     }
 }
 
@@ -89,12 +90,25 @@ async function fetchFromAzure(text, voice) {
     return await response.arrayBuffer();
 }
 
-// ========== ВОСПРОИЗВЕДЕНИЕ AUDIO ==========
+// ========== ВОСПРОИЗВЕДЕНИЕ AUDIO (С ПРОМИСОМ) ==========
 function playAudio(audioData) {
-    const blob = new Blob([audioData], { type: 'audio/mpeg' });
-    const url = URL.createObjectURL(blob);
-    const audio = new Audio(url);
-    audio.play();
+    return new Promise((resolve, reject) => {
+        const blob = new Blob([audioData], { type: 'audio/mpeg' });
+        const url = URL.createObjectURL(blob);
+        const audio = new Audio(url);
+        
+        audio.onended = () => {
+            URL.revokeObjectURL(url);
+            resolve();
+        };
+        
+        audio.onerror = () => {
+            URL.revokeObjectURL(url);
+            reject(new Error('Ошибка воспроизведения'));
+        };
+        
+        audio.play().catch(reject);
+    });
 }
 
 // ========== РАБОТА С КЭШЕМ (IndexedDB) ==========
@@ -137,19 +151,10 @@ async function saveToCache(text, voice, audio) {
     }
 }
 
-// ========== ВЫБОР ГОЛОСА ==========
-function setVoice(voice) {
-    if (voice === 'male') {
-        preferredVoice = AZURE_VOICE_MALE;
-    } else if (voice === 'female') {
-        preferredVoice = AZURE_VOICE_FEMALE;
-    }
-    console.log('🎤 Выбран голос:', preferredVoice);
-}
-
+// ========== ВЫБОР ГОЛОСА ПО ИМЕНИ ГОВОРЯЩЕГО ==========
 function getVoiceForSpeaker(speakerName) {
-    const femaleNames = ['Anna', 'Maria', 'Julia', 'Laura', 'Lisa', 'Sophie', 'Emma', 'Mia', 'Frau', 'Oma', 'Mutter', 'Schwester', 'Tante'];
-    const maleNames = ['Tom', 'Peter', 'Max', 'Paul', 'Lukas', 'Felix', 'Opa', 'Vater', 'Bruder', 'Onkel', 'Herr'];
+    const femaleNames = ['Anna', 'Maria', 'Julia', 'Laura', 'Lisa', 'Sophie', 'Emma', 'Mia', 'Frau', 'Oma', 'Mutter', 'Schwester', 'Tante', 'Person A'];
+    const maleNames = ['Tom', 'Peter', 'Max', 'Paul', 'Lukas', 'Felix', 'Opa', 'Vater', 'Bruder', 'Onkel', 'Herr', 'Person B'];
     
     if (femaleNames.some(name => speakerName.includes(name))) {
         return AZURE_VOICE_FEMALE;
@@ -157,55 +162,40 @@ function getVoiceForSpeaker(speakerName) {
     if (maleNames.some(name => speakerName.includes(name))) {
         return AZURE_VOICE_MALE;
     }
-    return preferredVoice;
+    return AZURE_VOICE_FEMALE;
 }
 
 // ========== ОСНОВНАЯ ФУНКЦИЯ ДЛЯ ДИАЛОГОВ ==========
 async function speakDialog(dialogText) {
-    // Убираем имена говорящих (Anna:, Tom:)
-    let cleanText = dialogText
-        .replace(/^[A-ZÄÖÜ][a-zäöüß]*:\s*/gm, '')
-        .trim()
-        .replace(/\n/g, ' ')
-        .replace(/\s+/g, ' ')
-        .trim();
-
-    // Определяем, какой голос использовать
-    const firstSpeaker = dialogText.match(/^([A-ZÄÖÜ][a-zäöüß]*):/);
-    const speaker = firstSpeaker ? firstSpeaker[1] : '';
-    const voice = getVoiceForSpeaker(speaker);
-
-    await speakWithAzure(cleanText, voice);
-}
-
-// ========== ВСПОМОГАТЕЛЬНЫЕ ФУНКЦИИ ==========
-function clearCache() {
-    const db = getDB();
-    if (db) {
-        db.cache.clear();
-        console.log('🗑️ Кэш очищен');
+    const lines = dialogText.split('\n').filter(line => line.trim() !== '');
+    if (lines.length === 0) return;
+    
+    const speeches = lines.map(line => {
+        const match = line.match(/^([A-ZÄÖÜ][a-zäöüß]*):\s*(.*)/);
+        if (match) {
+            return {
+                speaker: match[1],
+                text: match[2].trim()
+            };
+        }
+        return null;
+    }).filter(s => s !== null);
+    
+    if (speeches.length === 0) return;
+    
+    for (let i = 0; i < speeches.length; i++) {
+        const speech = speeches[i];
+        const voice = getVoiceForSpeaker(speech.speaker);
+        await speakWithAzure(speech.text, voice);
+        await new Promise(resolve => setTimeout(resolve, 300));
     }
-}
-
-// ========== ПРОВЕРКА НАСТРОЙКИ ==========
-function checkAzureConfig() {
-    if (!AZURE_KEY || AZURE_KEY === 'YOUR_AZURE_KEY') {
-        console.warn('⚠️ Azure API ключ не настроен');
-        return false;
-    }
-    if (!AZURE_REGION || AZURE_REGION === 'eastus') {
-        console.warn('⚠️ Azure регион не настроен (используется eastus по умолчанию)');
-    }
-    return true;
 }
 
 // ========== ЭКСПОРТ ==========
 window.speakWithAzure = speakWithAzure;
 window.speakDialog = speakDialog;
-window.setVoice = setVoice;
 window.initAzureTTS = initAzureTTS;
-window.clearAzureCache = clearCache;
-window.checkAzureConfig = checkAzureConfig;
+window.getVoiceForSpeaker = getVoiceForSpeaker;
 
 console.log('🎤 Azure TTS загружен!');
 console.log('📌 Для настройки вызови: initAzureTTS("КЛЮЧ", "РЕГИОН")');

@@ -1,0 +1,75 @@
+{
+  "lesson": 5,
+  "level": "A1",
+  "title": "Время, дни недели и месяцы",
+  "dialogs": [
+    {
+      "id": "dialog_1",
+      "title": "Wie spät ist es?",
+      "text": "Tom: Entschuldigung! Wie spät ist es?\nAnna: Es ist halb drei.\nTom: Danke! Ich habe einen Termin um 15 Uhr.\nAnna: Dann hast du noch 30 Minuten Zeit.",
+      "questions": [
+        {
+          "question": "Wie spät ist es?",
+          "options": ["Es ist 14:30 Uhr", "Es ist 15:00 Uhr", "Es ist 13:30 Uhr"],
+          "answer": 0
+        },
+        {
+          "question": "Wann hat Tom einen Termin?",
+          "options": ["Um 14:30 Uhr", "Um 15:00 Uhr", "Um 16:00 Uhr"],
+          "answer": 1
+        }
+      ]
+    },
+    {
+      "id": "dialog_2",
+      "title": "Tage der Woche",
+      "text": "Maria: Welchen Tag haben wir heute?\nPeter: Heute ist Dienstag.\nMaria: Und wann beginnt der Deutschkurs?\nPeter: Der Deutschkurs beginnt am Donnerstag.",
+      "questions": [
+        {
+          "question": "Welchen Tag haben wir heute?",
+          "options": ["Montag", "Dienstag", "Mittwoch"],
+          "answer": 1
+        },
+        {
+          "question": "Wann beginnt der Deutschkurs?",
+          "options": ["Am Dienstag", "Am Mittwoch", "Am Donnerstag"],
+          "answer": 2
+        }
+      ]
+    },
+    {
+      "id": "dialog_3",
+      "title": "Monate und Geburtstage",
+      "text": "Julia: Wann hast du Geburtstag?\nMax: Ich habe im Mai Geburtstag. Und du?\nJulia: Ich habe im Dezember Geburtstag.\nMax: Meine Schwester hat auch im Mai Geburtstag.\nJulia: Das ist ja toll!",
+      "questions": [
+        {
+          "question": "Wann hat Max Geburtstag?",
+          "options": ["Im Mai", "Im Dezember", "Im Januar"],
+          "answer": 0
+        },
+        {
+          "question": "Wann hat Julia Geburtstag?",
+          "options": ["Im Mai", "Im Dezember", "Im Januar"],
+          "answer": 1
+        }
+      ]
+    },
+    {
+      "id": "dialog_4",
+      "title": "Jahreszeiten",
+      "text": "Anna: Welche Jahreszeit magst du am liebsten?\nTom: Ich mag den Sommer am liebsten. Es ist warm.\nAnna: Ich mag den Frühling. Es ist nicht zu heiß und nicht zu kalt.\nTom: Im Winter ist es mir zu kalt.",
+      "questions": [
+        {
+          "question": "Welche Jahreszeit mag Tom am liebsten?",
+          "options": ["Den Frühling", "Den Sommer", "Den Winter"],
+          "answer": 1
+        },
+        {
+          "question": "Warum mag Anna den Frühling?",
+          "options": ["Es ist warm", "Es ist nicht zu heiß und nicht zu kalt", "Es gibt Schnee"],
+          "answer": 1
+        }
+      ]
+    }
+  ]
+}

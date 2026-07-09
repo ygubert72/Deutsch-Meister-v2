@@ -1,5 +1,5 @@
 // ====================================================================
-// listeningMode.js — Аудирование (Hörverstehen)
+// listeningMode.js — Аудирование (Hörverstehen) с Yandex TTS
 // ====================================================================
 
 let listeningData = null;
@@ -67,7 +67,7 @@ function parseDialog(text) {
     }).filter(s => s !== null);
 }
 
-// ========== ОЗВУЧИВАНИЕ ТЕКУЩЕГО ДИАЛОГА (С Azure TTS) ==========
+// ========== ОЗВУЧИВАНИЕ ТЕКУЩЕГО ДИАЛОГА ==========
 function speakCurrentDialog() {
     if (!listeningData) {
         console.warn('⚠️ listeningData не загружен');
@@ -88,7 +88,6 @@ function speakCurrentDialog() {
     
     console.log('🎤 Озвучивание диалога:', dialog.title);
     
-    // Разбираем диалог на реплики
     const speeches = parseDialog(dialog.text);
     
     if (speeches.length === 0) {
@@ -96,7 +95,7 @@ function speakCurrentDialog() {
         return;
     }
     
-    // ===== ВОСПРОИЗВЕДЕНИЕ РЕПЛИК ПО ОЧЕРЕДИ =====
+    // ВОСПРОИЗВЕДЕНИЕ РЕПЛИК ПО ОЧЕРЕДИ
     let index = 0;
     
     function playNext() {
@@ -110,20 +109,16 @@ function speakCurrentDialog() {
         
         console.log(`🗣️ ${speech.speaker}: ${cleanText}`);
         
-        // ===== ПЫТАЕМСЯ ИСПОЛЬЗОВАТЬ AZURE TTS =====
-        if (typeof window.speakWithAzure === 'function') {
-            // Получаем голос по имени говорящего
+        // Пытаемся использовать Yandex TTS
+        if (typeof window.speakWithYandex === 'function') {
             const voice = window.getVoiceForSpeaker ? window.getVoiceForSpeaker(speech.speaker) : null;
-            
-            window.speakWithAzure(cleanText, voice)
+            window.speakWithYandex(cleanText, voice)
                 .then(() => {
-                    // После успешной озвучки — переходим к следующей реплике
                     index++;
                     setTimeout(playNext, 400);
                 })
                 .catch((error) => {
-                    console.warn('⚠️ Azure TTS ошибка, переключаемся на fallback:', error);
-                    // Fallback на speak.js
+                    console.warn('⚠️ Yandex TTS ошибка, переключаемся на fallback:', error);
                     if (typeof window.speak === 'function') {
                         window.speak(cleanText);
                         index++;
@@ -134,13 +129,12 @@ function speakCurrentDialog() {
                     }
                 });
         } 
-        // ===== FALLBACK НА speak.js =====
+        // Fallback на speak.js
         else if (typeof window.speak === 'function') {
             window.speak(cleanText);
             index++;
             setTimeout(playNext, 600);
         } 
-        // ===== ЕСЛИ НИЧЕГО НЕТ =====
         else {
             console.warn('⚠️ Озвучка не доступна');
             index++;

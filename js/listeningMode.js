@@ -45,10 +45,10 @@ function renderListening(container, lesson) {
 // ========== ОЧИСТКА ТЕКСТА ОТ ИМЁН ==========
 function cleanTextFromNames(text) {
     return text
-        .replace(/^[A-ZÄÖÜ][a-zäöüß]*:\s*/gm, '')   // Убираем "Name: "
+        .replace(/^[A-ZÄÖÜ][a-zäöüß]*:\s*/gm, '')
         .trim()
-        .replace(/\n/g, ' ')                          // Убираем переносы строк
-        .replace(/\s+/g, ' ')                         // Убираем лишние пробелы
+        .replace(/\n/g, ' ')
+        .replace(/\s+/g, ' ')
         .trim();
 }
 
@@ -67,7 +67,7 @@ function parseDialog(text) {
     }).filter(s => s !== null);
 }
 
-// ========== ОЗВУЧИВАНИЕ ТЕКУЩЕГО ДИАЛОГА ==========
+// ========== ОЗВУЧИВАНИЕ ТЕКУЩЕГО ДИАЛОГА (С Azure TTS) ==========
 function speakCurrentDialog() {
     if (!listeningData) {
         console.warn('⚠️ listeningData не загружен');
@@ -96,7 +96,7 @@ function speakCurrentDialog() {
         return;
     }
     
-    // ВОСПРОИЗВЕДЕНИЕ РЕПЛИК ПО ОЧЕРЕДИ
+    // ===== ВОСПРОИЗВЕДЕНИЕ РЕПЛИК ПО ОЧЕРЕДИ =====
     let index = 0;
     
     function playNext() {
@@ -106,38 +106,41 @@ function speakCurrentDialog() {
         }
         
         const speech = speeches[index];
-        console.log(`🗣️ ${speech.speaker}: ${speech.text}`);
-        
-        // Очищаем текст от имён ДО озвучивания
         const cleanText = cleanTextFromNames(speech.text);
         
-        // 1. Пытаемся использовать Azure TTS
+        console.log(`🗣️ ${speech.speaker}: ${cleanText}`);
+        
+        // ===== ПЫТАЕМСЯ ИСПОЛЬЗОВАТЬ AZURE TTS =====
         if (typeof window.speakWithAzure === 'function') {
+            // Получаем голос по имени говорящего
             const voice = window.getVoiceForSpeaker ? window.getVoiceForSpeaker(speech.speaker) : null;
+            
             window.speakWithAzure(cleanText, voice)
                 .then(() => {
+                    // После успешной озвучки — переходим к следующей реплике
                     index++;
-                    setTimeout(playNext, 300);
+                    setTimeout(playNext, 400);
                 })
                 .catch((error) => {
                     console.warn('⚠️ Azure TTS ошибка, переключаемся на fallback:', error);
+                    // Fallback на speak.js
                     if (typeof window.speak === 'function') {
                         window.speak(cleanText);
                         index++;
-                        setTimeout(playNext, 500);
+                        setTimeout(playNext, 600);
                     } else {
                         index++;
                         setTimeout(playNext, 100);
                     }
                 });
         } 
-        // 2. Fallback на speak.js
+        // ===== FALLBACK НА speak.js =====
         else if (typeof window.speak === 'function') {
             window.speak(cleanText);
             index++;
-            setTimeout(playNext, 500);
+            setTimeout(playNext, 600);
         } 
-        // 3. Если ничего нет
+        // ===== ЕСЛИ НИЧЕГО НЕТ =====
         else {
             console.warn('⚠️ Озвучка не доступна');
             index++;

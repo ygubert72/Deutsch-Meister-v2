@@ -24,6 +24,7 @@ function renderListening(container, lesson) {
         })
         .then(data => {
             listeningData = data;
+            window.listeningData = data; // Для счётчика
             currentDialogIndex = 0;
             selectedAnswers = {};
             isTextVisible = false;
@@ -52,19 +53,22 @@ function renderDialog(container) {
     const dialog = dialogs[currentDialogIndex];
     const total = dialogs.length;
 
-    // Функция озвучивания (БЕЗ имён говорящих!)
+    // Функция озвучивания (с поддержкой Azure TTS)
     function speakDialog() {
-        let cleanText = dialog.text
-            .replace(/^[A-ZÄÖÜ][a-zäöüß]*:\s*/gm, '')
-            .trim()
-            .replace(/\n/g, ' ')
-            .replace(/\s+/g, ' ')
-            .replace(/[^a-zA-ZäöüßÄÖÜ\s,?!.]/g, '');
-        
-        if (typeof window.speak === 'function') {
+        if (typeof window.speakDialog === 'function') {
+            // Используем Azure TTS
+            window.speakDialog(dialog.text);
+        } else if (typeof window.speak === 'function') {
+            // Fallback на старую озвучку
+            let cleanText = dialog.text
+                .replace(/^[A-ZÄÖÜ][a-zäöüß]*:\s*/gm, '')
+                .trim()
+                .replace(/\n/g, ' ')
+                .replace(/\s+/g, ' ')
+                .trim();
             window.speak(cleanText);
         } else {
-            console.warn('⚠️ speak.js не загружен');
+            console.warn('⚠️ Озвучка не доступна');
         }
     }
 
@@ -170,6 +174,9 @@ function renderDialog(container) {
     `;
 
     container.innerHTML = html;
+    
+    // Обновляем счётчик после рендеринга
+    setTimeout(updateCounter, 100);
 }
 
 // ========== ВЫБОР ОТВЕТА ==========

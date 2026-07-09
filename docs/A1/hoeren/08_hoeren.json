@@ -1,0 +1,92 @@
+{
+  "lesson": 8,
+  "level": "A1",
+  "title": "Описание внешности и характера",
+  "dialogs": [
+    {
+      "id": "dialog_1",
+      "title": "Wie sieht Anna aus?",
+      "text": "Tom: Wie sieht Anna aus?\nLaura: Sie ist groß und schlank. Sie hat lange braune Haare und blaue Augen.\nTom: Ist sie jung?\nLaura: Ja, sie ist 25 Jahre alt.\nTom: Sie ist sehr schön!",
+      "questions": [
+        {
+          "question": "Welche Haarfarbe hat Anna?",
+          "options": ["Blonde Haare", "Braune Haare", "Schwarze Haare"],
+          "answer": 1
+        },
+        {
+          "question": "Wie alt ist Anna?",
+          "options": ["22 Jahre", "25 Jahre", "28 Jahre"],
+          "answer": 1
+        }
+      ]
+    },
+    {
+      "id": "dialog_2",
+      "title": "Beschreibung eines Mannes",
+      "text": "Anna: Wer ist der Mann da drüben?\nTom: Das ist mein Bruder. Er heißt Max.\nAnna: Wie sieht er aus?\nTom: Er ist groß und hat kurze blonde Haare. Er hat grüne Augen.\nAnna: Er sieht nett aus!",
+      "questions": [
+        {
+          "question": "Wie heißt der Bruder von Tom?",
+          "options": ["Tom", "Max", "Peter"],
+          "answer": 1
+        },
+        {
+          "question": "Welche Augenfarbe hat Max?",
+          "options": ["Blaue Augen", "Grüne Augen", "Braune Augen"],
+          "answer": 1
+        }
+      ]
+    },
+    {
+      "id": "dialog_3",
+      "title": "Charaktereigenschaften",
+      "text": "Maria: Wie ist deine Schwester?\nPeter: Sie ist sehr freundlich und lustig.\nMaria: Ist sie auch intelligent?\nPeter: Ja, sie ist sehr intelligent.\nMaria: Das ist toll!",
+      "questions": [
+        {
+          "question": "Wie ist die Schwester von Peter?",
+          "options": ["Sie ist ernst und ruhig", "Sie ist freundlich und lustig", "Sie ist schüchtern"],
+          "answer": 1
+        },
+        {
+          "question": "Ist die Schwester von Peter intelligent?",
+          "options": ["Ja", "Nein", "Weiß nicht"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "dialog_4",
+      "title": "Kleidung und Stil",
+      "text": "Julia: Was trägst du heute?\nMax: Ich trage eine blaue Jeans und ein weißes T-Shirt.\nJulia: Ich trage ein rotes Kleid.\nMax: Das Kleid ist schön!\nJulia: Danke!",
+      "questions": [
+        {
+          "question": "Was trägt Max heute?",
+          "options": ["Eine blaue Jeans und ein rotes T-Shirt", "Eine blaue Jeans und ein weißes T-Shirt", "Eine schwarze Jeans und ein weißes T-Shirt"],
+          "answer": 1
+        },
+        {
+          "question": "Welche Farbe hat das Kleid von Julia?",
+          "options": ["Blau", "Rot", "Weiß"],
+          "answer": 1
+        }
+      ]
+    },
+    {
+      "id": "dialog_5",
+      "title": "Familienähnlichkeit",
+      "text": "Anna: Siehst du deinem Vater ähnlich?\nTom: Ja, ich habe die gleichen Augen wie mein Vater.\nAnna: Und deine Mutter?\nTom: Ich habe die gleiche Nase wie meine Mutter.\nAnna: Das ist interessant!",
+      "questions": [
+        {
+          "question": "Was hat Tom von seinem Vater?",
+          "options": ["Die gleiche Nase", "Die gleichen Augen", "Die gleichen Haare"],
+          "answer": 1
+        },
+        {
+          "question": "Was hat Tom von seiner Mutter?",
+          "options": ["Die gleiche Nase", "Die gleichen Augen", "Die gleichen Haare"],
+          "answer": 0
+        }
+      ]
+    }
+  ]
+}

@@ -1,5 +1,5 @@
 // ====================================================================
-// listeningMode.js — Аудирование (Hörverstehen) с speak.js
+// listeningMode.js — Аудирование (Hörverstehen)
 // ====================================================================
 
 let listeningData = null;
@@ -61,21 +61,23 @@ function speakCurrentDialog() {
         return;
     }
     
-    console.log('🎤 Озвучивание диалога:', dialog.title);
+    console.log('🎤 Озвучивание диалога с голосами:', dialog.title);
     
-    // Очищаем текст от имён и объединяем в одну строку
+    // Используем voiceSelector.js
+    if (typeof window.speakDialogWithVoices === 'function') {
+        window.speakDialogWithVoices(dialog.text);
+        return;
+    }
+    
+    // Fallback на speak.js
+    console.warn('⚠️ voiceSelector.js не загружен, используем speak.js');
     const cleanText = dialog.text
         .split('\n')
         .map(line => line.replace(/^[A-ZÄÖÜ][a-zäöüß]*:\s*/, ''))
         .filter(line => line.trim() !== '')
         .join(' ');
-    
-    console.log('🔊 Текст:', cleanText);
-    
     if (typeof window.speak === 'function') {
         window.speak(cleanText);
-    } else {
-        console.warn('⚠️ speak.js не загружен');
     }
 }
 

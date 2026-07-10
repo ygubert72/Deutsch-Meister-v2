@@ -5,8 +5,8 @@
   "dialogs": [
     {
       "id": "monolog_1",
-      "title": "Begrüßung und Verabschiedung",
-      "text": "Hallo! Ich heiße Anna. Ich wohne in Berlin. Am Morgen sage ich 'Guten Morgen'. Am Tag sage ich 'Guten Tag'. Am Abend sage ich 'Guten Abend'. Wenn ich gehe, sage ich 'Auf Wiedersehen'. Und wenn ich mit Freunden spreche, sage ich 'Tschüss'.",
+      "title": "Tageszeiten",
+      "text": "Ich heiße Anna. Am Morgen sage ich 'Guten Morgen'. Am Tag sage ich 'Guten Tag'. Am Abend sage ich 'Guten Abend'.",
       "questions": [
         {
           "question": "Wie heißt die Frau?",
@@ -14,31 +14,26 @@
           "answer": 0
         },
         {
-          "question": "Wo wohnt Anna?",
-          "options": ["In München", "In Berlin", "In Hamburg"],
-          "answer": 1
-        },
-        {
           "question": "Was sagt Anna am Morgen?",
           "options": ["Guten Tag", "Guten Morgen", "Guten Abend"],
           "answer": 1
         },
         {
-          "question": "Was sagt Anna am Abend?",
-          "options": ["Guten Morgen", "Guten Tag", "Guten Abend"],
+          "question": "Was sagt Anna am Tag?",
+          "options": ["Guten Morgen", "Guten Abend", "Guten Tag"],
           "answer": 2
         },
         {
-          "question": "Was sagt Anna, wenn sie geht?",
-          "options": ["Hallo", "Tschüss", "Bitte"],
-          "answer": 1
+          "question": "Was sagt Anna am Abend?",
+          "options": ["Guten Morgen", "Guten Tag", "Guten Abend"],
+          "answer": 2
         }
       ]
     },
     {
       "id": "monolog_2",
-      "title": "Freundliche Wörter",
-      "text": "Ich heiße Tom. Ich spreche Deutsch. Wenn ich etwas möchte, sage ich 'Bitte'. Wenn ich etwas bekomme, sage ich 'Danke'. Wenn ich einen Fehler mache, sage ich 'Entschuldigung'. Das sind freundliche Wörter. Sie sind sehr wichtig.",
+      "title": "Verabschiedung",
+      "text": "Ich heiße Tom. Wenn ich gehe, sage ich 'Auf Wiedersehen'. Wenn ich mit Freunden spreche, sage ich 'Tschüss'.",
       "questions": [
         {
           "question": "Wie heißt der Mann?",
@@ -46,24 +41,14 @@
           "answer": 0
         },
         {
-          "question": "Welche Sprache spricht Tom?",
-          "options": ["Englisch", "Deutsch", "Französisch"],
-          "answer": 1
-        },
-        {
-          "question": "Was sagt Tom, wenn er etwas möchte?",
-          "options": ["Danke", "Bitte", "Entschuldigung"],
-          "answer": 1
-        },
-        {
-          "question": "Was sagt Tom, wenn er etwas bekommt?",
-          "options": ["Bitte", "Entschuldigung", "Danke"],
+          "question": "Was sagt Tom, wenn er geht?",
+          "options": ["Hallo", "Tschüss", "Auf Wiedersehen"],
           "answer": 2
         },
         {
-          "question": "Was sagt Tom bei einem Fehler?",
-          "options": ["Bitte", "Danke", "Entschuldigung"],
-          "answer": 2
+          "question": "Was sagt Tom zu Freunden?",
+          "options": ["Auf Wiedersehen", "Tschüss", "Guten Tag"],
+          "answer": 1
         }
       ]
     }

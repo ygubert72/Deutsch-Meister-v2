@@ -131,12 +131,13 @@
 </div>
 
 <!-- ===== ПОДКЛЮЧЕНИЕ СКРИПТОВ ===== -->
+<script src="https://cdn.jsdelivr.net/npm/dexie@3.2.4/dist/dexie.min.js"></script>
 <script src="js/config.js"></script>
 <script src="js/utils.js"></script>
 <script src="js/logger.js"></script>
 <script src="js/containerManager.js"></script>
 <script src="js/speak.js"></script>
-<script src="js/voiceSelector.js"></script>
+<script src="js/yandexTTS.js"></script>
 <script src="js/grammarMode.js"></script>
 <script src="js/vocabularyMode.js"></script>
 <script src="js/practiceMode.js"></script>
@@ -147,6 +148,20 @@
 <script src="js/app.js"></script>
 
 <script>
+    // ===== ИНИЦИАЛИЗАЦИЯ YANDEX TTS =====
+    // ВСТАВЬТЕ СВОИ ДАННЫЕ ВМЕСТО ЗВЁЗДОЧЕК
+    const YANDEX_API_KEY = 'ваш_api_ключ_сюда';
+    const YANDEX_FOLDER_ID = 'ваш_folder_id_сюда';
+    
+    if (typeof initYandexTTS === 'function') {
+        const result = initYandexTTS(YANDEX_API_KEY, YANDEX_FOLDER_ID);
+        if (result) {
+            console.log('✅ Yandex TTS инициализирован успешно!');
+        } else {
+            console.warn('⚠️ Yandex TTS не инициализирован. Проверьте ключи.');
+        }
+    }
+
     // ===== МОБИЛЬНОЕ МЕНЮ =====
     document.getElementById('hamburgerBtn').onclick = function() {
         document.getElementById('mobileMenu').classList.add('open');

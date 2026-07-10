@@ -31,8 +31,13 @@ function renderPractice(container, lesson) {
                     ${allCompleted ? ' 🎉 Все выполнено!' : ''}
                 </div>
             </div>
+        </div>
+        <div style="display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 15px;">
+            <button onclick="window.history.back()" style="padding: 8px 20px; background: #3B6FE0; color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; transition: all 0.08s ease;">
+                ← К СПИСКУ УРОКОВ
+            </button>
             ${completedCount > 0 ? `
-                <button id="resetPracticeBtn" style="padding: 8px 20px; background: #F44336; color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; white-space: nowrap;">
+                <button id="resetPracticeBtn" style="padding: 8px 20px; background: #FF9800; color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; white-space: nowrap; box-shadow: 0 2px 8px rgba(255,152,0,0.3); transition: all 0.08s ease;">
                     🔄 СБРОСИТЬ ПРОГРЕСС
                 </button>
             ` : ''}
@@ -58,7 +63,7 @@ function renderPractice(container, lesson) {
                        style="width: 100%; padding: 10px; border: 2px solid ${isCompleted ? '#4CAF50' : '#D0D0D0'}; border-radius: 8px; font-size: 16px; box-sizing: border-box; margin: 8px 0; ${inputStyle}">
                 <button class="check-btn" data-index="${index}" 
                         ${isCompleted ? 'disabled style="opacity: 0.5; cursor: not-allowed;"' : ''}
-                        style="padding: 8px 20px; background: ${isCompleted ? '#9E9E9E' : '#3B6FE0'}; color: white; border: none; border-radius: 8px; cursor: ${isCompleted ? 'not-allowed' : 'pointer'}; font-weight: bold; white-space: nowrap;">
+                        style="padding: 8px 20px; background: ${isCompleted ? '#9E9E9E' : '#3B6FE0'}; color: white; border: none; border-radius: 8px; cursor: ${isCompleted ? 'not-allowed' : 'pointer'}; font-weight: bold; white-space: nowrap; transition: all 0.08s ease;">
                     ПРОВЕРИТЬ
                 </button>
                 <div class="practice-result" data-index="${index}" style="margin-top: 4px;">
@@ -71,7 +76,6 @@ function renderPractice(container, lesson) {
 
     container.innerHTML = html;
 
-    // ===== КНОПКА СБРОСА =====
     const resetBtn = document.getElementById('resetPracticeBtn');
     if (resetBtn) {
         resetBtn.addEventListener('click', function() {
@@ -82,7 +86,6 @@ function renderPractice(container, lesson) {
         });
     }
 
-    // ===== ПРОВЕРКА =====
     container.querySelectorAll('.check-btn[data-index]').forEach(btn => {
         btn.addEventListener('click', function() {
             const index = parseInt(this.getAttribute('data-index'));
@@ -129,7 +132,6 @@ function renderPractice(container, lesson) {
     });
 }
 
-// ===== СОХРАНЕНИЕ ПРОГРЕССА =====
 function savePracticeProgress(lessonId) {
     try {
         localStorage.setItem('dm_practice_progress_' + lessonId, JSON.stringify(practiceCompleted));

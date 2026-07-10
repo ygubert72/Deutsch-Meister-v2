@@ -1,0 +1,162 @@
+{
+  "lesson": 13,
+  "level": "A1",
+  "title": "В кафе и ресторане",
+  "dialogs": [
+    {
+      "id": "monolog_1",
+      "title": "Im Café",
+      "text": "Ich heiße Anna. Ich gehe gern ins Café. Ich bestelle einen Kaffee und einen Kuchen. Ich sitze am Tisch und lese eine Zeitung. Das Café ist gemütlich. Die Tasse ist aus Porzellan. Ich bleibe eine Stunde.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Anna", "Maria", "Julia"],
+          "answer": 0
+        },
+        {
+          "question": "Was bestellt Anna im Café?",
+          "options": ["Einen Kaffee und einen Kuchen", "Einen Tee und ein Brötchen", "Einen Saft und eine Pizza"],
+          "answer": 0
+        },
+        {
+          "question": "Was macht Anna im Café?",
+          "options": ["Sie liest eine Zeitung", "Sie arbeitet", "Sie trifft Freunde"],
+          "answer": 0
+        },
+        {
+          "question": "Wie lange bleibt Anna im Café?",
+          "options": ["Eine Stunde", "Eine halbe Stunde", "Zwei Stunden"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_2",
+      "title": "Im Restaurant",
+      "text": "Ich heiße Maria. Ich gehe heute ins Restaurant. Ich hätte gern eine Pizza. Der Kellner bringt die Speisekarte. Ich bestelle auch einen Salat. Ich trinke ein Glas Wasser. Zum Nachtisch esse ich ein Eis. Das Essen ist lecker.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Anna", "Maria", "Julia"],
+          "answer": 1
+        },
+        {
+          "question": "Was hätte Maria gern?",
+          "options": ["Eine Pizza", "Eine Suppe", "Einen Salat"],
+          "answer": 0
+        },
+        {
+          "question": "Was macht der Kellner?",
+          "options": ["Er bringt die Speisekarte", "Er bringt das Essen", "Er bringt die Rechnung"],
+          "answer": 0
+        },
+        {
+          "question": "Was trinkt Maria zum Essen?",
+          "options": ["Ein Glas Wasser", "Ein Glas Wein", "Eine Tasse Kaffee"],
+          "answer": 0
+        },
+        {
+          "question": "Was isst Maria zum Nachtisch?",
+          "options": ["Ein Eis", "Einen Kuchen", "Ein Stück Schokolade"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_3",
+      "title": "Bestellen im Restaurant",
+      "text": "Ich heiße Julia. Ich bestelle eine Suppe als Vorspeise. Als Hauptgericht nehme ich Fisch mit Reis. Ich trinke dazu ein Glas Weißwein. Nach dem Essen bestelle ich einen Kaffee. Der Kellner ist sehr freundlich. Ich gebe ein Trinkgeld.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Anna", "Maria", "Julia"],
+          "answer": 2
+        },
+        {
+          "question": "Was ist Julias Vorspeise?",
+          "options": ["Eine Suppe", "Einen Salat", "Eine Pizza"],
+          "answer": 0
+        },
+        {
+          "question": "Was ist Julias Hauptgericht?",
+          "options": ["Fisch mit Reis", "Fleisch mit Kartoffeln", "Nudeln"],
+          "answer": 0
+        },
+        {
+          "question": "Was trinkt Julia zum Essen?",
+          "options": ["Weißwein", "Rotwein", "Wasser"],
+          "answer": 0
+        },
+        {
+          "question": "Was macht Julia nach dem Essen?",
+          "options": ["Sie bestellt einen Kaffee", "Sie bezahlt", "Sie geht nach Hause"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_4",
+      "title": "Die Rechnung",
+      "text": "Ich heiße Laura. Ich esse im Restaurant. Ich bestelle ein Steak mit Pommes. Ich trinke ein Bier. Nach dem Essen sage ich: \"Die Rechnung, bitte.\" Der Kellner bringt die Rechnung. Ich bezahle mit Karte. Das Essen war sehr gut.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Laura", "Lisa", "Anna"],
+          "answer": 0
+        },
+        {
+          "question": "Was bestellt Laura?",
+          "options": ["Ein Steak mit Pommes", "Einen Fisch", "Eine Pizza"],
+          "answer": 0
+        },
+        {
+          "question": "Was trinkt Laura?",
+          "options": ["Ein Bier", "Ein Glas Wein", "Ein Wasser"],
+          "answer": 0
+        },
+        {
+          "question": "Was sagt Laura nach dem Essen?",
+          "options": ["Die Rechnung, bitte", "Ich hätte gern einen Kaffee", "Alles ist gut"],
+          "answer": 0
+        },
+        {
+          "question": "Wie bezahlt Laura?",
+          "options": ["Mit Karte", "Mit Bargeld", "Mit Scheck"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_5",
+      "title": "Zum Frühstück im Café",
+      "text": "Ich heiße Lisa. Ich gehe morgens ins Café. Ich bestelle ein Brötchen mit Butter. Ich trinke eine Tasse Kaffee. Ich esse auch ein Ei. Mein Freund bestellt ein Glas Orangensaft. Wir sitzen eine halbe Stunde und reden. Das Frühstück ist gut.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Laura", "Lisa", "Anna"],
+          "answer": 1
+        },
+        {
+          "question": "Was bestellt Lisa im Café?",
+          "options": ["Ein Brötchen mit Butter", "Ein Croissant", "Ein Ei mit Schinken"],
+          "answer": 0
+        },
+        {
+          "question": "Was trinkt Lisa?",
+          "options": ["Eine Tasse Kaffee", "Einen Tee", "Einen Saft"],
+          "answer": 0
+        },
+        {
+          "question": "Was bestellt der Freund von Lisa?",
+          "options": ["Ein Glas Orangensaft", "Eine Tasse Kaffee", "Ein Glas Milch"],
+          "answer": 0
+        },
+        {
+          "question": "Wie lange bleiben Lisa und ihr Freund im Café?",
+          "options": ["Eine halbe Stunde", "Eine Stunde", "Zwei Stunden"],
+          "answer": 0
+        }
+      ]
+    }
+  ]
+}

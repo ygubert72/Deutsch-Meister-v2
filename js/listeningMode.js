@@ -7,6 +7,7 @@ let currentDialogIndex = 0;
 let selectedAnswers = {};
 let isTextVisible = false;
 let isSpeaking = false;
+let activeButton = null; // 'listen' или 'slow'
 let currentSpeed = 0.85;
 let currentUtterance = null;
 
@@ -32,6 +33,7 @@ function renderListening(container, lesson) {
             selectedAnswers = {};
             isTextVisible = false;
             isSpeaking = false;
+            activeButton = null;
             renderDialog(container);
         })
         .catch(error => {
@@ -52,16 +54,24 @@ function stopSpeaking() {
         window.speechSynthesis.cancel();
     }
     isSpeaking = false;
+    activeButton = null;
     currentUtterance = null;
     updateButtons();
 }
 
 // ========== ОЗВУЧИВАНИЕ ==========
-function speakCurrentDialog(speed) {
-    // Если уже говорим — останавливаем
-    if (isSpeaking) {
+function speakCurrentDialog(speed, buttonId) {
+    // Если нажата та же кнопка и уже говорим — останавливаем
+    if (isSpeaking && activeButton === buttonId) {
         stopSpeaking();
         return;
+    }
+    
+    // Если говорим, но нажата другая кнопка — останавливаем текущую и запускаем новую
+    if (isSpeaking) {
+        window.speechSynthesis.cancel();
+        isSpeaking = false;
+        activeButton = null;
     }
     
     if (!listeningData) {
@@ -82,34 +92,36 @@ function speakCurrentDialog(speed) {
     }
     
     const cleanText = dialog.text.trim();
-    currentSpeed = speed || 0.85;
+    currentSpeed = speed;
+    activeButton = buttonId;
+    isSpeaking = true;
     
     console.log(`🎤 Озвучивание монолога: "${dialog.title}" | Скорость: ${currentSpeed}`);
+    updateButtons();
     
     if (typeof window.speakWithSpeed === 'function') {
-        isSpeaking = true;
-        updateButtons();
-        
-        // Получаем utterance из speakWithSpeed
         const utterance = window.speakWithSpeed(cleanText, currentSpeed, function() {
-            // onend callback — озвучка завершилась
+            // Озвучка завершилась (onEnd)
             isSpeaking = false;
+            activeButton = null;
             currentUtterance = null;
             updateButtons();
         });
-        
         if (utterance) {
             currentUtterance = utterance;
         }
     } else if (typeof window.speak === 'function') {
         window.speak(cleanText);
-        // Если нет speakWithSpeed, просто запускаем и сразу сбрасываем состояние
         setTimeout(() => {
             isSpeaking = false;
+            activeButton = null;
             updateButtons();
-        }, 100);
+        }, 500);
     } else {
         console.warn('⚠️ Озвучка не доступна');
+        isSpeaking = false;
+        activeButton = null;
+        updateButtons();
     }
 }
 
@@ -120,46 +132,36 @@ function updateButtons() {
     
     if (!listenBtn || !slowBtn) return;
     
-    if (isSpeaking) {
-        // Активное состояние — кнопки становятся синими с надписью "ОСТАНОВИТЬ"
-        listenBtn.innerHTML = '⏹️ ОСТАНОВИТЬ';
-        listenBtn.style.background = '#3B6FE0';
-        listenBtn.style.color = 'white';
-        listenBtn.style.border = 'none';
-        
-        slowBtn.innerHTML = '⏹️ ОСТАНОВИТЬ';
-        slowBtn.style.background = '#3B6FE0';
-        slowBtn.style.color = 'white';
-        slowBtn.style.border = 'none';
-    } else {
-        // Исходное состояние
-        listenBtn.innerHTML = '🔊 ПРОСЛУШАТЬ';
-        listenBtn.style.background = '#E8F0FE';
-        listenBtn.style.color = '#333';
-        listenBtn.style.border = '2px solid #D0D0D0';
-        
-        slowBtn.innerHTML = '🐢 МЕДЛЕННО';
-        slowBtn.style.background = '#E8F0FE';
-        slowBtn.style.color = '#333';
-        slowBtn.style.border = '2px solid #D0D0D0';
+    // Сброс кнопок в исходное состояние
+    function resetButton(btn, label, isActive) {
+        if (isActive) {
+            btn.innerHTML = '⏹️ ОСТАНОВИТЬ';
+            btn.style.background = '#3B6FE0';
+            btn.style.color = 'white';
+            btn.style.border = 'none';
+        } else {
+            btn.innerHTML = label;
+            btn.style.background = '#E8F0FE';
+            btn.style.color = '#333';
+            btn.style.border = '2px solid #D0D0D0';
+        }
     }
+    
+    // Определяем, какая кнопка активна
+    const listenActive = isSpeaking && activeButton === 'listen';
+    const slowActive = isSpeaking && activeButton === 'slow';
+    
+    resetButton(listenBtn, '🔊 ПРОСЛУШАТЬ', listenActive);
+    resetButton(slowBtn, '🐢 МЕДЛЕННО', slowActive);
 }
 
-// Обёртки для кнопок
+// ========== ОБЁРТКИ ДЛЯ КНОПОК ==========
 function speakNormal() {
-    if (isSpeaking) {
-        stopSpeaking();
-    } else {
-        speakCurrentDialog(0.85);
-    }
+    speakCurrentDialog(0.85, 'listen');
 }
 
 function speakSlow() {
-    if (isSpeaking) {
-        stopSpeaking();
-    } else {
-        speakCurrentDialog(0.6);
-    }
+    speakCurrentDialog(0.6, 'slow');
 }
 
 window._speakNormal = speakNormal;
@@ -263,7 +265,6 @@ function renderDialog(container) {
 
     container.innerHTML = html;
     
-    // Обновляем состояние кнопок
     setTimeout(updateButtons, 50);
     setTimeout(updateCounter, 100);
 }

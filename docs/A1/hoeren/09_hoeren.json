@@ -4,87 +4,142 @@
   "title": "Комнаты и мебель",
   "dialogs": [
     {
-      "id": "dialog_1",
-      "title": "Mein Zimmer",
-      "text": "Anna: Zeig mir dein Zimmer!\nTom: Das ist mein Zimmer. Es ist nicht sehr groß.\nAnna: Was gibt es in deinem Zimmer?\nTom: Hier gibt es einen Tisch, einen Stuhl und ein Bett.\nAnna: Und was ist das da?\nTom: Das ist mein Schrank.",
+      "id": "monolog_1",
+      "title": "Meine Wohnung",
+      "text": "Ich heiße Anna. Ich wohne in einer Wohnung in Berlin. Meine Wohnung hat drei Zimmer: ein Wohnzimmer, ein Schlafzimmer und eine Küche. Die Küche ist klein, aber schön. Ich mag meine Wohnung sehr.",
       "questions": [
         {
-          "question": "Ist Toms Zimmer groß?",
-          "options": ["Ja, es ist groß", "Nein, es ist klein", "Es ist mittelgroß"],
-          "answer": 1
-        },
-        {
-          "question": "Was gibt es in Toms Zimmer?",
-          "options": ["Einen Tisch und ein Bett", "Einen Tisch, einen Stuhl und ein Bett", "Nur ein Bett"],
-          "answer": 1
-        }
-      ]
-    },
-    {
-      "id": "dialog_2",
-      "title": "Das Wohnzimmer",
-      "text": "Maria: Wie sieht euer Wohnzimmer aus?\nPeter: Unser Wohnzimmer ist groß und hell.\nMaria: Was steht dort?\nPeter: Da steht ein großes Sofa und ein Fernseher.\nMaria: Gibt es auch einen Tisch?\nPeter: Ja, dort steht auch ein Tisch.",
-      "questions": [
-        {
-          "question": "Wie ist das Wohnzimmer von Peter?",
-          "options": ["Es ist klein und dunkel", "Es ist groß und hell", "Es ist klein und hell"],
-          "answer": 1
-        },
-        {
-          "question": "Was steht im Wohnzimmer von Peter?",
-          "options": ["Ein Sofa und ein Tisch", "Ein Sofa, ein Tisch und ein Fernseher", "Nur ein Fernseher"],
-          "answer": 1
-        }
-      ]
-    },
-    {
-      "id": "dialog_3",
-      "title": "Die Küche",
-      "text": "Julia: Wo ist deine Mutter?\nMax: Sie ist in der Küche.\nJulia: Was macht sie dort?\nMax: Sie kocht das Abendessen.\nJulia: riecht das gut!\nMax: Ja, sie kocht sehr gut.",
-      "questions": [
-        {
-          "question": "Wo ist die Mutter von Max?",
-          "options": ["Im Wohnzimmer", "In der Küche", "Im Schlafzimmer"],
-          "answer": 1
-        },
-        {
-          "question": "Was macht die Mutter von Max in der Küche?",
-          "options": ["Sie liest", "Sie kocht", "Sie schläft"],
-          "answer": 1
-        }
-      ]
-    },
-    {
-      "id": "dialog_4",
-      "title": "Das Schlafzimmer",
-      "text": "Tom: Das ist mein Schlafzimmer.\nAnna: Es ist sehr gemütlich!\nTom: Ja, ich schlafe gut hier.\nAnna: Hast du ein großes Bett?\nTom: Ja, mein Bett ist groß und bequem.\nAnna: Das ist schön!",
-      "questions": [
-        {
-          "question": "Wie ist Toms Schlafzimmer?",
-          "options": ["Es ist groß", "Es ist gemütlich", "Es ist klein"],
-          "answer": 1
-        },
-        {
-          "question": "Wie ist Toms Bett?",
-          "options": ["Es ist klein", "Es ist groß und bequem", "Es ist alt"],
-          "answer": 1
-        }
-      ]
-    },
-    {
-      "id": "dialog_5",
-      "title": "Der Garten",
-      "text": "Anna: Habt ihr einen Garten?\nTom: Ja, wir haben einen großen Garten.\nAnna: Was gibt es da?\nTom: Da gibt es viele Blumen und Bäume.\nAnna: Das ist wunderschön!\nTom: Ja, ich sitze gern im Garten.",
-      "questions": [
-        {
-          "question": "Hat Tom einen Garten?",
-          "options": ["Ja", "Nein", "Weiß nicht"],
+          "question": "Wie heißt die Frau?",
+          "options": ["Anna", "Maria", "Julia"],
           "answer": 0
         },
         {
-          "question": "Was gibt es im Garten von Tom?",
-          "options": ["Nur Bäume", "Viele Blumen und Bäume", "Nur Blumen"],
+          "question": "Wo wohnt Anna?",
+          "options": ["In einer Wohnung", "In einem Haus", "In einem Hotel"],
+          "answer": 0
+        },
+        {
+          "question": "Wie viele Zimmer hat Annas Wohnung?",
+          "options": ["Zwei Zimmer", "Drei Zimmer", "Vier Zimmer"],
           "answer": 1
+        },
+        {
+          "question": "Wie ist die Küche von Anna?",
+          "options": ["Groß und schön", "Klein, aber schön", "Groß, aber alt"],
+          "answer": 1
+        }
+      ]
+    },
+    {
+      "id": "monolog_2",
+      "title": "Im Wohnzimmer",
+      "text": "Ich heiße Maria. Im Wohnzimmer gibt es ein Sofa, einen Tisch und einen Fernseher. Das Sofa ist bequem. Der Tisch ist aus Holz. Ich sitze gern auf dem Sofa und sehe fern. Das Wohnzimmer ist mein Lieblingszimmer.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Anna", "Maria", "Julia"],
+          "answer": 1
+        },
+        {
+          "question": "Was gibt es im Wohnzimmer von Maria?",
+          "options": ["Ein Sofa, einen Tisch und einen Fernseher", "Ein Bett und einen Schrank", "Nur einen Fernseher"],
+          "answer": 0
+        },
+        {
+          "question": "Wie ist das Sofa?",
+          "options": ["Es ist bequem", "Es ist hart", "Es ist alt"],
+          "answer": 0
+        },
+        {
+          "question": "Was ist Marias Lieblingszimmer?",
+          "options": ["Das Wohnzimmer", "Das Schlafzimmer", "Die Küche"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_3",
+      "title": "Mein Schlafzimmer",
+      "text": "Ich heiße Julia. Mein Schlafzimmer ist nicht groß. Es gibt ein Bett, einen Schrank und einen Spiegel. Das Bett ist neu. Der Schrank ist voll mit Kleidung. Ich schlafe gern in meinem Schlafzimmer. Es ist ruhig und gemütlich.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Anna", "Maria", "Julia"],
+          "answer": 2
+        },
+        {
+          "question": "Wie ist Julias Schlafzimmer?",
+          "options": ["Es ist groß", "Es ist nicht groß", "Es ist sehr klein"],
+          "answer": 1
+        },
+        {
+          "question": "Was gibt es in Julias Schlafzimmer?",
+          "options": ["Ein Bett, einen Schrank und einen Spiegel", "Nur ein Bett", "Ein Bett und ein Sofa"],
+          "answer": 0
+        },
+        {
+          "question": "Wie ist Julias Bett?",
+          "options": ["Es ist neu", "Es ist alt", "Es ist kaputt"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_4",
+      "title": "Die Küche",
+      "text": "Ich heiße Laura. Meine Küche ist modern und hell. Es gibt einen Herd, einen Kühlschrank und eine Spüle. Ich koche gern in der Küche. Meine Mutter kocht auch gern. Wir essen oft zusammen in der Küche. Das ist schön.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Laura", "Lisa", "Anna"],
+          "answer": 0
+        },
+        {
+          "question": "Wie ist Lauras Küche?",
+          "options": ["Modern und hell", "Alt und dunkel", "Klein und eng"],
+          "answer": 0
+        },
+        {
+          "question": "Was gibt es in Lauras Küche?",
+          "options": ["Einen Herd, einen Kühlschrank und eine Spüle", "Nur einen Herd", "Einen Herd und einen Tisch"],
+          "answer": 0
+        },
+        {
+          "question": "Was machen Laura und ihre Mutter oft zusammen?",
+          "options": ["Sie essen zusammen", "Sie kochen zusammen", "Sie reden zusammen"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_5",
+      "title": "Mein Haus",
+      "text": "Ich heiße Lisa. Ich wohne in einem Haus mit Garten. Das Haus hat zwei Stockwerke. Im Erdgeschoss ist die Küche und das Wohnzimmer. Im Obergeschoss sind die Schlafzimmer. Ich habe auch einen Balkon. Der Balkon ist groß. Ich sitze gern dort.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Laura", "Lisa", "Anna"],
+          "answer": 1
+        },
+        {
+          "question": "Wo wohnt Lisa?",
+          "options": ["In einem Haus mit Garten", "In einer Wohnung", "In einem Hotel"],
+          "answer": 0
+        },
+        {
+          "question": "Wie viele Stockwerke hat Lisas Haus?",
+          "options": ["Ein Stockwerk", "Zwei Stockwerke", "Drei Stockwerke"],
+          "answer": 1
+        },
+        {
+          "question": "Was ist im Erdgeschoss?",
+          "options": ["Die Küche und das Wohnzimmer", "Die Schlafzimmer", "Der Garten"],
+          "answer": 0
+        },
+        {
+          "question": "Wie ist Lisas Balkon?",
+          "options": ["Er ist groß", "Er ist klein", "Er ist alt"],
+          "answer": 0
         }
       ]
     }

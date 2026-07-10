@@ -1,0 +1,157 @@
+{
+  "lesson": 15,
+  "level": "A1",
+  "title": "Профессии и обязанности",
+  "dialogs": [
+    {
+      "id": "monolog_1",
+      "title": "Mein Beruf",
+      "text": "Ich heiße Anna. Ich arbeite als Lehrerin. Ich arbeite in einer Schule. Ich unterrichte Deutsch. Meine Arbeit macht mir Spaß. Die Schüler sind nett. Ich mag meinen Beruf sehr.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Anna", "Maria", "Julia"],
+          "answer": 0
+        },
+        {
+          "question": "Was ist Anna von Beruf?",
+          "options": ["Lehrerin", "Ärztin", "Ingenieurin"],
+          "answer": 0
+        },
+        {
+          "question": "Wo arbeitet Anna?",
+          "options": ["In einer Schule", "In einem Krankenhaus", "In einem Büro"],
+          "answer": 0
+        },
+        {
+          "question": "Was unterrichtet Anna?",
+          "options": ["Deutsch", "Mathematik", "Englisch"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_2",
+      "title": "Mein Vater",
+      "text": "Ich heiße Maria. Mein Vater ist Arzt. Er arbeitet in einem Krankenhaus. Er hilft kranken Menschen. Er hat viel Berufserfahrung. Mein Vater mag seinen Job. Er arbeitet oft am Wochenende.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Anna", "Maria", "Julia"],
+          "answer": 1
+        },
+        {
+          "question": "Was ist der Vater von Maria von Beruf?",
+          "options": ["Arzt", "Lehrer", "Ingenieur"],
+          "answer": 0
+        },
+        {
+          "question": "Wo arbeitet der Vater von Maria?",
+          "options": ["In einem Krankenhaus", "In einer Schule", "In einem Büro"],
+          "answer": 0
+        },
+        {
+          "question": "Was macht der Vater von Maria?",
+          "options": ["Er hilft kranken Menschen", "Er unterrichtet", "Er repariert Autos"],
+          "answer": 0
+        },
+        {
+          "question": "Arbeitet der Vater von Maria oft am Wochenende?",
+          "options": ["Ja", "Nein", "Manchmal"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_3",
+      "title": "Meine Mutter",
+      "text": "Ich heiße Julia. Meine Mutter ist Verkäuferin. Sie arbeitet in einem Supermarkt. Sie verkauft Lebensmittel. Meine Mutter arbeitet viel. Sie ist immer freundlich zu den Kunden. Sie hat eine gute Ausbildung.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Anna", "Maria", "Julia"],
+          "answer": 2
+        },
+        {
+          "question": "Was ist die Mutter von Julia von Beruf?",
+          "options": ["Verkäuferin", "Lehrerin", "Sekretärin"],
+          "answer": 0
+        },
+        {
+          "question": "Wo arbeitet die Mutter von Julia?",
+          "options": ["In einem Supermarkt", "In einer Schule", "In einem Büro"],
+          "answer": 0
+        },
+        {
+          "question": "Was macht die Mutter von Julia?",
+          "options": ["Sie verkauft Lebensmittel", "Sie unterrichtet", "Sie schreibt Briefe"],
+          "answer": 0
+        },
+        {
+          "question": "Wie ist die Mutter von Julia zu den Kunden?",
+          "options": ["Freundlich", "Strenge", "Laut"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_4",
+      "title": "Ich möchte Ärztin werden",
+      "text": "Ich heiße Laura. Ich studiere Medizin. Ich möchte Ärztin werden. Ich muss viel lernen. Die Arbeit ist schwer, aber ich mag sie. Ich möchte Menschen helfen. Das ist mein Ziel.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Laura", "Lisa", "Anna"],
+          "answer": 0
+        },
+        {
+          "question": "Was studiert Laura?",
+          "options": ["Medizin", "Jura", "Informatik"],
+          "answer": 0
+        },
+        {
+          "question": "Was möchte Laura werden?",
+          "options": ["Ärztin", "Lehrerin", "Ingenieurin"],
+          "answer": 0
+        },
+        {
+          "question": "Warum möchte Laura Ärztin werden?",
+          "options": ["Sie möchte Menschen helfen", "Sie möchte viel verdienen", "Sie möchte reisen"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_5",
+      "title": "Meine Arbeit",
+      "text": "Ich heiße Lisa. Ich arbeite bei einer Bank. Ich bin Sekretärin. Ich arbeite im Büro. Ich muss E-Mails schreiben und telefonieren. Die Arbeit ist interessant. Ich mag meine Kollegen. Wir arbeiten gut zusammen.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Laura", "Lisa", "Anna"],
+          "answer": 1
+        },
+        {
+          "question": "Wo arbeitet Lisa?",
+          "options": ["Bei einer Bank", "In einer Schule", "In einem Krankenhaus"],
+          "answer": 0
+        },
+        {
+          "question": "Was ist Lisa von Beruf?",
+          "options": ["Sekretärin", "Lehrerin", "Verkäuferin"],
+          "answer": 0
+        },
+        {
+          "question": "Was muss Lisa in ihrem Beruf machen?",
+          "options": ["E-Mails schreiben und telefonieren", "Unterrichten", "Verkaufen"],
+          "answer": 0
+        },
+        {
+          "question": "Mag Lisa ihre Kollegen?",
+          "options": ["Ja", "Nein", "Weiß nicht"],
+          "answer": 0
+        }
+      ]
+    }
+  ]
+}

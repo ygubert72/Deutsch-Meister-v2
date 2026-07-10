@@ -154,16 +154,16 @@ console.log('✅ Firebase инициализирован');
 
 <script>
 // ============================================================
-// YANDEX TTS — ВСТРОЕННАЯ ВЕРСИЯ (ТОЛЬКО НЕМЕЦКИЕ ГОЛОСА)
+// YANDEX TTS — ВСТРОЕННАЯ ВЕРСИЯ
 // ============================================================
 
 let YANDEX_API_KEY = '';
 let YANDEX_FOLDER_ID = '';
 let isYandexReady = false;
 
-// Голоса Yandex SpeechKit для НЕМЕЦКОГО языка
-const YANDEX_VOICE_FEMALE = 'oksana';   // женский, немецкий
-const YANDEX_VOICE_MALE = 'filipp';     // мужской, немецкий
+// Два разных женских голоса для немецкого языка
+const YANDEX_VOICE_FEMALE = 'oksana';   // женский голос 1
+const YANDEX_VOICE_MALE = 'jane';       // женский голос 2 (для мужских персонажей)
 
 function initYandexTTS(apiKey, folderId) {
     if (apiKey) YANDEX_API_KEY = apiKey;
@@ -204,8 +204,9 @@ async function speakWithYandex(text, voice = YANDEX_VOICE_FEMALE) {
         });
 
         if (!response.ok) {
-            const errorText = await response.text();
-            throw new Error(`Ошибка ${response.status}: ${errorText}`);
+            // При ошибке НЕ включаем fallback, чтобы не было дублирования
+            console.warn('Yandex TTS ошибка:', response.status);
+            return;
         }
 
         const audioData = await response.arrayBuffer();
@@ -218,8 +219,7 @@ async function speakWithYandex(text, voice = YANDEX_VOICE_FEMALE) {
             audio.onended = () => { URL.revokeObjectURL(url); resolve(); };
         });
     } catch (error) {
-        console.warn('Yandex TTS ошибка, используем fallback:', error);
-        if (window.speak) window.speak(text);
+        console.warn('Yandex TTS ошибка:', error);
     }
 }
 

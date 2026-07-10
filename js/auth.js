@@ -13,7 +13,7 @@ function initFirebase() {
     }
     
     if (!firebase.apps.length) {
-        // Используем конфигурацию из index.html (она уже объявлена глобально)
+        // Используем конфигурацию из index.html
         if (typeof firebaseConfig !== 'undefined') {
             firebase.initializeApp(firebaseConfig);
         } else {

@@ -150,7 +150,7 @@ body { font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-
     box-shadow: 0 1px 2px rgba(0,0,0,0.1);
 }
 
-/* ===== КНОПКИ С ЭФФЕКТОМ НАЖАТИЯ (дополнительно) ===== */
+/* ===== КНОПКИ С ЭФФЕКТОМ НАЖАТИЯ ===== */
 .back-btn,
 .mode-btn,
 .lesson-btn,
@@ -160,6 +160,7 @@ body { font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-
 .share-btn,
 .btn-login,
 #listenBtn,
+#toggleTextBtn,
 .hint-btn,
 #resetDictationBtn,
 #resetPracticeBtn,
@@ -194,6 +195,7 @@ body { font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-
 .share-btn:active,
 .btn-login:active,
 #listenBtn:active,
+#toggleTextBtn:active,
 .hint-btn:active,
 #resetDictationBtn:active,
 #resetPracticeBtn:active,
@@ -220,7 +222,7 @@ body { font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-
     box-shadow: 0 1px 3px rgba(0,0,0,0.15);
 }
 
-/* Специально для кнопки "ПРОСЛУШАТЬ" — чтобы тень не пропадала */
+/* Специально для кнопки "ПРОСЛУШАТЬ" */
 #listenBtn {
     box-shadow: 0 2px 8px rgba(59, 111, 224, 0.3);
 }
@@ -229,7 +231,7 @@ body { font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-
     box-shadow: 0 1px 4px rgba(59, 111, 224, 0.2);
 }
 
-/* Специально для кнопки "ПРОВЕРИТЬ" в упражнениях */
+/* Специально для кнопки "ПРОВЕРИТЬ" */
 .check-btn:active {
     transform: scale(0.95);
     box-shadow: 0 1px 2px rgba(0,0,0,0.1);

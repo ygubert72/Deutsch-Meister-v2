@@ -29,6 +29,9 @@ function initFirebase() {
     auth = firebase.auth();
     db = firebase.firestore();
     
+    // Делаем db доступным глобально для других скриптов
+    window.db = db;
+    
     auth.setPersistence(firebase.auth.Auth.Persistence.LOCAL)
         .then(() => {
             if (window.Logger) Logger.info('Сессия будет сохраняться');
@@ -629,6 +632,23 @@ window.addEventListener('load', function() {
         initFirebase();
     }
 });
+
+// Делаем db доступным глобально для других скриптов
+// Эта строка гарантирует, что window.db будет доступен
+setTimeout(function() {
+    if (typeof db !== 'undefined' && db) {
+        window.db = db;
+        console.log('✅ window.db установлен');
+    } else {
+        console.log('⏳ db ещё не инициализирован, пробуем снова...');
+        setTimeout(function() {
+            if (typeof db !== 'undefined' && db) {
+                window.db = db;
+                console.log('✅ window.db установлен');
+            }
+        }, 1000);
+    }
+}, 500);
 
 window.auth = auth;
 window.db = db;

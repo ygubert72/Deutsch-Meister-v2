@@ -137,6 +137,7 @@
 <script src="js/logger.js"></script>
 <script src="js/containerManager.js"></script>
 <script src="js/speak.js"></script>
+<script src="js/secrets.js"></script>
 <script src="js/yandexTTS.js"></script>
 <script src="js/grammarMode.js"></script>
 <script src="js/vocabularyMode.js"></script>
@@ -149,17 +150,18 @@
 
 <script>
     // ===== ИНИЦИАЛИЗАЦИЯ YANDEX TTS =====
-    // ВСТАВЬТЕ СВОИ ДАННЫЕ ВМЕСТО ЗВЁЗДОЧЕК
-    const YANDEX_API_KEY = 'ваш_api_ключ_сюда';
-    const YANDEX_FOLDER_ID = 'ваш_folder_id_сюда';
-    
-    if (typeof initYandexTTS === 'function') {
-        const result = initYandexTTS(YANDEX_API_KEY, YANDEX_FOLDER_ID);
-        if (result) {
-            console.log('✅ Yandex TTS инициализирован успешно!');
-        } else {
-            console.warn('⚠️ Yandex TTS не инициализирован. Проверьте ключи.');
+    // Ключи берутся из файла js/secrets.js (не публикуется на GitHub)
+    if (typeof YANDEX_API_KEY !== 'undefined' && typeof YANDEX_FOLDER_ID !== 'undefined') {
+        if (typeof initYandexTTS === 'function') {
+            const result = initYandexTTS(YANDEX_API_KEY, YANDEX_FOLDER_ID);
+            if (result) {
+                console.log('✅ Yandex TTS инициализирован успешно!');
+            } else {
+                console.warn('⚠️ Yandex TTS не инициализирован. Проверьте ключи.');
+            }
         }
+    } else {
+        console.warn('⚠️ Ключи Yandex TTS не найдены. Создайте файл js/secrets.js');
     }
 
     // ===== МОБИЛЬНОЕ МЕНЮ =====

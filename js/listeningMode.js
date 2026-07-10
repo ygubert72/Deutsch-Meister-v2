@@ -59,49 +59,31 @@ function parseDialog(text) {
     }).filter(s => s !== null);
 }
 
-// ========== АНИМАЦИЯ КНОПКИ ==========
-function animateListeningButton(active) {
+// ========== ОБНОВЛЕНИЕ КНОПКИ ==========
+function updateListeningButton(active) {
     const btn = document.getElementById('listenBtn');
     if (!btn) return;
     
     if (active) {
         btn.innerHTML = '⏹️ ОСТАНОВИТЬ';
         btn.style.background = '#F44336';
-        btn.style.animation = 'pulse 0.8s ease-in-out infinite';
-        btn.style.transform = 'scale(1.05)';
+        btn.style.transform = 'scale(0.95)';
+        btn.style.boxShadow = 'none';
     } else {
         btn.innerHTML = '🔊 ПРОСЛУШАТЬ';
         btn.style.background = '#3B6FE0';
-        btn.style.animation = 'none';
         btn.style.transform = 'scale(1)';
+        btn.style.boxShadow = '0 2px 8px rgba(59,111,224,0.3)';
     }
-}
-
-// Добавляем CSS анимацию, если её нет
-function addPulseAnimation() {
-    if (document.getElementById('pulseStyle')) return;
-    const style = document.createElement('style');
-    style.id = 'pulseStyle';
-    style.textContent = `
-        @keyframes pulse {
-            0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(59, 111, 224, 0.4); }
-            50% { transform: scale(1.05); box-shadow: 0 0 20px 10px rgba(59, 111, 224, 0.2); }
-            100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(59, 111, 224, 0); }
-        }
-    `;
-    document.head.appendChild(style);
 }
 
 // ========== ОЗВУЧИВАНИЕ ТЕКУЩЕГО ДИАЛОГА ==========
 function speakCurrentDialog() {
-    // Добавляем CSS анимацию
-    addPulseAnimation();
-    
     // Если уже говорит — останавливаем
     if (isSpeaking) {
         window.speechSynthesis.cancel();
         isSpeaking = false;
-        animateListeningButton(false);
+        updateListeningButton(false);
         console.log('⏹️ Озвучка остановлена');
         return;
     }
@@ -133,13 +115,13 @@ function speakCurrentDialog() {
     }
     
     isSpeaking = true;
-    animateListeningButton(true);
+    updateListeningButton(true);
     let index = 0;
     
     function speakNext() {
         if (index >= speeches.length || !isSpeaking) {
             isSpeaking = false;
-            animateListeningButton(false);
+            updateListeningButton(false);
             console.log('✅ Озвучка диалога завершена');
             return;
         }
@@ -149,7 +131,7 @@ function speakCurrentDialog() {
         
         console.log(`🗣️ ${speech.speaker}: ${cleanText}`);
         
-        // Подсвечиваем текущую реплику в тексте
+        // Подсвечиваем текущую реплику
         highlightCurrentSpeech(index);
         
         const utterance = new SpeechSynthesisUtterance(cleanText);
@@ -163,7 +145,6 @@ function speakCurrentDialog() {
             utterance.voice = germanVoice;
         }
         
-        // Сохраняем текущий utterance для возможной остановки
         currentUtterance = utterance;
         
         utterance.onend = function() {
@@ -243,7 +224,7 @@ function renderDialog(container) {
             </div>
             
             <div style="display: flex; gap: 10px; flex-wrap: wrap; margin: 10px 0;">
-                <button id="listenBtn" onclick="window._speakDialog()" style="padding: 8px 20px; background: #3B6FE0; color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; transition: all 0.3s ease;">
+                <button id="listenBtn" onclick="window._speakDialog()" style="padding: 8px 20px; background: #3B6FE0; color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; transition: all 0.15s ease; box-shadow: 0 2px 8px rgba(59,111,224,0.3);">
                     🔊 ПРОСЛУШАТЬ
                 </button>
                 <button onclick="window._toggleText()" style="padding: 8px 20px; background: #FF9800; color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: bold;">
@@ -267,7 +248,7 @@ function renderDialog(container) {
         </div>
     `;
 
-    // ВОПРОСЫ (всегда видны)
+    // ВОПРОСЫ
     html += `<div style="margin-bottom: 20px;">`;
     dialog.questions.forEach((q, qIndex) => {
         const selected = selectedAnswers[dialog.id]?.[qIndex];
@@ -315,7 +296,6 @@ function renderDialog(container) {
 
     container.innerHTML = html;
     
-    // Сбрасываем подсветку
     setTimeout(() => {
         document.querySelectorAll('.speech-line').forEach(el => {
             el.style.background = 'transparent';
@@ -340,7 +320,7 @@ function prevListeningDialog() {
     if (isSpeaking) {
         window.speechSynthesis.cancel();
         isSpeaking = false;
-        animateListeningButton(false);
+        updateListeningButton(false);
     }
     
     if (currentDialogIndex > 0) {
@@ -356,7 +336,7 @@ function nextListeningDialog() {
     if (isSpeaking) {
         window.speechSynthesis.cancel();
         isSpeaking = false;
-        animateListeningButton(false);
+        updateListeningButton(false);
     }
     
     if (listeningData && currentDialogIndex < listeningData.dialogs.length - 1) {

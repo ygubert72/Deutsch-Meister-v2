@@ -4,52 +4,136 @@
   "title": "Глагол sein и знакомство",
   "dialogs": [
     {
-      "id": "dialog_1",
+      "id": "monolog_1",
       "title": "Vorstellung",
-      "text": "Anna: Hallo! Ich bin Anna. Wie heißt du?\nTom: Ich bin Tom. Freut mich!\nAnna: Freut mich auch!",
+      "text": "Ich heiße Anna. Ich bin 25 Jahre alt. Ich komme aus Russland. Ich wohne in Berlin. Ich spreche Deutsch und Russisch. Ich bin Studentin.",
       "questions": [
         {
           "question": "Wie heißt die Frau?",
-          "options": ["Anna", "Tom", "Maria"],
+          "options": ["Anna", "Maria", "Julia"],
           "answer": 0
         },
         {
-          "question": "Wie heißt der Mann?",
-          "options": ["Anna", "Tom", "Maria"],
-          "answer": 1
-        }
-      ]
-    },
-    {
-      "id": "dialog_2",
-      "title": "Alter und Herkunft",
-      "text": "Maria: Guten Tag! Ich bin Maria. Ich komme aus Russland.\nPeter: Guten Tag! Ich bin Peter. Ich komme aus Deutschland.\nMaria: Ich bin 25 Jahre alt. Und du?\nPeter: Ich bin 28 Jahre alt.",
-      "questions": [
-        {
-          "question": "Woher kommt Maria?",
+          "question": "Woher kommt Anna?",
           "options": ["Aus Deutschland", "Aus Russland", "Aus Italien"],
           "answer": 1
         },
         {
-          "question": "Wie alt ist Peter?",
-          "options": ["25 Jahre", "28 Jahre", "30 Jahre"],
+          "question": "Wo wohnt Anna?",
+          "options": ["In München", "In Berlin", "In Hamburg"],
+          "answer": 1
+        },
+        {
+          "question": "Welche Sprachen spricht Anna?",
+          "options": ["Deutsch und Englisch", "Russisch und Deutsch", "Russisch und Englisch"],
           "answer": 1
         }
       ]
     },
     {
-      "id": "dialog_3",
+      "id": "monolog_2",
       "title": "Familie",
-      "text": "Julia: Ist das deine Schwester?\nMax: Ja, das ist meine Schwester. Sie heißt Lisa.\nJulia: Ist Lisa deine ältere Schwester?\nMax: Nein, sie ist meine jüngere Schwester.",
+      "text": "Ich heiße Maria. Ich habe eine große Familie. Mein Vater ist Arzt. Meine Mutter ist Lehrerin. Ich habe einen Bruder. Er heißt Max. Er ist 20 Jahre alt. Er studiert in München.",
       "questions": [
         {
-          "question": "Wie heißt die Schwester von Max?",
-          "options": ["Julia", "Lisa", "Anna"],
+          "question": "Wie heißt die Frau?",
+          "options": ["Anna", "Maria", "Julia"],
           "answer": 1
         },
         {
-          "question": "Ist Lisa die ältere Schwester von Max?",
+          "question": "Was ist der Vater von Maria von Beruf?",
+          "options": ["Lehrer", "Arzt", "Ingenieur"],
+          "answer": 1
+        },
+        {
+          "question": "Wie heißt der Bruder von Maria?",
+          "options": ["Max", "Tom", "Peter"],
+          "answer": 0
+        },
+        {
+          "question": "Wie alt ist der Bruder von Maria?",
+          "options": ["18 Jahre", "20 Jahre", "22 Jahre"],
+          "answer": 1
+        }
+      ]
+    },
+    {
+      "id": "monolog_3",
+      "title": "Freunde",
+      "text": "Ich heiße Julia. Ich wohne in Berlin. Ich habe einen Freund. Er heißt Tom. Tom kommt aus Deutschland. Er ist 27 Jahre alt. Wir sprechen Deutsch. Er ist sehr nett.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Anna", "Maria", "Julia"],
+          "answer": 2
+        },
+        {
+          "question": "Wo wohnt Julia?",
+          "options": ["In Berlin", "In München", "In Hamburg"],
+          "answer": 0
+        },
+        {
+          "question": "Wie heißt der Freund von Julia?",
+          "options": ["Max", "Tom", "Peter"],
+          "answer": 1
+        },
+        {
+          "question": "Woher kommt Tom?",
+          "options": ["Aus Russland", "Aus Deutschland", "Aus Italien"],
+          "answer": 1
+        }
+      ]
+    },
+    {
+      "id": "monolog_4",
+      "title": "Arbeit",
+      "text": "Ich heiße Laura. Ich bin 30 Jahre alt. Ich arbeite als Ingenieurin. Ich arbeite bei einer großen Firma. Die Firma ist in Hamburg. Ich wohne in Hamburg. Ich mag meine Arbeit sehr.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Laura", "Lisa", "Anna"],
+          "answer": 0
+        },
+        {
+          "question": "Was ist Laura von Beruf?",
+          "options": ["Lehrerin", "Ingenieurin", "Sekretärin"],
+          "answer": 1
+        },
+        {
+          "question": "Wo arbeitet Laura?",
+          "options": ["In Berlin", "In Hamburg", "In München"],
+          "answer": 1
+        },
+        {
+          "question": "Mag Laura ihre Arbeit?",
           "options": ["Ja", "Nein", "Weiß nicht"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_5",
+      "title": "Sprachen",
+      "text": "Ich heiße Lisa. Ich komme aus Finnland. Ich wohne jetzt in Deutschland. Ich lerne Deutsch. Ich spreche Finnisch und Englisch. Deutsch ist schwer, aber ich lerne gern. Ich möchte in Deutschland arbeiten.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Laura", "Lisa", "Anna"],
+          "answer": 1
+        },
+        {
+          "question": "Woher kommt Lisa?",
+          "options": ["Aus Deutschland", "Aus Finnland", "Aus Russland"],
+          "answer": 1
+        },
+        {
+          "question": "Welche Sprachen spricht Lisa?",
+          "options": ["Finnisch und Englisch", "Deutsch und Finnisch", "Deutsch und Englisch"],
+          "answer": 0
+        },
+        {
+          "question": "Was möchte Lisa?",
+          "options": ["In Finnland arbeiten", "In Deutschland arbeiten", "In Russland arbeiten"],
           "answer": 1
         }
       ]

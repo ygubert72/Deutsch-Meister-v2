@@ -4,69 +4,141 @@
   "title": "Время, дни недели и месяцы",
   "dialogs": [
     {
-      "id": "dialog_1",
-      "title": "Wie spät ist es?",
-      "text": "Tom: Entschuldigung! Wie spät ist es?\nAnna: Es ist halb drei.\nTom: Danke! Ich habe einen Termin um 15 Uhr.\nAnna: Dann hast du noch 30 Minuten Zeit.",
+      "id": "monolog_1",
+      "title": "Mein Tag",
+      "text": "Ich heiße Anna. Ich stehe um 7 Uhr auf. Am Morgen trinke ich Kaffee. Ich arbeite von 9 bis 18 Uhr. Am Abend sehe ich fern. Ich gehe um 22 Uhr schlafen.",
       "questions": [
         {
-          "question": "Wie spät ist es?",
-          "options": ["Es ist 14:30 Uhr", "Es ist 15:00 Uhr", "Es ist 13:30 Uhr"],
+          "question": "Wie heißt die Frau?",
+          "options": ["Anna", "Maria", "Julia"],
           "answer": 0
         },
         {
-          "question": "Wann hat Tom einen Termin?",
-          "options": ["Um 14:30 Uhr", "Um 15:00 Uhr", "Um 16:00 Uhr"],
+          "question": "Wann steht Anna auf?",
+          "options": ["Um 6 Uhr", "Um 7 Uhr", "Um 8 Uhr"],
+          "answer": 1
+        },
+        {
+          "question": "Wie lange arbeitet Anna?",
+          "options": ["Von 8 bis 17 Uhr", "Von 9 bis 18 Uhr", "Von 10 bis 19 Uhr"],
+          "answer": 1
+        },
+        {
+          "question": "Wann geht Anna schlafen?",
+          "options": ["Um 21 Uhr", "Um 22 Uhr", "Um 23 Uhr"],
           "answer": 1
         }
       ]
     },
     {
-      "id": "dialog_2",
-      "title": "Tage der Woche",
-      "text": "Maria: Welchen Tag haben wir heute?\nPeter: Heute ist Dienstag.\nMaria: Und wann beginnt der Deutschkurs?\nPeter: Der Deutschkurs beginnt am Donnerstag.",
+      "id": "monolog_2",
+      "title": "Wochentage",
+      "text": "Ich heiße Maria. Am Montag habe ich Deutschkurs. Am Dienstag arbeite ich. Am Mittwoch gehe ich ins Kino. Am Donnerstag besuche ich meine Freundin. Am Freitag habe ich frei. Am Wochenende schlafe ich lange.",
       "questions": [
         {
-          "question": "Welchen Tag haben wir heute?",
-          "options": ["Montag", "Dienstag", "Mittwoch"],
+          "question": "Wie heißt die Frau?",
+          "options": ["Anna", "Maria", "Julia"],
           "answer": 1
         },
         {
-          "question": "Wann beginnt der Deutschkurs?",
-          "options": ["Am Dienstag", "Am Mittwoch", "Am Donnerstag"],
+          "question": "Wann hat Maria Deutschkurs?",
+          "options": ["Am Montag", "Am Dienstag", "Am Mittwoch"],
+          "answer": 0
+        },
+        {
+          "question": "Was macht Maria am Mittwoch?",
+          "options": ["Sie arbeitet", "Sie geht ins Kino", "Sie besucht ihre Freundin"],
+          "answer": 1
+        },
+        {
+          "question": "Wann hat Maria frei?",
+          "options": ["Am Donnerstag", "Am Freitag", "Am Samstag"],
+          "answer": 1
+        },
+        {
+          "question": "Was macht Maria am Wochenende?",
+          "options": ["Sie arbeitet", "Sie schläft lange", "Sie geht ins Kino"],
+          "answer": 1
+        }
+      ]
+    },
+    {
+      "id": "monolog_3",
+      "title": "Jahreszeiten",
+      "text": "Ich heiße Julia. Ich mag den Sommer. Im Sommer ist es warm. Ich gehe gern schwimmen. Im Winter ist es kalt. Im Winter bleibe ich zu Hause. Ich lese gern Bücher.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Anna", "Maria", "Julia"],
+          "answer": 2
+        },
+        {
+          "question": "Welche Jahreszeit mag Julia?",
+          "options": ["Den Frühling", "Den Sommer", "Den Winter"],
+          "answer": 1
+        },
+        {
+          "question": "Was macht Julia im Sommer?",
+          "options": ["Sie liest", "Sie schwimmt", "Sie arbeitet"],
+          "answer": 1
+        },
+        {
+          "question": "Was macht Julia im Winter?",
+          "options": ["Sie geht spazieren", "Sie bleibt zu Hause", "Sie schwimmt"],
+          "answer": 1
+        }
+      ]
+    },
+    {
+      "id": "monolog_4",
+      "title": "Geburtstage",
+      "text": "Ich heiße Laura. Ich habe im März Geburtstag. Meine Mutter hat im Juni Geburtstag. Mein Vater hat im September Geburtstag. Meine Schwester hat im Dezember Geburtstag. Wir feiern alle Geburtstage.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Laura", "Lisa", "Anna"],
+          "answer": 0
+        },
+        {
+          "question": "Wann hat Laura Geburtstag?",
+          "options": ["Im März", "Im Juni", "Im September"],
+          "answer": 0
+        },
+        {
+          "question": "Wann hat die Mutter von Laura Geburtstag?",
+          "options": ["Im März", "Im Juni", "Im Dezember"],
+          "answer": 1
+        },
+        {
+          "question": "Wann hat die Schwester von Laura Geburtstag?",
+          "options": ["Im September", "Im November", "Im Dezember"],
           "answer": 2
         }
       ]
     },
     {
-      "id": "dialog_3",
-      "title": "Monate und Geburtstage",
-      "text": "Julia: Wann hast du Geburtstag?\nMax: Ich habe im Mai Geburtstag. Und du?\nJulia: Ich habe im Dezember Geburtstag.\nMax: Meine Schwester hat auch im Mai Geburtstag.\nJulia: Das ist ja toll!",
+      "id": "monolog_5",
+      "title": "Meine Woche",
+      "text": "Ich heiße Lisa. Am Montag habe ich Deutschunterricht. Am Dienstag und Donnerstag arbeite ich. Am Samstag gehe ich einkaufen. Am Sonntag räume ich meine Wohnung auf. Ich habe eine Woche. Sieben Tage.",
       "questions": [
         {
-          "question": "Wann hat Max Geburtstag?",
-          "options": ["Im Mai", "Im Dezember", "Im Januar"],
+          "question": "Wie heißt die Frau?",
+          "options": ["Laura", "Lisa", "Anna"],
+          "answer": 1
+        },
+        {
+          "question": "Wann hat Lisa Deutschunterricht?",
+          "options": ["Am Montag", "Am Dienstag", "Am Samstag"],
           "answer": 0
         },
         {
-          "question": "Wann hat Julia Geburtstag?",
-          "options": ["Im Mai", "Im Dezember", "Im Januar"],
-          "answer": 1
-        }
-      ]
-    },
-    {
-      "id": "dialog_4",
-      "title": "Jahreszeiten",
-      "text": "Anna: Welche Jahreszeit magst du am liebsten?\nTom: Ich mag den Sommer am liebsten. Es ist warm.\nAnna: Ich mag den Frühling. Es ist nicht zu heiß und nicht zu kalt.\nTom: Im Winter ist es mir zu kalt.",
-      "questions": [
-        {
-          "question": "Welche Jahreszeit mag Tom am liebsten?",
-          "options": ["Den Frühling", "Den Sommer", "Den Winter"],
+          "question": "Was macht Lisa am Samstag?",
+          "options": ["Sie arbeitet", "Sie geht einkaufen", "Sie räumt auf"],
           "answer": 1
         },
         {
-          "question": "Warum mag Anna den Frühling?",
-          "options": ["Es ist warm", "Es ist nicht zu heiß und nicht zu kalt", "Es gibt Schnee"],
+          "question": "Wie viele Tage hat eine Woche?",
+          "options": ["Fünf", "Sieben", "Zehn"],
           "answer": 1
         }
       ]

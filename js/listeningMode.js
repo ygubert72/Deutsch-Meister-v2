@@ -1,5 +1,5 @@
 // ====================================================================
-// listeningMode.js — Аудирование (Hörverstehen)
+// listeningMode.js — Аудирование (Hörverstehen) с Yandex TTS
 // ====================================================================
 
 let listeningData = null;
@@ -42,7 +42,32 @@ function renderListening(container, lesson) {
         });
 }
 
-// ========== ОЗВУЧИВАНИЕ ТЕКУЩЕГО ДИАЛОГА ==========
+// ========== ОЧИСТКА ТЕКСТА ОТ ИМЁН ==========
+function cleanTextFromNames(text) {
+    return text
+        .replace(/^[A-ZÄÖÜ][a-zäöüß]*:\s*/gm, '')
+        .trim()
+        .replace(/\n/g, ' ')
+        .replace(/\s+/g, ' ')
+        .trim();
+}
+
+// ========== РАЗБОР ДИАЛОГА НА РЕПЛИКИ ==========
+function parseDialog(text) {
+    const lines = text.split('\n').filter(line => line.trim() !== '');
+    return lines.map(line => {
+        const match = line.match(/^([A-ZÄÖÜ][a-zäöüß]*):\s*(.*)/);
+        if (match) {
+            return {
+                speaker: match[1],
+                text: match[2].trim()
+            };
+        }
+        return null;
+    }).filter(s => s !== null);
+}
+
+// ========== ОЗВУЧИВАНИЕ ТЕКУЩЕГО ДИАЛОГА (С РАЗНЫМИ ГОЛОСАМИ) ==========
 function speakCurrentDialog() {
     if (!listeningData) {
         console.warn('⚠️ listeningData не загружен');
@@ -61,26 +86,68 @@ function speakCurrentDialog() {
         return;
     }
     
-    console.log('🎤 Озвучивание диалога с голосами:', dialog.title);
+    console.log('🎤 Озвучивание диалога:', dialog.title);
     
-    // Используем voiceSelector.js
-    if (typeof window.speakDialogWithVoices === 'function') {
-        window.speakDialogWithVoices(dialog.text);
+    const speeches = parseDialog(dialog.text);
+    
+    if (speeches.length === 0) {
+        console.warn('⚠️ Не удалось разобрать диалог на реплики');
         return;
     }
     
-    // Fallback на speak.js
-    console.warn('⚠️ voiceSelector.js не загружен, используем speak.js');
-    const cleanText = dialog.text
-        .split('\n')
-        .map(line => line.replace(/^[A-ZÄÖÜ][a-zäöüß]*:\s*/, ''))
-        .filter(line => line.trim() !== '')
-        .join(' ');
-    if (typeof window.speak === 'function') {
-        window.speak(cleanText);
+    // ВОСПРОИЗВЕДЕНИЕ РЕПЛИК ПО ОЧЕРЕДИ
+    let index = 0;
+    
+    function playNext() {
+        if (index >= speeches.length) {
+            console.log('✅ Озвучка диалога завершена');
+            return;
+        }
+        
+        const speech = speeches[index];
+        const cleanText = cleanTextFromNames(speech.text);
+        
+        console.log(`🗣️ ${speech.speaker}: ${cleanText}`);
+        
+        // ===== ИСПОЛЬЗУЕМ YANDEX TTS С РАЗНЫМИ ГОЛОСАМИ =====
+        if (typeof window.speakWithYandex === 'function' && typeof window.getVoiceForSpeaker === 'function') {
+            const voice = window.getVoiceForSpeaker(speech.speaker);
+            console.log(`🎤 Голос для ${speech.speaker}: ${voice}`);
+            
+            window.speakWithYandex(cleanText, voice)
+                .then(() => {
+                    index++;
+                    setTimeout(playNext, 500);
+                })
+                .catch((error) => {
+                    console.warn('⚠️ Yandex TTS ошибка, переключаемся на fallback:', error);
+                    if (typeof window.speak === 'function') {
+                        window.speak(cleanText);
+                        index++;
+                        setTimeout(playNext, 600);
+                    } else {
+                        index++;
+                        setTimeout(playNext, 100);
+                    }
+                });
+        } 
+        // Fallback на стандартную озвучку
+        else if (typeof window.speak === 'function') {
+            window.speak(cleanText);
+            index++;
+            setTimeout(playNext, 600);
+        } 
+        else {
+            console.warn('⚠️ Озвучка не доступна');
+            index++;
+            setTimeout(playNext, 100);
+        }
     }
+    
+    playNext();
 }
 
+// Сохраняем функцию в глобальную область для доступа из HTML
 window._speakDialog = speakCurrentDialog;
 
 // ========== ОТОБРАЖЕНИЕ ДИАЛОГА ==========

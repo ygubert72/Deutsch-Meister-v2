@@ -91,7 +91,7 @@
                 <button data-level="B2" class="btn btn-level">B2</button>
                 <button data-level="C1" class="btn btn-level">C1</button>
             </div>
-            <button id="shareBtnDesktop" class="btn share-btn" style="margin-top: 15px;">🔗 ПОДЕЛИТЬСЯ</button>
+            <button id="shareBtnDesktop" class="btn share-btn" style="margin-top: 15px;" onclick="openShareModal()">🔗 ПОДЕЛИТЬСЯ</button>
             
             <!-- Админ-панель (только для администратора) -->
             <button id="adminPanelBtn" class="btn" style="background: #FF9800; color: white; border: none; display: none; margin-top: 10px; box-shadow: 0 2px 8px rgba(255,152,0,0.3);" onclick="openAdminPanel()">
@@ -131,7 +131,7 @@
             <button data-level="B2" class="btn btn-level">B2</button>
             <button data-level="C1" class="btn btn-level">C1</button>
         </div>
-        <button id="shareBtnMobile" class="btn share-btn" style="margin-top: 15px;">🔗 ПОДЕЛИТЬСЯ</button>
+        <button id="shareBtnMobile" class="btn share-btn" style="margin-top: 15px;" onclick="openShareModal()">🔗 ПОДЕЛИТЬСЯ</button>
         
         <!-- Админ-панель (только для администратора) -->
         <button id="adminPanelBtnMobile" class="btn" style="background: #FF9800; color: white; border: none; display: none; margin-top: 10px; box-shadow: 0 2px 8px rgba(255,152,0,0.3);" onclick="openAdminPanel()">
@@ -177,6 +177,7 @@ console.log('✅ Firebase инициализирован');
 <script src="js/activityTracker.js"></script>
 <script src="js/auth.js"></script>
 <script src="js/adminModal.js"></script>
+<script src="js/shareModal.js"></script>
 
 <script>
 // ===== МОБИЛЬНОЕ МЕНЮ =====
@@ -195,25 +196,6 @@ document.getElementById('menuOverlay').onclick = function() {
     document.getElementById('menuOverlay').classList.remove('show');
     document.body.style.overflow = '';
 };
-
-// ===== КНОПКА ПОДЕЛИТЬСЯ =====
-document.querySelectorAll('.share-btn').forEach(function(btn) {
-    btn.onclick = function() {
-        if (navigator.share) {
-            navigator.share({
-                title: 'Deutsch-Meister',
-                text: '🇩🇪 Учите немецкий язык с Deutsch-Meister!',
-                url: window.location.href
-            }).catch(function() {});
-        } else {
-            navigator.clipboard.writeText(window.location.href).then(function() {
-                alert('✅ Ссылка скопирована!');
-            }).catch(function() {
-                prompt('Скопируйте ссылку:', window.location.href);
-            });
-        }
-    };
-});
 
 console.log('✅ Страница загружена');
 </script>

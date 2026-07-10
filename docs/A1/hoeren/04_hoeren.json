@@ -4,52 +4,151 @@
   "title": "Числительные, страны и языки",
   "dialogs": [
     {
-      "id": "dialog_1",
-      "title": "Woher kommst du?",
-      "text": "Anna: Hallo! Woher kommst du?\nTom: Ich komme aus Deutschland. Und du?\nAnna: Ich komme aus Russland.\nTom: Sprichst du Deutsch?\nAnna: Ja, ich spreche Deutsch und Russisch.",
+      "id": "monolog_1",
+      "title": "Herkunft und Sprachen",
+      "text": "Ich heiße Anna. Ich komme aus Russland. Ich wohne in Berlin. Ich spreche Russisch und Deutsch. Ich lerne Englisch. Ich bin 25 Jahre alt.",
       "questions": [
         {
-          "question": "Woher kommt Tom?",
-          "options": ["Aus Russland", "Aus Deutschland", "Aus Italien"],
+          "question": "Wie heißt die Frau?",
+          "options": ["Anna", "Maria", "Julia"],
+          "answer": 0
+        },
+        {
+          "question": "Woher kommt Anna?",
+          "options": ["Aus Deutschland", "Aus Russland", "Aus Finnland"],
           "answer": 1
         },
         {
-          "question": "Welche Sprachen spricht Anna?",
-          "options": ["Deutsch und Englisch", "Russisch und Deutsch", "Russisch und Englisch"],
+          "question": "Wo wohnt Anna?",
+          "options": ["In Berlin", "In München", "In Hamburg"],
+          "answer": 0
+        },
+        {
+          "question": "Welche Sprache lernt Anna?",
+          "options": ["Deutsch", "Englisch", "Russisch"],
           "answer": 1
         }
       ]
     },
     {
-      "id": "dialog_2",
-      "title": "Zahlen",
-      "text": "Maria: Wie alt bist du?\nPeter: Ich bin 30 Jahre alt.\nMaria: Ich bin 25 Jahre alt.\nPeter: Hast du Geschwister?\nMaria: Ja, ich habe einen Bruder. Er ist 28 Jahre alt.",
+      "id": "monolog_2",
+      "title": "Familie in Russland",
+      "text": "Ich heiße Maria. Ich komme aus Russland. Meine Familie wohnt in Moskau. Ich wohne in Deutschland. Ich spreche Russisch und Deutsch. Ich bin 28 Jahre alt. Meine Mutter ist 55 Jahre alt.",
       "questions": [
         {
-          "question": "Wie alt ist Peter?",
+          "question": "Wie heißt die Frau?",
+          "options": ["Anna", "Maria", "Julia"],
+          "answer": 1
+        },
+        {
+          "question": "Wo wohnt die Familie von Maria?",
+          "options": ["In Berlin", "In Moskau", "In Hamburg"],
+          "answer": 1
+        },
+        {
+          "question": "Wie alt ist Maria?",
           "options": ["25 Jahre", "28 Jahre", "30 Jahre"],
+          "answer": 1
+        },
+        {
+          "question": "Wie alt ist die Mutter von Maria?",
+          "options": ["50 Jahre", "55 Jahre", "60 Jahre"],
+          "answer": 1
+        }
+      ]
+    },
+    {
+      "id": "monolog_3",
+      "title": "Reise nach Deutschland",
+      "text": "Ich heiße Julia. Ich komme aus Italien. Ich spreche Italienisch und Englisch. Ich lerne Deutsch. Ich bin 24 Jahre alt. Ich wohne jetzt in Berlin. Ich mag die Stadt.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Anna", "Maria", "Julia"],
           "answer": 2
         },
         {
-          "question": "Wie alt ist der Bruder von Maria?",
-          "options": ["25 Jahre", "28 Jahre", "30 Jahre"],
+          "question": "Woher kommt Julia?",
+          "options": ["Aus Italien", "Aus Deutschland", "Aus Russland"],
+          "answer": 0
+        },
+        {
+          "question": "Welche Sprachen spricht Julia?",
+          "options": ["Italienisch und Englisch", "Deutsch und Italienisch", "Englisch und Deutsch"],
+          "answer": 0
+        },
+        {
+          "question": "Wie alt ist Julia?",
+          "options": ["22 Jahre", "24 Jahre", "26 Jahre"],
+          "answer": 1
+        },
+        {
+          "question": "Wo wohnt Julia jetzt?",
+          "options": ["In Berlin", "In München", "In Hamburg"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_4",
+      "title": "Zahlen im Alltag",
+      "text": "Ich heiße Laura. Ich bin 32 Jahre alt. Ich habe zwei Kinder. Mein Sohn ist 8 Jahre alt. Meine Tochter ist 5 Jahre alt. Wir wohnen in Frankfurt. Ich spreche Deutsch und Englisch.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Laura", "Lisa", "Anna"],
+          "answer": 0
+        },
+        {
+          "question": "Wie alt ist Laura?",
+          "options": ["30 Jahre", "32 Jahre", "35 Jahre"],
+          "answer": 1
+        },
+        {
+          "question": "Wie viele Kinder hat Laura?",
+          "options": ["Ein Kind", "Zwei Kinder", "Drei Kinder"],
+          "answer": 1
+        },
+        {
+          "question": "Wie alt ist der Sohn von Laura?",
+          "options": ["5 Jahre", "8 Jahre", "10 Jahre"],
+          "answer": 1
+        },
+        {
+          "question": "Wo wohnt Laura?",
+          "options": ["In Berlin", "In Frankfurt", "In München"],
           "answer": 1
         }
       ]
     },
     {
-      "id": "dialog_3",
-      "title": "Sprachen",
-      "text": "Julia: Sprichst du Englisch?\nMax: Nein, ich spreche kein Englisch. Ich spreche Deutsch und Türkisch.\nJulia: Ich spreche Deutsch und Englisch.\nMax: Das ist gut!",
+      "id": "monolog_5",
+      "title": "Sprachen lernen",
+      "text": "Ich heiße Lisa. Ich komme aus Finnland. Ich spreche Finnisch und Schwedisch. Ich lerne Deutsch. Deutsch ist schwer, aber ich lerne jeden Tag. Ich bin 27 Jahre alt. Ich wohne in Köln.",
       "questions": [
         {
-          "question": "Welche Sprachen spricht Max?",
-          "options": ["Deutsch und Englisch", "Deutsch und Türkisch", "Englisch und Türkisch"],
+          "question": "Wie heißt die Frau?",
+          "options": ["Laura", "Lisa", "Anna"],
           "answer": 1
         },
         {
-          "question": "Spricht Julia Türkisch?",
-          "options": ["Ja", "Nein", "Weiß nicht"],
+          "question": "Woher kommt Lisa?",
+          "options": ["Aus Finnland", "Aus Schweden", "Aus Deutschland"],
+          "answer": 0
+        },
+        {
+          "question": "Welche Sprachen spricht Lisa?",
+          "options": ["Finnisch und Schwedisch", "Deutsch und Finnisch", "Schwedisch und Deutsch"],
+          "answer": 0
+        },
+        {
+          "question": "Wie alt ist Lisa?",
+          "options": ["25 Jahre", "27 Jahre", "30 Jahre"],
+          "answer": 1
+        },
+        {
+          "question": "Wo wohnt Lisa?",
+          "options": ["In Berlin", "In Köln", "In Frankfurt"],
           "answer": 1
         }
       ]

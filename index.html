@@ -157,35 +157,6 @@ window.auth = auth;
 window.db = db;
 
 console.log('✅ Firebase инициализирован из index.html');
-
-// ===== ЗАГРУЗКА КЛЮЧЕЙ YANDEX ИЗ FIRESTORE =====
-function loadYandexConfig() {
-    console.log('📡 Загружаем ключи Yandex из Firestore...');
-    
-    db.collection('config').doc('yandex').get()
-        .then(doc => {
-            if (doc.exists) {
-                const data = doc.data();
-                console.log('📄 Ключи получены из Firestore');
-                if (data.apiKey && data.folderId && typeof initYandexTTS === 'function') {
-                    const result = initYandexTTS(data.apiKey, data.folderId);
-                    if (result) {
-                        console.log('✅ Yandex TTS инициализирован успешно!');
-                    } else {
-                        console.warn('⚠️ Ошибка инициализации Yandex TTS');
-                    }
-                }
-            } else {
-                console.warn('⚠️ Документ yandex не найден в Firestore');
-            }
-        })
-        .catch(e => {
-            console.warn('⚠️ Ошибка загрузки ключей из Firestore:', e);
-        });
-}
-
-// Загружаем ключи через 1 секунду
-setTimeout(loadYandexConfig, 1000);
 </script>
 
 <script src="js/config.js"></script>
@@ -206,43 +177,75 @@ setTimeout(loadYandexConfig, 1000);
 <script src="js/auth.js"></script>
 
 <script>
-    // ===== МОБИЛЬНОЕ МЕНЮ =====
-    document.getElementById('hamburgerBtn').onclick = function() {
-        document.getElementById('mobileMenu').classList.add('open');
-        document.getElementById('menuOverlay').classList.add('show');
-        document.body.style.overflow = 'hidden';
-    };
-    document.getElementById('closeMenuBtn').onclick = function() {
-        document.getElementById('mobileMenu').classList.remove('open');
-        document.getElementById('menuOverlay').classList.remove('show');
-        document.body.style.overflow = '';
-    };
-    document.getElementById('menuOverlay').onclick = function() {
-        document.getElementById('mobileMenu').classList.remove('open');
-        document.getElementById('menuOverlay').classList.remove('show');
-        document.body.style.overflow = '';
-    };
-
-    // ===== КНОПКА ПОДЕЛИТЬСЯ =====
-    document.querySelectorAll('.share-btn').forEach(function(btn) {
-        btn.onclick = function() {
-            if (navigator.share) {
-                navigator.share({
-                    title: 'Deutsch-Meister',
-                    text: '🇩🇪 Учите немецкий язык с Deutsch-Meister!',
-                    url: window.location.href
-                }).catch(function() {});
+// ===== ЗАГРУЗКА КЛЮЧЕЙ YANDEX ИЗ FIRESTORE =====
+function loadYandexConfig() {
+    console.log('📡 Загружаем ключи Yandex из Firestore...');
+    
+    db.collection('config').doc('yandex').get()
+        .then(doc => {
+            if (doc.exists) {
+                const data = doc.data();
+                console.log('📄 Ключи получены из Firestore');
+                if (data.apiKey && data.folderId && typeof initYandexTTS === 'function') {
+                    console.log('🔑 Вызываем initYandexTTS...');
+                    const result = initYandexTTS(data.apiKey, data.folderId);
+                    if (result) {
+                        console.log('✅ Yandex TTS инициализирован успешно!');
+                    } else {
+                        console.warn('⚠️ Ошибка инициализации Yandex TTS');
+                    }
+                } else {
+                    console.warn('⚠️ initYandexTTS не найден или нет данных');
+                }
             } else {
-                navigator.clipboard.writeText(window.location.href).then(function() {
-                    alert('✅ Ссылка скопирована!');
-                }).catch(function() {
-                    prompt('Скопируйте ссылку:', window.location.href);
-                });
+                console.warn('⚠️ Документ yandex не найден в Firestore');
             }
-        };
-    });
+        })
+        .catch(e => {
+            console.warn('⚠️ Ошибка загрузки ключей из Firestore:', e);
+        });
+}
 
-    console.log('✅ Страница загружена');
+// Загружаем ключи через 1.5 секунды (после загрузки всех скриптов)
+setTimeout(loadYandexConfig, 1500);
+
+// ===== МОБИЛЬНОЕ МЕНЮ =====
+document.getElementById('hamburgerBtn').onclick = function() {
+    document.getElementById('mobileMenu').classList.add('open');
+    document.getElementById('menuOverlay').classList.add('show');
+    document.body.style.overflow = 'hidden';
+};
+document.getElementById('closeMenuBtn').onclick = function() {
+    document.getElementById('mobileMenu').classList.remove('open');
+    document.getElementById('menuOverlay').classList.remove('show');
+    document.body.style.overflow = '';
+};
+document.getElementById('menuOverlay').onclick = function() {
+    document.getElementById('mobileMenu').classList.remove('open');
+    document.getElementById('menuOverlay').classList.remove('show');
+    document.body.style.overflow = '';
+};
+
+// ===== КНОПКА ПОДЕЛИТЬСЯ =====
+document.querySelectorAll('.share-btn').forEach(function(btn) {
+    btn.onclick = function() {
+        if (navigator.share) {
+            navigator.share({
+                title: 'Deutsch-Meister',
+                text: '🇩🇪 Учите немецкий язык с Deutsch-Meister!',
+                url: window.location.href
+            }).catch(function() {});
+        } else {
+            navigator.clipboard.writeText(window.location.href).then(function() {
+                alert('✅ Ссылка скопирована!');
+            }).catch(function() {
+                prompt('Скопируйте ссылку:', window.location.href);
+            });
+        }
+    };
+});
+
+console.log('✅ Страница загружена');
 </script>
 
 </body>

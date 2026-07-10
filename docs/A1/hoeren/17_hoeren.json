@@ -1,0 +1,147 @@
+{
+  "lesson": 17,
+  "level": "A1",
+  "title": "Письменная коммуникация: письма и анкеты",
+  "dialogs": [
+    {
+      "id": "monolog_1",
+      "title": "Mein Brief an eine Freundin",
+      "text": "Ich heiße Anna. Ich schreibe einen Brief an meine Freundin. Ich schreibe: 'Liebe Maria'. Ich schreibe über meine Familie und meine Arbeit. Ich schreibe auch über mein Hobby. Am Ende schreibe ich 'Viele Grüße'.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Anna", "Maria", "Julia"],
+          "answer": 0
+        },
+        {
+          "question": "An wen schreibt Anna einen Brief?",
+          "options": ["An ihre Freundin", "An ihre Mutter", "An ihren Bruder"],
+          "answer": 0
+        },
+        {
+          "question": "Was schreibt Anna in den Brief?",
+          "options": ["Über ihre Familie, Arbeit und Hobby", "Über ihre Reise", "Über ihr Studium"],
+          "answer": 0
+        },
+        {
+          "question": "Was schreibt Anna am Ende des Briefes?",
+          "options": ["Viele Grüße", "Liebe Grüße", "Tschüss"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_2",
+      "title": "Eine E-Mail schreiben",
+      "text": "Ich heiße Maria. Ich schreibe oft E-Mails. Ich schreibe: 'Lieber Tom' in der E-Mail. Ich schreibe über meinen neuen Job. Ich schreibe 'Bitte antworte bald'. Am Ende schreibe ich 'Liebe Grüße'. Ich schicke die E-Mail ab.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Anna", "Maria", "Julia"],
+          "answer": 1
+        },
+        {
+          "question": "Was macht Maria oft?",
+          "options": ["Sie schreibt E-Mails", "Sie liest Briefe", "Sie telefoniert"],
+          "answer": 0
+        },
+        {
+          "question": "Was schreibt Maria in der E-Mail?",
+          "options": ["Über ihren neuen Job", "Über ihre Reise", "Über ihre Familie"],
+          "answer": 0
+        },
+        {
+          "question": "Was schreibt Maria am Ende der E-Mail?",
+          "options": ["Liebe Grüße", "Viele Grüße", "Tschüss"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_3",
+      "title": "Eine Anmeldung für einen Deutschkurs",
+      "text": "Ich heiße Julia. Ich möchte einen Deutschkurs machen. Ich fülle ein Formular aus: Vorname, Nachname, Adresse, Telefonnummer. Ich schreibe mein Geburtsdatum. Ich schreibe meinen Beruf. Ich unterschreibe das Formular.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Anna", "Maria", "Julia"],
+          "answer": 2
+        },
+        {
+          "question": "Was möchte Julia machen?",
+          "options": ["Einen Deutschkurs", "Einen Englischkurs", "Einen Französischkurs"],
+          "answer": 0
+        },
+        {
+          "question": "Was muss Julia im Formular schreiben?",
+          "options": ["Vorname, Nachname, Adresse, Telefonnummer", "Nur Name und Adresse", "Name, Beruf und Hobby"],
+          "answer": 0
+        },
+        {
+          "question": "Was unterschreibt Julia?",
+          "options": ["Das Formular", "Den Brief", "Die E-Mail"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_4",
+      "title": "Meine Adresse",
+      "text": "Ich heiße Laura. Ich wohne in der Hauptstraße 15. Meine Postleitzahl ist 50667. Ich wohne in Köln. Ich schreibe meine Adresse in mein Formular. Ich schreibe: 'Frau Laura Weber'. Meine Telefonnummer ist 0176 1234567.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Laura", "Lisa", "Anna"],
+          "answer": 0
+        },
+        {
+          "question": "Wie lautet Lauras Straße?",
+          "options": ["Hauptstraße 15", "Hauptstraße 10", "Berliner Straße 5"],
+          "answer": 0
+        },
+        {
+          "question": "Wie lautet Lauras Postleitzahl?",
+          "options": ["50667", "50668", "50669"],
+          "answer": 0
+        },
+        {
+          "question": "Wie heißt Laura mit Nachnamen?",
+          "options": ["Weber", "Müller", "Schmidt"],
+          "answer": 0
+        },
+        {
+          "question": "Wie lautet Lauras Telefonnummer?",
+          "options": ["0176 1234567", "0176 1234568", "0176 1234569"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_5",
+      "title": "Eine Einladung",
+      "text": "Ich heiße Lisa. Ich schreibe eine Einladung an meine Freundin. Ich schreibe: 'Liebe Anna, ich lade dich zu meinem Geburtstag ein'. Der Geburtstag ist am Samstag. Ich schreibe die Adresse und die Zeit. Am Ende schreibe ich 'Bitte antworte'.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Laura", "Lisa", "Anna"],
+          "answer": 1
+        },
+        {
+          "question": "Was schreibt Lisa?",
+          "options": ["Eine Einladung", "Einen Brief", "Eine E-Mail"],
+          "answer": 0
+        },
+        {
+          "question": "Wann ist der Geburtstag von Lisa?",
+          "options": ["Am Samstag", "Am Sonntag", "Am Freitag"],
+          "answer": 0
+        },
+        {
+          "question": "Was schreibt Lisa am Ende der Einladung?",
+          "options": ["Bitte antworte", "Viele Grüße", "Tschüss"],
+          "answer": 0
+        }
+      ]
+    }
+  ]
+}

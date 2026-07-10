@@ -6,6 +6,7 @@ let listeningData = null;
 let currentDialogIndex = 0;
 let selectedAnswers = {};
 let isTextVisible = false;
+let isSpeaking = false;
 
 // ========== ОСНОВНАЯ ФУНКЦИЯ ==========
 function renderListening(container, lesson) {
@@ -57,8 +58,17 @@ function parseDialog(text) {
     }).filter(s => s !== null);
 }
 
-// ========== ОЗВУЧИВАНИЕ ТЕКУЩЕГО ДИАЛОГА (БРАУЗЕРНЫЙ СИНТЕЗАТОР) ==========
+// ========== ОЗВУЧИВАНИЕ ТЕКУЩЕГО ДИАЛОГА ==========
 function speakCurrentDialog() {
+    // Если уже говорит, отменяем
+    if (isSpeaking) {
+        window.speechSynthesis.cancel();
+        isSpeaking = false;
+        // Даём время на отмену
+        setTimeout(() => speakCurrentDialog(), 300);
+        return;
+    }
+    
     if (!listeningData) {
         console.warn('⚠️ listeningData не загружен');
         return;
@@ -85,34 +95,52 @@ function speakCurrentDialog() {
         return;
     }
     
-    // ВОСПРОИЗВЕДЕНИЕ РЕПЛИК ПО ОЧЕРЕДИ
+    isSpeaking = true;
     let index = 0;
     
-    function playNext() {
+    function speakNext() {
         if (index >= speeches.length) {
+            isSpeaking = false;
             console.log('✅ Озвучка диалога завершена');
             return;
         }
         
         const speech = speeches[index];
-        // Убираем имя говорящего из текста для озвучки
         const cleanText = speech.text;
         
         console.log(`🗣️ ${speech.speaker}: ${cleanText}`);
         
-        // Используем браузерный синтезатор
-        if (typeof window.speak === 'function') {
-            window.speak(cleanText);
-            index++;
-            setTimeout(playNext, 600);
-        } else {
-            console.warn('⚠️ Озвучка не доступна');
-            index++;
-            setTimeout(playNext, 100);
+        // Создаём utterance для озвучки
+        const utterance = new SpeechSynthesisUtterance(cleanText);
+        utterance.lang = 'de-DE';
+        utterance.rate = 0.9;
+        utterance.pitch = 1.0;
+        
+        // Находим немецкий голос
+        const voices = window.speechSynthesis.getVoices();
+        const germanVoice = voices.find(v => v.lang === 'de-DE' || v.lang === 'de');
+        if (germanVoice) {
+            utterance.voice = germanVoice;
         }
+        
+        // После окончания — переходим к следующей фразе
+        utterance.onend = function() {
+            index++;
+            setTimeout(speakNext, 400);
+        };
+        
+        // При ошибке — переходим к следующей
+        utterance.onerror = function(e) {
+            console.warn('Ошибка озвучки:', e);
+            index++;
+            setTimeout(speakNext, 400);
+        };
+        
+        // Запускаем озвучку
+        window.speechSynthesis.speak(utterance);
     }
     
-    playNext();
+    speakNext();
 }
 
 window._speakDialog = speakCurrentDialog;
@@ -237,6 +265,12 @@ function selectListeningAnswer(dialogId, qIndex, value) {
 
 // ========== ПЕРЕКЛЮЧЕНИЕ ДИАЛОГОВ ==========
 function prevListeningDialog() {
+    // Останавливаем озвучку
+    if (isSpeaking) {
+        window.speechSynthesis.cancel();
+        isSpeaking = false;
+    }
+    
     if (currentDialogIndex > 0) {
         currentDialogIndex--;
         selectedAnswers = {};
@@ -247,6 +281,12 @@ function prevListeningDialog() {
 }
 
 function nextListeningDialog() {
+    // Останавливаем озвучку
+    if (isSpeaking) {
+        window.speechSynthesis.cancel();
+        isSpeaking = false;
+    }
+    
     if (listeningData && currentDialogIndex < listeningData.dialogs.length - 1) {
         currentDialogIndex++;
         selectedAnswers = {};

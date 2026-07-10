@@ -151,15 +151,21 @@
     // ===== ИНИЦИАЛИЗАЦИЯ YANDEX TTS ИЗ FIRESTORE =====
     function loadYandexConfig() {
         if (typeof db === 'undefined' || !db) {
+            console.log('⏳ Ждём Firebase...');
             setTimeout(loadYandexConfig, 500);
             return;
         }
         
+        console.log('📡 Загружаем ключи из Firestore...');
+        
         db.collection('config').doc('yandex').get()
             .then(doc => {
+                console.log('📄 Документ получен, exists:', doc.exists);
                 if (doc.exists) {
                     const data = doc.data();
+                    console.log('📄 Данные:', data);
                     if (data.apiKey && data.folderId && typeof initYandexTTS === 'function') {
+                        console.log('🔑 Инициализация Yandex TTS с ключами из Firestore...');
                         const result = initYandexTTS(data.apiKey, data.folderId);
                         if (result) {
                             console.log('✅ Yandex TTS инициализирован успешно!');
@@ -178,8 +184,8 @@
             });
     }
     
-    // Запускаем загрузку конфигурации
-    setTimeout(loadYandexConfig, 1000);
+    // Запускаем через 2 секунды, чтобы Firebase успел инициализироваться
+    setTimeout(loadYandexConfig, 2000);
 
     // ===== МОБИЛЬНОЕ МЕНЮ =====
     document.getElementById('hamburgerBtn').onclick = function() {

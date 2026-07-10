@@ -114,6 +114,7 @@ body { font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-
 .ctrl-btn:active { transform: scale(0.95); box-shadow: 0 1px 2px rgba(0,0,0,0.1); }
 
 .check-btn { background: #3B6FE0 !important; color: white !important; border-color: #2B5BC7 !important; }
+.check-btn:active { transform: scale(0.95); box-shadow: 0 1px 2px rgba(0,0,0,0.1); }
 
 .dir-btn { background: #3B6FE0; color: white; padding: 6px 14px; border: none; border-radius: 8px; cursor: pointer; margin-bottom: 10px; font-weight: bold; font-size: 13px; box-shadow: 0 3px 5px rgba(0,0,0,0.2); transition: all 0.08s ease; }
 .dir-btn:active { transform: scale(0.95); box-shadow: 0 1px 3px rgba(0,0,0,0.2); }
@@ -149,7 +150,92 @@ body { font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-
     box-shadow: 0 1px 2px rgba(0,0,0,0.1);
 }
 
-/* ========== МОБИЛЬНАЯ АДАПТАЦИЯ ========== */
+/* ===== КНОПКИ С ЭФФЕКТОМ НАЖАТИЯ (дополнительно) ===== */
+.back-btn,
+.mode-btn,
+.lesson-btn,
+.ctrl-btn,
+.dir-btn,
+.speak-btn,
+.share-btn,
+.btn-login,
+#listenBtn,
+.hint-btn,
+#resetDictationBtn,
+#resetPracticeBtn,
+#trainerUndoBtn,
+#trainerResetBtn,
+#trainerCheckBtn,
+#trainerSpeakBtn,
+#trainerHintBtn,
+#trainerStudyBtn,
+#trainerContainerBtn,
+#trainerPrevBtn,
+#trainerNextBtn,
+#trainerResetStartBtn,
+#quizStudyBtn,
+#quizContainerBtn,
+#quizPrevBtn,
+#quizNextBtn,
+#quizResetStartBtn,
+#quizDirBtn,
+.return-item-btn,
+#returnAllBtn,
+#closeContainerBtn {
+    transition: all 0.08s ease;
+    cursor: pointer;
+}
+.back-btn:active,
+.mode-btn:active,
+.lesson-btn:active,
+.ctrl-btn:active,
+.dir-btn:active,
+.speak-btn:active,
+.share-btn:active,
+.btn-login:active,
+#listenBtn:active,
+.hint-btn:active,
+#resetDictationBtn:active,
+#resetPracticeBtn:active,
+#trainerUndoBtn:active,
+#trainerResetBtn:active,
+#trainerCheckBtn:active,
+#trainerSpeakBtn:active,
+#trainerHintBtn:active,
+#trainerStudyBtn:active,
+#trainerContainerBtn:active,
+#trainerPrevBtn:active,
+#trainerNextBtn:active,
+#trainerResetStartBtn:active,
+#quizStudyBtn:active,
+#quizContainerBtn:active,
+#quizPrevBtn:active,
+#quizNextBtn:active,
+#quizResetStartBtn:active,
+#quizDirBtn:active,
+.return-item-btn:active,
+#returnAllBtn:active,
+#closeContainerBtn:active {
+    transform: scale(0.95);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.15);
+}
+
+/* Специально для кнопки "ПРОСЛУШАТЬ" — чтобы тень не пропадала */
+#listenBtn {
+    box-shadow: 0 2px 8px rgba(59, 111, 224, 0.3);
+}
+#listenBtn:active {
+    transform: scale(0.95);
+    box-shadow: 0 1px 4px rgba(59, 111, 224, 0.2);
+}
+
+/* Специально для кнопки "ПРОВЕРИТЬ" в упражнениях */
+.check-btn:active {
+    transform: scale(0.95);
+    box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+}
+
+/* ===== МОБИЛЬНАЯ АДАПТАЦИЯ ===== */
 
 @media (max-width: 1024px) {
     .card-word { font-size: 28px; }
@@ -263,43 +349,6 @@ body { font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-
 #counter {
     font-size: 12px;
     color: #888;
-}
-
-/* ===== КНОПКИ С ЭФФЕКТОМ НАЖАТИЯ (дополнительно) ===== */
-.back-btn,
-.mode-btn,
-.lesson-btn,
-.check-btn,
-.ctrl-btn,
-.dir-btn,
-.speak-btn,
-.share-btn,
-.btn-login,
-#listenBtn {
-    transition: all 0.08s ease;
-    cursor: pointer;
-}
-.back-btn:active,
-.mode-btn:active,
-.lesson-btn:active,
-.check-btn:active,
-.ctrl-btn:active,
-.dir-btn:active,
-.speak-btn:active,
-.share-btn:active,
-.btn-login:active,
-#listenBtn:active {
-    transform: scale(0.95);
-    box-shadow: 0 1px 3px rgba(0,0,0,0.15);
-}
-
-/* Специально для кнопки "ПРОСЛУШАТЬ" — чтобы тень не пропадала */
-#listenBtn {
-    box-shadow: 0 2px 8px rgba(59, 111, 224, 0.3);
-}
-#listenBtn:active {
-    transform: scale(0.95);
-    box-shadow: 0 1px 4px rgba(59, 111, 224, 0.2);
 }
 
 /* ===== ТЕЛЕФОНЫ ===== */

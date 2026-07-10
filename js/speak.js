@@ -6,7 +6,7 @@ let cachedGermanVoice = null;
 let voicesLoaded = false;
 
 // ========== ПОЛУЧЕНИЕ ЛУЧШЕГО НЕМЕЦКОГО ГОЛОСА ==========
-function getGermanVoice() {
+function getGermanVoice() {.
     if (cachedGermanVoice) return cachedGermanVoice;
     
     const voices = window.speechSynthesis.getVoices();

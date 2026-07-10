@@ -1,5 +1,5 @@
 // ====================================================================
-// listeningMode.js — Аудирование (Hörverstehen) с Yandex TTS
+// listeningMode.js — Аудирование (Hörverstehen)
 // ====================================================================
 
 let listeningData = null;
@@ -42,16 +42,6 @@ function renderListening(container, lesson) {
         });
 }
 
-// ========== ОЧИСТКА ТЕКСТА ОТ ИМЁН ==========
-function cleanTextFromNames(text) {
-    return text
-        .replace(/^[A-ZÄÖÜ][a-zäöüß]*:\s*/gm, '')
-        .trim()
-        .replace(/\n/g, ' ')
-        .replace(/\s+/g, ' ')
-        .trim();
-}
-
 // ========== РАЗБОР ДИАЛОГА НА РЕПЛИКИ ==========
 function parseDialog(text) {
     const lines = text.split('\n').filter(line => line.trim() !== '');
@@ -67,7 +57,7 @@ function parseDialog(text) {
     }).filter(s => s !== null);
 }
 
-// ========== ОЗВУЧИВАНИЕ ТЕКУЩЕГО ДИАЛОГА (С РАЗНЫМИ ГОЛОСАМИ) ==========
+// ========== ОЗВУЧИВАНИЕ ТЕКУЩЕГО ДИАЛОГА (БРАУЗЕРНЫЙ СИНТЕЗАТОР) ==========
 function speakCurrentDialog() {
     if (!listeningData) {
         console.warn('⚠️ listeningData не загружен');
@@ -105,39 +95,17 @@ function speakCurrentDialog() {
         }
         
         const speech = speeches[index];
-        const cleanText = cleanTextFromNames(speech.text);
+        // Убираем имя говорящего из текста для озвучки
+        const cleanText = speech.text;
         
         console.log(`🗣️ ${speech.speaker}: ${cleanText}`);
         
-        // ===== ИСПОЛЬЗУЕМ YANDEX TTS С РАЗНЫМИ ГОЛОСАМИ =====
-        if (typeof window.speakWithYandex === 'function' && typeof window.getVoiceForSpeaker === 'function') {
-            const voice = window.getVoiceForSpeaker(speech.speaker);
-            console.log(`🎤 Голос для ${speech.speaker}: ${voice}`);
-            
-            window.speakWithYandex(cleanText, voice)
-                .then(() => {
-                    index++;
-                    setTimeout(playNext, 500);
-                })
-                .catch((error) => {
-                    console.warn('⚠️ Yandex TTS ошибка, переключаемся на fallback:', error);
-                    if (typeof window.speak === 'function') {
-                        window.speak(cleanText);
-                        index++;
-                        setTimeout(playNext, 600);
-                    } else {
-                        index++;
-                        setTimeout(playNext, 100);
-                    }
-                });
-        } 
-        // Fallback на стандартную озвучку
-        else if (typeof window.speak === 'function') {
+        // Используем браузерный синтезатор
+        if (typeof window.speak === 'function') {
             window.speak(cleanText);
             index++;
             setTimeout(playNext, 600);
-        } 
-        else {
+        } else {
             console.warn('⚠️ Озвучка не доступна');
             index++;
             setTimeout(playNext, 100);
@@ -147,7 +115,6 @@ function speakCurrentDialog() {
     playNext();
 }
 
-// Сохраняем функцию в глобальную область для доступа из HTML
 window._speakDialog = speakCurrentDialog;
 
 // ========== ОТОБРАЖЕНИЕ ДИАЛОГА ==========

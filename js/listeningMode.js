@@ -294,7 +294,7 @@ function nextListeningDialog() {
     }
 }
 
-// ========== ПРОВЕРКА ОТВЕТОВ (С ПОДСВЕТКОЙ) ==========
+// ========== ПРОВЕРКА ОТВЕТОВ (БЕЗ ПОДСКАЗОК) ==========
 function checkListeningAnswers() {
     if (!listeningData) return;
     const dialog = listeningData.dialogs[currentDialogIndex];
@@ -347,8 +347,7 @@ function checkListeningAnswers() {
             let feedback = document.createElement('div');
             feedback.className = 'question-feedback';
             feedback.style.cssText = 'margin-top: 6px; font-size: 13px; font-weight: bold; color: #F44336;';
-            const correctOption = q.options[q.answer];
-            feedback.textContent = `❌ Неправильно. Правильный ответ: "${correctOption}"`;
+            feedback.textContent = '❌ Неправильно. Попробуйте снова!';
             questionDiv.appendChild(feedback);
         }
     });

@@ -136,29 +136,6 @@
 <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
 
-<script>
-// ===== КОНФИГУРАЦИЯ FIREBASE =====
-const firebaseConfig = {
-    apiKey: "AIzaSyAUj_2cLQyWvs2JTT7Zl2BYox0krDb3X7I",
-    authDomain: "deutsch-meister-248cf.firebaseapp.com",
-    projectId: "deutsch-meister-248cf",
-    storageBucket: "deutsch-meister-248cf.firebasestorage.app",
-    messagingSenderId: "549700335996",
-    appId: "1:549700335996:web:97ed9e8f91224e34ab0cf9"
-};
-
-// Инициализируем Firebase
-firebase.initializeApp(firebaseConfig);
-const auth = firebase.auth();
-const db = firebase.firestore();
-
-// Делаем глобально доступным
-window.auth = auth;
-window.db = db;
-
-console.log('✅ Firebase инициализирован из index.html');
-</script>
-
 <script src="js/config.js"></script>
 <script src="js/utils.js"></script>
 <script src="js/logger.js"></script>
@@ -180,6 +157,13 @@ console.log('✅ Firebase инициализирован из index.html');
 // ===== ЗАГРУЗКА КЛЮЧЕЙ YANDEX ИЗ FIRESTORE =====
 function loadYandexConfig() {
     console.log('📡 Загружаем ключи Yandex из Firestore...');
+    
+    // Ждём, пока Firebase инициализируется в auth.js
+    if (typeof db === 'undefined' || !db) {
+        console.log('⏳ Ждём Firebase...');
+        setTimeout(loadYandexConfig, 500);
+        return;
+    }
     
     db.collection('config').doc('yandex').get()
         .then(doc => {
@@ -206,8 +190,8 @@ function loadYandexConfig() {
         });
 }
 
-// Загружаем ключи через 1.5 секунды (после загрузки всех скриптов)
-setTimeout(loadYandexConfig, 1500);
+// Запускаем загрузку ключей
+setTimeout(loadYandexConfig, 2000);
 
 // ===== МОБИЛЬНОЕ МЕНЮ =====
 document.getElementById('hamburgerBtn').onclick = function() {

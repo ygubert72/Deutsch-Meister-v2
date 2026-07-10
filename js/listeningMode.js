@@ -347,7 +347,7 @@ function checkListeningAnswers() {
             let feedback = document.createElement('div');
             feedback.className = 'question-feedback';
             feedback.style.cssText = 'margin-top: 6px; font-size: 13px; font-weight: bold; color: #F44336;';
-            feedback.textContent = '❌ Неправильно. Попробуйте снова!';
+            feedback.textContent = '❌ Неправильно. Попробуйте снова.';
             questionDiv.appendChild(feedback);
         }
     });

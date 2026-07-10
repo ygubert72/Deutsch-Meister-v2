@@ -101,6 +101,48 @@ function speak(text) {
     }
 }
 
+// ========== ОЗВУЧКА С ЗАДАННОЙ СКОРОСТЬЮ ==========
+function speakWithSpeed(text, speed = 0.85) {
+    if (!text || !window.speechSynthesis) {
+        console.warn('🔇 Нет текста или speechSynthesis не поддерживается');
+        return;
+    }
+    
+    const clean = text.replace(/[^\w\s\-äöüßÄÖÜ,?!.]/g, '');
+    if (!clean.trim()) {
+        console.warn('🔇 Текст пуст после очистки');
+        return;
+    }
+    
+    try {
+        window.speechSynthesis.cancel();
+        
+        const utterance = new SpeechSynthesisUtterance(clean);
+        utterance.lang = 'de-DE';
+        utterance.rate = speed;      // ← переданная скорость (0.85 или 0.6)
+        utterance.pitch = 1.0;
+        utterance.volume = 1.0;
+        
+        const voice = getGermanVoice();
+        if (voice) {
+            utterance.voice = voice;
+        }
+        
+        utterance.onstart = function() {
+            console.log(`🔊 Озвучка (${speed}×):`, clean.substring(0, 40) + (clean.length > 40 ? '...' : ''));
+        };
+        
+        utterance.onerror = function(e) {
+            console.warn('🔊 Ошибка озвучки:', e);
+        };
+        
+        window.speechSynthesis.speak(utterance);
+        
+    } catch(e) {
+        console.error('🔊 Критическая ошибка озвучки:', e);
+    }
+}
+
 // ========== ПРОВЕРКА ДОСТУПНЫХ ГОЛОСОВ (ДЛЯ ОТЛАДКИ) ==========
 function checkVoices() {
     if (!window.speechSynthesis) {
@@ -127,8 +169,9 @@ if (typeof window !== 'undefined') {
     setTimeout(preloadVoices, 3000);
 }
 
-// Экспортируем функции
+// ========== ЭКСПОРТ ==========
 window.speak = speak;
+window.speakWithSpeed = speakWithSpeed;
 window.checkVoices = checkVoices;
 
 console.log('🔊 speak.js загружен');

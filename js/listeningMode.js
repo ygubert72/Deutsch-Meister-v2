@@ -1,13 +1,11 @@
 // ====================================================================
-// listeningMode.js — Аудирование (Hörverstehen)
+// listeningMode.js — Аудирование (Hörverstehen) — монологи
 // ====================================================================
 
 let listeningData = null;
 let currentDialogIndex = 0;
 let selectedAnswers = {};
 let isTextVisible = false;
-let isSpeaking = false;
-let currentUtterance = null;
 
 // ========== ОСНОВНАЯ ФУНКЦИЯ ==========
 function renderListening(container, lesson) {
@@ -44,50 +42,8 @@ function renderListening(container, lesson) {
         });
 }
 
-// ========== РАЗБОР ДИАЛОГА НА РЕПЛИКИ ==========
-function parseDialog(text) {
-    const lines = text.split('\n').filter(line => line.trim() !== '');
-    return lines.map(line => {
-        const match = line.match(/^([A-ZÄÖÜ][a-zäöüß]*):\s*(.*)/);
-        if (match) {
-            return {
-                speaker: match[1],
-                text: match[2].trim()
-            };
-        }
-        return null;
-    }).filter(s => s !== null);
-}
-
-// ========== ОБНОВЛЕНИЕ КНОПКИ ==========
-function updateListeningButton(active) {
-    const btn = document.getElementById('listenBtn');
-    if (!btn) return;
-    
-    if (active) {
-        btn.innerHTML = '⏹️ ОСТАНОВИТЬ';
-        btn.style.background = '#F44336';
-        btn.style.transform = 'scale(0.95)';
-        btn.style.boxShadow = 'none';
-    } else {
-        btn.innerHTML = '🔊 ПРОСЛУШАТЬ';
-        btn.style.background = '#3B6FE0';
-        btn.style.transform = 'scale(1)';
-        btn.style.boxShadow = '0 2px 8px rgba(59,111,224,0.3)';
-    }
-}
-
-// ========== ОЗВУЧИВАНИЕ ТЕКУЩЕГО ДИАЛОГА ==========
+// ========== ОЗВУЧИВАНИЕ ТЕКУЩЕГО МОНОЛОГА ==========
 function speakCurrentDialog() {
-    // Если уже говорит — останавливаем
-    if (isSpeaking) {
-        window.speechSynthesis.cancel();
-        isSpeaking = false;
-        updateListeningButton(false);
-        console.log('⏹️ Озвучка остановлена');
-        return;
-    }
-    
     if (!listeningData) {
         console.warn('⚠️ listeningData не загружен');
         return;
@@ -95,103 +51,36 @@ function speakCurrentDialog() {
     
     const dialogs = listeningData.dialogs;
     if (!dialogs || dialogs.length === 0) {
-        console.warn('⚠️ Нет диалогов');
+        console.warn('⚠️ Нет монологов');
         return;
     }
     
     const dialog = dialogs[currentDialogIndex];
     if (!dialog) {
-        console.warn('⚠️ Диалог не найден, индекс:', currentDialogIndex);
+        console.warn('⚠️ Монолог не найден, индекс:', currentDialogIndex);
         return;
     }
     
-    console.log('🎤 Озвучивание диалога:', dialog.title);
+    console.log('🎤 Озвучивание монолога:', dialog.title);
     
-    const speeches = parseDialog(dialog.text);
+    // Очищаем текст (убираем лишние пробелы, но сохраняем структуру)
+    const cleanText = dialog.text.trim();
     
-    if (speeches.length === 0) {
-        console.warn('⚠️ Не удалось разобрать диалог на реплики');
-        return;
+    console.log('🔊 Текст:', cleanText);
+    
+    if (typeof window.speak === 'function') {
+        window.speak(cleanText);
+    } else {
+        console.warn('⚠️ speak.js не загружен');
     }
-    
-    isSpeaking = true;
-    updateListeningButton(true);
-    let index = 0;
-    
-    function speakNext() {
-        if (index >= speeches.length || !isSpeaking) {
-            isSpeaking = false;
-            updateListeningButton(false);
-            console.log('✅ Озвучка диалога завершена');
-            return;
-        }
-        
-        const speech = speeches[index];
-        const cleanText = speech.text;
-        
-        console.log(`🗣️ ${speech.speaker}: ${cleanText}`);
-        
-        // Подсвечиваем текущую реплику
-        highlightCurrentSpeech(index);
-        
-        const utterance = new SpeechSynthesisUtterance(cleanText);
-        utterance.lang = 'de-DE';
-        utterance.rate = 0.85;
-        utterance.pitch = 1.0;
-        
-        const voices = window.speechSynthesis.getVoices();
-        const germanVoice = voices.find(v => v.lang === 'de-DE' || v.lang === 'de');
-        if (germanVoice) {
-            utterance.voice = germanVoice;
-        }
-        
-        currentUtterance = utterance;
-        
-        utterance.onend = function() {
-            if (!isSpeaking) return;
-            index++;
-            setTimeout(speakNext, 400);
-        };
-        
-        utterance.onerror = function(e) {
-            if (e.error === 'canceled') {
-                console.log('⏹️ Озвучка отменена');
-                return;
-            }
-            console.warn('Ошибка озвучки:', e);
-            if (!isSpeaking) return;
-            index++;
-            setTimeout(speakNext, 400);
-        };
-        
-        window.speechSynthesis.speak(utterance);
-    }
-    
-    speakNext();
-}
-
-// ========== ПОДСВЕТКА ТЕКУЩЕЙ РЕПЛИКИ ==========
-function highlightCurrentSpeech(index) {
-    const items = document.querySelectorAll('.speech-line');
-    items.forEach((el, i) => {
-        if (i === index) {
-            el.style.background = '#E3F2FD';
-            el.style.borderLeft = '4px solid #3B6FE0';
-            el.style.paddingLeft = '12px';
-        } else {
-            el.style.background = 'transparent';
-            el.style.borderLeft = 'none';
-            el.style.paddingLeft = '0';
-        }
-    });
 }
 
 window._speakDialog = speakCurrentDialog;
 
-// ========== ОТОБРАЖЕНИЕ ДИАЛОГА ==========
+// ========== ОТОБРАЖЕНИЕ МОНОЛОГА ==========
 function renderDialog(container) {
     if (!listeningData || !listeningData.dialogs || listeningData.dialogs.length === 0) {
-        container.innerHTML = '<div style="text-align:center;padding:40px;color:#999;">📭 Нет диалогов для этого урока</div>';
+        container.innerHTML = '<div style="text-align:center;padding:40px;color:#999;">📭 Нет монологов для этого урока</div>';
         return;
     }
 
@@ -206,16 +95,6 @@ function renderDialog(container) {
 
     window._toggleText = toggleText;
 
-    function cleanTextForDisplay(text) {
-        return text
-            .split('\n')
-            .map(line => line.trim())
-            .join('\n');
-    }
-
-    const displayText = cleanTextForDisplay(dialog.text);
-    const speechLines = dialog.text.split('\n').filter(line => line.trim() !== '');
-
     let html = `
         <div style="background: #f8f9fa; border-radius: 12px; padding: 20px; margin-bottom: 15px;">
             <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
@@ -224,7 +103,7 @@ function renderDialog(container) {
             </div>
             
             <div style="display: flex; gap: 10px; flex-wrap: wrap; margin: 10px 0;">
-                <button id="listenBtn" onclick="window._speakDialog()" style="padding: 8px 20px; background: #3B6FE0; color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; transition: all 0.15s ease; box-shadow: 0 2px 8px rgba(59,111,224,0.3);">
+                <button onclick="window._speakDialog()" style="padding: 8px 20px; background: #3B6FE0; color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: bold;">
                     🔊 ПРОСЛУШАТЬ
                 </button>
                 <button onclick="window._toggleText()" style="padding: 8px 20px; background: #FF9800; color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: bold;">
@@ -233,22 +112,18 @@ function renderDialog(container) {
             </div>
             
             ${isTextVisible ? `
-                <div style="background: white; border-radius: 8px; padding: 12px 15px; margin: 10px 0; border: 2px solid #FF9800;">
-                    ${speechLines.map((line, idx) => `
-                        <div class="speech-line" data-index="${idx}" style="font-family: monospace; font-size: 14px; line-height: 1.8; padding: 4px 0; transition: all 0.3s ease; border-radius: 4px; ${line.trim() === '' ? 'height: 6px;' : ''}">
-                            ${line || '&nbsp;'}
-                        </div>
-                    `).join('')}
+                <div style="background: white; border-radius: 8px; padding: 12px 15px; margin: 10px 0; border: 2px solid #FF9800; font-family: monospace; font-size: 14px; line-height: 1.8;">
+                    ${dialog.text}
                 </div>
             ` : `
                 <div style="background: #f0f0f0; border-radius: 8px; padding: 15px; margin: 10px 0; text-align: center; color: #999; border: 2px dashed #ccc;">
-                    🔒 Текст скрыт. Нажмите "Показать текст", чтобы увидеть диалог.
+                    🔒 Текст скрыт. Нажмите "Показать текст", чтобы увидеть монолог.
                 </div>
             `}
         </div>
     `;
 
-    // ВОПРОСЫ
+    // ВОПРОСЫ (всегда видны)
     html += `<div style="margin-bottom: 20px;">`;
     dialog.questions.forEach((q, qIndex) => {
         const selected = selectedAnswers[dialog.id]?.[qIndex];
@@ -296,14 +171,6 @@ function renderDialog(container) {
 
     container.innerHTML = html;
     
-    setTimeout(() => {
-        document.querySelectorAll('.speech-line').forEach(el => {
-            el.style.background = 'transparent';
-            el.style.borderLeft = 'none';
-            el.style.paddingLeft = '0';
-        });
-    }, 100);
-    
     setTimeout(updateCounter, 100);
 }
 
@@ -315,14 +182,8 @@ function selectListeningAnswer(dialogId, qIndex, value) {
     selectedAnswers[dialogId][qIndex] = value;
 }
 
-// ========== ПЕРЕКЛЮЧЕНИЕ ДИАЛОГОВ ==========
+// ========== ПЕРЕКЛЮЧЕНИЕ МОНОЛОГОВ ==========
 function prevListeningDialog() {
-    if (isSpeaking) {
-        window.speechSynthesis.cancel();
-        isSpeaking = false;
-        updateListeningButton(false);
-    }
-    
     if (currentDialogIndex > 0) {
         currentDialogIndex--;
         selectedAnswers = {};
@@ -333,12 +194,6 @@ function prevListeningDialog() {
 }
 
 function nextListeningDialog() {
-    if (isSpeaking) {
-        window.speechSynthesis.cancel();
-        isSpeaking = false;
-        updateListeningButton(false);
-    }
-    
     if (listeningData && currentDialogIndex < listeningData.dialogs.length - 1) {
         currentDialogIndex++;
         selectedAnswers = {};

@@ -33,22 +33,103 @@
     {
       "id": "monolog_2",
       "title": "Verabschiedung",
-      "text": "Ich heiße Tom. Wenn ich gehe, sage ich 'Auf Wiedersehen'. Wenn ich mit Freunden spreche, sage ich 'Tschüss'.",
+      "text": "Ich heiße Maria. Wenn ich gehe, sage ich 'Auf Wiedersehen'. Wenn ich mit Freunden spreche, sage ich 'Tschüss'.",
       "questions": [
         {
-          "question": "Wie heißt der Mann?",
-          "options": ["Tom", "Peter", "Max"],
-          "answer": 0
+          "question": "Wie heißt die Frau?",
+          "options": ["Anna", "Maria", "Lisa"],
+          "answer": 1
         },
         {
-          "question": "Was sagt Tom, wenn er geht?",
+          "question": "Was sagt Maria, wenn sie geht?",
           "options": ["Hallo", "Tschüss", "Auf Wiedersehen"],
           "answer": 2
         },
         {
-          "question": "Was sagt Tom zu Freunden?",
+          "question": "Was sagt Maria zu Freunden?",
           "options": ["Auf Wiedersehen", "Tschüss", "Guten Tag"],
           "answer": 1
+        }
+      ]
+    },
+    {
+      "id": "monolog_3",
+      "title": "Freundliche Wörter",
+      "text": "Ich heiße Julia. Ich spreche Deutsch. Wenn ich etwas möchte, sage ich 'Bitte'. Wenn ich etwas bekomme, sage ich 'Danke'. Wenn ich einen Fehler mache, sage ich 'Entschuldigung'.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Julia", "Laura", "Lisa"],
+          "answer": 0
+        },
+        {
+          "question": "Was sagt Julia, wenn sie etwas möchte?",
+          "options": ["Danke", "Bitte", "Entschuldigung"],
+          "answer": 1
+        },
+        {
+          "question": "Was sagt Julia, wenn sie etwas bekommt?",
+          "options": ["Bitte", "Entschuldigung", "Danke"],
+          "answer": 2
+        },
+        {
+          "question": "Was sagt Julia bei einem Fehler?",
+          "options": ["Bitte", "Danke", "Entschuldigung"],
+          "answer": 2
+        }
+      ]
+    },
+    {
+      "id": "monolog_4",
+      "title": "Begrüßung",
+      "text": "Ich heiße Laura. Am Morgen sage ich 'Guten Morgen'. Am Tag sage ich 'Guten Tag'. Am Abend sage ich 'Guten Abend'. Tschüss!",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Anna", "Laura", "Julia"],
+          "answer": 1
+        },
+        {
+          "question": "Was sagt Laura am Morgen?",
+          "options": ["Guten Tag", "Guten Morgen", "Guten Abend"],
+          "answer": 1
+        },
+        {
+          "question": "Was sagt Laura am Tag?",
+          "options": ["Guten Morgen", "Guten Abend", "Guten Tag"],
+          "answer": 2
+        },
+        {
+          "question": "Was sagt Laura am Abend?",
+          "options": ["Guten Morgen", "Guten Tag", "Guten Abend"],
+          "answer": 2
+        }
+      ]
+    },
+    {
+      "id": "monolog_5",
+      "title": "Freundliche Worte",
+      "text": "Ich heiße Lisa. Ich lerne Deutsch. Wenn ich etwas nicht verstehe, sage ich 'Entschuldigung'. Wenn ich etwas bekomme, sage ich 'Danke'. Das ist wichtig.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Laura", "Lisa", "Maria"],
+          "answer": 1
+        },
+        {
+          "question": "Was lernt Lisa?",
+          "options": ["Englisch", "Deutsch", "Französisch"],
+          "answer": 1
+        },
+        {
+          "question": "Was sagt Lisa, wenn sie etwas nicht versteht?",
+          "options": ["Bitte", "Danke", "Entschuldigung"],
+          "answer": 2
+        },
+        {
+          "question": "Was sagt Lisa, wenn sie etwas bekommt?",
+          "options": ["Entschuldigung", "Bitte", "Danke"],
+          "answer": 2
         }
       ]
     }

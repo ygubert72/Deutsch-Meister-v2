@@ -11,7 +11,6 @@ function renderDictation(container, lesson) {
     
     loadDictationProgress(lessonId);
     
-    // Берем предложения из загруженного урока
     let sentences = lesson.dictation || [];
     
     if (!sentences || sentences.length === 0) {
@@ -32,8 +31,13 @@ function renderDictation(container, lesson) {
                     ${allCompleted ? ' 🎉 Все выполнено!' : ''}
                 </div>
             </div>
+        </div>
+        <div style="display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 15px;">
+            <button onclick="window.history.back()" style="padding: 8px 20px; background: #3B6FE0; color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; transition: all 0.08s ease;">
+                ← К СПИСКУ УРОКОВ
+            </button>
             ${completedCount > 0 ? `
-                <button id="resetDictationBtn" style="padding: 8px 20px; background: #F44336; color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; white-space: nowrap;">
+                <button id="resetDictationBtn" style="padding: 8px 20px; background: #FF9800; color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; white-space: nowrap; box-shadow: 0 2px 8px rgba(255,152,0,0.3); transition: all 0.08s ease;">
                     🔄 СБРОСИТЬ ПРОГРЕСС
                 </button>
             ` : ''}
@@ -68,13 +72,13 @@ function renderDictation(container, lesson) {
                 <div style="display: flex; gap: 10px; flex-wrap: wrap; align-items: center; margin: 4px 0 8px 0;">
                     <button class="check-btn" data-dict-index="${index}" 
                             ${isCompleted ? 'disabled style="opacity: 0.5; cursor: not-allowed;"' : ''}
-                            style="padding: 8px 20px; background: ${isCompleted ? '#9E9E9E' : '#3B6FE0'}; color: white; border: none; border-radius: 8px; cursor: ${isCompleted ? 'not-allowed' : 'pointer'}; font-weight: bold; white-space: nowrap;">
+                            style="padding: 8px 20px; background: ${isCompleted ? '#9E9E9E' : '#3B6FE0'}; color: white; border: none; border-radius: 8px; cursor: ${isCompleted ? 'not-allowed' : 'pointer'}; font-weight: bold; white-space: nowrap; transition: all 0.08s ease;">
                         ПРОВЕРИТЬ
                     </button>
                     
                     <button class="hint-btn" data-dict-index="${index}" 
                             ${isCompleted ? 'disabled style="opacity: 0.5; cursor: not-allowed;"' : ''}
-                            style="padding: 8px 20px; background: ${isCompleted ? '#E0E0E0' : '#E8F0FE'}; color: ${isCompleted ? '#999' : '#333'}; border: ${isCompleted ? 'none' : '2px solid #D0D0D0'}; border-radius: 8px; cursor: ${isCompleted ? 'not-allowed' : 'pointer'}; font-weight: bold; white-space: nowrap;">
+                            style="padding: 8px 20px; background: ${isCompleted ? '#E0E0E0' : '#E8F0FE'}; color: ${isCompleted ? '#999' : '#333'}; border: ${isCompleted ? 'none' : '2px solid #D0D0D0'}; border-radius: 8px; cursor: ${isCompleted ? 'not-allowed' : 'pointer'}; font-weight: bold; white-space: nowrap; transition: all 0.08s ease;">
                         💡 ПОДСКАЗКА
                     </button>
                     

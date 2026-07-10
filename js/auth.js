@@ -31,6 +31,10 @@ function initFirebase() {
     
     // Делаем db доступным глобально для других скриптов
     window.db = db;
+    console.log('✅ window.db установлен из auth.js');
+    
+    // Инициализируем Yandex TTS сразу после того, как Firebase готов
+    loadYandexConfigFromFirestore();
     
     auth.setPersistence(firebase.auth.Auth.Persistence.LOCAL)
         .then(() => {
@@ -74,6 +78,38 @@ function initFirebase() {
     });
 }
 
+// ========== ЗАГРУЗКА КЛЮЧЕЙ YANDEX ИЗ FIRESTORE ==========
+function loadYandexConfigFromFirestore() {
+    if (!db) {
+        console.log('⏳ db ещё не готов, пробуем через 500 мс...');
+        setTimeout(loadYandexConfigFromFirestore, 500);
+        return;
+    }
+    
+    console.log('📡 Загружаем ключи Yandex из Firestore...');
+    
+    db.collection('config').doc('yandex').get()
+        .then(doc => {
+            if (doc.exists) {
+                const data = doc.data();
+                console.log('📄 Ключи получены из Firestore');
+                if (data.apiKey && data.folderId && typeof initYandexTTS === 'function') {
+                    const result = initYandexTTS(data.apiKey, data.folderId);
+                    if (result) {
+                        console.log('✅ Yandex TTS инициализирован успешно!');
+                    } else {
+                        console.warn('⚠️ Ошибка инициализации Yandex TTS');
+                    }
+                }
+            } else {
+                console.warn('⚠️ Документ yandex не найден в Firestore');
+            }
+        })
+        .catch(e => {
+            console.warn('⚠️ Ошибка загрузки ключей из Firestore:', e);
+        });
+}
+
 // ========== ЗАГРУЗКА ДАННЫХ ПОЛЬЗОВАТЕЛЯ ==========
 async function loadUserData(uid) {
     if (!db) return;
@@ -90,31 +126,19 @@ async function loadUserData(uid) {
     }
 }
 
-// ========== ПРОВЕРКА ДОСТУПА К УРОВНЮ (ИСПРАВЛЕНО) ==========
+// ========== ПРОВЕРКА ДОСТУПА К УРОВНЮ ==========
 window.hasAccessToLevel = function(level) {
-    // Админ имеет доступ ко всем уровням
     if (auth.currentUser && auth.currentUser.email === 'ygubert72@gmail.com') {
         return true;
     }
-    
-    // Уровни A1 и A2 доступны всем
     if (level === 'A1' || level === 'A2') {
         return true;
     }
-    
-    // Уровни B1, B2, C1 требуют премиум-доступа
     if (level === 'B1' || level === 'B2' || level === 'C1') {
-        // Если пользователь не авторизован — нет доступа
-        if (!auth.currentUser) {
-            return false;
-        }
-        // Проверяем премиум-доступ
-        if (currentUserData && currentUserData.hasPremiumAccess === true) {
-            return true;
-        }
+        if (!auth.currentUser) return false;
+        if (currentUserData && currentUserData.hasPremiumAccess === true) return true;
         return false;
     }
-    
     return false;
 };
 
@@ -632,23 +656,6 @@ window.addEventListener('load', function() {
         initFirebase();
     }
 });
-
-// Делаем db доступным глобально для других скриптов
-// Эта строка гарантирует, что window.db будет доступен
-setTimeout(function() {
-    if (typeof db !== 'undefined' && db) {
-        window.db = db;
-        console.log('✅ window.db установлен');
-    } else {
-        console.log('⏳ db ещё не инициализирован, пробуем снова...');
-        setTimeout(function() {
-            if (typeof db !== 'undefined' && db) {
-                window.db = db;
-                console.log('✅ window.db установлен');
-            }
-        }, 1000);
-    }
-}, 500);
 
 window.auth = auth;
 window.db = db;

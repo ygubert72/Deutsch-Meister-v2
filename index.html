@@ -136,6 +136,31 @@
 <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
 
+<script>
+// ===== КОНФИГУРАЦИЯ FIREBASE =====
+const firebaseConfig = {
+    apiKey: "AIzaSyAUj_2cLQyWvs2JTT7Zl2BYox0krDb3X7I",
+    authDomain: "deutsch-meister-248cf.firebaseapp.com",
+    projectId: "deutsch-meister-248cf",
+    storageBucket: "deutsch-meister-248cf.firebasestorage.app",
+    messagingSenderId: "549700335996",
+    appId: "1:549700335996:web:97ed9e8f91224e34ab0cf9"
+};
+
+// Инициализируем Firebase
+firebase.initializeApp(firebaseConfig);
+const auth = firebase.auth();
+const db = firebase.firestore();
+
+// Делаем глобально доступным
+window.auth = auth;
+window.db = db;
+
+console.log('✅ Firebase инициализирован из index.html');
+console.log('📁 db:', db);
+console.log('📁 window.db:', window.db);
+</script>
+
 <script src="js/config.js"></script>
 <script src="js/utils.js"></script>
 <script src="js/logger.js"></script>
@@ -156,20 +181,23 @@
 <script>
 // ===== ЗАГРУЗКА КЛЮЧЕЙ YANDEX ИЗ FIRESTORE =====
 function loadYandexConfig() {
-    console.log('📡 Загружаем ключи Yandex из Firestore...');
+    // Используем window.db, который установлен выше
+    const dbInstance = window.db || db;
     
-    // Ждём, пока Firebase инициализируется в auth.js
-    if (typeof db === 'undefined' || !db) {
+    if (!dbInstance) {
         console.log('⏳ Ждём Firebase...');
         setTimeout(loadYandexConfig, 500);
         return;
     }
     
-    db.collection('config').doc('yandex').get()
+    console.log('📡 Загружаем ключи Yandex из Firestore...');
+    
+    dbInstance.collection('config').doc('yandex').get()
         .then(doc => {
             if (doc.exists) {
                 const data = doc.data();
                 console.log('📄 Ключи получены из Firestore');
+                console.log('📄 Данные:', data);
                 if (data.apiKey && data.folderId && typeof initYandexTTS === 'function') {
                     console.log('🔑 Вызываем initYandexTTS...');
                     const result = initYandexTTS(data.apiKey, data.folderId);
@@ -180,6 +208,9 @@ function loadYandexConfig() {
                     }
                 } else {
                     console.warn('⚠️ initYandexTTS не найден или нет данных');
+                    console.warn('⚠️ initYandexTTS:', typeof initYandexTTS);
+                    console.warn('⚠️ data.apiKey:', data.apiKey);
+                    console.warn('⚠️ data.folderId:', data.folderId);
                 }
             } else {
                 console.warn('⚠️ Документ yandex не найден в Firestore');
@@ -190,7 +221,7 @@ function loadYandexConfig() {
         });
 }
 
-// Запускаем загрузку ключей
+// Запускаем загрузку ключей через 2 секунды (после загрузки всех скриптов)
 setTimeout(loadYandexConfig, 2000);
 
 // ===== МОБИЛЬНОЕ МЕНЮ =====

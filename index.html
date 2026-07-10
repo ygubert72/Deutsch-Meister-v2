@@ -149,21 +149,21 @@ const firebaseConfig = {
 
 firebase.initializeApp(firebaseConfig);
 
-// НЕ ОБЪЯВЛЯЕМ auth и db ЗДЕСЬ — они будут из auth.js
 console.log('✅ Firebase инициализирован');
 </script>
 
 <script>
 // ============================================================
-// YANDEX TTS — ВСТРОЕННАЯ ВЕРСИЯ
+// YANDEX TTS — ВСТРОЕННАЯ ВЕРСИЯ (ТОЛЬКО НЕМЕЦКИЕ ГОЛОСА)
 // ============================================================
 
 let YANDEX_API_KEY = '';
 let YANDEX_FOLDER_ID = '';
 let isYandexReady = false;
 
-const YANDEX_VOICE_FEMALE = 'oksana';
-const YANDEX_VOICE_MALE = 'alena';
+// Голоса Yandex SpeechKit для НЕМЕЦКОГО языка
+const YANDEX_VOICE_FEMALE = 'oksana';   // женский, немецкий
+const YANDEX_VOICE_MALE = 'filipp';     // мужской, немецкий
 
 function initYandexTTS(apiKey, folderId) {
     if (apiKey) YANDEX_API_KEY = apiKey;

@@ -199,7 +199,6 @@ function updateCounter() {
             label = 'предложений';
             break;
         case 'listening':
-            // Показываем количество диалогов, если они уже загружены
             if (window.listeningData && window.listeningData.dialogs) {
                 count = window.listeningData.dialogs.length;
                 label = 'диалогов';
@@ -226,7 +225,7 @@ function renderLevel() {
     let html = `<h2>📚 ${courseData.title}</h2><div style="margin-top: 20px;">`;
     courseData.lessons.forEach(lesson => {
         html += `
-            <button class="lesson-btn" data-lesson-id="${lesson.id}">
+            <button class="lesson-btn" data-lesson-id="${lesson.id}" style="transition: all 0.08s ease;">
                 📘 Урок ${lesson.id}: ${lesson.title}
             </button>
         `;
@@ -245,25 +244,31 @@ function renderLevel() {
     });
 }
 
-// ========== ОТОБРАЖЕНИЕ УРОКА ==========
+// ========== ОТОБРАЖЕНИЕ УРОКА (ОПТИМИЗИРОВАННОЕ) ==========
 function renderLesson(lesson) {
     currentLesson = lesson;
     saveState();
 
-    // Проверяем наличие файла аудирования
     const lessonId = lesson.id || 1;
     const level = lesson.level || 'A1';
     const hoerenPath = `docs/${level}/hoeren/${String(lessonId).padStart(2, '0')}_hoeren.json`;
     
-    // Показываем кнопку "Аудирование" только если файл существует
+    // Показываем урок сразу
+    buildLessonHTML(lesson, false);
+    
+    // Проверяем аудирование в фоне
     fetch(hoerenPath, { method: 'HEAD' })
         .then(response => {
-            const hasListening = response.ok;
-            buildLessonHTML(lesson, hasListening);
+            if (response.ok) {
+                const listeningBtn = document.querySelector('.mode-btn[data-mode="listening"]');
+                if (!listeningBtn) {
+                    buildLessonHTML(lesson, true);
+                } else {
+                    listeningBtn.style.display = 'inline-block';
+                }
+            }
         })
-        .catch(() => {
-            buildLessonHTML(lesson, false);
-        });
+        .catch(() => {});
 }
 
 function buildLessonHTML(lesson, hasListening) {
@@ -273,15 +278,15 @@ function buildLessonHTML(lesson, hasListening) {
 
     let html = `
         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
-            <button class="back-btn" onclick="renderLevel()">← К СПИСКУ УРОКОВ</button>
+            <button class="back-btn" onclick="renderLevel()" style="transition: all 0.08s ease;">← К СПИСКУ УРОКОВ</button>
             <div id="modeHeaderControls"></div>
         </div>
         <h2>📖 Урок ${lesson.id}: ${lesson.title}</h2>
         <div class="mode-buttons">
-            <button class="mode-btn active" data-mode="grammar">📘 Грамматика</button>
-            <button class="mode-btn" data-mode="quiz">🎯 Тест</button>
-            <button class="mode-btn" data-mode="trainer">🧩 Тренажер</button>
-            <button class="mode-btn" data-mode="dictation">✏️ Диктант</button>
+            <button class="mode-btn active" data-mode="grammar" style="transition: all 0.08s ease;">📘 Грамматика</button>
+            <button class="mode-btn" data-mode="quiz" style="transition: all 0.08s ease;">🎯 Тест</button>
+            <button class="mode-btn" data-mode="trainer" style="transition: all 0.08s ease;">🧩 Тренажер</button>
+            <button class="mode-btn" data-mode="dictation" style="transition: all 0.08s ease;">✏️ Диктант</button>
             ${listeningButtonHtml}
         </div>
         <div id="modeContent"></div>
@@ -298,7 +303,7 @@ function buildLessonHTML(lesson, hasListening) {
             currentMode = mode;
             saveState();
             renderMode(mode, lesson);
-            setTimeout(updateCounter, 100);
+            setTimeout(updateCounter, 50);
         };
     });
 
@@ -306,14 +311,13 @@ function buildLessonHTML(lesson, hasListening) {
     if (!isRestoring) {
         const savedState = loadState();
         if (savedState && savedState.mode && savedState.lessonId === lesson.id) {
-            console.log('🔄 Восстановление режима:', savedState.mode);
             const modeBtn = document.querySelector(`.mode-btn[data-mode="${savedState.mode}"]`);
             if (modeBtn) {
                 document.querySelectorAll('.mode-btn').forEach(b => b.classList.remove('active'));
                 modeBtn.classList.add('active');
                 currentMode = savedState.mode;
                 renderMode(savedState.mode, lesson);
-                setTimeout(updateCounter, 100);
+                setTimeout(updateCounter, 50);
                 return;
             }
         }
@@ -374,7 +378,7 @@ function renderMode(mode, lesson) {
             container.innerHTML = '<div>Режим не найден</div>';
     }
     
-    setTimeout(updateCounter, 200);
+    setTimeout(updateCounter, 100);
 }
 
 // ========== ИНИЦИАЛИЗАЦИЯ ==========
@@ -430,14 +434,14 @@ function initApp() {
                         loadLesson(courseData.lessons[0].id);
                     }
                 }
-            }, 150);
+            }, 100);
         } else {
             console.log('📂 На главной странице');
             setTimeout(() => {
                 if (courseData && !currentLesson) {
                     renderLevel();
                 }
-            }, 200);
+            }, 100);
         }
     } else {
         console.log('📂 Состояния нет, загружаем A1 по умолчанию');

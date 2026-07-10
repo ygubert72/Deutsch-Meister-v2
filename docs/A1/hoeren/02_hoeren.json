@@ -4,35 +4,65 @@
   "title": "Приветствия и прощания",
   "dialogs": [
     {
-      "id": "dialog_1",
-      "title": "Begrüßung",
-      "text": "Anna: Guten Morgen! Wie geht es dir?\nTom: Guten Morgen! Danke, gut! Und dir?\nAnna: Mir geht es auch gut!",
+      "id": "monolog_1",
+      "title": "Begrüßung und Verabschiedung",
+      "text": "Hallo! Ich heiße Anna. Ich wohne in Berlin. Am Morgen sage ich 'Guten Morgen'. Am Tag sage ich 'Guten Tag'. Am Abend sage ich 'Guten Abend'. Wenn ich gehe, sage ich 'Auf Wiedersehen'. Und wenn ich mit Freunden spreche, sage ich 'Tschüss'.",
       "questions": [
         {
-          "question": "Wie geht es Tom?",
-          "options": ["Gut", "Schlecht", "Müde"],
+          "question": "Wie heißt die Frau?",
+          "options": ["Anna", "Maria", "Lisa"],
           "answer": 0
         },
         {
-          "question": "Wie geht es Anna?",
-          "options": ["Gut", "Schlecht", "Müde"],
-          "answer": 0
+          "question": "Wo wohnt Anna?",
+          "options": ["In München", "In Berlin", "In Hamburg"],
+          "answer": 1
+        },
+        {
+          "question": "Was sagt Anna am Morgen?",
+          "options": ["Guten Tag", "Guten Morgen", "Guten Abend"],
+          "answer": 1
+        },
+        {
+          "question": "Was sagt Anna am Abend?",
+          "options": ["Guten Morgen", "Guten Tag", "Guten Abend"],
+          "answer": 2
+        },
+        {
+          "question": "Was sagt Anna, wenn sie geht?",
+          "options": ["Hallo", "Tschüss", "Bitte"],
+          "answer": 1
         }
       ]
     },
     {
-      "id": "dialog_2",
-      "title": "Verabschiedung",
-      "text": "Anna: Tschüss! Bis morgen!\nTom: Auf Wiedersehen! Bis morgen!",
+      "id": "monolog_2",
+      "title": "Freundliche Wörter",
+      "text": "Ich heiße Tom. Ich spreche Deutsch. Wenn ich etwas möchte, sage ich 'Bitte'. Wenn ich etwas bekomme, sage ich 'Danke'. Wenn ich einen Fehler mache, sage ich 'Entschuldigung'. Das sind freundliche Wörter. Sie sind sehr wichtig.",
       "questions": [
         {
-          "question": "Was sagt Anna zum Abschied?",
-          "options": ["Hallo", "Tschüss", "Bitte"],
+          "question": "Wie heißt der Mann?",
+          "options": ["Tom", "Peter", "Max"],
+          "answer": 0
+        },
+        {
+          "question": "Welche Sprache spricht Tom?",
+          "options": ["Englisch", "Deutsch", "Französisch"],
           "answer": 1
         },
         {
-          "question": "Was sagt Tom zum Abschied?",
-          "options": ["Hallo", "Tschüss", "Auf Wiedersehen"],
+          "question": "Was sagt Tom, wenn er etwas möchte?",
+          "options": ["Danke", "Bitte", "Entschuldigung"],
+          "answer": 1
+        },
+        {
+          "question": "Was sagt Tom, wenn er etwas bekommt?",
+          "options": ["Bitte", "Entschuldigung", "Danke"],
+          "answer": 2
+        },
+        {
+          "question": "Was sagt Tom bei einem Fehler?",
+          "options": ["Bitte", "Danke", "Entschuldigung"],
           "answer": 2
         }
       ]

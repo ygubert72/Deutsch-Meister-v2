@@ -5,16 +5,6 @@ let db = null;
 let currentUserData = null;
 let authInitialized = false;
 
-// Конфигурация Firebase
-const firebaseConfig = {
-    apiKey: "AIzaSyAUj_2cLQyWvs2JTT7Zl2BYox0krDb3X7I",
-    authDomain: "deutsch-meister-248cf.firebaseapp.com",
-    projectId: "deutsch-meister-248cf",
-    storageBucket: "deutsch-meister-248cf.firebasestorage.app",
-    messagingSenderId: "549700335996",
-    appId: "1:549700335996:web:97ed9e8f91224e34ab0cf9"
-};
-
 // ========== ИНИЦИАЛИЗАЦИЯ FIREBASE ==========
 function initFirebase() {
     if (typeof firebase === 'undefined') {
@@ -23,18 +13,22 @@ function initFirebase() {
     }
     
     if (!firebase.apps.length) {
-        firebase.initializeApp(firebaseConfig);
+        // Используем конфигурацию из index.html (она уже объявлена глобально)
+        if (typeof firebaseConfig !== 'undefined') {
+            firebase.initializeApp(firebaseConfig);
+        } else {
+            console.error('❌ firebaseConfig не найден!');
+            return;
+        }
     }
     
     auth = firebase.auth();
     db = firebase.firestore();
     
-    // Делаем db доступным глобально для других скриптов
+    // Делаем глобально доступным
+    window.auth = auth;
     window.db = db;
-    console.log('✅ window.db установлен из auth.js');
-    
-    // Инициализируем Yandex TTS сразу после того, как Firebase готов
-    loadYandexConfigFromFirestore();
+    console.log('✅ Firebase инициализирован из auth.js');
     
     auth.setPersistence(firebase.auth.Auth.Persistence.LOCAL)
         .then(() => {
@@ -76,38 +70,6 @@ function initFirebase() {
             updateCounter();
         }
     });
-}
-
-// ========== ЗАГРУЗКА КЛЮЧЕЙ YANDEX ИЗ FIRESTORE ==========
-function loadYandexConfigFromFirestore() {
-    if (!db) {
-        console.log('⏳ db ещё не готов, пробуем через 500 мс...');
-        setTimeout(loadYandexConfigFromFirestore, 500);
-        return;
-    }
-    
-    console.log('📡 Загружаем ключи Yandex из Firestore...');
-    
-    db.collection('config').doc('yandex').get()
-        .then(doc => {
-            if (doc.exists) {
-                const data = doc.data();
-                console.log('📄 Ключи получены из Firestore');
-                if (data.apiKey && data.folderId && typeof initYandexTTS === 'function') {
-                    const result = initYandexTTS(data.apiKey, data.folderId);
-                    if (result) {
-                        console.log('✅ Yandex TTS инициализирован успешно!');
-                    } else {
-                        console.warn('⚠️ Ошибка инициализации Yandex TTS');
-                    }
-                }
-            } else {
-                console.warn('⚠️ Документ yandex не найден в Firestore');
-            }
-        })
-        .catch(e => {
-            console.warn('⚠️ Ошибка загрузки ключей из Firestore:', e);
-        });
 }
 
 // ========== ЗАГРУЗКА ДАННЫХ ПОЛЬЗОВАТЕЛЯ ==========

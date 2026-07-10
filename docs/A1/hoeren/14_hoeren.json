@@ -1,0 +1,157 @@
+{
+  "lesson": 14,
+  "level": "A1",
+  "title": "Распорядок дня и отделяемые приставки",
+  "dialogs": [
+    {
+      "id": "monolog_1",
+      "title": "Mein Morgen",
+      "text": "Ich heiße Anna. Ich stehe um 7 Uhr auf. Ich dusche mich und putze meine Zähne. Ich frühstücke um halb acht. Ich trinke Kaffee und esse ein Brötchen. Um 8 Uhr gehe ich aus dem Haus. Ich arbeite von 9 bis 18 Uhr.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Anna", "Maria", "Julia"],
+          "answer": 0
+        },
+        {
+          "question": "Wann steht Anna auf?",
+          "options": ["Um 7 Uhr", "Um 8 Uhr", "Um 6 Uhr"],
+          "answer": 0
+        },
+        {
+          "question": "Was macht Anna nach dem Aufstehen?",
+          "options": ["Sie duscht sich", "Sie frühstückt", "Sie geht zur Arbeit"],
+          "answer": 0
+        },
+        {
+          "question": "Wann geht Anna aus dem Haus?",
+          "options": ["Um 8 Uhr", "Um 9 Uhr", "Um 7 Uhr"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_2",
+      "title": "Mein Tag",
+      "text": "Ich heiße Maria. Ich arbeite in einem Büro. Meine Arbeit beginnt um 9 Uhr. Ich mache Mittagspause um 12 Uhr. Ich esse in der Kantine. Nach der Arbeit gehe ich einkaufen. Ich kaufe Milch, Brot und Obst. Ich komme um 18 Uhr nach Hause.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Anna", "Maria", "Julia"],
+          "answer": 1
+        },
+        {
+          "question": "Wann beginnt Marias Arbeit?",
+          "options": ["Um 9 Uhr", "Um 8 Uhr", "Um 10 Uhr"],
+          "answer": 0
+        },
+        {
+          "question": "Was macht Maria in der Mittagspause?",
+          "options": ["Sie isst", "Sie arbeitet weiter", "Sie schläft"],
+          "answer": 0
+        },
+        {
+          "question": "Was macht Maria nach der Arbeit?",
+          "options": ["Sie geht einkaufen", "Sie geht ins Kino", "Sie geht nach Hause"],
+          "answer": 0
+        },
+        {
+          "question": "Wann kommt Maria nach Hause?",
+          "options": ["Um 18 Uhr", "Um 17 Uhr", "Um 19 Uhr"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_3",
+      "title": "Am Abend",
+      "text": "Ich heiße Julia. Am Abend komme ich nach Hause. Ich mache mir etwas zu essen. Ich sehe oft fern. Ich lese manchmal ein Buch. Ich rufe meine Mutter an. Ich gehe um 23 Uhr schlafen. Ich schlafe gut.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Anna", "Maria", "Julia"],
+          "answer": 2
+        },
+        {
+          "question": "Was macht Julia zuerst, wenn sie nach Hause kommt?",
+          "options": ["Sie macht sich etwas zu essen", "Sie sieht fern", "Sie ruft ihre Mutter an"],
+          "answer": 0
+        },
+        {
+          "question": "Was macht Julia oft am Abend?",
+          "options": ["Sie sieht fern", "Sie liest", "Sie arbeitet"],
+          "answer": 0
+        },
+        {
+          "question": "Was macht Julia manchmal am Abend?",
+          "options": ["Sie liest ein Buch", "Sie geht spazieren", "Sie ruft Freunde an"],
+          "answer": 0
+        },
+        {
+          "question": "Wann geht Julia schlafen?",
+          "options": ["Um 23 Uhr", "Um 22 Uhr", "Um 24 Uhr"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_4",
+      "title": "Mein Wochenende",
+      "text": "Ich heiße Laura. Am Wochenende stehe ich spät auf. Ich frühstücke mit meiner Familie. Ich räume meine Wohnung auf. Am Nachmittag gehe ich spazieren. Am Abend treffe ich meine Freunde. Wir gehen zusammen ins Kino. Das Wochenende ist schön.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Laura", "Lisa", "Anna"],
+          "answer": 0
+        },
+        {
+          "question": "Wann steht Laura am Wochenende auf?",
+          "options": ["Spät", "Früh", "Um 7 Uhr"],
+          "answer": 0
+        },
+        {
+          "question": "Was macht Laura am Samstag?",
+          "options": ["Sie räumt ihre Wohnung auf", "Sie arbeitet", "Sie geht einkaufen"],
+          "answer": 0
+        },
+        {
+          "question": "Was macht Laura am Nachmittag?",
+          "options": ["Sie geht spazieren", "Sie liest", "Sie ruht sich aus"],
+          "answer": 0
+        },
+        {
+          "question": "Was macht Laura am Abend?",
+          "options": ["Sie trifft ihre Freunde", "Sie bleibt zu Hause", "Sie geht ins Restaurant"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_5",
+      "title": "Mein Alltag",
+      "text": "Ich heiße Lisa. Ich stehe immer um 6 Uhr auf. Ich frühstücke schnell. Ich fahre mit dem Bus zur Arbeit. Ich arbeite von 8 bis 17 Uhr. Nach der Arbeit kaufe ich oft ein. Am Abend räume ich meine Wohnung auf. Dann sehe ich fern und gehe schlafen.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Laura", "Lisa", "Anna"],
+          "answer": 1
+        },
+        {
+          "question": "Wann steht Lisa immer auf?",
+          "options": ["Um 6 Uhr", "Um 7 Uhr", "Um 8 Uhr"],
+          "answer": 0
+        },
+        {
+          "question": "Wie fährt Lisa zur Arbeit?",
+          "options": ["Mit dem Bus", "Mit dem Auto", "Mit dem Fahrrad"],
+          "answer": 0
+        },
+        {
+          "question": "Was macht Lisa oft nach der Arbeit?",
+          "options": ["Sie kauft ein", "Sie ruht sich aus", "Sie trifft Freunde"],
+          "answer": 0
+        }
+      ]
+    }
+  ]
+}

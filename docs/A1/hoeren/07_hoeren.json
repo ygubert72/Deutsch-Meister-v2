@@ -4,87 +4,137 @@
   "title": "Хобби, свободное время и глаголы",
   "dialogs": [
     {
-      "id": "dialog_1",
-      "title": "Was machst du gern?",
-      "text": "Anna: Was machst du gern in deiner Freizeit?\nTom: Ich spiele gern Fußball. Und du?\nAnna: Ich höre gern Musik.\nTom: Welche Musik hörst du?\nAnna: Ich höre gern Popmusik.",
+      "id": "monolog_1",
+      "title": "Meine Hobbys",
+      "text": "Ich heiße Anna. Ich habe viele Hobbys. Ich spiele gern Tennis. Ich höre gern Musik. Am Wochenende gehe ich ins Kino. Ich lese auch gern Bücher. In meiner Freizeit bin ich immer aktiv.",
       "questions": [
         {
-          "question": "Was macht Tom gern in seiner Freizeit?",
-          "options": ["Er spielt Fußball", "Er hört Musik", "Er liest Bücher"],
+          "question": "Wie heißt die Frau?",
+          "options": ["Anna", "Maria", "Julia"],
           "answer": 0
         },
         {
-          "question": "Was macht Anna gern?",
-          "options": ["Sie spielt Fußball", "Sie hört Musik", "Sie tanzt"],
-          "answer": 1
-        }
-      ]
-    },
-    {
-      "id": "dialog_2",
-      "title": "Sport und Bewegung",
-      "text": "Maria: Treibst du gern Sport?\nPeter: Ja, ich spiele Tennis.\nMaria: Ich schwimme gern im Sommer.\nPeter: Das ist auch gut für die Gesundheit.\nMaria: Ja, Sport ist wichtig.",
-      "questions": [
-        {
-          "question": "Welchen Sport macht Peter?",
-          "options": ["Er spielt Fußball", "Er spielt Tennis", "Er schwimmt"],
+          "question": "Was spielt Anna gern?",
+          "options": ["Fußball", "Tennis", "Schach"],
           "answer": 1
         },
         {
-          "question": "Was macht Maria gern im Sommer?",
-          "options": ["Sie spielt Tennis", "Sie schwimmt", "Sie fährt Rad"],
+          "question": "Wohin geht Anna am Wochenende?",
+          "options": ["Ins Kino", "Ins Konzert", "Ins Museum"],
+          "answer": 0
+        },
+        {
+          "question": "Was macht Anna in ihrer Freizeit?",
+          "options": ["Sie schläft", "Sie ist aktiv", "Sie arbeitet"],
           "answer": 1
         }
       ]
     },
     {
-      "id": "dialog_3",
-      "title": "Lesen und Fernsehen",
-      "text": "Julia: Was machst du am Abend?\nMax: Ich lese gern Bücher. Manchmal sehe ich auch fern.\nJulia: Ich lese auch gern. Welche Bücher magst du?\nMax: Ich mag Krimis.\nJulia: Ich mag auch Krimis!",
+      "id": "monolog_2",
+      "title": "Sport und Bewegung",
+      "text": "Ich heiße Maria. Ich treibe gern Sport. Ich schwimme im Sommer. Im Winter laufe ich. Mein Bruder spielt Fußball. Meine Schwester tanzt gern. Sport ist gesund und macht Spaß. Ich mag Bewegung sehr.",
       "questions": [
         {
-          "question": "Was macht Max am Abend?",
-          "options": ["Er liest Bücher", "Er sieht fern", "Er liest und sieht fern"],
+          "question": "Wie heißt die Frau?",
+          "options": ["Anna", "Maria", "Julia"],
+          "answer": 1
+        },
+        {
+          "question": "Was macht Maria im Sommer?",
+          "options": ["Sie läuft", "Sie schwimmt", "Sie spielt Tennis"],
+          "answer": 1
+        },
+        {
+          "question": "Was macht der Bruder von Maria?",
+          "options": ["Er schwimmt", "Er spielt Fußball", "Er tanzt"],
+          "answer": 1
+        },
+        {
+          "question": "Warum mag Maria Sport?",
+          "options": ["Er ist gesund", "Er ist teuer", "Er ist langweilig"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_3",
+      "title": "Musik und Konzerte",
+      "text": "Ich heiße Julia. Ich liebe Musik. Ich höre gern Popmusik. Ich gehe oft ins Konzert. Mein Freund spielt Gitarre. Er singt auch. Wir machen zusammen Musik. Das ist mein schönstes Hobby.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Anna", "Maria", "Julia"],
           "answer": 2
         },
         {
-          "question": "Welche Bücher mag Max?",
-          "options": ["Romane", "Krimis", "Sachbücher"],
-          "answer": 1
-        }
-      ]
-    },
-    {
-      "id": "dialog_4",
-      "title": "Musik und Konzerte",
-      "text": "Tom: Magst du Konzerte?\nAnna: Ja, ich gehe gern ins Konzert.\nTom: Ich auch! Welche Musik magst du?\nAnna: Ich mag Rockmusik.\nTom: Ich mag auch Rockmusik.",
-      "questions": [
-        {
-          "question": "Was macht Anna gern?",
-          "options": ["Sie geht ins Kino", "Sie geht ins Konzert", "Sie geht ins Theater"],
+          "question": "Welche Musik hört Julia gern?",
+          "options": ["Klassische Musik", "Popmusik", "Rockmusik"],
           "answer": 1
         },
         {
-          "question": "Welche Musik mag Tom?",
-          "options": ["Popmusik", "Rockmusik", "Klassische Musik"],
+          "question": "Was spielt der Freund von Julia?",
+          "options": ["Klavier", "Gitarre", "Geige"],
+          "answer": 1
+        },
+        {
+          "question": "Was ist Julias schönstes Hobby?",
+          "options": ["Sport", "Musik", "Lesen"],
           "answer": 1
         }
       ]
     },
     {
-      "id": "dialog_5",
-      "title": "Familie und Hobbys",
-      "text": "Laura: Was macht deine Familie gern?\nTom: Mein Vater spielt gern Schach. Meine Mutter liest gern.\nLaura: Und du?\nTom: Ich spiele gern Computer.\nLaura: Das ist ein schönes Hobby!",
+      "id": "monolog_4",
+      "title": "Lesen und Fernsehen",
+      "text": "Ich heiße Laura. Am Abend lese ich gern. Ich lese Krimis und Romane. Manchmal sehe ich auch fern. Meine Lieblingsserie ist sehr spannend. Am Wochenende lese ich den ganzen Tag. Das ist meine Entspannung.",
       "questions": [
         {
-          "question": "Was macht Toms Vater gern?",
-          "options": ["Er spielt Schach", "Er liest", "Er spielt Computer"],
+          "question": "Wie heißt die Frau?",
+          "options": ["Laura", "Lisa", "Anna"],
           "answer": 0
         },
         {
-          "question": "Was macht Toms Mutter gern?",
-          "options": ["Sie spielt Schach", "Sie liest", "Sie macht Sport"],
+          "question": "Was liest Laura gern?",
+          "options": ["Krimis und Romane", "Zeitungen", "Comics"],
+          "answer": 0
+        },
+        {
+          "question": "Was macht Laura am Wochenende?",
+          "options": ["Sie liest den ganzen Tag", "Sie geht ins Kino", "Sie macht Sport"],
+          "answer": 0
+        },
+        {
+          "question": "Was ist für Laura Entspannung?",
+          "options": ["Fernsehen", "Lesen", "Musik hören"],
           "answer": 1
+        }
+      ]
+    },
+    {
+      "id": "monolog_5",
+      "title": "Meine Freizeit",
+      "text": "Ich heiße Lisa. In meiner Freizeit wandere ich gern. Ich gehe mit Freunden in die Berge. Wir machen Picknick. Am Abend koche ich gern. Ich probiere neue Rezepte. Meine Freizeit ist sehr abwechslungsreich.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Laura", "Lisa", "Anna"],
+          "answer": 1
+        },
+        {
+          "question": "Was macht Lisa in ihrer Freizeit?",
+          "options": ["Sie wandert", "Sie liest", "Sie tanzt"],
+          "answer": 0
+        },
+        {
+          "question": "Mit wem geht Lisa in die Berge?",
+          "options": ["Mit ihrer Familie", "Mit Freunden", "Alleine"],
+          "answer": 1
+        },
+        {
+          "question": "Was macht Lisa am Abend?",
+          "options": ["Sie kocht", "Sie liest", "Sie sieht fern"],
+          "answer": 0
         }
       ]
     }

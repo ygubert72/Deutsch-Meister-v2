@@ -63,10 +63,7 @@ function speakCurrentDialog() {
     
     console.log('🎤 Озвучивание монолога:', dialog.title);
     
-    // Очищаем текст (убираем лишние пробелы, но сохраняем структуру)
     const cleanText = dialog.text.trim();
-    
-    console.log('🔊 Текст:', cleanText);
     
     if (typeof window.speak === 'function') {
         window.speak(cleanText);

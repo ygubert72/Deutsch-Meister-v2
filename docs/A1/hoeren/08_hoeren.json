@@ -4,86 +4,151 @@
   "title": "Описание внешности и характера",
   "dialogs": [
     {
-      "id": "dialog_1",
-      "title": "Wie sieht Anna aus?",
-      "text": "Tom: Wie sieht Anna aus?\nLaura: Sie ist groß und schlank. Sie hat lange braune Haare und blaue Augen.\nTom: Ist sie jung?\nLaura: Ja, sie ist 25 Jahre alt.\nTom: Sie ist sehr schön!",
+      "id": "monolog_1",
+      "title": "Mein Aussehen",
+      "text": "Ich heiße Anna. Ich bin 25 Jahre alt. Ich bin groß und schlank. Ich habe lange braune Haare. Ich habe blaue Augen. Ich trage gern bunte Kleidung. Ich finde, dass ich nett aussehe.",
       "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Anna", "Maria", "Julia"],
+          "answer": 0
+        },
+        {
+          "question": "Wie ist Anna?",
+          "options": ["Groß und schlank", "Klein und dick", "Mittelgroß und schlank"],
+          "answer": 0
+        },
         {
           "question": "Welche Haarfarbe hat Anna?",
           "options": ["Blonde Haare", "Braune Haare", "Schwarze Haare"],
           "answer": 1
         },
         {
-          "question": "Wie alt ist Anna?",
-          "options": ["22 Jahre", "25 Jahre", "28 Jahre"],
+          "question": "Welche Augenfarbe hat Anna?",
+          "options": ["Grüne Augen", "Blaue Augen", "Braune Augen"],
           "answer": 1
         }
       ]
     },
     {
-      "id": "dialog_2",
-      "title": "Beschreibung eines Mannes",
-      "text": "Anna: Wer ist der Mann da drüben?\nTom: Das ist mein Bruder. Er heißt Max.\nAnna: Wie sieht er aus?\nTom: Er ist groß und hat kurze blonde Haare. Er hat grüne Augen.\nAnna: Er sieht nett aus!",
+      "id": "monolog_2",
+      "title": "Mein Bruder",
+      "text": "Ich heiße Maria. Mein Bruder heißt Paul. Er ist 22 Jahre alt. Er ist groß und sportlich. Er hat kurze blonde Haare. Er hat grüne Augen. Er ist sehr freundlich und hilfsbereit. Wir verstehen uns gut.",
       "questions": [
         {
-          "question": "Wie heißt der Bruder von Tom?",
-          "options": ["Tom", "Max", "Peter"],
+          "question": "Wie heißt die Frau?",
+          "options": ["Anna", "Maria", "Julia"],
           "answer": 1
         },
         {
-          "question": "Welche Augenfarbe hat Max?",
-          "options": ["Blaue Augen", "Grüne Augen", "Braune Augen"],
-          "answer": 1
-        }
-      ]
-    },
-    {
-      "id": "dialog_3",
-      "title": "Charaktereigenschaften",
-      "text": "Maria: Wie ist deine Schwester?\nPeter: Sie ist sehr freundlich und lustig.\nMaria: Ist sie auch intelligent?\nPeter: Ja, sie ist sehr intelligent.\nMaria: Das ist toll!",
-      "questions": [
-        {
-          "question": "Wie ist die Schwester von Peter?",
-          "options": ["Sie ist ernst und ruhig", "Sie ist freundlich und lustig", "Sie ist schüchtern"],
-          "answer": 1
+          "question": "Wie heißt der Bruder von Maria?",
+          "options": ["Paul", "Tom", "Max"],
+          "answer": 0
         },
         {
-          "question": "Ist die Schwester von Peter intelligent?",
-          "options": ["Ja", "Nein", "Weiß nicht"],
+          "question": "Wie sieht der Bruder von Maria aus?",
+          "options": ["Groß und sportlich", "Klein und dick", "Groß und dünn"],
+          "answer": 0
+        },
+        {
+          "question": "Welche Augenfarbe hat der Bruder von Maria?",
+          "options": ["Grüne Augen", "Blaue Augen", "Braune Augen"],
+          "answer": 0
+        },
+        {
+          "question": "Wie ist der Bruder von Maria vom Charakter?",
+          "options": ["Freundlich und hilfsbereit", "Lustig und laut", "Ernst und ruhig"],
           "answer": 0
         }
       ]
     },
     {
-      "id": "dialog_4",
-      "title": "Kleidung und Stil",
-      "text": "Julia: Was trägst du heute?\nMax: Ich trage eine blaue Jeans und ein weißes T-Shirt.\nJulia: Ich trage ein rotes Kleid.\nMax: Das Kleid ist schön!\nJulia: Danke!",
+      "id": "monolog_3",
+      "title": "Meine beste Freundin",
+      "text": "Ich heiße Julia. Meine beste Freundin heißt Laura. Sie ist 24 Jahre alt. Sie ist klein und hübsch. Sie hat lange blonde Haare. Sie hat blaue Augen. Laura ist sehr lustig und intelligent. Wir lachen oft zusammen.",
       "questions": [
         {
-          "question": "Was trägt Max heute?",
-          "options": ["Eine blaue Jeans und ein rotes T-Shirt", "Eine blaue Jeans und ein weißes T-Shirt", "Eine schwarze Jeans und ein weißes T-Shirt"],
+          "question": "Wie heißt die Frau?",
+          "options": ["Anna", "Maria", "Julia"],
+          "answer": 2
+        },
+        {
+          "question": "Wie heißt die beste Freundin von Julia?",
+          "options": ["Laura", "Lisa", "Anna"],
+          "answer": 0
+        },
+        {
+          "question": "Wie ist Laura?",
+          "options": ["Klein und hübsch", "Groß und schlank", "Klein und dick"],
+          "answer": 0
+        },
+        {
+          "question": "Welche Haarfarbe hat Laura?",
+          "options": ["Blonde Haare", "Braune Haare", "Schwarze Haare"],
+          "answer": 0
+        },
+        {
+          "question": "Wie ist Laura vom Charakter?",
+          "options": ["Lustig und intelligent", "Ernst und ruhig", "Freundlich und hilfsbereit"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_4",
+      "title": "Meine Schwester",
+      "text": "Ich heiße Laura. Meine Schwester heißt Nina. Sie ist 19 Jahre alt. Sie ist sehr schön. Sie hat lange braune Haare und grüne Augen. Sie ist intelligent und lustig. Meine Schwester ist mein bester Freund.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Laura", "Lisa", "Anna"],
+          "answer": 0
+        },
+        {
+          "question": "Wie heißt die Schwester von Laura?",
+          "options": ["Nina", "Maria", "Julia"],
+          "answer": 0
+        },
+        {
+          "question": "Wie alt ist die Schwester von Laura?",
+          "options": ["17 Jahre", "19 Jahre", "21 Jahre"],
           "answer": 1
         },
         {
-          "question": "Welche Farbe hat das Kleid von Julia?",
-          "options": ["Blau", "Rot", "Weiß"],
+          "question": "Welche Haarfarbe hat die Schwester von Laura?",
+          "options": ["Blonde Haare", "Braune Haare", "Schwarze Haare"],
+          "answer": 1
+        },
+        {
+          "question": "Was ist die Schwester von Laura für sie?",
+          "options": ["Ihr bester Freund", "Ihre beste Freundin", "Ihre Kollegin"],
           "answer": 1
         }
       ]
     },
     {
-      "id": "dialog_5",
-      "title": "Familienähnlichkeit",
-      "text": "Anna: Siehst du deinem Vater ähnlich?\nTom: Ja, ich habe die gleichen Augen wie mein Vater.\nAnna: Und deine Mutter?\nTom: Ich habe die gleiche Nase wie meine Mutter.\nAnna: Das ist interessant!",
+      "id": "monolog_5",
+      "title": "Mein Charakter",
+      "text": "Ich heiße Lisa. Ich bin 28 Jahre alt. Ich bin nicht sehr groß. Ich bin freundlich und offen. Meine Freunde sagen, ich bin lustig. Ich helfe gern anderen Menschen. Ich habe eine positive Einstellung zum Leben.",
       "questions": [
         {
-          "question": "Was hat Tom von seinem Vater?",
-          "options": ["Die gleiche Nase", "Die gleichen Augen", "Die gleichen Haare"],
+          "question": "Wie heißt die Frau?",
+          "options": ["Laura", "Lisa", "Anna"],
           "answer": 1
         },
         {
-          "question": "Was hat Tom von seiner Mutter?",
-          "options": ["Die gleiche Nase", "Die gleichen Augen", "Die gleichen Haare"],
+          "question": "Wie ist Lisa?",
+          "options": ["Freundlich und offen", "Ernst und ruhig", "Laut und aggressiv"],
+          "answer": 0
+        },
+        {
+          "question": "Was sagen Lisas Freunde über sie?",
+          "options": ["Sie ist lustig", "Sie ist ernst", "Sie ist schüchtern"],
+          "answer": 0
+        },
+        {
+          "question": "Hilft Lisa gern anderen Menschen?",
+          "options": ["Ja", "Nein", "Manchmal"],
           "answer": 0
         }
       ]

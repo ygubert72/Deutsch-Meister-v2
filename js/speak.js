@@ -11,7 +11,6 @@ function getGermanVoice() {
     
     const voices = window.speechSynthesis.getVoices();
     
-    // Ищем все немецкие голоса
     const germanVoices = voices.filter(v => v.lang === 'de-DE' || v.lang === 'de');
     
     if (germanVoices.length === 0) {
@@ -19,7 +18,6 @@ function getGermanVoice() {
         return null;
     }
     
-    // Приоритет: Google, Microsoft, затем остальные
     const priorityOrder = ['Google', 'Microsoft', 'Samantha', 'Anna', 'Yannick'];
     
     for (const name of priorityOrder) {
@@ -31,7 +29,6 @@ function getGermanVoice() {
         }
     }
     
-    // Если ничего не нашли — берём первый доступный
     cachedGermanVoice = germanVoices[0];
     console.log('🎤 Выбран голос (запасной):', cachedGermanVoice.name);
     return cachedGermanVoice;
@@ -55,14 +52,13 @@ function preloadVoices() {
     }
 }
 
-// ========== ОСНОВНАЯ ФУНКЦИЯ ОЗВУЧКИ ==========
+// ========== ОСНОВНАЯ ОЗВУЧКА ==========
 function speak(text) {
     if (!text || !window.speechSynthesis) {
         console.warn('🔇 Нет текста или speechSynthesis не поддерживается');
         return;
     }
     
-    // Очищаем текст, сохраняя немецкие буквы
     const clean = text.replace(/[^\w\s\-äöüßÄÖÜ,?!.]/g, '');
     if (!clean.trim()) {
         console.warn('🔇 Текст пуст после очистки');
@@ -70,22 +66,19 @@ function speak(text) {
     }
     
     try {
-        // Отменяем предыдущую речь
         window.speechSynthesis.cancel();
         
         const utterance = new SpeechSynthesisUtterance(clean);
         utterance.lang = 'de-DE';
-        utterance.rate = 0.85;      // Чуть медленнее для чёткости
-        utterance.pitch = 1.0;       // Нормальная высота
-        utterance.volume = 1.0;      // Максимальная громкость
+        utterance.rate = 0.85;
+        utterance.pitch = 1.0;
+        utterance.volume = 1.0;
         
-        // Пытаемся найти хороший немецкий голос
         const voice = getGermanVoice();
         if (voice) {
             utterance.voice = voice;
         }
         
-        // Обработчики для отладки
         utterance.onstart = function() {
             console.log('🔊 Озвучка:', clean.substring(0, 40) + (clean.length > 40 ? '...' : ''));
         };
@@ -101,17 +94,17 @@ function speak(text) {
     }
 }
 
-// ========== ОЗВУЧКА С ЗАДАННОЙ СКОРОСТЬЮ ==========
-function speakWithSpeed(text, speed = 0.85) {
+// ========== ОЗВУЧКА С ЗАДАННОЙ СКОРОСТЬЮ И CALLBACK ==========
+function speakWithSpeed(text, speed = 0.85, onEnd = null) {
     if (!text || !window.speechSynthesis) {
         console.warn('🔇 Нет текста или speechSynthesis не поддерживается');
-        return;
+        return null;
     }
     
     const clean = text.replace(/[^\w\s\-äöüßÄÖÜ,?!.]/g, '');
     if (!clean.trim()) {
         console.warn('🔇 Текст пуст после очистки');
-        return;
+        return null;
     }
     
     try {
@@ -119,7 +112,7 @@ function speakWithSpeed(text, speed = 0.85) {
         
         const utterance = new SpeechSynthesisUtterance(clean);
         utterance.lang = 'de-DE';
-        utterance.rate = speed;      // ← переданная скорость (0.85 или 0.6)
+        utterance.rate = speed;
         utterance.pitch = 1.0;
         utterance.volume = 1.0;
         
@@ -136,14 +129,23 @@ function speakWithSpeed(text, speed = 0.85) {
             console.warn('🔊 Ошибка озвучки:', e);
         };
         
+        if (onEnd) {
+            utterance.onend = function() {
+                console.log('✅ Озвучка завершена');
+                onEnd();
+            };
+        }
+        
         window.speechSynthesis.speak(utterance);
+        return utterance;
         
     } catch(e) {
         console.error('🔊 Критическая ошибка озвучки:', e);
+        return null;
     }
 }
 
-// ========== ПРОВЕРКА ДОСТУПНЫХ ГОЛОСОВ (ДЛЯ ОТЛАДКИ) ==========
+// ========== ПРОВЕРКА ГОЛОСОВ ==========
 function checkVoices() {
     if (!window.speechSynthesis) {
         console.log('❌ speechSynthesis не поддерживается');
@@ -159,13 +161,9 @@ function checkVoices() {
 }
 
 // ========== ИНИЦИАЛИЗАЦИЯ ==========
-// Предзагружаем голоса
 if (typeof window !== 'undefined') {
-    // Сразу пробуем
     setTimeout(preloadVoices, 100);
-    // И через секунду на всякий случай
     setTimeout(preloadVoices, 1000);
-    // И через 3 секунды
     setTimeout(preloadVoices, 3000);
 }
 

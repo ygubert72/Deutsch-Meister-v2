@@ -1,0 +1,162 @@
+{
+  "lesson": 16,
+  "level": "A1",
+  "title": "Модальные глаголы müssen, können, wollen",
+  "dialogs": [
+    {
+      "id": "monolog_1",
+      "title": "Mein Arbeitstag",
+      "text": "Ich heiße Anna. Ich muss jeden Tag um 7 Uhr aufstehen. Ich muss mit dem Bus zur Arbeit fahren. Ich kann gut Deutsch sprechen. Ich will mehr lernen. Ich möchte eine gute Arbeit machen.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Anna", "Maria", "Julia"],
+          "answer": 0
+        },
+        {
+          "question": "Was muss Anna jeden Tag machen?",
+          "options": ["Um 7 Uhr aufstehen", "Um 8 Uhr aufstehen", "Um 6 Uhr aufstehen"],
+          "answer": 0
+        },
+        {
+          "question": "Welche Sprache kann Anna gut sprechen?",
+          "options": ["Deutsch", "Englisch", "Französisch"],
+          "answer": 0
+        },
+        {
+          "question": "Was will Anna machen?",
+          "options": ["Mehr lernen", "Mehr arbeiten", "Mehr schlafen"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_2",
+      "title": "Mein Beruf",
+      "text": "Ich heiße Maria. Ich arbeite als Sekretärin. Ich muss viele E-Mails schreiben. Ich muss Kunden anrufen. Ich kann gut mit Menschen arbeiten. Ich will mich weiterbilden. Ich möchte einen neuen Job finden.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Anna", "Maria", "Julia"],
+          "answer": 1
+        },
+        {
+          "question": "Was ist Maria von Beruf?",
+          "options": ["Sekretärin", "Lehrerin", "Ärztin"],
+          "answer": 0
+        },
+        {
+          "question": "Was muss Maria in ihrem Beruf machen?",
+          "options": ["E-Mails schreiben und Kunden anrufen", "Kinder unterrichten", "Menschen helfen"],
+          "answer": 0
+        },
+        {
+          "question": "Was kann Maria gut?",
+          "options": ["Mit Menschen arbeiten", "Kochen", "Mal,en"],
+          "answer": 0
+        },
+        {
+          "question": "Was möchte Maria machen?",
+          "options": ["Einen neuen Job finden", "In Rente gehen", "In eine andere Stadt ziehen"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_3",
+      "title": "Meine Pläne",
+      "text": "Ich heiße Julia. Ich will Ärztin werden. Ich muss Medizin studieren. Ich muss viel lernen und üben. Ich kann gut mit Menschen umgehen. Ich will in einer großen Klinik arbeiten. Ich möchte Patienten helfen.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Anna", "Maria", "Julia"],
+          "answer": 2
+        },
+        {
+          "question": "Was will Julia werden?",
+          "options": ["Ärztin", "Lehrerin", "Anwältin"],
+          "answer": 0
+        },
+        {
+          "question": "Was muss Julia für ihren Beruf tun?",
+          "options": ["Medizin studieren", "Eine Lehre machen", "Praktikum machen"],
+          "answer": 0
+        },
+        {
+          "question": "Was kann Julia gut?",
+          "options": ["Mit Menschen umgehen", "Autos reparieren", "Tanzen"],
+          "answer": 0
+        },
+        {
+          "question": "Wo will Julia arbeiten?",
+          "options": ["In einer großen Klinik", "In einer kleinen Praxis", "In einem Krankenhaus"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_4",
+      "title": "Mein Tag",
+      "text": "Ich heiße Laura. Ich muss heute viel arbeiten. Ich habe einen wichtigen Termin. Ich kann nicht kommen. Ich muss mich auf den Termin vorbereiten. Ich will heute Abend ins Kino gehen. Aber ich habe keine Zeit.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Laura", "Lisa", "Anna"],
+          "answer": 0
+        },
+        {
+          "question": "Was muss Laura heute machen?",
+          "options": ["Viel arbeiten", "In die Schule gehen", "Kochen"],
+          "answer": 0
+        },
+        {
+          "question": "Kann Laura heute kommen?",
+          "options": ["Nein, sie kann nicht", "Ja, sie kann", "Weiß nicht"],
+          "answer": 0
+        },
+        {
+          "question": "Was will Laura heute Abend machen?",
+          "options": ["Ins Kino gehen", "Ins Konzert gehen", "Ins Restaurant gehen"],
+          "answer": 0
+        },
+        {
+          "question": "Hat Laura heute Zeit?",
+          "options": ["Nein, sie hat keine Zeit", "Ja, sie hat Zeit", "Weiß nicht"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_5",
+      "title": "Meine Fähigkeiten",
+      "text": "Ich heiße Lisa. Ich kann drei Sprachen sprechen: Deutsch, Englisch und Französisch. Ich möchte eine gute Arbeit finden. Ich muss mich bewerben. Ich will in einer internationalen Firma arbeiten. Ich habe viele Fähigkeiten.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Laura", "Lisa", "Anna"],
+          "answer": 1
+        },
+        {
+          "question": "Wie viele Sprachen kann Lisa sprechen?",
+          "options": ["Drei", "Zwei", "Vier"],
+          "answer": 0
+        },
+        {
+          "question": "Welche Sprachen kann Lisa sprechen?",
+          "options": ["Deutsch, Englisch und Französisch", "Deutsch, Englisch und Russisch", "Deutsch, Französisch und Italienisch"],
+          "answer": 0
+        },
+        {
+          "question": "Was muss Lisa machen, um eine gute Arbeit zu finden?",
+          "options": ["Sich bewerben", "Mehr lernen", "Reisen"],
+          "answer": 0
+        },
+        {
+          "question": "Wo will Lisa arbeiten?",
+          "options": ["In einer internationalen Firma", "In einem Krankenhaus", "In einer Schule"],
+          "answer": 0
+        }
+      ]
+    }
+  ]
+}

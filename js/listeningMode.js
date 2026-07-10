@@ -7,7 +7,7 @@ let currentDialogIndex = 0;
 let selectedAnswers = {};
 let isTextVisible = false;
 let isSpeaking = false;
-let activeButton = null; // 'listen' или 'slow'
+let activeButton = null;
 let currentSpeed = 0.85;
 let currentUtterance = null;
 
@@ -61,13 +61,11 @@ function stopSpeaking() {
 
 // ========== ОЗВУЧИВАНИЕ ==========
 function speakCurrentDialog(speed, buttonId) {
-    // Если нажата та же кнопка и уже говорим — останавливаем
     if (isSpeaking && activeButton === buttonId) {
         stopSpeaking();
         return;
     }
     
-    // Если говорим, но нажата другая кнопка — останавливаем текущую и запускаем новую
     if (isSpeaking) {
         window.speechSynthesis.cancel();
         isSpeaking = false;
@@ -101,7 +99,6 @@ function speakCurrentDialog(speed, buttonId) {
     
     if (typeof window.speakWithSpeed === 'function') {
         const utterance = window.speakWithSpeed(cleanText, currentSpeed, function() {
-            // Озвучка завершилась (onEnd)
             isSpeaking = false;
             activeButton = null;
             currentUtterance = null;
@@ -132,7 +129,6 @@ function updateButtons() {
     
     if (!listenBtn || !slowBtn) return;
     
-    // Сброс кнопок в исходное состояние
     function resetButton(btn, label, isActive) {
         if (isActive) {
             btn.innerHTML = '⏹️ ОСТАНОВИТЬ';
@@ -147,7 +143,6 @@ function updateButtons() {
         }
     }
     
-    // Определяем, какая кнопка активна
     const listenActive = isSpeaking && activeButton === 'listen';
     const slowActive = isSpeaking && activeButton === 'slow';
     
@@ -155,7 +150,6 @@ function updateButtons() {
     resetButton(slowBtn, '🐢 МЕДЛЕННО', slowActive);
 }
 
-// ========== ОБЁРТКИ ДЛЯ КНОПОК ==========
 function speakNormal() {
     speakCurrentDialog(0.85, 'listen');
 }
@@ -217,12 +211,12 @@ function renderDialog(container) {
         </div>
     `;
 
-    // ВОПРОСЫ (всегда видны)
+    // ВОПРОСЫ (с уникальными ID для подсветки)
     html += `<div style="margin-bottom: 20px;">`;
     dialog.questions.forEach((q, qIndex) => {
         const selected = selectedAnswers[dialog.id]?.[qIndex];
         html += `
-            <div style="background: white; border-radius: 8px; padding: 15px; margin-bottom: 12px; border: 2px solid #E0E0E0;">
+            <div id="question-${dialog.id}-${qIndex}" style="background: white; border-radius: 8px; padding: 15px; margin-bottom: 12px; border: 2px solid #E0E0E0;">
                 <div style="font-weight: bold; margin-bottom: 8px;">${qIndex + 1}. ${q.question}</div>
                 <div style="display: flex; flex-direction: column; gap: 6px;">
         `;
@@ -300,27 +294,75 @@ function nextListeningDialog() {
     }
 }
 
-// ========== ПРОВЕРКА ОТВЕТОВ ==========
+// ========== ПРОВЕРКА ОТВЕТОВ (С ПОДСВЕТКОЙ) ==========
 function checkListeningAnswers() {
     if (!listeningData) return;
     const dialog = listeningData.dialogs[currentDialogIndex];
     let correct = 0;
-    const total = dialog.questions.length;
+    let total = dialog.questions.length;
+    let allAnswered = true;
 
     dialog.questions.forEach((q, qIndex) => {
+        const questionDiv = document.getElementById(`question-${dialog.id}-${qIndex}`);
+        if (!questionDiv) return;
+
         const userAnswer = selectedAnswers[dialog.id]?.[qIndex];
-        if (userAnswer !== undefined && userAnswer === q.answer) {
+        const isCorrect = userAnswer !== undefined && userAnswer === q.answer;
+        const isAnswered = userAnswer !== undefined;
+
+        // Снимаем старые стили
+        questionDiv.style.borderColor = '#E0E0E0';
+        questionDiv.style.backgroundColor = 'white';
+        const oldStatus = questionDiv.querySelector('.question-status');
+        if (oldStatus) oldStatus.remove();
+        const oldFeedback = questionDiv.querySelector('.question-feedback');
+        if (oldFeedback) oldFeedback.remove();
+        const oldHint = questionDiv.querySelector('.question-hint');
+        if (oldHint) oldHint.remove();
+
+        if (!isAnswered) {
+            allAnswered = false;
+            questionDiv.style.borderColor = '#FF9800';
+            questionDiv.style.backgroundColor = '#FFF8E1';
+            let hint = document.createElement('div');
+            hint.className = 'question-hint';
+            hint.style.cssText = 'margin-top: 6px; font-size: 13px; color: #FF9800; font-weight: bold;';
+            hint.textContent = '⚠️ Выберите ответ!';
+            questionDiv.appendChild(hint);
+            return;
+        }
+
+        if (isCorrect) {
             correct++;
+            questionDiv.style.borderColor = '#4CAF50';
+            questionDiv.style.backgroundColor = '#E8F5E9';
+            let check = document.createElement('div');
+            check.className = 'question-status';
+            check.style.cssText = 'margin-top: 6px; font-size: 13px; color: #4CAF50; font-weight: bold;';
+            check.textContent = '✅ Правильно!';
+            questionDiv.appendChild(check);
+        } else {
+            questionDiv.style.borderColor = '#F44336';
+            questionDiv.style.backgroundColor = '#FFEBEE';
+            let feedback = document.createElement('div');
+            feedback.className = 'question-feedback';
+            feedback.style.cssText = 'margin-top: 6px; font-size: 13px; font-weight: bold; color: #F44336;';
+            const correctOption = q.options[q.answer];
+            feedback.textContent = `❌ Неправильно. Правильный ответ: "${correctOption}"`;
+            questionDiv.appendChild(feedback);
         }
     });
 
     const resultEl = document.getElementById('listeningResult');
     if (resultEl) {
-        if (correct === total) {
+        if (!allAnswered) {
+            resultEl.innerHTML = `⚠️ Вы ответили не на все вопросы! (${correct}/${total})`;
+            resultEl.style.color = '#FF9800';
+        } else if (correct === total) {
             resultEl.innerHTML = `🎉 Все правильно! (${correct}/${total})`;
             resultEl.style.color = '#4CAF50';
         } else if (correct === 0) {
-            resultEl.innerHTML = `❌ Ни одного правильного ответа. Попробуйте снова! (${correct}/${total})`;
+            resultEl.innerHTML = `❌ Все ответы неправильные. Попробуйте снова! (${correct}/${total})`;
             resultEl.style.color = '#F44336';
         } else {
             resultEl.innerHTML = `⚠️ Правильно: ${correct} из ${total}. Попробуйте еще раз!`;

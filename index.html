@@ -146,12 +146,11 @@
 <script src="js/dictationMode.js"></script>
 <script src="js/listeningMode.js"></script>
 <script src="js/app.js"></script>
-<script src="js/auth.js"></script>
 
 <script>
     // ===== ИНИЦИАЛИЗАЦИЯ YANDEX TTS ИЗ FIRESTORE =====
     function loadYandexConfig() {
-        // Проверяем через window.db
+        // Проверяем через window.db (из auth.js)
         if (typeof window.db === 'undefined' || !window.db) {
             console.log('⏳ Ждём Firebase...');
             setTimeout(loadYandexConfig, 500);
@@ -186,8 +185,24 @@
             });
     }
     
-    // Запускаем через 2 секунды, чтобы Firebase успел инициализироваться
-    setTimeout(loadYandexConfig, 2000);
+    // Запускаем загрузку ключей каждые 2 секунды, пока не загрузятся
+    let attempts = 0;
+    const maxAttempts = 20;
+    
+    function tryLoadYandex() {
+        attempts++;
+        if (attempts > maxAttempts) {
+            console.warn('⚠️ Не удалось загрузить ключи Yandex после ' + maxAttempts + ' попыток');
+            return;
+        }
+        loadYandexConfig();
+        // Если не загрузилось, пробуем снова через 2 секунды
+        if (typeof window.db === 'undefined' || !window.db) {
+            setTimeout(tryLoadYandex, 2000);
+        }
+    }
+    
+    setTimeout(tryLoadYandex, 2000);
 
     // ===== МОБИЛЬНОЕ МЕНЮ =====
     document.getElementById('hamburgerBtn').onclick = function() {

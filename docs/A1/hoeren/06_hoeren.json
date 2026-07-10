@@ -4,69 +4,146 @@
   "title": "Семья и притяжательные местоимения",
   "dialogs": [
     {
-      "id": "dialog_1",
+      "id": "monolog_1",
       "title": "Meine Familie",
-      "text": "Anna: Wer ist das auf dem Foto?\nTom: Das ist meine Familie. Das ist mein Vater und das ist meine Mutter.\nAnna: Hast du Geschwister?\nTom: Ja, ich habe eine Schwester. Sie heißt Laura.",
+      "text": "Ich heiße Anna. Ich habe eine kleine Familie. Mein Vater heißt Thomas. Meine Mutter heißt Sabine. Ich habe einen Bruder. Sein Name ist Max. Wir wohnen in Berlin.",
       "questions": [
         {
-          "question": "Wer ist auf dem Foto?",
-          "options": ["Die Familie von Anna", "Die Familie von Tom", "Die Familie von Laura"],
-          "answer": 1
-        },
-        {
-          "question": "Hat Tom Geschwister?",
-          "options": ["Ja, einen Bruder", "Ja, eine Schwester", "Nein, keine Geschwister"],
-          "answer": 1
-        }
-      ]
-    },
-    {
-      "id": "dialog_2",
-      "title": "Meine Eltern",
-      "text": "Maria: Wo wohnen deine Eltern?\nPeter: Meine Eltern wohnen in München.\nMaria: Was macht dein Vater?\nPeter: Mein Vater ist Arzt. Meine Mutter arbeitet als Lehrerin.\nMaria: Das ist interessant!",
-      "questions": [
-        {
-          "question": "Wo wohnen Peters Eltern?",
-          "options": ["In Berlin", "In München", "In Hamburg"],
-          "answer": 1
-        },
-        {
-          "question": "Was ist Peters Vater von Beruf?",
-          "options": ["Lehrer", "Arzt", "Ingenieur"],
-          "answer": 1
-        }
-      ]
-    },
-    {
-      "id": "dialog_3",
-      "title": "Oma und Opa",
-      "text": "Julia: Das ist meine Oma. Sie ist 70 Jahre alt.\nMax: Deine Oma sieht jung aus!\nJulia: Ja, und mein Opa ist 72 Jahre alt.\nMax: Sie sind ein schönes Paar.",
-      "questions": [
-        {
-          "question": "Wie alt ist Julias Oma?",
-          "options": ["70 Jahre", "72 Jahre", "75 Jahre"],
+          "question": "Wie heißt Anna?",
+          "options": ["Anna", "Maria", "Julia"],
           "answer": 0
         },
         {
-          "question": "Wie alt ist Julias Opa?",
-          "options": ["70 Jahre", "72 Jahre", "75 Jahre"],
+          "question": "Wie heißt der Vater von Anna?",
+          "options": ["Thomas", "Tom", "Max"],
+          "answer": 0
+        },
+        {
+          "question": "Wie heißt der Bruder von Anna?",
+          "options": ["Thomas", "Max", "Peter"],
+          "answer": 1
+        },
+        {
+          "question": "Wo wohnt die Familie von Anna?",
+          "options": ["In Berlin", "In München", "In Hamburg"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_2",
+      "title": "Meine Eltern",
+      "text": "Ich heiße Maria. Mein Vater ist Arzt. Meine Mutter ist Lehrerin. Sie arbeiten in München. Meine Schwester heißt Laura. Sie ist Studentin. Wir wohnen in einer großen Wohnung. Ich habe eine schöne Familie.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Anna", "Maria", "Julia"],
+          "answer": 1
+        },
+        {
+          "question": "Was ist der Vater von Maria von Beruf?",
+          "options": ["Arzt", "Lehrer", "Ingenieur"],
+          "answer": 0
+        },
+        {
+          "question": "Was macht die Schwester von Maria?",
+          "options": ["Sie arbeitet", "Sie studiert", "Sie ist zu Hause"],
+          "answer": 1
+        },
+        {
+          "question": "Wo wohnt die Familie von Maria?",
+          "options": ["In Berlin", "In München", "In Hamburg"],
           "answer": 1
         }
       ]
     },
     {
-      "id": "dialog_4",
-      "title": "Meine Schwester",
-      "text": "Tom: Ich habe eine Schwester. Sie heißt Laura.\nAnna: Wie alt ist Laura?\nTom: Sie ist 18 Jahre alt.\nAnna: Was macht sie?\nTom: Sie macht eine Ausbildung.",
+      "id": "monolog_3",
+      "title": "Meine Großeltern",
+      "text": "Ich heiße Julia. Meine Großeltern wohnen in Hamburg. Mein Opa heißt Klaus. Meine Oma heißt Ilse. Sie sind beide 70 Jahre alt. Ich besuche meine Großeltern oft. Ich mag sie sehr.",
       "questions": [
         {
-          "question": "Wie heißt Toms Schwester?",
-          "options": ["Anna", "Maria", "Laura"],
+          "question": "Wie heißt die Frau?",
+          "options": ["Anna", "Maria", "Julia"],
           "answer": 2
         },
         {
-          "question": "Was macht Toms Schwester?",
-          "options": ["Sie studiert", "Sie macht eine Ausbildung", "Sie arbeitet"],
+          "question": "Wo wohnen die Großeltern von Julia?",
+          "options": ["In Berlin", "In Hamburg", "In München"],
+          "answer": 1
+        },
+        {
+          "question": "Wie heißt der Opa von Julia?",
+          "options": ["Klaus", "Karl", "Thomas"],
+          "answer": 0
+        },
+        {
+          "question": "Wie alt sind die Großeltern von Julia?",
+          "options": ["65 Jahre", "70 Jahre", "75 Jahre"],
+          "answer": 1
+        },
+        {
+          "question": "Mag Julia ihre Großeltern?",
+          "options": ["Ja", "Nein", "Weiß nicht"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_4",
+      "title": "Meine Geschwister",
+      "text": "Ich heiße Laura. Ich habe einen Bruder und eine Schwester. Mein Bruder heißt Paul. Er ist 25 Jahre alt. Meine Schwester heißt Nina. Sie ist 22 Jahre alt. Wir wohnen zusammen in Köln. Wir haben eine Katze. Sie heißt Mieze.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Laura", "Lisa", "Anna"],
+          "answer": 0
+        },
+        {
+          "question": "Wie viele Geschwister hat Laura?",
+          "options": ["Einen Bruder", "Eine Schwester", "Einen Bruder und eine Schwester"],
+          "answer": 2
+        },
+        {
+          "question": "Wie heißt der Bruder von Laura?",
+          "options": ["Paul", "Peter", "Max"],
+          "answer": 0
+        },
+        {
+          "question": "Wie alt ist die Schwester von Laura?",
+          "options": ["20 Jahre", "22 Jahre", "25 Jahre"],
+          "answer": 1
+        },
+        {
+          "question": "Wo wohnen Laura und ihre Geschwister?",
+          "options": ["In Berlin", "In Köln", "In Frankfurt"],
+          "answer": 1
+        }
+      ]
+    },
+    {
+      "id": "monolog_5",
+      "title": "Meine Tante und mein Onkel",
+      "text": "Ich heiße Lisa. Meine Tante heißt Petra. Sie ist die Schwester meiner Mutter. Mein Onkel heißt Michael. Er ist der Bruder meines Vaters. Sie wohnen in Stuttgart. Ich besuche sie im Sommer. Sie sind sehr nett.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Laura", "Lisa", "Anna"],
+          "answer": 1
+        },
+        {
+          "question": "Wie heißt die Tante von Lisa?",
+          "options": ["Petra", "Paula", "Sabine"],
+          "answer": 0
+        },
+        {
+          "question": "Wo wohnen die Tante und der Onkel von Lisa?",
+          "options": ["In Berlin", "In Stuttgart", "In Hamburg"],
+          "answer": 1
+        },
+        {
+          "question": "Wann besucht Lisa ihre Tante und ihren Onkel?",
+          "options": ["Im Winter", "Im Sommer", "Im Frühling"],
           "answer": 1
         }
       ]

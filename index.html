@@ -147,20 +147,17 @@ const firebaseConfig = {
     appId: "1:549700335996:web:97ed9e8f91224e34ab0cf9"
 };
 
-// Инициализируем Firebase
 firebase.initializeApp(firebaseConfig);
 const auth = firebase.auth();
 const db = firebase.firestore();
 
-// Делаем глобально доступным
 window.auth = auth;
 window.db = db;
 
 console.log('✅ Firebase инициализирован из index.html');
-console.log('📁 db:', db);
-console.log('📁 window.db:', window.db);
 </script>
 
+<!-- ===== СКРИПТЫ ПРИЛОЖЕНИЯ (yandexTTS.js загружается до загрузки ключей) ===== -->
 <script src="js/config.js"></script>
 <script src="js/utils.js"></script>
 <script src="js/logger.js"></script>
@@ -181,9 +178,14 @@ console.log('📁 window.db:', window.db);
 <script>
 // ===== ЗАГРУЗКА КЛЮЧЕЙ YANDEX ИЗ FIRESTORE =====
 function loadYandexConfig() {
-    // Используем window.db, который установлен выше
-    const dbInstance = window.db || db;
+    // Проверяем, что initYandexTTS загружен
+    if (typeof initYandexTTS === 'undefined') {
+        console.log('⏳ Ждём initYandexTTS...');
+        setTimeout(loadYandexConfig, 500);
+        return;
+    }
     
+    const dbInstance = window.db || db;
     if (!dbInstance) {
         console.log('⏳ Ждём Firebase...');
         setTimeout(loadYandexConfig, 500);
@@ -197,8 +199,7 @@ function loadYandexConfig() {
             if (doc.exists) {
                 const data = doc.data();
                 console.log('📄 Ключи получены из Firestore');
-                console.log('📄 Данные:', data);
-                if (data.apiKey && data.folderId && typeof initYandexTTS === 'function') {
+                if (data.apiKey && data.folderId) {
                     console.log('🔑 Вызываем initYandexTTS...');
                     const result = initYandexTTS(data.apiKey, data.folderId);
                     if (result) {
@@ -206,11 +207,6 @@ function loadYandexConfig() {
                     } else {
                         console.warn('⚠️ Ошибка инициализации Yandex TTS');
                     }
-                } else {
-                    console.warn('⚠️ initYandexTTS не найден или нет данных');
-                    console.warn('⚠️ initYandexTTS:', typeof initYandexTTS);
-                    console.warn('⚠️ data.apiKey:', data.apiKey);
-                    console.warn('⚠️ data.folderId:', data.folderId);
                 }
             } else {
                 console.warn('⚠️ Документ yandex не найден в Firestore');
@@ -221,8 +217,8 @@ function loadYandexConfig() {
         });
 }
 
-// Запускаем загрузку ключей через 2 секунды (после загрузки всех скриптов)
-setTimeout(loadYandexConfig, 2000);
+// Запускаем загрузку ключей через 1 секунду
+setTimeout(loadYandexConfig, 1000);
 
 // ===== МОБИЛЬНОЕ МЕНЮ =====
 document.getElementById('hamburgerBtn').onclick = function() {

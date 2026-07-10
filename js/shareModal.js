@@ -9,7 +9,6 @@ function openShareModal() {
     const url = window.location.href;
     const text = '🇩🇪 Учите немецкий язык с Deutsch-Meister!';
     
-    // Ссылки для соцсетей
     const shareLinks = {
         telegram: `https://t.me/share/url?url=${encodeURIComponent(url)}&text=${encodeURIComponent(text)}`,
         whatsapp: `https://api.whatsapp.com/send?text=${encodeURIComponent(text + ' ' + url)}`,
@@ -47,7 +46,6 @@ function openShareModal() {
         animation: shareFadeIn 0.25s ease;
     `;
     
-    // Добавляем анимацию
     const style = document.getElementById('shareModalStyle');
     if (!style) {
         const newStyle = document.createElement('style');
@@ -107,7 +105,6 @@ function openShareModal() {
     modal.appendChild(modalContent);
     document.body.appendChild(modal);
     
-    // Закрытие по клику на фон
     modal.addEventListener('click', function(e) {
         if (e.target === modal) closeShareModal();
     });
@@ -180,7 +177,6 @@ function fallbackCopy(text) {
     document.body.removeChild(textarea);
 }
 
-// Экспорт
 window.openShareModal = openShareModal;
 window.closeShareModal = closeShareModal;
 window.shareTo = shareTo;

@@ -65,9 +65,9 @@ async function speakWithYandex(text, voice = YANDEX_VOICE_FEMALE) {
     }
 }
 
-// ========== ЗАПРОС К YANDEX API ==========
+// ========== ЗАПРОС К YANDEX API (ЧЕРЕЗ CLOUDFLARE WORKER) ==========
 async function fetchFromYandex(text, voice) {
-    const url = 'https://tts.api.cloud.yandex.net/speech/v1/tts:synthesize';
+    const WORKER_URL = 'https://yandex-tts-proxy.ygubert72.workers.dev';
 
     const params = new URLSearchParams({
         text: text,
@@ -80,7 +80,7 @@ async function fetchFromYandex(text, voice) {
         folderId: YANDEX_FOLDER_ID,
     });
 
-    const response = await fetch(url, {
+    const response = await fetch(WORKER_URL, {
         method: 'POST',
         headers: {
             'Authorization': `Api-Key ${YANDEX_API_KEY}`,

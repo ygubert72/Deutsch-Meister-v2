@@ -43,7 +43,7 @@ function renderListening(container, lesson) {
 }
 
 // ========== ОЗВУЧИВАНИЕ ТЕКУЩЕГО МОНОЛОГА ==========
-function speakCurrentDialog() {
+function speakCurrentDialog(speed) {
     if (!listeningData) {
         console.warn('⚠️ listeningData не загружен');
         return;
@@ -61,18 +61,31 @@ function speakCurrentDialog() {
         return;
     }
     
-    console.log('🎤 Озвучивание монолога:', dialog.title);
-    
     const cleanText = dialog.text.trim();
+    const speedValue = speed || 0.85;
     
-    if (typeof window.speak === 'function') {
+    console.log(`🎤 Озвучивание монолога: "${dialog.title}" | Скорость: ${speedValue}`);
+    
+    if (typeof window.speakWithSpeed === 'function') {
+        window.speakWithSpeed(cleanText, speedValue);
+    } else if (typeof window.speak === 'function') {
         window.speak(cleanText);
     } else {
-        console.warn('⚠️ speak.js не загружен');
+        console.warn('⚠️ Озвучка не доступна');
     }
 }
 
-window._speakDialog = speakCurrentDialog;
+// Обёртки для кнопок
+function speakNormal() {
+    speakCurrentDialog(0.85);
+}
+
+function speakSlow() {
+    speakCurrentDialog(0.6);
+}
+
+window._speakNormal = speakNormal;
+window._speakSlow = speakSlow;
 
 // ========== ОТОБРАЖЕНИЕ МОНОЛОГА ==========
 function renderDialog(container) {
@@ -100,10 +113,13 @@ function renderDialog(container) {
             </div>
             
             <div style="display: flex; gap: 10px; flex-wrap: wrap; margin: 10px 0;">
-                <button onclick="window._speakDialog()" style="padding: 8px 20px; background: #3B6FE0; color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: bold;">
+                <button id="listenBtn" onclick="window._speakNormal()" style="padding: 8px 20px; background: #3B6FE0; color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; box-shadow: 0 2px 8px rgba(59,111,224,0.3);">
                     🔊 ПРОСЛУШАТЬ
                 </button>
-                <button onclick="window._toggleText()" style="padding: 8px 20px; background: #FF9800; color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: bold;">
+                <button id="slowBtn" onclick="window._speakSlow()" style="padding: 8px 20px; background: #E8F0FE; color: #333; border: 2px solid #D0D0D0; border-radius: 8px; cursor: pointer; font-weight: bold;">
+                    🐢 МЕДЛЕННО
+                </button>
+                <button id="toggleTextBtn" onclick="window._toggleText()" style="padding: 8px 20px; background: #FF9800; color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: bold;">
                     ${isTextVisible ? '🙈 СКРЫТЬ ТЕКСТ' : '📖 ПОКАЗАТЬ ТЕКСТ'}
                 </button>
             </div>
@@ -167,6 +183,11 @@ function renderDialog(container) {
     `;
 
     container.innerHTML = html;
+    
+    // Добавляем классы для анимации кнопок (чтобы работали эффекты из CSS)
+    document.querySelectorAll('#listenBtn, #slowBtn, #toggleTextBtn, .ctrl-btn, .check-btn').forEach(btn => {
+        btn.classList.add('ctrl-btn');
+    });
     
     setTimeout(updateCounter, 100);
 }

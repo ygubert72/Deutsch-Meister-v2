@@ -6,6 +6,9 @@ let listeningData = null;
 let currentDialogIndex = 0;
 let selectedAnswers = {};
 let isTextVisible = false;
+let isSpeaking = false;
+let currentSpeed = 0.85;
+let currentUtterance = null;
 
 // ========== ОСНОВНАЯ ФУНКЦИЯ ==========
 function renderListening(container, lesson) {
@@ -28,6 +31,7 @@ function renderListening(container, lesson) {
             currentDialogIndex = 0;
             selectedAnswers = {};
             isTextVisible = false;
+            isSpeaking = false;
             renderDialog(container);
         })
         .catch(error => {
@@ -42,8 +46,24 @@ function renderListening(container, lesson) {
         });
 }
 
-// ========== ОЗВУЧИВАНИЕ ТЕКУЩЕГО МОНОЛОГА ==========
+// ========== ОСТАНОВКА ОЗВУЧКИ ==========
+function stopSpeaking() {
+    if (window.speechSynthesis) {
+        window.speechSynthesis.cancel();
+    }
+    isSpeaking = false;
+    currentUtterance = null;
+    updateButtons();
+}
+
+// ========== ОЗВУЧИВАНИЕ ==========
 function speakCurrentDialog(speed) {
+    // Если уже говорим — останавливаем
+    if (isSpeaking) {
+        stopSpeaking();
+        return;
+    }
+    
     if (!listeningData) {
         console.warn('⚠️ listeningData не загружен');
         return;
@@ -62,30 +82,89 @@ function speakCurrentDialog(speed) {
     }
     
     const cleanText = dialog.text.trim();
-    const speedValue = speed || 0.85;
+    currentSpeed = speed || 0.85;
     
-    console.log(`🎤 Озвучивание монолога: "${dialog.title}" | Скорость: ${speedValue}`);
+    console.log(`🎤 Озвучивание монолога: "${dialog.title}" | Скорость: ${currentSpeed}`);
     
     if (typeof window.speakWithSpeed === 'function') {
-        window.speakWithSpeed(cleanText, speedValue);
+        isSpeaking = true;
+        updateButtons();
+        
+        // Получаем utterance из speakWithSpeed
+        const utterance = window.speakWithSpeed(cleanText, currentSpeed, function() {
+            // onend callback — озвучка завершилась
+            isSpeaking = false;
+            currentUtterance = null;
+            updateButtons();
+        });
+        
+        if (utterance) {
+            currentUtterance = utterance;
+        }
     } else if (typeof window.speak === 'function') {
         window.speak(cleanText);
+        // Если нет speakWithSpeed, просто запускаем и сразу сбрасываем состояние
+        setTimeout(() => {
+            isSpeaking = false;
+            updateButtons();
+        }, 100);
     } else {
         console.warn('⚠️ Озвучка не доступна');
     }
 }
 
+// ========== ОБНОВЛЕНИЕ КНОПОК ==========
+function updateButtons() {
+    const listenBtn = document.getElementById('listenBtn');
+    const slowBtn = document.getElementById('slowBtn');
+    
+    if (!listenBtn || !slowBtn) return;
+    
+    if (isSpeaking) {
+        // Активное состояние — кнопки становятся синими с надписью "ОСТАНОВИТЬ"
+        listenBtn.innerHTML = '⏹️ ОСТАНОВИТЬ';
+        listenBtn.style.background = '#3B6FE0';
+        listenBtn.style.color = 'white';
+        listenBtn.style.border = 'none';
+        
+        slowBtn.innerHTML = '⏹️ ОСТАНОВИТЬ';
+        slowBtn.style.background = '#3B6FE0';
+        slowBtn.style.color = 'white';
+        slowBtn.style.border = 'none';
+    } else {
+        // Исходное состояние
+        listenBtn.innerHTML = '🔊 ПРОСЛУШАТЬ';
+        listenBtn.style.background = '#E8F0FE';
+        listenBtn.style.color = '#333';
+        listenBtn.style.border = '2px solid #D0D0D0';
+        
+        slowBtn.innerHTML = '🐢 МЕДЛЕННО';
+        slowBtn.style.background = '#E8F0FE';
+        slowBtn.style.color = '#333';
+        slowBtn.style.border = '2px solid #D0D0D0';
+    }
+}
+
 // Обёртки для кнопок
 function speakNormal() {
-    speakCurrentDialog(0.85);
+    if (isSpeaking) {
+        stopSpeaking();
+    } else {
+        speakCurrentDialog(0.85);
+    }
 }
 
 function speakSlow() {
-    speakCurrentDialog(0.6);
+    if (isSpeaking) {
+        stopSpeaking();
+    } else {
+        speakCurrentDialog(0.6);
+    }
 }
 
 window._speakNormal = speakNormal;
 window._speakSlow = speakSlow;
+window._stopSpeaking = stopSpeaking;
 
 // ========== ОТОБРАЖЕНИЕ МОНОЛОГА ==========
 function renderDialog(container) {
@@ -113,7 +192,7 @@ function renderDialog(container) {
             </div>
             
             <div style="display: flex; gap: 10px; flex-wrap: wrap; margin: 10px 0;">
-                <button id="listenBtn" onclick="window._speakNormal()" style="padding: 8px 20px; background: #3B6FE0; color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; box-shadow: 0 2px 8px rgba(59,111,224,0.3);">
+                <button id="listenBtn" onclick="window._speakNormal()" style="padding: 8px 20px; background: #E8F0FE; color: #333; border: 2px solid #D0D0D0; border-radius: 8px; cursor: pointer; font-weight: bold;">
                     🔊 ПРОСЛУШАТЬ
                 </button>
                 <button id="slowBtn" onclick="window._speakSlow()" style="padding: 8px 20px; background: #E8F0FE; color: #333; border: 2px solid #D0D0D0; border-radius: 8px; cursor: pointer; font-weight: bold;">
@@ -184,11 +263,8 @@ function renderDialog(container) {
 
     container.innerHTML = html;
     
-    // Добавляем классы для анимации кнопок (чтобы работали эффекты из CSS)
-    document.querySelectorAll('#listenBtn, #slowBtn, #toggleTextBtn, .ctrl-btn, .check-btn').forEach(btn => {
-        btn.classList.add('ctrl-btn');
-    });
-    
+    // Обновляем состояние кнопок
+    setTimeout(updateButtons, 50);
     setTimeout(updateCounter, 100);
 }
 
@@ -202,6 +278,7 @@ function selectListeningAnswer(dialogId, qIndex, value) {
 
 // ========== ПЕРЕКЛЮЧЕНИЕ МОНОЛОГОВ ==========
 function prevListeningDialog() {
+    if (isSpeaking) stopSpeaking();
     if (currentDialogIndex > 0) {
         currentDialogIndex--;
         selectedAnswers = {};
@@ -212,6 +289,7 @@ function prevListeningDialog() {
 }
 
 function nextListeningDialog() {
+    if (isSpeaking) stopSpeaking();
     if (listeningData && currentDialogIndex < listeningData.dialogs.length - 1) {
         currentDialogIndex++;
         selectedAnswers = {};

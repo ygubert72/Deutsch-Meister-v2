@@ -13,7 +13,6 @@ function initFirebase() {
     }
     
     if (!firebase.apps.length) {
-        // Используем конфигурацию из index.html
         if (typeof firebaseConfig !== 'undefined') {
             firebase.initializeApp(firebaseConfig);
         } else {
@@ -25,7 +24,6 @@ function initFirebase() {
     auth = firebase.auth();
     db = firebase.firestore();
     
-    // Делаем глобально доступным
     window.auth = auth;
     window.db = db;
     console.log('✅ Firebase инициализирован из auth.js');
@@ -207,6 +205,8 @@ function updateUI(user) {
     const userInfo = document.getElementById('userInfo');
     const loginBtnMobile = document.getElementById('loginBtnMobile');
     const userInfoMobile = document.getElementById('userInfoMobile');
+    const adminBtn = document.getElementById('adminPanelBtn');
+    const adminBtnMobile = document.getElementById('adminPanelBtnMobile');
     
     if (!loginBtn || !userInfo) return;
     
@@ -220,8 +220,12 @@ function updateUI(user) {
         const hasPremium = currentUserData && currentUserData.hasPremiumAccess === true;
         const isAdmin = user.email === 'ygubert72@gmail.com';
         
-        if (window.AdminUI) {
-            window.AdminUI.updateAdminButtonVisibility(isAdmin);
+        // Админ-панель (только для администратора)
+        if (adminBtn) {
+            adminBtn.style.display = isAdmin ? 'block' : 'none';
+        }
+        if (adminBtnMobile) {
+            adminBtnMobile.style.display = isAdmin ? 'block' : 'none';
         }
         
         const premiumButtonHtml = (!isAdmin) ? `
@@ -261,9 +265,9 @@ function updateUI(user) {
         userInfo.style.display = 'block';
         if (userInfoMobile) userInfoMobile.style.display = 'block';
         
-        if (window.AdminUI) {
-            window.AdminUI.updateAdminButtonVisibility(false);
-        }
+        // Скрываем админ-кнопки
+        if (adminBtn) adminBtn.style.display = 'none';
+        if (adminBtnMobile) adminBtnMobile.style.display = 'none';
         
         const guestHtml = `
             <div style="background:#E8F0FE; border-radius:8px; padding:8px; text-align:center;">

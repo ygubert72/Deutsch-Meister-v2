@@ -6,11 +6,11 @@
     {
       "id": "monolog_1",
       "title": "Die Grundlagen der Verhandlung",
-      "text": "Ich möchte heute über die Grundlagen der Verhandlung sprechen. Ich bin Anneliese. Verhandlungen sind ein wichtiger Teil des Berufslebens. Man muss sich gut vorbereiten. Man sollte die eigenen Ziele kennen. Man sollte die Ziele der anderen Seite verstehen. Man muss Kompromisse eingehen können. Die Kommunikation ist entscheidend. Man sollte aktiv zuhören. Man sollte klar und deutlich sprechen. Verhandlungen sind nicht immer einfach. Aber sie sind notwendig.",
+      "text": "Ich möchte heute über die Grundlagen der Verhandlung sprechen. Ich bin Anna. Verhandlungen sind ein wichtiger Teil des Berufslebens. Man muss sich gut vorbereiten. Man sollte die eigenen Ziele kennen. Man sollte die Ziele der anderen Seite verstehen. Man muss Kompromisse eingehen können. Die Kommunikation ist entscheidend. Man sollte aktiv zuhören. Verhandlungen sind notwendig.",
       "questions": [
         {
           "question": "Wie heißt die Frau?",
-          "options": ["Anneliese", "Brunhilde", "Dorothea"],
+          "options": ["Anna", "Maria", "Julia"],
           "answer": 0
         },
         {
@@ -19,28 +19,18 @@
           "answer": 0
         },
         {
-          "question": "Was sollte man kennen?",
+          "question": "Was sollte man bei Verhandlungen kennen?",
           "options": ["Die eigenen Ziele", "Die Ziele der anderen", "Beide"],
           "answer": 0
         },
         {
-          "question": "Was muss man eingehen können?",
+          "question": "Was muss man bei Verhandlungen eingehen können?",
           "options": ["Kompromisse", "Konflikte", "Kündigungen"],
           "answer": 0
         },
         {
-          "question": "Was ist entscheidend bei Verhandlungen?",
+          "question": "Was ist bei Verhandlungen entscheidend?",
           "options": ["Die Kommunikation", "Die Vorbereitung", "Die Zeit"],
-          "answer": 0
-        },
-        {
-          "question": "Was sollte man tun?",
-          "options": ["Aktiv zuhören", "Nur reden", "Schweigen"],
-          "answer": 0
-        },
-        {
-          "question": "Sind Verhandlungen immer einfach?",
-          "options": ["Nein", "Ja", "Manchmal"],
           "answer": 0
         }
       ]
@@ -48,11 +38,11 @@
     {
       "id": "monolog_2",
       "title": "Die Vorbereitung auf Verhandlungen",
-      "text": "In der heutigen Zeit ist die Vorbereitung auf Verhandlungen sehr wichtig. Ich bin Brunhilde. Eine gute Vorbereitung ist entscheidend. Man sollte die Fakten sammeln. Man sollte die Argumente der anderen Seite kennen. Man sollte eigene Argumente vorbereiten. Man sollte verschiedene Szenarien durchdenken. Man sollte auch eine Strategie entwickeln. Die Vorbereitung hilft, sicherer zu sein. Man sollte auch den Raum für Verhandlungen vorbereiten. Die technische Ausstattung muss funktionieren. Alles sollte gut organisiert sein.",
+      "text": "In der heutigen Zeit ist die Vorbereitung auf Verhandlungen sehr wichtig. Ich bin Maria. Eine gute Vorbereitung ist entscheidend. Man sollte die Fakten sammeln. Man sollte die Argumente der anderen Seite kennen. Man sollte eigene Argumente vorbereiten. Man sollte verschiedene Szenarien durchdenken. Man sollte auch eine Strategie entwickeln. Die technische Ausstattung muss funktionieren.",
       "questions": [
         {
           "question": "Wie heißt die Frau?",
-          "options": ["Anneliese", "Brunhilde", "Dorothea"],
+          "options": ["Anna", "Maria", "Julia"],
           "answer": 1
         },
         {
@@ -61,28 +51,18 @@
           "answer": 0
         },
         {
-          "question": "Was sollte man sammeln?",
+          "question": "Was sollte man bei der Verhandlungsvorbereitung sammeln?",
           "options": ["Die Fakten", "Die Meinungen", "Die Gerüchte"],
           "answer": 0
         },
         {
-          "question": "Was sollte man vorbereiten?",
+          "question": "Was sollte man bei der Verhandlungsvorbereitung vorbereiten?",
           "options": ["Eigene Argumente", "Nichts", "Nur die Kleidung"],
           "answer": 0
         },
         {
-          "question": "Was sollte man durchdenken?",
+          "question": "Was sollte man bei der Verhandlungsvorbereitung durchdenken?",
           "options": ["Verschiedene Szenarien", "Nur ein Szenario", "Keine Szenarien"],
-          "answer": 0
-        },
-        {
-          "question": "Was hilft die Vorbereitung?",
-          "options": ["Sicherer zu sein", "Unsicherer zu sein", "Keine Veränderung"],
-          "answer": 0
-        },
-        {
-          "question": "Was muss funktionieren?",
-          "options": ["Die technische Ausstattung", "Die Klimaanlage", "Die Beleuchtung"],
           "answer": 0
         }
       ]
@@ -90,11 +70,11 @@
     {
       "id": "monolog_3",
       "title": "Die Kommunikation in Verhandlungen",
-      "text": "Ich habe mich intensiv mit der Kommunikation in Verhandlungen beschäftigt. Ich bin Dorothea. Die Kommunikation ist das wichtigste Werkzeug. Man sollte klar und deutlich sprechen. Man sollte Fachbegriffe vermeiden. Die Sprache sollte einfach sein. Man sollte auch auf die Körpersprache achten. Die Körpersprache kann viel verraten. Man sollte Augenkontakt halten. Das zeigt Interesse. Man sollte Unterbrechungen vermeiden. Die Kommunikation sollte respektvoll sein.",
+      "text": "Ich habe mich intensiv mit der Kommunikation in Verhandlungen beschäftigt. Ich bin Julia. Die Kommunikation ist das wichtigste Werkzeug. Man sollte klar und deutlich sprechen. Man sollte Fachbegriffe vermeiden. Die Sprache sollte einfach sein. Man sollte auch auf die Körpersprache achten. Man sollte Augenkontakt halten. Das zeigt Interesse. Die Kommunikation sollte respektvoll sein.",
       "questions": [
         {
           "question": "Wie heißt die Frau?",
-          "options": ["Anneliese", "Brunhilde", "Dorothea"],
+          "options": ["Anna", "Maria", "Julia"],
           "answer": 2
         },
         {
@@ -103,27 +83,17 @@
           "answer": 0
         },
         {
-          "question": "Wie sollte man sprechen?",
+          "question": "Wie sollte man bei Verhandlungen sprechen?",
           "options": ["Klar und deutlich", "Leise und undeutlich", "Schnell und unverständlich"],
           "answer": 0
         },
         {
-          "question": "Was sollte man vermeiden?",
+          "question": "Was sollte man bei Verhandlungen vermeiden?",
           "options": ["Fachbegriffe", "Einfache Wörter", "Betonung"],
           "answer": 0
         },
         {
-          "question": "Wie sollte die Sprache sein?",
-          "options": ["Einfach", "Kompliziert", "Fachlich"],
-          "answer": 0
-        },
-        {
-          "question": "Worauf sollte man achten?",
-          "options": ["Auf die Körpersprache", "Auf die Kleidung", "Auf die Uhrzeit"],
-          "answer": 0
-        },
-        {
-          "question": "Was zeigt Interesse?",
+          "question": "Was zeigt bei Verhandlungen Interesse?",
           "options": ["Augenkontakt", "Wegschauen", "Nicken"],
           "answer": 0
         }
@@ -132,11 +102,11 @@
     {
       "id": "monolog_4",
       "title": "Die Kunst des Kompromisses",
-      "text": "Wisst ihr, warum Kompromisse wichtig sind? Ich bin Erna. Kompromisse sind in Verhandlungen oft notwendig. Man kann nicht immer alles bekommen. Man muss Abstriche machen. Der Kompromiss ist ein Zeichen von Fairness. Er zeigt, dass man kooperativ ist. Man sollte nicht zu starr sein. Flexibilität ist gefragt. Der Kompromiss sollte für beide Seiten akzeptabel sein. Das ist das Ziel jeder Verhandlung. Die Kunst des Kompromisses muss gelernt werden.",
+      "text": "Wisst ihr, warum Kompromisse wichtig sind? Ich bin Laura. Kompromisse sind in Verhandlungen oft notwendig. Man kann nicht immer alles bekommen. Man muss Abstriche machen. Der Kompromiss ist ein Zeichen von Fairness. Er zeigt, dass man kooperativ ist. Man sollte nicht zu starr sein. Flexibilität ist gefragt. Der Kompromiss sollte für beide Seiten akzeptabel sein.",
       "questions": [
         {
           "question": "Wie heißt die Frau?",
-          "options": ["Erna", "Gertrud", "Hildegard"],
+          "options": ["Laura", "Lisa", "Anna"],
           "answer": 0
         },
         {
@@ -158,27 +128,17 @@
           "question": "Was ist in Verhandlungen gefragt?",
           "options": ["Flexibilität", "Starrheit", "Aggressivität"],
           "answer": 0
-        },
-        {
-          "question": "Wie sollte der Kompromiss sein?",
-          "options": ["Akzeptabel für beide Seiten", "Nur für eine Seite", "Für keine Seite"],
-          "answer": 0
-        },
-        {
-          "question": "Muss die Kunst des Kompromisses gelernt werden?",
-          "options": ["Ja", "Nein", "Weiß nicht"],
-          "answer": 0
         }
       ]
     },
     {
       "id": "monolog_5",
       "title": "Die Nachbereitung von Verhandlungen",
-      "text": "Ich möchte euch heute von der Nachbereitung von Verhandlungen erzählen. Ich bin Gertrud. Die Nachbereitung wird oft vernachlässigt. Dabei ist sie sehr wichtig. Man sollte das Ergebnis dokumentieren. Man sollte offene Punkte notieren. Man sollte die nächsten Schritte planen. Man sollte auch Feedback einholen. Die Nachbereitung hilft, aus Fehlern zu lernen. Sie hilft, die Verhandlungen zu verbessern. Man sollte sich Zeit für die Nachbereitung nehmen. Sie ist ein wichtiger Teil des Prozesses.",
+      "text": "Ich möchte euch heute von der Nachbereitung von Verhandlungen erzählen. Ich bin Lisa. Die Nachbereitung wird oft vernachlässigt. Dabei ist sie sehr wichtig. Man sollte das Ergebnis dokumentieren. Man sollte offene Punkte notieren. Man sollte die nächsten Schritte planen. Man sollte Feedback einholen. Die Nachbereitung hilft, aus Fehlern zu lernen.",
       "questions": [
         {
           "question": "Wie heißt die Frau?",
-          "options": ["Erna", "Gertrud", "Hildegard"],
+          "options": ["Laura", "Lisa", "Anna"],
           "answer": 1
         },
         {
@@ -187,28 +147,18 @@
           "answer": 0
         },
         {
-          "question": "Was sollte man dokumentieren?",
+          "question": "Was sollte man bei der Nachbereitung dokumentieren?",
           "options": ["Das Ergebnis", "Die Vorbereitung", "Die Kommunikation"],
           "answer": 0
         },
         {
-          "question": "Was sollte man notieren?",
+          "question": "Was sollte man bei der Nachbereitung notieren?",
           "options": ["Offene Punkte", "Alle Punkte", "Keine Punkte"],
           "answer": 0
         },
         {
-          "question": "Was sollte man planen?",
+          "question": "Was sollte man bei der Nachbereitung planen?",
           "options": ["Die nächsten Schritte", "Die nächsten Ferien", "Die nächste Party"],
-          "answer": 0
-        },
-        {
-          "question": "Was sollte man einholen?",
-          "options": ["Feedback", "Kommentare", "Kritik"],
-          "answer": 0
-        },
-        {
-          "question": "Was hilft die Nachbereitung?",
-          "options": ["Aus Fehlern zu lernen", "Die Zeit zu vertreiben", "Die Arbeit zu vermeiden"],
           "answer": 0
         }
       ]
@@ -216,12 +166,12 @@
     {
       "id": "monolog_6",
       "title": "Die professionelle Kommunikation im Alltag",
-      "text": "In der heutigen Zeit ist die professionelle Kommunikation im Alltag sehr wichtig. Ich bin Hildegard. Man kommuniziert mit Kollegen, Vorgesetzten und Kunden. Die Kommunikation sollte immer professionell sein. Man sollte höflich sein. Man sollte klar und verständlich sein. Man sollte E-Mails und Nachrichten sorgfältig formulieren. Man sollte auf Rechtschreibung achten. Die Kommunikation ist ein wichtiger Faktor für den Erfolg. Man sollte sich kontinuierlich verbessern. Das ist eine Investition in die Zukunft.",
+      "text": "In der heutigen Zeit ist die professionelle Kommunikation im Alltag sehr wichtig. Ich bin Emma. Man kommuniziert mit Kollegen, Vorgesetzten und Kunden. Die Kommunikation sollte immer professionell sein. Man sollte höflich sein. Man sollte klar und verständlich sein. Man sollte E-Mails und Nachrichten sorgfältig formulieren. Die Kommunikation ist ein wichtiger Faktor für den Erfolg.",
       "questions": [
         {
           "question": "Wie heißt die Frau?",
-          "options": ["Erna", "Gertrud", "Hildegard"],
-          "answer": 2
+          "options": ["Emma", "Lisa", "Laura"],
+          "answer": 0
         },
         {
           "question": "Warum ist professionelle Kommunikation wichtig?",
@@ -234,23 +184,13 @@
           "answer": 0
         },
         {
-          "question": "Wie sollte die Kommunikation sein?",
+          "question": "Wie sollte die Kommunikation im Berufsleben sein?",
           "options": ["Professionell", "Privat", "Unverbindlich"],
           "answer": 0
         },
         {
-          "question": "Wie sollte man formulieren?",
+          "question": "Wie sollte man E-Mails und Nachrichten formulieren?",
           "options": ["Sorgfältig", "Schnell", "Nachlässig"],
-          "answer": 0
-        },
-        {
-          "question": "Worauf sollte man achten?",
-          "options": ["Auf Rechtschreibung", "Auf die Länge", "Auf die Geschwindigkeit"],
-          "answer": 0
-        },
-        {
-          "question": "Sollte man sich kontinuierlich verbessern?",
-          "options": ["Ja", "Nein", "Weiß nicht"],
           "answer": 0
         }
       ]

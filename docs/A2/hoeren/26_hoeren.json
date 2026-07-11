@@ -1,0 +1,199 @@
+{
+  "lesson": 26,
+  "level": "A2",
+  "title": "Профессиональные обязанности и навыки",
+  "dialogs": [
+    {
+      "id": "monolog_1",
+      "title": "Meine Aufgaben im Büro",
+      "text": "Einen schönen Tag! Ich bin Grete und arbeite in einem Büro. Meine Aufgaben sind sehr vielfältig. Ich muss E-Mails schreiben und telefonieren. Ich organisiere auch Termine für meine Chefin. Manchmal muss ich Berichte schreiben. Ich kann gut mit Menschen umgehen. Ich arbeite gern im Team.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Grete", "Liese", "Meta"],
+          "answer": 0
+        },
+        {
+          "question": "Was muss Grete in ihrem Beruf machen?",
+          "options": ["E-Mails schreiben und telefonieren", "Kochen", "Auto fahren"],
+          "answer": 0
+        },
+        {
+          "question": "Was organisiert Grete?",
+          "options": ["Termine", "Reisen", "Partys"],
+          "answer": 0
+        },
+        {
+          "question": "Was kann Grete gut?",
+          "options": ["Mit Menschen umgehen", "Kochen", "Programmieren"],
+          "answer": 0
+        },
+        {
+          "question": "Arbeitet Grete gern im Team?",
+          "options": ["Ja", "Nein", "Manchmal"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_2",
+      "title": "Meine Fähigkeiten",
+      "text": "Hallo, hier ist Liese! Ich habe viele berufliche Fähigkeiten. Ich kann drei Sprachen sprechen: Deutsch, Englisch und Französisch. Ich kann gut mit Computern arbeiten. Ich kann Projekte planen und organisieren. Ich kann auch gut präsentieren. Diese Fähigkeiten helfen mir in meinem Beruf. Ich bilde mich immer weiter.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Grete", "Liese", "Meta"],
+          "answer": 1
+        },
+        {
+          "question": "Wie viele Sprachen kann Liese sprechen?",
+          "options": ["Drei", "Zwei", "Vier"],
+          "answer": 0
+        },
+        {
+          "question": "Welche Sprachen kann Liese?",
+          "options": ["Deutsch, Englisch und Französisch", "Nur Deutsch", "Deutsch und Englisch"],
+          "answer": 0
+        },
+        {
+          "question": "Was kann Liese mit Computern machen?",
+          "options": ["Gut arbeiten", "Nichts", "Spiele spielen"],
+          "answer": 0
+        },
+        {
+          "question": "Was macht Liese für ihre Karriere?",
+          "options": ["Sie bildet sich weiter", "Sie arbeitet nicht", "Sie reist viel"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_3",
+      "title": "Ein typischer Arbeitstag",
+      "text": "Guten Morgen! Ich bin Meta. Mein Arbeitstag beginnt um 8 Uhr. Ich lese zuerst meine E-Mails. Um 10 Uhr habe ich eine Besprechung. Nach der Besprechung arbeite ich an wichtigen Projekten. Mittags esse ich in der Kantine. Am Nachmittag telefonierte ich mit Kunden. Um 17 Uhr beende ich meine Arbeit.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Grete", "Liese", "Meta"],
+          "answer": 2
+        },
+        {
+          "question": "Wann beginnt Metas Arbeit?",
+          "options": ["Um 8 Uhr", "Um 9 Uhr", "Um 7 Uhr"],
+          "answer": 0
+        },
+        {
+          "question": "Was macht Meta um 10 Uhr?",
+          "options": ["Sie hat eine Besprechung", "Sie schreibt E-Mails", "Sie macht Pause"],
+          "answer": 0
+        },
+        {
+          "question": "Wo isst Meta zu Mittag?",
+          "options": ["In der Kantine", "Zu Hause", "Im Restaurant"],
+          "answer": 0
+        },
+        {
+          "question": "Wann beendet Meta ihre Arbeit?",
+          "options": ["Um 17 Uhr", "Um 18 Uhr", "Um 16 Uhr"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_4",
+      "title": "Meine Ausbildung",
+      "text": "Ich grüße euch alle! Ich bin Trude. Ich habe eine Ausbildung als Krankenschwester gemacht. Die Ausbildung hat drei Jahre gedauert. Ich habe viel Theorie gelernt. Ich hatte auch viele praktische Einsätze im Krankenhaus. Jetzt arbeite ich in einer großen Klinik. Meine Ausbildung war sehr anspruchsvoll, aber es hat sich gelohnt.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Trude", "Berta", "Meta"],
+          "answer": 0
+        },
+        {
+          "question": "Welche Ausbildung hat Trude gemacht?",
+          "options": ["Krankenschwester", "Lehrerin", "Sekretärin"],
+          "answer": 0
+        },
+        {
+          "question": "Wie lange hat die Ausbildung gedauert?",
+          "options": ["Drei Jahre", "Zwei Jahre", "Vier Jahre"],
+          "answer": 0
+        },
+        {
+          "question": "Wo arbeitet Trude jetzt?",
+          "options": ["In einer großen Klinik", "In einer kleinen Praxis", "In einem Krankenhaus"],
+          "answer": 0
+        },
+        {
+          "question": "War die Ausbildung anspruchsvoll?",
+          "options": ["Ja", "Nein", "Weiß nicht"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_5",
+      "title": "Mein Berufsweg",
+      "text": "Tag zusammen! Ich bin Berta. Ich habe Germanistik und Geschichte studiert. Nach dem Studium habe ich als Journalistin gearbeitet. Später habe ich eine Fortbildung gemacht. Jetzt arbeite ich als Redakteurin. Ich schreibe Artikel und korrigiere Texte. Ich habe viel Berufserfahrung gesammelt. Meine Arbeit macht mir immer noch Spaß.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Trude", "Berta", "Grete"],
+          "answer": 1
+        },
+        {
+          "question": "Was hat Berta studiert?",
+          "options": ["Germanistik und Geschichte", "Medizin", "Jura"],
+          "answer": 0
+        },
+        {
+          "question": "Was hat Berta nach dem Studium gemacht?",
+          "options": ["Als Journalistin gearbeitet", "Eine Ausbildung gemacht", "Ins Ausland gereist"],
+          "answer": 0
+        },
+        {
+          "question": "Was macht Berta jetzt als Redakteurin?",
+          "options": ["Sie schreibt Artikel und korrigiert Texte", "Sie unterrichtet", "Sie verkauft"],
+          "answer": 0
+        },
+        {
+          "question": "Macht Berta ihre Arbeit gern?",
+          "options": ["Ja, immer noch", "Nein, nicht mehr", "Weiß nicht"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_6",
+      "title": "Meine Kolleginnen",
+      "text": "Guten Abend! Ich bin Greta. Ich arbeite mit fünf Kolleginnen zusammen. Wir unterstützen uns gegenseitig. Meine Kolleginnen sind alle sehr kompetent. Wir teilen unsere Aufgaben fair auf. Manchmal gibt es Stress, aber wir helfen uns. Ich mag die Arbeitsatmosphäre sehr. Das Team ist wie eine kleine Familie.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Greta", "Berta", "Trude"],
+          "answer": 0
+        },
+        {
+          "question": "Wie viele Kolleginnen hat Greta?",
+          "options": ["Fünf", "Vier", "Sechs"],
+          "answer": 0
+        },
+        {
+          "question": "Wie sind Gretas Kolleginnen?",
+          "options": ["Sehr kompetent", "Nicht so gut", "Weiß nicht"],
+          "answer": 0
+        },
+        {
+          "question": "Wie teilen sie ihre Aufgaben auf?",
+          "options": ["Fair", "Ungerecht", "Weiß nicht"],
+          "answer": 0
+        },
+        {
+          "question": "Wie ist die Arbeitsatmosphäre?",
+          "options": ["Sehr gut", "Schlecht", "Okay"],
+          "answer": 0
+        }
+      ]
+    }
+  ]
+}

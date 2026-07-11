@@ -1,0 +1,259 @@
+{
+  "lesson": 49,
+  "level": "B2",
+  "title": "Экономика и бизнес-лексика",
+  "dialogs": [
+    {
+      "id": "monolog_1",
+      "title": "Die Grundlagen der Wirtschaft",
+      "text": "Ich möchte heute über die Grundlagen der Wirtschaft sprechen. Ich bin Anneliese. Die Wirtschaft beschäftigt sich mit Angebot und Nachfrage. Unternehmen produzieren Waren und Dienstleistungen. Die Preise werden durch Angebot und Nachfrage bestimmt. Wenn die Nachfrage steigt, steigen die Preise. Wenn das Angebot sinkt, steigen die Preise auch. Die Wirtschaft ist ein komplexes System. Sie beeinflusst unser tägliches Leben. Die Inflation ist ein wichtiges Thema. Die Preise steigen ständig. Das ist ein Problem.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Anneliese", "Brunhilde", "Dorothea"],
+          "answer": 0
+        },
+        {
+          "question": "Was beschäftigt die Wirtschaft?",
+          "options": ["Angebot und Nachfrage", "Angebot und Verkauf", "Nachfrage und Lieferung"],
+          "answer": 0
+        },
+        {
+          "question": "Was produzieren Unternehmen?",
+          "options": ["Waren und Dienstleistungen", "Nur Waren", "Nur Dienstleistungen"],
+          "answer": 0
+        },
+        {
+          "question": "Wie werden die Preise bestimmt?",
+          "options": ["Durch Angebot und Nachfrage", "Durch die Regierung", "Durch die Unternehmen"],
+          "answer": 0
+        },
+        {
+          "question": "Was passiert, wenn die Nachfrage steigt?",
+          "options": ["Die Preise steigen", "Die Preise sinken", "Die Preise bleiben gleich"],
+          "answer": 0
+        },
+        {
+          "question": "Was beeinflusst die Wirtschaft?",
+          "options": ["Unser tägliches Leben", "Nur die Unternehmen", "Nur die Regierung"],
+          "answer": 0
+        },
+        {
+          "question": "Was ist ein wichtiges Thema in der Wirtschaft?",
+          "options": ["Die Inflation", "Die Reise", "Die Kultur"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_2",
+      "title": "Die Rolle der Unternehmen",
+      "text": "In der heutigen Zeit wird die Rolle der Unternehmen oft diskutiert. Ich bin Brunhilde. Unternehmen sind das Rückgrat der Wirtschaft. Sie schaffen Arbeitsplätze. Sie zahlen Steuern. Sie investieren in Innovationen. Die Unternehmen müssen auch Verantwortung übernehmen. Sie sollten nachhaltig wirtschaften. Der Schutz der Umwelt ist wichtig. Die Unternehmen sind auch Teil der Gesellschaft. Sie haben eine soziale Verantwortung. Die Unternehmen müssen sich anpassen.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Anneliese", "Brunhilde", "Dorothea"],
+          "answer": 1
+        },
+        {
+          "question": "Was ist das Rückgrat der Wirtschaft?",
+          "options": ["Die Unternehmen", "Die Regierung", "Die Arbeitnehmer"],
+          "answer": 0
+        },
+        {
+          "question": "Was schaffen Unternehmen?",
+          "options": ["Arbeitsplätze", "Kriege", "Krankheiten"],
+          "answer": 0
+        },
+        {
+          "question": "Was zahlen Unternehmen?",
+          "options": ["Steuern", "Strafen", "Zölle"],
+          "answer": 0
+        },
+        {
+          "question": "In was investieren Unternehmen?",
+          "options": ["In Innovationen", "In Kriege", "In Krankheiten"],
+          "answer": 0
+        },
+        {
+          "question": "Was sollten Unternehmen tun?",
+          "options": ["Nachhaltig wirtschaften", "Gewinne maximieren", "Umwelt verschmutzen"],
+          "answer": 0
+        },
+        {
+          "question": "Haben Unternehmen eine soziale Verantwortung?",
+          "options": ["Ja", "Nein", "Weiß nicht"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_3",
+      "title": "Die Bedeutung des Handels",
+      "text": "Ich habe mich intensiv mit dem Handel beschäftigt. Ich bin Dorothea. Der Handel ist sehr wichtig für die Wirtschaft. Es gibt den Binnenhandel und den Außenhandel. Der Außenhandel ist besonders wichtig für Deutschland. Deutschland exportiert viele Waren. Es importiert auch Waren. Die Exporte sind höher als die Importe. Das ist ein Handelsüberschuss. Der Handel schafft Wohlstand. Er verbindet die Länder. Die Globalisierung hat den Handel verändert. Die Handelsbeziehungen sind komplex.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Anneliese", "Brunhilde", "Dorothea"],
+          "answer": 2
+        },
+        {
+          "question": "Was ist wichtig für die Wirtschaft?",
+          "options": ["Der Handel", "Die Kultur", "Die Religion"],
+          "answer": 0
+        },
+        {
+          "question": "Welche Arten von Handel gibt es?",
+          "options": ["Binnenhandel und Außenhandel", "Nur Binnenhandel", "Nur Außenhandel"],
+          "answer": 0
+        },
+        {
+          "question": "Was exportiert Deutschland?",
+          "options": ["Viele Waren", "Viele Krankheiten", "Viele Kriege"],
+          "answer": 0
+        },
+        {
+          "question": "Wie sind die Exporte im Vergleich zu den Importen?",
+          "options": ["Die Exporte sind höher", "Die Exporte sind niedriger", "Sie sind gleich"],
+          "answer": 0
+        },
+        {
+          "question": "Was schafft der Handel?",
+          "options": ["Wohlstand", "Armut", "Krankheiten"],
+          "answer": 0
+        },
+        {
+          "question": "Was hat der Handel verbunden?",
+          "options": ["Die Länder", "Die Kulturen", "Die Religionen"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_4",
+      "title": "Die Arbeitslosigkeit",
+      "text": "Wisst ihr, was die Arbeitslosigkeit bedeutet? Ich bin Erna. Die Arbeitslosigkeit ist ein großes Problem. Viele Menschen suchen Arbeit. Sie können keine finden. Die Arbeitslosigkeit hat viele Ursachen. Die Digitalisierung spielt eine Rolle. Auch die Wirtschaftskrise ist ein Faktor. Die Arbeitslosigkeit führt zu sozialen Problemen. Die Menschen haben weniger Geld. Sie fühlen sich oft nutzlos. Die Politik muss Lösungen finden. Die Arbeitslosigkeit muss bekämpft werden.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Erna", "Gertrud", "Hildegard"],
+          "answer": 0
+        },
+        {
+          "question": "Was ist ein großes Problem?",
+          "options": ["Die Arbeitslosigkeit", "Die Wirtschaft", "Die Kultur"],
+          "answer": 0
+        },
+        {
+          "question": "Was können viele Menschen nicht finden?",
+          "options": ["Arbeit", "Essen", "Freunde"],
+          "answer": 0
+        },
+        {
+          "question": "Was spielt eine Rolle bei der Arbeitslosigkeit?",
+          "options": ["Die Digitalisierung", "Die Religion", "Die Kultur"],
+          "answer": 0
+        },
+        {
+          "question": "Was führt die Arbeitslosigkeit zu?",
+          "options": ["Sozialen Problemen", "Wohlstand", "Frieden"],
+          "answer": 0
+        },
+        {
+          "question": "Wie fühlen sich die Menschen oft?",
+          "options": ["Nutzlos", "Glücklich", "Reich"],
+          "answer": 0
+        },
+        {
+          "question": "Was muss die Politik tun?",
+          "options": ["Lösungen finden", "Nichts tun", "Probleme ignorieren"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_5",
+      "title": "Die Globalisierung und ihre Folgen",
+      "text": "Ich möchte euch heute von der Globalisierung erzählen. Ich bin Gertrud. Die Globalisierung hat die Wirtschaft verändert. Die Märkte sind global vernetzt. Unternehmen produzieren weltweit. Die Arbeitsplätze wandern in Länder mit niedrigeren Löhnen. Das hat Vor- und Nachteile. Die Preise sind gefallen. Die Auswahl ist größer. Die Arbeitslosigkeit in den Industrieländern ist gestiegen. Die Globalisierung ist nicht aufzuhalten. Die Politik muss die Folgen regulieren.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Erna", "Gertrud", "Hildegard"],
+          "answer": 1
+        },
+        {
+          "question": "Was hat die Globalisierung verändert?",
+          "options": ["Die Wirtschaft", "Die Kultur", "Die Religion"],
+          "answer": 0
+        },
+        {
+          "question": "Wie sind die Märkte?",
+          "options": ["Global vernetzt", "Lokal vernetzt", "Regional vernetzt"],
+          "answer": 0
+        },
+        {
+          "question": "Wohin wandern die Arbeitsplätze?",
+          "options": ["In Länder mit niedrigeren Löhnen", "In Länder mit höheren Löhnen", "In Länder mit gleichen Löhnen"],
+          "answer": 0
+        },
+        {
+          "question": "Wie sind die Preise?",
+          "options": ["Gefallen", "Gestiegen", "Gleich geblieben"],
+          "answer": 0
+        },
+        {
+          "question": "Wie ist die Auswahl?",
+          "options": ["Größer", "Kleiner", "Gleich"],
+          "answer": 0
+        },
+        {
+          "question": "Was muss die Politik regulieren?",
+          "options": ["Die Folgen der Globalisierung", "Die Wirtschaft", "Die Kultur"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_6",
+      "title": "Die Zukunft der Arbeit",
+      "text": "In der heutigen Zeit wird viel über die Zukunft der Arbeit diskutiert. Ich bin Hildegard. Die Digitalisierung verändert die Arbeitswelt. Viele Berufe verschwinden. Neue Berufe entstehen. Die Menschen müssen sich weiterbilden. Die Flexibilität wird wichtiger. Die Arbeit wird mobiler. Homeoffice wird immer üblicher. Die Arbeitnehmer müssen bereit sein, sich zu verändern. Die Politik muss die Rahmenbedingungen schaffen. Die Zukunft der Arbeit ist offen.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Erna", "Gertrud", "Hildegard"],
+          "answer": 2
+        },
+        {
+          "question": "Was verändert die Arbeitswelt?",
+          "options": ["Die Digitalisierung", "Die Religion", "Die Kultur"],
+          "answer": 0
+        },
+        {
+          "question": "Was verschwindet?",
+          "options": ["Viele Berufe", "Viele Arbeitsplätze", "Viele Unternehmen"],
+          "answer": 0
+        },
+        {
+          "question": "Was entsteht?",
+          "options": ["Neue Berufe", "Neue Arbeitsplätze", "Neue Unternehmen"],
+          "answer": 0
+        },
+        {
+          "question": "Was müssen die Menschen tun?",
+          "options": ["Sich weiterbilden", "Arbeiten", "Reisen"],
+          "answer": 0
+        },
+        {
+          "question": "Was wird immer üblicher?",
+          "options": ["Homeoffice", "Büroarbeit", "Schichtarbeit"],
+          "answer": 0
+        },
+        {
+          "question": "Wie ist die Zukunft der Arbeit?",
+          "options": ["Offen", "Sicher", "Unsicher"],
+          "answer": 0
+        }
+      ]
+    }
+  ]
+}

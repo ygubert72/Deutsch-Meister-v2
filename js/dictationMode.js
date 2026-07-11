@@ -156,7 +156,7 @@ function renderDictation(container, lesson) {
                 }, 500);
                 
             } else {
-                result.innerHTML = '❌ Неправильно. Попробуйте ещё раз!';
+                result.innerHTML = '❌ Неправильно. Попробуйте ещё раз.';
                 result.className = 'practice-result result-wrong';
                 input.style.borderColor = '#F44336';
                 input.style.backgroundColor = '#FFEBEE';

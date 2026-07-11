@@ -6,7 +6,7 @@
     {
       "id": "monolog_1",
       "title": "Mein Frühstück",
-      "text": "Ich heiße Anna. Ich esse gern Brot zum Frühstück. Ich trinke Kaffee mit Milch. Ich esse auch manchmal Müsli. Am Wochenende frühstücke ich mit meiner Familie. Wir sitzen zusammen am Tisch und essen.",
+      "text": "Guten Tag! Ich bin Anna. Ich esse gern Brot zum Frühstück. Ich trinke Kaffee mit Milch. Ich esse auch manchmal Müsli. Am Wochenende frühstücke ich mit meiner Familie.",
       "questions": [
         {
           "question": "Wie heißt die Frau?",
@@ -33,7 +33,7 @@
     {
       "id": "monolog_2",
       "title": "Mittagessen",
-      "text": "Ich heiße Maria. Ich esse gern Suppe zum Mittagessen. Ich mag auch Nudeln mit Tomatensauce. Mein Bruder isst gern Fleisch mit Kartoffeln. Meine Mutter kocht das Mittagessen immer frisch. Das Essen ist sehr lecker.",
+      "text": "Hallo! Ich bin Maria. Ich esse gern Suppe zum Mittagessen. Ich mag auch Nudeln mit Tomatensauce. Mein Bruder isst gern Fleisch mit Kartoffeln. Das Essen ist immer lecker.",
       "questions": [
         {
           "question": "Wie heißt die Frau?",
@@ -42,17 +42,17 @@
         },
         {
           "question": "Was isst Maria gern zum Mittagessen?",
-          "options": ["Suppe", "Salat", "Bro"],
+          "options": ["Suppe", "Salat", "Brot"],
           "answer": 0
         },
         {
-          "question": "Was mag der Bruder von Maria?",
+          "question": "Was mag Marias Bruder?",
           "options": ["Fleisch mit Kartoffeln", "Nudeln", "Suppe"],
           "answer": 0
         },
         {
-          "question": "Wer kocht das Mittagessen?",
-          "options": ["Die Mutter von Maria", "Maria selbst", "Der Vater von Maria"],
+          "question": "Wie ist das Essen?",
+          "options": ["Lecker", "Schlecht", "Langweilig"],
           "answer": 0
         }
       ]
@@ -60,7 +60,7 @@
     {
       "id": "monolog_3",
       "title": "Ich mag Obst",
-      "text": "Ich heiße Julia. Ich esse gern Obst. Ich mag Äpfel und Bananen sehr. Ich esse auch Orangen und Trauben. Obst ist gesund und lecker. Ich kaufe Obst auf dem Markt. Das Obst dort ist immer frisch.",
+      "text": "Guten Morgen! Ich bin Julia. Ich esse gern Obst. Ich mag Äpfel und Bananen sehr. Ich esse auch Orangen. Obst ist gesund und lecker. Ich kaufe Obst auf dem Markt.",
       "questions": [
         {
           "question": "Wie heißt die Frau?",
@@ -74,71 +74,12 @@
         },
         {
           "question": "Welches Obst mag Julia?",
-          "options": ["Äpfel und Bananen", "Äpfel und Orangen", "Bananen und Trauben"],
+          "options": ["Äpfel und Bananen", "Nur Äpfel", "Nur Bananen"],
           "answer": 0
         },
         {
           "question": "Wo kauft Julia Obst?",
           "options": ["Auf dem Markt", "Im Supermarkt", "Im Garten"],
-          "answer": 0
-        }
-      ]
-    },
-    {
-      "id": "monolog_4",
-      "title": "Getränke",
-      "text": "Ich heiße Laura. Ich trinke gern Wasser. Ich trinke auch Saft am Morgen. Meine Schwester trinkt gern Milch. Mein Vater trinkt Kaffee nach dem Essen. Ich trinke keinen Tee. Tee schmeckt mir nicht.",
-      "questions": [
-        {
-          "question": "Wie heißt die Frau?",
-          "options": ["Laura", "Lisa", "Anna"],
-          "answer": 0
-        },
-        {
-          "question": "Was trinkt Laura am liebsten?",
-          "options": ["Wasser", "Saft", "Milch"],
-          "answer": 0
-        },
-        {
-          "question": "Was trinkt die Schwester von Laura?",
-          "options": ["Milch", "Saft", "Wasser"],
-          "answer": 0
-        },
-        {
-          "question": "Was trinkt der Vater von Laura?",
-          "options": ["Kaffee", "Tee", "Saft"],
-          "answer": 0
-        },
-        {
-          "question": "Mag Laura Tee?",
-          "options": ["Nein", "Ja", "Manchmal"],
-          "answer": 0
-        }
-      ]
-    },
-    {
-      "id": "monolog_5",
-      "title": "Einkaufen im Supermarkt",
-      "text": "Ich heiße Lisa. Ich kaufe im Supermarkt ein. Ich kaufe Brot, Käse und Wurst. Ich kaufe auch Gemüse: Tomaten, Gurken und Salat. Ich kaufe immer frische Produkte. Dann gehe ich nach Hause und koche.",
-      "questions": [
-        {
-          "question": "Wie heißt die Frau?",
-          "options": ["Laura", "Lisa", "Anna"],
-          "answer": 1
-        },
-        {
-          "question": "Was kauft Lisa im Supermarkt?",
-          "options": ["Brot, Käse und Wurst", "Nudeln und Reis", "Obst und Gemüse"],
-          "answer": 0
-        },
-        {
-          "question": "Welches Gemüse kauft Lisa?",
-          "options": ["Tomaten, Gurken und Salat", "Kartoffeln und Zwiebeln", "Paprika und Karotten"],
-          "answer": 0
-        },
-        {
-          "question": "Was macht Lisa nach dem Einkaufen?",
-          "options": ["Sie kocht", "Sie geht ins Kino", "Sie liest"],
           "answer": 0
         }
       ]

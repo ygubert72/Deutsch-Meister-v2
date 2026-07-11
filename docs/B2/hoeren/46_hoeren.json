@@ -6,11 +6,11 @@
     {
       "id": "monolog_1",
       "title": "Das deutsche Wahlsystem",
-      "text": "Ich möchte heute über das deutsche Wahlsystem sprechen. Ich bin Anneliese. In Deutschland wird alle vier Jahre gewählt. Die Menschen wählen den Bundestag. Das Wahlsystem ist komplex. Jeder hat zwei Stimmen: die Erststimme und die Zweitstimme. Die Erststimme wählt den Direktkandidaten. Die Zweitstimme entscheidet über die Parteien. Die Parteien bekommen dann Sitze im Parlament. Es gibt auch eine Fünf-Prozent-Hürde. Nur Parteien mit mehr als fünf Prozent kommen ins Parlament. Das ist wichtig für die Demokratie.",
+      "text": "Ich möchte heute über das deutsche Wahlsystem sprechen. Ich bin Anna. In Deutschland wird alle vier Jahre gewählt. Die Menschen wählen den Bundestag. Das Wahlsystem ist komplex. Jeder hat zwei Stimmen: die Erststimme und die Zweitstimme. Die Erststimme wählt den Direktkandidaten. Die Zweitstimme entscheidet über die Parteien. Es gibt eine Fünf-Prozent-Hürde. Nur Parteien mit mehr als fünf Prozent kommen ins Parlament.",
       "questions": [
         {
           "question": "Wie heißt die Frau?",
-          "options": ["Anneliese", "Brunhilde", "Dorothea"],
+          "options": ["Anna", "Maria", "Julia"],
           "answer": 0
         },
         {
@@ -32,27 +32,17 @@
           "question": "Was wählt die Erststimme?",
           "options": ["Den Direktkandidaten", "Die Partei", "Das Parlament"],
           "answer": 0
-        },
-        {
-          "question": "Was entscheidet die Zweitstimme?",
-          "options": ["Über die Parteien", "Über den Kandidaten", "Über den Kanzler"],
-          "answer": 0
-        },
-        {
-          "question": "Was ist die Fünf-Prozent-Hürde?",
-          "options": ["Nur Parteien mit mehr als fünf Prozent kommen ins Parlament", "Nur Parteien mit genau fünf Prozent kommen ins Parlament", "Keine Hürde"],
-          "answer": 0
         }
       ]
     },
     {
       "id": "monolog_2",
       "title": "Die Rolle des Bundeskanzlers",
-      "text": "In der heutigen Zeit wird viel über die Rolle des Bundeskanzlers diskutiert. Ich bin Brunhilde. Der Bundeskanzler ist das Oberhaupt der Regierung. Er wird vom Bundestag gewählt. Der Kanzler schlägt die Minister vor. Er leitet die Kabinettssitzungen. Der Kanzler vertritt Deutschland nach außen. Er hat eine wichtige Rolle in der EU. Die Aufgaben sind vielfältig: von Wirtschaft bis Sicherheit. Der Kanzler trägt große Verantwortung. Die Entscheidungen beeinflussen das ganze Land.",
+      "text": "In der heutigen Zeit wird viel über die Rolle des Bundeskanzlers diskutiert. Ich bin Maria. Der Bundeskanzler ist das Oberhaupt der Regierung. Er wird vom Bundestag gewählt. Der Kanzler schlägt die Minister vor. Er leitet die Kabinettssitzungen. Der Kanzler vertritt Deutschland nach außen. Die Aufgaben sind vielfältig: von Wirtschaft bis Sicherheit. Der Kanzler trägt große Verantwortung.",
       "questions": [
         {
           "question": "Wie heißt die Frau?",
-          "options": ["Anneliese", "Brunhilde", "Dorothea"],
+          "options": ["Anna", "Maria", "Julia"],
           "answer": 1
         },
         {
@@ -71,18 +61,8 @@
           "answer": 0
         },
         {
-          "question": "Was leitet der Kanzler?",
-          "options": ["Die Kabinettssitzungen", "Das Parlament", "Die Gerichte"],
-          "answer": 0
-        },
-        {
           "question": "Welche Aufgaben hat der Kanzler?",
           "options": ["Von Wirtschaft bis Sicherheit", "Nur Wirtschaft", "Nur Sicherheit"],
-          "answer": 0
-        },
-        {
-          "question": "Was tragen die Entscheidungen des Kanzlers?",
-          "options": ["Große Verantwortung", "Kleine Verantwortung", "Keine Verantwortung"],
           "answer": 0
         }
       ]
@@ -90,11 +70,11 @@
     {
       "id": "monolog_3",
       "title": "Die Bedeutung der Demokratie",
-      "text": "Ich habe mich intensiv mit der Demokratie beschäftigt. Ich bin Dorothea. Die Demokratie ist eine wichtige Errungenschaft. In der Demokratie entscheiden die Bürger. Sie wählen ihre Vertreter. Die Meinungsfreiheit ist ein Grundrecht. Die Pressefreiheit ist ebenfalls wichtig. Die Gewaltenteilung ist ein Kernprinzip. Es gibt die Legislative, Exekutive und Judikative. Die Demokratie muss verteidigt werden. Es gibt immer Kräfte, die sie schwächen wollen. Das ist eine große Herausforderung.",
+      "text": "Ich habe mich intensiv mit der Demokratie beschäftigt. Ich bin Julia. Die Demokratie ist eine wichtige Errungenschaft. In der Demokratie entscheiden die Bürger. Sie wählen ihre Vertreter. Die Meinungsfreiheit ist ein Grundrecht. Die Pressefreiheit ist ebenfalls wichtig. Die Gewaltenteilung ist ein Kernprinzip. Es gibt die Legislative, Exekutive und Judikative. Die Demokratie muss verteidigt werden.",
       "questions": [
         {
           "question": "Wie heißt die Frau?",
-          "options": ["Anneliese", "Brunhilde", "Dorothea"],
+          "options": ["Anna", "Maria", "Julia"],
           "answer": 2
         },
         {
@@ -113,18 +93,8 @@
           "answer": 0
         },
         {
-          "question": "Was ist ebenfalls wichtig?",
-          "options": ["Die Pressefreiheit", "Die Wirtschaftsfreiheit", "Die Religionsfreiheit"],
-          "answer": 0
-        },
-        {
           "question": "Was ist ein Kernprinzip der Demokratie?",
           "options": ["Die Gewaltenteilung", "Die Einheitsregierung", "Die Diktatur"],
-          "answer": 0
-        },
-        {
-          "question": "Was muss verteidigt werden?",
-          "options": ["Die Demokratie", "Die Wirtschaft", "Die Armee"],
           "answer": 0
         }
       ]
@@ -132,11 +102,11 @@
     {
       "id": "monolog_4",
       "title": "Die Rolle der Medien in der Politik",
-      "text": "Wisst ihr, wie wichtig die Medien in der Politik sind? Ich bin Erna. Die Medien informieren die Bevölkerung. Sie kontrollieren die Regierung. Die Presse wird oft als vierte Gewalt bezeichnet. Durch Berichte und Kommentare wird Politik diskutiert. Die Medien können Meinungen beeinflussen. Das ist eine große Verantwortung. In der heutigen Zeit gibt es viele Informationsquellen. Nicht alle sind vertrauenswürdig. Man muss kritisch hinterfragen. Die Medien spielen eine zentrale Rolle.",
+      "text": "Wisst ihr, wie wichtig die Medien in der Politik sind? Ich bin Laura. Die Medien informieren die Bevölkerung. Sie kontrollieren die Regierung. Die Presse wird oft als vierte Gewalt bezeichnet. Durch Berichte und Kommentare wird Politik diskutiert. Die Medien können Meinungen beeinflussen. Das ist eine große Verantwortung. In der heutigen Zeit gibt es viele Informationsquellen. Nicht alle sind vertrauenswürdig.",
       "questions": [
         {
           "question": "Wie heißt die Frau?",
-          "options": ["Erna", "Gertrud", "Hildegard"],
+          "options": ["Laura", "Lisa", "Anna"],
           "answer": 0
         },
         {
@@ -158,27 +128,17 @@
           "question": "Was ist eine große Verantwortung der Medien?",
           "options": ["Meinungen zu beeinflussen", "Nachrichten zu erfinden", "Parteien zu unterstützen"],
           "answer": 0
-        },
-        {
-          "question": "Wie viele Informationsquellen gibt es heute?",
-          "options": ["Viele", "Wenige", "Keine"],
-          "answer": 0
-        },
-        {
-          "question": "Was muss man bei Informationen tun?",
-          "options": ["Kritisch hinterfragen", "Alles glauben", "Nichts hinterfragen"],
-          "answer": 0
         }
       ]
     },
     {
       "id": "monolog_5",
       "title": "Die Europäische Union",
-      "text": "Ich möchte euch heute von der Europäischen Union erzählen. Ich bin Gertrud. Die EU ist ein wichtiges politisches Projekt. Viele europäische Länder sind Mitglied. Die EU hat eigene Institutionen: das Parlament und die Kommission. Sie entscheiden über gemeinsame Gesetze. Der Euro ist die gemeinsame Währung. Die EU fördert den Frieden und den Handel. Es gibt aber auch Kritik an der EU. Die Demokratie in der EU wird manchmal hinterfragt. Die Zukunft der EU ist offen.",
+      "text": "Ich möchte euch heute von der Europäischen Union erzählen. Ich bin Lisa. Die EU ist ein wichtiges politisches Projekt. Viele europäische Länder sind Mitglied. Die EU hat eigene Institutionen: das Parlament und die Kommission. Sie entscheiden über gemeinsame Gesetze. Der Euro ist die gemeinsame Währung. Die EU fördert den Frieden und den Handel. Es gibt aber auch Kritik an der EU. Die Demokratie in der EU wird manchmal hinterfragt.",
       "questions": [
         {
           "question": "Wie heißt die Frau?",
-          "options": ["Erna", "Gertrud", "Hildegard"],
+          "options": ["Laura", "Lisa", "Anna"],
           "answer": 1
         },
         {
@@ -200,28 +160,18 @@
           "question": "Was ist die gemeinsame Währung?",
           "options": ["Der Euro", "Das Pfund", "Der Dollar"],
           "answer": 0
-        },
-        {
-          "question": "Was fördert die EU?",
-          "options": ["Frieden und Handel", "Krieg und Isolation", "Nationalismus"],
-          "answer": 0
-        },
-        {
-          "question": "Wie ist die Zukunft der EU?",
-          "options": ["Offen", "Sicher", "Unsicher"],
-          "answer": 0
         }
       ]
     },
     {
       "id": "monolog_6",
       "title": "Bürgerbeteiligung",
-      "text": "In der heutigen Zeit wird viel über Bürgerbeteiligung gesprochen. Ich bin Hildegard. Die Bürger sollen mehr mitentscheiden können. Es gibt Bürgerinitiativen und Petitionen. Die Menschen können Vorschläge machen. Sie können Unterschriften sammeln. Die Regierung muss darauf reagieren. Das ist ein Zeichen für eine lebendige Demokratie. Die Beteiligung ist in Deutschland nicht sehr hoch. Viele Menschen fühlen sich nicht gehört. Es gibt aber auch viele positive Beispiele. Die Beteiligung kann gestärkt werden.",
+      "text": "In der heutigen Zeit wird viel über Bürgerbeteiligung gesprochen. Ich bin Emma. Die Bürger sollen mehr mitentscheiden können. Es gibt Bürgerinitiativen und Petitionen. Die Menschen können Vorschläge machen. Sie können Unterschriften sammeln. Die Regierung muss darauf reagieren. Das ist ein Zeichen für eine lebendige Demokratie. Die Beteiligung kann gestärkt werden.",
       "questions": [
         {
           "question": "Wie heißt die Frau?",
-          "options": ["Erna", "Gertrud", "Hildegard"],
-          "answer": 2
+          "options": ["Emma", "Lisa", "Laura"],
+          "answer": 0
         },
         {
           "question": "Worüber wird viel gesprochen?",
@@ -241,16 +191,6 @@
         {
           "question": "Was muss die Regierung tun?",
           "options": ["Darauf reagieren", "Ignorieren", "Ablehnen"],
-          "answer": 0
-        },
-        {
-          "question": "Wie ist die Beteiligung in Deutschland?",
-          "options": ["Nicht sehr hoch", "Sehr hoch", "Durchschnittlich"],
-          "answer": 0
-        },
-        {
-          "question": "Kann die Beteiligung gestärkt werden?",
-          "options": ["Ja", "Nein", "Weiß nicht"],
           "answer": 0
         }
       ]

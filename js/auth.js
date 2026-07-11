@@ -336,7 +336,7 @@ function updateUI(user) {
     }
 }
 
-// ========== МОДАЛЬНОЕ ОКНО ОПЛАТЫ ==========
+// ========== МОДАЛЬНОЕ ОКНО ОПЛАТЫ (С КРЕСТИКОМ) ==========
 function showPaymentModal() {
     if (!auth.currentUser) {
         alert('Сначала войдите в аккаунт');
@@ -350,13 +350,33 @@ function showPaymentModal() {
         email: "ygubert72@gmail.com"
     };
     
+    // Удаляем старую модалку
+    const oldModal = document.getElementById('paymentModal');
+    if (oldModal) oldModal.remove();
+    
     const modal = document.createElement('div');
     modal.id = 'paymentModal';
     modal.style.cssText = 'position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.7); display:flex; justify-content:center; align-items:center; z-index:1000000; overflow:auto;';
     
     const modalContent = document.createElement('div');
-    modalContent.style.cssText = 'background:white; border-radius:20px; max-width:400px; width:90%; padding:25px; text-align:center; margin:20px; max-height:90vh; overflow-y:auto;';
+    modalContent.style.cssText = 'background:white; border-radius:20px; max-width:400px; width:90%; padding:25px; text-align:center; margin:20px; max-height:90vh; overflow-y:auto; position:relative;';
+    
     modalContent.innerHTML = `
+        <!-- КРЕСТИК В ПРАВОМ ВЕРХНЕМ УГЛУ -->
+        <button id="paymentCloseCross" style="
+            position: absolute;
+            top: 12px;
+            right: 16px;
+            background: none;
+            border: none;
+            font-size: 28px;
+            cursor: pointer;
+            color: #999;
+            padding: 0 5px;
+            line-height: 1;
+            transition: color 0.2s;
+        " onmouseover="this.style.color='#333'" onmouseout="this.style.color='#999'">✕</button>
+        
         <h2 style="margin:0 0 10px 0; font-size:22px;">💎 Премиум доступ</h2>
         <div style="font-size:13px; color:#666; margin-bottom:15px;">Уровни A2, B1, B2, C1</div>
         <div style="font-size:32px; color:#3B6FE0; font-weight:bold; margin-bottom:10px;">${PREMIUM_PRICE} ₽</div>
@@ -390,8 +410,20 @@ function showPaymentModal() {
     modal.appendChild(modalContent);
     document.body.appendChild(modal);
     
-    document.getElementById('paymentCloseBtn').onclick = () => modal.remove();
-    modal.onclick = (e) => { if (e.target === modal) modal.remove(); };
+    // Закрытие по крестику
+    document.getElementById('paymentCloseCross').onclick = function() {
+        modal.remove();
+    };
+    
+    // Закрытие по кнопке "Закрыть"
+    document.getElementById('paymentCloseBtn').onclick = function() {
+        modal.remove();
+    };
+    
+    // Закрытие по клику на фон
+    modal.onclick = function(e) {
+        if (e.target === modal) modal.remove();
+    };
 }
 
 // ========== МОДАЛЬНОЕ ОКНО ВХОДА/РЕГИСТРАЦИИ ==========

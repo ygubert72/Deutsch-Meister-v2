@@ -19,7 +19,7 @@ function renderGrammar(container, lesson) {
                 <div style="background: #E8F0FE; padding: 10px; border-radius: 8px; margin: 8px 0; display: flex; justify-content: space-between; align-items: center;">
                     <span><strong>${ex.de}</strong> — ${ex.ru}</span>
                     <button class="speak-btn" onclick="speak('${safeText}')" 
-                            style="background: #3B6FE0; color: white; border: none; border-radius: 8px; padding: 6px 14px; cursor: pointer; font-size: 13px; font-weight: bold; box-shadow: 0 2px 4px rgba(0,0,0,0.2);">
+                            style="background: #3B6FE0; color: white; border: none; border-radius: 8px; padding: 6px 14px; cursor: pointer; font-size: 13px; font-weight: bold; box-shadow: 0 2px 4px rgba(0,0,0,0.2); transition: all 0.08s ease;">
                         🔊
                     </button>
                 </div>
@@ -37,7 +37,7 @@ function renderGrammar(container, lesson) {
                 <div class="vocab-item" style="background: #f8f9fa; padding: 12px; border-radius: 8px; display: flex; justify-content: space-between; align-items: center;">
                     <span><strong style="color: #2E7D32;">${word.de}</strong> — ${word.ru}</span>
                     <button class="speak-btn" onclick="speak('${safeText}')" 
-                            style="background: #3B6FE0; color: white; border: none; border-radius: 8px; padding: 6px 14px; cursor: pointer; font-size: 13px; font-weight: bold; box-shadow: 0 2px 4px rgba(0,0,0,0.2);">
+                            style="background: #3B6FE0; color: white; border: none; border-radius: 8px; padding: 6px 14px; cursor: pointer; font-size: 13px; font-weight: bold; box-shadow: 0 2px 4px rgba(0,0,0,0.2); transition: all 0.08s ease;">
                         🔊
                     </button>
                 </div>
@@ -58,7 +58,7 @@ function renderGrammar(container, lesson) {
                            placeholder="Введите ответ..." autocomplete="off"
                            style="width: 100%; padding: 10px; border: 2px solid #D0D0D0; border-radius: 8px; font-size: 16px; box-sizing: border-box; margin: 8px 0;">
                     <button class="check-btn" data-index="${index}" 
-                            style="padding: 8px 20px; background: #3B6FE0; color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: bold;">
+                            style="padding: 8px 20px; background: #3B6FE0; color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; transition: all 0.08s ease;">
                         ПРОВЕРИТЬ
                     </button>
                     <div class="practice-result" data-index="${index}" style="margin-top: 4px;"></div>
@@ -70,7 +70,7 @@ function renderGrammar(container, lesson) {
 
     container.innerHTML = html;
 
-    // ===== ЛОГИКА ПРОВЕРКИ УПРАЖНЕНИЙ (прямо внутри грамматики) =====
+    // ===== ЛОГИКА ПРОВЕРКИ УПРАЖНЕНИЙ =====
     container.querySelectorAll('.check-btn[data-index]').forEach(btn => {
         btn.addEventListener('click', function() {
             const index = parseInt(this.getAttribute('data-index'));
@@ -110,6 +110,31 @@ function renderGrammar(container, lesson) {
                     input.focus();
                 }, 400);
             }
+        });
+    });
+
+    // ===== ЭФФЕКТ НАЖАТИЯ ДЛЯ КНОПОК ОЗВУЧКИ =====
+    container.querySelectorAll('.speak-btn').forEach(btn => {
+        btn.addEventListener('mousedown', function(e) {
+            this.style.transform = 'scale(0.92)';
+            this.style.boxShadow = '0 1px 2px rgba(0,0,0,0.2)';
+        });
+        btn.addEventListener('mouseup', function(e) {
+            this.style.transform = 'scale(1)';
+            this.style.boxShadow = '0 2px 4px rgba(0,0,0,0.2)';
+        });
+        btn.addEventListener('mouseleave', function(e) {
+            this.style.transform = 'scale(1)';
+            this.style.boxShadow = '0 2px 4px rgba(0,0,0,0.2)';
+        });
+        // Для тач-устройств
+        btn.addEventListener('touchstart', function(e) {
+            this.style.transform = 'scale(0.92)';
+            this.style.boxShadow = '0 1px 2px rgba(0,0,0,0.2)';
+        });
+        btn.addEventListener('touchend', function(e) {
+            this.style.transform = 'scale(1)';
+            this.style.boxShadow = '0 2px 4px rgba(0,0,0,0.2)';
         });
     });
 }

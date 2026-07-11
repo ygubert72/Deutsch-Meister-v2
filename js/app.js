@@ -419,56 +419,63 @@ function renderMode(mode, lesson) {
 function initApp() {
     console.log('🚀 Запуск Deutsch-Meister...');
     
+    // Функция для проверки доступа к уровню (с безопасной проверкой)
+    function checkLevelAccess(level) {
+        if (typeof window.hasAccessToLevel === 'function') {
+            return window.hasAccessToLevel(level);
+        }
+        // Если функция ещё не определена, разрешаем только A1
+        return level === 'A1';
+    }
+    
     document.querySelectorAll('#levelsContainer .btn-level').forEach(btn => {
         btn.onclick = function() {
-            // Проверка доступа при клике на кнопку уровня
             const level = this.getAttribute('data-level');
-            if (typeof window.hasAccessToLevel === 'function') {
-                if (!window.hasAccessToLevel(level)) {
-                    const user = window.getCurrentUser ? window.getCurrentUser() : null;
-                    let message = '🔒 Этот уровень недоступен.';
-                    if (!user) {
-                        message += '\n\n👤 Войдите в аккаунт и оплатите премиум-доступ, чтобы открыть все уровни (A1-C1).';
-                    } else if (user && user.email !== 'ygubert72@gmail.com') {
-                        message += '\n\n💎 Требуется премиум-доступ. Нажмите "Оплатить премиум" в профиле.';
-                    } else {
-                        message += '\n\n⛔ Доступ запрещён.';
-                    }
-                    alert(message);
-                    return;
+            
+            // Проверка доступа
+            if (!checkLevelAccess(level)) {
+                const user = window.getCurrentUser ? window.getCurrentUser() : null;
+                let message = '🔒 Этот уровень недоступен.';
+                if (!user) {
+                    message += '\n\n👤 Войдите в аккаунт и оплатите премиум-доступ, чтобы открыть все уровни (A1-C1).';
+                } else if (user && user.email !== 'ygubert72@gmail.com') {
+                    message += '\n\n💎 Требуется премиум-доступ. Нажмите "Оплатить премиум" в профиле.';
+                } else {
+                    message += '\n\n⛔ Доступ запрещён.';
                 }
+                alert(message);
+                return;
             }
             
             document.querySelectorAll('#levelsContainer .btn-level').forEach(b => b.classList.remove('active'));
             this.classList.add('active');
-            currentLevel = this.getAttribute('data-level');
+            currentLevel = level;
             loadLevel(currentLevel);
         };
     });
     
     document.querySelectorAll('#levelsContainerMobile .btn-level').forEach(btn => {
         btn.onclick = function() {
-            // Проверка доступа при клике на кнопку уровня (мобильное меню)
             const level = this.getAttribute('data-level');
-            if (typeof window.hasAccessToLevel === 'function') {
-                if (!window.hasAccessToLevel(level)) {
-                    const user = window.getCurrentUser ? window.getCurrentUser() : null;
-                    let message = '🔒 Этот уровень недоступен.';
-                    if (!user) {
-                        message += '\n\n👤 Войдите в аккаунт и оплатите премиум-доступ, чтобы открыть все уровни (A1-C1).';
-                    } else if (user && user.email !== 'ygubert72@gmail.com') {
-                        message += '\n\n💎 Требуется премиум-доступ. Нажмите "Оплатить премиум" в профиле.';
-                    } else {
-                        message += '\n\n⛔ Доступ запрещён.';
-                    }
-                    alert(message);
-                    return;
+            
+            // Проверка доступа
+            if (!checkLevelAccess(level)) {
+                const user = window.getCurrentUser ? window.getCurrentUser() : null;
+                let message = '🔒 Этот уровень недоступен.';
+                if (!user) {
+                    message += '\n\n👤 Войдите в аккаунт и оплатите премиум-доступ, чтобы открыть все уровни (A1-C1).';
+                } else if (user && user.email !== 'ygubert72@gmail.com') {
+                    message += '\n\n💎 Требуется премиум-доступ. Нажмите "Оплатить премиум" в профиле.';
+                } else {
+                    message += '\n\n⛔ Доступ запрещён.';
                 }
+                alert(message);
+                return;
             }
             
             document.querySelectorAll('#levelsContainerMobile .btn-level').forEach(b => b.classList.remove('active'));
             this.classList.add('active');
-            currentLevel = this.getAttribute('data-level');
+            currentLevel = level;
             loadLevel(currentLevel);
         };
     });
@@ -480,11 +487,9 @@ function initApp() {
         currentLevel = savedState.level;
         
         // Проверяем доступ к сохранённому уровню
-        if (typeof window.hasAccessToLevel === 'function') {
-            if (!window.hasAccessToLevel(currentLevel)) {
-                console.log('⚠️ Сохранённый уровень недоступен, переключаем на A1');
-                currentLevel = 'A1';
-            }
+        if (!checkLevelAccess(currentLevel)) {
+            console.log('⚠️ Сохранённый уровень недоступен, переключаем на A1');
+            currentLevel = 'A1';
         }
         
         document.querySelectorAll('#levelsContainer .btn-level, #levelsContainerMobile .btn-level').forEach(btn => {

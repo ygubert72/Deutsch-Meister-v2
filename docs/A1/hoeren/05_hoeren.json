@@ -6,7 +6,7 @@
     {
       "id": "monolog_1",
       "title": "Mein Tag",
-      "text": "Ich heiße Anna. Ich stehe um 7 Uhr auf. Am Morgen trinke ich Kaffee. Ich arbeite von 9 bis 18 Uhr. Am Abend sehe ich fern. Ich gehe um 22 Uhr schlafen.",
+      "text": "Guten Tag! Ich bin Anna. Ich stehe um 7 Uhr auf. Am Morgen trinke ich Kaffee. Am Abend sehe ich fern. Ich gehe um 22 Uhr schlafen.",
       "questions": [
         {
           "question": "Wie heißt die Frau?",
@@ -19,9 +19,9 @@
           "answer": 1
         },
         {
-          "question": "Wie lange arbeitet Anna?",
-          "options": ["Von 8 bis 17 Uhr", "Von 9 bis 18 Uhr", "Von 10 bis 19 Uhr"],
-          "answer": 1
+          "question": "Was macht Anna am Morgen?",
+          "options": ["Sie trinkt Kaffee", "Sie frühstückt", "Sie macht Sport"],
+          "answer": 0
         },
         {
           "question": "Wann geht Anna schlafen?",
@@ -32,8 +32,8 @@
     },
     {
       "id": "monolog_2",
-      "title": "Wochentage",
-      "text": "Ich heiße Maria. Am Montag habe ich Deutschkurs. Am Dienstag arbeite ich. Am Mittwoch gehe ich ins Kino. Am Donnerstag besuche ich meine Freundin. Am Freitag habe ich frei. Am Wochenende schlafe ich lange.",
+      "title": "Meine Woche",
+      "text": "Hallo! Ich bin Maria. Am Montag gehe ich zur Arbeit. Am Mittwoch habe ich Deutschkurs. Am Samstag gehe ich einkaufen. Am Sonntag räume ich meine Wohnung auf.",
       "questions": [
         {
           "question": "Wie heißt die Frau?",
@@ -41,31 +41,26 @@
           "answer": 1
         },
         {
-          "question": "Wann hat Maria Deutschkurs?",
-          "options": ["Am Montag", "Am Dienstag", "Am Mittwoch"],
+          "question": "Was macht Maria am Montag?",
+          "options": ["Sie geht zur Arbeit", "Sie geht zum Deutschkurs", "Sie geht einkaufen"],
           "answer": 0
         },
         {
-          "question": "Was macht Maria am Mittwoch?",
-          "options": ["Sie arbeitet", "Sie geht ins Kino", "Sie besucht ihre Freundin"],
+          "question": "Wann hat Maria Deutschkurs?",
+          "options": ["Am Montag", "Am Mittwoch", "Am Samstag"],
           "answer": 1
         },
         {
-          "question": "Wann hat Maria frei?",
-          "options": ["Am Donnerstag", "Am Freitag", "Am Samstag"],
-          "answer": 1
-        },
-        {
-          "question": "Was macht Maria am Wochenende?",
-          "options": ["Sie arbeitet", "Sie schläft lange", "Sie geht ins Kino"],
-          "answer": 1
+          "question": "Was macht Maria am Sonntag?",
+          "options": ["Sie räumt die Wohnung auf", "Sie geht einkaufen", "Sie geht zur Arbeit"],
+          "answer": 0
         }
       ]
     },
     {
       "id": "monolog_3",
       "title": "Jahreszeiten",
-      "text": "Ich heiße Julia. Ich mag den Sommer. Im Sommer ist es warm. Ich gehe gern schwimmen. Im Winter ist es kalt. Im Winter bleibe ich zu Hause. Ich lese gern Bücher.",
+      "text": "Guten Morgen! Ich bin Julia. Ich mag den Sommer. Im Sommer ist es warm. Im Winter ist es kalt. Im Frühling blühen die Blumen. Im Herbst fallen die Blätter.",
       "questions": [
         {
           "question": "Wie heißt die Frau?",
@@ -78,68 +73,14 @@
           "answer": 1
         },
         {
-          "question": "Was macht Julia im Sommer?",
-          "options": ["Sie liest", "Sie schwimmt", "Sie arbeitet"],
-          "answer": 1
-        },
-        {
-          "question": "Was macht Julia im Winter?",
-          "options": ["Sie geht spazieren", "Sie bleibt zu Hause", "Sie schwimmt"],
-          "answer": 1
-        }
-      ]
-    },
-    {
-      "id": "monolog_4",
-      "title": "Geburtstage",
-      "text": "Ich heiße Laura. Ich habe im März Geburtstag. Meine Mutter hat im Juni Geburtstag. Mein Vater hat im September Geburtstag. Meine Schwester hat im Dezember Geburtstag. Wir feiern alle Geburtstage.",
-      "questions": [
-        {
-          "question": "Wie heißt die Frau?",
-          "options": ["Laura", "Lisa", "Anna"],
+          "question": "Wie ist das Wetter im Sommer?",
+          "options": ["Warm", "Kalt", "Regnerisch"],
           "answer": 0
         },
         {
-          "question": "Wann hat Laura Geburtstag?",
-          "options": ["Im März", "Im Juni", "Im September"],
+          "question": "Was passiert im Frühling?",
+          "options": ["Die Blumen blühen", "Die Blätter fallen", "Es schneit"],
           "answer": 0
-        },
-        {
-          "question": "Wann hat die Mutter von Laura Geburtstag?",
-          "options": ["Im März", "Im Juni", "Im Dezember"],
-          "answer": 1
-        },
-        {
-          "question": "Wann hat die Schwester von Laura Geburtstag?",
-          "options": ["Im September", "Im November", "Im Dezember"],
-          "answer": 2
-        }
-      ]
-    },
-    {
-      "id": "monolog_5",
-      "title": "Meine Woche",
-      "text": "Ich heiße Lisa. Am Montag habe ich Deutschunterricht. Am Dienstag und Donnerstag arbeite ich. Am Samstag gehe ich einkaufen. Am Sonntag räume ich meine Wohnung auf. Ich habe eine Woche. Sieben Tage.",
-      "questions": [
-        {
-          "question": "Wie heißt die Frau?",
-          "options": ["Laura", "Lisa", "Anna"],
-          "answer": 1
-        },
-        {
-          "question": "Wann hat Lisa Deutschunterricht?",
-          "options": ["Am Montag", "Am Dienstag", "Am Samstag"],
-          "answer": 0
-        },
-        {
-          "question": "Was macht Lisa am Samstag?",
-          "options": ["Sie arbeitet", "Sie geht einkaufen", "Sie räumt auf"],
-          "answer": 1
-        },
-        {
-          "question": "Wie viele Tage hat eine Woche?",
-          "options": ["Fünf", "Sieben", "Zehn"],
-          "answer": 1
         }
       ]
     }

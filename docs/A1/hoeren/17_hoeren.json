@@ -1,144 +1,149 @@
 {
   "lesson": 17,
   "level": "A1",
-  "title": "Письменная коммуникация: письма и анкеты",
+  "title": "Профессии и обязанности",
   "dialogs": [
     {
       "id": "monolog_1",
-      "title": "Mein Brief an eine Freundin",
-      "text": "Ich heiße Anna. Ich schreibe einen Brief an meine Freundin. Ich schreibe: 'Liebe Maria'. Ich schreibe über meine Familie und meine Arbeit. Ich schreibe auch über mein Hobby. Am Ende schreibe ich 'Viele Grüße'.",
+      "title": "Mein Beruf",
+      "text": "Guten Tag! Ich bin Clara. Ich arbeite als Lehrerin. Ich arbeite in einer Schule. Ich unterrichte Deutsch. Meine Arbeit macht mir Spaß. Die Schüler sind nett. Ich mag meinen Beruf sehr.",
       "questions": [
         {
           "question": "Wie heißt die Frau?",
-          "options": ["Anna", "Maria", "Julia"],
+          "options": ["Clara", "Anna", "Laura"],
           "answer": 0
         },
         {
-          "question": "An wen schreibt Anna einen Brief?",
-          "options": ["An ihre Freundin", "An ihre Mutter", "An ihren Bruder"],
+          "question": "Was ist Clara von Beruf?",
+          "options": ["Lehrerin", "Ärztin", "Ingenieurin"],
           "answer": 0
         },
         {
-          "question": "Was schreibt Anna in den Brief?",
-          "options": ["Über ihre Familie, Arbeit und Hobby", "Über ihre Reise", "Über ihr Studium"],
+          "question": "Wo arbeitet Clara?",
+          "options": ["In einer Schule", "In einem Krankenhaus", "In einem Büro"],
           "answer": 0
         },
         {
-          "question": "Was schreibt Anna am Ende des Briefes?",
-          "options": ["Viele Grüße", "Liebe Grüße", "Tschüss"],
+          "question": "Was unterrichtet Clara?",
+          "options": ["Deutsch", "Mathematik", "Englisch"],
+          "answer": 0
+        },
+        {
+          "question": "Mag Clara ihren Beruf?",
+          "options": ["Ja, sehr", "Nein", "Manchmal"],
           "answer": 0
         }
       ]
     },
     {
       "id": "monolog_2",
-      "title": "Eine E-Mail schreiben",
-      "text": "Ich heiße Maria. Ich schreibe oft E-Mails. Ich schreibe: 'Lieber Tom' in der E-Mail. Ich schreibe über meinen neuen Job. Ich schreibe 'Bitte antworte bald'. Am Ende schreibe ich 'Liebe Grüße'. Ich schicke die E-Mail ab.",
+      "title": "Mein Vater",
+      "text": "Hallo! Ich bin Nico. Mein Vater ist Arzt. Er arbeitet in einem Krankenhaus. Er hilft kranken Menschen. Mein Vater mag seinen Job. Er arbeitet auch am Wochenende. Das ist anstrengend.",
       "questions": [
         {
-          "question": "Wie heißt die Frau?",
-          "options": ["Anna", "Maria", "Julia"],
-          "answer": 1
-        },
-        {
-          "question": "Was macht Maria oft?",
-          "options": ["Sie schreibt E-Mails", "Sie liest Briefe", "Sie telefoniert"],
+          "question": "Wie heißt der Mann?",
+          "options": ["Nico", "Tom", "Ben"],
           "answer": 0
         },
         {
-          "question": "Was schreibt Maria in der E-Mail?",
-          "options": ["Über ihren neuen Job", "Über ihre Reise", "Über ihre Familie"],
+          "question": "Was ist der Vater von Nico von Beruf?",
+          "options": ["Arzt", "Lehrer", "Ingenieur"],
           "answer": 0
         },
         {
-          "question": "Was schreibt Maria am Ende der E-Mail?",
-          "options": ["Liebe Grüße", "Viele Grüße", "Tschüss"],
+          "question": "Wo arbeitet der Vater?",
+          "options": ["In einem Krankenhaus", "In einer Schule", "In einem Büro"],
+          "answer": 0
+        },
+        {
+          "question": "Arbeitet der Vater am Wochenende?",
+          "options": ["Ja", "Nein", "Selten"],
           "answer": 0
         }
       ]
     },
     {
       "id": "monolog_3",
-      "title": "Eine Anmeldung für einen Deutschkurs",
-      "text": "Ich heiße Julia. Ich möchte einen Deutschkurs machen. Ich fülle ein Formular aus: Vorname, Nachname, Adresse, Telefonnummer. Ich schreibe mein Geburtsdatum. Ich schreibe meinen Beruf. Ich unterschreibe das Formular.",
+      "title": "Meine Mutter",
+      "text": "Grüß dich! Ich bin Paula. Meine Mutter ist Verkäuferin. Sie arbeitet in einem Supermarkt. Sie verkauft Lebensmittel. Meine Mutter arbeitet viel. Sie ist immer freundlich zu den Kunden.",
       "questions": [
         {
           "question": "Wie heißt die Frau?",
-          "options": ["Anna", "Maria", "Julia"],
-          "answer": 2
-        },
-        {
-          "question": "Was möchte Julia machen?",
-          "options": ["Einen Deutschkurs", "Einen Englischkurs", "Einen Französischkurs"],
+          "options": ["Paula", "Clara", "Emma"],
           "answer": 0
         },
         {
-          "question": "Was muss Julia im Formular schreiben?",
-          "options": ["Vorname, Nachname, Adresse, Telefonnummer", "Nur Name und Adresse", "Name, Beruf und Hobby"],
+          "question": "Was ist die Mutter von Paula von Beruf?",
+          "options": ["Verkäuferin", "Lehrerin", "Sekretärin"],
           "answer": 0
         },
         {
-          "question": "Was unterschreibt Julia?",
-          "options": ["Das Formular", "Den Brief", "Die E-Mail"],
+          "question": "Wo arbeitet die Mutter?",
+          "options": ["In einem Supermarkt", "In einer Schule", "In einem Büro"],
+          "answer": 0
+        },
+        {
+          "question": "Wie ist die Mutter zu den Kunden?",
+          "options": ["Freundlich", "Strenge", "Laut"],
           "answer": 0
         }
       ]
     },
     {
       "id": "monolog_4",
-      "title": "Meine Adresse",
-      "text": "Ich heiße Laura. Ich wohne in der Hauptstraße 15. Meine Postleitzahl ist 50667. Ich wohne in Köln. Ich schreibe meine Adresse in mein Formular. Ich schreibe: 'Frau Laura Weber'. Meine Telefonnummer ist 0176 1234567.",
+      "title": "Mein Traumjob",
+      "text": "Guten Morgen! Ich bin Lena. Ich studiere Medizin. Ich möchte Ärztin werden. Ich muss viel lernen. Die Arbeit ist schwer, aber interessant. Ich möchte Menschen helfen. Das ist mein Ziel.",
       "questions": [
         {
           "question": "Wie heißt die Frau?",
-          "options": ["Laura", "Lisa", "Anna"],
+          "options": ["Lena", "Paula", "Clara"],
           "answer": 0
         },
         {
-          "question": "Wie lautet Lauras Straße?",
-          "options": ["Hauptstraße 15", "Hauptstraße 10", "Berliner Straße 5"],
+          "question": "Was studiert Lena?",
+          "options": ["Medizin", "Jura", "Informatik"],
           "answer": 0
         },
         {
-          "question": "Wie lautet Lauras Postleitzahl?",
-          "options": ["50667", "50668", "50669"],
+          "question": "Was möchte Lena werden?",
+          "options": ["Ärztin", "Lehrerin", "Ingenieurin"],
           "answer": 0
         },
         {
-          "question": "Wie heißt Laura mit Nachnamen?",
-          "options": ["Weber", "Müller", "Schmidt"],
-          "answer": 0
-        },
-        {
-          "question": "Wie lautet Lauras Telefonnummer?",
-          "options": ["0176 1234567", "0176 1234568", "0176 1234569"],
+          "question": "Warum möchte Lena Ärztin werden?",
+          "options": ["Sie möchte Menschen helfen", "Sie möchte viel verdienen", "Sie möchte reisen"],
           "answer": 0
         }
       ]
     },
     {
       "id": "monolog_5",
-      "title": "Eine Einladung",
-      "text": "Ich heiße Lisa. Ich schreibe eine Einladung an meine Freundin. Ich schreibe: 'Liebe Anna, ich lade dich zu meinem Geburtstag ein'. Der Geburtstag ist am Samstag. Ich schreibe die Adresse und die Zeit. Am Ende schreibe ich 'Bitte antworte'.",
+      "title": "Meine Arbeit",
+      "text": "Guten Abend! Ich bin Leo. Ich arbeite bei einer Bank. Ich bin Sekretär. Ich schreibe E-Mails und telefoniere. Die Arbeit ist interessant. Ich mag meine Kollegen. Wir arbeiten gut zusammen.",
       "questions": [
         {
-          "question": "Wie heißt die Frau?",
-          "options": ["Laura", "Lisa", "Anna"],
-          "answer": 1
-        },
-        {
-          "question": "Was schreibt Lisa?",
-          "options": ["Eine Einladung", "Einen Brief", "Eine E-Mail"],
+          "question": "Wie heißt der Mann?",
+          "options": ["Leo", "Nico", "Tim"],
           "answer": 0
         },
         {
-          "question": "Wann ist der Geburtstag von Lisa?",
-          "options": ["Am Samstag", "Am Sonntag", "Am Freitag"],
+          "question": "Wo arbeitet Leo?",
+          "options": ["Bei einer Bank", "In einer Schule", "In einem Krankenhaus"],
           "answer": 0
         },
         {
-          "question": "Was schreibt Lisa am Ende der Einladung?",
-          "options": ["Bitte antworte", "Viele Grüße", "Tschüss"],
+          "question": "Was macht Leo in seinem Beruf?",
+          "options": ["E-Mails schreiben und telefonieren", "Unterrichten", "Verkaufen"],
+          "answer": 0
+        },
+        {
+          "question": "Wie ist die Arbeit?",
+          "options": ["Interessant", "Langweilig", "Schwer"],
+          "answer": 0
+        },
+        {
+          "question": "Mag Leo seine Kollegen?",
+          "options": ["Ja", "Nein", "Weiß nicht"],
           "answer": 0
         }
       ]

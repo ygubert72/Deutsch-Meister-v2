@@ -1,31 +1,26 @@
 {
   "lesson": 21,
   "level": "A2",
-  "title": "Perfekt с sein (глаголы движения)",
+  "title": "Perfekt с sein",
   "dialogs": [
     {
       "id": "monolog_1",
       "title": "Meine Reise nach Berlin",
-      "text": "Hallo! Ich bin Nora. Ich bin nach Berlin gefahren. Ich bin mit dem Zug gefahren. Ich bin zu meiner Freundin gegangen. Wir sind in ein Restaurant gegangen. Es war ein schöner Tag.",
+      "text": "Hallo! Ich bin Laura. Ich bin nach Berlin gefahren, weil ich meine Freundin besuchen wollte. Ich bin mit dem Zug gefahren. Wir sind in ein Restaurant gegangen. Es war ein schöner Tag.",
       "questions": [
         {
           "question": "Wie heißt die Frau?",
-          "options": ["Nora", "Ella", "Lina"],
+          "options": ["Laura", "Lisa", "Anna"],
           "answer": 0
         },
         {
-          "question": "Wohin ist Nora gefahren?",
-          "options": ["Nach Berlin", "Nach München", "Nach Hamburg"],
+          "question": "Warum ist Laura nach Berlin gefahren?",
+          "options": ["Weil sie ihre Freundin besuchen wollte", "Weil sie arbeiten musste", "Weil sie Urlaub machte"],
           "answer": 0
         },
         {
-          "question": "Womit ist Nora gefahren?",
+          "question": "Womit ist Laura gefahren?",
           "options": ["Mit dem Zug", "Mit dem Auto", "Mit dem Flugzeug"],
-          "answer": 0
-        },
-        {
-          "question": "Wie war der Tag?",
-          "options": ["Schön", "Schlecht", "Langweilig"],
           "answer": 0
         }
       ]
@@ -33,107 +28,21 @@
     {
       "id": "monolog_2",
       "title": "Mein Umzug",
-      "text": "Grüß dich! Ich bin Ella. Ich bin umgezogen. Ich bin von Berlin nach München gezogen. Meine Schwester hat mir geholfen. Wir sind mit dem Auto gefahren. Jetzt wohne ich in München.",
+      "text": "Grüß dich! Ich bin Lisa. Ich bin umgezogen, weil ich eine neue Wohnung gefunden habe. Ich bin von Berlin nach München gezogen. Meine Freundin hat mir geholfen. Wir sind mit dem Auto gefahren. Jetzt wohne ich in München.",
       "questions": [
         {
           "question": "Wie heißt die Frau?",
-          "options": ["Nora", "Ella", "Lina"],
+          "options": ["Laura", "Lisa", "Anna"],
           "answer": 1
         },
         {
-          "question": "Was hat Ella gemacht?",
-          "options": ["Sie ist umgezogen", "Sie ist gereist", "Sie hat gearbeitet"],
+          "question": "Warum ist Lisa umgezogen?",
+          "options": ["Weil sie eine neue Wohnung gefunden hat", "Weil sie Arbeit gefunden hat", "Weil sie keine Freunde hatte"],
           "answer": 0
         },
         {
-          "question": "Von wo nach wo ist Ella gezogen?",
-          "options": ["Von Berlin nach München", "Von München nach Berlin", "Von Hamburg nach Berlin"],
-          "answer": 0
-        },
-        {
-          "question": "Wer hat Ella geholfen?",
-          "options": ["Ihre Schwester", "Ihre Mutter", "Ihre Freundin"],
-          "answer": 0
-        }
-      ]
-    },
-    {
-      "id": "monolog_3",
-      "title": "Mein Ausflug",
-      "text": "Guten Tag! Ich bin Lina. Ich bin in die Berge gefahren. Ich bin mit meinen Freundinnen gewandert. Wir sind auf den Gipfel gestiegen. Die Aussicht war wunderschön. Wir sind am Abend nach Hause gekommen.",
-      "questions": [
-        {
-          "question": "Wie heißt die Frau?",
-          "options": ["Nora", "Ella", "Lina"],
-          "answer": 2
-        },
-        {
-          "question": "Wohin ist Lina gefahren?",
-          "options": ["In die Berge", "Ans Meer", "In die Stadt"],
-          "answer": 0
-        },
-        {
-          "question": "Mit wem ist Lina gewandert?",
-          "options": ["Mit ihren Freundinnen", "Mit ihrer Familie", "Alleine"],
-          "answer": 0
-        },
-        {
-          "question": "Wie war die Aussicht?",
-          "options": ["Wunderschön", "Schlecht", "Nicht gut"],
-          "answer": 0
-        }
-      ]
-    },
-    {
-      "id": "monolog_4",
-      "title": "Mein Flug",
-      "text": "Guten Morgen! Ich bin Mia. Ich bin nach Italien geflogen. Der Flug hat zwei Stunden gedauert. Ich bin aus dem Flugzeug gestiegen. Ich bin in ein Hotel gegangen. Der Urlaub war super.",
-      "questions": [
-        {
-          "question": "Wie heißt die Frau?",
-          "options": ["Mia", "Rosa", "Nora"],
-          "answer": 0
-        },
-        {
-          "question": "Wohin ist Mia geflogen?",
-          "options": ["Nach Italien", "Nach Spanien", "Nach Frankreich"],
-          "answer": 0
-        },
-        {
-          "question": "Wie lange hat der Flug gedauert?",
-          "options": ["Zwei Stunden", "Drei Stunden", "Vier Stunden"],
-          "answer": 0
-        },
-        {
-          "question": "Wie war der Urlaub?",
-          "options": ["Super", "Schlecht", "Langweilig"],
-          "answer": 0
-        }
-      ]
-    },
-    {
-      "id": "monolog_5",
-      "title": "Mein Tag am See",
-      "text": "Hallo! Ich bin Rosa. Ich bin gestern an den See gefahren. Ich bin mit dem Fahrrad gefahren. Ich bin ins Wasser gesprungen. Ich habe geschwommen. Ich bin am Abend nach Hause gefahren.",
-      "questions": [
-        {
-          "question": "Wie heißt die Frau?",
-          "options": ["Rosa", "Mia", "Lina"],
-          "answer": 0
-        },
-        {
-          "question": "Wohin ist Rosa gestern gefahren?",
-          "options": ["An den See", "Ins Gebirge", "In die Stadt"],
-          "answer": 0
-        },
-        {
-          "question": "Womit ist Rosa gefahren?",
-          "options": ["Mit dem Fahrrad", "Mit dem Auto", "Mit dem Zug"],
-          "answer": 0
-        },
-        {
-          "question": "Was hat Rosa am See gemacht?",
-          "options": ["Geschwommen", "Gelesen", "Gearbeitet"],
+          "question": "Wer hat Lisa geholfen?",
+          "options": ["Ihre Freundin", "Ihre Schwester", "Ihre Mutter"],
           "answer": 0
         }
       ]

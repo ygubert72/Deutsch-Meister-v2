@@ -9,7 +9,7 @@ let courseData = null;
 let isRestoring = false;
 
 // ========== СОХРАНЕНИЕ СОСТОЯНИЯ ==========
-function saveState() {.
+function saveState() {
     try {
         const state = {
             level: currentLevel,

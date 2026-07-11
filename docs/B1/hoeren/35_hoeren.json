@@ -1,0 +1,239 @@
+{
+  "lesson": 35,
+  "level": "B1",
+  "title": "Пассивный залог в настоящем времени",
+  "dialogs": [
+    {
+      "id": "monolog_1",
+      "title": "Wie wird Kaffee hergestellt?",
+      "text": "Wisst ihr, wie Kaffee hergestellt wird? Ich bin Walburga und arbeite in einer Kaffeerösterei. Die Kaffeebohnen werden in Brasilien angebaut. Danach werden sie geerntet und getrocknet. Die Bohnen werden dann in unsere Rösterei geschickt. Hier werden sie geröstet und gemahlen. Der Kaffee wird in Tüten verpackt. Dann wird er in die Geschäfte geliefert. In Deutschland wird viel Kaffee getrunken. Das ist eine große Tradition.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Walburga", "Xaveria", "Yvonne"],
+          "answer": 0
+        },
+        {
+          "question": "Wo werden die Kaffeebohnen angebaut?",
+          "options": ["In Brasilien", "In Deutschland", "In Italien"],
+          "answer": 0
+        },
+        {
+          "question": "Was wird mit den Bohnen in der Rösterei gemacht?",
+          "options": ["Sie werden geröstet und gemahlen", "Sie werden nur verpackt", "Sie werden getrocknet"],
+          "answer": 0
+        },
+        {
+          "question": "Wo wird der Kaffee verpackt?",
+          "options": ["In der Rösterei", "In Brasilien", "Im Geschäft"],
+          "answer": 0
+        },
+        {
+          "question": "Wohin wird der Kaffee geliefert?",
+          "options": ["In die Geschäfte", "Ins Ausland", "In die Fabrik"],
+          "answer": 0
+        },
+        {
+          "question": "Was ist in Deutschland eine große Tradition?",
+          "options": ["Kaffee trinken", "Tee trinken", "Bier trinken"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_2",
+      "title": "Wie wird ein Buch gedruckt?",
+      "text": "Heute geht es um den Passiv. Ich bin Xaveria und arbeite in einer Druckerei. Zuerst wird der Text geschrieben. Dann wird er von Lektoren korrigiert. Der Text wird in ein Computerprogramm eingegeben. Danach wird das Buchlayout erstellt. Die Seiten werden gedruckt. Die Bücher werden gebunden. Schließlich werden sie in Buchläden geliefert. In Deutschland werden jedes Jahr viele Bücher veröffentlicht.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Walburga", "Xaveria", "Yvonne"],
+          "answer": 1
+        },
+        {
+          "question": "Was wird zuerst gemacht?",
+          "options": ["Der Text wird geschrieben", "Das Buch wird gedruckt", "Das Buch wird gebunden"],
+          "answer": 0
+        },
+        {
+          "question": "Wer korrigiert den Text?",
+          "options": ["Lektoren", "Autoren", "Drucker"],
+          "answer": 0
+        },
+        {
+          "question": "Was wird mit den Seiten gemacht?",
+          "options": ["Sie werden gedruckt", "Sie werden beschrieben", "Sie werden fotografiert"],
+          "answer": 0
+        },
+        {
+          "question": "Was wird am Ende mit den Büchern gemacht?",
+          "options": ["Sie werden in Buchläden geliefert", "Sie werden verbrannt", "Sie werden versteckt"],
+          "answer": 0
+        },
+        {
+          "question": "Was wird in Deutschland jedes Jahr veröffentlicht?",
+          "options": ["Viele Bücher", "Viele Filme", "Viele Zeitungen"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_3",
+      "title": "Wie wird Brot gebacken?",
+      "text": "In Deutschland wird viel Wert auf gutes Brot gelegt. Ich bin Yvonne und arbeite in einer Bäckerei. Zuerst werden die Zutaten abgewogen. Mehl, Wasser, Hefe und Salz werden gemischt. Der Teig wird geknetet. Dann wird er eine Stunde ruhen gelassen. Der Teig wird geformt. Im Ofen wird das Brot gebacken. Nach dem Backen wird es abgekühlt. Dann wird es in der Bäckerei verkauft. Die Kunden lieben unser frisches Brot.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Walburga", "Xaveria", "Yvonne"],
+          "answer": 2
+        },
+        {
+          "question": "Was wird zuerst gemacht?",
+          "options": ["Die Zutaten werden abgewogen", "Der Teig wird geknetet", "Das Brot wird gebacken"],
+          "answer": 0
+        },
+        {
+          "question": "Welche Zutaten werden gemischt?",
+          "options": ["Mehl, Wasser, Hefe und Salz", "Nur Mehl und Wasser", "Mehl, Zucker und Eier"],
+          "answer": 0
+        },
+        {
+          "question": "Wie lange wird der Teig ruhen gelassen?",
+          "options": ["Eine Stunde", "Zwei Stunden", "Drei Stunden"],
+          "answer": 0
+        },
+        {
+          "question": "Wo wird das Brot gebacken?",
+          "options": ["Im Ofen", "Auf dem Herd", "In der Mikrowelle"],
+          "answer": 0
+        },
+        {
+          "question": "Wo wird das Brot verkauft?",
+          "options": ["In der Bäckerei", "Im Supermarkt", "Im Restaurant"],
+          "answer": 0
+        },
+        {
+          "question": "Was lieben die Kunden?",
+          "options": ["Das frische Brot", "Die Torte", "Die Brötchen"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_4",
+      "title": "Wie wird ein Auto produziert?",
+      "text": "Ich möchte euch zeigen, wie ein Auto produziert wird. Ich bin Zenobia und arbeite bei einem Autobauer. Zuerst wird das Design erstellt. Dann wird das Chassis gebaut. Der Motor wird eingebaut. Die Karosserie wird lackiert. Die Fenster werden eingesetzt. Die Sitze werden montiert. Schließlich wird das Auto getestet. Es wird auf Fehler überprüft. Nach der Prüfung wird das Auto in die Ausstellung gebracht.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Zenobia", "Yvonne", "Amalia"],
+          "answer": 0
+        },
+        {
+          "question": "Was wird zuerst gemacht?",
+          "options": ["Das Design wird erstellt", "Der Motor wird eingebaut", "Das Chassis wird gebaut"],
+          "answer": 0
+        },
+        {
+          "question": "Was wird lackiert?",
+          "options": ["Die Karosserie", "Die Fenster", "Die Sitze"],
+          "answer": 0
+        },
+        {
+          "question": "Was wird am Ende gemacht?",
+          "options": ["Das Auto wird getestet", "Das Auto wird verkauft", "Das Auto wird gewaschen"],
+          "answer": 0
+        },
+        {
+          "question": "Worauf wird das Auto geprüft?",
+          "options": ["Auf Fehler", "Auf Preis", "Auf Geschwindigkeit"],
+          "answer": 0
+        },
+        {
+          "question": "Wohin wird das Auto nach der Prüfung gebracht?",
+          "options": ["In die Ausstellung", "Ins Museum", "Ins Lager"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_5",
+      "title": "Wie wird Kleidung hergestellt?",
+      "text": "Wisst ihr, wie Kleidung hergestellt wird? Ich bin Amalia und arbeite in der Modeindustrie. Zuerst werden die Stoffe ausgewählt. Die Stoffe werden zugeschnitten. Die Teile werden zusammengenäht. Die Kleidung wird gebügelt. Dann werden die Etiketten angebracht. Die Kleidungsstücke werden verpackt. Sie werden in die Geschäfte geschickt. Die Kunden können sie dann kaufen. In Deutschland wird viel Wert auf nachhaltige Mode gelegt.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Zenobia", "Yvonne", "Amalia"],
+          "answer": 2
+        },
+        {
+          "question": "Was wird zuerst gemacht?",
+          "options": ["Die Stoffe werden ausgewählt", "Die Kleidung wird gebügelt", "Die Teile werden genäht"],
+          "answer": 0
+        },
+        {
+          "question": "Was wird mit den Teilen gemacht?",
+          "options": ["Sie werden zusammengenäht", "Sie werden weggeschmissen", "Sie werden gemalt"],
+          "answer": 0
+        },
+        {
+          "question": "Was wird nach dem Nähen gemacht?",
+          "options": ["Die Kleidung wird gebügelt", "Die Kleidung wird gewaschen", "Die Kleidung wird gefärbt"],
+          "answer": 0
+        },
+        {
+          "question": "Wohin wird die Kleidung geschickt?",
+          "options": ["In die Geschäfte", "Ins Museum", "In die Fabrik"],
+          "answer": 0
+        },
+        {
+          "question": "Was wird in Deutschland besonders betont?",
+          "options": ["Nachhaltige Mode", "Billige Mode", "Luxusmode"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_6",
+      "title": "Wie wird Müll recycelt?",
+      "text": "Findet ihr nicht auch, dass Recycling wichtig ist? Ich bin Hedwig. In Deutschland wird viel Wert auf Recycling gelegt. Zuerst wird der Müll getrennt. Plastik, Glas und Papier werden sortiert. Der Plastikmüll wird geschreddert. Dann wird er eingeschmolzen. Neues Plastik wird hergestellt. Das Glas wird eingeschmolzen und zu neuen Flaschen verarbeitet. Das Papier wird zu neuem Papier verarbeitet. So werden viele Ressourcen gespart.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Hedwig", "Amalia", "Zenobia"],
+          "answer": 0
+        },
+        {
+          "question": "Was wird zuerst beim Recycling gemacht?",
+          "options": ["Der Müll wird getrennt", "Der Müll wird verbrannt", "Der Müll wird vergraben"],
+          "answer": 0
+        },
+        {
+          "question": "Welche Materialien werden sortiert?",
+          "options": ["Plastik, Glas und Papier", "Nur Plastik", "Nur Glas"],
+          "answer": 0
+        },
+        {
+          "question": "Was wird mit dem Plastikmüll gemacht?",
+          "options": ["Er wird geschreddert und eingeschmolzen", "Er wird verbrannt", "Er wird vergraben"],
+          "answer": 0
+        },
+        {
+          "question": "Was wird aus dem recycelten Glas hergestellt?",
+          "options": ["Neue Flaschen", "Neues Papier", "Neues Plastik"],
+          "answer": 0
+        },
+        {
+          "question": "Was wird durch Recycling gespart?",
+          "options": ["Ressourcen", "Zeit", "Geld"],
+          "answer": 0
+        },
+        {
+          "question": "Wo wird Recycling besonders betont?",
+          "options": ["In Deutschland", "In Frankreich", "In Italien"],
+          "answer": 0
+        }
+      ]
+    }
+  ]
+}

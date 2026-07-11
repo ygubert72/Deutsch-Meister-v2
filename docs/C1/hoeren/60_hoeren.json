@@ -1,0 +1,199 @@
+{
+  "lesson": 60,
+  "level": "C1",
+  "title": "Межкультурная коммуникация и глобальные вызовы",
+  "dialogs": [
+    {
+      "id": "monolog_1",
+      "title": "Die Bedeutung der interkulturellen Kommunikation",
+      "text": "Guten Tag! Ich bin Anna. Die interkulturelle Kommunikation ist heute wichtiger denn je. Wir leben in einer globalisierten Welt. Wir arbeiten mit Menschen aus verschiedenen Kulturen. Wir reisen in andere Länder. Wir müssen die Unterschiede verstehen. Wir müssen sie respektieren. Eine gute interkulturelle Kommunikation vermeidet Missverständnisse. Sie fördert die Zusammenarbeit. Sie ist der Schlüssel zum Erfolg.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Anna", "Maria", "Julia"],
+          "answer": 0
+        },
+        {
+          "question": "Warum ist interkulturelle Kommunikation wichtig?",
+          "options": ["Weil wir in einer globalisierten Welt leben", "Weil wir nur im eigenen Land arbeiten", "Weil wir alle gleich sind"],
+          "answer": 0
+        },
+        {
+          "question": "Was müssen wir in der interkulturellen Kommunikation verstehen?",
+          "options": ["Die Unterschiede", "Die Gemeinsamkeiten", "Die Religion"],
+          "answer": 0
+        },
+        {
+          "question": "Was vermeidet gute interkulturelle Kommunikation?",
+          "options": ["Missverständnisse", "Zusammenarbeit", "Erfolge"],
+          "answer": 0
+        },
+        {
+          "question": "Was ist der Schlüssel zum Erfolg?",
+          "options": ["Gute interkulturelle Kommunikation", "Gute Planung", "Gute Technologie"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_2",
+      "title": "Kulturelle Unterschiede im Berufsleben",
+      "text": "Hallo! Ich bin Maria. Kulturelle Unterschiede zeigen sich im Berufsleben. Die Arbeitsweise ist in verschiedenen Ländern unterschiedlich. In einigen Kulturen ist Pünktlichkeit sehr wichtig. In anderen ist sie weniger wichtig. Die Kommunikation ist auch unterschiedlich. In manchen Kulturen wird direkt gesprochen. In anderen wird indirekt kommuniziert. Man muss diese Unterschiede kennen. Nur so kann man erfolgreich zusammenarbeiten.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Anna", "Maria", "Julia"],
+          "answer": 1
+        },
+        {
+          "question": "Wo zeigen sich kulturelle Unterschiede?",
+          "options": ["Im Berufsleben", "In der Freizeit", "In der Politik"],
+          "answer": 0
+        },
+        {
+          "question": "Was ist in einigen Kulturen wichtig?",
+          "options": ["Pünktlichkeit", "Verspätung", "Langsamkeit"],
+          "answer": 0
+        },
+        {
+          "question": "Wie wird in manchen Kulturen kommuniziert?",
+          "options": ["Direkt", "Indirekt", "Gar nicht"],
+          "answer": 0
+        },
+        {
+          "question": "Was muss man kennen, um erfolgreich zusammenzuarbeiten?",
+          "options": ["Diese Unterschiede", "Die gleiche Sprache", "Die gleichen Ziele"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_3",
+      "title": "Die Herausforderungen der Globalisierung",
+      "text": "Guten Morgen! Ich bin Julia. Die Globalisierung bringt viele Herausforderungen mit sich. Die Wirtschaft ist global vernetzt. Das ist ein Vorteil. Aber es gibt auch Nachteile. Die Ungleichheit wächst. Die Umwelt wird belastet. Die Kulturen vermischen sich. Das ist nicht immer positiv. Wir müssen die Globalisierung gestalten. Wir müssen die Vorteile nutzen. Wir müssen die Nachteile minimieren.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Anna", "Maria", "Julia"],
+          "answer": 2
+        },
+        {
+          "question": "Was bringt die Globalisierung mit sich?",
+          "options": ["Viele Herausforderungen", "Nur Vorteile", "Nur Nachteile"],
+          "answer": 0
+        },
+        {
+          "question": "Was wächst durch die Globalisierung?",
+          "options": ["Die Ungleichheit", "Die Gleichheit", "Der Frieden"],
+          "answer": 0
+        },
+        {
+          "question": "Was wird durch die Globalisierung belastet?",
+          "options": ["Die Umwelt", "Die Wirtschaft", "Die Politik"],
+          "answer": 0
+        },
+        {
+          "question": "Was müssen wir tun?",
+          "options": ["Die Globalisierung gestalten", "Die Globalisierung stoppen", "Die Globalisierung ignorieren"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_4",
+      "title": "Die Bedeutung von Empathie in der Kommunikation",
+      "text": "Hallo! Ich bin Laura. Empathie ist in der Kommunikation sehr wichtig. Man muss sich in andere hineinversetzen können. Man muss die Perspektive des anderen verstehen. Man muss die Gefühle des anderen respektieren. Empathie hilft, Konflikte zu vermeiden. Sie hilft, Vertrauen aufzubauen. Sie ist die Grundlage für gute zwischenmenschliche Beziehungen. Ohne Empathie ist Kommunikation oberflächlich.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Laura", "Lisa", "Anna"],
+          "answer": 0
+        },
+        {
+          "question": "Was ist in der Kommunikation sehr wichtig?",
+          "options": ["Empathie", "Effizienz", "Geschwindigkeit"],
+          "answer": 0
+        },
+        {
+          "question": "Was muss man bei Empathie tun?",
+          "options": ["Sich in andere hineinversetzen", "Sich selbst in den Vordergrund stellen", "Die anderen ignorieren"],
+          "answer": 0
+        },
+        {
+          "question": "Was hilft Empathie?",
+          "options": ["Konflikte zu vermeiden und Vertrauen aufzubauen", "Konflikte zu verschärfen", "Vertrauen zu zerstören"],
+          "answer": 0
+        },
+        {
+          "question": "Was ist die Grundlage für gute zwischenmenschliche Beziehungen?",
+          "options": ["Empathie", "Effizienz", "Geschwindigkeit"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_5",
+      "title": "Die Rolle der Sprache in der interkulturellen Kommunikation",
+      "text": "Guten Tag! Ich bin Lisa. Die Sprache spielt eine zentrale Rolle. Man muss die Sprache des anderen verstehen. Man muss die kulturellen Nuancen erkennen. Man muss sich anpassen. Man muss klar und einfach sprechen. Man sollte Fachbegriffe vermeiden. Man sollte Missverständnisse sofort klären. Eine gute Sprachkompetenz ist entscheidend. Sie macht die interkulturelle Kommunikation erfolgreich.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Laura", "Lisa", "Anna"],
+          "answer": 1
+        },
+        {
+          "question": "Was spielt in der interkulturellen Kommunikation eine zentrale Rolle?",
+          "options": ["Die Sprache", "Die Kleidung", "Das Essen"],
+          "answer": 0
+        },
+        {
+          "question": "Was muss man in der interkulturellen Kommunikation erkennen?",
+          "options": ["Die kulturellen Nuancen", "Die politischen Systeme", "Die wirtschaftlichen Daten"],
+          "answer": 0
+        },
+        {
+          "question": "Was sollte man in der interkulturellen Kommunikation vermeiden?",
+          "options": ["Fachbegriffe", "Einfache Wörter", "Fragen"],
+          "answer": 0
+        },
+        {
+          "question": "Was ist entscheidend für erfolgreiche interkulturelle Kommunikation?",
+          "options": ["Eine gute Sprachkompetenz", "Eine gute Kleidung", "Eine gute Tischmanieren"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_6",
+      "title": "Die Zukunft der interkulturellen Zusammenarbeit",
+      "text": "Guten Morgen! Ich bin Emma. Die interkulturelle Zusammenarbeit wird immer wichtiger. Die Welt wird immer vernetzter. Die Menschen werden immer mobiler. Die Teams sind international. Die Projekte sind global. Wir müssen zusammenarbeiten. Wir müssen voneinander lernen. Wir müssen die Vielfalt schätzen. Die Zukunft ist interkulturell. Die Zusammenarbeit über Grenzen hinweg ist die größte Chance unserer Zeit.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Emma", "Anna", "Laura"],
+          "answer": 0
+        },
+        {
+          "question": "Was wird immer wichtiger?",
+          "options": ["Die interkulturelle Zusammenarbeit", "Die nationale Zusammenarbeit", "Die regionale Zusammenarbeit"],
+          "answer": 0
+        },
+        {
+          "question": "Wie sind die Teams?",
+          "options": ["International", "National", "Lokal"],
+          "answer": 0
+        },
+        {
+          "question": "Was müssen wir tun?",
+          "options": ["Zusammenarbeiten und voneinander lernen", "Konkurrieren und gegeneinander kämpfen", "Isolieren und uns verschließen"],
+          "answer": 0
+        },
+        {
+          "question": "Was ist die größte Chance unserer Zeit?",
+          "options": ["Die Zusammenarbeit über Grenzen hinweg", "Die nationale Isolation", "Die digitale Revolution"],
+          "answer": 0
+        }
+      ]
+    }
+  ]
+}

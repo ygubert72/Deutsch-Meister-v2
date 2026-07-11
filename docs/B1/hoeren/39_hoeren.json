@@ -1,0 +1,249 @@
+{
+  "lesson": 39,
+  "level": "B1",
+  "title": "СМИ и новости: анализ информации",
+  "dialogs": [
+    {
+      "id": "monolog_1",
+      "title": "Wie ich die Nachrichten verfolge",
+      "text": "Ich informiere mich täglich über die Nachrichten. Ich bin Florentine. Jeden Morgen schalte ich das Radio ein. Ich höre die Nachrichten beim Frühstück. Am Mittag lese ich online die neuesten Artikel. Am Abend schaue ich die Tagesschau im Fernsehen. Ich mag es, informiert zu sein. Die Nachrichten helfen mir, die Welt zu verstehen. Ich achte immer darauf, ob die Informationen aktuell und richtig sind. Viele Nachrichten sind wichtig für den Alltag.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Florentine", "Gertraude", "Herlinde"],
+          "answer": 0
+        },
+        {
+          "question": "Was macht Florentine jeden Morgen?",
+          "options": ["Sie schaltet das Radio ein", "Sie liest die Zeitung", "Sie sieht fern"],
+          "answer": 0
+        },
+        {
+          "question": "Wann liest Florentine online Artikel?",
+          "options": ["Am Mittag", "Am Abend", "Am Morgen"],
+          "answer": 0
+        },
+        {
+          "question": "Was schaut Florentine am Abend?",
+          "options": ["Die Tagesschau", "Einen Film", "Eine Serie"],
+          "answer": 0
+        },
+        {
+          "question": "Warum verfolgt Florentine die Nachrichten?",
+          "options": ["Sie mag es, informiert zu sein", "Sie hat nichts zu tun", "Ihre Freunde machen es"],
+          "answer": 0
+        },
+        {
+          "question": "Worauf achtet Florentine?",
+          "options": ["Ob die Informationen aktuell und richtig sind", "Ob die Bilder schön sind", "Ob es viele Kommentare gibt"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_2",
+      "title": "Kritisch mit Nachrichten umgehen",
+      "text": "Es ist wichtig, Nachrichten kritisch zu hinterfragen. Ich bin Gertraude. Nicht alle Informationen, die wir lesen, sind wahr. Man sollte immer die Quelle überprüfen. Ich frage mich: Wer hat das geschrieben? Warum wurde es geschrieben? Sind die Fakten belegt? Oft gibt es verschiedene Perspektiven. Ich vergleiche mehrere Quellen. So kann ich erkennen, was wirklich stimmt. Das ist besonders wichtig bei Fake News.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Florentine", "Gertraude", "Herlinde"],
+          "answer": 1
+        },
+        {
+          "question": "Was ist wichtig bei Nachrichten?",
+          "options": ["Sie kritisch zu hinterfragen", "Alles zu glauben", "Nur die Überschrift zu lesen"],
+          "answer": 0
+        },
+        {
+          "question": "Was sollte man immer überprüfen?",
+          "options": ["Die Quelle", "Die Bilder", "Die Kommentare"],
+          "answer": 0
+        },
+        {
+          "question": "Was fragt sich Gertraude?",
+          "options": ["Wer hat es geschrieben und warum?", "Ist es interessant?", "Ist es schön?"],
+          "answer": 0
+        },
+        {
+          "question": "Was macht Gertraude, um die Wahrheit zu erkennen?",
+          "options": ["Sie vergleicht mehrere Quellen", "Sie fragt ihre Freunde", "Sie rät"],
+          "answer": 0
+        },
+        {
+          "question": "Wann ist das besonders wichtig?",
+          "options": ["Bei Fake News", "Bei Sportnachrichten", "Bei Wettervorhersagen"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_3",
+      "title": "Fake News erkennen",
+      "text": "Wisst ihr, wie man Fake News erkennt? Ich bin Herlinde. Fake News sind falsche Informationen. Sie werden oft verbreitet, um Menschen zu beeinflussen. Man erkennt sie an reißerischen Überschriften. Die Quellen sind meistens unbekannt. Die Fakten werden oft übertrieben dargestellt. Ich schaue immer auf seriöse Nachrichtenportale. Wenn die Nachrichten zu gut oder zu schlecht sind, bin ich misstrauisch. Man sollte niemals alles glauben, was man liest.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Florentine", "Gertraude", "Herlinde"],
+          "answer": 2
+        },
+        {
+          "question": "Was sind Fake News?",
+          "options": ["Falsche Informationen", "Wahre Informationen", "Alte Informationen"],
+          "answer": 0
+        },
+        {
+          "question": "Warum werden Fake News verbreitet?",
+          "options": ["Um Menschen zu beeinflussen", "Um zu informieren", "Um zu unterhalten"],
+          "answer": 0
+        },
+        {
+          "question": "Woran erkennt man Fake News?",
+          "options": ["An reißerischen Überschriften", "An langen Texten", "An schönen Bildern"],
+          "answer": 0
+        },
+        {
+          "question": "Was sind die Quellen meistens?",
+          "options": ["Unbekannt", "Bekannt", "Seriös"],
+          "answer": 0
+        },
+        {
+          "question": "Worauf schaut Herlinde?",
+          "options": ["Auf seriöse Nachrichtenportale", "Auf soziale Medien", "Auf Kommentare"],
+          "answer": 0
+        },
+        {
+          "question": "Wann ist Herlinde misstrauisch?",
+          "options": ["Wenn die Nachrichten zu gut oder zu schlecht sind", "Wenn die Nachrichten lang sind", "Wenn die Nachrichten langweilig sind"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_4",
+      "title": "Soziale Medien als Nachrichtenquelle",
+      "text": "Die Medien spielen eine große Rolle in unserem Leben. Ich bin Isolde. Viele Menschen nutzen soziale Medien als Nachrichtenquelle. Das kann praktisch sein, aber auch gefährlich. In sozialen Medien werden oft Gerüchte verbreitet. Die Algorithmen zeigen uns, was wir sehen wollen. Das kann unsere Meinung beeinflussen. Ich nutze soziale Medien, aber ich überprüfe die Informationen immer. Ich lese auch traditionelle Medien wie Zeitungen. So habe ich ein breites Bild.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Isolde", "Jutta", "Herlinde"],
+          "answer": 0
+        },
+        {
+          "question": "Was nutzen viele Menschen als Nachrichtenquelle?",
+          "options": ["Soziale Medien", "Radio", "Zeitungen"],
+          "answer": 0
+        },
+        {
+          "question": "Was wird in sozialen Medien oft verbreitet?",
+          "options": ["Gerüchte", "Wahrheiten", "Fakten"],
+          "answer": 0
+        },
+        {
+          "question": "Was zeigen die Algorithmen?",
+          "options": ["Was wir sehen wollen", "Was wichtig ist", "Was wahr ist"],
+          "answer": 0
+        },
+        {
+          "question": "Was kann das beeinflussen?",
+          "options": ["Unsere Meinung", "Unser Wetter", "Unsere Gesundheit"],
+          "answer": 0
+        },
+        {
+          "question": "Was macht Isolde mit den Informationen?",
+          "options": ["Sie überprüft sie immer", "Sie glaubt alles", "Sie teilt alles"],
+          "answer": 0
+        },
+        {
+          "question": "Was liest Isolde auch?",
+          "options": ["Traditionelle Medien wie Zeitungen", "Nur soziale Medien", "Nur Blogs"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_5",
+      "title": "Die Macht der Medien",
+      "text": "Wisst ihr, wie mächtig Medien sein können? Ich bin Jutta. Medien können unsere Meinung stark beeinflussen. Sie bestimmen, worüber wir sprechen. Manchmal werden Themen übertrieben dargestellt. Das kann Angst machen. Es ist wichtig, mehrere Perspektiven zu sehen. Man sollte nicht nur eine Zeitung lesen. Ich lese verschiedene Zeitungen. So bekomme ich ein objektiveres Bild. Die Medien haben viel Verantwortung. Sie sollten fair und wahrheitsgemäß berichten.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Isolde", "Jutta", "Florentine"],
+          "answer": 1
+        },
+        {
+          "question": "Was können Medien stark beeinflussen?",
+          "options": ["Unsere Meinung", "Unser Wetter", "Unsere Gesundheit"],
+          "answer": 0
+        },
+        {
+          "question": "Was bestimmen die Medien?",
+          "options": ["Worüber wir sprechen", "Was wir essen", "Wo wir wohnen"],
+          "answer": 0
+        },
+        {
+          "question": "Was kann passieren, wenn Themen übertrieben dargestellt werden?",
+          "options": ["Es kann Angst machen", "Es kann Freude machen", "Es kann nichts passieren"],
+          "answer": 0
+        },
+        {
+          "question": "Was ist wichtig bei Medien?",
+          "options": ["Mehrere Perspektiven zu sehen", "Nur eine Quelle zu lesen", "Alles zu glauben"],
+          "answer": 0
+        },
+        {
+          "question": "Was macht Jutta, um objektiv zu bleiben?",
+          "options": ["Sie liest verschiedene Zeitungen", "Sie liest nur eine Zeitung", "Sie liest keine Zeitungen"],
+          "answer": 0
+        },
+        {
+          "question": "Welche Verantwortung haben die Medien?",
+          "options": ["Sie sollten fair und wahrheitsgemäß berichten", "Sie sollten unterhalten", "Sie sollten verkaufen"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_6",
+      "title": "Wie ich Nachrichten verstehe",
+      "text": "Ich möchte euch heute von meiner Art erzählen, Nachrichten zu verstehen. Ich bin Kunigunde. Früher habe ich einfach alles geglaubt, was ich gelesen habe. Heute bin ich viel vorsichtiger. Ich überlege, wer die Informationen veröffentlicht. Ich schaue auf das Datum der Veröffentlichung. Sind die Informationen noch aktuell? Ich versuche, mehrere Artikel zu dem Thema zu lesen. So verstehe ich das Thema besser. Die Wahrheit liegt oft in der Mitte.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Kunigunde", "Jutta", "Isolde"],
+          "answer": 0
+        },
+        {
+          "question": "Wie war Kunigunde früher?",
+          "options": ["Sie glaubte einfach alles", "Sie war misstrauisch", "Sie las keine Nachrichten"],
+          "answer": 0
+        },
+        {
+          "question": "Was macht Kunigunde heute anders?",
+          "options": ["Sie ist viel vorsichtiger", "Sie liest mehr", "Sie schreibt Kommentare"],
+          "answer": 0
+        },
+        {
+          "question": "Worauf schaut Kunigunde?",
+          "options": ["Auf das Datum der Veröffentlichung", "Auf die Bilder", "Auf die Kommentare"],
+          "answer": 0
+        },
+        {
+          "question": "Was macht Kunigunde, um das Thema besser zu verstehen?",
+          "options": ["Sie liest mehrere Artikel", "Sie fragt ihre Freunde", "Sie rät"],
+          "answer": 0
+        },
+        {
+          "question": "Wo liegt die Wahrheit oft?",
+          "options": ["In der Mitte", "Am Anfang", "Am Ende"],
+          "answer": 0
+        },
+        {
+          "question": "Was macht Kunigunde, um sich zu informieren?",
+          "options": ["Sie liest und vergleicht", "Sie sieht fern", "Sie hört Radio"],
+          "answer": 0
+        }
+      ]
+    }
+  ]
+}

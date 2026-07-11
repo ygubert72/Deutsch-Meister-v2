@@ -5,124 +5,16 @@
   "dialogs": [
     {
       "id": "monolog_1",
-      "title": "Ein Brief",
-      "text": "Guten Tag! Ich bin Clara. Ich schreibe einen Brief an meine Freundin. Ich schreibe: 'Liebe Anna'. Ich schreibe über meine Familie und meine Arbeit. Am Ende schreibe ich 'Viele Grüße'. Das ist mein Brief.",
-      "questions": [
-        {
-          "question": "Wie heißt die Frau?",
-          "options": ["Clara", "Anna", "Laura"],
-          "answer": 0
-        },
-        {
-          "question": "An wen schreibt Clara einen Brief?",
-          "options": ["An ihre Freundin", "An ihre Mutter", "An ihren Bruder"],
-          "answer": 0
-        },
-        {
-          "question": "Was schreibt Clara in den Brief?",
-          "options": ["Über ihre Familie und Arbeit", "Über ihre Reise", "Über ihr Hobby"],
-          "answer": 0
-        },
-        {
-          "question": "Was schreibt Clara am Ende des Briefes?",
-          "options": ["Viele Grüße", "Liebe Grüße", "Tschüss"],
-          "answer": 0
-        }
-      ]
-    },
-    {
-      "id": "monolog_2",
-      "title": "Eine E-Mail",
-      "text": "Hallo! Ich bin Sophie. Ich schreibe oft E-Mails. Ich schreibe: 'Liebe Anna' am Anfang. Ich schreibe über meinen neuen Job. Am Ende schreibe ich 'Liebe Grüße'. Dann schicke ich die E-Mail ab.",
-      "questions": [
-        {
-          "question": "Wie heißt die Frau?",
-          "options": ["Sophie", "Clara", "Paula"],
-          "answer": 0
-        },
-        {
-          "question": "Was macht Sophie oft?",
-          "options": ["Sie schreibt E-Mails", "Sie liest Briefe", "Sie telefoniert"],
-          "answer": 0
-        },
-        {
-          "question": "Was schreibt Sophie am Ende der E-Mail?",
-          "options": ["Liebe Grüße", "Viele Grüße", "Tschüss"],
-          "answer": 0
-        },
-        {
-          "question": "Was macht Sophie nach dem Schreiben?",
-          "options": ["Sie schickt die E-Mail ab", "Sie liest sie nochmal", "Sie löscht sie"],
-          "answer": 0
-        }
-      ]
-    },
-    {
-      "id": "monolog_3",
-      "title": "Ein Formular",
-      "text": "Grüß dich! Ich bin Paula. Ich möchte einen Deutschkurs machen. Ich fülle ein Formular aus. Ich schreibe meinen Namen und meine Adresse. Ich schreibe mein Geburtsdatum. Dann unterschreibe ich das Formular.",
-      "questions": [
-        {
-          "question": "Wie heißt die Frau?",
-          "options": ["Paula", "Clara", "Lena"],
-          "answer": 0
-        },
-        {
-          "question": "Was möchte Paula machen?",
-          "options": ["Einen Deutschkurs", "Einen Englischkurs", "Einen Französischkurs"],
-          "answer": 0
-        },
-        {
-          "question": "Was schreibt Paula im Formular?",
-          "options": ["Namen und Adresse", "Nur den Namen", "Nur die Adresse"],
-          "answer": 0
-        },
-        {
-          "question": "Was macht Paula am Ende?",
-          "options": ["Sie unterschreibt das Formular", "Sie liest es nochmal", "Sie gibt es ab"],
-          "answer": 0
-        }
-      ]
-    },
-    {
-      "id": "monolog_4",
-      "title": "Meine Adresse",
-      "text": "Guten Morgen! Ich bin Lena. Ich wohne in der Hauptstraße 15. Meine Postleitzahl ist 50667. Ich wohne in Köln. Ich schreibe meine Adresse in jedes Formular. Meine Telefonnummer ist 0176 1234567.",
-      "questions": [
-        {
-          "question": "Wie heißt die Frau?",
-          "options": ["Lena", "Paula", "Clara"],
-          "answer": 0
-        },
-        {
-          "question": "Wie lautet Lenas Straße?",
-          "options": ["Hauptstraße 15", "Hauptstraße 10", "Berliner Straße 5"],
-          "answer": 0
-        },
-        {
-          "question": "Wie lautet Lenas Postleitzahl?",
-          "options": ["50667", "50668", "50669"],
-          "answer": 0
-        },
-        {
-          "question": "Wo wohnt Lena?",
-          "options": ["In Köln", "In Berlin", "In Hamburg"],
-          "answer": 0
-        }
-      ]
-    },
-    {
-      "id": "monolog_5",
       "title": "Eine Einladung",
-      "text": "Guten Abend! Ich bin Nina. Ich schreibe eine Einladung an meine Freundin. Ich schreibe: 'Liebe Sophie, ich lade dich ein'. Der Geburtstag ist am Samstag. Ich schreibe die Adresse und die Zeit. Am Ende schreibe ich 'Bitte antworte'.",
+      "text": "Guten Tag! Ich bin Anna. Ich schreibe eine Einladung. Ich schreibe: 'Liebe Maria, ich lade dich zu meinem Geburtstag ein'. Der Geburtstag ist am Samstag. Ich schreibe die Adresse und die Zeit.",
       "questions": [
         {
           "question": "Wie heißt die Frau?",
-          "options": ["Nina", "Sophie", "Clara"],
+          "options": ["Anna", "Maria", "Julia"],
           "answer": 0
         },
         {
-          "question": "Was schreibt Nina?",
+          "question": "Was schreibt Anna?",
           "options": ["Eine Einladung", "Einen Brief", "Eine E-Mail"],
           "answer": 0
         },
@@ -132,8 +24,62 @@
           "answer": 0
         },
         {
-          "question": "Was schreibt Nina am Ende?",
-          "options": ["Bitte antworte", "Viele Grüße", "Tschüss"],
+          "question": "Was schreibt Anna in die Einladung?",
+          "options": ["Die Adresse und die Zeit", "Die Geschenke", "Das Essen"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_2",
+      "title": "Meine Adresse",
+      "text": "Hallo! Ich bin Maria. Ich wohne in der Hauptstraße 15. Meine Postleitzahl ist 50667. Ich wohne in Köln. Meine Telefonnummer ist 0176 1234567.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Anna", "Maria", "Julia"],
+          "answer": 1
+        },
+        {
+          "question": "Wie lautet Marias Straße?",
+          "options": ["Hauptstraße 15", "Hauptstraße 10", "Berliner Straße 5"],
+          "answer": 0
+        },
+        {
+          "question": "Wie lautet Marias Postleitzahl?",
+          "options": ["50667", "50668", "50669"],
+          "answer": 0
+        },
+        {
+          "question": "Wo wohnt Maria?",
+          "options": ["In Köln", "In Berlin", "In Hamburg"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_3",
+      "title": "Eine Antwort",
+      "text": "Guten Morgen! Ich bin Julia. Ich bekomme eine Einladung. Ich schreibe eine Antwort: 'Liebe Anna, ich komme gern.' Ich schreibe auch: 'Was kann ich mitbringen?' Ich freue mich auf den Geburtstag.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Anna", "Maria", "Julia"],
+          "answer": 2
+        },
+        {
+          "question": "Was bekommt Julia?",
+          "options": ["Eine Einladung", "Einen Brief", "Eine E-Mail"],
+          "answer": 0
+        },
+        {
+          "question": "Was schreibt Julia in der Antwort?",
+          "options": ["'Ich komme gern'", "'Ich komme nicht'", "'Ich weiß nicht'"],
+          "answer": 0
+        },
+        {
+          "question": "Was fragt Julia?",
+          "options": ["Was kann ich mitbringen?", "Wann ist der Geburtstag?", "Wo ist der Geburtstag?"],
           "answer": 0
         }
       ]

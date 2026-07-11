@@ -1,0 +1,206 @@
+{
+  "lesson": 19,
+  "level": "A1",
+  "title": "Письменная коммуникация: письма и анкеты",
+  "grammar": "<h3>📧 Письменная коммуникация</h3><p>В немецком языке важно уметь правильно оформлять письма и заполнять анкеты. Давайте изучим основные правила и клише.</p>",
+  "examples": [
+    {
+      "de": "Liebe Maria,",
+      "ru": "Дорогая Мария (обращение к подруге)"
+    },
+    {
+      "de": "Sehr geehrte Frau Müller,",
+      "ru": "Уважаемая госпожа Мюллер (официальное обращение)"
+    },
+    {
+      "de": "Viele Grüße aus Berlin!",
+      "ru": "Привет из Берлина!"
+    },
+    {
+      "de": "Mit freundlichen Grüßen",
+      "ru": "С уважением (официальная подпись)"
+    }
+  ],
+  "vocabulary": [
+    {
+      "de": "der Brief",
+      "ru": "письмо (почтовое)"
+    },
+    {
+      "de": "die E-Mail",
+      "ru": "электронное письмо"
+    },
+    {
+      "de": "das Formular",
+      "ru": "анкета, формуляр"
+    },
+    {
+      "de": "der Name",
+      "ru": "имя"
+    },
+    {
+      "de": "der Vorname",
+      "ru": "имя (личное)"
+    },
+    {
+      "de": "der Nachname / der Familienname",
+      "ru": "фамилия"
+    },
+    {
+      "de": "die Adresse",
+      "ru": "адрес"
+    },
+    {
+      "de": "die Straße",
+      "ru": "улица"
+    },
+    {
+      "de": "die Postleitzahl (PLZ)",
+      "ru": "почтовый индекс"
+    },
+    {
+      "de": "der Wohnort",
+      "ru": "место жительства"
+    },
+    {
+      "de": "das Geburtsdatum",
+      "ru": "дата рождения"
+    },
+    {
+      "de": "der Beruf",
+      "ru": "профессия"
+    },
+    {
+      "de": "die Telefonnummer",
+      "ru": "номер телефона"
+    },
+    {
+      "de": "die E-Mail-Adresse",
+      "ru": "адрес электронной почты"
+    },
+    {
+      "de": "schreiben",
+      "ru": "писать"
+    },
+    {
+      "de": "ausfüllen",
+      "ru": "заполнять (анкету)"
+    },
+    {
+      "de": "unterschreiben",
+      "ru": "подписывать"
+    },
+    {
+      "de": "die Unterschrift",
+      "ru": "подпись"
+    },
+    {
+      "de": "die Anrede",
+      "ru": "обращение (в письме)"
+    },
+    {
+      "de": "die Grußformel",
+      "ru": "формула прощания (в письме)"
+    }
+  ],
+  "practice": [
+    {
+      "question": "Заполните пропуск в приветствии письма к подруге:",
+      "sentence": "___ Maria,",
+      "answer": "Liebe",
+      "hint": "Неформальное приветствие для подруги"
+    },
+    {
+      "question": "Заполните пропуск в официальном приветствии письма к господину Шмидту:",
+      "sentence": "Sehr geehrter Herr ___,",
+      "answer": "Schmidt",
+      "hint": "Фамилия адресата"
+    },
+    {
+      "question": "Что означает 'Vorname' в анкете?",
+      "sentence": "Tragen Sie bitte Ihren Vornamen ein:",
+      "answer": "имя",
+      "hint": "Ваше личное имя"
+    },
+    {
+      "question": "Как спросить у кого-то адрес по-немецки?",
+      "sentence": "Wie ist Ihre ___ ?",
+      "answer": "Adresse",
+      "hint": "Место, где вы живете"
+    }
+  ],
+  "quiz": [
+    {
+      "de": "der Brief",
+      "ru": "письмо"
+    },
+    {
+      "de": "die Adresse",
+      "ru": "адрес"
+    },
+    {
+      "de": "der Vorname",
+      "ru": "имя"
+    },
+    {
+      "de": "der Nachname",
+      "ru": "фамилия"
+    },
+    {
+      "de": "die Telefonnummer",
+      "ru": "номер телефона"
+    },
+    {
+      "de": "das Formular",
+      "ru": "анкета"
+    },
+    {
+      "de": "ausfüllen",
+      "ru": "заполнять"
+    },
+    {
+      "de": "unterschreiben",
+      "ru": "подписывать"
+    }
+  ],
+  "trainer": [
+    {
+      "de": "Liebe Anna,",
+      "ru": "Дорогая Анна, (обращение)"
+    },
+    {
+      "de": "Sehr geehrter Herr Weber,",
+      "ru": "Уважаемый господин Вебер, (официальное обращение)"
+    },
+    {
+      "de": "Viele Grüße",
+      "ru": "С наилучшими пожеланиями"
+    },
+    {
+      "de": "Mit freundlichen Grüßen",
+      "ru": "С уважением (официально)"
+    }
+  ],
+  "dictation": [
+    {
+      "de": "Liebe Maria, vielen Dank für deinen Brief.",
+      "ru": "Дорогая Мария, большое спасибо за твое письмо."
+    },
+    {
+      "de": "Ich wohne in der Hauptstraße 15.",
+      "ru": "Я живу на Главной улице, 15."
+    },
+    {
+      "de": "Meine Postleitzahl ist 50667.",
+      "ru": "Мой почтовый индекс 50667."
+    },
+    {
+      "de": "Bitte füllen Sie das Formular aus.",
+      "ru": "Пожалуйста, заполните анкету."
+    },
+    {
+      "de": "Ich bin 30 Jahre alt und arbeite als Lehrerin.",
+      "ru": "Мне 30 лет, и я работаю учительницей."
+    }
+  ]
+}

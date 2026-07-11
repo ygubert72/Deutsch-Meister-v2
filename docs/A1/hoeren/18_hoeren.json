@@ -6,7 +6,7 @@
     {
       "id": "monolog_1",
       "title": "Meine Reise nach Berlin",
-      "text": "Ich heiße Anna. Ich reise gern. Ich fahre mit dem Zug nach Berlin. Der Zug fährt um 8 Uhr ab. Ich habe eine Fahrkarte gekauft. Die Fahrt dauert 4 Stunden. Berlin ist eine schöne Stadt. Ich besuche dort meine Freundin.",
+      "text": "Guten Tag! Ich bin Anna. Ich fahre mit dem Zug nach Berlin. Der Zug fährt um 8 Uhr ab. Die Fahrt dauert 4 Stunden. Ich besuche dort meine Freundin.",
       "questions": [
         {
           "question": "Wie heißt die Frau?",
@@ -14,7 +14,7 @@
           "answer": 0
         },
         {
-          "question": "Wohin reist Anna?",
+          "question": "Wohin fährt Anna?",
           "options": ["Nach Berlin", "Nach München", "Nach Hamburg"],
           "answer": 0
         },
@@ -27,18 +27,13 @@
           "question": "Wie lange dauert die Fahrt?",
           "options": ["4 Stunden", "3 Stunden", "5 Stunden"],
           "answer": 0
-        },
-        {
-          "question": "Wen besucht Anna in Berlin?",
-          "options": ["Ihre Freundin", "Ihren Bruder", "Ihre Mutter"],
-          "answer": 0
         }
       ]
     },
     {
       "id": "monolog_2",
       "title": "Im Flughafen",
-      "text": "Ich heiße Maria. Ich fliege nach Italien. Ich bin am Flughafen. Ich habe meinen Pass und mein Ticket. Ich muss einchecken. Das Flugzeug fliegt um 14 Uhr ab. Der Flug dauert 2 Stunden. Ich freue mich auf den Urlaub.",
+      "text": "Hallo! Ich bin Maria. Ich fliege nach Italien. Ich bin am Flughafen. Ich habe meinen Pass und mein Ticket. Das Flugzeug fliegt um 14 Uhr ab. Der Flug dauert 2 Stunden.",
       "questions": [
         {
           "question": "Wie heißt die Frau?",
@@ -48,11 +43,6 @@
         {
           "question": "Wohin fliegt Maria?",
           "options": ["Nach Italien", "Nach Spanien", "Nach Frankreich"],
-          "answer": 0
-        },
-        {
-          "question": "Was hat Maria dabei?",
-          "options": ["Ihren Pass und ihr Ticket", "Ihren Koffer und ihre Tasche", "Ihr Handy und ihr Buch"],
           "answer": 0
         },
         {
@@ -69,8 +59,8 @@
     },
     {
       "id": "monolog_3",
-      "title": "Mit dem Bus durch die Stadt",
-      "text": "Ich heiße Julia. Ich fahre mit dem Bus zur Arbeit. Der Bus kommt um 7 Uhr an der Haltestelle. Ich fahre jeden Tag mit dem Bus. Es ist praktisch und nicht teuer. Manchmal ist der Bus voll. Ich lese im Bus Zeitung.",
+      "title": "Mit dem Bus",
+      "text": "Guten Morgen! Ich bin Julia. Ich fahre mit dem Bus zur Arbeit. Der Bus kommt um 7 Uhr an der Haltestelle. Ich fahre jeden Tag mit dem Bus. Es ist praktisch und nicht teuer.",
       "questions": [
         {
           "question": "Wie heißt die Frau?",
@@ -90,80 +80,6 @@
         {
           "question": "Warum fährt Julia mit dem Bus?",
           "options": ["Es ist praktisch und nicht teuer", "Es ist schnell", "Es ist bequem"],
-          "answer": 0
-        },
-        {
-          "question": "Was macht Julia im Bus?",
-          "options": ["Sie liest Zeitung", "Sie schläft", "Sie telefoniert"],
-          "answer": 0
-        }
-      ]
-    },
-    {
-      "id": "monolog_4",
-      "title": "Ein Hotelzimmer buchen",
-      "text": "Ich heiße Laura. Ich möchte ein Hotelzimmer buchen. Ich rufe das Hotel an. Ich möchte ein Einzelzimmer für zwei Nächte. Das Zimmer kostet 80 Euro pro Nacht. Ich checke am Freitag ein. Ich checke am Sonntag aus.",
-      "questions": [
-        {
-          "question": "Wie heißt die Frau?",
-          "options": ["Laura", "Lisa", "Anna"],
-          "answer": 0
-        },
-        {
-          "question": "Was möchte Laura machen?",
-          "options": ["Ein Hotelzimmer buchen", "Ein Restaurant besuchen", "Ein Museum besuchen"],
-          "answer": 0
-        },
-        {
-          "question": "Was für ein Zimmer möchte Laura?",
-          "options": ["Ein Einzelzimmer", "Ein Doppelzimmer", "Ein Suite"],
-          "answer": 0
-        },
-        {
-          "question": "Wie viel kostet das Zimmer pro Nacht?",
-          "options": ["80 Euro", "70 Euro", "90 Euro"],
-          "answer": 0
-        },
-        {
-          "question": "Wann checkt Laura ein?",
-          "options": ["Am Freitag", "Am Samstag", "Am Sonntag"],
-          "answer": 0
-        }
-      ]
-    },
-    {
-      "id": "monolog_5",
-      "title": "Mein Urlaub am Meer",
-      "text": "Ich heiße Lisa. Ich fahre im Sommer ans Meer. Ich fahre mit dem Auto. Die Fahrt dauert 6 Stunden. Ich wohne in einem kleinen Hotel. Das Hotel ist direkt am Strand. Am Morgen gehe ich schwimmen. Am Abend esse ich im Restaurant. Der Urlaub ist wunderschön.",
-      "questions": [
-        {
-          "question": "Wie heißt die Frau?",
-          "options": ["Laura", "Lisa", "Anna"],
-          "answer": 1
-        },
-        {
-          "question": "Wann fährt Lisa ans Meer?",
-          "options": ["Im Sommer", "Im Winter", "Im Frühling"],
-          "answer": 0
-        },
-        {
-          "question": "Wie fährt Lisa ans Meer?",
-          "options": ["Mit dem Auto", "Mit dem Zug", "Mit dem Flugzeug"],
-          "answer": 0
-        },
-        {
-          "question": "Wie lange dauert die Fahrt?",
-          "options": ["6 Stunden", "5 Stunden", "7 Stunden"],
-          "answer": 0
-        },
-        {
-          "question": "Was macht Lisa am Morgen?",
-          "options": ["Sie geht schwimmen", "Sie frühstückt", "Sie liest"],
-          "answer": 0
-        },
-        {
-          "question": "Wo isst Lisa am Abend?",
-          "options": ["Im Restaurant", "Im Hotel", "In der Stadt"],
           "answer": 0
         }
       ]

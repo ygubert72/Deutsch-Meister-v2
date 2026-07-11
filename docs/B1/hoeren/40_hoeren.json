@@ -1,0 +1,259 @@
+{
+  "lesson": 40,
+  "level": "B1",
+  "title": "Выражение эмоций и межличностные отношения",
+  "dialogs": [
+    {
+      "id": "monolog_1",
+      "title": "Wie ich meine Gefühle ausdrücke",
+      "text": "Wie geht es euch heute? Ich möchte über Emotionen sprechen. Ich bin Karolina. Früher war es schwer für mich, meine Gefühle zu zeigen. Ich habe alles in mich hineingefressen. Das war nicht gut für mich. Heute spreche ich offen darüber. Wenn ich traurig bin, sage ich es meinen Freunden. Wenn ich mich freue, zeige ich das auch. Es ist wichtig, ehrlich zu sich selbst zu sein. Ich fühle mich viel besser dabei.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Karolina", "Luitgard", "Mechthild"],
+          "answer": 0
+        },
+        {
+          "question": "Wie war es für Karolina früher?",
+          "options": ["Es war schwer, ihre Gefühle zu zeigen", "Es war leicht", "Sie zeigte immer ihre Gefühle"],
+          "answer": 0
+        },
+        {
+          "question": "Was hat Karolina früher gemacht?",
+          "options": ["Sie hat alles in sich hineingefressen", "Sie hat viel geredet", "Sie hat geweint"],
+          "answer": 0
+        },
+        {
+          "question": "Was macht Karolina heute?",
+          "options": ["Sie spricht offen über ihre Gefühle", "Sie schweigt", "Sie schreibt Briefe"],
+          "answer": 0
+        },
+        {
+          "question": "Was sagt Karolina, wenn sie traurig ist?",
+          "options": ["Sie sagt es ihren Freunden", "Sie schweigt", "Sie weint alleine"],
+          "answer": 0
+        },
+        {
+          "question": "Was ist wichtig?",
+          "options": ["Ehrlich zu sich selbst zu sein", "Alles zu verstecken", "Niemandem zu vertrauen"],
+          "answer": 0
+        },
+        {
+          "question": "Wie fühlt sich Karolina jetzt?",
+          "options": ["Viel besser", "Schlechter", "Genauso"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_2",
+      "title": "Konflikte in der Familie",
+      "text": "Beziehungen sind nicht immer einfach. Ich bin Luitgard. In meiner Familie gibt es manchmal Konflikte. Das ist normal. Früher habe ich mich immer geärgert. Aber ich habe gelernt, dass es wichtig ist, zu reden. Wenn ich wütend bin, sage ich, warum. Ich versuche, die andere Seite zu verstehen. So können wir eine Lösung finden. Manchmal braucht man etwas Zeit. Aber am Ende verstehen wir uns wieder. Kommunikation ist der Schlüssel.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Karolina", "Luitgard", "Mechthild"],
+          "answer": 1
+        },
+        {
+          "question": "Was gibt es manchmal in Luitgards Familie?",
+          "options": ["Konflikte", "Keine Probleme", "Nur Freude"],
+          "answer": 0
+        },
+        {
+          "question": "Wie hat Luitgard früher reagiert?",
+          "options": ["Sie hat sich geärgert", "Sie hat geredet", "Sie hat geweint"],
+          "answer": 0
+        },
+        {
+          "question": "Was hat Luitgard gelernt?",
+          "options": ["Dass es wichtig ist zu reden", "Dass es besser ist zu schweigen", "Dass Konflikte unvermeidlich sind"],
+          "answer": 0
+        },
+        {
+          "question": "Was macht Luitgard, wenn sie wütend ist?",
+          "options": ["Sie sagt, warum sie wütend ist", "Sie schreit", "Sie geht weg"],
+          "answer": 0
+        },
+        {
+          "question": "Was versucht Luitgard zu verstehen?",
+          "options": ["Die andere Seite", "Die Regeln", "Die Zukunft"],
+          "answer": 0
+        },
+        {
+          "question": "Was ist der Schlüssel für Luitgard?",
+          "options": ["Kommunikation", "Schweigen", "Weggehen"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_3",
+      "title": "Meine beste Freundin",
+      "text": "Ich habe gelernt, offen über meine Gefühle zu sprechen. Ich bin Mechthild. Meine beste Freundin ist für mich sehr wichtig. Wir kennen uns seit der Schulzeit. Wir können über alles reden. Wenn ich ein Problem habe, helft sie mir. Wenn sie ein Problem hat, helfe ich ihr. Wir sind immer füreinander da. Das ist eine echte Freundschaft. Sie ist wie eine Schwester für mich.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Karolina", "Luitgard", "Mechthild"],
+          "answer": 2
+        },
+        {
+          "question": "Wie lange kennen sich Mechthild und ihre Freundin?",
+          "options": ["Seit der Schulzeit", "Seit einem Jahr", "Seit der Arbeit"],
+          "answer": 0
+        },
+        {
+          "question": "Was können sie tun?",
+          "options": ["Über alles reden", "Nichts sagen", "Nur lachen"],
+          "answer": 0
+        },
+        {
+          "question": "Was macht die Freundin, wenn Mechthild ein Problem hat?",
+          "options": ["Sie hilft ihr", "Sie geht weg", "Sie schweigt"],
+          "answer": 0
+        },
+        {
+          "question": "Wie ist ihre Freundschaft?",
+          "options": ["Echt", "Oberflächlich", "Neu"],
+          "answer": 0
+        },
+        {
+          "question": "Wie ist die Freundin für Mechthild?",
+          "options": ["Wie eine Schwester", "Wie eine Mutter", "Wie eine Kollegin"],
+          "answer": 0
+        },
+        {
+          "question": "Was ist wichtig in der Freundschaft?",
+          "options": ["Füreinander da zu sein", "Geschenke zu machen", "Nie zu streiten"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_4",
+      "title": "Mit Ärger umgehen",
+      "text": "Manchmal ist es schwer, die eigenen Gefühle auszudrücken. Ich bin Notburga. Ich werde oft wütend, wenn ich zu viel Stress habe. Früher habe ich dann laut geschrien. Aber das hat nicht geholfen. Heute gehe ich spazieren, wenn ich wütend bin. Das beruhigt mich. Ich atme tief durch und denke nach. Dann kann ich besser über das Problem reden. Es ist wichtig, seine Gefühle zu kontrollieren.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Notburga", "Odilia", "Mechthild"],
+          "answer": 0
+        },
+        {
+          "question": "Wann wird Notburga wütend?",
+          "options": ["Wenn sie zu viel Stress hat", "Wenn sie schläft", "Wenn sie isst"],
+          "answer": 0
+        },
+        {
+          "question": "Was hat Notburga früher gemacht, wenn sie wütend war?",
+          "options": ["Sie hat laut geschrien", "Sie hat geredet", "Sie ist spazieren gegangen"],
+          "answer": 0
+        },
+        {
+          "question": "Hat das Schreien geholfen?",
+          "options": ["Nein", "Ja", "Manchmal"],
+          "answer": 0
+        },
+        {
+          "question": "Was macht Notburga heute, wenn sie wütend ist?",
+          "options": ["Sie geht spazieren", "Sie schreit", "Sie schlägt auf den Tisch"],
+          "answer": 0
+        },
+        {
+          "question": "Was macht Notburga beim Spaziergang?",
+          "options": ["Sie atmet tief durch und denkt nach", "Sie redet mit sich selbst", "Sie hört Musik"],
+          "answer": 0
+        },
+        {
+          "question": "Was ist wichtig?",
+          "options": ["Seine Gefühle zu kontrollieren", "Immer laut zu sein", "Nie wütend zu sein"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_5",
+      "title": "Glück und Zufriedenheit",
+      "text": "Hallo zusammen! Ich bin Odilia. Ich habe herausgefunden, dass Glück im Alltag liegt. Man muss nicht immer große Dinge erleben, um glücklich zu sein. Ein schöner Moment mit Freunden macht mich glücklich. Ein Lächeln von einem Fremden auch. Ich versuche, positive Gedanken zu haben. Manchmal ist das schwer, aber es hilft. Das Leben ist kurz, man sollte es genießen.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Notburga", "Odilia", "Karolina"],
+          "answer": 1
+        },
+        {
+          "question": "Wo liegt Glück laut Odilia?",
+          "options": ["Im Alltag", "In großen Reisen", "In teuren Dingen"],
+          "answer": 0
+        },
+        {
+          "question": "Was macht Odilia glücklich?",
+          "options": ["Ein schöner Moment mit Freunden", "Viel Geld", "Luxus"],
+          "answer": 0
+        },
+        {
+          "question": "Was versucht Odilia zu haben?",
+          "options": ["Positive Gedanken", "Negative Gedanken", "Keine Gedanken"],
+          "answer": 0
+        },
+        {
+          "question": "Wie ist das Leben?",
+          "options": ["Es ist kurz", "Es ist lang", "Es ist schwer"],
+          "answer": 0
+        },
+        {
+          "question": "Was sollte man tun?",
+          "options": ["Man sollte es genießen", "Man sollte es ignorieren", "Man sollte es nur ertragen"],
+          "answer": 0
+        },
+        {
+          "question": "Was hilft bei negativen Gedanken?",
+          "options": ["Positive Gedanken zu haben", "Negativ zu bleiben", "Nichts zu tun"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_6",
+      "title": "Einsamkeit und wie man sie überwindet",
+      "text": "Findet ihr nicht auch, dass Einsamkeit ein großes Thema ist? Ich bin Waltraud. Viele Menschen fühlen sich einsam, auch wenn sie nicht alleine sind. Ich war auch einmal sehr einsam. Ich habe mich zurückgezogen und wenig mit anderen geredet. Aber ich habe gemerkt, dass das nicht gut ist. Man muss auf andere zugehen. Man sollte sich in Vereinen engagieren. Oder mit Freunden telefonieren. Es ist nie zu spät, neue Kontakte zu knüpfen.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Waltraud", "Odilia", "Notburga"],
+          "answer": 0
+        },
+        {
+          "question": "Was ist ein großes Thema?",
+          "options": ["Einsamkeit", "Reisen", "Arbeit"],
+          "answer": 0
+        },
+        {
+          "question": "Wann fühlen sich viele Menschen einsam?",
+          "options": ["Auch wenn sie nicht alleine sind", "Nur wenn sie alleine sind", "Nie"],
+          "answer": 0
+        },
+        {
+          "question": "Was hat Waltraud früher gemacht?",
+          "options": ["Sie hat sich zurückgezogen", "Sie hat viele Freunde getroffen", "Sie ist gereist"],
+          "answer": 0
+        },
+        {
+          "question": "Was hat Waltraud gelernt?",
+          "options": ["Dass man auf andere zugehen muss", "Dass man alleine bleiben sollte", "Dass Einsamkeit gut ist"],
+          "answer": 0
+        },
+        {
+          "question": "Was kann man gegen Einsamkeit tun?",
+          "options": ["Sich in Vereinen engagieren", "Nur zu Hause bleiben", "Nichts tun"],
+          "answer": 0
+        },
+        {
+          "question": "Ist es nie zu spät?",
+          "options": ["Nein, es ist nie zu spät", "Ja, es ist zu spät", "Weiß nicht"],
+          "answer": 0
+        }
+      ]
+    }
+  ]
+}

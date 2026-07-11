@@ -170,32 +170,32 @@
     },
     {
       "id": "monolog_6",
-      "title": "Mein Lieblingsfach",
-      "text": "Schön, dass ihr zuhört! Ich bin Klara. In der Schule hatte ich viele Fächer. Mein Lieblingsfach war Deutsch. Ich liebte es, Geschichten zu lesen und zu schreiben. Wenn ich gute Noten hatte, war ich sehr glücklich. In Mathematik war ich nicht so gut. Das war schwieriger für mich. Aber ich habe immer versucht, mein Bestes zu geben. Heute kann ich sagen: Jedes Fach ist wichtig.",
+      "title": "Schulabschlüsse in Deutschland",
+      "text": "Schön, dass ihr zuhört! Ich bin Waltraud. In Deutschland gibt es verschiedene Schulabschlüsse. Nach der Grundschule kann man auf verschiedene Schulen gehen. Der Hauptschulabschluss ist nach Klasse 9. Die Realschule endet nach Klasse 10 mit der Mittleren Reife. Das Abitur macht man nach Klasse 12 oder 13. Jeder Abschluss bietet andere Möglichkeiten. Der richtige Abschluss ist wichtig für den Beruf.",
       "questions": [
         {
           "question": "Wie heißt die Frau?",
-          "options": ["Klara", "Gertrud", "Erna"],
+          "options": ["Waltraud", "Gertrud", "Erna"],
           "answer": 0
         },
         {
-          "question": "Was war Klaras Lieblingsfach?",
-          "options": ["Deutsch", "Mathematik", "Geschichte"],
+          "question": "Wann macht man den Hauptschulabschluss?",
+          "options": ["Nach Klasse 9", "Nach Klasse 10", "Nach Klasse 12"],
           "answer": 0
         },
         {
-          "question": "Was liebte Klara in Deutsch?",
-          "options": ["Geschichten zu lesen und zu schreiben", "Zu rechnen", "Zu malen"],
+          "question": "Wie heißt der Abschluss nach der Realschule?",
+          "options": ["Mittlere Reife", "Abitur", "Hauptschulabschluss"],
           "answer": 0
         },
         {
-          "question": "Wie war Klara in Mathematik?",
-          "options": ["Nicht so gut", "Sehr gut", "Weiß nicht"],
+          "question": "Wann macht man Abitur?",
+          "options": ["Nach Klasse 12 oder 13", "Nach Klasse 9", "Nach Klasse 10"],
           "answer": 0
         },
         {
-          "question": "Was hat Klara immer versucht?",
-          "options": ["Ihr Bestes zu geben", "Zu schlafen", "Zu spielen"],
+          "question": "Warum ist der richtige Abschluss wichtig?",
+          "options": ["Für den Beruf", "Für das Hobby", "Für die Freizeit"],
           "answer": 0
         }
       ]

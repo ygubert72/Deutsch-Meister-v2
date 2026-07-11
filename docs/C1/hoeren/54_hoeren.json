@@ -6,7 +6,7 @@
     {
       "id": "monolog_1",
       "title": "Die Bedeutung des Editierens",
-      "text": "Hallo! Ich bin Anna. Editieren ist ein wichtiger Schritt beim Schreiben. Man liest den Text noch einmal. Man korrigiert Fehler. Man verbessert den Stil. Man macht den Text klarer. Man kürzt überflüssige Passagen. Man überprüft die Logik. Das Editieren macht den Text besser. Es ist die letzte Chance, den Text zu verbessern. Jeder gute Text wird editiert.",
+      "text": "Die von der Lektorin Anna durchgeführte Textüberarbeitung ist ein essenzieller Schritt im Schreibprozess. Der fertige Text wird einer gründlichen Revision unterzogen. Rechtschreibfehler werden korrigiert. Der sprachliche Ausdruck wird optimiert. Überflüssige Formulierungen werden gestrichen. Die logische Struktur wird überprüft. Das Editieren stellt die letzte Möglichkeit zur Verbesserung eines Textes dar. Jeder hochwertige Text durchläuft diesen Prozess der Feinabstimmung.",
       "questions": [
         {
           "question": "Wie heißt die Frau?",
@@ -14,23 +14,23 @@
           "answer": 0
         },
         {
-          "question": "Was ist ein wichtiger Schritt beim Schreiben?",
-          "options": ["Das Editieren", "Die Einleitung", "Das Fazit"],
+          "question": "Was ist das Editieren ein essenzieller Schritt von?",
+          "options": ["Im Schreibprozess", "Im Lesevorgang", "Im Verkauf"],
           "answer": 0
         },
         {
-          "question": "Was macht man beim Editieren?",
-          "options": ["Man liest den Text noch einmal", "Man korrigiert Fehler", "Alle Antworten sind richtig"],
-          "answer": 2
-        },
-        {
-          "question": "Was macht das Editieren?",
-          "options": ["Den Text besser", "Den Text schlechter", "Den Text länger"],
+          "question": "Was wird beim Editieren korrigiert?",
+          "options": ["Rechtschreibfehler", "Die Schriftart", "Die Seitenzahl"],
           "answer": 0
         },
         {
-          "question": "Ist das Editieren die letzte Chance, den Text zu verbessern?",
-          "options": ["Ja", "Nein", "Manchmal"],
+          "question": "Was wird beim Editieren optimiert?",
+          "options": ["Der sprachliche Ausdruck", "Die Schriftart", "Die Seitenzahl"],
+          "answer": 0
+        },
+        {
+          "question": "Was stellt das Editieren die letzte Möglichkeit zur Verbesserung dar?",
+          "options": ["Eines Textes", "Eines Bildes", "Einer Grafik"],
           "answer": 0
         }
       ]
@@ -38,7 +38,7 @@
     {
       "id": "monolog_2",
       "title": "Die stilistische Korrektur",
-      "text": "Guten Tag! Ich bin Maria. Die stilistische Korrektur ist sehr wichtig. Man achtet auf den Satzbau. Man vermeidet Schachtelsätze. Man verwendet aktive Formulierungen. Man wählt starke Verben. Man vermeidet Füllwörter. Der Text soll klar und prägnant sein. Die stilistische Korrektur macht den Text lesbarer. Ein guter Stil ist das Aushängeschild des Autors.",
+      "text": "Die von der Redakteurin Maria vorgenommene stilistische Korrektur zielt auf die Optimierung des sprachlichen Ausdrucks ab. Der Satzbau wird vereinfacht. Schachtelsätze werden aufgelöst. Aktive Formulierungen werden bevorzugt. Füllwörter werden konsequent eliminiert. Ein klarer und prägnanter Stil wird angestrebt. Die stilistische Überarbeitung macht den Text lesbarer und verständlicher. Ein guter Stil ist das Aushängeschild des Autors.",
       "questions": [
         {
           "question": "Wie heißt die Frau?",
@@ -46,28 +46,23 @@
           "answer": 1
         },
         {
-          "question": "Was ist bei der stilistischen Korrektur wichtig?",
-          "options": ["Der Satzbau", "Die Länge", "Die Schriftart"],
+          "question": "Was wird bei der stilistischen Korrektur vereinfacht?",
+          "options": ["Der Satzbau", "Die Schriftart", "Die Seitenzahl"],
           "answer": 0
         },
         {
-          "question": "Was vermeidet man bei der stilistischen Korrektur?",
+          "question": "Was wird bei der stilistischen Korrektur aufgelöst?",
           "options": ["Schachtelsätze", "Einfache Sätze", "Kurze Sätze"],
           "answer": 0
         },
         {
-          "question": "Welche Formulierungen verwendet man?",
-          "options": ["Aktive Formulierungen", "Passive Formulierungen", "Nur Fragen"],
+          "question": "Welche Formulierungen werden bei der stilistischen Korrektur bevorzugt?",
+          "options": ["Aktive Formulierungen", "Passive Formulierungen", "Frageformulierungen"],
           "answer": 0
         },
         {
-          "question": "Was vermeidet man beim Stil?",
-          "options": ["Füllwörter", "Starke Verben", "Klare Sätze"],
-          "answer": 0
-        },
-        {
-          "question": "Wie soll der Text sein?",
-          "options": ["Klar und prägnant", "Lang und kompliziert", "Kurz und oberflächlich"],
+          "question": "Was wird bei der stilistischen Korrektur angestrebt?",
+          "options": ["Ein klarer und prägnanter Stil", "Ein komplizierter Stil", "Ein emotionaler Stil"],
           "answer": 0
         }
       ]
@@ -75,7 +70,7 @@
     {
       "id": "monolog_3",
       "title": "Die Überprüfung der Rechtschreibung",
-      "text": "Guten Morgen! Ich bin Julia. Die Rechtschreibung ist sehr wichtig. Man sollte den Text auf Rechtschreibfehler prüfen. Man sollte die Grammatik überprüfen. Man sollte die Zeichensetzung kontrollieren. Man kann die Rechtschreibprüfung im Computer nutzen. Aber man sollte sich nicht nur darauf verlassen. Man sollte den Text laut lesen. So findet man die meisten Fehler. Ein fehlerfreier Text macht einen guten Eindruck.",
+      "text": "Die von der Korrektorin Julia durchgeführte Rechtschreibprüfung stellt die sprachliche Korrektheit des Textes sicher. Rechtschreibfehler werden systematisch aufgespürt. Grammatische Unregelmäßigkeiten werden korrigiert. Die Zeichensetzung wird überprüft. Die computergestützte Rechtschreibprüfung kann hilfreich sein, ersetzt jedoch nicht die manuelle Kontrolle. Ein fehlerfreier Text hinterlässt beim Leser einen professionellen Eindruck. Die sprachliche Präzision ist ein Qualitätsmerkmal.",
       "questions": [
         {
           "question": "Wie heißt die Frau?",
@@ -83,23 +78,23 @@
           "answer": 2
         },
         {
-          "question": "Was sollte man beim Korrekturlesen prüfen?",
-          "options": ["Rechtschreibung, Grammatik, Zeichensetzung", "Nur Rechtschreibung", "Nur Grammatik"],
+          "question": "Was stellt die Rechtschreibprüfung sicher?",
+          "options": ["Die sprachliche Korrektheit des Textes", "Die Länge des Textes", "Die Schriftart des Textes"],
           "answer": 0
         },
         {
-          "question": "Was kann man zur Rechtschreibprüfung nutzen?",
-          "options": ["Die Computer-Rechtschreibprüfung", "Nur ein Wörterbuch", "Nichts"],
+          "question": "Was wird bei der Rechtschreibprüfung korrigiert?",
+          "options": ["Grammatische Unregelmäßigkeiten", "Die Schriftart", "Die Seitenzahl"],
           "answer": 0
         },
         {
-          "question": "Wie findet man die meisten Fehler?",
-          "options": ["Indem man den Text laut liest", "Indem man den Text schnell liest", "Indem man den Text ignoriert"],
+          "question": "Was kann die computergestützte Rechtschreibprüfung nicht ersetzen?",
+          "options": ["Die manuelle Kontrolle", "Die automatische Korrektur", "Die Druckvorbereitung"],
           "answer": 0
         },
         {
-          "question": "Welchen Eindruck macht ein fehlerfreier Text?",
-          "options": ["Einen guten Eindruck", "Einen schlechten Eindruck", "Keinen Eindruck"],
+          "question": "Was hinterlässt ein fehlerfreier Text beim Leser?",
+          "options": ["Einen professionellen Eindruck", "Einen unprofessionellen Eindruck", "Keinen Eindruck"],
           "answer": 0
         }
       ]
@@ -107,7 +102,7 @@
     {
       "id": "monolog_4",
       "title": "Die Überprüfung der Logik",
-      "text": "Hallo! Ich bin Laura. Die logische Struktur ist entscheidend. Man sollte den Text auf logische Brüche prüfen. Man sollte die Argumentation nachvollziehen. Man sollte die Beweise prüfen. Die Schlüsse sollten aus den Argumenten folgen. Eine logische Struktur macht den Text überzeugend. Man sollte die Gliederung überprüfen. Die Überschriften sollten klar sein. Eine gute Logik ist das Fundament eines guten Textes.",
+      "text": "Die von der Wissenschaftlerin Laura durchgeführte logische Überprüfung des Textes ist von großer Bedeutung. Die Argumentationslinie wird auf ihre Stimmigkeit hin untersucht. Logische Brüche werden identifiziert und behoben. Die Beweisführung wird überprüft. Die Schlussfolgerungen müssen aus den vorgebrachten Argumenten logisch folgen. Eine stringente Logik macht den Text überzeugend. Die logische Struktur ist das Fundament eines jeden guten Textes.",
       "questions": [
         {
           "question": "Wie heißt die Frau?",
@@ -115,23 +110,23 @@
           "answer": 0
         },
         {
-          "question": "Was ist beim Text entscheidend?",
-          "options": ["Die logische Struktur", "Die Länge", "Die Komplexität"],
+          "question": "Was wird bei der logischen Überprüfung untersucht?",
+          "options": ["Die Argumentationslinie", "Die Schriftart", "Die Seitenzahl"],
           "answer": 0
         },
         {
-          "question": "Was sollte man bei der Logik prüfen?",
-          "options": ["Logische Brüche", "Rechtschreibfehler", "Die Zeichensetzung"],
+          "question": "Was wird bei der logischen Überprüfung identifiziert?",
+          "options": ["Logische Brüche", "Rechtschreibfehler", "Grammatikalische Fehler"],
           "answer": 0
         },
         {
-          "question": "Was macht eine logische Struktur?",
+          "question": "Was macht eine stringente Logik?",
           "options": ["Den Text überzeugend", "Den Text unverständlich", "Den Text langweilig"],
           "answer": 0
         },
         {
-          "question": "Was ist das Fundament eines guten Textes?",
-          "options": ["Eine gute Logik", "Eine gute Rechtschreibung", "Ein guter Stil"],
+          "question": "Was ist die logische Struktur das Fundament von?",
+          "options": ["Eines jeden guten Textes", "Eines jeden Bildes", "Einer jeden Grafik"],
           "answer": 0
         }
       ]
@@ -139,7 +134,7 @@
     {
       "id": "monolog_5",
       "title": "Die Überprüfung der Konsistenz",
-      "text": "Guten Tag! Ich bin Lisa. Die Konsistenz ist im Text sehr wichtig. Man sollte die Begriffe einheitlich verwenden. Man sollte die Zeiten einheitlich halten. Man sollte die Perspektive beibehalten. Man sollte die Abkürzungen konsequent nutzen. Die Konsistenz macht den Text professionell. Sie hilft dem Leser, dem Text zu folgen. Ein konsistenter Text ist ein guter Text.",
+      "text": "Die von der Textanalytikerin Lisa durchgeführte Konsistenzprüfung stellt die Einheitlichkeit des Textes sicher. Die verwendeten Begriffe werden auf ihre einheitliche Verwendung hin überprüft. Die Zeitformen werden konsequent angewendet. Die Perspektive bleibt im gesamten Text erhalten. Die Konsistenz verleiht dem Text Professionalität. Sie erleichtert dem Leser das Textverständnis. Ein konsistenter Text wirkt durchdacht und sorgfältig erarbeitet.",
       "questions": [
         {
           "question": "Wie heißt die Frau?",
@@ -147,23 +142,23 @@
           "answer": 1
         },
         {
-          "question": "Was ist im Text wichtig?",
-          "options": ["Die Konsistenz", "Die Länge", "Die Komplexität"],
+          "question": "Was stellt die Konsistenzprüfung sicher?",
+          "options": ["Die Einheitlichkeit des Textes", "Die Länge des Textes", "Die Schriftart des Textes"],
           "answer": 0
         },
         {
-          "question": "Was sollte man einheitlich halten?",
-          "options": ["Die Begriffe, die Zeiten, die Perspektive", "Nur die Begriffe", "Nur die Zeiten"],
+          "question": "Auf was werden die Begriffe bei der Konsistenzprüfung überprüft?",
+          "options": ["Auf einheitliche Verwendung", "Auf Vielfalt", "Auf Kreativität"],
           "answer": 0
         },
         {
-          "question": "Was macht die Konsistenz?",
-          "options": ["Den Text professionell", "Den Text unverständlich", "Den Text langweilig"],
+          "question": "Wie bleiben die Zeitformen in einem konsistenten Text?",
+          "options": ["Konsequent", "Inkonsequent", "Wechselnd"],
           "answer": 0
         },
         {
-          "question": "Was hilft die Konsistenz dem Leser?",
-          "options": ["Dem Text zu folgen", "Den Text zu ignorieren", "Den Text zu kürzen"],
+          "question": "Was verleiht die Konsistenz dem Text?",
+          "options": ["Professionalität", "Unprofessionalität", "Emotionalität"],
           "answer": 0
         }
       ]
@@ -171,31 +166,31 @@
     {
       "id": "monolog_6",
       "title": "Der letzte Schritt: das Lektorat",
-      "text": "Guten Morgen! Ich bin Emma. Das Lektorat ist der letzte Schritt vor der Veröffentlichung. Man lässt den Text von einer anderen Person lesen. Eine frische Perspektive hilft, Fehler zu finden. Der Lektor prüft den Inhalt. Er prüft den Stil. Er prüft die Grammatik. Er gibt Feedback. Das Lektorat ist ein wichtiger Teil des Schreibprozesses. Ohne Lektorat ist kein Text perfekt.",
+      "text": "Die von der Lektorin Emma durchgeführte abschließende Textprüfung stellt den letzten Schritt vor der Veröffentlichung dar. Eine externe Person mit fachlicher Kompetenz wird mit der Durchsicht betraut. Die frische Perspektive ermöglicht die Entdeckung letzter Unstimmigkeiten. Der Inhalt wird auf Vollständigkeit geprüft. Der Stil wird auf Angemessenheit überprüft. Die Grammatik wird final kontrolliert. Ohne dieses professionelle Lektorat bleibt kein Text perfekt.",
       "questions": [
         {
           "question": "Wie heißt die Frau?",
-          "options": ["Emma", "Anna", "Laura"],
+          "options": ["Emma", "Lisa", "Laura"],
           "answer": 0
         },
         {
-          "question": "Was ist der letzte Schritt vor der Veröffentlichung?",
-          "options": ["Das Lektorat", "Die Einleitung", "Das Fazit"],
+          "question": "Was stellt das Lektorat den letzten Schritt dar?",
+          "options": ["Vor der Veröffentlichung", "Nach der Veröffentlichung", "Während des Schreibprozesses"],
           "answer": 0
         },
         {
-          "question": "Was hilft bei der Fehlersuche?",
-          "options": ["Eine frische Perspektive", "Eine schnelle Lektüre", "Die Rechtschreibprüfung"],
+          "question": "Welche Person wird mit der Durchsicht betraut?",
+          "options": ["Eine externe Person mit fachlicher Kompetenz", "Eine interne Person ohne Kompetenz", "Der Autor selbst"],
           "answer": 0
         },
         {
-          "question": "Was prüft der Lektor?",
-          "options": ["Inhalt, Stil, Grammatik", "Nur Inhalt", "Nur Grammatik"],
+          "question": "Was ermöglicht die frische Perspektive beim Lektorat?",
+          "options": ["Die Entdeckung letzter Unstimmigkeiten", "Die Verschleierung von Fehlern", "Die Verlängerung des Textes"],
           "answer": 0
         },
         {
-          "question": "Ist das Lektorat ein wichtiger Teil des Schreibprozesses?",
-          "options": ["Ja", "Nein", "Weiß nicht"],
+          "question": "Ohne was bleibt kein Text perfekt?",
+          "options": ["Ohne professionelles Lektorat", "Ohne schnelles Schreiben", "Ohne viele Bilder"],
           "answer": 0
         }
       ]

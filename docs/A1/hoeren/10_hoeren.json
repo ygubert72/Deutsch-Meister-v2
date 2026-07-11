@@ -1,12 +1,12 @@
 {
-  "lesson": 10,
+  "lesson": 9,
   "level": "A1",
-  "title": "Предлоги места (Wo? — Dativ)",
+  "title": "Комнаты и мебель",
   "dialogs": [
     {
       "id": "monolog_1",
-      "title": "In meinem Zimmer",
-      "text": "Ich heiße Anna. In meinem Zimmer steht ein großer Tisch. Der Tisch ist unter dem Fenster. Auf dem Tisch liegt ein Buch. Neben dem Tisch steht ein Stuhl. Auf dem Stuhl liegt meine Jacke. Das Zimmer ist gemütlich.",
+      "title": "Meine Wohnung",
+      "text": "Guten Tag! Ich bin Anna. Ich wohne in einer Wohnung in Berlin. Meine Wohnung hat drei Zimmer: ein Wohnzimmer, ein Schlafzimmer und eine Küche. Die Küche ist klein, aber schön.",
       "questions": [
         {
           "question": "Wie heißt die Frau?",
@@ -14,26 +14,26 @@
           "answer": 0
         },
         {
-          "question": "Wo steht der Tisch in Annas Zimmer?",
-          "options": ["Unter dem Fenster", "Neben der Tür", "In der Mitte"],
+          "question": "Wo wohnt Anna?",
+          "options": ["In einer Wohnung", "In einem Haus", "In einem Hotel"],
           "answer": 0
         },
         {
-          "question": "Was liegt auf dem Tisch?",
-          "options": ["Ein Buch", "Eine Jacke", "Ein Stift"],
-          "answer": 0
+          "question": "Wie viele Zimmer hat Annas Wohnung?",
+          "options": ["Zwei Zimmer", "Drei Zimmer", "Vier Zimmer"],
+          "answer": 1
         },
         {
-          "question": "Wo liegt Annas Jacke?",
-          "options": ["Auf dem Stuhl", "Auf dem Tisch", "Auf dem Bett"],
-          "answer": 0
+          "question": "Wie ist Annas Küche?",
+          "options": ["Groß und schön", "Klein, aber schön", "Groß, aber alt"],
+          "answer": 1
         }
       ]
     },
     {
       "id": "monolog_2",
       "title": "Im Wohnzimmer",
-      "text": "Ich heiße Maria. Im Wohnzimmer steht ein Sofa. Vor dem Sofa liegt ein Teppich. Neben dem Sofa steht eine Lampe. An der Wand hängt ein Bild. Zwischen dem Sofa und dem Tisch liegt eine Zeitung. Ich sitze gern auf dem Sofa.",
+      "text": "Hallo! Ich bin Maria. Im Wohnzimmer gibt es ein Sofa, einen Tisch und einen Fernseher. Das Sofa ist bequem. Der Tisch ist aus Holz. Das Wohnzimmer ist mein Lieblingszimmer.",
       "questions": [
         {
           "question": "Wie heißt die Frau?",
@@ -41,26 +41,26 @@
           "answer": 1
         },
         {
-          "question": "Wo liegt der Teppich?",
-          "options": ["Vor dem Sofa", "Hinter dem Sofa", "Neben dem Sofa"],
+          "question": "Was gibt es im Wohnzimmer von Maria?",
+          "options": ["Ein Sofa, einen Tisch und einen Fernseher", "Ein Bett und einen Schrank", "Nur einen Fernseher"],
           "answer": 0
         },
         {
-          "question": "Was hängt an der Wand?",
-          "options": ["Ein Bild", "Ein Spiegel", "Eine Uhr"],
+          "question": "Wie ist das Sofa?",
+          "options": ["Es ist bequem", "Es ist hart", "Es ist alt"],
           "answer": 0
         },
         {
-          "question": "Wo liegt die Zeitung?",
-          "options": ["Zwischen dem Sofa und dem Tisch", "Auf dem Tisch", "Neben der Lampe"],
+          "question": "Was ist Marias Lieblingszimmer?",
+          "options": ["Das Wohnzimmer", "Das Schlafzimmer", "Die Küche"],
           "answer": 0
         }
       ]
     },
     {
       "id": "monolog_3",
-      "title": "In der Küche",
-      "text": "Ich heiße Julia. In unserer Küche steht der Tisch in der Mitte. Auf dem Tisch steht eine Vase mit Blumen. Unter dem Tisch liegt der Hund. Neben dem Herd steht der Kühlschrank. Über dem Herd hängt eine Lampe. Die Küche ist sehr hell.",
+      "title": "Mein Schlafzimmer",
+      "text": "Guten Morgen! Ich bin Julia. Mein Schlafzimmer ist nicht groß. Es gibt ein Bett, einen Schrank und einen Spiegel. Das Bett ist neu. Ich schlafe gern in meinem Schlafzimmer.",
       "questions": [
         {
           "question": "Wie heißt die Frau?",
@@ -68,87 +68,18 @@
           "answer": 2
         },
         {
-          "question": "Wo steht der Tisch in der Küche?",
-          "options": ["In der Mitte", "Neben dem Fenster", "An der Wand"],
-          "answer": 0
-        },
-        {
-          "question": "Was steht auf dem Tisch?",
-          "options": ["Eine Vase mit Blumen", "Ein Buch", "Eine Lampe"],
-          "answer": 0
-        },
-        {
-          "question": "Wo liegt der Hund?",
-          "options": ["Unter dem Tisch", "Neben dem Tisch", "Auf dem Tisch"],
-          "answer": 0
-        },
-        {
-          "question": "Wo hängt die Lampe?",
-          "options": ["Über dem Herd", "Über dem Tisch", "Neben dem Fenster"],
-          "answer": 0
-        }
-      ]
-    },
-    {
-      "id": "monolog_4",
-      "title": "Im Schlafzimmer",
-      "text": "Ich heiße Laura. Im Schlafzimmer steht das Bett an der Wand. Rechts vom Bett steht ein kleiner Schrank. Links vom Bett hängt ein Bild. Unter dem Bett liegen meine Hausschuhe. Über dem Bett ist ein Regal mit Büchern. Ich schlafe gern hier.",
-      "questions": [
-        {
-          "question": "Wie heißt die Frau?",
-          "options": ["Laura", "Lisa", "Anna"],
-          "answer": 0
-        },
-        {
-          "question": "Wo steht das Bett?",
-          "options": ["An der Wand", "In der Mitte", "Neben dem Fenster"],
-          "answer": 0
-        },
-        {
-          "question": "Was steht rechts vom Bett?",
-          "options": ["Ein Schrank", "Ein Tisch", "Ein Regal"],
-          "answer": 0
-        },
-        {
-          "question": "Was liegt unter dem Bett?",
-          "options": ["Hausschuhe", "Bücher", "Eine Jacke"],
-          "answer": 0
-        },
-        {
-          "question": "Wo ist das Regal?",
-          "options": ["Über dem Bett", "Neben dem Bett", "Unter dem Bett"],
-          "answer": 0
-        }
-      ]
-    },
-    {
-      "id": "monolog_5",
-      "title": "Im Garten",
-      "text": "Ich heiße Lisa. Unser Garten ist hinter dem Haus. Im Garten steht ein großer Baum. Unter dem Baum ist eine Bank. Neben der Bank wachsen Blumen. Vor der Bank liegt ein Teich. Zwischen den Blumen ist ein kleiner Weg. Ich sitze gern auf der Bank.",
-      "questions": [
-        {
-          "question": "Wie heißt die Frau?",
-          "options": ["Laura", "Lisa", "Anna"],
+          "question": "Wie ist Julias Schlafzimmer?",
+          "options": ["Es ist groß", "Es ist nicht groß", "Es ist sehr klein"],
           "answer": 1
         },
         {
-          "question": "Wo ist der Garten?",
-          "options": ["Hinter dem Haus", "Vor dem Haus", "Neben dem Haus"],
+          "question": "Was gibt es in Julias Schlafzimmer?",
+          "options": ["Ein Bett, einen Schrank und einen Spiegel", "Nur ein Bett", "Ein Bett und ein Sofa"],
           "answer": 0
         },
         {
-          "question": "Was steht unter dem Baum?",
-          "options": ["Eine Bank", "Ein Tisch", "Ein Schrank"],
-          "answer": 0
-        },
-        {
-          "question": "Was wächst neben der Bank?",
-          "options": ["Blumen", "Bäume", "Büsche"],
-          "answer": 0
-        },
-        {
-          "question": "Wo liegt der Teich?",
-          "options": ["Vor der Bank", "Hinter der Bank", "Neben der Bank"],
+          "question": "Wie ist Julias Bett?",
+          "options": ["Es ist neu", "Es ist alt", "Es ist kaputt"],
           "answer": 0
         }
       ]

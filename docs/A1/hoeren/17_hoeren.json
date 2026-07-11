@@ -37,35 +37,8 @@
     },
     {
       "id": "monolog_2",
-      "title": "Mein Vater",
-      "text": "Hallo! Ich bin Nico. Mein Vater ist Arzt. Er arbeitet in einem Krankenhaus. Er hilft kranken Menschen. Mein Vater mag seinen Job. Er arbeitet auch am Wochenende. Das ist anstrengend.",
-      "questions": [
-        {
-          "question": "Wie heißt der Mann?",
-          "options": ["Nico", "Tom", "Ben"],
-          "answer": 0
-        },
-        {
-          "question": "Was ist der Vater von Nico von Beruf?",
-          "options": ["Arzt", "Lehrer", "Ingenieur"],
-          "answer": 0
-        },
-        {
-          "question": "Wo arbeitet der Vater?",
-          "options": ["In einem Krankenhaus", "In einer Schule", "In einem Büro"],
-          "answer": 0
-        },
-        {
-          "question": "Arbeitet der Vater am Wochenende?",
-          "options": ["Ja", "Nein", "Selten"],
-          "answer": 0
-        }
-      ]
-    },
-    {
-      "id": "monolog_3",
       "title": "Meine Mutter",
-      "text": "Grüß dich! Ich bin Paula. Meine Mutter ist Verkäuferin. Sie arbeitet in einem Supermarkt. Sie verkauft Lebensmittel. Meine Mutter arbeitet viel. Sie ist immer freundlich zu den Kunden.",
+      "text": "Hallo! Ich bin Paula. Meine Mutter ist Ärztin. Sie arbeitet in einem Krankenhaus. Sie hilft kranken Menschen. Meine Mutter mag ihren Job. Sie arbeitet auch am Wochenende. Das ist anstrengend.",
       "questions": [
         {
           "question": "Wie heißt die Frau?",
@@ -74,16 +47,43 @@
         },
         {
           "question": "Was ist die Mutter von Paula von Beruf?",
-          "options": ["Verkäuferin", "Lehrerin", "Sekretärin"],
+          "options": ["Ärztin", "Lehrerin", "Ingenieurin"],
           "answer": 0
         },
         {
           "question": "Wo arbeitet die Mutter?",
+          "options": ["In einem Krankenhaus", "In einer Schule", "In einem Büro"],
+          "answer": 0
+        },
+        {
+          "question": "Arbeitet die Mutter am Wochenende?",
+          "options": ["Ja", "Nein", "Selten"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_3",
+      "title": "Meine Tante",
+      "text": "Grüß dich! Ich bin Lena. Meine Tante ist Verkäuferin. Sie arbeitet in einem Supermarkt. Sie verkauft Lebensmittel. Meine Tante arbeitet viel. Sie ist immer freundlich zu den Kunden.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Lena", "Paula", "Clara"],
+          "answer": 0
+        },
+        {
+          "question": "Was ist die Tante von Lena von Beruf?",
+          "options": ["Verkäuferin", "Lehrerin", "Sekretärin"],
+          "answer": 0
+        },
+        {
+          "question": "Wo arbeitet die Tante?",
           "options": ["In einem Supermarkt", "In einer Schule", "In einem Büro"],
           "answer": 0
         },
         {
-          "question": "Wie ist die Mutter zu den Kunden?",
+          "question": "Wie ist die Tante zu den Kunden?",
           "options": ["Freundlich", "Strenge", "Laut"],
           "answer": 0
         }
@@ -92,25 +92,25 @@
     {
       "id": "monolog_4",
       "title": "Mein Traumjob",
-      "text": "Guten Morgen! Ich bin Lena. Ich studiere Medizin. Ich möchte Ärztin werden. Ich muss viel lernen. Die Arbeit ist schwer, aber interessant. Ich möchte Menschen helfen. Das ist mein Ziel.",
+      "text": "Guten Morgen! Ich bin Sophie. Ich studiere Medizin. Ich möchte Ärztin werden. Ich muss viel lernen. Die Arbeit ist schwer, aber interessant. Ich möchte Menschen helfen. Das ist mein Ziel.",
       "questions": [
         {
           "question": "Wie heißt die Frau?",
-          "options": ["Lena", "Paula", "Clara"],
+          "options": ["Sophie", "Lena", "Clara"],
           "answer": 0
         },
         {
-          "question": "Was studiert Lena?",
+          "question": "Was studiert Sophie?",
           "options": ["Medizin", "Jura", "Informatik"],
           "answer": 0
         },
         {
-          "question": "Was möchte Lena werden?",
+          "question": "Was möchte Sophie werden?",
           "options": ["Ärztin", "Lehrerin", "Ingenieurin"],
           "answer": 0
         },
         {
-          "question": "Warum möchte Lena Ärztin werden?",
+          "question": "Warum möchte Sophie Ärztin werden?",
           "options": ["Sie möchte Menschen helfen", "Sie möchte viel verdienen", "Sie möchte reisen"],
           "answer": 0
         }
@@ -119,20 +119,20 @@
     {
       "id": "monolog_5",
       "title": "Meine Arbeit",
-      "text": "Guten Abend! Ich bin Leo. Ich arbeite bei einer Bank. Ich bin Sekretär. Ich schreibe E-Mails und telefoniere. Die Arbeit ist interessant. Ich mag meine Kollegen. Wir arbeiten gut zusammen.",
+      "text": "Guten Abend! Ich bin Nina. Ich arbeite bei einer Bank. Ich bin Sekretärin. Ich schreibe E-Mails und telefoniere. Die Arbeit ist interessant. Ich mag meine Kolleginnen. Wir arbeiten gut zusammen.",
       "questions": [
         {
-          "question": "Wie heißt der Mann?",
-          "options": ["Leo", "Nico", "Tim"],
+          "question": "Wie heißt die Frau?",
+          "options": ["Nina", "Sophie", "Paula"],
           "answer": 0
         },
         {
-          "question": "Wo arbeitet Leo?",
+          "question": "Wo arbeitet Nina?",
           "options": ["Bei einer Bank", "In einer Schule", "In einem Krankenhaus"],
           "answer": 0
         },
         {
-          "question": "Was macht Leo in seinem Beruf?",
+          "question": "Was macht Nina in ihrem Beruf?",
           "options": ["E-Mails schreiben und telefonieren", "Unterrichten", "Verkaufen"],
           "answer": 0
         },
@@ -142,7 +142,7 @@
           "answer": 0
         },
         {
-          "question": "Mag Leo seine Kollegen?",
+          "question": "Mag Nina ihre Kolleginnen?",
           "options": ["Ja", "Nein", "Weiß nicht"],
           "answer": 0
         }

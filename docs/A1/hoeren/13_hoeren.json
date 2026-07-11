@@ -1,139 +1,85 @@
 {
   "lesson": 13,
   "level": "A1",
-  "title": "Продукты питания и напитки",
+  "title": "В кафе и ресторане",
   "dialogs": [
     {
       "id": "monolog_1",
-      "title": "Mein Frühstück",
-      "text": "Hallo! Ich bin Emma. Ich esse gern Brot zum Frühstück. Ich trinke Kaffee mit Milch. Ich esse auch manchmal Müsli. Am Wochenende frühstücke ich mit meiner Familie.",
+      "title": "Im Café",
+      "text": "Guten Tag! Ich bin Anna. Ich gehe gern ins Café. Ich bestelle einen Kaffee und einen Kuchen. Ich sitze am Tisch und lese eine Zeitung. Das Café ist gemütlich.",
       "questions": [
         {
           "question": "Wie heißt die Frau?",
-          "options": ["Emma", "Anna", "Sophie"],
+          "options": ["Anna", "Maria", "Julia"],
           "answer": 0
         },
         {
-          "question": "Was isst Emma zum Frühstück?",
-          "options": ["Brot", "Suppe", "Salat"],
+          "question": "Was bestellt Anna im Café?",
+          "options": ["Einen Kaffee und einen Kuchen", "Einen Tee und ein Brötchen", "Einen Saft und eine Pizza"],
           "answer": 0
         },
         {
-          "question": "Was trinkt Emma?",
-          "options": ["Kaffee mit Milch", "Tee", "Saft"],
+          "question": "Was macht Anna im Café?",
+          "options": ["Sie liest eine Zeitung", "Sie arbeitet", "Sie trifft Freunde"],
           "answer": 0
         },
         {
-          "question": "Mit wem frühstückt Emma am Wochenende?",
-          "options": ["Mit ihrer Familie", "Mit Freunden", "Alleine"],
+          "question": "Wie ist das Café?",
+          "options": ["Gemütlich", "Laut", "Teuer"],
           "answer": 0
         }
       ]
     },
     {
       "id": "monolog_2",
-      "title": "Mittagessen",
-      "text": "Guten Tag! Ich bin Laura. Ich esse gern Suppe zum Mittagessen. Ich mag auch Nudeln mit Tomatensauce. Meine Schwester isst gern Fleisch mit Kartoffeln. Das Essen ist immer lecker.",
+      "title": "Im Restaurant",
+      "text": "Hallo! Ich bin Maria. Ich gehe heute ins Restaurant. Ich hätte gern eine Pizza. Ich bestelle auch einen Salat. Ich trinke ein Glas Wasser. Zum Nachtisch esse ich ein Eis.",
       "questions": [
         {
           "question": "Wie heißt die Frau?",
-          "options": ["Laura", "Emma", "Sophie"],
+          "options": ["Anna", "Maria", "Julia"],
+          "answer": 1
+        },
+        {
+          "question": "Was hätte Maria gern?",
+          "options": ["Eine Pizza", "Eine Suppe", "Einen Salat"],
           "answer": 0
         },
         {
-          "question": "Was isst Laura gern zum Mittagessen?",
-          "options": ["Suppe", "Salat", "Brot"],
+          "question": "Was trinkt Maria?",
+          "options": ["Ein Glas Wasser", "Ein Glas Wein", "Eine Tasse Kaffee"],
           "answer": 0
         },
         {
-          "question": "Was mag die Schwester von Laura?",
-          "options": ["Fleisch mit Kartoffeln", "Nudeln", "Suppe"],
-          "answer": 0
-        },
-        {
-          "question": "Wie ist das Essen?",
-          "options": ["Lecker", "Schlecht", "Langweilig"],
+          "question": "Was isst Maria zum Nachtisch?",
+          "options": ["Ein Eis", "Einen Kuchen", "Ein Stück Schokolade"],
           "answer": 0
         }
       ]
     },
     {
       "id": "monolog_3",
-      "title": "Ich mag Obst",
-      "text": "Grüß dich! Ich bin Sophie. Ich esse gern Obst. Ich mag Äpfel und Bananen sehr. Ich esse auch Orangen. Obst ist gesund und lecker. Ich kaufe Obst auf dem Markt.",
+      "title": "Die Rechnung",
+      "text": "Guten Morgen! Ich bin Julia. Ich esse im Restaurant. Ich bestelle ein Steak mit Pommes. Ich trinke ein Bier. Nach dem Essen sage ich: 'Die Rechnung, bitte.' Ich bezahle mit Karte.",
       "questions": [
         {
           "question": "Wie heißt die Frau?",
-          "options": ["Emma", "Sophie", "Anna"],
-          "answer": 1
+          "options": ["Anna", "Maria", "Julia"],
+          "answer": 2
         },
         {
-          "question": "Was isst Sophie gern?",
-          "options": ["Obst", "Gemüse", "Fleisch"],
-          "answer": 0
-        },
-        {
-          "question": "Welches Obst mag Sophie?",
-          "options": ["Äpfel und Bananen", "Nur Äpfel", "Nur Bananen"],
+          "question": "Was bestellt Julia?",
+          "options": ["Ein Steak mit Pommes", "Einen Fisch", "Eine Pizza"],
           "answer": 0
         },
         {
-          "question": "Wo kauft Sophie Obst?",
-          "options": ["Auf dem Markt", "Im Supermarkt", "Im Garten"],
-          "answer": 0
-        }
-      ]
-    },
-    {
-      "id": "monolog_4",
-      "title": "Getränke",
-      "text": "Guten Morgen! Ich bin Nina. Ich trinke gern Wasser. Ich trinke auch Saft am Morgen. Meine Schwester trinkt gern Milch. Meine Mutter trinkt Kaffee. Ich trinke keinen Tee.",
-      "questions": [
-        {
-          "question": "Wie heißt die Frau?",
-          "options": ["Nina", "Laura", "Emma"],
+          "question": "Was sagt Julia nach dem Essen?",
+          "options": ["Die Rechnung, bitte", "Ich hätte gern einen Kaffee", "Alles ist gut"],
           "answer": 0
         },
         {
-          "question": "Was trinkt Nina am liebsten?",
-          "options": ["Wasser", "Saft", "Milch"],
-          "answer": 0
-        },
-        {
-          "question": "Was trinkt die Schwester von Nina?",
-          "options": ["Milch", "Saft", "Wasser"],
-          "answer": 0
-        },
-        {
-          "question": "Was trinkt die Mutter von Nina?",
-          "options": ["Kaffee", "Tee", "Saft"],
-          "answer": 0
-        }
-      ]
-    },
-    {
-      "id": "monolog_5",
-      "title": "Einkaufen",
-      "text": "Hallo! Ich bin Clara. Ich kaufe im Supermarkt ein. Ich kaufe Brot, Käse und Wurst. Ich kaufe auch Tomaten und Gurken. Ich kaufe immer frische Produkte. Dann gehe ich nach Hause.",
-      "questions": [
-        {
-          "question": "Wie heißt die Frau?",
-          "options": ["Clara", "Sophie", "Nina"],
-          "answer": 0
-        },
-        {
-          "question": "Was kauft Clara im Supermarkt?",
-          "options": ["Brot, Käse und Wurst", "Nudeln und Reis", "Obst und Gemüse"],
-          "answer": 0
-        },
-        {
-          "question": "Was kauft Clara noch?",
-          "options": ["Tomaten und Gurken", "Kartoffeln", "Nur Brot"],
-          "answer": 0
-        },
-        {
-          "question": "Was macht Clara nach dem Einkaufen?",
-          "options": ["Sie geht nach Hause", "Sie geht ins Kino", "Sie liest"],
+          "question": "Wie bezahlt Julia?",
+          "options": ["Mit Karte", "Mit Bargeld", "Mit Scheck"],
           "answer": 0
         }
       ]

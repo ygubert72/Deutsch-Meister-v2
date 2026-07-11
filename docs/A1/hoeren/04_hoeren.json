@@ -22,6 +22,11 @@
           "question": "Welche Sprachen spricht Lena?",
           "options": ["Polnisch und Deutsch", "Deutsch und Englisch", "Nur Deutsch"],
           "answer": 0
+        },
+        {
+          "question": "Wie alt ist Lena?",
+          "options": ["24 Jahre", "25 Jahre", "30 Jahre"],
+          "answer": 0
         }
       ]
     },
@@ -43,6 +48,38 @@
         {
           "question": "Welche Sprachen spricht Clara?",
           "options": ["Italienisch und Deutsch", "Nur Deutsch", "Deutsch und Englisch"],
+          "answer": 0
+        },
+        {
+          "question": "Wo wohnt Clara?",
+          "options": ["In München", "In Berlin", "In Köln"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_3",
+      "title": "Meine Sprachkenntnisse",
+      "text": "Guten Morgen! Ich bin Nina. Ich komme aus der Türkei. Ich spreche Türkisch und Deutsch. Ich lerne Englisch in der Schule. Ich bin 22 Jahre alt.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Nina", "Clara", "Lena"],
+          "answer": 0
+        },
+        {
+          "question": "Woher kommt Nina?",
+          "options": ["Aus der Türkei", "Aus Deutschland", "Aus Italien"],
+          "answer": 0
+        },
+        {
+          "question": "Welche Sprache lernt Nina in der Schule?",
+          "options": ["Englisch", "Französisch", "Spanisch"],
+          "answer": 0
+        },
+        {
+          "question": "Wie alt ist Nina?",
+          "options": ["22 Jahre", "24 Jahre", "26 Jahre"],
           "answer": 0
         }
       ]

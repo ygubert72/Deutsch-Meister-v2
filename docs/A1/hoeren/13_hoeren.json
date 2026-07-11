@@ -1,159 +1,139 @@
 {
   "lesson": 13,
   "level": "A1",
-  "title": "В кафе и ресторане",
+  "title": "Продукты питания и напитки",
   "dialogs": [
     {
       "id": "monolog_1",
-      "title": "Im Café",
-      "text": "Ich heiße Anna. Ich gehe gern ins Café. Ich bestelle einen Kaffee und einen Kuchen. Ich sitze am Tisch und lese eine Zeitung. Das Café ist gemütlich. Die Tasse ist aus Porzellan. Ich bleibe eine Stunde.",
+      "title": "Mein Frühstück",
+      "text": "Hallo! Ich bin Emma. Ich esse gern Brot zum Frühstück. Ich trinke Kaffee mit Milch. Ich esse auch manchmal Müsli. Am Wochenende frühstücke ich mit meiner Familie.",
       "questions": [
         {
           "question": "Wie heißt die Frau?",
-          "options": ["Anna", "Maria", "Julia"],
+          "options": ["Emma", "Anna", "Sophie"],
           "answer": 0
         },
         {
-          "question": "Was bestellt Anna im Café?",
-          "options": ["Einen Kaffee und einen Kuchen", "Einen Tee und ein Brötchen", "Einen Saft und eine Pizza"],
+          "question": "Was isst Emma zum Frühstück?",
+          "options": ["Brot", "Suppe", "Salat"],
           "answer": 0
         },
         {
-          "question": "Was macht Anna im Café?",
-          "options": ["Sie liest eine Zeitung", "Sie arbeitet", "Sie trifft Freunde"],
+          "question": "Was trinkt Emma?",
+          "options": ["Kaffee mit Milch", "Tee", "Saft"],
           "answer": 0
         },
         {
-          "question": "Wie lange bleibt Anna im Café?",
-          "options": ["Eine Stunde", "Eine halbe Stunde", "Zwei Stunden"],
+          "question": "Mit wem frühstückt Emma am Wochenende?",
+          "options": ["Mit ihrer Familie", "Mit Freunden", "Alleine"],
           "answer": 0
         }
       ]
     },
     {
       "id": "monolog_2",
-      "title": "Im Restaurant",
-      "text": "Ich heiße Maria. Ich gehe heute ins Restaurant. Ich hätte gern eine Pizza. Der Kellner bringt die Speisekarte. Ich bestelle auch einen Salat. Ich trinke ein Glas Wasser. Zum Nachtisch esse ich ein Eis. Das Essen ist lecker.",
+      "title": "Mittagessen",
+      "text": "Guten Tag! Ich bin Ben. Ich esse gern Suppe zum Mittagessen. Ich mag auch Nudeln mit Tomatensauce. Mein Bruder isst gern Fleisch mit Kartoffeln. Das Essen ist immer lecker.",
       "questions": [
         {
-          "question": "Wie heißt die Frau?",
-          "options": ["Anna", "Maria", "Julia"],
-          "answer": 1
-        },
-        {
-          "question": "Was hätte Maria gern?",
-          "options": ["Eine Pizza", "Eine Suppe", "Einen Salat"],
+          "question": "Wie heißt der Mann?",
+          "options": ["Ben", "Tom", "Paul"],
           "answer": 0
         },
         {
-          "question": "Was macht der Kellner?",
-          "options": ["Er bringt die Speisekarte", "Er bringt das Essen", "Er bringt die Rechnung"],
+          "question": "Was isst Ben gern zum Mittagessen?",
+          "options": ["Suppe", "Salat", "Brot"],
           "answer": 0
         },
         {
-          "question": "Was trinkt Maria zum Essen?",
-          "options": ["Ein Glas Wasser", "Ein Glas Wein", "Eine Tasse Kaffee"],
+          "question": "Was mag der Bruder von Ben?",
+          "options": ["Fleisch mit Kartoffeln", "Nudeln", "Suppe"],
           "answer": 0
         },
         {
-          "question": "Was isst Maria zum Nachtisch?",
-          "options": ["Ein Eis", "Einen Kuchen", "Ein Stück Schokolade"],
+          "question": "Wie ist das Essen?",
+          "options": ["Lecker", "Schlecht", "Langweilig"],
           "answer": 0
         }
       ]
     },
     {
       "id": "monolog_3",
-      "title": "Bestellen im Restaurant",
-      "text": "Ich heiße Julia. Ich bestelle eine Suppe als Vorspeise. Als Hauptgericht nehme ich Fisch mit Reis. Ich trinke dazu ein Glas Weißwein. Nach dem Essen bestelle ich einen Kaffee. Der Kellner ist sehr freundlich. Ich gebe ein Trinkgeld.",
+      "title": "Ich mag Obst",
+      "text": "Grüß dich! Ich bin Sophie. Ich esse gern Obst. Ich mag Äpfel und Bananen sehr. Ich esse auch Orangen. Obst ist gesund und lecker. Ich kaufe Obst auf dem Markt.",
       "questions": [
         {
           "question": "Wie heißt die Frau?",
-          "options": ["Anna", "Maria", "Julia"],
-          "answer": 2
+          "options": ["Emma", "Sophie", "Anna"],
+          "answer": 1
         },
         {
-          "question": "Was ist Julias Vorspeise?",
-          "options": ["Eine Suppe", "Einen Salat", "Eine Pizza"],
+          "question": "Was isst Sophie gern?",
+          "options": ["Obst", "Gemüse", "Fleisch"],
           "answer": 0
         },
         {
-          "question": "Was ist Julias Hauptgericht?",
-          "options": ["Fisch mit Reis", "Fleisch mit Kartoffeln", "Nudeln"],
+          "question": "Welches Obst mag Sophie?",
+          "options": ["Äpfel und Bananen", "Nur Äpfel", "Nur Bananen"],
           "answer": 0
         },
         {
-          "question": "Was trinkt Julia zum Essen?",
-          "options": ["Weißwein", "Rotwein", "Wasser"],
-          "answer": 0
-        },
-        {
-          "question": "Was macht Julia nach dem Essen?",
-          "options": ["Sie bestellt einen Kaffee", "Sie bezahlt", "Sie geht nach Hause"],
+          "question": "Wo kauft Sophie Obst?",
+          "options": ["Auf dem Markt", "Im Supermarkt", "Im Garten"],
           "answer": 0
         }
       ]
     },
     {
       "id": "monolog_4",
-      "title": "Die Rechnung",
-      "text": "Ich heiße Laura. Ich esse im Restaurant. Ich bestelle ein Steak mit Pommes. Ich trinke ein Bier. Nach dem Essen sage ich: \"Die Rechnung, bitte.\" Der Kellner bringt die Rechnung. Ich bezahle mit Karte. Das Essen war sehr gut.",
+      "title": "Getränke",
+      "text": "Guten Morgen! Ich bin Laura. Ich trinke gern Wasser. Ich trinke auch Saft am Morgen. Meine Schwester trinkt gern Milch. Mein Vater trinkt Kaffee. Ich trinke keinen Tee.",
       "questions": [
         {
           "question": "Wie heißt die Frau?",
-          "options": ["Laura", "Lisa", "Anna"],
+          "options": ["Laura", "Lisa", "Emma"],
           "answer": 0
         },
         {
-          "question": "Was bestellt Laura?",
-          "options": ["Ein Steak mit Pommes", "Einen Fisch", "Eine Pizza"],
+          "question": "Was trinkt Laura am liebsten?",
+          "options": ["Wasser", "Saft", "Milch"],
           "answer": 0
         },
         {
-          "question": "Was trinkt Laura?",
-          "options": ["Ein Bier", "Ein Glas Wein", "Ein Wasser"],
+          "question": "Was trinkt die Schwester von Laura?",
+          "options": ["Milch", "Saft", "Wasser"],
           "answer": 0
         },
         {
-          "question": "Was sagt Laura nach dem Essen?",
-          "options": ["Die Rechnung, bitte", "Ich hätte gern einen Kaffee", "Alles ist gut"],
-          "answer": 0
-        },
-        {
-          "question": "Wie bezahlt Laura?",
-          "options": ["Mit Karte", "Mit Bargeld", "Mit Scheck"],
+          "question": "Was trinkt der Vater von Laura?",
+          "options": ["Kaffee", "Tee", "Saft"],
           "answer": 0
         }
       ]
     },
     {
       "id": "monolog_5",
-      "title": "Zum Frühstück im Café",
-      "text": "Ich heiße Lisa. Ich gehe morgens ins Café. Ich bestelle ein Brötchen mit Butter. Ich trinke eine Tasse Kaffee. Ich esse auch ein Ei. Mein Freund bestellt ein Glas Orangensaft. Wir sitzen eine halbe Stunde und reden. Das Frühstück ist gut.",
+      "title": "Einkaufen",
+      "text": "Hallo! Ich bin Tim. Ich kaufe im Supermarkt ein. Ich kaufe Brot, Käse und Wurst. Ich kaufe auch Tomaten und Gurken. Ich kaufe immer frische Produkte. Dann gehe ich nach Hause.",
       "questions": [
         {
-          "question": "Wie heißt die Frau?",
-          "options": ["Laura", "Lisa", "Anna"],
-          "answer": 1
-        },
-        {
-          "question": "Was bestellt Lisa im Café?",
-          "options": ["Ein Brötchen mit Butter", "Ein Croissant", "Ein Ei mit Schinken"],
+          "question": "Wie heißt der Mann?",
+          "options": ["Tim", "Tom", "Ben"],
           "answer": 0
         },
         {
-          "question": "Was trinkt Lisa?",
-          "options": ["Eine Tasse Kaffee", "Einen Tee", "Einen Saft"],
+          "question": "Was kauft Tim im Supermarkt?",
+          "options": ["Brot, Käse und Wurst", "Nudeln und Reis", "Obst und Gemüse"],
           "answer": 0
         },
         {
-          "question": "Was bestellt der Freund von Lisa?",
-          "options": ["Ein Glas Orangensaft", "Eine Tasse Kaffee", "Ein Glas Milch"],
+          "question": "Was kauft Tim noch?",
+          "options": ["Tomaten und Gurken", "Kartoffeln", "Nur Brot"],
           "answer": 0
         },
         {
-          "question": "Wie lange bleiben Lisa und ihr Freund im Café?",
-          "options": ["Eine halbe Stunde", "Eine Stunde", "Zwei Stunden"],
+          "question": "Was macht Tim nach dem Einkaufen?",
+          "options": ["Er geht nach Hause", "Er geht ins Kino", "Er liest"],
           "answer": 0
         }
       ]

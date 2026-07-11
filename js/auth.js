@@ -63,6 +63,7 @@ function initFirebase() {
         }
         
         updateUI(user);
+        updateLevelButtons();
         
         if (typeof updateCounter === 'function') {
             updateCounter();
@@ -78,7 +79,7 @@ async function loadUserData(uid) {
         if (userDoc.exists) {
             currentUserData = userDoc.data();
             if (window.Logger) {
-                Logger.info('Данные пользователя загружены, доступ к B1-C1:', currentUserData.hasPremiumAccess);
+                Logger.info('Данные пользователя загружены, премиум:', currentUserData.hasPremiumAccess);
             }
         }
     } catch(e) {
@@ -88,19 +89,59 @@ async function loadUserData(uid) {
 
 // ========== ПРОВЕРКА ДОСТУПА К УРОВНЮ ==========
 window.hasAccessToLevel = function(level) {
+    // Админ имеет доступ ко всем уровням
     if (auth.currentUser && auth.currentUser.email === 'ygubert72@gmail.com') {
         return true;
     }
-    if (level === 'A1' || level === 'A2') {
+    
+    // Уровень A1 доступен всем (даже без регистрации)
+    if (level === 'A1') {
         return true;
     }
-    if (level === 'B1' || level === 'B2' || level === 'C1') {
+    
+    // Уровни A2, B1, B2, C1 — только с регистрацией И премиумом
+    if (level === 'A2' || level === 'B1' || level === 'B2' || level === 'C1') {
         if (!auth.currentUser) return false;
         if (currentUserData && currentUserData.hasPremiumAccess === true) return true;
         return false;
     }
+    
     return false;
 };
+
+// ========== ОБНОВЛЕНИЕ КНОПОК УРОВНЕЙ ==========
+function updateLevelButtons() {
+    const levelButtons = document.querySelectorAll('.btn-level');
+    const levelButtonsMobile = document.querySelectorAll('#levelsContainerMobile .btn-level');
+    
+    const allButtons = [...levelButtons, ...levelButtonsMobile];
+    
+    allButtons.forEach(btn => {
+        const level = btn.getAttribute('data-level');
+        const hasAccess = window.hasAccessToLevel(level);
+        
+        if (hasAccess) {
+            btn.style.opacity = '1';
+            btn.style.pointerEvents = 'auto';
+            btn.style.cursor = 'pointer';
+            btn.title = '';
+        } else {
+            btn.style.opacity = '0.5';
+            btn.style.pointerEvents = 'none';
+            btn.style.cursor = 'not-allowed';
+            
+            if (level === 'A2' || level === 'B1' || level === 'B2' || level === 'C1') {
+                if (!auth.currentUser) {
+                    btn.title = '🔐 Войдите в аккаунт и оплатите премиум';
+                } else if (!currentUserData || !currentUserData.hasPremiumAccess) {
+                    btn.title = '💎 Требуется премиум-доступ';
+                } else {
+                    btn.title = '🚫 Доступ запрещён';
+                }
+            }
+        }
+    });
+}
 
 // ========== ВСПОМОГАТЕЛЬНЫЕ ФУНКЦИИ ==========
 window.isAuthenticated = function() {
@@ -272,7 +313,7 @@ function updateUI(user) {
         const guestHtml = `
             <div style="background:#E8F0FE; border-radius:8px; padding:8px; text-align:center;">
                 <div style="font-size:14px; font-weight:bold;">👋 Гостевой режим</div>
-                <div style="font-size:11px; color:#666; margin-top:4px;">прогресс не сохраняется</div>
+                <div style="font-size:11px; color:#666; margin-top:4px;">доступен только уровень A1</div>
             </div>
         `;
         
@@ -306,7 +347,7 @@ function showPaymentModal() {
     modalContent.style.cssText = 'background:white; border-radius:20px; max-width:400px; width:90%; padding:25px; text-align:center; margin:20px; max-height:90vh; overflow-y:auto;';
     modalContent.innerHTML = `
         <h2 style="margin:0 0 10px 0; font-size:22px;">💎 Премиум доступ</h2>
-        <div style="font-size:13px; color:#666; margin-bottom:15px;">Уровни B1, B2, C1</div>
+        <div style="font-size:13px; color:#666; margin-bottom:15px;">Уровни A2, B1, B2, C1</div>
         <div style="font-size:32px; color:#3B6FE0; font-weight:bold; margin-bottom:10px;">${PREMIUM_PRICE} ₽</div>
         <div style="font-size:11px; color:#666; margin-bottom:15px;">Разовый платёж / бессрочный доступ</div>
         
@@ -468,7 +509,7 @@ window.showLoginModal = function() {
     
     document.getElementById('guestBtn').onclick = () => {
         modal.remove();
-        alert('Гостевой режим (прогресс не сохраняется между устройствами)');
+        alert('Гостевой режим (доступен только уровень A1, прогресс не сохраняется)');
     };
     
     document.getElementById('closeModal').onclick = () => modal.remove();

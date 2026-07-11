@@ -1,0 +1,244 @@
+{
+  "lesson": 23,
+  "level": "A2",
+  "title": "Путешествия: транспорт и бронирование",
+  "dialogs": [
+    {
+      "id": "monolog_1",
+      "title": "Meine Zugreise nach Hamburg",
+      "text": "Guten Morgen! Ich bin Sophie und reise sehr gern. Letzten Monat habe ich eine Reise nach Hamburg gemacht. Ich bin mit dem ICE gefahren. Die Fahrt hat etwa vier Stunden gedauert. Ich habe ein Ticket im Internet gebucht, das war viel günstiger. Im Zug habe ich ein Buch gelesen und Kaffee getrunken. In Hamburg bin ich am Hauptbahnhof angekommen. Von dort bin ich mit der U-Bahn zu meinem Hotel gefahren. Ich habe drei Nächte gebucht. Das Hotel war direkt an der Alster, das war perfekt. Am nächsten Morgen bin ich aufgewacht und habe die Aussicht genossen. Ich kann diese Reise nur empfehlen!",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau und wohin ist sie gereist?",
+          "options": ["Sophie nach Hamburg", "Clara nach Berlin", "Emma nach München"],
+          "answer": 0
+        },
+        {
+          "question": "Womit ist Sophie gefahren?",
+          "options": ["Mit dem ICE", "Mit dem Auto", "Mit dem Flugzeug"],
+          "answer": 0
+        },
+        {
+          "question": "Wie hat Sophie das Ticket gebucht?",
+          "options": ["Im Internet", "Am Bahnhof", "Im Reisebüro"],
+          "answer": 0
+        },
+        {
+          "question": "Wie viele Nächte hat Sophie gebucht?",
+          "options": ["Drei Nächte", "Zwei Nächte", "Vier Nächte"],
+          "answer": 0
+        },
+        {
+          "question": "Wo war das Hotel?",
+          "options": ["Direkt an der Alster", "Am Hauptbahnhof", "In der Innenstadt"],
+          "answer": 0
+        },
+        {
+          "question": "Was hat Sophie am nächsten Morgen gemacht?",
+          "options": ["Die Aussicht genossen", "Gefrühstückt", "Die Stadt besichtigt"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_2",
+      "title": "Am Flughafen",
+      "text": "Hallo zusammen! Ich bin Miriam und reise geschäftlich viel. Letzte Woche musste ich nach London fliegen. Ich bin zwei Stunden vor dem Abflug am Flughafen gewesen. Ich habe meinen Koffer aufgegeben und den Sicherheitscheck passiert. Das war ziemlich stressig, weil so viele Leute da waren. Ich habe dann im Duty-Free-Shop noch etwas gekauft. Mein Flug hatte leider eine Stunde Verspätung. Ich habe mich geärgert, aber dann habe ich mir einen Kaffee geholt und gewartet. Endlich bin ich ins Flugzeug gestiegen. Der Flug war ruhig und ich habe gut geschlafen. In London bin ich pünktlich angekommen. Mein Geschäftspartner hat mich am Flughafen abgeholt. Ich war sehr müde, aber froh, dass alles geklappt hat.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau und wohin ist sie geflogen?",
+          "options": ["Miriam nach London", "Sophie nach Paris", "Nathalie nach Rom"],
+          "answer": 0
+        },
+        {
+          "question": "Wie lange vor dem Abflug war Miriam am Flughafen?",
+          "options": ["Zwei Stunden", "Eine Stunde", "Drei Stunden"],
+          "answer": 0
+        },
+        {
+          "question": "Was war stressig am Flughafen?",
+          "options": ["Der Sicherheitscheck und viele Leute", "Der Koffer war zu schwer", "Das Ticket war falsch"],
+          "answer": 0
+        },
+        {
+          "question": "Was ist mit Miriams Flug passiert?",
+          "options": ["Er hatte eine Stunde Verspätung", "Er wurde gestrichen", "Er war überbucht"],
+          "answer": 0
+        },
+        {
+          "question": "Wer hat Miriam in London abgeholt?",
+          "options": ["Ihr Geschäftspartner", "Ein Taxifahrer", "Ihre Freundin"],
+          "answer": 0
+        },
+        {
+          "question": "Wie war Miriam nach dem Flug?",
+          "options": ["Müde, aber froh", "Wütend", "Entspannt"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_3",
+      "title": "Ein Hotelzimmer buchen",
+      "text": "Grüß Gott! Ich bin Verena und arbeite als Reiseberaterin. Ich habe gestern ein Hotelzimmer für eine Kundin gebucht. Die Kundin wollte ein Zimmer in der Nähe des Bahnhofs. Ich habe mehrere Hotels verglichen. Die Preise waren sehr unterschiedlich, von 80 bis 200 Euro pro Nacht. Ich habe ein schönes Dreibettzimmer für sie gefunden. Das Zimmer hat einen Balkon und Blick auf die Altstadt. Frühstück war inklusive, das war ein gutes Angebot. Ich habe die Buchung per E-Mail bestätigt. Die Kundin war sehr zufrieden. Sie hat mir später eine Dankes-E-Mail geschrieben. Ich mag meinen Beruf, weil ich Menschen helfen kann, schöne Reisen zu machen.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau und was ist ihr Beruf?",
+          "options": ["Verena, Reiseberaterin", "Miriam, Geschäftsfrau", "Sophie, Lehrerin"],
+          "answer": 0
+        },
+        {
+          "question": "Was hat Verena gestern gemacht?",
+          "options": ["Ein Hotelzimmer für eine Kundin gebucht", "Einen Flug gebucht", "Eine Reise gebucht"],
+          "answer": 0
+        },
+        {
+          "question": "Wo wollte die Kundin ein Zimmer?",
+          "options": ["In der Nähe des Bahnhofs", "Am Strand", "In der Altstadt"],
+          "answer": 0
+        },
+        {
+          "question": "Was war im Preis inklusive?",
+          "options": ["Frühstück", "Abendessen", "Parkplatz"],
+          "answer": 0
+        },
+        {
+          "question": "Wie hat Verena die Buchung bestätigt?",
+          "options": ["Per E-Mail", "Per Telefon", "Per Post"],
+          "answer": 0
+        },
+        {
+          "question": "Warum mag Verena ihren Beruf?",
+          "options": ["Sie kann Menschen helfen", "Sie verdient viel Geld", "Sie kann reisen"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_4",
+      "title": "Mein Roadtrip durch Deutschland",
+      "text": "Hallo Leute! Ich bin Katharina und liebe Abenteuer. Vor zwei Jahren habe ich einen Roadtrip durch Deutschland gemacht. Ich bin mit meinem alten VW-Bus gefahren. Ich war drei Wochen unterwegs. Ich bin von Köln nach Berlin gefahren, dann nach Dresden und schließlich nach München. Ich habe in kleinen Pensionen und Campingplätzen übernachtet. Das war viel günstiger als Hotels. In Dresden habe ich einen Freund besucht. Wir sind zusammen in die Sächsische Schweiz gewandert. Die Natur war atemberaubend. In München habe ich das Oktoberfest besucht, das war verrückt! Ich habe viele Fotos gemacht und neue Leute kennengelernt. Diese Reise war eines der besten Erlebnisse meines Lebens. Ich möchte unbedingt wieder so eine Reise machen.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau und was hat sie gemacht?",
+          "options": ["Katharina, einen Roadtrip durch Deutschland", "Verena, eine Geschäftsreise", "Miriam, einen Flug"],
+          "answer": 0
+        },
+        {
+          "question": "Wie lange war Katharina unterwegs?",
+          "options": ["Drei Wochen", "Zwei Wochen", "Einen Monat"],
+          "answer": 0
+        },
+        {
+          "question": "Womit ist Katharina gefahren?",
+          "options": ["Mit einem VW-Bus", "Mit einem Wohnmobil", "Mit dem Auto"],
+          "answer": 0
+        },
+        {
+          "question": "Wo hat Katharina übernachtet?",
+          "options": ["In Pensionen und Campingplätzen", "In Hotels", "Bei Freunden"],
+          "answer": 0
+        },
+        {
+          "question": "Was hat Katharina in Dresden gemacht?",
+          "options": ["Einen Freund besucht und gewandert", "Die Stadt besichtigt", "Gearbeitet"],
+          "answer": 0
+        },
+        {
+          "question": "Was hat Katharina in München besucht?",
+          "options": ["Das Oktoberfest", "Das Schloss", "Das Museum"],
+          "answer": 0
+        },
+        {
+          "question": "Wie war diese Reise für Katharina?",
+          "options": ["Eines der besten Erlebnisse ihres Lebens", "Langweilig", "Zu stressig"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_5",
+      "title": "Eine Kreuzfahrt im Mittelmeer",
+      "text": "Guten Abend, liebe Zuhörer! Ich bin Patricia und 58 Jahre alt. Letztes Jahr habe ich mir einen lang gehegten Traum erfüllt: eine Kreuzfahrt im Mittelmeer. Mein Mann und ich haben eine Woche auf dem Schiff verbracht. Wir sind in Barcelona gestartet. Dann sind wir nach Marseille, Genua, Rom und Neapel gefahren. Jeden Tag haben wir eine neue Stadt entdeckt. Das Schiff war riesig, es hatte 15 Decks! Wir haben sehr gut gegessen, es gab jeden Tag ein großes Buffet. Ich habe im Pool geschwommen und am Abend haben wir getanzt. Die Ausflüge waren gut organisiert. In Rom habe ich das Kolosseum besichtigt, das war beeindruckend. In Neapel habe ich die beste Pizza meines Lebens gegessen. Die Kreuzfahrt war teuer, aber jeden Cent wert. Ich würde es sofort wieder machen!",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau und wie alt ist sie?",
+          "options": ["Patricia, 58 Jahre", "Katharina, 30 Jahre", "Verena, 45 Jahre"],
+          "answer": 0
+        },
+        {
+          "question": "Was hat sich Patricia erfüllt?",
+          "options": ["Eine Kreuzfahrt im Mittelmeer", "Eine Reise nach Amerika", "Einen Roadtrip"],
+          "answer": 0
+        },
+        {
+          "question": "Wie lange hat die Kreuzfahrt gedauert?",
+          "options": ["Eine Woche", "Zwei Wochen", "Drei Wochen"],
+          "answer": 0
+        },
+        {
+          "question": "In welcher Stadt hat die Kreuzfahrt gestartet?",
+          "options": ["In Barcelona", "In Marseille", "In Rom"],
+          "answer": 0
+        },
+        {
+          "question": "Was hat Patricia in Rom besichtigt?",
+          "options": ["Das Kolosseum", "Den Vatikan", "Das Forum"],
+          "answer": 0
+        },
+        {
+          "question": "Was hat Patricia in Neapel gegessen?",
+          "options": ["Die beste Pizza ihres Lebens", "Pasta", "Meeresfrüchte"],
+          "answer": 0
+        },
+        {
+          "question": "Würde Patricia diese Kreuzfahrt wieder machen?",
+          "options": ["Ja, sofort", "Nein, zu teuer", "Vielleicht"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_6",
+      "title": "Mit dem Wohnmobil durch Skandinavien",
+      "text": "Hallo! Ich bin Ines und liebe die Natur. Diesen Sommer habe ich etwas ganz Besonderes gemacht: Ich bin mit einem Wohnmobil durch Skandinavien gefahren. Ich war mit meinem Partner und unseren zwei Hunden unterwegs. Wir haben fast einen Monat gebraucht. Wir sind durch Dänemark, Schweden und Norwegen gefahren. Die Landschaft war atemberaubend: viele Wälder, Seen und Fjorde. Wir haben oft am Seeufer übernachtet und morgens im See gebadet. Das Wasser war sehr kalt, aber erfrischend. In Norwegen haben wir den Nordkap besucht, das war das Highlight der Reise. Wir haben Elche und sogar Rentiere gesehen. Die Natur war so ruhig und friedlich. Wir haben selten jemanden getroffen. Das war genau das, was wir brauchten: Ruhe und Abenteuer. Ich kann Skandinavien allen Naturliebhabern wärmstens empfehlen.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau und was hat sie gemacht?",
+          "options": ["Ines, Wohnmobilreise durch Skandinavien", "Patricia, Kreuzfahrt", "Katharina, Roadtrip"],
+          "answer": 0
+        },
+        {
+          "question": "Mit wem war Ines unterwegs?",
+          "options": ["Mit ihrem Partner und ihren zwei Hunden", "Alleine", "Mit Freunden"],
+          "answer": 0
+        },
+        {
+          "question": "Wie lange war die Reise?",
+          "options": ["Fast einen Monat", "Drei Wochen", "Zwei Monate"],
+          "answer": 0
+        },
+        {
+          "question": "Durch welche Länder sind sie gefahren?",
+          "options": ["Dänemark, Schweden, Norwegen", "Norwegen, Finnland, Schweden", "Dänemark, Norwegen, Island"],
+          "answer": 0
+        },
+        {
+          "question": "Was war das Highlight der Reise?",
+          "options": ["Der Nordkap in Norwegen", "Die Seen in Schweden", "Die Wälder in Dänemark"],
+          "answer": 0
+        },
+        {
+          "question": "Welche Tiere haben sie gesehen?",
+          "options": ["Elche und Rentiere", "Bären und Wölfe", "Nur Vögel"],
+          "answer": 0
+        },
+        {
+          "question": "Wem empfiehlt Ines Skandinavien?",
+          "options": ["Allen Naturliebhabern", "Nur jungen Leuten", "Nur Abenteurern"],
+          "answer": 0
+        }
+      ]
+    }
+  ]
+}

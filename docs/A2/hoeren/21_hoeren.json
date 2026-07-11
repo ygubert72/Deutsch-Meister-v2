@@ -22,6 +22,11 @@
           "question": "Womit ist Laura gefahren?",
           "options": ["Mit dem Zug", "Mit dem Auto", "Mit dem Flugzeug"],
           "answer": 0
+        },
+        {
+          "question": "Wohin sind Laura und ihre Freundin gegangen?",
+          "options": ["In ein Restaurant", "Ins Kino", "Ins Museum"],
+          "answer": 0
         }
       ]
     },
@@ -43,6 +48,38 @@
         {
           "question": "Wer hat Lisa geholfen?",
           "options": ["Ihre Freundin", "Ihre Schwester", "Ihre Mutter"],
+          "answer": 0
+        },
+        {
+          "question": "Womit sind sie gefahren?",
+          "options": ["Mit dem Auto", "Mit dem Zug", "Mit dem Flugzeug"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_3",
+      "title": "Mein Ausflug",
+      "text": "Guten Tag! Ich bin Emma. Ich bin in die Berge gefahren, weil ich die Natur liebe. Ich bin mit meinen Freunden gewandert. Wir sind auf den Gipfel gestiegen. Die Aussicht war wunderschön. Wir sind am Abend nach Hause gekommen.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Emma", "Laura", "Lisa"],
+          "answer": 0
+        },
+        {
+          "question": "Warum ist Emma in die Berge gefahren?",
+          "options": ["Weil sie die Natur liebt", "Weil sie arbeiten musste", "Weil sie Urlaub machte"],
+          "answer": 0
+        },
+        {
+          "question": "Mit wem ist Emma gewandert?",
+          "options": ["Mit ihren Freunden", "Mit ihrer Familie", "Alleine"],
+          "answer": 0
+        },
+        {
+          "question": "Wie war die Aussicht?",
+          "options": ["Wunderschön", "Schlecht", "Nicht gut"],
           "answer": 0
         }
       ]

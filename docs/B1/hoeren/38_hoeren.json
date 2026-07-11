@@ -6,11 +6,11 @@
     {
       "id": "monolog_1",
       "title": "Weihnachten in Deutschland",
-      "text": "Heute möchte ich euch über etwas typisch Deutsches erzählen. Ich bin Adalberta. Weihnachten ist das wichtigste Fest in Deutschland. Die Vorbereitungen beginnen schon im November. Überall gibt es Weihnachtsmärkte, die sehr schön geschmückt sind. Man trinkt Glühwein und isst Lebkuchen. Am Heiligabend kommt die Familie zusammen. Es gibt ein festliches Essen und Geschenke. Die Kinder singen Weihnachtslieder. Für viele ist das die schönste Zeit des Jahres. Die Atmosphäre ist besonders und gemütlich.",
+      "text": "Heute möchte ich euch über etwas typisch Deutsches erzählen. Ich bin Anna. Weihnachten ist das wichtigste Fest in Deutschland. Die Vorbereitungen beginnen schon im November. Überall gibt es Weihnachtsmärkte. Man trinkt Glühwein und isst Lebkuchen. Am Heiligabend kommt die Familie zusammen. Die Kinder singen Weihnachtslieder. Für viele ist das die schönste Zeit des Jahres.",
       "questions": [
         {
           "question": "Wie heißt die Frau?",
-          "options": ["Adalberta", "Berengaria", "Crescentia"],
+          "options": ["Anna", "Maria", "Julia"],
           "answer": 0
         },
         {
@@ -32,32 +32,17 @@
           "question": "Was machen die Kinder an Heiligabend?",
           "options": ["Sie singen Weihnachtslieder", "Sie spielen", "Sie schlafen"],
           "answer": 0
-        },
-        {
-          "question": "Wann kommt die Familie zusammen?",
-          "options": ["Am Heiligabend", "Am ersten Weihnachtstag", "Am zweiten Weihnachtstag"],
-          "answer": 0
-        },
-        {
-          "question": "Was ist die schönste Zeit für viele?",
-          "options": ["Weihnachten", "Sommer", "Neujahr"],
-          "answer": 0
-        },
-        {
-          "question": "Wie ist die Atmosphäre?",
-          "options": ["Besonders und gemütlich", "Kalt und ungemütlich", "Laut und hektisch"],
-          "answer": 0
         }
       ]
     },
     {
       "id": "monolog_2",
       "title": "Das Oktoberfest",
-      "text": "In Deutschland gibt es viele Traditionen, die weltweit bekannt sind. Ich bin Berengaria. Das Oktoberfest in München ist eines davon. Es findet jedes Jahr statt und dauert etwa zwei Wochen. Die Menschen tragen Trachten wie Dirndl und Lederhosen. Es gibt große Bierzelte und viele Karussells. Die Besucher kommen aus aller Welt. Das Fest ist sehr fröhlich und laut. Es wird viel gegessen und getrunken. Die Atmosphäre ist einzigartig. Das Oktoberfest ist ein kulturelles Erbe der Region.",
+      "text": "In Deutschland gibt es viele Traditionen, die weltweit bekannt sind. Ich bin Maria. Das Oktoberfest in München ist eines davon. Es findet jedes Jahr statt und dauert etwa zwei Wochen. Die Menschen tragen Trachten wie Dirndl und Lederhosen. Es gibt große Bierzelte und viele Karussells. Die Besucher kommen aus aller Welt. Das Fest ist sehr fröhlich.",
       "questions": [
         {
           "question": "Wie heißt die Frau?",
-          "options": ["Adalberta", "Berengaria", "Crescentia"],
+          "options": ["Anna", "Maria", "Julia"],
           "answer": 1
         },
         {
@@ -76,18 +61,8 @@
           "answer": 0
         },
         {
-          "question": "Was gibt es auf dem Oktoberfest?",
-          "options": ["Große Bierzelte und Karussells", "Nur Bierzelte", "Nur Karussells"],
-          "answer": 0
-        },
-        {
           "question": "Woher kommen die Besucher?",
           "options": ["Aus aller Welt", "Nur aus Deutschland", "Nur aus Europa"],
-          "answer": 0
-        },
-        {
-          "question": "Wie ist die Atmosphäre?",
-          "options": ["Einzigartig", "Normale", "Langweilig"],
           "answer": 0
         }
       ]
@@ -95,17 +70,12 @@
     {
       "id": "monolog_3",
       "title": "Ostern in Deutschland",
-      "text": "Wisst ihr, was zu Ostern in Deutschland gefeiert wird? Ich bin Crescentia. Ostern ist ein wichtiges Fest im Frühling. Es wird gefeiert, um die Auferstehung Jesu zu gedenken. Vor Ostern gibt es die Fastenzeit. Die Kinder bemalen Eier und verstecken sie. Der Osterhase bringt die Eier in den Garten. Die Familien kommen zusammen und essen ein großes Festmahl. Es gibt auch Osterbräuche wie Osterfeuer. Das Fest ist sehr fröhlich und farbenfroh. Die Menschen freuen sich auf den Frühling.",
+      "text": "Wisst ihr, was zu Ostern in Deutschland gefeiert wird? Ich bin Julia. Ostern ist ein wichtiges Fest im Frühling. Die Kinder bemalen Eier und verstecken sie. Der Osterhase bringt die Eier in den Garten. Die Familien kommen zusammen und essen ein großes Festmahl. Es gibt auch Osterbräuche wie Osterfeuer. Das Fest ist sehr fröhlich.",
       "questions": [
         {
           "question": "Wie heißt die Frau?",
-          "options": ["Adalberta", "Berengaria", "Crescentia"],
+          "options": ["Anna", "Maria", "Julia"],
           "answer": 2
-        },
-        {
-          "question": "Was wird zu Ostern gefeiert?",
-          "options": ["Die Auferstehung Jesu", "Die Geburt Jesu", "Das Ende des Winters"],
-          "answer": 0
         },
         {
           "question": "Was machen die Kinder zu Ostern?",
@@ -125,142 +95,6 @@
         {
           "question": "Was gibt es noch als Osterbrauch?",
           "options": ["Osterfeuer", "Osterbäume", "Osterhügel"],
-          "answer": 0
-        },
-        {
-          "question": "Wie ist das Fest?",
-          "options": ["Fröhlich und farbenfroh", "Traurig und ernst", "Laut und chaotisch"],
-          "answer": 0
-        }
-      ]
-    },
-    {
-      "id": "monolog_4",
-      "title": "Der Karneval am Rhein",
-      "text": "Eine der schönsten Traditionen ist der Karneval. Ich bin Dietlinde. Der Karneval wird besonders am Rhein gefeiert. Die Städte Köln, Mainz und Düsseldorf sind bekannt dafür. Die Menschen verkleiden sich und feiern auf der Straße. Es gibt große Umzüge mit bunten Wagen. Die Teilnehmer werfen Süßigkeiten in die Menge. Die Narren rufen laut \"Alaaf\" oder \"Helau\". Der Karneval beginnt am 11.11. um 11.11 Uhr. Die Hauptzeit ist jedoch im Februar. Es ist eine fröhliche Zeit, in der die Sorgen vergessen werden.",
-      "questions": [
-        {
-          "question": "Wie heißt die Frau?",
-          "options": ["Dietlinde", "Eberhilda", "Crescentia"],
-          "answer": 0
-        },
-        {
-          "question": "Wo wird der Karneval besonders gefeiert?",
-          "options": ["Am Rhein", "In Bayern", "In Norddeutschland"],
-          "answer": 0
-        },
-        {
-          "question": "Welche Städte sind bekannt für den Karneval?",
-          "options": ["Köln, Mainz, Düsseldorf", "Berlin, Hamburg, München", "Frankfurt, Stuttgart, Leipzig"],
-          "answer": 0
-        },
-        {
-          "question": "Was machen die Menschen beim Karneval?",
-          "options": ["Sie verkleiden sich und feiern", "Sie bleiben zu Hause", "Sie gehen in die Kirche"],
-          "answer": 0
-        },
-        {
-          "question": "Was werfen die Teilnehmer in die Menge?",
-          "options": ["Süßigkeiten", "Blumen", "Steine"],
-          "answer": 0
-        },
-        {
-          "question": "Wann beginnt der Karneval offiziell?",
-          "options": ["Am 11.11. um 11.11 Uhr", "Im Februar", "Im Januar"],
-          "answer": 0
-        },
-        {
-          "question": "Wann ist die Hauptzeit des Karnevals?",
-          "options": ["Im Februar", "Im November", "Im Dezember"],
-          "answer": 0
-        },
-        {
-          "question": "Was wird im Karneval vergessen?",
-          "options": ["Die Sorgen", "Die Arbeit", "Die Familie"],
-          "answer": 0
-        }
-      ]
-    },
-    {
-      "id": "monolog_5",
-      "title": "Der Tag der Deutschen Einheit",
-      "text": "Wisst ihr, was am 3. Oktober in Deutschland gefeiert wird? Ich bin Eberhilda. Der Tag der Deutschen Einheit ist ein wichtiger Feiertag. An diesem Tag im Jahr 1990 wurde die Wiedervereinigung Deutschlands gefeiert. Es ist der Nationalfeiertag Deutschlands. Es gibt offizielle Feiern in Berlin. Die Menschen feiern mit Konzerten und Festen. Es ist ein Tag der Freude und des Zusammenhalts. Die deutsche Geschichte ist sehr wichtig. Dieser Tag erinnert an die Einheit des Landes.",
-      "questions": [
-        {
-          "question": "Wie heißt die Frau?",
-          "options": ["Dietlinde", "Eberhilda", "Adalberta"],
-          "answer": 1
-        },
-        {
-          "question": "Was wird am 3. Oktober gefeiert?",
-          "options": ["Der Tag der Deutschen Einheit", "Weihnachten", "Ostern"],
-          "answer": 0
-        },
-        {
-          "question": "Wann wurde die Wiedervereinigung gefeiert?",
-          "options": ["1990", "1989", "1991"],
-          "answer": 0
-        },
-        {
-          "question": "Welcher Feiertag ist das?",
-          "options": ["Der Nationalfeiertag", "Der Ostermontag", "Der Karnevalsmontag"],
-          "answer": 0
-        },
-        {
-          "question": "Wo gibt es offizielle Feiern?",
-          "options": ["In Berlin", "In München", "In Köln"],
-          "answer": 0
-        },
-        {
-          "question": "Was für ein Tag ist es?",
-          "options": ["Ein Tag der Freude und des Zusammenhalts", "Ein Tag der Trauer", "Ein Tag der Arbeit"],
-          "answer": 0
-        },
-        {
-          "question": "Woran erinnert dieser Tag?",
-          "options": ["An die Einheit des Landes", "An den Krieg", "An die Königsfamilie"],
-          "answer": 0
-        }
-      ]
-    },
-    {
-      "id": "monolog_6",
-      "title": "Die deutsche Küche",
-      "text": "Ich möchte euch heute über die deutsche Küche erzählen. Ich bin Hildegard. Die deutsche Küche ist sehr vielfältig. Jede Region hat ihre eigenen Spezialitäten. In Bayern isst man gerne Schweinshaxe und Weißwurst. In Norddeutschland gibt es Fischgerichte. Beliebt sind auch Kartoffelgerichte, Salate und Braten. Die Deutschen lieben Brot und es gibt viele Brotsorten. Auch Kuchen und Torten sind sehr berühmt. Die Küche ist deftig und herzhaft. Die Mahlzeiten sind oft groß und nahrhaft.",
-      "questions": [
-        {
-          "question": "Wie heißt die Frau?",
-          "options": ["Hildegard", "Eberhilda", "Dietlinde"],
-          "answer": 0
-        },
-        {
-          "question": "Was isst man in Bayern?",
-          "options": ["Schweinshaxe und Weißwurst", "Fischgerichte", "Brot"],
-          "answer": 0
-        },
-        {
-          "question": "Was gibt es in Norddeutschland?",
-          "options": ["Fischgerichte", "Schweinshaxe", "Kuchen"],
-          "answer": 0
-        },
-        {
-          "question": "Was lieben die Deutschen besonders?",
-          "options": ["Brot", "Fisch", "Fleisch"],
-          "answer": 0
-        },
-        {
-          "question": "Was ist auch sehr berühmt?",
-          "options": ["Kuchen und Torten", "Suppen", "Salate"],
-          "answer": 0
-        },
-        {
-          "question": "Wie ist die deutsche Küche?",
-          "options": ["Deftig und herzhaft", "Leicht und gesund", "Scharf und würzig"],
-          "answer": 0
-        },
-        {
-          "question": "Wie sind die Mahlzeiten oft?",
-          "options": ["Groß und nahrhaft", "Klein und leicht", "Schnell und einfach"],
           "answer": 0
         }
       ]

@@ -6,36 +6,31 @@
     {
       "id": "monolog_1",
       "title": "Meine Bewerbung",
-      "text": "Guten Tag! Heute möchte ich über Bewerbungen sprechen. Ich bin Bertha. Ich habe mich auf eine neue Stelle beworben. Zuerst habe ich meinen Lebenslauf aktualisiert. Dann habe ich ein Bewerbungsschreiben verfasst. Im Schreiben habe ich meine Erfahrungen beschrieben. Ich habe auch meine Motivation erklärt. Die Bewerbung habe ich per E-Mail geschickt. Jetzt warte ich auf eine Antwort. Ich hoffe, dass es klappt.",
+      "text": "Guten Tag! Ich bin Anna. Ich habe mich auf eine neue Stelle beworben. Zuerst habe ich meinen Lebenslauf aktualisiert. Dann habe ich ein Bewerbungsschreiben verfasst. Im Schreiben habe ich meine Erfahrungen beschrieben. Ich habe auch meine Motivation erklärt. Die Bewerbung habe ich per E-Mail geschickt. Jetzt warte ich auf eine Antwort.",
       "questions": [
         {
           "question": "Wie heißt die Frau?",
-          "options": ["Bertha", "Elsbeth", "Frieda"],
+          "options": ["Anna", "Maria", "Julia"],
           "answer": 0
         },
         {
-          "question": "Was hat Bertha zuerst gemacht?",
+          "question": "Was hat Anna zuerst gemacht?",
           "options": ["Ihren Lebenslauf aktualisiert", "Ein Schreiben verfasst", "Eine E-Mail geschickt"],
           "answer": 0
         },
         {
-          "question": "Was hat Bertha im Schreiben beschrieben?",
+          "question": "Was hat Anna im Schreiben beschrieben?",
           "options": ["Ihre Erfahrungen", "Ihre Hobbys", "Ihre Familie"],
           "answer": 0
         },
         {
-          "question": "Wie hat Bertha die Bewerbung geschickt?",
+          "question": "Wie hat Anna die Bewerbung geschickt?",
           "options": ["Per E-Mail", "Per Post", "Persönlich"],
           "answer": 0
         },
         {
-          "question": "Was macht Bertha jetzt?",
+          "question": "Was macht Anna jetzt?",
           "options": ["Sie wartet auf eine Antwort", "Sie arbeitet", "Sie reist"],
-          "answer": 0
-        },
-        {
-          "question": "Hofft Bertha, dass es klappt?",
-          "options": ["Ja", "Nein", "Weiß nicht"],
           "answer": 0
         }
       ]
@@ -43,11 +38,11 @@
     {
       "id": "monolog_2",
       "title": "Der Lebenslauf",
-      "text": "Wisst ihr, was in einen Lebenslauf gehört? Ich bin Elsbeth. Ein Lebenslauf ist sehr wichtig für die Bewerbung. In meinem Lebenslauf schreibe ich meine persönlichen Daten. Dann kommen meine Ausbildung und meine Berufserfahrung. Ich liste auch meine Kenntnisse auf. Zum Beispiel Fremdsprachen und Computerkenntnisse. Der Lebenslauf sollte übersichtlich sein. Ich habe meinen Lebenslauf immer aktualisiert. Das ist sehr wichtig.",
+      "text": "Schön, dass ihr zuhört! Ich bin Maria. Ein Lebenslauf ist sehr wichtig für die Bewerbung. In meinem Lebenslauf schreibe ich meine persönlichen Daten. Dann kommen meine Ausbildung und meine Berufserfahrung. Ich liste auch meine Kenntnisse auf. Der Lebenslauf sollte übersichtlich sein. Ich habe meinen Lebenslauf immer aktualisiert.",
       "questions": [
         {
           "question": "Wie heißt die Frau?",
-          "options": ["Bertha", "Elsbeth", "Frieda"],
+          "options": ["Anna", "Maria", "Julia"],
           "answer": 1
         },
         {
@@ -56,7 +51,7 @@
           "answer": 0
         },
         {
-          "question": "Was listet Elsbeth noch auf?",
+          "question": "Was listet Maria noch auf?",
           "options": ["Kenntnisse wie Sprachen und Computer", "Ihre Familie", "Ihre Reisen"],
           "answer": 0
         },
@@ -66,13 +61,8 @@
           "answer": 0
         },
         {
-          "question": "Was hat Elsbeth mit ihrem Lebenslauf gemacht?",
+          "question": "Was hat Maria mit ihrem Lebenslauf gemacht?",
           "options": ["Ihn immer aktualisiert", "Ihn nie geändert", "Ihn vergessen"],
-          "answer": 0
-        },
-        {
-          "question": "Warum ist das wichtig?",
-          "options": ["Weil man immer aktuell sein sollte", "Weil es schön aussieht", "Weil der Chef es verlangt"],
           "answer": 0
         }
       ]
@@ -80,20 +70,20 @@
     {
       "id": "monolog_3",
       "title": "Das Bewerbungsschreiben",
-      "text": "Guten Morgen! Ich bin Frieda. Das Bewerbungsschreiben ist fast so wichtig wie der Lebenslauf. Im Schreiben erkläre ich, warum ich die richtige Kandidatin bin. Ich schreibe, warum ich die Stelle haben möchte. Ich beziehe mich auf die Anforderungen der Firma. Das Schreiben sollte persönlich sein. Man sollte nicht einfach einen Standardtext verwenden. Ich habe für jede Bewerbung ein neues Schreiben verfasst.",
+      "text": "Guten Morgen! Ich bin Julia. Das Bewerbungsschreiben ist fast so wichtig wie der Lebenslauf. Ich schreibe, warum ich die Stelle haben möchte. Ich beziehe mich auf die Anforderungen der Firma. Das Schreiben sollte persönlich sein. Ich habe für jede Bewerbung ein neues Schreiben verfasst.",
       "questions": [
         {
           "question": "Wie heißt die Frau?",
-          "options": ["Bertha", "Elsbeth", "Frieda"],
+          "options": ["Anna", "Maria", "Julia"],
           "answer": 2
         },
         {
-          "question": "Was erklärt Frieda im Bewerbungsschreiben?",
-          "options": ["Warum sie die richtige Kandidatin ist", "Ihre Hobbys", "Ihre Familie"],
+          "question": "Was erklärt Julia im Bewerbungsschreiben?",
+          "options": ["Warum sie die Stelle haben möchte", "Ihre Hobbys", "Ihre Familie"],
           "answer": 0
         },
         {
-          "question": "Worauf bezieht sich Frieda im Schreiben?",
+          "question": "Worauf bezieht sich Julia im Schreiben?",
           "options": ["Auf die Anforderungen der Firma", "Auf ihre Freunde", "Auf ihre Reisen"],
           "answer": 0
         },
@@ -103,13 +93,8 @@
           "answer": 0
         },
         {
-          "question": "Was hat Frieda für jede Bewerbung gemacht?",
+          "question": "Was hat Julia für jede Bewerbung gemacht?",
           "options": ["Ein neues Schreiben verfasst", "Den gleichen Text verwendet", "Nichts geschrieben"],
-          "answer": 0
-        },
-        {
-          "question": "Warum sollte man keinen Standardtext verwenden?",
-          "options": ["Weil man persönlich sein soll", "Weil es schneller geht", "Weil es einfacher ist"],
           "answer": 0
         }
       ]
@@ -117,11 +102,11 @@
     {
       "id": "monolog_4",
       "title": "Die richtige Form",
-      "text": "Ich möchte euch heute über die richtige Form der Bewerbung sprechen. Ich bin Grete. Bei der Bewerbung muss man auf die Form achten. Das Schreiben sollte höflich sein. Man beginnt mit 'Sehr geehrte Damen und Herren'. Das ist die Standard-Anrede. Man schreibt in der Sie-Form. Das Schreiben sollte fehlerfrei sein. Ich lasse meine Bewerbung immer von einer Freundin korrigieren. Das ist sicherer.",
+      "text": "Hallo zusammen! Ich bin Laura. Bei der Bewerbung muss man auf die Form achten. Man beginnt mit 'Sehr geehrte Damen und Herren'. Man schreibt in der Sie-Form. Das Schreiben sollte fehlerfrei sein. Ich lasse meine Bewerbung immer von einer Freundin korrigieren.",
       "questions": [
         {
           "question": "Wie heißt die Frau?",
-          "options": ["Grete", "Lieselotte", "Frieda"],
+          "options": ["Laura", "Lisa", "Anna"],
           "answer": 0
         },
         {
@@ -140,13 +125,8 @@
           "answer": 0
         },
         {
-          "question": "Was macht Grete mit ihrer Bewerbung?",
+          "question": "Was macht Laura mit ihrer Bewerbung?",
           "options": ["Sie lässt sie von einer Freundin korrigieren", "Sie schickt sie sofort", "Sie liest sie nicht mehr"],
-          "answer": 0
-        },
-        {
-          "question": "Warum lässt Grete ihre Bewerbung korrigieren?",
-          "options": ["Das ist sicherer", "Das ist schneller", "Das ist billiger"],
           "answer": 0
         }
       ]
@@ -154,15 +134,15 @@
     {
       "id": "monolog_5",
       "title": "Tipps für die Bewerbung",
-      "text": "Hallo zusammen! Ich bin Lieselotte. Ich habe viele Bewerbungen geschrieben. Hier sind meine Tipps: Seid ehrlich und übertreibt nicht. Schreibt klar und deutlich. Passt das Schreiben an die Stelle an. Macht keine Rechtschreibfehler. Seid pünktlich mit der Bewerbung. Und vor allem: Habt Selbstvertrauen! Das ist sehr wichtig. Ich habe mit diesen Tipps immer Erfolg gehabt.",
+      "text": "Grüß dich! Ich bin Lisa. Ich habe viele Bewerbungen geschrieben. Seid ehrlich und übertreibt nicht. Schreibt klar und deutlich. Passt das Schreiben an die Stelle an. Macht keine Rechtschreibfehler. Seid pünktlich mit der Bewerbung. Habt Selbstvertrauen!",
       "questions": [
         {
           "question": "Wie heißt die Frau?",
-          "options": ["Grete", "Lieselotte", "Bertha"],
+          "options": ["Laura", "Lisa", "Anna"],
           "answer": 1
         },
         {
-          "question": "Was ist Lieselottes erster Tipp?",
+          "question": "Was ist Lisas erster Tipp?",
           "options": ["Seid ehrlich", "Übertreibt", "Schreibt lange Texte"],
           "answer": 0
         },
@@ -180,22 +160,17 @@
           "question": "Was ist sehr wichtig?",
           "options": ["Selbstvertrauen", "Viel Geld", "Ein Auto"],
           "answer": 0
-        },
-        {
-          "question": "Hat Lieselotte mit diesen Tipps Erfolg gehabt?",
-          "options": ["Ja, immer", "Nein, nie", "Manchmal"],
-          "answer": 0
         }
       ]
     },
     {
       "id": "monolog_6",
       "title": "Die Bewerbungsmappe",
-      "text": "Findet ihr nicht auch, dass sich Bewerbungen verändert haben? Ich bin Mathilde. Früher hat man eine Bewerbungsmappe abgegeben. Heute macht man vieles online. Ich habe beide Varianten erlebt. In der Mappe waren der Lebenslauf, das Anschreiben und Zeugnisse. Heute schickt man alles als PDF. Das ist praktischer. Ich finde, dass beides funktioniert. Wichtig ist der Inhalt.",
+      "text": "Schön, dass ihr da seid! Ich bin Emma. Früher hat man eine Bewerbungsmappe abgegeben. Heute macht man vieles online. Ich habe beide Varianten erlebt. In der Mappe waren der Lebenslauf, das Anschreiben und Zeugnisse. Heute schickt man alles als PDF. Das ist praktischer.",
       "questions": [
         {
           "question": "Wie heißt die Frau?",
-          "options": ["Mathilde", "Lieselotte", "Grete"],
+          "options": ["Emma", "Lisa", "Laura"],
           "answer": 0
         },
         {
@@ -216,11 +191,6 @@
         {
           "question": "Was ist wichtig?",
           "options": ["Der Inhalt", "Die Verpackung", "Das Papier"],
-          "answer": 0
-        },
-        {
-          "question": "Hat Mathilde beide Varianten erlebt?",
-          "options": ["Ja", "Nein", "Weiß nicht"],
           "answer": 0
         }
       ]

@@ -1,0 +1,174 @@
+{
+  "lesson": 24,
+  "level": "A2",
+  "title": "Погода и сезоны",
+  "dialogs": [
+    {
+      "id": "monolog_1",
+      "title": "Meine Lieblingsjahreszeit",
+      "text": "Hallo! Ich bin Hanna. Meine Lieblingsjahreszeit ist der Sommer. Ich liebe den Sommer, weil es warm ist. Ich kann draußen sein und schwimmen gehen. Im Sommer ist das Wetter oft sonnig. Manchmal regnet es aber auch. Das ist nicht so schlimm. Ich mag den Sommer am liebsten.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Hanna", "Clara", "Emma"],
+          "answer": 0
+        },
+        {
+          "question": "Was ist Hannas Lieblingsjahreszeit?",
+          "options": ["Der Sommer", "Der Winter", "Der Frühling"],
+          "answer": 0
+        },
+        {
+          "question": "Warum mag Hanna den Sommer?",
+          "options": ["Weil es warm ist", "Weil es kalt ist", "Weil es schneit"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_2",
+      "title": "Das Wetter im Winter",
+      "text": "Grüß dich! Ich bin Petra. Der Winter ist bei uns sehr kalt. Es schneit oft und die Temperatur ist unter null Grad. Ich trage immer eine warme Jacke und Handschuhe. Im Winter bleibe ich gern zu Hause. Ich trinke heißen Tee und lese ein Buch. Manchmal gehe ich aber auch Schlitten fahren. Das macht viel Spaß.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Petra", "Hanna", "Sabine"],
+          "answer": 0
+        },
+        {
+          "question": "Wie ist das Wetter im Winter?",
+          "options": ["Sehr kalt", "Sehr warm", "Regnerisch"],
+          "answer": 0
+        },
+        {
+          "question": "Was macht Petra im Winter gern?",
+          "options": ["Sie bleibt zu Hause", "Sie geht schwimmen", "Sie fährt Fahrrad"],
+          "answer": 0
+        },
+        {
+          "question": "Was macht Petra manchmal im Winter?",
+          "options": ["Sie fährt Schlitten", "Sie geht wandern", "Sie spielt Tennis"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_3",
+      "title": "Der Frühling kommt",
+      "text": "Guten Tag! Ich heiße Nina. Der Frühling ist eine schöne Jahreszeit. Die Tage werden länger und die Sonne scheint öfter. Die Blumen blühen und die Vögel singen. Die Temperaturen sind angenehm, etwa 15 Grad. Ich gehe gern spazieren und genieße die Natur. Im Frühling fühle ich mich immer sehr glücklich.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Nina", "Petra", "Hanna"],
+          "answer": 0
+        },
+        {
+          "question": "Was passiert im Frühling?",
+          "options": ["Die Blumen blühen", "Es schneit", "Es ist sehr heiß"],
+          "answer": 0
+        },
+        {
+          "question": "Wie sind die Temperaturen im Frühling?",
+          "options": ["Etwa 15 Grad", "Unter null Grad", "Über 30 Grad"],
+          "answer": 0
+        },
+        {
+          "question": "Was macht Nina im Frühling gern?",
+          "options": ["Sie geht spazieren", "Sie schwimmt", "Sie fährt Ski"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_4",
+      "title": "Schlechtes Wetter",
+      "text": "Hallo Leute! Ich bin Laura. Heute ist das Wetter nicht gut. Es regnet den ganzen Tag und es ist windig. Es ist etwa 10 Grad kalt. Ich möchte nicht nach draußen gehen. Ich bleibe lieber zu Hause. Ich höre Musik und koche etwas Leckeres. Bei schlechtem Wetter kann man auch schöne Sachen machen.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Laura", "Nina", "Petra"],
+          "answer": 0
+        },
+        {
+          "question": "Wie ist das Wetter heute?",
+          "options": ["Es regnet und ist windig", "Es schneit", "Es ist sonnig"],
+          "answer": 0
+        },
+        {
+          "question": "Was macht Laura bei schlechtem Wetter?",
+          "options": ["Sie bleibt zu Hause", "Sie geht spazieren", "Sie fährt Fahrrad"],
+          "answer": 0
+        },
+        {
+          "question": "Was kocht Laura?",
+          "options": ["Etwas Leckeres", "Eine Suppe", "Einen Kuchen"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_5",
+      "title": "Meine Reise im Herbst",
+      "text": "Guten Abend! Ich bin Monika. Letztes Jahr habe ich im Herbst eine Reise gemacht. Ich bin in die Berge gefahren. Das Wetter war herbstlich: bunte Blätter und klare Luft. Die Temperaturen waren etwa 12 Grad. Es war nicht zu warm und nicht zu kalt. Ich habe viele schöne Spaziergänge gemacht. Die Landschaft war wunderschön. Im Herbst ist es in den Bergen besonders schön. Ich möchte nächstes Jahr wieder dorthin fahren.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Monika", "Laura", "Nina"],
+          "answer": 0
+        },
+        {
+          "question": "Wann hat Monika eine Reise gemacht?",
+          "options": ["Im Herbst", "Im Sommer", "Im Winter"],
+          "answer": 0
+        },
+        {
+          "question": "Wie war das Wetter auf der Reise?",
+          "options": ["Herbstlich mit bunten Blättern", "Heiß und sonnig", "Kalt und schneebedeckt"],
+          "answer": 0
+        },
+        {
+          "question": "Wie waren die Temperaturen?",
+          "options": ["Etwa 12 Grad", "Über 30 Grad", "Unter null Grad"],
+          "answer": 0
+        },
+        {
+          "question": "Was hat Monika auf der Reise gemacht?",
+          "options": ["Viele Spaziergänge", "Geschwommen", "Gearbeitet"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_6",
+      "title": "Wettervorhersage",
+      "text": "Hallo! Ich bin Claudia. Ich höre oft die Wettervorhersage im Radio. Morgen soll es sonnig sein. Die Temperaturen steigen auf 25 Grad. Am Wochenende wird es aber regnen. Das ist schade, denn ich wollte einen Ausflug machen. Die Wettervorhersage hilft mir, meine Pläne zu machen. Wenn es schön ist, gehe ich nach draußen. Wenn es regnet, bleibe ich zu Hause und lese ein Buch.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Claudia", "Monika", "Laura"],
+          "answer": 0
+        },
+        {
+          "question": "Was hört Claudia oft im Radio?",
+          "options": ["Die Wettervorhersage", "Musik", "Die Nachrichten"],
+          "answer": 0
+        },
+        {
+          "question": "Wie wird das Wetter morgen?",
+          "options": ["Sonnig", "Regnerisch", "Schneebedeckt"],
+          "answer": 0
+        },
+        {
+          "question": "Was soll am Wochenende passieren?",
+          "options": ["Es wird regnen", "Es wird schneien", "Es wird sehr heiß"],
+          "answer": 0
+        },
+        {
+          "question": "Wie hilft Claudia die Wettervorhersage?",
+          "options": ["Sie hilft, Pläne zu machen", "Sie ist nicht wichtig", "Sie ist immer falsch"],
+          "answer": 0
+        }
+      ]
+    }
+  ]
+}

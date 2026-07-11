@@ -6,30 +6,30 @@
     {
       "id": "monolog_1",
       "title": "Mein Tag",
-      "text": "Guten Morgen! Ich bin Tessa. Ich bin um 7 Uhr aufgestanden. Ich habe ein Buch gelesen. Ich habe Kaffee getrunken. Ich bin ins Büro gefahren. Ich habe einen Brief geschrieben. Am Abend bin ich nach Hause gekommen.",
+      "text": "Guten Morgen! Ich bin Anna. Ich bin um 7 Uhr aufgestanden. Ich habe ein Buch gelesen. Ich habe Kaffee getrunken. Ich bin ins Büro gefahren. Ich habe einen Brief geschrieben. Am Abend bin ich nach Hause gekommen.",
       "questions": [
         {
           "question": "Wie heißt die Frau?",
-          "options": ["Tessa", "Mara", "Ida"],
+          "options": ["Anna", "Maria", "Julia"],
           "answer": 0
         },
         {
-          "question": "Wann ist Tessa aufgestanden?",
+          "question": "Wann ist Anna aufgestanden?",
           "options": ["Um 7 Uhr", "Um 8 Uhr", "Um 6 Uhr"],
           "answer": 0
         },
         {
-          "question": "Was hat Tessa am Morgen gemacht?",
+          "question": "Was hat Anna am Morgen gemacht?",
           "options": ["Ein Buch gelesen und Kaffee getrunken", "Geschlafen", "Sport gemacht"],
           "answer": 0
         },
         {
-          "question": "Was hat Tessa im Büro gemacht?",
+          "question": "Was hat Anna im Büro gemacht?",
           "options": ["Einen Brief geschrieben", "E-Mails gelesen", "Telefoniert"],
           "answer": 0
         },
         {
-          "question": "Wann ist Tessa nach Hause gekommen?",
+          "question": "Wann ist Anna nach Hause gekommen?",
           "options": ["Am Abend", "Am Mittag", "Am Morgen"],
           "answer": 0
         }
@@ -38,30 +38,30 @@
     {
       "id": "monolog_2",
       "title": "Meine Kindheit",
-      "text": "Hallo! Ich bin Mara. Als Kind bin ich oft in den Wald gegangen. Ich habe mit meiner Schwester gespielt. Meine Mutter hat Kuchen gebacken. Das war eine schöne Zeit. Später bin ich nach Berlin gezogen.",
+      "text": "Hallo! Ich bin Maria. Als Kind bin ich oft in den Wald gegangen. Ich habe mit meiner Schwester gespielt. Meine Mutter hat Kuchen gebacken. Das war eine schöne Zeit. Später bin ich nach Berlin gezogen.",
       "questions": [
         {
           "question": "Wie heißt die Frau?",
-          "options": ["Tessa", "Mara", "Ida"],
+          "options": ["Anna", "Maria", "Julia"],
           "answer": 1
         },
         {
-          "question": "Wo ist Mara als Kind oft gegangen?",
+          "question": "Wo ist Maria als Kind oft gegangen?",
           "options": ["In den Wald", "In die Stadt", "Ans Meer"],
           "answer": 0
         },
         {
-          "question": "Mit wem hat Mara gespielt?",
-          "options": ["Mit ihrer Schwester", "Mit ihrer Mutter", "Mit Freundinnen"],
+          "question": "Mit wem hat Maria gespielt?",
+          "options": ["Mit ihrer Schwester", "Mit ihrer Mutter", "Mit Freunden"],
           "answer": 0
         },
         {
-          "question": "Was hat Maras Mutter gemacht?",
+          "question": "Was hat Marias Mutter gemacht?",
           "options": ["Kuchen gebacken", "Gearbeitet", "Gelesen"],
           "answer": 0
         },
         {
-          "question": "Wohin ist Mara später gezogen?",
+          "question": "Wohin ist Maria später gezogen?",
           "options": ["Nach Berlin", "Nach München", "Nach Hamburg"],
           "answer": 0
         }
@@ -70,90 +70,26 @@
     {
       "id": "monolog_3",
       "title": "Mein Konzert",
-      "text": "Grüß dich! Ich bin Ida. Ich bin zu einem Konzert gegangen. Die Band hat gut gespielt. Ich habe neue Leute kennengelernt. Wir haben zusammen gesungen. Ich bin erst um 2 Uhr nach Hause gekommen.",
+      "text": "Grüß dich! Ich bin Julia. Ich bin zu einem Konzert gegangen. Die Band hat gut gespielt. Ich habe neue Leute kennengelernt. Wir haben zusammen gesungen. Ich bin erst um 2 Uhr nach Hause gekommen.",
       "questions": [
         {
           "question": "Wie heißt die Frau?",
-          "options": ["Tessa", "Mara", "Ida"],
+          "options": ["Anna", "Maria", "Julia"],
           "answer": 2
         },
         {
-          "question": "Wohin ist Ida gegangen?",
+          "question": "Wohin ist Julia gegangen?",
           "options": ["Zu einem Konzert", "Ins Kino", "Ins Restaurant"],
           "answer": 0
         },
         {
-          "question": "Was hat Ida auf dem Konzert gemacht?",
+          "question": "Was hat Julia auf dem Konzert gemacht?",
           "options": ["Neue Leute kennengelernt und gesungen", "Geschlafen", "Gearbeitet"],
           "answer": 0
         },
         {
-          "question": "Wann ist Ida nach Hause gekommen?",
+          "question": "Wann ist Julia nach Hause gekommen?",
           "options": ["Um 2 Uhr", "Um 24 Uhr", "Um 1 Uhr"],
-          "answer": 0
-        }
-      ]
-    },
-    {
-      "id": "monolog_4",
-      "title": "Mein Geburtstag",
-      "text": "Guten Tag! Ich bin Fina. Ich habe gestern Geburtstag gehabt. Ich habe viele Geschenke bekommen. Ich habe eine große Torte gegessen. Meine Freundinnen haben mich besucht. Wir haben bis spät gefeiert.",
-      "questions": [
-        {
-          "question": "Wie heißt die Frau?",
-          "options": ["Fina", "Alma", "Ida"],
-          "answer": 0
-        },
-        {
-          "question": "Was hat Fina gestern gehabt?",
-          "options": ["Geburtstag", "Party", "Konzert"],
-          "answer": 0
-        },
-        {
-          "question": "Was hat Fina bekommen?",
-          "options": ["Viele Geschenke", "Einen Kuchen", "Eine Karte"],
-          "answer": 0
-        },
-        {
-          "question": "Wer hat Fina besucht?",
-          "options": ["Ihre Freundinnen", "Ihre Familie", "Ihre Kolleginnen"],
-          "answer": 0
-        },
-        {
-          "question": "Wie lange haben sie gefeiert?",
-          "options": ["Bis spät", "Eine Stunde", "Den ganzen Tag"],
-          "answer": 0
-        }
-      ]
-    },
-    {
-      "id": "monolog_5",
-      "title": "Mein Urlaub",
-      "text": "Hallo! Ich bin Alma. Ich habe im Sommer Urlaub gemacht. Ich bin ans Meer gefahren. Ich habe viel geschwommen. Ich habe neue Freunde gefunden. Ich habe viele Fotos gemacht. Der Urlaub war wunderschön.",
-      "questions": [
-        {
-          "question": "Wie heißt die Frau?",
-          "options": ["Alma", "Fina", "Mara"],
-          "answer": 0
-        },
-        {
-          "question": "Wann hat Alma Urlaub gemacht?",
-          "options": ["Im Sommer", "Im Winter", "Im Frühling"],
-          "answer": 0
-        },
-        {
-          "question": "Wohin ist Alma gefahren?",
-          "options": ["Ans Meer", "In die Berge", "In die Stadt"],
-          "answer": 0
-        },
-        {
-          "question": "Was hat Alma im Urlaub gemacht?",
-          "options": ["Geschwommen und Fotos gemacht", "Gearbeitet", "Gelesen"],
-          "answer": 0
-        },
-        {
-          "question": "Wie war der Urlaub?",
-          "options": ["Wunderschön", "Schlecht", "Langweilig"],
           "answer": 0
         }
       ]

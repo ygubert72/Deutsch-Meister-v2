@@ -1,0 +1,204 @@
+{
+  "lesson": 27,
+  "level": "A2",
+  "title": "Здоровье: у врача",
+  "dialogs": [
+    {
+      "id": "monolog_1",
+      "title": "Ich bin krank",
+      "text": "Hallo, liebe Zuhörer! Ich bin Emilie. Ich fühle mich heute nicht gut. Ich habe Kopfschmerzen und Fieber. Mein Hals tut weh. Ich muss zum Arzt gehen. Ich bleibe heute zu Hause. Meine Chefin hat Verständnis. Ich hoffe, es wird bald besser.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Emilie", "Lina", "Tilda"],
+          "answer": 0
+        },
+        {
+          "question": "Wie fühlt sich Emilie heute?",
+          "options": ["Nicht gut", "Sehr gut", "Okay"],
+          "answer": 0
+        },
+        {
+          "question": "Was hat Emilie?",
+          "options": ["Kopfschmerzen und Fieber", "Nur Kopfschmerzen", "Bauchschmerzen"],
+          "answer": 0
+        },
+        {
+          "question": "Was muss Emilie machen?",
+          "options": ["Zum Arzt gehen", "Zur Arbeit gehen", "Einkaufen gehen"],
+          "answer": 0
+        },
+        {
+          "question": "Hofft Emilie, dass es bald besser wird?",
+          "options": ["Ja", "Nein", "Weiß nicht"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_2",
+      "title": "Ein Besuch beim Arzt",
+      "text": "Guten Tag! Ich bin Lina. Ich war gestern beim Arzt. Ich hatte starke Halsschmerzen. Der Arzt hat mich untersucht. Er hat mir Medikamente verschrieben. Ich soll viel trinken und mich schonen. Ich muss drei Tage zu Hause bleiben. Das ist nicht so schön, aber es ist wichtig für meine Gesundheit.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Emilie", "Lina", "Tilda"],
+          "answer": 1
+        },
+        {
+          "question": "Was hatte Lina?",
+          "options": ["Starke Halsschmerzen", "Kopfschmerzen", "Bauchschmerzen"],
+          "answer": 0
+        },
+        {
+          "question": "Was hat der Arzt gemacht?",
+          "options": ["Sie untersucht und Medikamente verschrieben", "Nur gefragt", "Nichts gemacht"],
+          "answer": 0
+        },
+        {
+          "question": "Was soll Lina tun?",
+          "options": ["Viel trinken und sich schonen", "Viel essen", "Sport machen"],
+          "answer": 0
+        },
+        {
+          "question": "Wie lange muss Lina zu Hause bleiben?",
+          "options": ["Drei Tage", "Eine Woche", "Einen Tag"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_3",
+      "title": "Gesund leben",
+      "text": "Grüß dich! Ich bin Tilda. Ich versuche, gesund zu leben. Ich esse viel Obst und Gemüse. Ich trinke viel Wasser. Ich mache regelmäßig Sport. Ich gehe jeden Tag spazieren. Ich schlafe acht Stunden pro Nacht. Das hilft mir, fit zu bleiben. Ich fühle mich damit sehr gut.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Emilie", "Lina", "Tilda"],
+          "answer": 2
+        },
+        {
+          "question": "Was isst Tilda viel?",
+          "options": ["Obst und Gemüse", "Nur Brot", "Viel Fleisch"],
+          "answer": 0
+        },
+        {
+          "question": "Was trinkt Tilda?",
+          "options": ["Viel Wasser", "Viel Kaffee", "Viel Saft"],
+          "answer": 0
+        },
+        {
+          "question": "Wie viel schläft Tilda pro Nacht?",
+          "options": ["Acht Stunden", "Sechs Stunden", "Zehn Stunden"],
+          "answer": 0
+        },
+        {
+          "question": "Wie fühlt sich Tilda?",
+          "options": ["Sehr gut", "Schlecht", "Müde"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_4",
+      "title": "Beim Zahnarzt",
+      "text": "Hallo! Ich bin Alma. Ich hatte gestern einen Termin beim Zahnarzt. Ich hatte Zahnschmerzen. Der Zahnarzt hat ein Loch gefunden. Er hat den Zahn behandelt. Die Behandlung hat eine Stunde gedauert. Sie war nicht sehr angenehm, aber jetzt habe ich keine Schmerzen mehr. Ich muss in drei Monaten wiederkommen.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Alma", "Nora", "Tilda"],
+          "answer": 0
+        },
+        {
+          "question": "Wo war Alma gestern?",
+          "options": ["Beim Zahnarzt", "Beim Arzt", "Im Krankenhaus"],
+          "answer": 0
+        },
+        {
+          "question": "Was hatte Alma?",
+          "options": ["Zahnschmerzen", "Kopfschmerzen", "Halsschmerzen"],
+          "answer": 0
+        },
+        {
+          "question": "Wie lange hat die Behandlung gedauert?",
+          "options": ["Eine Stunde", "Zwei Stunden", "Eine halbe Stunde"],
+          "answer": 0
+        },
+        {
+          "question": "Wann muss Alma wiederkommen?",
+          "options": ["In drei Monaten", "In einer Woche", "In einem Monat"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_5",
+      "title": "Eine Erkältung überstehen",
+      "text": "Guten Morgen! Ich bin Nora. Ich hatte letzte Woche eine schlimme Erkältung. Ich hatte Husten und Fieber. Ich habe viel Tee getrunken. Ich habe mich im Bett ausgeruht. Meine Freundin hat mir Suppe gebracht. Jetzt geht es mir viel besser. Ich bin froh, dass ich wieder gesund bin.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Alma", "Nora", "Emilie"],
+          "answer": 1
+        },
+        {
+          "question": "Was hatte Nora letzte Woche?",
+          "options": ["Eine Erkältung", "Eine Verletzung", "Eine Allergie"],
+          "answer": 0
+        },
+        {
+          "question": "Was hatte Nora für Symptome?",
+          "options": ["Husten und Fieber", "Kopfschmerzen", "Bauchschmerzen"],
+          "answer": 0
+        },
+        {
+          "question": "Was hat Nora getrunken?",
+          "options": ["Viel Tee", "Viel Kaffee", "Viel Saft"],
+          "answer": 0
+        },
+        {
+          "question": "Wie geht es Nora jetzt?",
+          "options": ["Viel besser", "Immer noch schlecht", "Weiß nicht"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_6",
+      "title": "Vorsorgeuntersuchung",
+      "text": "Guten Abend! Ich bin Greta. Ich war heute bei der Vorsorgeuntersuchung. Ich gehe jedes Jahr zum Arzt. Die Ärztin hat mich gründlich untersucht. Sie hat Blut abgenommen. Sie hat meinen Blutdruck gemessen. Alles war in Ordnung. Ich bin gesund. Das ist das Wichtigste. Ich bin sehr erleichtert.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Greta", "Nora", "Alma"],
+          "answer": 0
+        },
+        {
+          "question": "Was hat Greta heute gemacht?",
+          "options": ["Eine Vorsorgeuntersuchung", "Eine Impfung", "Eine Behandlung"],
+          "answer": 0
+        },
+        {
+          "question": "Wie oft geht Greta zum Arzt?",
+          "options": ["Jedes Jahr", "Jeden Monat", "Jede Woche"],
+          "answer": 0
+        },
+        {
+          "question": "Was hat die Ärztin gemacht?",
+          "options": ["Blut abgenommen und Blutdruck gemessen", "Nur gefragt", "Röntgen gemacht"],
+          "answer": 0
+        },
+        {
+          "question": "Wie war das Ergebnis?",
+          "options": ["Alles in Ordnung", "Nicht gut", "Weiß nicht"],
+          "answer": 0
+        },
+        {
+          "question": "Wie fühlt sich Greta jetzt?",
+          "options": ["Erleichtert", "Besorgt", "Glücklich"],
+          "answer": 0
+        }
+      ]
+    }
+  ]
+}

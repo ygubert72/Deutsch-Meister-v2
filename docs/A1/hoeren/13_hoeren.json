@@ -33,20 +33,20 @@
     {
       "id": "monolog_2",
       "title": "Mittagessen",
-      "text": "Guten Tag! Ich bin Ben. Ich esse gern Suppe zum Mittagessen. Ich mag auch Nudeln mit Tomatensauce. Mein Bruder isst gern Fleisch mit Kartoffeln. Das Essen ist immer lecker.",
+      "text": "Guten Tag! Ich bin Laura. Ich esse gern Suppe zum Mittagessen. Ich mag auch Nudeln mit Tomatensauce. Meine Schwester isst gern Fleisch mit Kartoffeln. Das Essen ist immer lecker.",
       "questions": [
         {
-          "question": "Wie heißt der Mann?",
-          "options": ["Ben", "Tom", "Paul"],
+          "question": "Wie heißt die Frau?",
+          "options": ["Laura", "Emma", "Sophie"],
           "answer": 0
         },
         {
-          "question": "Was isst Ben gern zum Mittagessen?",
+          "question": "Was isst Laura gern zum Mittagessen?",
           "options": ["Suppe", "Salat", "Brot"],
           "answer": 0
         },
         {
-          "question": "Was mag der Bruder von Ben?",
+          "question": "Was mag die Schwester von Laura?",
           "options": ["Fleisch mit Kartoffeln", "Nudeln", "Suppe"],
           "answer": 0
         },
@@ -87,25 +87,25 @@
     {
       "id": "monolog_4",
       "title": "Getränke",
-      "text": "Guten Morgen! Ich bin Laura. Ich trinke gern Wasser. Ich trinke auch Saft am Morgen. Meine Schwester trinkt gern Milch. Mein Vater trinkt Kaffee. Ich trinke keinen Tee.",
+      "text": "Guten Morgen! Ich bin Nina. Ich trinke gern Wasser. Ich trinke auch Saft am Morgen. Meine Schwester trinkt gern Milch. Meine Mutter trinkt Kaffee. Ich trinke keinen Tee.",
       "questions": [
         {
           "question": "Wie heißt die Frau?",
-          "options": ["Laura", "Lisa", "Emma"],
+          "options": ["Nina", "Laura", "Emma"],
           "answer": 0
         },
         {
-          "question": "Was trinkt Laura am liebsten?",
+          "question": "Was trinkt Nina am liebsten?",
           "options": ["Wasser", "Saft", "Milch"],
           "answer": 0
         },
         {
-          "question": "Was trinkt die Schwester von Laura?",
+          "question": "Was trinkt die Schwester von Nina?",
           "options": ["Milch", "Saft", "Wasser"],
           "answer": 0
         },
         {
-          "question": "Was trinkt der Vater von Laura?",
+          "question": "Was trinkt die Mutter von Nina?",
           "options": ["Kaffee", "Tee", "Saft"],
           "answer": 0
         }
@@ -114,26 +114,26 @@
     {
       "id": "monolog_5",
       "title": "Einkaufen",
-      "text": "Hallo! Ich bin Tim. Ich kaufe im Supermarkt ein. Ich kaufe Brot, Käse und Wurst. Ich kaufe auch Tomaten und Gurken. Ich kaufe immer frische Produkte. Dann gehe ich nach Hause.",
+      "text": "Hallo! Ich bin Clara. Ich kaufe im Supermarkt ein. Ich kaufe Brot, Käse und Wurst. Ich kaufe auch Tomaten und Gurken. Ich kaufe immer frische Produkte. Dann gehe ich nach Hause.",
       "questions": [
         {
-          "question": "Wie heißt der Mann?",
-          "options": ["Tim", "Tom", "Ben"],
+          "question": "Wie heißt die Frau?",
+          "options": ["Clara", "Sophie", "Nina"],
           "answer": 0
         },
         {
-          "question": "Was kauft Tim im Supermarkt?",
+          "question": "Was kauft Clara im Supermarkt?",
           "options": ["Brot, Käse und Wurst", "Nudeln und Reis", "Obst und Gemüse"],
           "answer": 0
         },
         {
-          "question": "Was kauft Tim noch?",
+          "question": "Was kauft Clara noch?",
           "options": ["Tomaten und Gurken", "Kartoffeln", "Nur Brot"],
           "answer": 0
         },
         {
-          "question": "Was macht Tim nach dem Einkaufen?",
-          "options": ["Er geht nach Hause", "Er geht ins Kino", "Er liest"],
+          "question": "Was macht Clara nach dem Einkaufen?",
+          "options": ["Sie geht nach Hause", "Sie geht ins Kino", "Sie liest"],
           "answer": 0
         }
       ]

@@ -1,0 +1,214 @@
+{
+  "lesson": 28,
+  "level": "A2",
+  "title": "Будущее время (Futur I) и планы",
+  "dialogs": [
+    {
+      "id": "monolog_1",
+      "title": "Meine Pläne für nächstes Jahr",
+      "text": "Liebe Hörerinnen und Hörer! Ich bin Franzi. Nächstes Jahr werde ich nach Italien reisen. Ich werde in Rom und Florenz sein. Ich werde viel Sightseeing machen. Ich werde viele Fotos machen. Das wird bestimmt ein toller Urlaub. Ich freue mich schon sehr darauf.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Franzi", "Helene", "Ida"],
+          "answer": 0
+        },
+        {
+          "question": "Wohin wird Franzi nächstes Jahr reisen?",
+          "options": ["Nach Italien", "Nach Spanien", "Nach Frankreich"],
+          "answer": 0
+        },
+        {
+          "question": "Welche Städte wird Franzi besuchen?",
+          "options": ["Rom und Florenz", "Nur Rom", "Mailand und Neapel"],
+          "answer": 0
+        },
+        {
+          "question": "Was wird Franzi machen?",
+          "options": ["Sightseeing und Fotos machen", "Nur am Strand liegen", "Die ganze Zeit schlafen"],
+          "answer": 0
+        },
+        {
+          "question": "Wie wird der Urlaub?",
+          "options": ["Toll", "Schlecht", "Langweilig"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_2",
+      "title": "Mein Wochenende",
+      "text": "Herzlich willkommen! Ich bin Helene. Am Wochenende werde ich viel unternehmen. Ich werde mit meinen Freundinnen ins Kino gehen. Wir werden einen Film sehen. Danach werden wir etwas essen gehen. Ich werde mich mit meiner Familie treffen. Das wird ein schönes Wochenende.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Franzi", "Helene", "Ida"],
+          "answer": 1
+        },
+        {
+          "question": "Was wird Helene am Wochenende machen?",
+          "options": ["Ins Kino gehen und essen gehen", "Arbeiten", "Schlafen"],
+          "answer": 0
+        },
+        {
+          "question": "Mit wem wird Helene ins Kino gehen?",
+          "options": ["Mit ihren Freundinnen", "Mit ihrer Familie", "Alleine"],
+          "answer": 0
+        },
+        {
+          "question": "Was werden sie nach dem Kino machen?",
+          "options": ["Essen gehen", "Nach Hause gehen", "Spazieren gehen"],
+          "answer": 0
+        },
+        {
+          "question": "Wie wird das Wochenende?",
+          "options": ["Schön", "Schlecht", "Langweilig"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_3",
+      "title": "Meine beruflichen Ziele",
+      "text": "Guten Tag! Ich bin Ida. In den nächsten Jahren werde ich mich weiterbilden. Ich werde einen Sprachkurs machen. Ich werde mein Englisch verbessern. Danach werde ich mich für einen neuen Job bewerben. Ich werde in einer internationalen Firma arbeiten. Das ist mein Ziel. Ich werde hart dafür arbeiten.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Franzi", "Helene", "Ida"],
+          "answer": 2
+        },
+        {
+          "question": "Was wird Ida in den nächsten Jahren machen?",
+          "options": ["Sich weiterbilden", "In Rente gehen", "Reisen"],
+          "answer": 0
+        },
+        {
+          "question": "Welche Sprache wird Ida verbessern?",
+          "options": ["Englisch", "Französisch", "Spanisch"],
+          "answer": 0
+        },
+        {
+          "question": "Was wird Ida nach dem Sprachkurs machen?",
+          "options": ["Sich bewerben", "Reisen", "Studieren"],
+          "answer": 0
+        },
+        {
+          "question": "Wo wird Ida in Zukunft arbeiten?",
+          "options": ["In einer internationalen Firma", "Im Krankenhaus", "In der Schule"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_4",
+      "title": "Meine Sommerpläne",
+      "text": "Hallo, hier spricht Rosa! Im Sommer werde ich viel Zeit draußen verbringen. Ich werde im Garten arbeiten. Ich werde viele neue Blumen pflanzen. Ich werde jeden Tag im See baden. Ich werde auch Ausflüge machen. Meine Freunde werden mich besuchen. Das wird ein schöner Sommer.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Rosa", "Marie", "Ida"],
+          "answer": 0
+        },
+        {
+          "question": "Was wird Rosa im Sommer machen?",
+          "options": ["Im Garten arbeiten und Blumen pflanzen", "Arbeiten", "Reisen"],
+          "answer": 0
+        },
+        {
+          "question": "Wo wird Rosa jeden Tag baden?",
+          "options": ["Im See", "Im Meer", "Im Pool"],
+          "answer": 0
+        },
+        {
+          "question": "Was wird Rosa noch machen?",
+          "options": ["Ausflüge machen", "Nur zu Hause bleiben", "Fernsehen"],
+          "answer": 0
+        },
+        {
+          "question": "Wer wird Rosa besuchen?",
+          "options": ["Ihre Freunde", "Ihre Familie", "Ihre Kollegen"],
+          "answer": 0
+        },
+        {
+          "question": "Wie wird der Sommer?",
+          "options": ["Schön", "Schlecht", "Langweilig"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_5",
+      "title": "Meine Pläne für das Studium",
+      "text": "Guten Morgen! Ich bin Marie. Nächstes Jahr werde ich mit dem Studium beginnen. Ich werde Medizin studieren. Das wird sehr anstrengend werden. Ich werde viel lernen müssen. Ich werde in einer WG wohnen. Meine Eltern werden mich finanziell unterstützen. Ich freue mich auf die neue Herausforderung.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Rosa", "Marie", "Helene"],
+          "answer": 1
+        },
+        {
+          "question": "Was wird Marie nächstes Jahr machen?",
+          "options": ["Mit dem Studium beginnen", "Arbeiten", "Reisen"],
+          "answer": 0
+        },
+        {
+          "question": "Was wird Marie studieren?",
+          "options": ["Medizin", "Jura", "Informatik"],
+          "answer": 0
+        },
+        {
+          "question": "Wie wird das Studium?",
+          "options": ["Anstrengend", "Leicht", "Langweilig"],
+          "answer": 0
+        },
+        {
+          "question": "Wo wird Marie wohnen?",
+          "options": ["In einer WG", "Alleine", "Bei ihren Eltern"],
+          "answer": 0
+        },
+        {
+          "question": "Wer wird Marie finanziell unterstützen?",
+          "options": ["Ihre Eltern", "Ihre Freunde", "Der Staat"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_6",
+      "title": "Meine Träume",
+      "text": "Liebe Zuhörer! Ich bin Klara. Ich habe große Träume für die Zukunft. Eines Tages werde ich ein Haus am Meer kaufen. Ich werde meinen Job kündigen und Schriftstellerin werden. Ich werde viele Bücher schreiben. Ich werde auf der ganzen Welt reisen. Das wird mein Leben sein. Ich hoffe, dass meine Träume wahr werden.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Klara", "Marie", "Rosa"],
+          "answer": 0
+        },
+        {
+          "question": "Was wird Klara eines Tages kaufen?",
+          "options": ["Ein Haus am Meer", "Ein Auto", "Eine Wohnung"],
+          "answer": 0
+        },
+        {
+          "question": "Was wird Klara werden?",
+          "options": ["Schriftstellerin", "Ärztin", "Lehrerin"],
+          "answer": 0
+        },
+        {
+          "question": "Was wird Klara in ihrem neuen Leben tun?",
+          "options": ["Bücher schreiben und reisen", "Arbeiten", "Nur zu Hause bleiben"],
+          "answer": 0
+        },
+        {
+          "question": "Hofft Klara, dass ihre Träume wahr werden?",
+          "options": ["Ja", "Nein", "Weiß nicht"],
+          "answer": 0
+        },
+        {
+          "question": "Wie wird Klaras Leben sein?",
+          "options": ["Schön", "Schlecht", "Langweilig"],
+          "answer": 0
+        }
+      ]
+    }
+  ]
+}

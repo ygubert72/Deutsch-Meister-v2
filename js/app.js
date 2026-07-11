@@ -37,8 +37,42 @@ function loadState() {
     return null;
 }
 
-// ========== ЗАГРУЗКА ДАННЫХ ==========
+// ========== ЗАГРУЗКА УРОВНЯ (С ПРОВЕРКОЙ ДОСТУПА) ==========
 async function loadLevel(level) {
+    // Проверяем доступ к уровню
+    if (typeof window.hasAccessToLevel === 'function') {
+        if (!window.hasAccessToLevel(level)) {
+            const user = window.getCurrentUser ? window.getCurrentUser() : null;
+            let message = '🔒 Этот уровень недоступен.';
+            if (!user) {
+                message += '\n\n👤 Войдите в аккаунт и оплатите премиум-доступ, чтобы открыть все уровни (A1-C1).';
+            } else if (user && user.email !== 'ygubert72@gmail.com') {
+                message += '\n\n💎 Требуется премиум-доступ. Нажмите "Оплатить премиум" в профиле.';
+            } else {
+                message += '\n\n⛔ Доступ запрещён.';
+            }
+            alert(message);
+            
+            // Если уровень A1 — ничего не делаем
+            if (level === 'A1') return;
+            
+            // Пытаемся загрузить A1 как доступный уровень по умолчанию
+            if (window.hasAccessToLevel('A1')) {
+                currentLevel = 'A1';
+                // Обновляем активную кнопку уровня
+                document.querySelectorAll('#levelsContainer .btn-level, #levelsContainerMobile .btn-level').forEach(btn => {
+                    if (btn.getAttribute('data-level') === 'A1') {
+                        btn.classList.add('active');
+                    } else {
+                        btn.classList.remove('active');
+                    }
+                });
+                loadLevel('A1');
+            }
+            return;
+        }
+    }
+    
     currentLevel = level;
     console.log('📚 Загрузка уровня:', level);
     try {
@@ -387,6 +421,24 @@ function initApp() {
     
     document.querySelectorAll('#levelsContainer .btn-level').forEach(btn => {
         btn.onclick = function() {
+            // Проверка доступа при клике на кнопку уровня
+            const level = this.getAttribute('data-level');
+            if (typeof window.hasAccessToLevel === 'function') {
+                if (!window.hasAccessToLevel(level)) {
+                    const user = window.getCurrentUser ? window.getCurrentUser() : null;
+                    let message = '🔒 Этот уровень недоступен.';
+                    if (!user) {
+                        message += '\n\n👤 Войдите в аккаунт и оплатите премиум-доступ, чтобы открыть все уровни (A1-C1).';
+                    } else if (user && user.email !== 'ygubert72@gmail.com') {
+                        message += '\n\n💎 Требуется премиум-доступ. Нажмите "Оплатить премиум" в профиле.';
+                    } else {
+                        message += '\n\n⛔ Доступ запрещён.';
+                    }
+                    alert(message);
+                    return;
+                }
+            }
+            
             document.querySelectorAll('#levelsContainer .btn-level').forEach(b => b.classList.remove('active'));
             this.classList.add('active');
             currentLevel = this.getAttribute('data-level');
@@ -396,6 +448,24 @@ function initApp() {
     
     document.querySelectorAll('#levelsContainerMobile .btn-level').forEach(btn => {
         btn.onclick = function() {
+            // Проверка доступа при клике на кнопку уровня (мобильное меню)
+            const level = this.getAttribute('data-level');
+            if (typeof window.hasAccessToLevel === 'function') {
+                if (!window.hasAccessToLevel(level)) {
+                    const user = window.getCurrentUser ? window.getCurrentUser() : null;
+                    let message = '🔒 Этот уровень недоступен.';
+                    if (!user) {
+                        message += '\n\n👤 Войдите в аккаунт и оплатите премиум-доступ, чтобы открыть все уровни (A1-C1).';
+                    } else if (user && user.email !== 'ygubert72@gmail.com') {
+                        message += '\n\n💎 Требуется премиум-доступ. Нажмите "Оплатить премиум" в профиле.';
+                    } else {
+                        message += '\n\n⛔ Доступ запрещён.';
+                    }
+                    alert(message);
+                    return;
+                }
+            }
+            
             document.querySelectorAll('#levelsContainerMobile .btn-level').forEach(b => b.classList.remove('active'));
             this.classList.add('active');
             currentLevel = this.getAttribute('data-level');
@@ -408,6 +478,14 @@ function initApp() {
     if (savedState && savedState.level) {
         console.log('🔄 Восстановление состояния:', savedState);
         currentLevel = savedState.level;
+        
+        // Проверяем доступ к сохранённому уровню
+        if (typeof window.hasAccessToLevel === 'function') {
+            if (!window.hasAccessToLevel(currentLevel)) {
+                console.log('⚠️ Сохранённый уровень недоступен, переключаем на A1');
+                currentLevel = 'A1';
+            }
+        }
         
         document.querySelectorAll('#levelsContainer .btn-level, #levelsContainerMobile .btn-level').forEach(btn => {
             if (btn.getAttribute('data-level') === currentLevel) {

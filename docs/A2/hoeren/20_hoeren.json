@@ -1,0 +1,117 @@
+{
+  "lesson": 20,
+  "level": "A2",
+  "title": "Perfekt с haben (правильные глаголы)",
+  "dialogs": [
+    {
+      "id": "monolog_1",
+      "title": "Mein Wochenende",
+      "text": "Ich heiße Anna. Am Wochenende habe ich viel gemacht. Ich habe Fußball gespielt. Ich habe meine Wohnung geputzt. Ich habe einen Film gesehen. Am Abend habe ich Pizza gekocht. Das Wochenende war schön.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Anna", "Maria", "Julia"],
+          "answer": 0
+        },
+        {
+          "question": "Was hat Anna am Wochenende gemacht?",
+          "options": ["Fußball gespielt, Wohnung geputzt, Film gesehen", "Gearbeitet und geschlafen", "Nichts gemacht"],
+          "answer": 0
+        },
+        {
+          "question": "Was hat Anna am Abend gekocht?",
+          "options": ["Pizza", "Suppe", "Salat"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_2",
+      "title": "Meine Arbeit",
+      "text": "Ich heiße Maria. Ich habe gestern viel gearbeitet. Ich habe viele E-Mails geschrieben. Ich habe mit Kunden telefoniert. Ich habe einen Bericht gemacht. Die Arbeit war anstrengend, aber ich habe alles geschafft.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Anna", "Maria", "Julia"],
+          "answer": 1
+        },
+        {
+          "question": "Was hat Maria gestern gemacht?",
+          "options": ["E-Mails geschrieben, telefoniert, Bericht gemacht", "Gekocht und geputzt", "Geschlafen"],
+          "answer": 0
+        },
+        {
+          "question": "Wie war die Arbeit?",
+          "options": ["Anstrengend", "Leicht", "Langweilig"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_3",
+      "title": "Mein Deutschkurs",
+      "text": "Ich heiße Julia. Ich habe Deutsch gelernt. Ich habe viele neue Wörter gelernt. Ich habe auch Grammatik geübt. Mein Lehrer hat viel erklärt. Ich habe den Kurs sehr genossen.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Anna", "Maria", "Julia"],
+          "answer": 2
+        },
+        {
+          "question": "Was hat Julia im Deutschkurs gemacht?",
+          "options": ["Neue Wörter gelernt und Grammatik geübt", "Geschlafen", "Gesungen"],
+          "answer": 0
+        },
+        {
+          "question": "Hat Julia den Kurs genossen?",
+          "options": ["Ja", "Nein", "Weiß nicht"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_4",
+      "title": "Mein Einkauf",
+      "text": "Ich heiße Laura. Ich habe heute eingekauft. Ich habe Brot, Milch und Käse gekauft. Ich habe auch Obst und Gemüse gekauft. Ich habe für meinen Geburtstag eingekauft. Ich habe viel bezahlt.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Laura", "Lisa", "Anna"],
+          "answer": 0
+        },
+        {
+          "question": "Was hat Laura eingekauft?",
+          "options": ["Brot, Milch, Käse, Obst und Gemüse", "Nur Brot und Milch", "Fleisch und Fisch"],
+          "answer": 0
+        },
+        {
+          "question": "Für wen hat Laura eingekauft?",
+          "options": ["Für ihren Geburtstag", "Für ihre Familie", "Für ihre Arbeit"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_5",
+      "title": "Meine Reise",
+      "text": "Ich heiße Lisa. Ich habe letzte Woche eine Reise gemacht. Ich habe einen Zug genommen. Ich habe in einem Hotel übernachtet. Ich habe die Stadt besichtigt. Ich habe viele Fotos gemacht. Die Reise war wunderbar.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Laura", "Lisa", "Anna"],
+          "answer": 1
+        },
+        {
+          "question": "Was hat Lisa auf der Reise gemacht?",
+          "options": ["Einen Zug genommen, Hotel übernachtet, Stadt besichtigt", "Gearbeitet", "Geschlafen"],
+          "answer": 0
+        },
+        {
+          "question": "Wie war die Reise?",
+          "options": ["Wunderbar", "Schlecht", "Langweilig"],
+          "answer": 0
+        }
+      ]
+    }
+  ]
+}

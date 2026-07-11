@@ -1,149 +1,85 @@
 {
   "lesson": 17,
   "level": "A1",
-  "title": "Профессии и обязанности",
+  "title": "Письменная коммуникация",
   "dialogs": [
     {
       "id": "monolog_1",
-      "title": "Mein Beruf",
-      "text": "Guten Tag! Ich bin Clara. Ich arbeite als Lehrerin. Ich arbeite in einer Schule. Ich unterrichte Deutsch. Meine Arbeit macht mir Spaß. Die Schüler sind nett. Ich mag meinen Beruf sehr.",
+      "title": "Ein Brief",
+      "text": "Guten Tag! Ich bin Anna. Ich schreibe einen Brief an meine Freundin. Ich schreibe: 'Liebe Maria'. Ich schreibe über meine Familie und meine Arbeit. Am Ende schreibe ich 'Viele Grüße'.",
       "questions": [
         {
           "question": "Wie heißt die Frau?",
-          "options": ["Clara", "Anna", "Laura"],
+          "options": ["Anna", "Maria", "Julia"],
           "answer": 0
         },
         {
-          "question": "Was ist Clara von Beruf?",
-          "options": ["Lehrerin", "Ärztin", "Ingenieurin"],
+          "question": "An wen schreibt Anna einen Brief?",
+          "options": ["An ihre Freundin", "An ihre Mutter", "An ihren Bruder"],
           "answer": 0
         },
         {
-          "question": "Wo arbeitet Clara?",
-          "options": ["In einer Schule", "In einem Krankenhaus", "In einem Büro"],
+          "question": "Was schreibt Anna in den Brief?",
+          "options": ["Über ihre Familie und Arbeit", "Über ihre Reise", "Über ihr Hobby"],
           "answer": 0
         },
         {
-          "question": "Was unterrichtet Clara?",
-          "options": ["Deutsch", "Mathematik", "Englisch"],
-          "answer": 0
-        },
-        {
-          "question": "Mag Clara ihren Beruf?",
-          "options": ["Ja, sehr", "Nein", "Manchmal"],
+          "question": "Was schreibt Anna am Ende des Briefes?",
+          "options": ["Viele Grüße", "Liebe Grüße", "Tschüss"],
           "answer": 0
         }
       ]
     },
     {
       "id": "monolog_2",
-      "title": "Meine Mutter",
-      "text": "Hallo! Ich bin Paula. Meine Mutter ist Ärztin. Sie arbeitet in einem Krankenhaus. Sie hilft kranken Menschen. Meine Mutter mag ihren Job. Sie arbeitet auch am Wochenende. Das ist anstrengend.",
+      "title": "Eine E-Mail",
+      "text": "Hallo! Ich bin Maria. Ich schreibe oft E-Mails. Ich schreibe: 'Lieber Tom' am Anfang. Ich schreibe über meinen neuen Job. Am Ende schreibe ich 'Liebe Grüße'.",
       "questions": [
         {
           "question": "Wie heißt die Frau?",
-          "options": ["Paula", "Clara", "Emma"],
+          "options": ["Anna", "Maria", "Julia"],
+          "answer": 1
+        },
+        {
+          "question": "Was macht Maria oft?",
+          "options": ["Sie schreibt E-Mails", "Sie liest Briefe", "Sie telefoniert"],
           "answer": 0
         },
         {
-          "question": "Was ist die Mutter von Paula von Beruf?",
-          "options": ["Ärztin", "Lehrerin", "Ingenieurin"],
+          "question": "Was schreibt Maria in der E-Mail?",
+          "options": ["Über ihren neuen Job", "Über ihre Reise", "Über ihre Familie"],
           "answer": 0
         },
         {
-          "question": "Wo arbeitet die Mutter?",
-          "options": ["In einem Krankenhaus", "In einer Schule", "In einem Büro"],
-          "answer": 0
-        },
-        {
-          "question": "Arbeitet die Mutter am Wochenende?",
-          "options": ["Ja", "Nein", "Selten"],
+          "question": "Was schreibt Maria am Ende der E-Mail?",
+          "options": ["Liebe Grüße", "Viele Grüße", "Tschüss"],
           "answer": 0
         }
       ]
     },
     {
       "id": "monolog_3",
-      "title": "Meine Tante",
-      "text": "Grüß dich! Ich bin Lena. Meine Tante ist Verkäuferin. Sie arbeitet in einem Supermarkt. Sie verkauft Lebensmittel. Meine Tante arbeitet viel. Sie ist immer freundlich zu den Kunden.",
+      "title": "Ein Formular",
+      "text": "Guten Morgen! Ich bin Julia. Ich möchte einen Deutschkurs machen. Ich fülle ein Formular aus: Vorname, Nachname, Adresse, Telefonnummer. Ich unterschreibe das Formular.",
       "questions": [
         {
           "question": "Wie heißt die Frau?",
-          "options": ["Lena", "Paula", "Clara"],
+          "options": ["Anna", "Maria", "Julia"],
+          "answer": 2
+        },
+        {
+          "question": "Was möchte Julia machen?",
+          "options": ["Einen Deutschkurs", "Einen Englischkurs", "Einen Französischkurs"],
           "answer": 0
         },
         {
-          "question": "Was ist die Tante von Lena von Beruf?",
-          "options": ["Verkäuferin", "Lehrerin", "Sekretärin"],
+          "question": "Was schreibt Julia im Formular?",
+          "options": ["Vorname, Nachname, Adresse, Telefonnummer", "Nur Name und Adresse", "Name, Beruf und Hobby"],
           "answer": 0
         },
         {
-          "question": "Wo arbeitet die Tante?",
-          "options": ["In einem Supermarkt", "In einer Schule", "In einem Büro"],
-          "answer": 0
-        },
-        {
-          "question": "Wie ist die Tante zu den Kunden?",
-          "options": ["Freundlich", "Strenge", "Laut"],
-          "answer": 0
-        }
-      ]
-    },
-    {
-      "id": "monolog_4",
-      "title": "Mein Traumjob",
-      "text": "Guten Morgen! Ich bin Sophie. Ich studiere Medizin. Ich möchte Ärztin werden. Ich muss viel lernen. Die Arbeit ist schwer, aber interessant. Ich möchte Menschen helfen. Das ist mein Ziel.",
-      "questions": [
-        {
-          "question": "Wie heißt die Frau?",
-          "options": ["Sophie", "Lena", "Clara"],
-          "answer": 0
-        },
-        {
-          "question": "Was studiert Sophie?",
-          "options": ["Medizin", "Jura", "Informatik"],
-          "answer": 0
-        },
-        {
-          "question": "Was möchte Sophie werden?",
-          "options": ["Ärztin", "Lehrerin", "Ingenieurin"],
-          "answer": 0
-        },
-        {
-          "question": "Warum möchte Sophie Ärztin werden?",
-          "options": ["Sie möchte Menschen helfen", "Sie möchte viel verdienen", "Sie möchte reisen"],
-          "answer": 0
-        }
-      ]
-    },
-    {
-      "id": "monolog_5",
-      "title": "Meine Arbeit",
-      "text": "Guten Abend! Ich bin Nina. Ich arbeite bei einer Bank. Ich bin Sekretärin. Ich schreibe E-Mails und telefoniere. Die Arbeit ist interessant. Ich mag meine Kolleginnen. Wir arbeiten gut zusammen.",
-      "questions": [
-        {
-          "question": "Wie heißt die Frau?",
-          "options": ["Nina", "Sophie", "Paula"],
-          "answer": 0
-        },
-        {
-          "question": "Wo arbeitet Nina?",
-          "options": ["Bei einer Bank", "In einer Schule", "In einem Krankenhaus"],
-          "answer": 0
-        },
-        {
-          "question": "Was macht Nina in ihrem Beruf?",
-          "options": ["E-Mails schreiben und telefonieren", "Unterrichten", "Verkaufen"],
-          "answer": 0
-        },
-        {
-          "question": "Wie ist die Arbeit?",
-          "options": ["Interessant", "Langweilig", "Schwer"],
-          "answer": 0
-        },
-        {
-          "question": "Mag Nina ihre Kolleginnen?",
-          "options": ["Ja", "Nein", "Weiß nicht"],
+          "question": "Was unterschreibt Julia?",
+          "options": ["Das Formular", "Den Brief", "Die E-Mail"],
           "answer": 0
         }
       ]

@@ -1,0 +1,199 @@
+{
+  "lesson": 58,
+  "level": "C1",
+  "title": "Немецкая философия и интеллектуальный дискурс",
+  "dialogs": [
+    {
+      "id": "monolog_1",
+      "title": "Die Bedeutung der deutschen Philosophie",
+      "text": "Guten Tag! Ich bin Anna. Die deutsche Philosophie hat die Welt verändert. Kant, Hegel und Nietzsche sind große Denker. Sie haben Fragen gestellt, die bis heute relevant sind. Was ist der Mensch? Was ist Freiheit? Was ist Moral? Diese Fragen beschäftigen uns noch immer. Die deutsche Philosophie ist ein wichtiger Teil des intellektuellen Erbes. Sie beeinflusst auch heute noch unser Denken.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Anna", "Maria", "Julia"],
+          "answer": 0
+        },
+        {
+          "question": "Was hat die deutsche Philosophie verändert?",
+          "options": ["Die Welt", "Die Politik", "Die Wirtschaft"],
+          "answer": 0
+        },
+        {
+          "question": "Welche großen Denker werden genannt?",
+          "options": ["Kant, Hegel und Nietzsche", "Goethe, Schiller und Lessing", "Bach, Beethoven und Mozart"],
+          "answer": 0
+        },
+        {
+          "question": "Welche Fragen haben diese Denker gestellt?",
+          "options": ["Was ist der Mensch? Was ist Freiheit? Was ist Moral?", "Was ist Zeit? Was ist Raum? Was ist Materie?", "Was ist Kunst? Was ist Kultur? Was ist Geschichte?"],
+          "answer": 0
+        },
+        {
+          "question": "Was ist die deutsche Philosophie ein Teil von?",
+          "options": ["Des intellektuellen Erbes", "Der Wirtschaft", "Der Politik"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_2",
+      "title": "Die Philosophie von Immanuel Kant",
+      "text": "Hallo! Ich bin Maria. Immanuel Kant ist einer der wichtigsten Philosophen. Er hat die Frage gestellt: Was ist der Mensch? Er sprach von der Vernunft. Der Mensch soll selbst denken. Das ist die Aufklärung. Kant sagte: 'Habe Mut, dich deines eigenen Verstandes zu bedienen.' Diese Worte sind heute noch aktuell. Kant hat das Denken revolutioniert. Seine Ideen prägen unser modernes Verständnis von Freiheit und Ethik.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Anna", "Maria", "Julia"],
+          "answer": 1
+        },
+        {
+          "question": "Welche Frage hat Kant gestellt?",
+          "options": ["Was ist der Mensch?", "Was ist die Zeit?", "Was ist das Leben?"],
+          "answer": 0
+        },
+        {
+          "question": "Was sagte Kant über die Vernunft?",
+          "options": ["Der Mensch soll selbst denken", "Der Mensch soll gehorchen", "Der Mensch soll glauben"],
+          "answer": 0
+        },
+        {
+          "question": "Was ist das berühmte Zitat von Kant?",
+          "options": ["Habe Mut, dich deines eigenen Verstandes zu bedienen", "Ich denke, also bin ich", "Erkenne dich selbst"],
+          "answer": 0
+        },
+        {
+          "question": "Was prägen Kants Ideen?",
+          "options": ["Unser modernes Verständnis von Freiheit und Ethik", "Unsere Wirtschaft", "Unsere Politik"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_3",
+      "title": "Die Philosophie von Friedrich Nietzsche",
+      "text": "Guten Morgen! Ich bin Julia. Friedrich Nietzsche ist ein umstrittener Denker. Er hat die bestehenden Werte in Frage gestellt. Er sprach vom 'Willen zur Macht'. Er kritisierte die traditionelle Moral. Er forderte die Menschen auf, ihren eigenen Weg zu gehen. Nietzsches Denken ist provokativ. Es regt zum Nachdenken an. Seine Ideen sind nicht ungefährlich. Aber sie sind wichtig für den intellektuellen Diskurs.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Anna", "Maria", "Julia"],
+          "answer": 2
+        },
+        {
+          "question": "Wie wird Friedrich Nietzsche beschrieben?",
+          "options": ["Als umstrittener Denker", "Als unumstrittener Denker", "Als unbekannter Denker"],
+          "answer": 0
+        },
+        {
+          "question": "Was hat Nietzsche in Frage gestellt?",
+          "options": ["Die bestehenden Werte", "Die bestehenden Gesetze", "Die bestehenden Regierungen"],
+          "answer": 0
+        },
+        {
+          "question": "Wovon sprach Nietzsche?",
+          "options": ["Vom 'Willen zur Macht'", "Vom 'Willen zum Leben'", "Vom 'Willen zur Freiheit'"],
+          "answer": 0
+        },
+        {
+          "question": "Wozu regt Nietzsches Denken an?",
+          "options": ["Zum Nachdenken", "Zum Gehorchen", "Zum Glauben"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_4",
+      "title": "Die Philosophie von Georg Wilhelm Friedrich Hegel",
+      "text": "Hallo! Ich bin Laura. Hegel ist ein komplexer Denker. Er entwickelte die Dialektik. Das ist eine Denkbewegung: These, Antithese, Synthese. Hegel glaubte an den Fortschritt der Geschichte. Er dachte, dass die Vernunft sich in der Geschichte entfaltet. Seine Philosophie ist schwierig, aber sehr einflussreich. Viele Denker sind von Hegel beeinflusst. Seine Dialektik wird noch heute angewendet.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Laura", "Lisa", "Anna"],
+          "answer": 0
+        },
+        {
+          "question": "Was entwickelte Hegel?",
+          "options": ["Die Dialektik", "Die Logik", "Die Ethik"],
+          "answer": 0
+        },
+        {
+          "question": "Was sind die drei Schritte der Dialektik?",
+          "options": ["These, Antithese, Synthese", "Einleitung, Hauptteil, Fazit", "These, Hypothese, Resultat"],
+          "answer": 0
+        },
+        {
+          "question": "Wie ist Hegels Philosophie?",
+          "options": ["Schwierig, aber sehr einflussreich", "Einfach und leicht verständlich", "Komplex und ohne Einfluss"],
+          "answer": 0
+        },
+        {
+          "question": "Was wird heute noch angewendet?",
+          "options": ["Die Dialektik", "Die Logik", "Die Ethik"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_5",
+      "title": "Die Bedeutung der Aufklärung",
+      "text": "Guten Tag! Ich bin Lisa. Die Aufklärung war eine wichtige Bewegung. Sie begann im 18. Jahrhundert. Die Aufklärung forderte die Menschen auf, selbst zu denken. Sie kritisierte die Autorität der Kirche. Sie forderte die Freiheit des Individuums. Sie beeinflusste die Französische Revolution. Sie beeinflusste die Menschenrechte. Die Aufklärung ist ein wichtiger Teil unserer Geschichte. Ihre Ideen sind bis heute aktuell.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Laura", "Lisa", "Anna"],
+          "answer": 1
+        },
+        {
+          "question": "Wann begann die Aufklärung?",
+          "options": ["Im 18. Jahrhundert", "Im 19. Jahrhundert", "Im 17. Jahrhundert"],
+          "answer": 0
+        },
+        {
+          "question": "Was forderte die Aufklärung?",
+          "options": ["Dass die Menschen selbst denken", "Dass die Menschen gehorchen", "Dass die Menschen glauben"],
+          "answer": 0
+        },
+        {
+          "question": "Was kritisierte die Aufklärung?",
+          "options": ["Die Autorität der Kirche", "Die Autorität der Regierung", "Die Autorität der Familie"],
+          "answer": 0
+        },
+        {
+          "question": "Was beeinflusste die Aufklärung?",
+          "options": ["Die Französische Revolution und die Menschenrechte", "Die Deutsche Revolution", "Die Amerikanische Revolution"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_6",
+      "title": "Die Relevanz der Philosophie heute",
+      "text": "Guten Morgen! Ich bin Emma. Philosophie ist heute noch relevant. Sie hilft uns, über grundlegende Fragen nachzudenken. Was ist der Sinn des Lebens? Was ist richtig und falsch? Wie sollen wir miteinander leben? Diese Fragen sind zeitlos. Die Philosophie gibt keine endgültigen Antworten. Sie hilft aber, bessere Fragen zu stellen. Sie schärft das Denken. Sie ist eine wichtige Grundlage für die Gesellschaft.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Emma", "Anna", "Laura"],
+          "answer": 0
+        },
+        {
+          "question": "Ist Philosophie heute noch relevant?",
+          "options": ["Ja", "Nein", "Weiß nicht"],
+          "answer": 0
+        },
+        {
+          "question": "Was hilft die Philosophie uns zu tun?",
+          "options": ["Über grundlegende Fragen nachzudenken", "Unsere Arbeit zu erledigen", "Unsere Freizeit zu verbringen"],
+          "answer": 0
+        },
+        {
+          "question": "Gibt die Philosophie endgültige Antworten?",
+          "options": ["Nein", "Ja", "Manchmal"],
+          "answer": 0
+        },
+        {
+          "question": "Was schärft die Philosophie?",
+          "options": ["Das Denken", "Das Gefühl", "Die Intuition"],
+          "answer": 0
+        }
+      ]
+    }
+  ]
+}

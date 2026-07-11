@@ -33,26 +33,26 @@
     {
       "id": "monolog_2",
       "title": "Eine E-Mail",
-      "text": "Hallo! Ich bin Leo. Ich schreibe oft E-Mails. Ich schreibe: 'Lieber Tom' am Anfang. Ich schreibe über meinen neuen Job. Am Ende schreibe ich 'Liebe Grüße'. Dann schicke ich die E-Mail ab.",
+      "text": "Hallo! Ich bin Sophie. Ich schreibe oft E-Mails. Ich schreibe: 'Liebe Anna' am Anfang. Ich schreibe über meinen neuen Job. Am Ende schreibe ich 'Liebe Grüße'. Dann schicke ich die E-Mail ab.",
       "questions": [
         {
-          "question": "Wie heißt der Mann?",
-          "options": ["Leo", "Tom", "Nico"],
+          "question": "Wie heißt die Frau?",
+          "options": ["Sophie", "Clara", "Paula"],
           "answer": 0
         },
         {
-          "question": "Was macht Leo oft?",
-          "options": ["Er schreibt E-Mails", "Er liest Briefe", "Er telefoniert"],
+          "question": "Was macht Sophie oft?",
+          "options": ["Sie schreibt E-Mails", "Sie liest Briefe", "Sie telefoniert"],
           "answer": 0
         },
         {
-          "question": "Was schreibt Leo am Ende der E-Mail?",
+          "question": "Was schreibt Sophie am Ende der E-Mail?",
           "options": ["Liebe Grüße", "Viele Grüße", "Tschüss"],
           "answer": 0
         },
         {
-          "question": "Was macht Leo nach dem Schreiben?",
-          "options": ["Er schickt die E-Mail ab", "Er liest sie nochmal", "Er löscht sie"],
+          "question": "Was macht Sophie nach dem Schreiben?",
+          "options": ["Sie schickt die E-Mail ab", "Sie liest sie nochmal", "Sie löscht sie"],
           "answer": 0
         }
       ]
@@ -114,15 +114,15 @@
     {
       "id": "monolog_5",
       "title": "Eine Einladung",
-      "text": "Guten Abend! Ich bin Nico. Ich schreibe eine Einladung an meine Freundin. Ich schreibe: 'Liebe Sophie, ich lade dich ein'. Der Geburtstag ist am Samstag. Ich schreibe die Adresse und die Zeit. Am Ende schreibe ich 'Bitte antworte'.",
+      "text": "Guten Abend! Ich bin Nina. Ich schreibe eine Einladung an meine Freundin. Ich schreibe: 'Liebe Sophie, ich lade dich ein'. Der Geburtstag ist am Samstag. Ich schreibe die Adresse und die Zeit. Am Ende schreibe ich 'Bitte antworte'.",
       "questions": [
         {
-          "question": "Wie heißt der Mann?",
-          "options": ["Nico", "Leo", "Ben"],
+          "question": "Wie heißt die Frau?",
+          "options": ["Nina", "Sophie", "Clara"],
           "answer": 0
         },
         {
-          "question": "Was schreibt Nico?",
+          "question": "Was schreibt Nina?",
           "options": ["Eine Einladung", "Einen Brief", "Eine E-Mail"],
           "answer": 0
         },
@@ -132,7 +132,7 @@
           "answer": 0
         },
         {
-          "question": "Was schreibt Nico am Ende?",
+          "question": "Was schreibt Nina am Ende?",
           "options": ["Bitte antworte", "Viele Grüße", "Tschüss"],
           "answer": 0
         }

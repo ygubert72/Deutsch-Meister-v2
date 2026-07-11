@@ -1,0 +1,199 @@
+{
+  "lesson": 56,
+  "level": "C1",
+  "title": "Переговоры высшего уровня и урегулирование конфликтов",
+  "dialogs": [
+    {
+      "id": "monolog_1",
+      "title": "Die Grundlagen von Verhandlungen",
+      "text": "Guten Tag! Ich bin Anna. Verhandlungen sind ein wichtiges Instrument im Berufsleben. Man verhandelt Gehälter, Verträge und Projekte. Eine gute Verhandlung beginnt mit der Vorbereitung. Man muss die Ziele kennen. Man muss die Interessen der anderen Seite verstehen. Man muss Alternativen haben. Eine gute Verhandlung ist fair und respektvoll. Sie führt zu einem Ergebnis, mit dem beide Seiten zufrieden sind.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Anna", "Maria", "Julia"],
+          "answer": 0
+        },
+        {
+          "question": "Was ist ein wichtiges Instrument im Berufsleben?",
+          "options": ["Verhandlungen", "Präsentationen", "Berichte"],
+          "answer": 0
+        },
+        {
+          "question": "Womit beginnt eine gute Verhandlung?",
+          "options": ["Mit der Vorbereitung", "Mit der Einleitung", "Mit dem Abschluss"],
+          "answer": 0
+        },
+        {
+          "question": "Was muss man bei einer Verhandlung kennen?",
+          "options": ["Die eigenen Ziele", "Die Ziele der anderen", "Beide"],
+          "answer": 2
+        },
+        {
+          "question": "Wie sollte eine gute Verhandlung sein?",
+          "options": ["Fair und respektvoll", "Hart und kompromisslos", "Schnell und oberflächlich"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_2",
+      "title": "Die Kunst des Kompromisses",
+      "text": "Hallo! Ich bin Maria. Kompromisse sind in Verhandlungen oft notwendig. Man kann nicht immer alles bekommen. Man muss Abstriche machen. Ein guter Kompromiss ist ein Zeichen von Fairness. Er zeigt, dass man kooperativ ist. Man sollte nicht zu starr sein. Flexibilität ist gefragt. Der Kompromiss sollte für beide Seiten akzeptabel sein. Das ist das Ziel jeder Verhandlung.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Anna", "Maria", "Julia"],
+          "answer": 1
+        },
+        {
+          "question": "Was sind in Verhandlungen oft notwendig?",
+          "options": ["Kompromisse", "Konflikte", "Kündigungen"],
+          "answer": 0
+        },
+        {
+          "question": "Was ist ein guter Kompromiss ein Zeichen von?",
+          "options": ["Fairness", "Stärke", "Schwäche"],
+          "answer": 0
+        },
+        {
+          "question": "Was zeigt der Kompromiss?",
+          "options": ["Kooperation", "Konkurrenz", "Kontroll"],
+          "answer": 0
+        },
+        {
+          "question": "Was ist in Verhandlungen gefragt?",
+          "options": ["Flexibilität", "Starrheit", "Aggressivität"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_3",
+      "title": "Die Bewältigung von Konflikten",
+      "text": "Guten Morgen! Ich bin Julia. Konflikte sind im Berufsleben unvermeidlich. Man sollte sie nicht ignorieren. Man sollte sie frühzeitig ansprechen. Man sollte sachlich bleiben. Man sollte die andere Seite verstehen. Man sollte nach Lösungen suchen. Eine gute Konfliktlösung stärkt das Team. Sie verbessert die Zusammenarbeit. Sie führt zu besseren Ergebnissen.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Anna", "Maria", "Julia"],
+          "answer": 2
+        },
+        {
+          "question": "Was ist im Berufsleben unvermeidlich?",
+          "options": ["Konflikte", "Erfolge", "Misserfolge"],
+          "answer": 0
+        },
+        {
+          "question": "Was sollte man bei Konflikten nicht tun?",
+          "options": ["Sie ignorieren", "Sie ansprechen", "Sie lösen"],
+          "answer": 0
+        },
+        {
+          "question": "Wie sollte man bei Konflikten bleiben?",
+          "options": ["Sachlich", "Emotional", "Aggressiv"],
+          "answer": 0
+        },
+        {
+          "question": "Was stärkt eine gute Konfliktlösung?",
+          "options": ["Das Team", "Die Einzelperson", "Die Hierarchie"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_4",
+      "title": "Die Vorbereitung auf schwierige Verhandlungen",
+      "text": "Hallo! Ich bin Laura. Schwierige Verhandlungen erfordern eine gründliche Vorbereitung. Man muss die Fakten kennen. Man muss die Position der anderen Seite kennen. Man muss mögliche Argumente vorbereiten. Man muss die eigenen Grenzen kennen. Man muss eine Strategie entwickeln. Man sollte auch einen Plan B haben. Die Vorbereitung gibt Sicherheit. Sie erhöht die Erfolgschancen.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Laura", "Lisa", "Anna"],
+          "answer": 0
+        },
+        {
+          "question": "Was erfordern schwierige Verhandlungen?",
+          "options": ["Eine gründliche Vorbereitung", "Eine spontane Reaktion", "Eine emotionale Reaktion"],
+          "answer": 0
+        },
+        {
+          "question": "Was muss man bei der Vorbereitung kennen?",
+          "options": ["Die Fakten und die Position der anderen Seite", "Nur die eigenen Fakten", "Nur die Position der anderen"],
+          "answer": 0
+        },
+        {
+          "question": "Was sollte man bei der Vorbereitung auch haben?",
+          "options": ["Einen Plan B", "Nur einen Plan A", "Keinen Plan"],
+          "answer": 0
+        },
+        {
+          "question": "Was gibt die Vorbereitung?",
+          "options": ["Sicherheit", "Unsicherheit", "Verwirrung"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_5",
+      "title": "Die Kommunikation in schwierigen Situationen",
+      "text": "Guten Tag! Ich bin Lisa. Die Kommunikation ist in schwierigen Situationen entscheidend. Man sollte ruhig bleiben. Man sollte klar und deutlich sprechen. Man sollte aktiv zuhören. Man sollte Fragen stellen. Man sollte Missverständnisse vermeiden. Eine gute Kommunikation kann Konflikte entschärfen. Sie kann zu einer Lösung führen. Sie ist das wichtigste Werkzeug in Verhandlungen.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Laura", "Lisa", "Anna"],
+          "answer": 1
+        },
+        {
+          "question": "Was ist in schwierigen Situationen entscheidend?",
+          "options": ["Die Kommunikation", "Die Vorbereitung", "Die Strategie"],
+          "answer": 0
+        },
+        {
+          "question": "Wie sollte man in schwierigen Situationen bleiben?",
+          "options": ["Ruhig", "Emotional", "Aggressiv"],
+          "answer": 0
+        },
+        {
+          "question": "Was sollte man in schwierigen Situationen tun?",
+          "options": ["Aktiv zuhören", "Nur reden", "Schweigen"],
+          "answer": 0
+        },
+        {
+          "question": "Was kann gute Kommunikation?",
+          "options": ["Konflikte entschärfen", "Konflikte verschärfen", "Konflikte ignorieren"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_6",
+      "title": "Die Nachbereitung von Verhandlungen",
+      "text": "Guten Morgen! Ich bin Emma. Die Nachbereitung wird oft vernachlässigt. Dabei ist sie sehr wichtig. Man sollte das Ergebnis dokumentieren. Man sollte offene Punkte notieren. Man sollte die nächsten Schritte planen. Man sollte Feedback einholen. Die Nachbereitung hilft, aus Fehlern zu lernen. Sie hilft, Verhandlungen zu verbessern. Ein guter Verhandler evaluiert immer seine Arbeit.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Emma", "Anna", "Laura"],
+          "answer": 0
+        },
+        {
+          "question": "Was wird oft vernachlässigt?",
+          "options": ["Die Nachbereitung", "Die Vorbereitung", "Die Kommunikation"],
+          "answer": 0
+        },
+        {
+          "question": "Was sollte man nach einer Verhandlung dokumentieren?",
+          "options": ["Das Ergebnis", "Die Vorbereitung", "Die Kommunikation"],
+          "answer": 0
+        },
+        {
+          "question": "Was sollte man nach einer Verhandlung planen?",
+          "options": ["Die nächsten Schritte", "Die nächsten Ferien", "Die nächste Party"],
+          "answer": 0
+        },
+        {
+          "question": "Was hilft die Nachbereitung?",
+          "options": ["Aus Fehlern zu lernen", "Die Zeit zu vertreiben", "Die Arbeit zu vermeiden"],
+          "answer": 0
+        }
+      ]
+    }
+  ]
+}

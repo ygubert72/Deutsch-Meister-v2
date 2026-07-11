@@ -440,7 +440,7 @@ function showTrainerSentence(container) {
             }, 500);
         } else {
             result.style.backgroundColor = '#FFCDD2';
-            result.textContent = '❌ НЕПРАВИЛЬНО. Попробуйте снова!';
+            result.textContent = '❌ Неправильно. Попробуйте снова.';
             
             setTimeout(() => {
                 result.style.backgroundColor = '#FFFFFF';

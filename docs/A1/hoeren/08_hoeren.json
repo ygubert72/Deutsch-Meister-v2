@@ -6,7 +6,7 @@
     {
       "id": "monolog_1",
       "title": "Mein Aussehen",
-      "text": "Ich heiße Anna. Ich bin 25 Jahre alt. Ich bin groß und schlank. Ich habe lange braune Haare. Ich habe blaue Augen. Ich trage gern bunte Kleidung. Ich finde, dass ich nett aussehe.",
+      "text": "Guten Tag! Ich bin Anna. Ich bin 25 Jahre alt. Ich bin groß und schlank. Ich habe lange braune Haare. Ich habe blaue Augen. Ich bin freundlich und nett.",
       "questions": [
         {
           "question": "Wie heißt die Frau?",
@@ -33,7 +33,7 @@
     {
       "id": "monolog_2",
       "title": "Mein Bruder",
-      "text": "Ich heiße Maria. Mein Bruder heißt Paul. Er ist 22 Jahre alt. Er ist groß und sportlich. Er hat kurze blonde Haare. Er hat grüne Augen. Er ist sehr freundlich und hilfsbereit. Wir verstehen uns gut.",
+      "text": "Hallo! Ich bin Maria. Mein Bruder heißt Paul. Er ist 22 Jahre alt. Er ist groß und sportlich. Er hat kurze blonde Haare. Er ist sehr freundlich und hilfsbereit.",
       "questions": [
         {
           "question": "Wie heißt die Frau?",
@@ -51,21 +51,16 @@
           "answer": 0
         },
         {
-          "question": "Welche Augenfarbe hat der Bruder von Maria?",
+          "question": "Welche Augenfarbe hat der Bruder?",
           "options": ["Grüne Augen", "Blaue Augen", "Braune Augen"],
-          "answer": 0
-        },
-        {
-          "question": "Wie ist der Bruder von Maria vom Charakter?",
-          "options": ["Freundlich und hilfsbereit", "Lustig und laut", "Ernst und ruhig"],
-          "answer": 0
+          "answer": 1
         }
       ]
     },
     {
       "id": "monolog_3",
       "title": "Meine beste Freundin",
-      "text": "Ich heiße Julia. Meine beste Freundin heißt Laura. Sie ist 24 Jahre alt. Sie ist klein und hübsch. Sie hat lange blonde Haare. Sie hat blaue Augen. Laura ist sehr lustig und intelligent. Wir lachen oft zusammen.",
+      "text": "Guten Morgen! Ich bin Julia. Meine beste Freundin heißt Laura. Sie ist 24 Jahre alt. Sie ist klein und hübsch. Sie hat lange blonde Haare. Sie ist sehr lustig und intelligent.",
       "questions": [
         {
           "question": "Wie heißt die Frau?",
@@ -73,7 +68,7 @@
           "answer": 2
         },
         {
-          "question": "Wie heißt die beste Freundin von Julia?",
+          "question": "Wie heißt Julias beste Freundin?",
           "options": ["Laura", "Lisa", "Anna"],
           "answer": 0
         },
@@ -85,70 +80,6 @@
         {
           "question": "Welche Haarfarbe hat Laura?",
           "options": ["Blonde Haare", "Braune Haare", "Schwarze Haare"],
-          "answer": 0
-        },
-        {
-          "question": "Wie ist Laura vom Charakter?",
-          "options": ["Lustig und intelligent", "Ernst und ruhig", "Freundlich und hilfsbereit"],
-          "answer": 0
-        }
-      ]
-    },
-    {
-      "id": "monolog_4",
-      "title": "Meine Schwester",
-      "text": "Ich heiße Laura. Meine Schwester heißt Nina. Sie ist 19 Jahre alt. Sie ist sehr schön. Sie hat lange braune Haare und grüne Augen. Sie ist intelligent und lustig. Meine Schwester ist mein bester Freund.",
-      "questions": [
-        {
-          "question": "Wie heißt die Frau?",
-          "options": ["Laura", "Lisa", "Anna"],
-          "answer": 0
-        },
-        {
-          "question": "Wie heißt die Schwester von Laura?",
-          "options": ["Nina", "Maria", "Julia"],
-          "answer": 0
-        },
-        {
-          "question": "Wie alt ist die Schwester von Laura?",
-          "options": ["17 Jahre", "19 Jahre", "21 Jahre"],
-          "answer": 1
-        },
-        {
-          "question": "Welche Haarfarbe hat die Schwester von Laura?",
-          "options": ["Blonde Haare", "Braune Haare", "Schwarze Haare"],
-          "answer": 1
-        },
-        {
-          "question": "Was ist die Schwester von Laura für sie?",
-          "options": ["Ihr bester Freund", "Ihre beste Freundin", "Ihre Kollegin"],
-          "answer": 1
-        }
-      ]
-    },
-    {
-      "id": "monolog_5",
-      "title": "Mein Charakter",
-      "text": "Ich heiße Lisa. Ich bin 28 Jahre alt. Ich bin nicht sehr groß. Ich bin freundlich und offen. Meine Freunde sagen, ich bin lustig. Ich helfe gern anderen Menschen. Ich habe eine positive Einstellung zum Leben.",
-      "questions": [
-        {
-          "question": "Wie heißt die Frau?",
-          "options": ["Laura", "Lisa", "Anna"],
-          "answer": 1
-        },
-        {
-          "question": "Wie ist Lisa?",
-          "options": ["Freundlich und offen", "Ernst und ruhig", "Laut und aggressiv"],
-          "answer": 0
-        },
-        {
-          "question": "Was sagen Lisas Freunde über sie?",
-          "options": ["Sie ist lustig", "Sie ist ernst", "Sie ist schüchtern"],
-          "answer": 0
-        },
-        {
-          "question": "Hilft Lisa gern anderen Menschen?",
-          "options": ["Ja", "Nein", "Manchmal"],
           "answer": 0
         }
       ]

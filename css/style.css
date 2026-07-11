@@ -26,7 +26,7 @@ body { font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-
 .btn-level { width: 60px; margin: 4px; padding: 8px 0; }
 .levels-container { display: flex; flex-wrap: wrap; justify-content: center; gap: 6px; margin: 10px 0; }
 
-/* ===== КНОПКИ УРОКОВ (ЕЛЕ ЗАМЕТНЫЙ ЭФФЕКТ) ===== */
+/* ===== КНОПКИ УРОКОВ ===== */
 .lesson-grid-btn {
     width: 100%;
     padding: 12px 15px;
@@ -210,7 +210,7 @@ body { font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-
     box-shadow: 0 1px 3px rgba(0,0,0,0.15);
 }
 
-/* ===== КНОПКИ УРОКОВ (ЕЛЕ ЗАМЕТНЫЙ ЭФФЕКТ) ===== */
+/* ===== КНОПКИ УРОКОВ ===== */
 .lesson-btn {
     transition: all 0.05s ease;
 }
@@ -234,19 +234,7 @@ body { font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-
     box-shadow: 0 1px 2px rgba(0,0,0,0.1);
 }
 
-/* ===== МОБИЛЬНАЯ АДАПТАЦИЯ ===== */
-
-@media (max-width: 1024px) {
-    .card-word { font-size: 28px; }
-    .quiz-question { font-size: 24px; }
-    .lesson-title { font-size: 22px; }
-}
-
-@media (max-width: 900px) {
-    .sidebar { width: 260px; }
-    .words-container { grid-template-columns: repeat(4, auto); }
-}
-
+/* ========== ГАМБУРГЕР ========== */
 .hamburger-btn {
     display: none;
     background: none;
@@ -258,6 +246,7 @@ body { font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-
     color: #3B6FE0;
 }
 
+/* ========== МОБИЛЬНОЕ МЕНЮ ========== */
 .menu-overlay {
     position: fixed;
     top: 0;
@@ -270,7 +259,6 @@ body { font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-
     visibility: hidden;
     transition: opacity 0.3s ease, visibility 0.3s ease;
 }
-
 .menu-overlay.show {
     opacity: 1;
     visibility: visible;
@@ -290,16 +278,13 @@ body { font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-
     overflow-y: auto;
     visibility: hidden;
 }
-
 .mobile-menu.open {
     transform: translateX(0);
     visibility: visible;
 }
-
 .mobile-menu .sidebar-content {
     padding: 16px;
 }
-
 .mobile-menu-header {
     display: flex;
     justify-content: space-between;
@@ -311,12 +296,10 @@ body { font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-
     top: 0;
     z-index: 10;
 }
-
 .mobile-menu-header h3 {
     margin: 0;
     color: #3B6FE0;
 }
-
 .close-menu-btn {
     background: none;
     border: none;
@@ -331,12 +314,10 @@ body { font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-
     align-items: center;
     justify-content: space-between;
 }
-
 .top-bar-left {
     display: flex;
     align-items: center;
 }
-
 .mode-indicator {
     font-size: 12px;
     color: #333;
@@ -344,13 +325,135 @@ body { font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-
     padding: 0;
     font-weight: normal;
 }
-
 #counter {
     font-size: 12px;
     color: #888;
 }
 
-/* ===== ТЕЛЕФОНЫ ===== */
+/* ========== ГЛОБАЛЬНАЯ АДАПТАЦИЯ МОДАЛОК ========== */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999999;
+    padding: 20px;
+    overflow: auto;
+}
+.modal-content {
+    background: white;
+    border-radius: 20px;
+    max-width: 600px;
+    width: 100%;
+    max-height: 90vh;
+    padding: 25px;
+    overflow-y: auto;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+}
+
+/* ============================================================ */
+/* ========== ПЛАНШЕТЫ (769-1024px) ========== */
+/* ============================================================ */
+@media (max-width: 1024px) and (min-width: 769px) {
+    .sidebar {
+        width: 240px;
+    }
+    
+    .content {
+        padding: 15px;
+    }
+    
+    .vocab-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+    
+    .words-container {
+        grid-template-columns: repeat(4, auto) !important;
+    }
+    
+    .quiz-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+    }
+    
+    .btn, .ctrl-btn, .word-btn, .quiz-opt, .lesson-mode-btn, .dir-btn {
+        padding: 10px 14px !important;
+        font-size: 13px !important;
+        min-height: 40px;
+    }
+    
+    .card-word {
+        font-size: 26px;
+    }
+    
+    .lesson-title {
+        font-size: 20px;
+    }
+    
+    .hint-label {
+        min-width: 150px;
+        font-size: 12px;
+    }
+}
+
+/* ============================================================ */
+/* ========== МАЛЕНЬКИЕ ПЛАНШЕТЫ (600-768px) ========== */
+/* ============================================================ */
+@media (max-width: 768px) and (min-width: 600px) {
+    .sidebar {
+        display: none;
+    }
+    
+    .hamburger-btn {
+        display: block;
+    }
+    
+    .app {
+        flex-direction: column;
+    }
+    
+    .main {
+        width: 100%;
+        height: 100vh;
+    }
+    
+    .content {
+        padding: 15px;
+    }
+    
+    .vocab-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+    
+    .words-container {
+        grid-template-columns: repeat(3, 1fr) !important;
+    }
+    
+    .top-bar {
+        padding: 10px 16px;
+    }
+    
+    .mode-indicator {
+        font-size: 13px;
+    }
+    
+    #counter {
+        font-size: 12px;
+    }
+    
+    .mobile-menu {
+        width: 300px;
+    }
+}
+
+/* ============================================================ */
+/* ========== ТЕЛЕФОНЫ (до 600px) ========== */
+/* ============================================================ */
 @media (max-width: 768px) {
     .sidebar {
         display: none;
@@ -375,6 +478,14 @@ body { font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-
         top: 0;
         z-index: 100;
         background: #F8F8F8;
+    }
+    
+    .mode-indicator {
+        font-size: 13px;
+    }
+    
+    #counter {
+        font-size: 12px;
     }
     
     .content {
@@ -460,28 +571,36 @@ body { font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-
         font-size: 12px !important;
     }
     
-    div[id$="Modal"] > div {
+    /* Модалки */
+    div[id$="Modal"] > div,
+    .modal-content {
         width: 95% !important;
         margin: 10px !important;
         padding: 15px !important;
         max-height: 90vh !important;
         overflow-y: auto !important;
+        border-radius: 16px !important;
     }
-    div[id$="Modal"] h2 {
+    div[id$="Modal"] h2,
+    .modal-content h2 {
         font-size: 20px !important;
     }
-    div[id$="Modal"] input {
+    div[id$="Modal"] input,
+    .modal-content input {
         font-size: 16px !important;
         padding: 12px !important;
     }
-    div[id$="Modal"] button {
+    div[id$="Modal"] button,
+    .modal-content button {
         min-height: 44px;
         font-size: 14px !important;
     }
 }
 
+/* ============================================================ */
+/* ========== МАЛЕНЬКИЕ ТЕЛЕФОНЫ (до 480px) ========== */
+/* ============================================================ */
 @media (max-width: 480px) {
-    .sidebar { max-height: 40%; }
     .btn, .ctrl-btn, .word-btn, .quiz-opt {
         padding: 10px 12px !important;
         font-size: 12px !important;
@@ -503,19 +622,42 @@ body { font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-
     .lesson-mode { gap: 8px; }
     .lesson-mode-btn { padding: 8px 12px !important; font-size: 12px !important; }
     .ctrl-btn { font-size: 10px; padding: 8px 10px !important; }
-    .top-bar { padding: 6px 12px; font-size: 10px; }
+    .top-bar { padding: 6px 12px; }
+    .mode-indicator { font-size: 11px; }
+    #counter { font-size: 10px; }
     .content { padding: 10px; }
     .sidebar-content { padding: 10px; }
     .levels-container { gap: 4px; }
     .btn-level { width: 50px; font-size: 12px; }
+    
+    .mobile-menu {
+        width: 260px;
+    }
+    
+    .modal-content,
+    div[id$="Modal"] > div {
+        padding: 12px !important;
+        width: 98% !important;
+    }
+    
+    .modal-content h2,
+    div[id$="Modal"] h2 {
+        font-size: 18px !important;
+    }
 }
 
+/* ============================================================ */
+/* ========== БЕЗ ХОВЕРА НА ТАЧ-УСТРОЙСТВАХ ========== */
+/* ============================================================ */
 @media (hover: none) {
     .btn:hover, .ctrl-btn:hover, .word-btn:hover, .quiz-opt:hover {
         transform: none;
     }
 }
 
+/* ============================================================ */
+/* ========== ДЕСКТОП (более 769px) ========== */
+/* ============================================================ */
 @media (min-width: 769px) {
     .grammar-scrollable-content {
         overflow-y: auto;
@@ -531,6 +673,9 @@ body { font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-
     }
 }
 
+/* ============================================================ */
+/* ========== КАРУСЕЛЬ НА МОБИЛЬНЫХ ========== */
+/* ============================================================ */
 @media (max-width: 768px) {
     .quiz-carousel-card {
         padding: 10px !important;
@@ -582,5 +727,26 @@ body { font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-
     .word-btn-mobile:active {
         transform: translateY(2px);
         box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+    }
+}
+
+/* ============================================================ */
+/* ========== ПЛАНШЕТЫ В АЛЬБОМНОЙ ОРИЕНТАЦИИ ========== */
+/* ============================================================ */
+@media (max-width: 1024px) and (orientation: landscape) {
+    .sidebar {
+        width: 220px;
+    }
+    
+    .content {
+        padding: 12px 20px;
+    }
+    
+    .words-container {
+        grid-template-columns: repeat(5, auto) !important;
+    }
+    
+    .quiz-grid {
+        grid-template-columns: repeat(3, 1fr);
     }
 }

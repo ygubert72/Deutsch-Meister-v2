@@ -1,0 +1,199 @@
+{
+  "lesson": 57,
+  "level": "C1",
+  "title": "Публичные выступления и модерация дискуссий",
+  "dialogs": [
+    {
+      "id": "monolog_1",
+      "title": "Die Vorbereitung einer Rede",
+      "text": "Guten Tag! Ich bin Anna. Eine gute Rede beginnt mit der Vorbereitung. Man muss das Publikum kennen. Man muss die Botschaft kennen. Man muss die Struktur planen. Man muss die wichtigsten Punkte festlegen. Man muss den Einstieg und den Schluss vorbereiten. Eine gute Vorbereitung gibt Sicherheit. Sie hilft, souverän aufzutreten.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Anna", "Maria", "Julia"],
+          "answer": 0
+        },
+        {
+          "question": "Womit beginnt eine gute Rede?",
+          "options": ["Mit der Vorbereitung", "Mit der Einleitung", "Mit dem Schluss"],
+          "answer": 0
+        },
+        {
+          "question": "Was muss man bei der Vorbereitung kennen?",
+          "options": ["Das Publikum und die Botschaft", "Nur das Publikum", "Nur die Botschaft"],
+          "answer": 0
+        },
+        {
+          "question": "Was gibt eine gute Vorbereitung?",
+          "options": ["Sicherheit", "Unsicherheit", "Verwirrung"],
+          "answer": 0
+        },
+        {
+          "question": "Wie hilft die Vorbereitung?",
+          "options": ["Souverän aufzutreten", "Schnell zu sprechen", "Viel zu sagen"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_2",
+      "title": "Die richtige Körpersprache",
+      "text": "Hallo! Ich bin Maria. Die Körpersprache ist bei Reden sehr wichtig. Man sollte aufrecht stehen. Man sollte Blickkontakt halten. Man sollte Gestik einsetzen. Man sollte nicht zu viel gestikulieren. Man sollte lächeln. Eine positive Körpersprache wirkt überzeugend. Sie hilft, das Publikum zu erreichen. Sie verstärkt die Botschaft.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Anna", "Maria", "Julia"],
+          "answer": 1
+        },
+        {
+          "question": "Was ist bei Reden sehr wichtig?",
+          "options": ["Die Körpersprache", "Die Stimme", "Der Inhalt"],
+          "answer": 0
+        },
+        {
+          "question": "Wie sollte man bei einer Rede stehen?",
+          "options": ["Aufrecht", "Gebückt", "Gequält"],
+          "answer": 0
+        },
+        {
+          "question": "Was sollte man bei einer Rede halten?",
+          "options": ["Blickkontakt", "Abstand", "Schweigen"],
+          "answer": 0
+        },
+        {
+          "question": "Wie wirkt eine positive Körpersprache?",
+          "options": ["Überzeugend", "Unsicher", "Schwach"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_3",
+      "title": "Die richtige Stimme und Betonung",
+      "text": "Guten Morgen! Ich bin Julia. Die Stimme ist ein wichtiges Werkzeug. Man sollte laut und deutlich sprechen. Man sollte die Geschwindigkeit variieren. Man sollte Pausen machen. Man sollte wichtige Wörter betonen. Eine gute Stimme wirkt überzeugend. Sie hält das Publikum wach. Sie macht die Rede lebendig.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Anna", "Maria", "Julia"],
+          "answer": 2
+        },
+        {
+          "question": "Was ist ein wichtiges Werkzeug bei Reden?",
+          "options": ["Die Stimme", "Die Gestik", "Die Kleidung"],
+          "answer": 0
+        },
+        {
+          "question": "Wie sollte man bei einer Rede sprechen?",
+          "options": ["Laut und deutlich", "Leise und undeutlich", "Schnell und unverständlich"],
+          "answer": 0
+        },
+        {
+          "question": "Was sollte man bei einer Rede variieren?",
+          "options": ["Die Geschwindigkeit", "Die Lautstärke", "Beides"],
+          "answer": 2
+        },
+        {
+          "question": "Was hält eine gute Stimme?",
+          "options": ["Das Publikum wach", "Das Publikum müde", "Das Publikum gelangweilt"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_4",
+      "title": "Die Moderation einer Diskussion",
+      "text": "Hallo! Ich bin Laura. Die Moderation einer Diskussion ist eine anspruchsvolle Aufgabe. Man muss die Regeln erklären. Man muss die Redezeit kontrollieren. Man muss verschiedene Meinungen zusammenführen. Man muss provozierende Fragen stellen. Man muss den roten Faden behalten. Eine gute Moderation führt zu einer konstruktiven Diskussion. Sie hilft, Ergebnisse zu erzielen.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Laura", "Lisa", "Anna"],
+          "answer": 0
+        },
+        {
+          "question": "Was ist eine anspruchsvolle Aufgabe?",
+          "options": ["Die Moderation einer Diskussion", "Die Vorbereitung einer Rede", "Das Halten einer Rede"],
+          "answer": 0
+        },
+        {
+          "question": "Was muss der Moderator kontrollieren?",
+          "options": ["Die Redezeit", "Die Meinungen", "Die Ergebnisse"],
+          "answer": 0
+        },
+        {
+          "question": "Was muss der Moderator zusammenführen?",
+          "options": ["Verschiedene Meinungen", "Verschiedene Personen", "Verschiedene Themen"],
+          "answer": 0
+        },
+        {
+          "question": "Wozu führt eine gute Moderation?",
+          "options": ["Zu einer konstruktiven Diskussion", "Zu einer destruktiven Diskussion", "Zu keiner Diskussion"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_5",
+      "title": "Die Behandlung von schwierigen Fragen",
+      "text": "Guten Tag! Ich bin Lisa. Schwierige Fragen sind bei Präsentationen normal. Man sollte sie nicht fürchten. Man sollte ruhig bleiben. Man sollte die Frage wiederholen. Man sollte die Frage beantworten. Man sollte nicht ausweichen. Eine gute Antwort zeigt Kompetenz. Sie stärkt das Vertrauen des Publikums. Sie ist ein Zeichen von Professionalität.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Laura", "Lisa", "Anna"],
+          "answer": 1
+        },
+        {
+          "question": "Was ist bei Präsentationen normal?",
+          "options": ["Schwierige Fragen", "Einfache Fragen", "Keine Fragen"],
+          "answer": 0
+        },
+        {
+          "question": "Wie sollte man bei schwierigen Fragen bleiben?",
+          "options": ["Ruhig", "Emotional", "Aggressiv"],
+          "answer": 0
+        },
+        {
+          "question": "Was sollte man bei einer schwierigen Frage tun?",
+          "options": ["Die Frage wiederholen und beantworten", "Die Frage ignorieren", "Die Frage umgehen"],
+          "answer": 0
+        },
+        {
+          "question": "Was zeigt eine gute Antwort?",
+          "options": ["Kompetenz", "Unsicherheit", "Ignoranz"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_6",
+      "title": "Die Nachbereitung einer Veranstaltung",
+      "text": "Guten Morgen! Ich bin Emma. Die Nachbereitung ist ein wichtiger Teil jeder Veranstaltung. Man sollte Feedback einholen. Man sollte die Ergebnisse dokumentieren. Man sollte offene Punkte notieren. Man sollte Verbesserungen planen. Die Nachbereitung hilft, aus Erfahrungen zu lernen. Sie macht zukünftige Veranstaltungen besser. Ein guter Redner evaluiert immer seine Arbeit.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Emma", "Anna", "Laura"],
+          "answer": 0
+        },
+        {
+          "question": "Was ist ein wichtiger Teil jeder Veranstaltung?",
+          "options": ["Die Nachbereitung", "Die Vorbereitung", "Die Durchführung"],
+          "answer": 0
+        },
+        {
+          "question": "Was sollte man bei der Nachbereitung einholen?",
+          "options": ["Feedback", "Kommentare", "Kritik"],
+          "answer": 0
+        },
+        {
+          "question": "Was sollte man bei der Nachbereitung dokumentieren?",
+          "options": ["Die Ergebnisse", "Die Vorbereitung", "Die Planung"],
+          "answer": 0
+        },
+        {
+          "question": "Was hilft die Nachbereitung?",
+          "options": ["Aus Erfahrungen zu lernen", "Die Zeit zu vertreiben", "Die Arbeit zu vermeiden"],
+          "answer": 0
+        }
+      ]
+    }
+  ]
+}

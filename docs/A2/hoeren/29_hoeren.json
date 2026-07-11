@@ -6,15 +6,15 @@
     {
       "id": "monolog_1",
       "title": "Ein Kinobesuch",
-      "text": "Hallo! Ich freue mich, dass ihr da seid! Ich bin Amelie. Letztes Wochenende war ich im Kino. Ich habe einen neuen Film gesehen. Der Film war sehr spannend. Die Hauptdarstellerin war super. Nach dem Film habe ich mit meiner Freundin noch geredet. Wir waren uns einig: Der Film war großartig!",
+      "text": "Hallo! Ich freue mich, dass ihr da seid! Ich bin Anna. Letztes Wochenende war ich im Kino. Ich habe einen neuen Film gesehen. Der Film war sehr spannend. Nach dem Film habe ich mit meiner Freundin noch geredet. Der Film war großartig!",
       "questions": [
         {
           "question": "Wie heißt die Frau?",
-          "options": ["Amelie", "Leonie", "Mathilda"],
+          "options": ["Anna", "Maria", "Julia"],
           "answer": 0
         },
         {
-          "question": "Wo war Amelie letztes Wochenende?",
+          "question": "Wo war Anna letztes Wochenende?",
           "options": ["Im Kino", "Im Theater", "Im Museum"],
           "answer": 0
         },
@@ -24,13 +24,8 @@
           "answer": 0
         },
         {
-          "question": "Was hat Amelie nach dem Film gemacht?",
+          "question": "Was hat Anna nach dem Film gemacht?",
           "options": ["Mit ihrer Freundin geredet", "Nach Hause gegangen", "Geschlafen"],
-          "answer": 0
-        },
-        {
-          "question": "Wie fanden sie den Film?",
-          "options": ["Großartig", "Schlecht", "Okay"],
           "answer": 0
         }
       ]
@@ -38,15 +33,15 @@
     {
       "id": "monolog_2",
       "title": "Ein Konzertbesuch",
-      "text": "Schön, dass ihr zuhört! Ich bin Leonie. Ich war gestern auf einem Konzert. Es war eine deutsche Band. Die Band hat sehr gut gespielt. Die Musik war laut und die Stimmung war super. Ich habe mitgesungen und getanzt. Es war ein unvergesslicher Abend. Ich möchte bald wieder auf ein Konzert gehen.",
+      "text": "Schön, dass ihr zuhört! Ich bin Maria. Ich war gestern auf einem Konzert. Es war eine deutsche Band. Die Band hat sehr gut gespielt. Die Musik war laut. Ich habe mitgesungen und getanzt. Es war ein unvergesslicher Abend.",
       "questions": [
         {
           "question": "Wie heißt die Frau?",
-          "options": ["Amelie", "Leonie", "Mathilda"],
+          "options": ["Anna", "Maria", "Julia"],
           "answer": 1
         },
         {
-          "question": "Wo war Leonie gestern?",
+          "question": "Wo war Maria gestern?",
           "options": ["Auf einem Konzert", "Im Kino", "Im Theater"],
           "answer": 0
         },
@@ -56,13 +51,8 @@
           "answer": 0
         },
         {
-          "question": "Was hat Leonie auf dem Konzert gemacht?",
+          "question": "Was hat Maria auf dem Konzert gemacht?",
           "options": ["Mitgesungen und getanzt", "Nur zugehört", "Geschlafen"],
-          "answer": 0
-        },
-        {
-          "question": "Wie war der Abend?",
-          "options": ["Unvergesslich", "Schlecht", "Langweilig"],
           "answer": 0
         }
       ]
@@ -70,132 +60,26 @@
     {
       "id": "monolog_3",
       "title": "Ein Besuch im Museum",
-      "text": "Heute erzähle ich euch über meinen Besuch im Museum. Ich bin Mathilda. Ich war letzte Woche im Museum. Ich habe eine Ausstellung über alte Kunst gesehen. Es gab viele Bilder und Statuen. Die Führung war sehr interessant. Ich habe viel Neues gelernt. Ich kann das Museum nur empfehlen.",
+      "text": "Heute erzähle ich euch über meinen Besuch im Museum. Ich bin Julia. Ich war letzte Woche im Museum. Ich habe eine Ausstellung über alte Kunst gesehen. Die Führung war sehr interessant. Ich habe viel Neues gelernt.",
       "questions": [
         {
           "question": "Wie heißt die Frau?",
-          "options": ["Amelie", "Leonie", "Mathilda"],
+          "options": ["Anna", "Maria", "Julia"],
           "answer": 2
         },
         {
-          "question": "Wo war Mathilda letzte Woche?",
+          "question": "Wo war Julia letzte Woche?",
           "options": ["Im Museum", "Im Kino", "Im Konzert"],
           "answer": 0
         },
         {
-          "question": "Was für eine Ausstellung hat Mathilda gesehen?",
+          "question": "Was für eine Ausstellung hat Julia gesehen?",
           "options": ["Über alte Kunst", "Über moderne Kunst", "Über Natur"],
           "answer": 0
         },
         {
           "question": "Wie war die Führung?",
           "options": ["Sehr interessant", "Langweilig", "Zu lang"],
-          "answer": 0
-        },
-        {
-          "question": "Was kann Mathilda empfehlen?",
-          "options": ["Das Museum", "Das Kino", "Das Theater"],
-          "answer": 0
-        }
-      ]
-    },
-    {
-      "id": "monolog_4",
-      "title": "Ein Theaterbesuch",
-      "text": "Wisst ihr, was ich letztes Wochenende gemacht habe? Ich bin Henriette. Ich war im Theater. Ich habe ein lustiges Stück gesehen. Die Schauspieler waren sehr gut. Ich habe viel gelacht. In der Pause habe ich ein Glas Sekt getrunken. Das Stück hat zwei Stunden gedauert. Es war ein gelungener Abend.",
-      "questions": [
-        {
-          "question": "Wie heißt die Frau?",
-          "options": ["Henriette", "Wilma", "Mathilda"],
-          "answer": 0
-        },
-        {
-          "question": "Wo war Henriette letztes Wochenende?",
-          "options": ["Im Theater", "Im Kino", "Im Museum"],
-          "answer": 0
-        },
-        {
-          "question": "Was für ein Stück hat Henriette gesehen?",
-          "options": ["Ein lustiges", "Ein trauriges", "Ein spannendes"],
-          "answer": 0
-        },
-        {
-          "question": "Was hat Henriette in der Pause gemacht?",
-          "options": ["Sekt getrunken", "Geschlafen", "Geredet"],
-          "answer": 0
-        },
-        {
-          "question": "Wie lange hat das Stück gedauert?",
-          "options": ["Zwei Stunden", "Eine Stunde", "Drei Stunden"],
-          "answer": 0
-        }
-      ]
-    },
-    {
-      "id": "monolog_5",
-      "title": "Ein Besuch im Zoo",
-      "text": "Hallo! Ich bin Wilma. Letzten Samstag war ich mit meiner Familie im Zoo. Wir haben viele Tiere gesehen: Elefanten, Giraffen und Affen. Die Kinder haben sich sehr gefreut. Wir haben den ganzen Tag dort verbracht. Am Nachmittag haben wir eine Führung gemacht. Der Tierpfleger hat uns viel erklärt. Es war ein wunderschöner Tag.",
-      "questions": [
-        {
-          "question": "Wie heißt die Frau?",
-          "options": ["Henriette", "Wilma", "Amelie"],
-          "answer": 1
-        },
-        {
-          "question": "Mit wem war Wilma im Zoo?",
-          "options": ["Mit ihrer Familie", "Mit Freundinnen", "Alleine"],
-          "answer": 0
-        },
-        {
-          "question": "Welche Tiere haben sie gesehen?",
-          "options": ["Elefanten, Giraffen und Affen", "Nur Elefanten", "Löwen und Tiger"],
-          "answer": 0
-        },
-        {
-          "question": "Was haben sie am Nachmittag gemacht?",
-          "options": ["Eine Führung gemacht", "Nach Hause gegangen", "Gegessen"],
-          "answer": 0
-        },
-        {
-          "question": "Wie war der Tag?",
-          "options": ["Wunderschön", "Schlecht", "Langweilig"],
-          "answer": 0
-        }
-      ]
-    },
-    {
-      "id": "monolog_6",
-      "title": "Ein Fest in der Stadt",
-      "text": "Schön, dass ihr da seid! Ich bin Greta. In meiner Stadt gab es ein großes Fest. Es gab viele Stände mit Essen und Getränken. Es gab auch Musik und Tanz. Ich habe mit meinen Freunden getanzt. Wir haben leckeres Essen probiert. Das Fest hat bis spät in die Nacht gedauert. Es war ein fröhliches Fest.",
-      "questions": [
-        {
-          "question": "Wie heißt die Frau?",
-          "options": ["Greta", "Wilma", "Henriette"],
-          "answer": 0
-        },
-        {
-          "question": "Was gab es in Gretas Stadt?",
-          "options": ["Ein großes Fest", "Ein Konzert", "Ein Theater"],
-          "answer": 0
-        },
-        {
-          "question": "Was gab es auf dem Fest?",
-          "options": ["Stände mit Essen und Getränken", "Nur Musik", "Nur Spiele"],
-          "answer": 0
-        },
-        {
-          "question": "Was hat Greta auf dem Fest gemacht?",
-          "options": ["Getanzt und gegessen", "Nur zugesehen", "Geschlafen"],
-          "answer": 0
-        },
-        {
-          "question": "Wie lange hat das Fest gedauert?",
-          "options": ["Bis spät in die Nacht", "Bis zum Abend", "Nur eine Stunde"],
-          "answer": 0
-        },
-        {
-          "question": "Wie war das Fest?",
-          "options": ["Fröhlich", "Traurig", "Langweilig"],
           "answer": 0
         }
       ]

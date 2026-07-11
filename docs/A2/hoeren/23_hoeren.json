@@ -6,20 +6,20 @@
     {
       "id": "monolog_1",
       "title": "Meine Zugreise",
-      "text": "Guten Tag! Ich bin Greta. Ich bin nach Hamburg gefahren. Ich bin mit dem Zug gefahren. Die Fahrt hat vier Stunden gedauert. Ich habe das Ticket im Internet gekauft. Im Zug habe ich Kaffee getrunken. In Hamburg bin ich in ein Hotel gegangen.",
+      "text": "Guten Tag! Ich bin Anna. Ich bin nach Hamburg gefahren. Ich bin mit dem Zug gefahren. Die Fahrt hat vier Stunden gedauert. Ich habe das Ticket im Internet gekauft. Im Zug habe ich Kaffee getrunken. In Hamburg bin ich in ein Hotel gegangen.",
       "questions": [
         {
           "question": "Wie heißt die Frau?",
-          "options": ["Greta", "Lotte", "Paula"],
+          "options": ["Anna", "Maria", "Julia"],
           "answer": 0
         },
         {
-          "question": "Wohin ist Greta gefahren?",
+          "question": "Wohin ist Anna gefahren?",
           "options": ["Nach Hamburg", "Nach Berlin", "Nach München"],
           "answer": 0
         },
         {
-          "question": "Womit ist Greta gefahren?",
+          "question": "Womit ist Anna gefahren?",
           "options": ["Mit dem Zug", "Mit dem Auto", "Mit dem Flugzeug"],
           "answer": 0
         },
@@ -29,7 +29,7 @@
           "answer": 0
         },
         {
-          "question": "Wo hat Greta das Ticket gekauft?",
+          "question": "Wo hat Anna das Ticket gekauft?",
           "options": ["Im Internet", "Am Bahnhof", "Im Reisebüro"],
           "answer": 0
         }
@@ -38,20 +38,20 @@
     {
       "id": "monolog_2",
       "title": "Am Flughafen",
-      "text": "Hallo! Ich bin Lotte. Ich bin nach London geflogen. Ich war zwei Stunden vor dem Abflug am Flughafen. Ich habe den Koffer aufgegeben. Der Flug hatte eine Stunde Verspätung. Ich habe im Flugzeug geschlafen. In London hat mich meine Freundin abgeholt.",
+      "text": "Hallo! Ich bin Maria. Ich bin nach London geflogen. Ich war zwei Stunden vor dem Abflug am Flughafen. Ich habe den Koffer aufgegeben. Der Flug hatte eine Stunde Verspätung. Ich habe im Flugzeug geschlafen. In London hat mich meine Freundin abgeholt.",
       "questions": [
         {
           "question": "Wie heißt die Frau?",
-          "options": ["Greta", "Lotte", "Paula"],
+          "options": ["Anna", "Maria", "Julia"],
           "answer": 1
         },
         {
-          "question": "Wohin ist Lotte geflogen?",
+          "question": "Wohin ist Maria geflogen?",
           "options": ["Nach London", "Nach Paris", "Nach Rom"],
           "answer": 0
         },
         {
-          "question": "Wie lange vor dem Abflug war Lotte am Flughafen?",
+          "question": "Wie lange vor dem Abflug war Maria am Flughafen?",
           "options": ["Zwei Stunden", "Eine Stunde", "Drei Stunden"],
           "answer": 0
         },
@@ -61,7 +61,7 @@
           "answer": 0
         },
         {
-          "question": "Wer hat Lotte in London abgeholt?",
+          "question": "Wer hat Maria in London abgeholt?",
           "options": ["Ihre Freundin", "Ihre Mutter", "Ein Taxifahrer"],
           "answer": 0
         }
@@ -70,20 +70,20 @@
     {
       "id": "monolog_3",
       "title": "Ein Hotel buchen",
-      "text": "Grüß dich! Ich bin Paula. Ich habe gestern ein Hotel gebucht. Ich habe ein Zimmer mit Balkon genommen. Das Zimmer hat 80 Euro pro Nacht gekostet. Frühstück war inklusive. Ich habe die Buchung per E-Mail bekommen. Ich freue mich auf die Reise.",
+      "text": "Grüß dich! Ich bin Julia. Ich habe gestern ein Hotel gebucht. Ich habe ein Zimmer mit Balkon genommen. Das Zimmer hat 80 Euro pro Nacht gekostet. Frühstück war inklusive. Ich habe die Buchung per E-Mail bekommen. Ich freue mich auf die Reise.",
       "questions": [
         {
           "question": "Wie heißt die Frau?",
-          "options": ["Greta", "Lotte", "Paula"],
+          "options": ["Anna", "Maria", "Julia"],
           "answer": 2
         },
         {
-          "question": "Was hat Paula gestern gemacht?",
+          "question": "Was hat Julia gestern gemacht?",
           "options": ["Ein Hotel gebucht", "Eine Reise gemacht", "Gearbeitet"],
           "answer": 0
         },
         {
-          "question": "Was für ein Zimmer hat Paula genommen?",
+          "question": "Was für ein Zimmer hat Julia genommen?",
           "options": ["Ein Zimmer mit Balkon", "Ein Zimmer ohne Balkon", "Ein Dreibettzimmer"],
           "answer": 0
         },
@@ -93,77 +93,8 @@
           "answer": 0
         },
         {
-          "question": "Wie hat Paula die Buchung bekommen?",
+          "question": "Wie hat Julia die Buchung bekommen?",
           "options": ["Per E-Mail", "Per Telefon", "Per Post"],
-          "answer": 0
-        }
-      ]
-    },
-    {
-      "id": "monolog_4",
-      "title": "Mein Roadtrip",
-      "text": "Guten Morgen! Ich bin Marie. Ich habe einen Roadtrip gemacht. Ich bin mit dem Auto durch Deutschland gefahren. Ich war zwei Wochen unterwegs. Ich habe in kleinen Pensionen übernachtet. In Dresden habe ich eine Freundin besucht. Die Natur war wunderschön. Ich habe viele Fotos gemacht.",
-      "questions": [
-        {
-          "question": "Wie heißt die Frau?",
-          "options": ["Marie", "Greta", "Klara"],
-          "answer": 0
-        },
-        {
-          "question": "Was hat Marie gemacht?",
-          "options": ["Einen Roadtrip", "Einen Flug", "Eine Kreuzfahrt"],
-          "answer": 0
-        },
-        {
-          "question": "Wie lange war Marie unterwegs?",
-          "options": ["Zwei Wochen", "Eine Woche", "Drei Wochen"],
-          "answer": 0
-        },
-        {
-          "question": "Wo hat Marie übernachtet?",
-          "options": ["In Pensionen", "In Hotels", "Bei Freunden"],
-          "answer": 0
-        },
-        {
-          "question": "Wen hat Marie in Dresden besucht?",
-          "options": ["Eine Freundin", "Ihre Mutter", "Ihre Schwester"],
-          "answer": 0
-        }
-      ]
-    },
-    {
-      "id": "monolog_5",
-      "title": "Meine Kreuzfahrt",
-      "text": "Hallo! Ich bin Klara. Ich habe eine Kreuzfahrt gemacht. Ich war eine Woche auf dem Schiff. Wir sind in Barcelona gestartet. Wir sind nach Rom und Neapel gefahren. Das Schiff war sehr groß. Das Essen war lecker. Ich habe im Pool geschwommen. Es war eine tolle Reise.",
-      "questions": [
-        {
-          "question": "Wie heißt die Frau?",
-          "options": ["Klara", "Marie", "Paula"],
-          "answer": 0
-        },
-        {
-          "question": "Was hat Klara gemacht?",
-          "options": ["Eine Kreuzfahrt", "Einen Roadtrip", "Einen Flug"],
-          "answer": 0
-        },
-        {
-          "question": "Wie lange war Klara auf dem Schiff?",
-          "options": ["Eine Woche", "Zwei Wochen", "Drei Tage"],
-          "answer": 0
-        },
-        {
-          "question": "In welcher Stadt haben sie gestartet?",
-          "options": ["In Barcelona", "In Rom", "In Neapel"],
-          "answer": 0
-        },
-        {
-          "question": "Was hat Klara auf dem Schiff gemacht?",
-          "options": ["Geschwommen und gegessen", "Gearbeitet", "Geschlafen"],
-          "answer": 0
-        },
-        {
-          "question": "Wie war die Reise?",
-          "options": ["Toll", "Schlecht", "Langweilig"],
           "answer": 0
         }
       ]

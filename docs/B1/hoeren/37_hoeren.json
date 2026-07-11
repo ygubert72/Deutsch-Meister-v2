@@ -1,0 +1,259 @@
+{
+  "lesson": 37,
+  "level": "B1",
+  "title": "Придаточные уступки и причины",
+  "dialogs": [
+    {
+      "id": "monolog_1",
+      "title": "Ehrenamtliche Arbeit",
+      "text": "Obwohl ich wenig Zeit habe, engagiere ich mich ehrenamtlich. Ich bin Hiltrud. Ich helfe in einer Suppenküche, weil ich Menschen unterstützen möchte. Jede Woche verbringe ich drei Stunden dort. Obwohl die Arbeit anstrengend ist, macht sie mir viel Freude. Ich koche mit anderen Freiwilligen, weil viele Menschen warmes Essen brauchen. Die Dankbarkeit der Menschen macht mich glücklich. Deshalb mache ich das gerne.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Hiltrud", "Kunigunde", "Ludovika"],
+          "answer": 0
+        },
+        {
+          "question": "Wo engagiert sich Hiltrud ehrenamtlich?",
+          "options": ["In einer Suppenküche", "In einer Schule", "In einem Krankenhaus"],
+          "answer": 0
+        },
+        {
+          "question": "Warum hilft Hiltrud?",
+          "options": ["Weil sie Menschen unterstützen möchte", "Weil sie Geld verdienen möchte", "Weil sie keine Freunde hat"],
+          "answer": 0
+        },
+        {
+          "question": "Wie lange verbringt Hiltrud jede Woche dort?",
+          "options": ["Drei Stunden", "Zwei Stunden", "Vier Stunden"],
+          "answer": 0
+        },
+        {
+          "question": "Obwohl die Arbeit anstrengend ist, wie ist sie?",
+          "options": ["Sie macht viel Freude", "Sie ist langweilig", "Sie ist sinnlos"],
+          "answer": 0
+        },
+        {
+          "question": "Warum kocht Hiltrud mit anderen?",
+          "options": ["Weil viele Menschen warmes Essen brauchen", "Weil sie es gern macht", "Weil sie muss"],
+          "answer": 0
+        },
+        {
+          "question": "Was macht Hiltrud glücklich?",
+          "options": ["Die Dankbarkeit der Menschen", "Das Gehalt", "Die Pause"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_2",
+      "title": "Ein Projekt für die Umwelt",
+      "text": "Viele Menschen engagieren sich, weil sie die Umwelt schützen wollen. Ich bin Kunigunde. Obwohl ich schon alt bin, beteilige ich mich an einem Umweltprojekt. Wir pflanzen Bäume, weil die Wälder wichtig sind. Die Arbeit ist schwer, aber wir machen weiter, weil wir an die Zukunft glauben. Unsere Gruppe trifft sich jeden Samstag. Obwohl das Wetter oft schlecht ist, kommen viele Menschen. Wir sind stolz auf unsere Arbeit.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Hiltrud", "Kunigunde", "Ludovika"],
+          "answer": 1
+        },
+        {
+          "question": "Warum engagieren sich viele Menschen?",
+          "options": ["Weil sie die Umwelt schützen wollen", "Weil sie Geld verdienen wollen", "Weil sie nichts zu tun haben"],
+          "answer": 0
+        },
+        {
+          "question": "Obwohl Kunigunde schon alt ist, was macht sie?",
+          "options": ["Sie beteiligt sich an einem Umweltprojekt", "Sie bleibt zu Hause", "Sie reist"],
+          "answer": 0
+        },
+        {
+          "question": "Warum pflanzen sie Bäume?",
+          "options": ["Weil die Wälder wichtig sind", "Weil sie Geld bekommen", "Weil sie es müssen"],
+          "answer": 0
+        },
+        {
+          "question": "Wann trifft sich die Gruppe?",
+          "options": ["Jeden Samstag", "Jeden Sonntag", "Jeden Montag"],
+          "answer": 0
+        },
+        {
+          "question": "Obwohl das Wetter oft schlecht ist, was passiert?",
+          "options": ["Viele Menschen kommen", "Niemand kommt", "Sie treffen sich online"],
+          "answer": 0
+        },
+        {
+          "question": "Wie fühlen sie sich?",
+          "options": ["Sie sind stolz", "Sie sind müde", "Sie sind traurig"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_3",
+      "title": "Ein schwieriger Berufsweg",
+      "text": "Ich möchte über etwas sprechen, das mich bewegt. Ich bin Ludovika. Obwohl ich viele Bewerbungen geschrieben habe, habe ich lange keine Stelle gefunden. Das war schwierig, weil ich viel Erfahrung habe. Ich habe weitergemacht, weil ich nicht aufgeben wollte. Endlich habe ich einen Job gefunden. Obwohl das Gehalt nicht hoch ist, bin ich zufrieden. Ich arbeite jetzt mit Kindern, weil das mein Traum war.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Hiltrud", "Kunigunde", "Ludovika"],
+          "answer": 2
+        },
+        {
+          "question": "Was war schwierig für Ludovika?",
+          "options": ["Keine Stelle zu finden", "Eine Bewerbung zu schreiben", "Ein Studium zu machen"],
+          "answer": 0
+        },
+        {
+          "question": "Warum war es schwierig?",
+          "options": ["Weil sie viel Erfahrung hat", "Weil sie keine Erfahrung hat", "Weil sie jung ist"],
+          "answer": 0
+        },
+        {
+          "question": "Warum hat Ludovika weitergemacht?",
+          "options": ["Weil sie nicht aufgeben wollte", "Weil sie Geld brauchte", "Weil sie musste"],
+          "answer": 0
+        },
+        {
+          "question": "Was hat Ludovika endlich gefunden?",
+          "options": ["Einen Job", "Eine Wohnung", "Einen Freund"],
+          "answer": 0
+        },
+        {
+          "question": "Obwohl das Gehalt nicht hoch ist, wie ist Ludovika?",
+          "options": ["Sie ist zufrieden", "Sie ist unzufrieden", "Sie sucht weiter"],
+          "answer": 0
+        },
+        {
+          "question": "Warum arbeitet Ludovika mit Kindern?",
+          "options": ["Weil das ihr Traum war", "Weil sie keine Wahl hatte", "Weil es gut bezahlt wird"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_4",
+      "title": "Ein soziales Engagement",
+      "text": "Hallo zusammen! Ich bin Mechthild. Obwohl ich berufstätig bin, helfe ich im Tierheim. Ich engagiere mich, weil ich Tiere liebe. Jeden Dienstag gehe ich nach der Arbeit dorthin. Die Hunde werden gefüttert und ausgeführt. Manchmal ist es anstrengend, weil die Tiere viel Aufmerksamkeit brauchen. Aber ich mache es gern, weil es sich lohnt. Viele Tiere finden so ein neues Zuhause.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Mechthild", "Notburga", "Ludovika"],
+          "answer": 0
+        },
+        {
+          "question": "Obwohl Mechthild berufstätig ist, was macht sie?",
+          "options": ["Sie hilft im Tierheim", "Sie macht Sport", "Sie reist"],
+          "answer": 0
+        },
+        {
+          "question": "Warum engagiert sich Mechthild?",
+          "options": ["Weil sie Tiere liebt", "Weil sie Geld braucht", "Weil sie muss"],
+          "answer": 0
+        },
+        {
+          "question": "Wann geht Mechthild ins Tierheim?",
+          "options": ["Jeden Dienstag", "Jeden Samstag", "Jeden Sonntag"],
+          "answer": 0
+        },
+        {
+          "question": "Warum ist es manchmal anstrengend?",
+          "options": ["Weil die Tiere viel Aufmerksamkeit brauchen", "Weil sie weit fahren muss", "Weil es laut ist"],
+          "answer": 0
+        },
+        {
+          "question": "Warum macht Mechthild es gern?",
+          "options": ["Weil es sich lohnt", "Weil sie muss", "Weil sie bezahlt wird"],
+          "answer": 0
+        },
+        {
+          "question": "Was finden viele Tiere durch das Engagement?",
+          "options": ["Ein neues Zuhause", "Mehr Futter", "Ein Spielzeug"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_5",
+      "title": "Nachhaltig leben",
+      "text": "Wisst ihr, warum ich auf Plastik verzichte? Ich bin Notburga. Obwohl es manchmal unbequem ist, lebe ich möglichst nachhaltig. Ich kaufe auf dem Markt ein, weil ich Verpackungen vermeiden will. Ich habe einen eigenen Einkaufsbeutel, weil ich keine Plastiktüten verwenden möchte. Obwohl Bio-Produkte teurer sind, kaufe ich sie. Ich tue das, weil mir die Umwelt wichtig ist. Jeder kleine Beitrag zählt.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Mechthild", "Notburga", "Hiltrud"],
+          "answer": 1
+        },
+        {
+          "question": "Obwohl es unbequem ist, wie lebt Notburga?",
+          "options": ["Nachhaltig", "Verschwenderisch", "Normal"],
+          "answer": 0
+        },
+        {
+          "question": "Warum kauft Notburga auf dem Markt ein?",
+          "options": ["Weil sie Verpackungen vermeiden will", "Weil es billiger ist", "Weil sie Freunde dort hat"],
+          "answer": 0
+        },
+        {
+          "question": "Warum hat sie einen eigenen Einkaufsbeutel?",
+          "options": ["Weil sie keine Plastiktüten verwenden möchte", "Weil es modern ist", "Weil sie muss"],
+          "answer": 0
+        },
+        {
+          "question": "Obwohl Bio-Produkte teurer sind, was macht Notburga?",
+          "options": ["Sie kauft sie", "Sie kauft sie nicht", "Sie kauft manchmal"],
+          "answer": 0
+        },
+        {
+          "question": "Warum tut Notburga das alles?",
+          "options": ["Weil ihr die Umwelt wichtig ist", "Weil sie es muss", "Weil es Mode ist"],
+          "answer": 0
+        },
+        {
+          "question": "Was zählt laut Notburga?",
+          "options": ["Jeder kleine Beitrag", "Nur große Aktionen", "Nichts"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_6",
+      "title": "Kulturförderung",
+      "text": "Findet ihr nicht auch, dass Kultur gefördert werden sollte? Ich bin Gertrud. Obwohl die Finanzierung schwierig ist, gibt es viele kulturelle Projekte. Die Stadt unterstützt die Kunst, weil sie wichtig für die Gesellschaft ist. Wir haben ein kleines Theater, obwohl die Stadt nicht groß ist. Das Theater ist immer voll, weil die Menschen Kultur lieben. Ich gehe oft hin, weil es mich bereichert. Obwohl die Karten nicht billig sind, lohnt es sich.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Gertrud", "Notburga", "Mechthild"],
+          "answer": 0
+        },
+        {
+          "question": "Obwohl die Finanzierung schwierig ist, was gibt es?",
+          "options": ["Viele kulturelle Projekte", "Keine Projekte", "Nur ein Projekt"],
+          "answer": 0
+        },
+        {
+          "question": "Warum unterstützt die Stadt die Kunst?",
+          "options": ["Weil sie wichtig für die Gesellschaft ist", "Weil sie viel Geld bringt", "Weil sie modern ist"],
+          "answer": 0
+        },
+        {
+          "question": "Obwohl die Stadt nicht groß ist, was haben sie?",
+          "options": ["Ein kleines Theater", "Ein großes Theater", "Kein Theater"],
+          "answer": 0
+        },
+        {
+          "question": "Warum ist das Theater immer voll?",
+          "options": ["Weil die Menschen Kultur lieben", "Weil die Karten billig sind", "Weil es neu ist"],
+          "answer": 0
+        },
+        {
+          "question": "Warum geht Gertrud oft ins Theater?",
+          "options": ["Weil es sie bereichert", "Weil sie muss", "Weil ihre Freunde gehen"],
+          "answer": 0
+        },
+        {
+          "question": "Obwohl die Karten nicht billig sind, lohnt es sich?",
+          "options": ["Ja", "Nein", "Weiß nicht"],
+          "answer": 0
+        }
+      ]
+    }
+  ]
+}

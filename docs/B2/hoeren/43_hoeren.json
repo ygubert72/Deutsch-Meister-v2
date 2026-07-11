@@ -6,7 +6,7 @@
     {
       "id": "monolog_1",
       "title": "Die Entwicklung der Technologie",
-      "text": "Ich möchte heute über ein Thema sprechen, das mich fasziniert. Ich bin Anna. In den letzten Jahren wurde viel in die Technologie investiert. Neue Geräte werden ständig entwickelt. Noch vor zwanzig Jahren wurde das Internet nur von wenigen genutzt. Heute wird es überall verwendet. In Zukunft werden noch mehr Daten gesammelt und analysiert werden. Die Technologie wird uns helfen, viele Probleme zu lösen. Das muss bedacht werden.",
+      "text": "Ich möchte heute über ein Thema sprechen, das mich fasziniert. Ich bin Anna. In den letzten Jahren wurde viel in die Technologie investiert. Neue Geräte werden ständig entwickelt. Noch vor zwanzig Jahren wurde das Internet nur von wenigen genutzt. Heute wird es überall verwendet. In Zukunft werden noch mehr Daten gesammelt und analysiert werden. Die Technologie wird uns helfen, viele Probleme zu lösen.",
       "questions": [
         {
           "question": "Wie heißt die Frau?",
@@ -26,6 +26,171 @@
         {
           "question": "Was wird in Zukunft gesammelt und analysiert?",
           "options": ["Mehr Daten", "Mehr Bücher", "Mehr Bilder"],
+          "answer": 0
+        },
+        {
+          "question": "Wird die Technologie uns helfen, Probleme zu lösen?",
+          "options": ["Ja", "Nein", "Weiß nicht"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_2",
+      "title": "Die Geschichte der Stadt",
+      "text": "In der heutigen Zeit wird viel über die Geschichte unserer Stadt gesprochen. Ich bin Maria. Die Stadt wurde im 12. Jahrhundert gegründet. Im Laufe der Jahrhunderte wurde sie mehrmals zerstört und wieder aufgebaut. Während des Krieges wurden viele Gebäude beschädigt. Nach dem Krieg wurde alles rekonstruiert. Heute werden die historischen Gebäude sorgfältig gepflegt. In Zukunft wird noch mehr in den Denkmalschutz investiert werden.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Anna", "Maria", "Julia"],
+          "answer": 1
+        },
+        {
+          "question": "Wann wurde die Stadt gegründet?",
+          "options": ["Im 12. Jahrhundert", "Im 13. Jahrhundert", "Im 14. Jahrhundert"],
+          "answer": 0
+        },
+        {
+          "question": "Was wurde während des Krieges beschädigt?",
+          "options": ["Viele Gebäude", "Viele Straßen", "Viele Bäume"],
+          "answer": 0
+        },
+        {
+          "question": "Was wurde nach dem Krieg gemacht?",
+          "options": ["Alles wurde rekonstruiert", "Nichts wurde gemacht", "Die Stadt wurde verlassen"],
+          "answer": 0
+        },
+        {
+          "question": "Wie werden die historischen Gebäude heute gepflegt?",
+          "options": ["Sorgfältig", "Gar nicht", "Nur manchmal"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_3",
+      "title": "Der Klimawandel",
+      "text": "Ich habe mich intensiv mit dem Klimawandel beschäftigt. Ich bin Julia. In den letzten Jahrzehnten wurde der Klimawandel immer deutlicher. Die Temperaturen sind gestiegen. Die Polkappen wurden kleiner. Neue Maßnahmen wurden von vielen Ländern eingeführt. In Zukunft wird noch mehr getan werden müssen. Die Emissionen müssen reduziert werden. Erneuerbare Energien werden weiter ausgebaut werden.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Anna", "Maria", "Julia"],
+          "answer": 2
+        },
+        {
+          "question": "Wann wurde der Klimawandel immer deutlicher?",
+          "options": ["In den letzten Jahrzehnten", "In den letzten Jahren", "In der Zukunft"],
+          "answer": 0
+        },
+        {
+          "question": "Was wurde kleiner?",
+          "options": ["Die Polkappen", "Die Wälder", "Die Seen"],
+          "answer": 0
+        },
+        {
+          "question": "Was wurde von vielen Ländern eingeführt?",
+          "options": ["Neue Maßnahmen", "Neue Gesetze", "Neue Steuern"],
+          "answer": 0
+        },
+        {
+          "question": "Was muss reduziert werden?",
+          "options": ["Die Emissionen", "Die Steuern", "Die Preise"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_4",
+      "title": "Die Entwicklung der Medizin",
+      "text": "Wisst ihr, wie die Medizin sich entwickelt hat? Ich bin Laura. In den letzten hundert Jahren wurde die Medizin revolutioniert. Viele Krankheiten wurden besiegt. Neue Behandlungsmethoden wurden entwickelt. Die Lebenserwartung wurde deutlich erhöht. Heute werden Operationen mit Robotern durchgeführt. Impfstoffe werden weltweit eingesetzt. In Zukunft werden noch bessere Medikamente entwickelt werden. Die Forschung wird fortgesetzt.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Laura", "Lisa", "Anna"],
+          "answer": 0
+        },
+        {
+          "question": "Wann wurde die Medizin revolutioniert?",
+          "options": ["In den letzten hundert Jahren", "In den letzten zehn Jahren", "In der Zukunft"],
+          "answer": 0
+        },
+        {
+          "question": "Was wurde besiegt?",
+          "options": ["Viele Krankheiten", "Viele Kriege", "Viele Armut"],
+          "answer": 0
+        },
+        {
+          "question": "Was wurde entwickelt?",
+          "options": ["Neue Behandlungsmethoden", "Neue Sprachen", "Neue Schulen"],
+          "answer": 0
+        },
+        {
+          "question": "Wie werden heute Operationen durchgeführt?",
+          "options": ["Mit Robotern", "Mit Händen", "Mit Laser"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_5",
+      "title": "Die Veränderung der Arbeitswelt",
+      "text": "Ich möchte euch heute von der Veränderung der Arbeitswelt erzählen. Ich bin Lisa. In den letzten zwanzig Jahren wurde die Arbeitswelt völlig verändert. Homeoffice wurde immer beliebter. Neue Berufe wurden geschaffen. Alte Berufe wurden überflüssig. Die Digitalisierung wurde vorangetrieben. Künstliche Intelligenz wird in vielen Bereichen eingesetzt. In Zukunft werden noch mehr Arbeitsplätze automatisiert werden. Die Arbeitnehmer müssen sich anpassen.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Laura", "Lisa", "Anna"],
+          "answer": 1
+        },
+        {
+          "question": "Wann wurde die Arbeitswelt verändert?",
+          "options": ["In den letzten zwanzig Jahren", "In den letzten fünf Jahren", "In der Zukunft"],
+          "answer": 0
+        },
+        {
+          "question": "Was wurde immer beliebter?",
+          "options": ["Homeoffice", "Büroarbeit", "Schichtarbeit"],
+          "answer": 0
+        },
+        {
+          "question": "Was wurde geschaffen?",
+          "options": ["Neue Berufe", "Neue Städte", "Neue Länder"],
+          "answer": 0
+        },
+        {
+          "question": "Was wurde vorangetrieben?",
+          "options": ["Die Digitalisierung", "Die Industrialisierung", "Die Globalisierung"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_6",
+      "title": "Die Globalisierung",
+      "text": "In der heutigen Zeit wird viel über die Globalisierung gesprochen. Ich bin Emma. Die Globalisierung wurde in den letzten fünfzig Jahren vorangetrieben. Waren werden heute weltweit gehandelt. Kulturen werden vermischt. Neue Märkte wurden erschlossen. Die Wirtschaft wurde global vernetzt. In Zukunft werden noch mehr Länder miteinander verbunden sein. Die Globalisierung hat viele Vorteile gebracht. Aber es gibt auch Nachteile, die diskutiert werden müssen.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Emma", "Lisa", "Laura"],
+          "answer": 0
+        },
+        {
+          "question": "Wann wurde die Globalisierung vorangetrieben?",
+          "options": ["In den letzten fünfzig Jahren", "In den letzten hundert Jahren", "In der Zukunft"],
+          "answer": 0
+        },
+        {
+          "question": "Was wird heute weltweit gehandelt?",
+          "options": ["Waren", "Sprachen", "Kulturen"],
+          "answer": 0
+        },
+        {
+          "question": "Was wird vermischt?",
+          "options": ["Kulturen", "Waren", "Sprachen"],
+          "answer": 0
+        },
+        {
+          "question": "Was wurde erschlossen?",
+          "options": ["Neue Märkte", "Neue Länder", "Neue Kulturen"],
           "answer": 0
         }
       ]

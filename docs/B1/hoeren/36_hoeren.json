@@ -6,16 +6,11 @@
     {
       "id": "monolog_1",
       "title": "Umweltschutz",
-      "text": "Man muss viel beachten, wenn es um Umweltschutz geht. Ich bin Ottilie. In Deutschland muss viel getan werden, um die Umwelt zu schützen. Plastik muss vermieden werden. Abfälle müssen getrennt werden. Papier und Glas müssen recycelt werden. Öffentliche Verkehrsmittel sollten benutzt werden. Fahrräder können gefördert werden. Mehr Bäume müssen gepflanzt werden. Alle Bürger müssen mithelfen. Nur so kann die Umwelt geschützt werden.",
+      "text": "Man muss viel beachten, wenn es um Umweltschutz geht. Ich bin Anna. Plastik muss vermieden werden. Abfälle müssen getrennt werden. Papier und Glas müssen recycelt werden. Öffentliche Verkehrsmittel sollten benutzt werden. Mehr Bäume müssen gepflanzt werden. Alle Bürger müssen mithelfen.",
       "questions": [
         {
           "question": "Wie heißt die Frau?",
-          "options": ["Ottilie", "Roswitha", "Sieglinde"],
-          "answer": 0
-        },
-        {
-          "question": "Was muss in Deutschland getan werden?",
-          "options": ["Die Umwelt muss geschützt werden", "Es muss mehr gebaut werden", "Es muss mehr gefahren werden"],
+          "options": ["Anna", "Maria", "Julia"],
           "answer": 0
         },
         {
@@ -24,13 +19,18 @@
           "answer": 0
         },
         {
+          "question": "Was muss getrennt werden?",
+          "options": ["Abfälle", "Papier", "Glas"],
+          "answer": 0
+        },
+        {
           "question": "Was sollte benutzt werden?",
           "options": ["Öffentliche Verkehrsmittel", "Private Autos", "Flugzeuge"],
           "answer": 0
         },
         {
-          "question": "Was kann gefördert werden?",
-          "options": ["Fahrräder", "Autos", "Züge"],
+          "question": "Was muss gepflanzt werden?",
+          "options": ["Mehr Bäume", "Mehr Blumen", "Mehr Sträucher"],
           "answer": 0
         },
         {
@@ -43,11 +43,11 @@
     {
       "id": "monolog_2",
       "title": "Arbeitssicherheit",
-      "text": "Wisst ihr, was in einer Firma beachtet werden muss? Ich bin Roswitha. Die Arbeitssicherheit muss ernst genommen werden. Schutzkleidung muss getragen werden. Sicherheitsregeln müssen befolgt werden. Die Maschinen müssen regelmäßig geprüft werden. Pausen müssen eingehalten werden. Notfallpläne müssen erstellt werden. Die Mitarbeiter müssen geschult werden. Alle Vorschriften müssen beachtet werden. Unfälle können so vermieden werden.",
+      "text": "Wisst ihr, was in einer Firma beachtet werden muss? Ich bin Maria. Die Arbeitssicherheit muss ernst genommen werden. Schutzkleidung muss getragen werden. Sicherheitsregeln müssen befolgt werden. Die Maschinen müssen regelmäßig geprüft werden. Notfallpläne müssen erstellt werden. Unfälle können so vermieden werden.",
       "questions": [
         {
           "question": "Wie heißt die Frau?",
-          "options": ["Ottilie", "Roswitha", "Sieglinde"],
+          "options": ["Anna", "Maria", "Julia"],
           "answer": 1
         },
         {
@@ -80,11 +80,11 @@
     {
       "id": "monolog_3",
       "title": "Gesundes Essen in der Schule",
-      "text": "Könnt ihr euch vorstellen, dass Schulessen verbessert werden muss? Ich bin Sieglinde. Gesundes Essen muss angeboten werden. Frisches Obst und Gemüse sollten serviert werden. Fertiggerichte sollten vermieden werden. Die Küche muss regelmäßig kontrolliert werden. Die Schüler müssen über Ernährung aufgeklärt werden. Mehr Wasser sollte getrunken werden. Süße Getränke müssen eingeschränkt werden. Die Eltern müssen informiert werden. So kann die Gesundheit der Kinder gefördert werden.",
+      "text": "Könnt ihr euch vorstellen, dass Schulessen verbessert werden muss? Ich bin Julia. Gesundes Essen muss angeboten werden. Frisches Obst und Gemüse sollten serviert werden. Fertiggerichte sollten vermieden werden. Die Schüler müssen über Ernährung aufgeklärt werden. Süße Getränke müssen eingeschränkt werden.",
       "questions": [
         {
           "question": "Wie heißt die Frau?",
-          "options": ["Ottilie", "Roswitha", "Sieglinde"],
+          "options": ["Anna", "Maria", "Julia"],
           "answer": 2
         },
         {
@@ -98,139 +98,13 @@
           "answer": 0
         },
         {
+          "question": "Was sollte vermieden werden?",
+          "options": ["Fertiggerichte", "Frisches Obst", "Wasser"],
+          "answer": 0
+        },
+        {
           "question": "Was muss eingeschränkt werden?",
           "options": ["Süße Getränke", "Wasser", "Milch"],
-          "answer": 0
-        },
-        {
-          "question": "Wer muss informiert werden?",
-          "options": ["Die Eltern", "Die Lehrer", "Die Schüler"],
-          "answer": 0
-        },
-        {
-          "question": "Was kann gefördert werden?",
-          "options": ["Die Gesundheit der Kinder", "Der Sport", "Die Schule"],
-          "answer": 0
-        }
-      ]
-    },
-    {
-      "id": "monolog_4",
-      "title": "Der Straßenverkehr",
-      "text": "Hallo zusammen! Ich bin Theresia. Im Straßenverkehr müssen viele Regeln beachtet werden. Die Geschwindigkeit muss angepasst werden. Ampeln müssen beachtet werden. Sicherheitsgurte müssen angelegt werden. Handys dürfen nicht benutzt werden. Die Verkehrsschilder müssen gelesen werden. Kinder müssen besonders geschützt werden. Nur so kann die Sicherheit gewährleistet werden.",
-      "questions": [
-        {
-          "question": "Wie heißt die Frau?",
-          "options": ["Theresia", "Ursula", "Sieglinde"],
-          "answer": 0
-        },
-        {
-          "question": "Was muss im Straßenverkehr beachtet werden?",
-          "options": ["Die Geschwindigkeit muss angepasst werden", "Es muss schnell gefahren werden", "Es muss getrunken werden"],
-          "answer": 0
-        },
-        {
-          "question": "Was muss angelegt werden?",
-          "options": ["Sicherheitsgurte", "Helme", "Handschuhe"],
-          "answer": 0
-        },
-        {
-          "question": "Was darf nicht benutzt werden?",
-          "options": ["Handys", "Radios", "Navis"],
-          "answer": 0
-        },
-        {
-          "question": "Was muss gelesen werden?",
-          "options": ["Die Verkehrsschilder", "Die Zeitung", "Das Buch"],
-          "answer": 0
-        },
-        {
-          "question": "Wer muss besonders geschützt werden?",
-          "options": ["Kinder", "Erwachsene", "Senioren"],
-          "answer": 0
-        },
-        {
-          "question": "Was kann durch Regeln gewährleistet werden?",
-          "options": ["Die Sicherheit", "Der Spaß", "Die Zeit"],
-          "answer": 0
-        }
-      ]
-    },
-    {
-      "id": "monolog_5",
-      "title": "Die Wohnungssuche",
-      "text": "Wisst ihr, was bei der Wohnungssuche beachtet werden muss? Ich bin Ursula. Die Miete muss bezahlt werden können. Die Kaution muss hinterlegt werden. Der Mietvertrag muss unterschrieben werden. Die Wohnung muss besichtigt werden. Die Nebenkosten müssen berechnet werden. Die Lage muss geprüft werden. Die Wohnung muss in gutem Zustand sein. Alle Dokumente müssen vorgelegt werden. Die Entscheidung muss gut überlegt werden.",
-      "questions": [
-        {
-          "question": "Wie heißt die Frau?",
-          "options": ["Theresia", "Ursula", "Ottilie"],
-          "answer": 1
-        },
-        {
-          "question": "Was muss bezahlt werden können?",
-          "options": ["Die Miete", "Die Kaution", "Die Nebenkosten"],
-          "answer": 0
-        },
-        {
-          "question": "Was muss hinterlegt werden?",
-          "options": ["Die Kaution", "Die Miete", "Die Nebenkosten"],
-          "answer": 0
-        },
-        {
-          "question": "Was muss unterschrieben werden?",
-          "options": ["Der Mietvertrag", "Der Arbeitsvertrag", "Der Kaufvertrag"],
-          "answer": 0
-        },
-        {
-          "question": "Was muss besichtigt werden?",
-          "options": ["Die Wohnung", "Das Haus", "Das Büro"],
-          "answer": 0
-        },
-        {
-          "question": "Was muss vorgelegt werden?",
-          "options": ["Alle Dokumente", "Nur der Ausweis", "Nur das Gehalt"],
-          "answer": 0
-        }
-      ]
-    },
-    {
-      "id": "monolog_6",
-      "title": "Der Online-Einkauf",
-      "text": "Findet ihr nicht auch, dass beim Online-Einkauf viel beachtet werden muss? Ich bin Brigitte. Die Bestellung muss sorgfältig geprüft werden. Die Zahlung muss sicher sein. Die Lieferadresse muss korrekt angegeben werden. Die Ware muss schnell geliefert werden. Die Rücksendung muss möglich sein. Der Kundenservice muss erreichbar sein. Die Bewertungen sollten gelesen werden. Betrug muss vermieden werden. So kann man sicher einkaufen.",
-      "questions": [
-        {
-          "question": "Wie heißt die Frau?",
-          "options": ["Brigitte", "Ursula", "Theresia"],
-          "answer": 0
-        },
-        {
-          "question": "Was muss beim Online-Einkauf geprüft werden?",
-          "options": ["Die Bestellung", "Die Lieferung", "Die Rechnung"],
-          "answer": 0
-        },
-        {
-          "question": "Was muss sicher sein?",
-          "options": ["Die Zahlung", "Die Lieferung", "Die Ware"],
-          "answer": 0
-        },
-        {
-          "question": "Was muss korrekt angegeben werden?",
-          "options": ["Die Lieferadresse", "Der Name", "Die Telefonnummer"],
-          "answer": 0
-        },
-        {
-          "question": "Was muss möglich sein?",
-          "options": ["Die Rücksendung", "Die Zahlung", "Die Lieferung"],
-          "answer": 0
-        },
-        {
-          "question": "Was sollte gelesen werden?",
-          "options": ["Die Bewertungen", "Die Werbung", "Die Beschreibung"],
-          "answer": 0
-        },
-        {
-          "question": "Was muss vermieden werden?",
-          "options": ["Betrug", "Werbe", "E-Mail"],
           "answer": 0
         }
       ]

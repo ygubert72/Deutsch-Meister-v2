@@ -89,6 +89,11 @@ async function loadUserData(uid) {
 
 // ========== ПРОВЕРКА ДОСТУПА К УРОВНЮ ==========
 window.hasAccessToLevel = function(level) {
+    // Безопасная проверка: если auth ещё не инициализирован — доступен только A1
+    if (!auth) {
+        return level === 'A1';
+    }
+    
     // Админ имеет доступ ко всем уровням
     if (auth.currentUser && auth.currentUser.email === 'ygubert72@gmail.com') {
         return true;
@@ -111,6 +116,12 @@ window.hasAccessToLevel = function(level) {
 
 // ========== ОБНОВЛЕНИЕ КНОПОК УРОВНЕЙ ==========
 function updateLevelButtons() {
+    // Ждём, пока auth инициализируется
+    if (!auth) {
+        setTimeout(updateLevelButtons, 200);
+        return;
+    }
+    
     const levelButtons = document.querySelectorAll('.btn-level');
     const levelButtonsMobile = document.querySelectorAll('#levelsContainerMobile .btn-level');
     

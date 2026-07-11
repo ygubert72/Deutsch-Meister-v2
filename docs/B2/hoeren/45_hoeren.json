@@ -1,0 +1,249 @@
+{
+  "lesson": 45,
+  "level": "B2",
+  "title": "Формальные клише в деловой и академической переписке",
+  "dialogs": [
+    {
+      "id": "monolog_1",
+      "title": "Eine Bewerbung",
+      "text": "Guten Tag! Ich bin Anneliese. Ich möchte mich auf eine Stelle bewerben. In meinem Anschreiben verwende ich formelle Formulierungen. Ich beginne mit 'Sehr geehrte Damen und Herren'. Dann schreibe ich 'hiermit bewerbe ich mich um die Stelle als...'. Im zweiten Absatz erläutere ich meine Qualifikationen. Ich schließe mit 'Mit freundlichen Grüßen'. Es ist wichtig, höflich und präzise zu sein. Die Form ist bei einer Bewerbung sehr wichtig.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Anneliese", "Brunhilde", "Dorothea"],
+          "answer": 0
+        },
+        {
+          "question": "Was möchte Anneliese tun?",
+          "options": ["Sich auf eine Stelle bewerben", "Eine Reise machen", "Ein Buch schreiben"],
+          "answer": 0
+        },
+        {
+          "question": "Wie beginnt sie das Anschreiben?",
+          "options": ["Mit 'Sehr geehrte Damen und Herren'", "Mit 'Hallo'", "Mit 'Liebe Kollegen'"],
+          "answer": 0
+        },
+        {
+          "question": "Was schreibt sie im zweiten Absatz?",
+          "options": ["Sie erläutert ihre Qualifikationen", "Sie schreibt über ihre Hobbys", "Sie beschreibt ihre Familie"],
+          "answer": 0
+        },
+        {
+          "question": "Wie schließt sie ab?",
+          "options": ["Mit 'Mit freundlichen Grüßen'", "Mit 'Tschüss'", "Mit 'Viele Grüße'"],
+          "answer": 0
+        },
+        {
+          "question": "Was ist bei einer Bewerbung wichtig?",
+          "options": ["Die Form", "Die Länge", "Die Bilder"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_2",
+      "title": "Eine offizielle Anfrage",
+      "text": "In der heutigen Zeit muss man oft formelle Anfragen schreiben. Ich bin Brunhilde. Ich schreibe manchmal an Behörden. Dabei verwende ich bestimmte Formulierungen. Ich beginne mit 'Bezüglich Ihrer Anfrage...' oder 'Gemäß Ihrem Schreiben...'. Ich bedanke mich höflich mit 'Ich danke Ihnen für Ihre Aufmerksamkeit'. Am Ende schreibe ich 'Mit freundlichen Grüßen'. Die Höflichkeit ist in offiziellen Briefen sehr wichtig.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Anneliese", "Brunhilde", "Dorothea"],
+          "answer": 1
+        },
+        {
+          "question": "An wen schreibt Brunhilde manchmal?",
+          "options": ["An Behörden", "An Freunde", "An die Familie"],
+          "answer": 0
+        },
+        {
+          "question": "Wie beginnt sie solche Briefe oft?",
+          "options": ["Mit 'Bezüglich Ihrer Anfrage...'", "Mit 'Hallo'", "Mit 'Liebe Behörde'"],
+          "answer": 0
+        },
+        {
+          "question": "Wofür bedankt sie sich?",
+          "options": ["Für die Aufmerksamkeit", "Für die Zeit", "Für den Brief"],
+          "answer": 0
+        },
+        {
+          "question": "Wie schließt sie den Brief ab?",
+          "options": ["Mit 'Mit freundlichen Grüßen'", "Mit 'Tschüss'", "Mit 'Viele Grüße'"],
+          "answer": 0
+        },
+        {
+          "question": "Was ist in offiziellen Briefen wichtig?",
+          "options": ["Die Höflichkeit", "Die Länge", "Die Bilder"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_3",
+      "title": "Eine akademische E-Mail",
+      "text": "Ich habe mich intensiv mit der akademischen Kommunikation beschäftigt. Ich bin Dorothea. Ich schreibe oft E-Mails an Professoren. Die Anrede ist immer 'Sehr geehrter Professor...'. Dann stelle ich mich kurz vor. Ich schreibe 'Ich schreibe Ihnen bezüglich...'. Am Ende bedanke ich mich für die Zeit. Ich schließe mit 'Mit freundlichen Grüßen'. Die Form ist in der akademischen Welt sehr wichtig. Man sollte immer respektvoll sein.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Anneliese", "Brunhilde", "Dorothea"],
+          "answer": 2
+        },
+        {
+          "question": "An wen schreibt Dorothea oft?",
+          "options": ["An Professoren", "An Freunde", "An die Familie"],
+          "answer": 0
+        },
+        {
+          "question": "Wie ist die Anrede?",
+          "options": ["'Sehr geehrter Professor...'", "'Hallo Professor'", "'Lieber Professor'"],
+          "answer": 0
+        },
+        {
+          "question": "Was schreibt sie nach der Anrede?",
+          "options": ["Sie stellt sich kurz vor", "Sie schreibt über das Wetter", "Sie fragt nach dem Befinden"],
+          "answer": 0
+        },
+        {
+          "question": "Wofür bedankt sie sich?",
+          "options": ["Für die Zeit", "Für die Antwort", "Für das Gespräch"],
+          "answer": 0
+        },
+        {
+          "question": "Wie schließt sie die E-Mail ab?",
+          "options": ["Mit 'Mit freundlichen Grüßen'", "Mit 'Tschüss'", "Mit 'Viele Grüße'"],
+          "answer": 0
+        },
+        {
+          "question": "Was ist in der akademischen Welt wichtig?",
+          "options": ["Die Form", "Die Länge", "Die Geschwindigkeit"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_4",
+      "title": "Eine Beschwerde schreiben",
+      "text": "Wisst ihr, wie man eine formelle Beschwerde schreibt? Ich bin Erna. Ich habe schon einmal eine Beschwerde geschrieben. Man sollte sachlich bleiben. Ich beginne mit 'Sehr geehrte Damen und Herren'. Dann beschreibe ich das Problem genau. Ich schreibe 'Ich wende mich an Sie, weil...'. Ich schlage auch eine Lösung vor. Am Ende schreibe ich 'Ich bitte um eine schnelle Antwort'. Die Form ist auch bei Beschwerden wichtig.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Erna", "Gertrud", "Hildegard"],
+          "answer": 0
+        },
+        {
+          "question": "Was hat Erna schon einmal geschrieben?",
+          "options": ["Eine Beschwerde", "Eine Liebesbrief", "Eine Einladung"],
+          "answer": 0
+        },
+        {
+          "question": "Wie sollte man bleiben?",
+          "options": ["Sachlich", "Emotional", "Laut"],
+          "answer": 0
+        },
+        {
+          "question": "Wie beginnt sie die Beschwerde?",
+          "options": ["Mit 'Sehr geehrte Damen und Herren'", "Mit 'Hallo'", "Mit 'Liebe Beschwerde'"],
+          "answer": 0
+        },
+        {
+          "question": "Was schreibt sie im Hauptteil?",
+          "options": ["Sie beschreibt das Problem", "Sie beschwert sich über das Wetter", "Sie erzählt von ihren Hobbys"],
+          "answer": 0
+        },
+        {
+          "question": "Was schlägt sie vor?",
+          "options": ["Eine Lösung", "Ein Treffen", "Ein Gespräch"],
+          "answer": 0
+        },
+        {
+          "question": "Was bittet sie am Ende?",
+          "options": ["Um eine schnelle Antwort", "Um mehr Zeit", "Um eine Entschuldigung"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_5",
+      "title": "Eine formelle Einladung",
+      "text": "Ich möchte euch heute von einer formellen Einladung erzählen. Ich bin Gertrud. Ich habe letzte Woche eine Einladung zu einer Konferenz bekommen. Die Einladung war sehr förmlich. Sie begann mit 'Sehr geehrte Frau Gertrud...'. Dann wurden die Details der Konferenz erklärt. Am Ende stand 'Wir würden uns freuen, Sie begrüßen zu dürfen'. Die Einladung war sehr professionell. Ich habe sofort zugesagt.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Erna", "Gertrud", "Hildegard"],
+          "answer": 1
+        },
+        {
+          "question": "Was hat Gertrud letzte Woche bekommen?",
+          "options": ["Eine Einladung", "Eine Beschwerde", "Ein Geschenk"],
+          "answer": 0
+        },
+        {
+          "question": "Wohin wurde sie eingeladen?",
+          "options": ["Zu einer Konferenz", "Zu einer Party", "Zu einem Konzert"],
+          "answer": 0
+        },
+        {
+          "question": "Wie begann die Einladung?",
+          "options": ["Mit 'Sehr geehrte Frau Gertrud...'", "Mit 'Hallo Gertrud'", "Mit 'Liebe Gertrud'"],
+          "answer": 0
+        },
+        {
+          "question": "Was wurde in der Einladung erklärt?",
+          "options": ["Die Details der Konferenz", "Das Wetter", "Die Geschichte"],
+          "answer": 0
+        },
+        {
+          "question": "Was stand am Ende der Einladung?",
+          "options": ["'Wir würden uns freuen, Sie begrüßen zu dürfen'", "'Tschüss'", "'Viele Grüße'"],
+          "answer": 0
+        },
+        {
+          "question": "Hat Gertrud zugesagt?",
+          "options": ["Ja", "Nein", "Weiß nicht"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_6",
+      "title": "Eine offizielle Absage",
+      "text": "In der heutigen Zeit muss man auch Absagen schreiben. Ich bin Hildegard. Ich habe letzte Woche eine offizielle Absage erhalten. Die Absage war sehr höflich. Sie begann mit 'Sehr geehrte Frau Hildegard...'. Dann wurde die Entscheidung erklärt. Es stand 'Leider müssen wir Ihnen mitteilen, dass...'. Die Absage war professionell formuliert. Ich war enttäuscht, aber die Form war korrekt. Das ist wichtig.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Erna", "Gertrud", "Hildegard"],
+          "answer": 2
+        },
+        {
+          "question": "Was hat Hildegard letzte Woche erhalten?",
+          "options": ["Eine Absage", "Eine Einladung", "Ein Geschenk"],
+          "answer": 0
+        },
+        {
+          "question": "Wie war die Absage?",
+          "options": ["Höflich", "Unhöflich", "Kurz"],
+          "answer": 0
+        },
+        {
+          "question": "Wie begann die Absage?",
+          "options": ["Mit 'Sehr geehrte Frau Hildegard...'", "Mit 'Hallo Hildegard'", "Mit 'Liebe Hildegard'"],
+          "answer": 0
+        },
+        {
+          "question": "Was wurde in der Absage erklärt?",
+          "options": ["Die Entscheidung", "Das Wetter", "Die Geschichte"],
+          "answer": 0
+        },
+        {
+          "question": "Wie war die Absage formuliert?",
+          "options": ["Professionell", "Unprofessionell", "Emotional"],
+          "answer": 0
+        },
+        {
+          "question": "War Hildegard enttäuscht?",
+          "options": ["Ja", "Nein", "Weiß nicht"],
+          "answer": 0
+        }
+      ]
+    }
+  ]
+}

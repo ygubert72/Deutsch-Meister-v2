@@ -6,21 +6,21 @@
     {
       "id": "monolog_1",
       "title": "Mein Wochenende",
-      "text": "Ich heiße Anna. Am Wochenende habe ich viel gemacht. Ich habe Fußball gespielt. Ich habe meine Wohnung geputzt. Ich habe einen Film gesehen. Am Abend habe ich Pizza gekocht. Das Wochenende war schön.",
+      "text": "Hallo! Ich bin Hannah. Am Wochenende habe ich viel gemacht. Ich habe Tennis gespielt. Ich habe meine Wohnung geputzt. Ich habe einen Film gesehen. Es war ein schönes Wochenende.",
       "questions": [
         {
           "question": "Wie heißt die Frau?",
-          "options": ["Anna", "Maria", "Julia"],
+          "options": ["Hannah", "Mira", "Jule"],
           "answer": 0
         },
         {
-          "question": "Was hat Anna am Wochenende gemacht?",
-          "options": ["Fußball gespielt, Wohnung geputzt, Film gesehen", "Gearbeitet und geschlafen", "Nichts gemacht"],
+          "question": "Was hat Hannah am Wochenende gemacht?",
+          "options": ["Tennis gespielt und geputzt", "Gearbeitet", "Geschlafen"],
           "answer": 0
         },
         {
-          "question": "Was hat Anna am Abend gekocht?",
-          "options": ["Pizza", "Suppe", "Salat"],
+          "question": "Wie war das Wochenende?",
+          "options": ["Schön", "Schlecht", "Langweilig"],
           "answer": 0
         }
       ]
@@ -28,16 +28,16 @@
     {
       "id": "monolog_2",
       "title": "Meine Arbeit",
-      "text": "Ich heiße Maria. Ich habe gestern viel gearbeitet. Ich habe viele E-Mails geschrieben. Ich habe mit Kunden telefoniert. Ich habe einen Bericht gemacht. Die Arbeit war anstrengend, aber ich habe alles geschafft.",
+      "text": "Grüß dich! Ich bin Mira. Ich habe gestern gearbeitet. Ich habe viele E-Mails geschrieben. Ich habe mit Kunden telefoniert. Die Arbeit war anstrengend.",
       "questions": [
         {
           "question": "Wie heißt die Frau?",
-          "options": ["Anna", "Maria", "Julia"],
+          "options": ["Hannah", "Mira", "Jule"],
           "answer": 1
         },
         {
-          "question": "Was hat Maria gestern gemacht?",
-          "options": ["E-Mails geschrieben, telefoniert, Bericht gemacht", "Gekocht und geputzt", "Geschlafen"],
+          "question": "Was hat Mira gemacht?",
+          "options": ["E-Mails geschrieben und telefoniert", "Gekocht", "Geschlafen"],
           "answer": 0
         },
         {
@@ -50,21 +50,21 @@
     {
       "id": "monolog_3",
       "title": "Mein Deutschkurs",
-      "text": "Ich heiße Julia. Ich habe Deutsch gelernt. Ich habe viele neue Wörter gelernt. Ich habe auch Grammatik geübt. Mein Lehrer hat viel erklärt. Ich habe den Kurs sehr genossen.",
+      "text": "Guten Tag! Ich bin Jule. Ich habe Deutsch gelernt. Ich habe viele neue Wörter gelernt. Ich habe Grammatik geübt. Der Kurs war interessant.",
       "questions": [
         {
           "question": "Wie heißt die Frau?",
-          "options": ["Anna", "Maria", "Julia"],
+          "options": ["Hannah", "Mira", "Jule"],
           "answer": 2
         },
         {
-          "question": "Was hat Julia im Deutschkurs gemacht?",
-          "options": ["Neue Wörter gelernt und Grammatik geübt", "Geschlafen", "Gesungen"],
+          "question": "Was hat Jule gemacht?",
+          "options": ["Deutsch gelernt", "Geschlafen", "Gearbeitet"],
           "answer": 0
         },
         {
-          "question": "Hat Julia den Kurs genossen?",
-          "options": ["Ja", "Nein", "Weiß nicht"],
+          "question": "Wie war der Kurs?",
+          "options": ["Interessant", "Langweilig", "Schwer"],
           "answer": 0
         }
       ]
@@ -72,43 +72,43 @@
     {
       "id": "monolog_4",
       "title": "Mein Einkauf",
-      "text": "Ich heiße Laura. Ich habe heute eingekauft. Ich habe Brot, Milch und Käse gekauft. Ich habe auch Obst und Gemüse gekauft. Ich habe für meinen Geburtstag eingekauft. Ich habe viel bezahlt.",
+      "text": "Guten Morgen! Ich bin Pia. Ich habe heute eingekauft. Ich habe Brot und Milch gekauft. Ich habe auch Obst gekauft. Ich habe viel bezahlt.",
       "questions": [
         {
           "question": "Wie heißt die Frau?",
-          "options": ["Laura", "Lisa", "Anna"],
+          "options": ["Pia", "Hannah", "Leni"],
           "answer": 0
         },
         {
-          "question": "Was hat Laura eingekauft?",
-          "options": ["Brot, Milch, Käse, Obst und Gemüse", "Nur Brot und Milch", "Fleisch und Fisch"],
+          "question": "Was hat Pia eingekauft?",
+          "options": ["Brot, Milch und Obst", "Nur Brot", "Nur Milch"],
           "answer": 0
         },
         {
-          "question": "Für wen hat Laura eingekauft?",
-          "options": ["Für ihren Geburtstag", "Für ihre Familie", "Für ihre Arbeit"],
+          "question": "Hat Pia viel bezahlt?",
+          "options": ["Ja", "Nein", "Weiß nicht"],
           "answer": 0
         }
       ]
     },
     {
       "id": "monolog_5",
-      "title": "Meine Reise",
-      "text": "Ich heiße Lisa. Ich habe letzte Woche eine Reise gemacht. Ich habe einen Zug genommen. Ich habe in einem Hotel übernachtet. Ich habe die Stadt besichtigt. Ich habe viele Fotos gemacht. Die Reise war wunderbar.",
+      "title": "Mein Hobby",
+      "text": "Hallo! Ich bin Leni. Ich habe gestern im Park gespielt. Ich habe mit meiner Freundin getanzt. Wir haben viel gelacht. Das war schön.",
       "questions": [
         {
           "question": "Wie heißt die Frau?",
-          "options": ["Laura", "Lisa", "Anna"],
-          "answer": 1
-        },
-        {
-          "question": "Was hat Lisa auf der Reise gemacht?",
-          "options": ["Einen Zug genommen, Hotel übernachtet, Stadt besichtigt", "Gearbeitet", "Geschlafen"],
+          "options": ["Leni", "Pia", "Mira"],
           "answer": 0
         },
         {
-          "question": "Wie war die Reise?",
-          "options": ["Wunderbar", "Schlecht", "Langweilig"],
+          "question": "Was hat Leni im Park gemacht?",
+          "options": ["Getanzt und gelacht", "Gelesen", "Geschlafen"],
+          "answer": 0
+        },
+        {
+          "question": "Wie war es?",
+          "options": ["Schön", "Schlecht", "Langweilig"],
           "answer": 0
         }
       ]

@@ -6,11 +6,11 @@
     {
       "id": "monolog_1",
       "title": "Meine Stadt",
-      "text": "Schönen guten Tag! Ich bin Frieda. Ich wohne in Berlin. Berlin ist größer als Hamburg. Die Straßen sind breiter und die Gebäude sind höher. Das Leben ist hier aufregender. Aber ich finde, dass Berlin auch lauter ist. Trotzdem liebe ich meine Stadt.",
+      "text": "Schönen guten Tag! Ich bin Anna. Ich wohne in Berlin. Berlin ist größer als Hamburg. Die Straßen sind breiter. Die Gebäude sind höher. Das Leben ist hier aufregender. Aber Berlin ist auch lauter.",
       "questions": [
         {
           "question": "Wie heißt die Frau?",
-          "options": ["Frieda", "Lotta", "Mila"],
+          "options": ["Anna", "Maria", "Julia"],
           "answer": 0
         },
         {
@@ -29,7 +29,7 @@
           "answer": 0
         },
         {
-          "question": "Was findet Frieda an Berlin negativ?",
+          "question": "Was ist in Berlin negativ?",
           "options": ["Es ist lauter", "Es ist teurer", "Es ist kälter"],
           "answer": 0
         }
@@ -38,31 +38,26 @@
     {
       "id": "monolog_2",
       "title": "Meine Familie",
-      "text": "Hallo zusammen! Ich bin Lotta. Meine Schwester ist älter als ich. Sie ist 28 Jahre alt und ich bin 24. Meine Mutter ist freundlicher als meine Tante. Mein Vater ist ruhiger als meine Mutter. Mein Bruder ist größer als alle in der Familie. Wir sind alle verschieden, aber wir lieben uns.",
+      "text": "Hallo zusammen! Ich bin Maria. Meine Schwester ist älter als ich. Sie ist 28 Jahre alt und ich bin 24. Meine Mutter ist freundlicher als meine Tante. Mein Vater ist ruhiger als meine Mutter. Mein Bruder ist größer als alle.",
       "questions": [
         {
           "question": "Wie heißt die Frau?",
-          "options": ["Frieda", "Lotta", "Mila"],
+          "options": ["Anna", "Maria", "Julia"],
           "answer": 1
         },
         {
-          "question": "Wer ist älter: Lotta oder ihre Schwester?",
-          "options": ["Lotta", "Ihre Schwester", "Beide sind gleich alt"],
+          "question": "Wer ist älter: Maria oder ihre Schwester?",
+          "options": ["Maria", "Ihre Schwester", "Beide sind gleich alt"],
           "answer": 1
         },
         {
-          "question": "Wie ist Lottas Mutter im Vergleich zu ihrer Tante?",
+          "question": "Wie ist Marias Mutter im Vergleich zu ihrer Tante?",
           "options": ["Freundlicher", "Strenge", "Lauter"],
           "answer": 0
         },
         {
           "question": "Wer ist in der Familie am größten?",
-          "options": ["Lottas Bruder", "Lottas Vater", "Lotta selbst"],
-          "answer": 0
-        },
-        {
-          "question": "Wie ist Lottas Vater?",
-          "options": ["Ruhiger als die Mutter", "Lauter als die Mutter", "Strenge als die Mutter"],
+          "options": ["Marias Bruder", "Marias Vater", "Maria selbst"],
           "answer": 0
         }
       ]
@@ -70,11 +65,11 @@
     {
       "id": "monolog_3",
       "title": "Meine Wohnung",
-      "text": "Guten Morgen! Ich bin Mila. Meine neue Wohnung ist größer als die alte. Das Wohnzimmer ist heller und die Küche ist moderner. Aber die alte Wohnung war billiger. Jetzt zahle ich mehr Miete. Die Lage ist aber besser. Ich bin sehr zufrieden.",
+      "text": "Guten Morgen! Ich bin Julia. Meine neue Wohnung ist größer als die alte. Das Wohnzimmer ist heller und die Küche ist moderner. Aber die alte Wohnung war billiger. Jetzt zahle ich mehr Miete. Die Lage ist aber besser.",
       "questions": [
         {
           "question": "Wie heißt die Frau?",
-          "options": ["Frieda", "Lotta", "Mila"],
+          "options": ["Anna", "Maria", "Julia"],
           "answer": 2
         },
         {
@@ -90,107 +85,6 @@
         {
           "question": "Was war an der alten Wohnung besser?",
           "options": ["Sie war billiger", "Sie war größer", "Sie war heller"],
-          "answer": 0
-        },
-        {
-          "question": "Wie ist die Lage der neuen Wohnung?",
-          "options": ["Besser", "Schlechter", "Gleich"],
-          "answer": 0
-        }
-      ]
-    },
-    {
-      "id": "monolog_4",
-      "title": "Meine Arbeit",
-      "text": "Tag zusammen! Ich bin Rieke. Ich habe einen neuen Job. Die Arbeit ist interessanter als vorher. Die Kolleginnen sind netter. Die Chefin ist strenger, aber gerecht. Die Arbeitszeiten sind flexibler. Das Gehalt ist höher. Ich bin sehr glücklich.",
-      "questions": [
-        {
-          "question": "Wie heißt die Frau?",
-          "options": ["Rieke", "Franka", "Mila"],
-          "answer": 0
-        },
-        {
-          "question": "Wie ist die neue Arbeit im Vergleich zur alten?",
-          "options": ["Interessanter", "Langweiliger", "Schwerer"],
-          "answer": 0
-        },
-        {
-          "question": "Wie sind die neuen Kolleginnen?",
-          "options": ["Netter", "Strenge", "Lauter"],
-          "answer": 0
-        },
-        {
-          "question": "Wie ist die Chefin?",
-          "options": ["Strenger, aber gerecht", "Sehr nett", "Sehr streng"],
-          "answer": 0
-        },
-        {
-          "question": "Wie ist das Gehalt im neuen Job?",
-          "options": ["Höher", "Niedriger", "Gleich"],
-          "answer": 0
-        }
-      ]
-    },
-    {
-      "id": "monolog_5",
-      "title": "Der Winter und der Sommer",
-      "text": "Liebe Zuhörer! Ich bin Franka. Der Winter ist kälter als der Sommer. Im Sommer ist es wärmer und die Tage sind länger. Der Herbst ist bunter als der Winter. Der Frühling ist schöner als alle Jahreszeiten. Ich liebe den Frühling, weil es nicht zu heiß und nicht zu kalt ist. Das Wetter ist angenehmer.",
-      "questions": [
-        {
-          "question": "Wie heißt die Frau?",
-          "options": ["Rieke", "Franka", "Frieda"],
-          "answer": 1
-        },
-        {
-          "question": "Welche Jahreszeit ist kälter: Winter oder Sommer?",
-          "options": ["Der Winter", "Der Sommer", "Beide sind gleich"],
-          "answer": 0
-        },
-        {
-          "question": "Wie sind die Tage im Sommer?",
-          "options": ["Länger", "Kürzer", "Gleich lang"],
-          "answer": 0
-        },
-        {
-          "question": "Welche Jahreszeit findet Franka am schönsten?",
-          "options": ["Den Frühling", "Den Sommer", "Den Herbst"],
-          "answer": 0
-        },
-        {
-          "question": "Warum liebt Franka den Frühling?",
-          "options": ["Weil es angenehm ist", "Weil es heiß ist", "Weil es kalt ist"],
-          "answer": 0
-        }
-      ]
-    },
-    {
-      "id": "monolog_6",
-      "title": "Meine Freunde",
-      "text": "Guten Abend! Ich bin Klara. Ich habe zwei gute Freundinnen: Anna und Sophie. Anna ist jünger als Sophie. Sophie ist lustiger als Anna. Anna ist geduldiger als Sophie. Ich bin ruhiger als beide. Wir sind verschiedene, aber zusammen sind wir stark. Unsere Freundschaft ist das Wertvollste.",
-      "questions": [
-        {
-          "question": "Wie heißt die Frau?",
-          "options": ["Klara", "Franka", "Rieke"],
-          "answer": 0
-        },
-        {
-          "question": "Wer ist jünger: Anna oder Sophie?",
-          "options": ["Anna", "Sophie", "Beide sind gleich alt"],
-          "answer": 0
-        },
-        {
-          "question": "Wer ist lustiger: Anna oder Sophie?",
-          "options": ["Sophie", "Anna", "Beide sind gleich"],
-          "answer": 0
-        },
-        {
-          "question": "Wie ist Klara im Vergleich zu ihren Freundinnen?",
-          "options": ["Ruhiger", "Lustiger", "Jünger"],
-          "answer": 0
-        },
-        {
-          "question": "Was ist das Wertvollste für Klara?",
-          "options": ["Ihre Freundschaft", "Ihre Arbeit", "Ihre Wohnung"],
           "answer": 0
         }
       ]

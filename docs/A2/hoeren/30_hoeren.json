@@ -1,0 +1,204 @@
+{
+  "lesson": 30,
+  "level": "A2",
+  "title": "СМИ и информация",
+  "dialogs": [
+    {
+      "id": "monolog_1",
+      "title": "Wie ich mich informiere",
+      "text": "Hallo zusammen! Heute geht es um Medien. Ich bin Annalena. Ich informiere mich täglich. Am Morgen lese ich die Zeitung. Am Abend sehe ich die Nachrichten im Fernsehen. Manchmal höre ich auch Radio. Ich mag es, wenn ich alles weiß. So bin ich immer auf dem Laufenden.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Annalena", "Carlotta", "Eleonore"],
+          "answer": 0
+        },
+        {
+          "question": "Was macht Annalena am Morgen?",
+          "options": ["Sie liest die Zeitung", "Sie sieht fern", "Sie hört Radio"],
+          "answer": 0
+        },
+        {
+          "question": "Was macht Annalena am Abend?",
+          "options": ["Sie sieht die Nachrichten", "Sie liest ein Buch", "Sie geht schlafen"],
+          "answer": 0
+        },
+        {
+          "question": "Was hört Annalena manchmal?",
+          "options": ["Radio", "Musik", "Podcasts"],
+          "answer": 0
+        },
+        {
+          "question": "Warum informiert sich Annalena?",
+          "options": ["Sie will auf dem Laufenden sein", "Sie hat nichts zu tun", "Ihre Freunde machen es auch"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_2",
+      "title": "Nachrichten im Fernsehen",
+      "text": "Schön, dass ihr zuhört! Ich bin Carlotta. Ich sehe jeden Abend die Nachrichten im Fernsehen. Die Nachrichten dauern 30 Minuten. Es gibt Berichte aus aller Welt. Oft geht es um Politik oder Wirtschaft. Manchmal gibt es auch Reportagen über interessante Themen. Die Nachrichten sind wichtig für mich.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Annalena", "Carlotta", "Eleonore"],
+          "answer": 1
+        },
+        {
+          "question": "Was macht Carlotta jeden Abend?",
+          "options": ["Sie sieht die Nachrichten", "Sie liest die Zeitung", "Sie hört Radio"],
+          "answer": 0
+        },
+        {
+          "question": "Wie lange dauern die Nachrichten?",
+          "options": ["30 Minuten", "Eine Stunde", "15 Minuten"],
+          "answer": 0
+        },
+        {
+          "question": "Worüber geht es in den Nachrichten?",
+          "options": ["Politik oder Wirtschaft", "Nur über Sport", "Nur über Wetter"],
+          "answer": 0
+        },
+        {
+          "question": "Warum sind die Nachrichten wichtig für Carlotta?",
+          "options": ["Sie informiert sich gern", "Sie hat nichts anderes zu tun", "Ihre Familie schaut zu"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_3",
+      "title": "Zeitungen und Zeitschriften",
+      "text": "Ich lese gern und informiere mich. Ich bin Eleonore. Ich kaufe jeden Samstag eine Zeitung. Ich lese auch Zeitschriften. Mein Lieblingsmagazin ist über Reisen. Ich finde es interessant, neue Länder zu entdecken. Die Artikel sind gut geschrieben. Manchmal schneide ich Bilder aus und sammle sie. So habe ich viele Ideen für meine Reisen.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Annalena", "Carlotta", "Eleonore"],
+          "answer": 2
+        },
+        {
+          "question": "Was kauft Eleonore jeden Samstag?",
+          "options": ["Eine Zeitung", "Ein Magazin", "Ein Buch"],
+          "answer": 0
+        },
+        {
+          "question": "Was ist Eleonores Lieblingsmagazin?",
+          "options": ["Über Reisen", "Über Mode", "Über Sport"],
+          "answer": 0
+        },
+        {
+          "question": "Was macht Eleonore mit den Bildern?",
+          "options": ["Sie schneidet sie aus und sammelt sie", "Sie wirft sie weg", "Sie gibt sie weiter"],
+          "answer": 0
+        },
+        {
+          "question": "Was helfen ihr die Bilder?",
+          "options": ["Sie geben Ideen für Reisen", "Sie sind schön", "Sie sind praktisch"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_4",
+      "title": "Internet und Social Media",
+      "text": "Wisst ihr, wie ich mich informiere? Ich bin Friederike. Ich informiere mich meistens im Internet. Ich lese Nachrichten auf Websites. Ich nutze auch Social Media. Auf Instagram folge ich vielen Nachrichtenkanälen. Das ist schnell und praktisch. Aber ich überprüfe immer die Quellen. Nicht alles, was im Internet steht, ist wahr.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Friederike", "Luise", "Eleonore"],
+          "answer": 0
+        },
+        {
+          "question": "Wo informiert sich Friederike meistens?",
+          "options": ["Im Internet", "Im Fernsehen", "In der Zeitung"],
+          "answer": 0
+        },
+        {
+          "question": "Was nutzt Friederike noch?",
+          "options": ["Social Media", "Radio", "Zeitschriften"],
+          "answer": 0
+        },
+        {
+          "question": "Warum nutzt Friederike Social Media?",
+          "options": ["Das ist schnell und praktisch", "Das ist schön", "Ihre Freunde machen es"],
+          "answer": 0
+        },
+        {
+          "question": "Was überprüft Friederike immer?",
+          "options": ["Die Quellen", "Die Bilder", "Die Kommentare"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_5",
+      "title": "Radio hören",
+      "text": "Guten Tag! Ich möchte über etwas Wichtiges sprechen. Ich bin Luise. Ich höre jeden Morgen Radio. Das Radio läuft bei mir beim Frühstück. Ich höre gern die Nachrichten und Musik. Ich mag auch die Interviews mit interessanten Gästen. Das Radio ist für mich ein guter Start in den Tag. Es macht mich fröhlich.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Friederike", "Luise", "Annalena"],
+          "answer": 1
+        },
+        {
+          "question": "Was macht Luise jeden Morgen?",
+          "options": ["Sie hört Radio", "Sie liest Zeitung", "Sie sieht fern"],
+          "answer": 0
+        },
+        {
+          "question": "Wann läuft bei Luise das Radio?",
+          "options": ["Beim Frühstück", "Am Abend", "In der Mittagspause"],
+          "answer": 0
+        },
+        {
+          "question": "Was hört Luise gern im Radio?",
+          "options": ["Nachrichten und Musik", "Nur Musik", "Nur Interviews"],
+          "answer": 0
+        },
+        {
+          "question": "Wie hilft das Radio Luise?",
+          "options": ["Es ist ein guter Start in den Tag", "Es ist langweilig", "Es macht sie müde"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_6",
+      "title": "Fake News erkennen",
+      "text": "Hallo zusammen! Ich bin Klara. Ich finde es wichtig, Fake News zu erkennen. Leider gibt es viele falsche Informationen im Internet. Man sollte nicht alles glauben, was man liest. Ich vergleiche immer mehrere Quellen. Wenn die Informationen überall gleich sind, sind sie wahrscheinlich richtig. Das ist sehr wichtig.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Klara", "Luise", "Friederike"],
+          "answer": 0
+        },
+        {
+          "question": "Was findet Klara wichtig?",
+          "options": ["Fake News zu erkennen", "Viel zu lesen", "Fernsehen zu schauen"],
+          "answer": 0
+        },
+        {
+          "question": "Wo gibt es viele falsche Informationen?",
+          "options": ["Im Internet", "Im Fernsehen", "In der Zeitung"],
+          "answer": 0
+        },
+        {
+          "question": "Was macht Klara, um Fake News zu erkennen?",
+          "options": ["Sie vergleicht mehrere Quellen", "Sie glaubt alles", "Sie fragt ihre Freunde"],
+          "answer": 0
+        },
+        {
+          "question": "Wann sind Informationen wahrscheinlich richtig?",
+          "options": ["Wenn sie überall gleich sind", "Wenn sie neu sind", "Wenn sie schön sind"],
+          "answer": 0
+        },
+        {
+          "question": "Warum ist das wichtig?",
+          "options": ["Um die Wahrheit zu wissen", "Um Zeit zu sparen", "Um zu diskutieren"],
+          "answer": 0
+        }
+      ]
+    }
+  ]
+}

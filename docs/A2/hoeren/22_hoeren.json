@@ -1,0 +1,194 @@
+{
+  "lesson": 22,
+  "level": "A2",
+  "title": "Неправильные глаголы в Perfekt",
+  "dialogs": [
+    {
+      "id": "monolog_1",
+      "title": "Mein gestriger Tag",
+      "text": "Guten Tag! Darf ich mich vorstellen? Mein Name ist Sabine. Ich möchte euch von meinem gestrigen Tag erzählen. Ich bin um 7 Uhr aufgestanden. Ich habe ein Buch gelesen und dann einen Kaffee getrunken. Um 9 Uhr bin ich ins Büro gefahren. Dort habe ich einen wichtigen Brief geschrieben. Am Nachmittag habe ich meine Kollegin getroffen. Wir haben zusammen gegessen. Am Abend bin ich nach Hause gekommen und habe ferngesehen. Es war ein anstrengender Tag, aber ich habe alles geschafft.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Sabine", "Clara", "Emma"],
+          "answer": 0
+        },
+        {
+          "question": "Was hat Sabine am Morgen gemacht?",
+          "options": ["Ein Buch gelesen und Kaffee getrunken", "Geschlafen", "Sport gemacht"],
+          "answer": 0
+        },
+        {
+          "question": "Was hat Sabine im Büro geschrieben?",
+          "options": ["Einen Brief", "Eine E-Mail", "Einen Bericht"],
+          "answer": 0
+        },
+        {
+          "question": "Mit wem hat Sabine zu Mittag gegessen?",
+          "options": ["Mit ihrer Kollegin", "Mit ihrem Chef", "Mit ihrer Familie"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_2",
+      "title": "Meine Kindheitserinnerungen",
+      "text": "Hallo zusammen! Ich bin Clara und komme aus Österreich. Als ich klein war, habe ich viel erlebt. Ich bin oft mit meinem Vater in den Wald gegangen. Wir haben viele Pilze gesammelt. Meine Mutter hat immer leckere Kuchen gebacken. Ich habe mit meiner Schwester im Garten gespielt. Wir haben viele schöne Stunden verbracht. Leider bin ich später nach Deutschland gezogen, aber ich denke oft an diese Zeit zurück.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau und woher kommt sie?",
+          "options": ["Clara aus Österreich", "Sabine aus Deutschland", "Emma aus der Schweiz"],
+          "answer": 0
+        },
+        {
+          "question": "Mit wem ist Clara in den Wald gegangen?",
+          "options": ["Mit ihrem Vater", "Mit ihrer Mutter", "Mit ihrer Schwester"],
+          "answer": 0
+        },
+        {
+          "question": "Was hat Claras Mutter immer gebacken?",
+          "options": ["Kuchen", "Brot", "Pizza"],
+          "answer": 0
+        },
+        {
+          "question": "Was ist später passiert?",
+          "options": ["Clara ist nach Deutschland gezogen", "Clara ist geblieben", "Clara ist verheiratet"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_3",
+      "title": "Mein erstes Konzert",
+      "text": "Grüß dich! Ich heiße Emma. Ich möchte euch von meinem ersten Konzert erzählen. Ich war damals 16 Jahre alt. Ich bin mit meinen Freunden in die Stadt gefahren. Wir haben Karten für ein Rockkonzert gekauft. Die Band hat drei Stunden gespielt. Ich habe viele neue Leute kennengelernt. Wir haben zusammen gesungen und getanzt. Nach dem Konzert sind wir noch in ein Café gegangen. Ich bin erst um 2 Uhr morgens nach Hause gekommen. Meine Mutter war nicht sehr glücklich!",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Emma", "Clara", "Sabine"],
+          "answer": 0
+        },
+        {
+          "question": "Wie alt war Emma bei ihrem ersten Konzert?",
+          "options": ["16 Jahre", "18 Jahre", "20 Jahre"],
+          "answer": 0
+        },
+        {
+          "question": "Wie lange hat die Band gespielt?",
+          "options": ["Drei Stunden", "Zwei Stunden", "Vier Stunden"],
+          "answer": 0
+        },
+        {
+          "question": "Was hat Emma nach dem Konzert gemacht?",
+          "options": ["Sie ist in ein Café gegangen", "Sie ist nach Hause gegangen", "Sie ist zur Party gegangen"],
+          "answer": 0
+        },
+        {
+          "question": "Wann ist Emma nach Hause gekommen?",
+          "options": ["Um 2 Uhr morgens", "Um 24 Uhr", "Um 1 Uhr"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_4",
+      "title": "Mein Studium in Heidelberg",
+      "text": "Schönen guten Tag! Ich bin Leonie. Ich habe in Heidelberg studiert. Fünf Jahre habe ich dort gelebt. Ich habe Germanistik und Geschichte studiert. Ich habe viele interessante Vorlesungen besucht. Ich habe in der Universitätsbibliothek gearbeitet. Dort habe ich viele Bücher gelesen. Nach dem Studium bin ich nach Berlin gezogen. Ich habe eine Stelle als Journalistin gefunden. Diese Zeit in Heidelberg war die schönste meines Lebens.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Leonie", "Clara", "Emma"],
+          "answer": 0
+        },
+        {
+          "question": "Was hat Leonie studiert?",
+          "options": ["Germanistik und Geschichte", "Medizin", "Jura"],
+          "answer": 0
+        },
+        {
+          "question": "Wo hat Leonie gearbeitet?",
+          "options": ["In der Universitätsbibliothek", "In einem Restaurant", "In einem Krankenhaus"],
+          "answer": 0
+        },
+        {
+          "question": "Was ist Leonie nach dem Studium geworden?",
+          "options": ["Journalistin", "Lehrerin", "Ärztin"],
+          "answer": 0
+        },
+        {
+          "question": "Wie fand Leonie ihre Zeit in Heidelberg?",
+          "options": ["Die schönste Zeit ihres Lebens", "Langweilig", "Schwer"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_5",
+      "title": "Ein Tag im Zoo",
+      "text": "Hallo Leute! Mein Name ist Paula. Letzten Samstag bin ich mit meiner Familie in den Zoo gegangen. Wir haben viele verschiedene Tiere gesehen: Elefanten, Giraffen, Löwen und Affen. Die Kinder haben sich sehr gefreut. Wir haben den ganzen Tag dort verbracht. Wir haben Eis gegessen und Fotos gemacht. Am Nachmittag haben wir eine Führung mitgemacht. Der Tierpfleger hat uns viel erklärt. Meine Tochter hat gesagt, dass sie Tierärztin werden möchte. Es war ein wunderschöner Tag für die ganze Familie.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Paula", "Leonie", "Sabine"],
+          "answer": 0
+        },
+        {
+          "question": "Wann ist Paula in den Zoo gegangen?",
+          "options": ["Letzten Samstag", "Letzten Sonntag", "Letzten Freitag"],
+          "answer": 0
+        },
+        {
+          "question": "Welche Tiere haben sie gesehen?",
+          "options": ["Elefanten, Giraffen, Löwen und Affen", "Nur Elefanten", "Nur Löwen und Tiger"],
+          "answer": 0
+        },
+        {
+          "question": "Was hat Paulas Tochter gesagt?",
+          "options": ["Sie möchte Tierärztin werden", "Sie möchte Zoologin werden", "Sie möchte Journalistin werden"],
+          "answer": 0
+        },
+        {
+          "question": "Wie war der Tag?",
+          "options": ["Wunderschön", "Langweilig", "Schlecht"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_6",
+      "title": "Meine Hochzeit",
+      "text": "Liebe Zuhörer! Ich bin Nathalie und möchte euch von meiner Hochzeit erzählen. Ich habe vor drei Jahren geheiratet. Mein Mann und ich haben uns im Studium kennengelernt. Wir haben zwei Jahre zusammen gewohnt, bevor wir geheiratet haben. Die Hochzeit war auf einem Schloss. Wir haben 80 Gäste eingeladen. Ich habe ein wunderschönes weißes Kleid getragen. Mein Mann hat einen Anzug getragen. Wir haben getanzt und gefeiert. Wir sind nach der Hochzeit nach Italien geflogen. Diese Erinnerung werde ich nie vergessen.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Nathalie", "Paula", "Leonie"],
+          "answer": 0
+        },
+        {
+          "question": "Wann hat Nathalie geheiratet?",
+          "options": ["Vor drei Jahren", "Vor zwei Jahren", "Vor fünf Jahren"],
+          "answer": 0
+        },
+        {
+          "question": "Wo haben Nathalie und ihr Mann sich kennengelernt?",
+          "options": ["Im Studium", "Auf der Arbeit", "In der Schule"],
+          "answer": 0
+        },
+        {
+          "question": "Wie viele Gäste haben sie eingeladen?",
+          "options": ["80 Gäste", "50 Gäste", "100 Gäste"],
+          "answer": 0
+        },
+        {
+          "question": "Wohin sind sie nach der Hochzeit geflogen?",
+          "options": ["Nach Italien", "Nach Spanien", "Nach Frankreich"],
+          "answer": 0
+        },
+        {
+          "question": "Wird Nathalie diese Erinnerung vergessen?",
+          "options": ["Nein, nie", "Ja, vielleicht", "Weiß nicht"],
+          "answer": 0
+        }
+      ]
+    }
+  ]
+}

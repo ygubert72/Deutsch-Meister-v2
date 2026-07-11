@@ -1,0 +1,199 @@
+{
+  "lesson": 59,
+  "level": "C1",
+  "title": "Культурная критика и искусствоведение",
+  "dialogs": [
+    {
+      "id": "monolog_1",
+      "title": "Die Bedeutung der Kunst",
+      "text": "Guten Tag! Ich bin Anna. Kunst ist mehr als nur Dekoration. Sie ist ein Ausdruck der menschlichen Seele. Sie reflektiert die Gesellschaft. Sie kritisiert die Gesellschaft. Sie verändert die Gesellschaft. Kunst macht das Unsichtbare sichtbar. Sie ist ein Spiegel der Zeit. Sie ist ein wichtiger Teil unserer Kultur. Ohne Kunst wäre die Welt ärmer.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Anna", "Maria", "Julia"],
+          "answer": 0
+        },
+        {
+          "question": "Was ist Kunst mehr als?",
+          "options": ["Mehr als nur Dekoration", "Mehr als nur Unterhaltung", "Mehr als nur Handwerk"],
+          "answer": 0
+        },
+        {
+          "question": "Was reflektiert Kunst?",
+          "options": ["Die Gesellschaft", "Die Natur", "Die Technologie"],
+          "answer": 0
+        },
+        {
+          "question": "Was macht Kunst?",
+          "options": ["Sie macht das Unsichtbare sichtbar", "Sie macht das Sichtbare unsichtbar", "Sie verändert die Natur"],
+          "answer": 0
+        },
+        {
+          "question": "Was wäre ohne Kunst?",
+          "options": ["Die Welt wäre ärmer", "Die Welt wäre reicher", "Die Welt wäre gleich"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_2",
+      "title": "Die Rolle des Kunstkritikers",
+      "text": "Hallo! Ich bin Maria. Der Kunstkritiker hat eine wichtige Rolle. Er analysiert Kunstwerke. Er interpretiert sie. Er bewertet sie. Er macht sie der Öffentlichkeit zugänglich. Ein guter Kritiker ist objektiv. Er ist fair. Er hat Fachwissen. Er hilft dem Publikum, Kunst zu verstehen. Die Kunstkritik ist ein wichtiger Teil des kulturellen Diskurses.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Anna", "Maria", "Julia"],
+          "answer": 1
+        },
+        {
+          "question": "Was ist die Rolle des Kunstkritikers?",
+          "options": ["Er analysiert, interpretiert und bewertet Kunstwerke", "Er verkauft Kunstwerke", "Er schafft Kunstwerke"],
+          "answer": 0
+        },
+        {
+          "question": "Wie ist ein guter Kritiker?",
+          "options": ["Objektiv und fair", "Subjektiv und unfair", "Emotional und voreingenommen"],
+          "answer": 0
+        },
+        {
+          "question": "Was hat ein guter Kritiker?",
+          "options": ["Fachwissen", "Kein Wissen", "Weniger Wissen"],
+          "answer": 0
+        },
+        {
+          "question": "Was ist die Kunstkritik ein Teil von?",
+          "options": ["Des kulturellen Diskurses", "Der Wirtschaft", "Der Politik"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_3",
+      "title": "Die Bedeutung der modernen Kunst",
+      "text": "Guten Morgen! Ich bin Julia. Moderne Kunst ist oft umstritten. Sie stellt die Tradition in Frage. Sie bricht mit Konventionen. Sie ist provokativ. Sie ist experimentell. Sie fordert den Betrachter heraus. Moderne Kunst ist nicht immer schön. Aber sie ist immer interessant. Sie spiegelt die Veränderungen der Gesellschaft. Sie ist ein wichtiger Teil unserer Zeit.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Anna", "Maria", "Julia"],
+          "answer": 2
+        },
+        {
+          "question": "Wie ist moderne Kunst oft?",
+          "options": ["Umstritten", "Unumstritten", "Unbekannt"],
+          "answer": 0
+        },
+        {
+          "question": "Was stellt moderne Kunst in Frage?",
+          "options": ["Die Tradition", "Die Politik", "Die Wirtschaft"],
+          "answer": 0
+        },
+        {
+          "question": "Wie ist moderne Kunst?",
+          "options": ["Provokativ und experimentell", "Ruhig und traditionell", "Einfach und verständlich"],
+          "answer": 0
+        },
+        {
+          "question": "Was fordert moderne Kunst?",
+          "options": ["Den Betrachter heraus", "Den Betrachter zur Ruhe", "Den Betrachter zum Schlafen"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_4",
+      "title": "Die Interpretation von Kunst",
+      "text": "Hallo! Ich bin Laura. Die Interpretation von Kunst ist subjektiv. Jeder Betrachter sieht etwas anderes. Die eigene Erfahrung spielt eine Rolle. Die eigene Bildung spielt eine Rolle. Die eigene Perspektive spielt eine Rolle. Es gibt keine richtige oder falsche Interpretation. Das ist das Schöne an der Kunst. Sie ist offen für viele Lesarten. Sie lädt zur Diskussion ein.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Laura", "Lisa", "Anna"],
+          "answer": 0
+        },
+        {
+          "question": "Wie ist die Interpretation von Kunst?",
+          "options": ["Subjektiv", "Objektiv", "Wissenschaftlich"],
+          "answer": 0
+        },
+        {
+          "question": "Was spielt bei der Interpretation eine Rolle?",
+          "options": ["Erfahrung, Bildung und Perspektive", "Nur die Erfahrung", "Nur die Bildung"],
+          "answer": 0
+        },
+        {
+          "question": "Gibt es eine richtige oder falsche Interpretation?",
+          "options": ["Nein", "Ja", "Manchmal"],
+          "answer": 0
+        },
+        {
+          "question": "Wozu lädt Kunst ein?",
+          "options": ["Zur Diskussion", "Zum Schweigen", "Zum Urteilen"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_5",
+      "title": "Die Bedeutung der Architektur",
+      "text": "Guten Tag! Ich bin Lisa. Architektur ist mehr als nur Bauen. Sie ist eine Kunstform. Sie prägt das Stadtbild. Sie prägt das Lebensgefühl. Gute Architektur ist funktional. Sie ist ästhetisch. Sie ist nachhaltig. Architektur spiegelt die Werte einer Gesellschaft. Sie ist ein Ausdruck der Zeit. Sie ist ein wichtiger Teil unserer Kultur.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Laura", "Lisa", "Anna"],
+          "answer": 1
+        },
+        {
+          "question": "Was ist Architektur mehr als?",
+          "options": ["Mehr als nur Bauen", "Mehr als nur Kunst", "Mehr als nur Handwerk"],
+          "answer": 0
+        },
+        {
+          "question": "Was prägt Architektur?",
+          "options": ["Das Stadtbild und das Lebensgefühl", "Die Wirtschaft", "Die Politik"],
+          "answer": 0
+        },
+        {
+          "question": "Wie ist gute Architektur?",
+          "options": ["Funktional, ästhetisch, nachhaltig", "Funktional, einfach, billig", "Ästhetisch, teuer, unnötig"],
+          "answer": 0
+        },
+        {
+          "question": "Was spiegelt Architektur?",
+          "options": ["Die Werte einer Gesellschaft", "Die Wirtschaft", "Die Politik"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_6",
+      "title": "Die Bedeutung von Literatur",
+      "text": "Guten Morgen! Ich bin Emma. Literatur ist ein wichtiger Teil der Kultur. Sie erzählt Geschichten. Sie vermittelt Werte. Sie regt zum Nachdenken an. Sie hilft, die Welt zu verstehen. Sie hilft, sich selbst zu verstehen. Gute Literatur ist zeitlos. Sie bleibt auch nach Jahren relevant. Sie ist ein Schatz, der bewahrt werden muss. Literatur ist das Gedächtnis der Gesellschaft.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Emma", "Anna", "Laura"],
+          "answer": 0
+        },
+        {
+          "question": "Was ist ein wichtiger Teil der Kultur?",
+          "options": ["Literatur", "Architektur", "Malerei"],
+          "answer": 0
+        },
+        {
+          "question": "Was vermittelt Literatur?",
+          "options": ["Werte", "Fakten", "Zahlen"],
+          "answer": 0
+        },
+        {
+          "question": "Was hilft Literatur?",
+          "options": ["Die Welt und sich selbst zu verstehen", "Die Wirtschaft zu verstehen", "Die Politik zu verstehen"],
+          "answer": 0
+        },
+        {
+          "question": "Wie ist gute Literatur?",
+          "options": ["Zeitlos", "Kurz", "Einfach"],
+          "answer": 0
+        }
+      ]
+    }
+  ]
+}

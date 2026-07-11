@@ -1,0 +1,244 @@
+{
+  "lesson": 55,
+  "level": "C1",
+  "title": "Управление проектами и деловая лексика",
+  "dialogs": [
+    {
+      "id": "monolog_1",
+      "title": "Die Grundlagen des Projektmanagements",
+      "text": "Hallo! Ich bin Anna und arbeite als Projektmanagerin. Projektmanagement ist die Planung und Steuerung von Projekten. Man definiert Ziele. Man plant die Ressourcen. Man erstellt einen Zeitplan. Man weist Aufgaben zu. Man überwacht den Fortschritt. Man löst Probleme. Man kommuniziert mit dem Team. Ein gutes Projektmanagement führt zum Erfolg. Es ist die Grundlage für jedes Projekt.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Anna", "Maria", "Julia"],
+          "answer": 0
+        },
+        {
+          "question": "Was ist Projektmanagement?",
+          "options": ["Die Planung und Steuerung von Projekten", "Die Durchführung von Projekten", "Die Bewertung von Projekten"],
+          "answer": 0
+        },
+        {
+          "question": "Was definiert man im Projektmanagement?",
+          "options": ["Ziele", "Probleme", "Lösungen"],
+          "answer": 0
+        },
+        {
+          "question": "Was plant man?",
+          "options": ["Die Ressourcen", "Die Ergebnisse", "Die Probleme"],
+          "answer": 0
+        },
+        {
+          "question": "Was erstellt man?",
+          "options": ["Einen Zeitplan", "Eine Einleitung", "Ein Fazit"],
+          "answer": 0
+        },
+        {
+          "question": "Was überwacht man?",
+          "options": ["Den Fortschritt", "Die Kosten", "Das Team"],
+          "answer": 0
+        },
+        {
+          "question": "Wozu führt gutes Projektmanagement?",
+          "options": ["Zum Erfolg", "Zum Scheitern", "Zur Verzögerung"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_2",
+      "title": "Die Rolle des Projektmanagers",
+      "text": "Guten Tag! Ich bin Maria. Der Projektmanager ist eine zentrale Figur. Er koordiniert das Team. Er kommuniziert mit Stakeholdern. Er trifft Entscheidungen. Er löst Konflikte. Er motiviert das Team. Er hält die Deadlines ein. Er berichtet über den Fortschritt. Ein guter Projektmanager ist flexibel. Er kann mit Druck umgehen. Der Projektmanager ist der Schlüssel zum Erfolg.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Anna", "Maria", "Julia"],
+          "answer": 1
+        },
+        {
+          "question": "Was ist die Rolle des Projektmanagers?",
+          "options": ["Er koordiniert das Team", "Er führt das Team", "Er bewertet das Team"],
+          "answer": 0
+        },
+        {
+          "question": "Mit wem kommuniziert der Projektmanager?",
+          "options": ["Mit Stakeholdern", "Nur mit dem Team", "Nur mit der Führung"],
+          "answer": 0
+        },
+        {
+          "question": "Was macht der Projektmanager bei Konflikten?",
+          "options": ["Er löst sie", "Er ignoriert sie", "Er verschlimmert sie"],
+          "answer": 0
+        },
+        {
+          "question": "Was hält der Projektmanager ein?",
+          "options": ["Die Deadlines", "Die Kosten", "Die Qualität"],
+          "answer": 0
+        },
+        {
+          "question": "Wie ist ein guter Projektmanager?",
+          "options": ["Flexibel", "Starr", "Unflexibel"],
+          "answer": 0
+        },
+        {
+          "question": "Wofür ist der Projektmanager der Schlüssel?",
+          "options": ["Zum Erfolg", "Zum Scheitern", "Zur Verzögerung"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_3",
+      "title": "Die Planung eines Projekts",
+      "text": "Guten Morgen! Ich bin Julia. Die Planung ist die wichtigste Phase. Man definiert die Ziele. Man erstellt den Projektplan. Man plant die Ressourcen. Man kalkuliert die Kosten. Man erstellt den Zeitplan. Man identifiziert Risiken. Man plant Maßnahmen zur Risikominimierung. Die Planung muss sorgfältig sein. Eine gute Planung ist die halbe Miete.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Anna", "Maria", "Julia"],
+          "answer": 2
+        },
+        {
+          "question": "Was ist die wichtigste Phase?",
+          "options": ["Die Planung", "Die Durchführung", "Die Bewertung"],
+          "answer": 0
+        },
+        {
+          "question": "Was definiert man in der Planung?",
+          "options": ["Die Ziele", "Die Probleme", "Die Lösungen"],
+          "answer": 0
+        },
+        {
+          "question": "Was erstellt man in der Planung?",
+          "options": ["Den Projektplan", "Das Fazit", "Die Einleitung"],
+          "answer": 0
+        },
+        {
+          "question": "Was identifiziert man in der Planung?",
+          "options": ["Risiken", "Erfolge", "Fehler"],
+          "answer": 0
+        },
+        {
+          "question": "Was muss sorgfältig sein?",
+          "options": ["Die Planung", "Die Durchführung", "Die Bewertung"],
+          "answer": 0
+        },
+        {
+          "question": "Was ist die halbe Miete?",
+          "options": ["Eine gute Planung", "Eine gute Durchführung", "Eine gute Bewertung"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_4",
+      "title": "Die Kommunikation im Projekt",
+      "text": "Hallo! Ich bin Laura. Die Kommunikation ist im Projekt entscheidend. Man informiert das Team. Man gibt Feedback. Man bespricht Probleme. Man teilt Erfolge. Man dokumentiert Entscheidungen. Die Kommunikation sollte klar sein. Sie sollte regelmäßig sein. Sie sollte offen sein. Eine gute Kommunikation vermeidet Missverständnisse. Sie fördert die Zusammenarbeit.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Laura", "Lisa", "Anna"],
+          "answer": 0
+        },
+        {
+          "question": "Was ist im Projekt entscheidend?",
+          "options": ["Die Kommunikation", "Die Planung", "Die Kosten"],
+          "answer": 0
+        },
+        {
+          "question": "Was informiert man im Projekt?",
+          "options": ["Das Team", "Die Stakeholder", "Die Kunden"],
+          "answer": 0
+        },
+        {
+          "question": "Was bespricht man?",
+          "options": ["Probleme", "Erfolge", "Planung"],
+          "answer": 0
+        },
+        {
+          "question": "Wie sollte die Kommunikation sein?",
+          "options": ["Klar, regelmäßig, offen", "Komplex, selten, geschlossen", "Kurz, einmalig, privat"],
+          "answer": 0
+        },
+        {
+          "question": "Was vermeidet gute Kommunikation?",
+          "options": ["Missverständnisse", "Erfolge", "Kosten"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_5",
+      "title": "Die Bewertung eines Projekts",
+      "text": "Guten Tag! Ich bin Lisa. Die Bewertung ist der letzte Schritt. Man prüft die Ergebnisse. Man vergleicht sie mit den Zielen. Man analysiert die Abweichungen. Man bewertet die Zusammenarbeit. Man dokumentiert die Erfahrungen. Man plant Verbesserungen. Die Bewertung ist wichtig für zukünftige Projekte. Sie hilft, aus Fehlern zu lernen. Ein Projekt ist erst abgeschlossen, wenn es bewertet wurde.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Laura", "Lisa", "Anna"],
+          "answer": 1
+        },
+        {
+          "question": "Was ist der letzte Schritt im Projekt?",
+          "options": ["Die Bewertung", "Die Planung", "Die Durchführung"],
+          "answer": 0
+        },
+        {
+          "question": "Was prüft man bei der Bewertung?",
+          "options": ["Die Ergebnisse", "Die Planung", "Die Kommunikation"],
+          "answer": 0
+        },
+        {
+          "question": "Was analysiert man?",
+          "options": ["Die Abweichungen", "Die Erfolge", "Die Kosten"],
+          "answer": 0
+        },
+        {
+          "question": "Was dokumentiert man?",
+          "options": ["Die Erfahrungen", "Die Ergebnisse", "Die Planung"],
+          "answer": 0
+        },
+        {
+          "question": "Was hilft die Bewertung?",
+          "options": ["Aus Fehlern zu lernen", "Erfolge zu feiern", "Kosten zu sparen"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_6",
+      "title": "Die Bedeutung von Teamarbeit",
+      "text": "Guten Morgen! Ich bin Emma. Teamarbeit ist in Projekten sehr wichtig. Man teilt die Aufgaben. Man unterstützt sich gegenseitig. Man profitiert von verschiedenen Fähigkeiten. Man lernt voneinander. Ein gutes Team ist mehr als die Summe seiner Teile. Die Teamarbeit fördert Kreativität. Sie führt zu besseren Ergebnissen. Ein starkes Team ist der Schlüssel zum Erfolg.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Emma", "Anna", "Laura"],
+          "answer": 0
+        },
+        {
+          "question": "Was ist in Projekten sehr wichtig?",
+          "options": ["Teamarbeit", "Planung", "Kosten"],
+          "answer": 0
+        },
+        {
+          "question": "Was teilt man im Team?",
+          "options": ["Die Aufgaben", "Die Kosten", "Die Erfolge"],
+          "answer": 0
+        },
+        {
+          "question": "Was fördert Teamarbeit?",
+          "options": ["Kreativität", "Kosten", "Planung"],
+          "answer": 0
+        },
+        {
+          "question": "Wozu führt Teamarbeit?",
+          "options": ["Zu besseren Ergebnissen", "Zu höheren Kosten", "Zu mehr Konflikten"],
+          "answer": 0
+        },
+        {
+          "question": "Was ist der Schlüssel zum Erfolg?",
+          "options": ["Ein starkes Team", "Eine gute Planung", "Ein großes Budget"],
+          "answer": 0
+        }
+      ]
+    }
+  ]
+}

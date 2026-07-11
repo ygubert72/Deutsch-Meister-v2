@@ -6,7 +6,7 @@
     {
       "id": "monolog_1",
       "title": "Meine Bewerbung",
-      "text": "Guten Tag! Ich bin Bertha. Ich möchte euch von meiner Bewerbung erzählen. Ich habe mich auf eine neue Stelle beworben. Zuerst habe ich meinen Lebenslauf aktualisiert. Dann habe ich ein Bewerbungsschreiben verfasst. Im Schreiben habe ich meine Erfahrungen beschrieben. Ich habe auch meine Motivation erklärt. Die Bewerbung habe ich per E-Mail geschickt. Jetzt warte ich auf eine Antwort. Ich hoffe, dass es klappt.",
+      "text": "Guten Tag! Heute möchte ich über Bewerbungen sprechen. Ich bin Bertha. Ich habe mich auf eine neue Stelle beworben. Zuerst habe ich meinen Lebenslauf aktualisiert. Dann habe ich ein Bewerbungsschreiben verfasst. Im Schreiben habe ich meine Erfahrungen beschrieben. Ich habe auch meine Motivation erklärt. Die Bewerbung habe ich per E-Mail geschickt. Jetzt warte ich auf eine Antwort. Ich hoffe, dass es klappt.",
       "questions": [
         {
           "question": "Wie heißt die Frau?",
@@ -32,13 +32,18 @@
           "question": "Was macht Bertha jetzt?",
           "options": ["Sie wartet auf eine Antwort", "Sie arbeitet", "Sie reist"],
           "answer": 0
+        },
+        {
+          "question": "Hofft Bertha, dass es klappt?",
+          "options": ["Ja", "Nein", "Weiß nicht"],
+          "answer": 0
         }
       ]
     },
     {
       "id": "monolog_2",
       "title": "Der Lebenslauf",
-      "text": "Schön, dass ihr zuhört! Ich bin Elsbeth. Ein Lebenslauf ist sehr wichtig für die Bewerbung. In meinem Lebenslauf schreibe ich meine persönlichen Daten. Dann kommen meine Ausbildung und mein Berufserfahrung. Ich liste auch meine Kenntnisse auf. Zum Beispiel Fremdsprachen und Computerkenntnisse. Der Lebenslauf sollte übersichtlich sein. Ich habe meinen Lebenslauf immer aktualisiert. Das ist sehr wichtig.",
+      "text": "Wisst ihr, was in einen Lebenslauf gehört? Ich bin Elsbeth. Ein Lebenslauf ist sehr wichtig für die Bewerbung. In meinem Lebenslauf schreibe ich meine persönlichen Daten. Dann kommen meine Ausbildung und meine Berufserfahrung. Ich liste auch meine Kenntnisse auf. Zum Beispiel Fremdsprachen und Computerkenntnisse. Der Lebenslauf sollte übersichtlich sein. Ich habe meinen Lebenslauf immer aktualisiert. Das ist sehr wichtig.",
       "questions": [
         {
           "question": "Wie heißt die Frau?",
@@ -64,13 +69,18 @@
           "question": "Was hat Elsbeth mit ihrem Lebenslauf gemacht?",
           "options": ["Ihn immer aktualisiert", "Ihn nie geändert", "Ihn vergessen"],
           "answer": 0
+        },
+        {
+          "question": "Warum ist das wichtig?",
+          "options": ["Weil man immer aktuell sein sollte", "Weil es schön aussieht", "Weil der Chef es verlangt"],
+          "answer": 0
         }
       ]
     },
     {
       "id": "monolog_3",
       "title": "Das Bewerbungsschreiben",
-      "text": "Guten Morgen! Ich bin Frieda. Das Bewerbungsschreiben ist fast so wichtig wie der Lebenslauf. Im Schreiben erkläre ich, warum ich der richtige Kandidat bin. Ich schreibe, warum ich die Stelle haben möchte. Ich beziehe mich auf die Anforderungen der Firma. Das Schreiben sollte persönlich sein. Man sollte nicht einfach einen Standardtext verwenden. Ich habe für jede Bewerbung ein neues Schreiben verfasst.",
+      "text": "Guten Morgen! Ich bin Frieda. Das Bewerbungsschreiben ist fast so wichtig wie der Lebenslauf. Im Schreiben erkläre ich, warum ich die richtige Kandidatin bin. Ich schreibe, warum ich die Stelle haben möchte. Ich beziehe mich auf die Anforderungen der Firma. Das Schreiben sollte persönlich sein. Man sollte nicht einfach einen Standardtext verwenden. Ich habe für jede Bewerbung ein neues Schreiben verfasst.",
       "questions": [
         {
           "question": "Wie heißt die Frau?",
@@ -79,7 +89,7 @@
         },
         {
           "question": "Was erklärt Frieda im Bewerbungsschreiben?",
-          "options": ["Warum sie der richtige Kandidat ist", "Ihre Hobbys", "Ihre Familie"],
+          "options": ["Warum sie die richtige Kandidatin ist", "Ihre Hobbys", "Ihre Familie"],
           "answer": 0
         },
         {
@@ -96,13 +106,18 @@
           "question": "Was hat Frieda für jede Bewerbung gemacht?",
           "options": ["Ein neues Schreiben verfasst", "Den gleichen Text verwendet", "Nichts geschrieben"],
           "answer": 0
+        },
+        {
+          "question": "Warum sollte man keinen Standardtext verwenden?",
+          "options": ["Weil man persönlich sein soll", "Weil es schneller geht", "Weil es einfacher ist"],
+          "answer": 0
         }
       ]
     },
     {
       "id": "monolog_4",
       "title": "Die richtige Form",
-      "text": "Hallo zusammen! Ich bin Grete. Bei der Bewerbung muss man auf die Form achten. Das Schreiben sollte höflich sein. Man beginnt mit 'Sehr geehrte Damen und Herren'. Das ist die Standard-Anrede. Man schreibt in der Sie-Form. Das Schreiben sollte fehlerfrei sein. Ich lasse meine Bewerbung immer von einer Freundin korrigieren. Das ist sicherer.",
+      "text": "Ich möchte euch heute über die richtige Form der Bewerbung sprechen. Ich bin Grete. Bei der Bewerbung muss man auf die Form achten. Das Schreiben sollte höflich sein. Man beginnt mit 'Sehr geehrte Damen und Herren'. Das ist die Standard-Anrede. Man schreibt in der Sie-Form. Das Schreiben sollte fehlerfrei sein. Ich lasse meine Bewerbung immer von einer Freundin korrigieren. Das ist sicherer.",
       "questions": [
         {
           "question": "Wie heißt die Frau?",
@@ -128,13 +143,18 @@
           "question": "Was macht Grete mit ihrer Bewerbung?",
           "options": ["Sie lässt sie von einer Freundin korrigieren", "Sie schickt sie sofort", "Sie liest sie nicht mehr"],
           "answer": 0
+        },
+        {
+          "question": "Warum lässt Grete ihre Bewerbung korrigieren?",
+          "options": ["Das ist sicherer", "Das ist schneller", "Das ist billiger"],
+          "answer": 0
         }
       ]
     },
     {
       "id": "monolog_5",
       "title": "Tipps für die Bewerbung",
-      "text": "Grüß dich! Ich bin Lieselotte. Ich habe viele Bewerbungen geschrieben. Hier sind meine Tipps: Seid ehrlich und übertreibt nicht. Schreibt klar und deutlich. Passt das Schreiben an die Stelle an. Macht keine Rechtschreibfehler. Seid pünktlich mit der Bewerbung. Und vor allem: Habt Selbstvertrauen! Das ist sehr wichtig. Ich habe mit diesen Tipps immer Erfolg gehabt.",
+      "text": "Hallo zusammen! Ich bin Lieselotte. Ich habe viele Bewerbungen geschrieben. Hier sind meine Tipps: Seid ehrlich und übertreibt nicht. Schreibt klar und deutlich. Passt das Schreiben an die Stelle an. Macht keine Rechtschreibfehler. Seid pünktlich mit der Bewerbung. Und vor allem: Habt Selbstvertrauen! Das ist sehr wichtig. Ich habe mit diesen Tipps immer Erfolg gehabt.",
       "questions": [
         {
           "question": "Wie heißt die Frau?",
@@ -160,17 +180,22 @@
           "question": "Was ist sehr wichtig?",
           "options": ["Selbstvertrauen", "Viel Geld", "Ein Auto"],
           "answer": 0
+        },
+        {
+          "question": "Hat Lieselotte mit diesen Tipps Erfolg gehabt?",
+          "options": ["Ja, immer", "Nein, nie", "Manchmal"],
+          "answer": 0
         }
       ]
     },
     {
       "id": "monolog_6",
       "title": "Die Bewerbungsmappe",
-      "text": "Schön, dass ihr da seid! Ich bin Klara. Früher hat man eine Bewerbungsmappe abgegeben. Heute macht man vieles online. Ich habe beide Varianten erlebt. In der Mappe waren der Lebenslauf, das Anschreiben und Zeugnisse. Heute schickt man alles als PDF. Das ist praktischer. Ich finde, dass beides funktioniert. Wichtig ist der Inhalt.",
+      "text": "Findet ihr nicht auch, dass sich Bewerbungen verändert haben? Ich bin Mathilde. Früher hat man eine Bewerbungsmappe abgegeben. Heute macht man vieles online. Ich habe beide Varianten erlebt. In der Mappe waren der Lebenslauf, das Anschreiben und Zeugnisse. Heute schickt man alles als PDF. Das ist praktischer. Ich finde, dass beides funktioniert. Wichtig ist der Inhalt.",
       "questions": [
         {
           "question": "Wie heißt die Frau?",
-          "options": ["Klara", "Lieselotte", "Grete"],
+          "options": ["Mathilde", "Lieselotte", "Grete"],
           "answer": 0
         },
         {
@@ -191,6 +216,11 @@
         {
           "question": "Was ist wichtig?",
           "options": ["Der Inhalt", "Die Verpackung", "Das Papier"],
+          "answer": 0
+        },
+        {
+          "question": "Hat Mathilde beide Varianten erlebt?",
+          "options": ["Ja", "Nein", "Weiß nicht"],
           "answer": 0
         }
       ]

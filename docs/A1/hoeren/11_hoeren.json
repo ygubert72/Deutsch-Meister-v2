@@ -6,7 +6,7 @@
     {
       "id": "monolog_1",
       "title": "Ich räume auf",
-      "text": "Ich heiße Anna. Heute räume ich mein Zimmer auf. Ich lege das Buch auf den Tisch. Ich stelle die Lampe neben das Bett. Ich hänge das Bild an die Wand. Ich lege die Schuhe unter das Bett. Jetzt ist mein Zimmer ordentlich.",
+      "text": "Guten Tag! Ich bin Anna. Heute räume ich mein Zimmer auf. Ich lege das Buch auf den Tisch. Ich stelle die Lampe neben das Bett. Ich hänge das Bild an die Wand.",
       "questions": [
         {
           "question": "Wie heißt die Frau?",
@@ -27,18 +27,13 @@
           "question": "Wo hängt Anna das Bild hin?",
           "options": ["An die Wand", "An die Tür", "An den Schrank"],
           "answer": 0
-        },
-        {
-          "question": "Wo legt Anna die Schuhe hin?",
-          "options": ["Unter das Bett", "Neben das Bett", "Auf das Bett"],
-          "answer": 0
         }
       ]
     },
     {
       "id": "monolog_2",
       "title": "Ich gehe einkaufen",
-      "text": "Ich heiße Maria. Ich gehe in den Supermarkt. Ich stelle den Einkaufswagen neben die Kasse. Ich lege das Brot in den Einkaufswagen. Ich stelle die Milch in den Kühlschrank. Ich lege die Eier in den Korb. Dann gehe ich nach Hause.",
+      "text": "Hallo! Ich bin Maria. Ich gehe in den Supermarkt. Ich stelle den Einkaufswagen neben die Kasse. Ich lege das Brot in den Einkaufswagen. Ich stelle die Milch in den Kühlschrank.",
       "questions": [
         {
           "question": "Wie heißt die Frau?",
@@ -59,18 +54,13 @@
           "question": "Wohin legt Maria das Brot?",
           "options": ["In den Einkaufswagen", "In den Korb", "In den Kühlschrank"],
           "answer": 0
-        },
-        {
-          "question": "Wohin geht Maria dann?",
-          "options": ["Nach Hause", "In die Schule", "In das Kino"],
-          "answer": 0
         }
       ]
     },
     {
       "id": "monolog_3",
       "title": "Ich fahre nach Berlin",
-      "text": "Ich heiße Julia. Ich fahre nach Berlin. Ich gehe in den Bahnhof. Ich setze mich auf einen Stuhl. Ich lege meine Tasche auf den Boden. Ich kaufe eine Fahrkarte. Dann steige ich in den Zug. Ich fahre nach Berlin.",
+      "text": "Guten Morgen! Ich bin Julia. Ich fahre nach Berlin. Ich gehe in den Bahnhof. Ich setze mich auf einen Stuhl. Ich lege meine Tasche auf den Boden. Dann steige ich in den Zug.",
       "questions": [
         {
           "question": "Wie heißt die Frau?",
@@ -88,77 +78,8 @@
           "answer": 0
         },
         {
-          "question": "Wo setzt sich Julia hin?",
-          "options": ["Auf einen Stuhl", "Auf einen Tisch", "Auf den Boden"],
-          "answer": 0
-        },
-        {
           "question": "Wohin steigt Julia?",
           "options": ["In den Zug", "In den Bus", "In das Auto"],
-          "answer": 0
-        }
-      ]
-    },
-    {
-      "id": "monolog_4",
-      "title": "Ich mache die Wohnung sauber",
-      "text": "Ich heiße Laura. Ich mache die Wohnung sauber. Ich stelle die Blumen auf den Tisch. Ich lege die Zeitung auf das Sofa. Ich stelle die Schuhe in den Schrank. Ich hänge die Jacke an die Garderobe. Alles ist jetzt sauber.",
-      "questions": [
-        {
-          "question": "Wie heißt die Frau?",
-          "options": ["Laura", "Lisa", "Anna"],
-          "answer": 0
-        },
-        {
-          "question": "Wo stellt Laura die Blumen hin?",
-          "options": ["Auf den Tisch", "Auf das Sofa", "In den Schrank"],
-          "answer": 0
-        },
-        {
-          "question": "Wo legt Laura die Zeitung hin?",
-          "options": ["Auf das Sofa", "Auf den Tisch", "In den Schrank"],
-          "answer": 0
-        },
-        {
-          "question": "Wo stellt Laura die Schuhe hin?",
-          "options": ["In den Schrank", "Unter das Bett", "Neben die Tür"],
-          "answer": 0
-        },
-        {
-          "question": "Wo hängt Laura die Jacke hin?",
-          "options": ["An die Garderobe", "An die Wand", "An die Tür"],
-          "answer": 0
-        }
-      ]
-    },
-    {
-      "id": "monolog_5",
-      "title": "Ich gehe ins Kino",
-      "text": "Ich heiße Lisa. Ich gehe heute ins Kino. Ich setze mich in die Mitte. Ich lege meine Jacke auf den Sitz. Ich stelle meine Tasche unter den Sitz. Ich sehe den Film. Es ist ein schöner Film. Ich gehe dann nach Hause.",
-      "questions": [
-        {
-          "question": "Wie heißt die Frau?",
-          "options": ["Laura", "Lisa", "Anna"],
-          "answer": 1
-        },
-        {
-          "question": "Wohin geht Lisa heute?",
-          "options": ["Ins Kino", "Ins Konzert", "Ins Theater"],
-          "answer": 0
-        },
-        {
-          "question": "Wo setzt sich Lisa hin?",
-          "options": ["In die Mitte", "In die erste Reihe", "In die letzte Reihe"],
-          "answer": 0
-        },
-        {
-          "question": "Wo legt Lisa ihre Jacke hin?",
-          "options": ["Auf den Sitz", "Auf den Boden", "Unter den Sitz"],
-          "answer": 0
-        },
-        {
-          "question": "Wo stellt Lisa ihre Tasche hin?",
-          "options": ["Unter den Sitz", "Auf den Sitz", "Neben den Sitz"],
           "answer": 0
         }
       ]

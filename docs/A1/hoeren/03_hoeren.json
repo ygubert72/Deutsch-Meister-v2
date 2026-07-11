@@ -28,20 +28,20 @@
     {
       "id": "monolog_2",
       "title": "Meine Freundin",
-      "text": "Hallo! Ich bin Sophie. Das ist meine Freundin Paula. Sie ist 30 Jahre alt. Sie kommt aus Deutschland. Sie wohnt in Köln.",
+      "text": "Hallo! Ich bin Sophie. Das ist meine Freundin Laura. Sie ist 30 Jahre alt. Sie kommt aus Deutschland. Sie wohnt in Köln.",
       "questions": [
         {
           "question": "Wie heißt die Freundin?",
-          "options": ["Sophie", "Paula", "Anna"],
+          "options": ["Sophie", "Laura", "Anna"],
           "answer": 1
         },
         {
-          "question": "Woher kommt Paula?",
+          "question": "Woher kommt Laura?",
           "options": ["Aus Deutschland", "Aus Russland", "Aus Italien"],
           "answer": 0
         },
         {
-          "question": "Wo wohnt Paula?",
+          "question": "Wo wohnt Laura?",
           "options": ["In Köln", "In Berlin", "In Hamburg"],
           "answer": 0
         }
@@ -94,7 +94,7 @@
     {
       "id": "monolog_5",
       "title": "Meine Sprachen",
-      "text": "Guten Abend! Ich bin Emma. Ich bin 27 Jahre alt. Ich komme aus Deutschland. Ich spreche Deutsch und Englisch. Ich lerne jetzt Spanisch.",
+      "text": "Guten Abend! Ich bin Emma. Ich bin 27 Jahre alt. Ich komme aus Deutschland. Ich spreche Deutsch und Englisch. Ich lerne Spanisch.",
       "questions": [
         {
           "question": "Wie heißt die Frau?",

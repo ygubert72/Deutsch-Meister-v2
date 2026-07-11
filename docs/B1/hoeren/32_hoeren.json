@@ -6,11 +6,11 @@
     {
       "id": "monolog_1",
       "title": "Das deutsche Schulsystem",
-      "text": "Guten Tag! Heute möchte ich über das deutsche Schulsystem sprechen. Ich bin Anneliese und habe in Deutschland studiert. Die Schule beginnt mit der Grundschule. Das ist von Klasse 1 bis 4. Danach gehen die Kinder auf verschiedene Schulen. Es gibt die Hauptschule, die Realschule und das Gymnasium. Auf dem Gymnasium kann man Abitur machen. Das Abitur ist wichtig für das Studium. Viele Jugendliche machen nach der Schule eine Ausbildung.",
+      "text": "Guten Tag! Heute möchte ich über das deutsche Schulsystem sprechen. Ich bin Anna. Die Schule beginnt mit der Grundschule. Das ist von Klasse 1 bis 4. Danach gehen die Kinder auf verschiedene Schulen. Es gibt die Hauptschule, die Realschule und das Gymnasium. Auf dem Gymnasium kann man Abitur machen. Das Abitur ist wichtig für das Studium.",
       "questions": [
         {
           "question": "Wie heißt die Frau?",
-          "options": ["Anneliese", "Brunhilde", "Dorothea"],
+          "options": ["Anna", "Maria", "Julia"],
           "answer": 0
         },
         {
@@ -32,31 +32,21 @@
           "question": "Wofür ist das Abitur wichtig?",
           "options": ["Für das Studium", "Für die Arbeit", "Für die Reise"],
           "answer": 0
-        },
-        {
-          "question": "Was machen viele Jugendliche nach der Schule?",
-          "options": ["Eine Ausbildung", "Reisen", "Arbeiten"],
-          "answer": 0
         }
       ]
     },
     {
       "id": "monolog_2",
       "title": "Meine Schulzeit",
-      "text": "Wisst ihr, wie das in Deutschland ist? Ich bin Brunhilde. Wenn ich an meine Schulzeit denke, fällt mir vieles ein. Als ich klein war, ging ich in die Grundschule. Das war eine schöne Zeit. Später wechselte ich auf das Gymnasium. Das Gymnasium war anspruchsvoll. Ich musste viel lernen. Nach dem Abitur habe ich studiert. Heute arbeite ich als Lehrerin.",
+      "text": "Wisst ihr, wie das in Deutschland ist? Ich bin Maria. Als ich klein war, ging ich in die Grundschule. Das war eine schöne Zeit. Später wechselte ich auf das Gymnasium. Das Gymnasium war anspruchsvoll. Nach dem Abitur habe ich studiert. Heute arbeite ich als Lehrerin.",
       "questions": [
         {
           "question": "Wie heißt die Frau?",
-          "options": ["Anneliese", "Brunhilde", "Dorothea"],
+          "options": ["Anna", "Maria", "Julia"],
           "answer": 1
         },
         {
-          "question": "Was macht Brunhilde heute?",
-          "options": ["Sie ist Lehrerin", "Sie ist Ärztin", "Sie ist Ingenieurin"],
-          "answer": 0
-        },
-        {
-          "question": "Wann wechselte Brunhilde auf das Gymnasium?",
+          "question": "Wann wechselte Maria auf das Gymnasium?",
           "options": ["Später", "Als sie klein war", "Nach dem Studium"],
           "answer": 0
         },
@@ -66,8 +56,13 @@
           "answer": 0
         },
         {
-          "question": "Was hat Brunhilde nach dem Abitur gemacht?",
+          "question": "Was hat Maria nach dem Abitur gemacht?",
           "options": ["Sie hat studiert", "Sie hat gearbeitet", "Sie hat gereist"],
+          "answer": 0
+        },
+        {
+          "question": "Was macht Maria heute?",
+          "options": ["Sie ist Lehrerin", "Sie ist Ärztin", "Sie ist Ingenieurin"],
           "answer": 0
         }
       ]
@@ -75,31 +70,26 @@
     {
       "id": "monolog_3",
       "title": "Das Studium in Deutschland",
-      "text": "Ich möchte euch heute von meinem Studium berichten. Ich bin Dorothea. Ich studiere an der Universität. Das Studium ist sehr interessant. Ich besuche Vorlesungen und Seminare. Nach dem Studium möchte ich promovieren. Das ist mein großes Ziel. Ich finde, dass das deutsche Bildungssystem gut ist. Es gibt viele Möglichkeiten.",
+      "text": "Ich möchte euch heute von meinem Studium berichten. Ich bin Julia. Ich studiere an der Universität. Das Studium ist sehr interessant. Ich besuche Vorlesungen und Seminare. Nach dem Studium möchte ich promovieren. Das deutsche Bildungssystem bietet viele Möglichkeiten.",
       "questions": [
         {
           "question": "Wie heißt die Frau?",
-          "options": ["Anneliese", "Brunhilde", "Dorothea"],
+          "options": ["Anna", "Maria", "Julia"],
           "answer": 2
         },
         {
-          "question": "Was macht Dorothea?",
+          "question": "Was macht Julia?",
           "options": ["Sie studiert an der Universität", "Sie macht eine Ausbildung", "Sie arbeitet"],
           "answer": 0
         },
         {
-          "question": "Was besucht Dorothea an der Uni?",
+          "question": "Was besucht Julia an der Uni?",
           "options": ["Vorlesungen und Seminare", "Nur Vorlesungen", "Nur Seminare"],
           "answer": 0
         },
         {
-          "question": "Was möchte Dorothea nach dem Studium machen?",
+          "question": "Was möchte Julia nach dem Studium machen?",
           "options": ["Promovieren", "Arbeiten", "Reisen"],
-          "answer": 0
-        },
-        {
-          "question": "Wie findet Dorothea das deutsche Bildungssystem?",
-          "options": ["Gut", "Schlecht", "Weiß nicht"],
           "answer": 0
         }
       ]
@@ -107,11 +97,11 @@
     {
       "id": "monolog_4",
       "title": "Die Berufsausbildung",
-      "text": "In Deutschland ist das Bildungssystem anders. Ich bin Erna. Viele Jugendliche in Deutschland machen eine Ausbildung. Das ist eine gute Alternative zum Studium. In der Ausbildung lernt man einen Beruf. Man arbeitet in einer Firma und geht zur Berufsschule. Die Ausbildung dauert meistens drei Jahre. Danach hat man gute Chancen auf dem Arbeitsmarkt. Ich habe selbst eine Ausbildung gemacht und bin sehr zufrieden.",
+      "text": "In Deutschland ist das Bildungssystem anders. Ich bin Laura. Viele Jugendliche machen eine Ausbildung. Das ist eine gute Alternative zum Studium. Man lernt einen Beruf und arbeitet in einer Firma. Die Ausbildung dauert meistens drei Jahre. Ich habe selbst eine Ausbildung gemacht und bin sehr zufrieden.",
       "questions": [
         {
           "question": "Wie heißt die Frau?",
-          "options": ["Erna", "Gertrud", "Dorothea"],
+          "options": ["Laura", "Lisa", "Anna"],
           "answer": 0
         },
         {
@@ -130,8 +120,8 @@
           "answer": 0
         },
         {
-          "question": "Was hat Erna selbst gemacht?",
-          "options": ["Eine Ausbildung", "Ein Studium", "Eine Reise"],
+          "question": "Hat Laura selbst eine Ausbildung gemacht?",
+          "options": ["Ja", "Nein", "Weiß nicht"],
           "answer": 0
         }
       ]
@@ -139,15 +129,15 @@
     {
       "id": "monolog_5",
       "title": "Die Universität in meiner Stadt",
-      "text": "Hallo zusammen! Ich bin Gertrud. In meiner Stadt gibt es eine große Universität. Die Universität ist sehr bekannt. Wenn ich an der Uni vorbeigehe, sehe ich viele Studenten. Sie kommen aus aller Welt. Das finde ich toll. Ich habe selbst nicht studiert, aber ich finde die Uni sehr wichtig. Die Stadt lebt von den Studenten. Es gibt viele Cafés und kleine Läden.",
+      "text": "Hallo zusammen! Ich bin Lisa. In meiner Stadt gibt es eine große Universität. Die Universität ist sehr bekannt. Ich sehe viele Studenten aus aller Welt. Das finde ich toll. Ich habe selbst nicht studiert, aber ich finde die Uni sehr wichtig. Die Stadt lebt von den Studenten.",
       "questions": [
         {
           "question": "Wie heißt die Frau?",
-          "options": ["Erna", "Gertrud", "Anneliese"],
+          "options": ["Laura", "Lisa", "Anna"],
           "answer": 1
         },
         {
-          "question": "Was gibt es in Gertruds Stadt?",
+          "question": "Was gibt es in Lisas Stadt?",
           "options": ["Eine große Universität", "Nur eine Schule", "Keine Uni"],
           "answer": 0
         },
@@ -157,45 +147,35 @@
           "answer": 0
         },
         {
-          "question": "Hat Gertrud selbst studiert?",
+          "question": "Hat Lisa selbst studiert?",
           "options": ["Nein", "Ja", "Weiß nicht"],
-          "answer": 0
-        },
-        {
-          "question": "Wie lebt die Stadt von den Studenten?",
-          "options": ["Es gibt Cafés und Läden", "Es gibt viele Fabriken", "Es gibt keine Geschäfte"],
           "answer": 0
         }
       ]
     },
     {
       "id": "monolog_6",
-      "title": "Schulabschlüsse in Deutschland",
-      "text": "Schön, dass ihr zuhört! Ich bin Waltraud. In Deutschland gibt es verschiedene Schulabschlüsse. Nach der Grundschule kann man auf verschiedene Schulen gehen. Der Hauptschulabschluss ist nach Klasse 9. Die Realschule endet nach Klasse 10 mit der Mittleren Reife. Das Abitur macht man nach Klasse 12 oder 13. Jeder Abschluss bietet andere Möglichkeiten. Der richtige Abschluss ist wichtig für den Beruf.",
+      "title": "Mein Lieblingsfach",
+      "text": "Schön, dass ihr zuhört! Ich bin Emma. In der Schule hatte ich viele Fächer. Mein Lieblingsfach war Deutsch. Ich liebte es, Geschichten zu lesen und zu schreiben. In Mathematik war ich nicht so gut. Aber ich habe immer versucht, mein Bestes zu geben.",
       "questions": [
         {
           "question": "Wie heißt die Frau?",
-          "options": ["Waltraud", "Gertrud", "Erna"],
+          "options": ["Emma", "Laura", "Lisa"],
           "answer": 0
         },
         {
-          "question": "Wann macht man den Hauptschulabschluss?",
-          "options": ["Nach Klasse 9", "Nach Klasse 10", "Nach Klasse 12"],
+          "question": "Was war Emmas Lieblingsfach?",
+          "options": ["Deutsch", "Mathematik", "Geschichte"],
           "answer": 0
         },
         {
-          "question": "Wie heißt der Abschluss nach der Realschule?",
-          "options": ["Mittlere Reife", "Abitur", "Hauptschulabschluss"],
+          "question": "Was liebte Emma in Deutsch?",
+          "options": ["Geschichten zu lesen und zu schreiben", "Zu rechnen", "Zu malen"],
           "answer": 0
         },
         {
-          "question": "Wann macht man Abitur?",
-          "options": ["Nach Klasse 12 oder 13", "Nach Klasse 9", "Nach Klasse 10"],
-          "answer": 0
-        },
-        {
-          "question": "Warum ist der richtige Abschluss wichtig?",
-          "options": ["Für den Beruf", "Für das Hobby", "Für die Freizeit"],
+          "question": "Wie war Emma in Mathematik?",
+          "options": ["Nicht so gut", "Sehr gut", "Weiß nicht"],
           "answer": 0
         }
       ]

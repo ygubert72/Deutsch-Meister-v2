@@ -6,11 +6,11 @@
     {
       "id": "monolog_1",
       "title": "Die Grundrechte",
-      "text": "Ich möchte heute über die Grundrechte in Deutschland sprechen. Ich bin Anneliese. Die Grundrechte sind im Grundgesetz festgelegt. Sie schützen die Bürger vor dem Staat. Jeder Mensch hat das Recht auf Leben und körperliche Unversehrtheit. Die Meinungsfreiheit ist ein wichtiges Grundrecht. Die Pressefreiheit ist ebenfalls geschützt. Auch die Religionsfreiheit ist garantiert. Die Grundrechte sind nicht einschränkbar. Sie gelten für alle Menschen. Das ist ein wichtiger Teil der Demokratie. Die Grundrechte müssen verteidigt werden.",
+      "text": "Ich möchte heute über die Grundrechte in Deutschland sprechen. Ich bin Anna. Die Grundrechte sind im Grundgesetz festgelegt. Sie schützen die Bürger vor dem Staat. Jeder Mensch hat das Recht auf Leben und körperliche Unversehrtheit. Die Meinungsfreiheit ist ein wichtiges Grundrecht. Die Pressefreiheit ist ebenfalls geschützt. Auch die Religionsfreiheit ist garantiert. Die Grundrechte sind nicht einschränkbar.",
       "questions": [
         {
           "question": "Wie heißt die Frau?",
-          "options": ["Anneliese", "Brunhilde", "Dorothea"],
+          "options": ["Anna", "Maria", "Julia"],
           "answer": 0
         },
         {
@@ -29,18 +29,8 @@
           "answer": 0
         },
         {
-          "question": "Was ist ebenfalls geschützt?",
-          "options": ["Die Pressefreiheit", "Die Wirtschaftsfreiheit", "Die Verkehrsfreiheit"],
-          "answer": 0
-        },
-        {
           "question": "Sind die Grundrechte einschränkbar?",
           "options": ["Nein", "Ja", "Manchmal"],
-          "answer": 0
-        },
-        {
-          "question": "Für wen gelten die Grundrechte?",
-          "options": ["Für alle Menschen", "Nur für Deutsche", "Nur für Erwachsene"],
           "answer": 0
         }
       ]
@@ -48,11 +38,11 @@
     {
       "id": "monolog_2",
       "title": "Die Pflichten der Bürger",
-      "text": "In der heutigen Zeit wird viel über die Pflichten der Bürger gesprochen. Ich bin Brunhilde. Jeder Bürger hat nicht nur Rechte, sondern auch Pflichten. Man muss Steuern zahlen. Das ist eine wichtige Pflicht. Die Steuern finanzieren den Staat. Man muss die Gesetze befolgen. Die Gesetze sind für alle gleich. Man muss seine Kinder zur Schule schicken. Die Schulpflicht besteht bis zum 18. Lebensjahr. Man muss sich an die Verkehrsregeln halten. Die Pflichten sind wichtig für das Zusammenleben.",
+      "text": "In der heutigen Zeit wird viel über die Pflichten der Bürger gesprochen. Ich bin Maria. Jeder Bürger hat nicht nur Rechte, sondern auch Pflichten. Man muss Steuern zahlen. Das ist eine wichtige Pflicht. Man muss die Gesetze befolgen. Man muss seine Kinder zur Schule schicken. Die Schulpflicht besteht bis zum 18. Lebensjahr. Die Pflichten sind wichtig für das Zusammenleben.",
       "questions": [
         {
           "question": "Wie heißt die Frau?",
-          "options": ["Anneliese", "Brunhilde", "Dorothea"],
+          "options": ["Anna", "Maria", "Julia"],
           "answer": 1
         },
         {
@@ -61,17 +51,12 @@
           "answer": 0
         },
         {
-          "question": "Was muss man zahlen?",
+          "question": "Was muss man als Bürger zahlen?",
           "options": ["Steuern", "Strafen", "Zölle"],
           "answer": 0
         },
         {
-          "question": "Was finanzieren die Steuern?",
-          "options": ["Den Staat", "Die Unternehmen", "Die Kirchen"],
-          "answer": 0
-        },
-        {
-          "question": "Was muss man befolgen?",
+          "question": "Was muss man als Bürger befolgen?",
           "options": ["Die Gesetze", "Die Empfehlungen", "Die Vorschläge"],
           "answer": 0
         },
@@ -79,22 +64,17 @@
           "question": "Wie lange besteht die Schulpflicht?",
           "options": ["Bis zum 18. Lebensjahr", "Bis zum 16. Lebensjahr", "Bis zum 21. Lebensjahr"],
           "answer": 0
-        },
-        {
-          "question": "Wofür sind die Pflichten wichtig?",
-          "options": ["Für das Zusammenleben", "Für die Wirtschaft", "Für die Kultur"],
-          "answer": 0
         }
       ]
     },
     {
       "id": "monolog_3",
       "title": "Das deutsche Rechtssystem",
-      "text": "Ich habe mich intensiv mit dem deutschen Rechtssystem beschäftigt. Ich bin Dorothea. Das Rechtssystem ist komplex. Es gibt verschiedene Gerichte. Die Zivilgerichte sind für Streitigkeiten zwischen Bürgern zuständig. Die Strafgerichte entscheiden über Straftaten. Es gibt auch Arbeitsgerichte und Sozialgerichte. Die Richter sind unabhängig. Das ist wichtig für die Gerechtigkeit. Die Anwälte vertreten die Parteien. Das Rechtssystem ist nicht perfekt, aber es funktioniert. Die Justiz ist ein wichtiger Teil des Staates.",
+      "text": "Ich habe mich intensiv mit dem deutschen Rechtssystem beschäftigt. Ich bin Julia. Das Rechtssystem ist komplex. Es gibt verschiedene Gerichte. Die Zivilgerichte sind für Streitigkeiten zwischen Bürgern zuständig. Die Strafgerichte entscheiden über Straftaten. Es gibt auch Arbeitsgerichte und Sozialgerichte. Die Richter sind unabhängig. Das ist wichtig für die Gerechtigkeit. Die Anwälte vertreten die Parteien.",
       "questions": [
         {
           "question": "Wie heißt die Frau?",
-          "options": ["Anneliese", "Brunhilde", "Dorothea"],
+          "options": ["Anna", "Maria", "Julia"],
           "answer": 2
         },
         {
@@ -116,27 +96,17 @@
           "question": "Was entscheiden die Strafgerichte?",
           "options": ["Über Straftaten", "Über Verträge", "Über Steuern"],
           "answer": 0
-        },
-        {
-          "question": "Wie sind die Richter?",
-          "options": ["Unabhängig", "Abhängig", "Parteiisch"],
-          "answer": 0
-        },
-        {
-          "question": "Ist das Rechtssystem perfekt?",
-          "options": ["Nein, aber es funktioniert", "Ja", "Weiß nicht"],
-          "answer": 0
         }
       ]
     },
     {
       "id": "monolog_4",
       "title": "Die Rolle der Polizei",
-      "text": "Wisst ihr, welche Rolle die Polizei hat? Ich bin Erna. Die Polizei sorgt für die öffentliche Sicherheit. Sie schützt die Bürger. Sie verfolgt Straftaten. Die Polizei kontrolliert den Verkehr. Sie hilft bei Unfällen. Die Polizei hat auch präventive Aufgaben. Sie informiert die Bevölkerung. Die Polizei muss sich an die Gesetze halten. Sie darf nicht willkürlich handeln. Die Polizei ist ein wichtiger Teil des Staates.",
+      "text": "Wisst ihr, welche Rolle die Polizei hat? Ich bin Laura. Die Polizei sorgt für die öffentliche Sicherheit. Sie schützt die Bürger. Sie verfolgt Straftaten. Die Polizei kontrolliert den Verkehr. Sie hilft bei Unfällen. Die Polizei hat auch präventive Aufgaben. Sie informiert die Bevölkerung. Die Polizei muss sich an die Gesetze halten. Sie darf nicht willkürlich handeln.",
       "questions": [
         {
           "question": "Wie heißt die Frau?",
-          "options": ["Erna", "Gertrud", "Hildegard"],
+          "options": ["Laura", "Lisa", "Anna"],
           "answer": 0
         },
         {
@@ -158,27 +128,17 @@
           "question": "Bei was hilft die Polizei?",
           "options": ["Bei Unfällen", "Bei Krankheiten", "Bei Reisen"],
           "answer": 0
-        },
-        {
-          "question": "Muss sich die Polizei an die Gesetze halten?",
-          "options": ["Ja", "Nein", "Weiß nicht"],
-          "answer": 0
-        },
-        {
-          "question": "Ist die Polizei ein wichtiger Teil des Staates?",
-          "options": ["Ja", "Nein", "Weiß nicht"],
-          "answer": 0
         }
       ]
     },
     {
       "id": "monolog_5",
       "title": "Die Verantwortung der Unternehmen",
-      "text": "Ich möchte euch heute von der Verantwortung der Unternehmen erzählen. Ich bin Gertrud. Die Unternehmen haben nicht nur wirtschaftliche Ziele. Sie haben auch eine soziale Verantwortung. Sie müssen die Umwelt schützen. Sie müssen ihre Mitarbeiter fair behandeln. Sie müssen Steuern zahlen. Die Unternehmen müssen sich an die Gesetze halten. Sie dürfen keine Kinderarbeit nutzen. Sie müssen die Menschenrechte respektieren. Die Verantwortung der Unternehmen wird immer wichtiger.",
+      "text": "Ich möchte euch heute von der Verantwortung der Unternehmen erzählen. Ich bin Lisa. Die Unternehmen haben nicht nur wirtschaftliche Ziele. Sie haben auch eine soziale Verantwortung. Sie müssen die Umwelt schützen. Sie müssen ihre Mitarbeiter fair behandeln. Sie müssen Steuern zahlen. Die Unternehmen müssen sich an die Gesetze halten. Sie dürfen keine Kinderarbeit nutzen.",
       "questions": [
         {
           "question": "Wie heißt die Frau?",
-          "options": ["Erna", "Gertrud", "Hildegard"],
+          "options": ["Laura", "Lisa", "Anna"],
           "answer": 1
         },
         {
@@ -197,18 +157,8 @@
           "answer": 0
         },
         {
-          "question": "Was müssen Unternehmen zahlen?",
-          "options": ["Steuern", "Strafen", "Zölle"],
-          "answer": 0
-        },
-        {
           "question": "Dürfen Unternehmen Kinderarbeit nutzen?",
           "options": ["Nein", "Ja", "Manchmal"],
-          "answer": 0
-        },
-        {
-          "question": "Was wird immer wichtiger?",
-          "options": ["Die Verantwortung der Unternehmen", "Die Wirtschaft", "Die Kultur"],
           "answer": 0
         }
       ]
@@ -216,12 +166,12 @@
     {
       "id": "monolog_6",
       "title": "Die Rechte der Arbeitnehmer",
-      "text": "In der heutigen Zeit wird viel über die Rechte der Arbeitnehmer gesprochen. Ich bin Hildegard. Die Arbeitnehmer haben viele Rechte. Sie haben das Recht auf faire Bezahlung. Sie haben das Recht auf Urlaub. Sie haben das Recht auf Arbeitszeitbegrenzung. Sie dürfen nicht diskriminiert werden. Sie haben das Recht auf eine sichere Arbeitsumgebung. Die Gewerkschaften vertreten die Interessen der Arbeitnehmer. Die Rechte der Arbeitnehmer sind gesetzlich geschützt. Das ist ein wichtiger Fortschritt.",
+      "text": "In der heutigen Zeit wird viel über die Rechte der Arbeitnehmer gesprochen. Ich bin Emma. Die Arbeitnehmer haben viele Rechte. Sie haben das Recht auf faire Bezahlung. Sie haben das Recht auf Urlaub. Sie haben das Recht auf Arbeitszeitbegrenzung. Sie dürfen nicht diskriminiert werden. Die Gewerkschaften vertreten die Interessen der Arbeitnehmer. Die Rechte der Arbeitnehmer sind gesetzlich geschützt.",
       "questions": [
         {
           "question": "Wie heißt die Frau?",
-          "options": ["Erna", "Gertrud", "Hildegard"],
-          "answer": 2
+          "options": ["Emma", "Lisa", "Laura"],
+          "answer": 0
         },
         {
           "question": "Welche Rechte haben Arbeitnehmer?",
@@ -234,11 +184,6 @@
           "answer": 0
         },
         {
-          "question": "Was haben Arbeitnehmer das Recht auf?",
-          "options": ["Eine sichere Arbeitsumgebung", "Eine unsichere Arbeitsumgebung", "Keine Arbeitsumgebung"],
-          "answer": 0
-        },
-        {
           "question": "Was vertreten die Gewerkschaften?",
           "options": ["Die Interessen der Arbeitnehmer", "Die Interessen der Arbeitgeber", "Die Interessen des Staates"],
           "answer": 0
@@ -246,11 +191,6 @@
         {
           "question": "Sind die Rechte der Arbeitnehmer geschützt?",
           "options": ["Ja, gesetzlich", "Nein", "Weiß nicht"],
-          "answer": 0
-        },
-        {
-          "question": "Was ist das für ein Fortschritt?",
-          "options": ["Ein wichtiger Fortschritt", "Ein kleiner Fortschritt", "Kein Fortschritt"],
           "answer": 0
         }
       ]

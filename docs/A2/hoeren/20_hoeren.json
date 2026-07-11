@@ -1,26 +1,26 @@
 {
   "lesson": 20,
   "level": "A2",
-  "title": "Perfekt с haben (правильные глаголы)",
+  "title": "Perfekt с haben",
   "dialogs": [
     {
       "id": "monolog_1",
       "title": "Mein Wochenende",
-      "text": "Hallo! Ich bin Hannah. Am Wochenende habe ich viel gemacht. Ich habe Tennis gespielt. Ich habe meine Wohnung geputzt. Ich habe einen Film gesehen. Es war ein schönes Wochenende.",
+      "text": "Hallo! Ich bin Anna. Am Wochenende habe ich viel gemacht. Ich habe Tennis gespielt. Ich habe meine Wohnung geputzt. Ich habe einen Film gesehen, weil das Wetter schlecht war.",
       "questions": [
         {
           "question": "Wie heißt die Frau?",
-          "options": ["Hannah", "Mira", "Jule"],
+          "options": ["Anna", "Maria", "Julia"],
           "answer": 0
         },
         {
-          "question": "Was hat Hannah am Wochenende gemacht?",
+          "question": "Was hat Anna am Wochenende gemacht?",
           "options": ["Tennis gespielt und geputzt", "Gearbeitet", "Geschlafen"],
           "answer": 0
         },
         {
-          "question": "Wie war das Wochenende?",
-          "options": ["Schön", "Schlecht", "Langweilig"],
+          "question": "Warum hat Anna einen Film gesehen?",
+          "options": ["Weil das Wetter schlecht war", "Weil sie müde war", "Weil sie keine Zeit hatte"],
           "answer": 0
         }
       ]
@@ -28,21 +28,21 @@
     {
       "id": "monolog_2",
       "title": "Meine Arbeit",
-      "text": "Grüß dich! Ich bin Mira. Ich habe gestern gearbeitet. Ich habe viele E-Mails geschrieben. Ich habe mit Kunden telefoniert. Die Arbeit war anstrengend.",
+      "text": "Grüß dich! Ich bin Maria. Ich habe gestern gearbeitet. Ich habe viele E-Mails geschrieben, weil ich wichtige Kunden habe. Ich habe mit Kunden telefoniert. Die Arbeit war anstrengend, aber ich habe alles geschafft.",
       "questions": [
         {
           "question": "Wie heißt die Frau?",
-          "options": ["Hannah", "Mira", "Jule"],
+          "options": ["Anna", "Maria", "Julia"],
           "answer": 1
         },
         {
-          "question": "Was hat Mira gemacht?",
+          "question": "Was hat Maria gemacht?",
           "options": ["E-Mails geschrieben und telefoniert", "Gekocht", "Geschlafen"],
           "answer": 0
         },
         {
-          "question": "Wie war die Arbeit?",
-          "options": ["Anstrengend", "Leicht", "Langweilig"],
+          "question": "Warum hat Maria E-Mails geschrieben?",
+          "options": ["Weil sie wichtige Kunden hat", "Weil sie langweilig war", "Weil sie keine Zeit hatte"],
           "answer": 0
         }
       ]
@@ -50,65 +50,21 @@
     {
       "id": "monolog_3",
       "title": "Mein Deutschkurs",
-      "text": "Guten Tag! Ich bin Jule. Ich habe Deutsch gelernt. Ich habe viele neue Wörter gelernt. Ich habe Grammatik geübt. Der Kurs war interessant.",
+      "text": "Guten Tag! Ich bin Julia. Ich habe Deutsch gelernt, weil ich in Deutschland arbeiten möchte. Ich habe viele neue Wörter gelernt. Ich habe Grammatik geübt. Der Kurs war interessant und ich habe viel verstanden.",
       "questions": [
         {
           "question": "Wie heißt die Frau?",
-          "options": ["Hannah", "Mira", "Jule"],
+          "options": ["Anna", "Maria", "Julia"],
           "answer": 2
         },
         {
-          "question": "Was hat Jule gemacht?",
-          "options": ["Deutsch gelernt", "Geschlafen", "Gearbeitet"],
+          "question": "Warum hat Julia Deutsch gelernt?",
+          "options": ["Weil sie in Deutschland arbeiten möchte", "Weil sie Urlaub macht", "Weil sie Freunde hat"],
           "answer": 0
         },
         {
-          "question": "Wie war der Kurs?",
-          "options": ["Interessant", "Langweilig", "Schwer"],
-          "answer": 0
-        }
-      ]
-    },
-    {
-      "id": "monolog_4",
-      "title": "Mein Einkauf",
-      "text": "Guten Morgen! Ich bin Pia. Ich habe heute eingekauft. Ich habe Brot und Milch gekauft. Ich habe auch Obst gekauft. Ich habe viel bezahlt.",
-      "questions": [
-        {
-          "question": "Wie heißt die Frau?",
-          "options": ["Pia", "Hannah", "Leni"],
-          "answer": 0
-        },
-        {
-          "question": "Was hat Pia eingekauft?",
-          "options": ["Brot, Milch und Obst", "Nur Brot", "Nur Milch"],
-          "answer": 0
-        },
-        {
-          "question": "Hat Pia viel bezahlt?",
-          "options": ["Ja", "Nein", "Weiß nicht"],
-          "answer": 0
-        }
-      ]
-    },
-    {
-      "id": "monolog_5",
-      "title": "Mein Hobby",
-      "text": "Hallo! Ich bin Leni. Ich habe gestern im Park gespielt. Ich habe mit meiner Freundin getanzt. Wir haben viel gelacht. Das war schön.",
-      "questions": [
-        {
-          "question": "Wie heißt die Frau?",
-          "options": ["Leni", "Pia", "Mira"],
-          "answer": 0
-        },
-        {
-          "question": "Was hat Leni im Park gemacht?",
-          "options": ["Getanzt und gelacht", "Gelesen", "Geschlafen"],
-          "answer": 0
-        },
-        {
-          "question": "Wie war es?",
-          "options": ["Schön", "Schlecht", "Langweilig"],
+          "question": "Was hat Julia im Deutschkurs gemacht?",
+          "options": ["Wörter gelernt und Grammatik geübt", "Nur geschlafen", "Nur gesprochen"],
           "answer": 0
         }
       ]

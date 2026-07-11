@@ -1,0 +1,204 @@
+{
+  "lesson": 32,
+  "level": "B1",
+  "title": "Система образования в Германии",
+  "dialogs": [
+    {
+      "id": "monolog_1",
+      "title": "Das deutsche Schulsystem",
+      "text": "Guten Tag! Heute möchte ich über das deutsche Schulsystem sprechen. Ich bin Anneliese und habe in Deutschland studiert. Die Schule beginnt mit der Grundschule. Das ist von Klasse 1 bis 4. Danach gehen die Kinder auf verschiedene Schulen. Es gibt die Hauptschule, die Realschule und das Gymnasium. Auf dem Gymnasium kann man Abitur machen. Das Abitur ist wichtig für das Studium. Viele Jugendliche machen nach der Schule eine Ausbildung.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Anneliese", "Brunhilde", "Dorothea"],
+          "answer": 0
+        },
+        {
+          "question": "Wie lange dauert die Grundschule in Deutschland?",
+          "options": ["Bis Klasse 4", "Bis Klasse 6", "Bis Klasse 8"],
+          "answer": 0
+        },
+        {
+          "question": "Welche Schularten gibt es in Deutschland?",
+          "options": ["Hauptschule, Realschule, Gymnasium", "Nur Gymnasium", "Grundschule und Universität"],
+          "answer": 0
+        },
+        {
+          "question": "Was kann man auf dem Gymnasium machen?",
+          "options": ["Abitur machen", "Eine Ausbildung machen", "Nur lernen"],
+          "answer": 0
+        },
+        {
+          "question": "Wofür ist das Abitur wichtig?",
+          "options": ["Für das Studium", "Für die Arbeit", "Für die Reise"],
+          "answer": 0
+        },
+        {
+          "question": "Was machen viele Jugendliche nach der Schule?",
+          "options": ["Eine Ausbildung", "Reisen", "Arbeiten"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_2",
+      "title": "Meine Schulzeit",
+      "text": "Wisst ihr, wie das in Deutschland ist? Ich bin Brunhilde. Wenn ich an meine Schulzeit denke, fällt mir vieles ein. Als ich klein war, ging ich in die Grundschule. Das war eine schöne Zeit. Später wechselte ich auf das Gymnasium. Das Gymnasium war anspruchsvoll. Ich musste viel lernen. Nach dem Abitur habe ich studiert. Heute arbeite ich als Lehrerin.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Anneliese", "Brunhilde", "Dorothea"],
+          "answer": 1
+        },
+        {
+          "question": "Was macht Brunhilde heute?",
+          "options": ["Sie ist Lehrerin", "Sie ist Ärztin", "Sie ist Ingenieurin"],
+          "answer": 0
+        },
+        {
+          "question": "Wann wechselte Brunhilde auf das Gymnasium?",
+          "options": ["Später", "Als sie klein war", "Nach dem Studium"],
+          "answer": 0
+        },
+        {
+          "question": "Wie war das Gymnasium?",
+          "options": ["Anspruchsvoll", "Leicht", "Langweilig"],
+          "answer": 0
+        },
+        {
+          "question": "Was hat Brunhilde nach dem Abitur gemacht?",
+          "options": ["Sie hat studiert", "Sie hat gearbeitet", "Sie hat gereist"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_3",
+      "title": "Das Studium in Deutschland",
+      "text": "Ich möchte euch heute von meinem Studium berichten. Ich bin Dorothea. Ich studiere an der Universität. Das Studium ist sehr interessant. Ich besuche Vorlesungen und Seminare. Nach dem Studium möchte ich promovieren. Das ist mein großes Ziel. Ich finde, dass das deutsche Bildungssystem gut ist. Es gibt viele Möglichkeiten.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Anneliese", "Brunhilde", "Dorothea"],
+          "answer": 2
+        },
+        {
+          "question": "Was macht Dorothea?",
+          "options": ["Sie studiert an der Universität", "Sie macht eine Ausbildung", "Sie arbeitet"],
+          "answer": 0
+        },
+        {
+          "question": "Was besucht Dorothea an der Uni?",
+          "options": ["Vorlesungen und Seminare", "Nur Vorlesungen", "Nur Seminare"],
+          "answer": 0
+        },
+        {
+          "question": "Was möchte Dorothea nach dem Studium machen?",
+          "options": ["Promovieren", "Arbeiten", "Reisen"],
+          "answer": 0
+        },
+        {
+          "question": "Wie findet Dorothea das deutsche Bildungssystem?",
+          "options": ["Gut", "Schlecht", "Weiß nicht"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_4",
+      "title": "Die Berufsausbildung",
+      "text": "In Deutschland ist das Bildungssystem anders. Ich bin Erna. Viele Jugendliche in Deutschland machen eine Ausbildung. Das ist eine gute Alternative zum Studium. In der Ausbildung lernt man einen Beruf. Man arbeitet in einer Firma und geht zur Berufsschule. Die Ausbildung dauert meistens drei Jahre. Danach hat man gute Chancen auf dem Arbeitsmarkt. Ich habe selbst eine Ausbildung gemacht und bin sehr zufrieden.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Erna", "Gertrud", "Dorothea"],
+          "answer": 0
+        },
+        {
+          "question": "Was ist eine Alternative zum Studium?",
+          "options": ["Eine Ausbildung", "Reisen", "Arbeiten"],
+          "answer": 0
+        },
+        {
+          "question": "Was lernt man in der Ausbildung?",
+          "options": ["Einen Beruf", "Nur Theorie", "Nur Praxis"],
+          "answer": 0
+        },
+        {
+          "question": "Wie lange dauert die Ausbildung meistens?",
+          "options": ["Drei Jahre", "Zwei Jahre", "Vier Jahre"],
+          "answer": 0
+        },
+        {
+          "question": "Was hat Erna selbst gemacht?",
+          "options": ["Eine Ausbildung", "Ein Studium", "Eine Reise"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_5",
+      "title": "Die Universität in meiner Stadt",
+      "text": "Hallo zusammen! Ich bin Gertrud. In meiner Stadt gibt es eine große Universität. Die Universität ist sehr bekannt. Wenn ich an der Uni vorbeigehe, sehe ich viele Studenten. Sie kommen aus aller Welt. Das finde ich toll. Ich habe selbst nicht studiert, aber ich finde die Uni sehr wichtig. Die Stadt lebt von den Studenten. Es gibt viele Cafés und kleine Läden.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Erna", "Gertrud", "Anneliese"],
+          "answer": 1
+        },
+        {
+          "question": "Was gibt es in Gertruds Stadt?",
+          "options": ["Eine große Universität", "Nur eine Schule", "Keine Uni"],
+          "answer": 0
+        },
+        {
+          "question": "Woher kommen viele Studenten?",
+          "options": ["Aus aller Welt", "Nur aus Deutschland", "Nur aus Europa"],
+          "answer": 0
+        },
+        {
+          "question": "Hat Gertrud selbst studiert?",
+          "options": ["Nein", "Ja", "Weiß nicht"],
+          "answer": 0
+        },
+        {
+          "question": "Wie lebt die Stadt von den Studenten?",
+          "options": ["Es gibt Cafés und Läden", "Es gibt viele Fabriken", "Es gibt keine Geschäfte"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_6",
+      "title": "Mein Lieblingsfach",
+      "text": "Schön, dass ihr zuhört! Ich bin Klara. In der Schule hatte ich viele Fächer. Mein Lieblingsfach war Deutsch. Ich liebte es, Geschichten zu lesen und zu schreiben. Wenn ich gute Noten hatte, war ich sehr glücklich. In Mathematik war ich nicht so gut. Das war schwieriger für mich. Aber ich habe immer versucht, mein Bestes zu geben. Heute kann ich sagen: Jedes Fach ist wichtig.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Klara", "Gertrud", "Erna"],
+          "answer": 0
+        },
+        {
+          "question": "Was war Klaras Lieblingsfach?",
+          "options": ["Deutsch", "Mathematik", "Geschichte"],
+          "answer": 0
+        },
+        {
+          "question": "Was liebte Klara in Deutsch?",
+          "options": ["Geschichten zu lesen und zu schreiben", "Zu rechnen", "Zu malen"],
+          "answer": 0
+        },
+        {
+          "question": "Wie war Klara in Mathematik?",
+          "options": ["Nicht so gut", "Sehr gut", "Weiß nicht"],
+          "answer": 0
+        },
+        {
+          "question": "Was hat Klara immer versucht?",
+          "options": ["Ihr Bestes zu geben", "Zu schlafen", "Zu spielen"],
+          "answer": 0
+        }
+      ]
+    }
+  ]
+}

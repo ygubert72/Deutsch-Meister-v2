@@ -1,0 +1,229 @@
+{
+  "lesson": 41,
+  "level": "B1",
+  "title": "Условные предложения 1-го типа",
+  "dialogs": [
+    {
+      "id": "monolog_1",
+      "title": "Meine Zukunftspläne",
+      "text": "Guten Tag! Ich bin Anneliese. Wenn ich genug Geld habe, werde ich eine Weltreise machen. Ich möchte viele Länder sehen. Wenn ich in Asien bin, werde ich die Tempel besuchen. Wenn ich nach Australien komme, werde ich am Strand liegen. Ich werde viele Fotos machen und ein Tagebuch schreiben. Wenn ich zurückkomme, werde ich ein Buch darüber schreiben. Das ist mein großer Traum. Vielleicht wird er wahr.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Anneliese", "Brunhilde", "Dorothea"],
+          "answer": 0
+        },
+        {
+          "question": "Was wird Anneliese machen, wenn sie genug Geld hat?",
+          "options": ["Eine Weltreise machen", "Ein Haus kaufen", "Ein Auto kaufen"],
+          "answer": 0
+        },
+        {
+          "question": "Was wird Anneliese in Asien machen?",
+          "options": ["Die Tempel besuchen", "Am Strand liegen", "Arbeiten"],
+          "answer": 0
+        },
+        {
+          "question": "Was wird Anneliese machen, wenn sie in Australien ist?",
+          "options": ["Am Strand liegen", "Die Berge besteigen", "Die Stadt besichtigen"],
+          "answer": 0
+        },
+        {
+          "question": "Was wird Anneliese von der Reise mitbringen?",
+          "options": ["Fotos und ein Tagebuch", "Souvenirs", "Geschenke"],
+          "answer": 0
+        },
+        {
+          "question": "Was wird Anneliese nach der Reise machen?",
+          "options": ["Ein Buch schreiben", "Weiterreisen", "Arbeiten"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_2",
+      "title": "Berufliche Perspektiven",
+      "text": "Hallo zusammen! Ich bin Brunhilde. Wenn ich meine Weiterbildung abschließe, werde ich eine bessere Stelle bekommen. Ich arbeite hart, weil ich meine Ziele erreichen will. Wenn ich die Prüfung bestehe, werde ich mehr Verantwortung haben. Dann werde ich auch mehr verdienen. Wenn ich genug Erfahrung habe, werde ich mich selbstständig machen. Das ist mein langfristiger Plan. Wenn alles gut läuft, wird das in fünf Jahren sein.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Anneliese", "Brunhilde", "Dorothea"],
+          "answer": 1
+        },
+        {
+          "question": "Was wird Brunhilde machen, wenn sie ihre Weiterbildung abschließt?",
+          "options": ["Eine bessere Stelle bekommen", "Reisen", "Aufhören zu arbeiten"],
+          "answer": 0
+        },
+        {
+          "question": "Was wird passieren, wenn Brunhilde die Prüfung besteht?",
+          "options": ["Sie wird mehr Verantwortung haben", "Sie wird weniger arbeiten", "Sie wird kündigen"],
+          "answer": 0
+        },
+        {
+          "question": "Was wird Brunhilde machen, wenn sie genug Erfahrung hat?",
+          "options": ["Sich selbstständig machen", "In Rente gehen", "Umziehen"],
+          "answer": 0
+        },
+        {
+          "question": "Wann wird Brunhilde sich selbstständig machen?",
+          "options": ["In fünf Jahren", "In einem Jahr", "In zehn Jahren"],
+          "answer": 0
+        },
+        {
+          "question": "Arbeitet Brunhilde hart?",
+          "options": ["Ja", "Nein", "Weiß nicht"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_3",
+      "title": "Wenn das Wetter schön ist...",
+      "text": "Schön, dass ihr zuhört! Ich bin Dorothea. Wenn das Wetter am Wochenende schön ist, werde ich einen Ausflug machen. Ich werde mit dem Fahrrad in den Wald fahren. Ich werde ein Picknick machen und die Natur genießen. Wenn es regnet, werde ich zu Hause bleiben. Dann werde ich ein Buch lesen oder einen Film sehen. Wenn meine Freundin Zeit hat, werde ich sie einladen. Das wird ein schönes Wochenende!",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Anneliese", "Brunhilde", "Dorothea"],
+          "answer": 2
+        },
+        {
+          "question": "Was wird Dorothea machen, wenn das Wetter schön ist?",
+          "options": ["Einen Ausflug machen", "Zu Hause bleiben", "Arbeiten"],
+          "answer": 0
+        },
+        {
+          "question": "Wohin wird Dorothea fahren?",
+          "options": ["In den Wald", "In die Stadt", "Ans Meer"],
+          "answer": 0
+        },
+        {
+          "question": "Was wird Dorothea machen, wenn es regnet?",
+          "options": ["Zu Hause bleiben", "Trotzdem rausgehen", "Schlafen"],
+          "answer": 0
+        },
+        {
+          "question": "Was wird Dorothea bei Regen machen?",
+          "options": ["Ein Buch lesen oder einen Film sehen", "Arbeiten", "Putzen"],
+          "answer": 0
+        },
+        {
+          "question": "Was wird Dorothea machen, wenn ihre Freundin Zeit hat?",
+          "options": ["Sie einladen", "Alleine gehen", "Sie ignorieren"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_4",
+      "title": "Meine Gesundheit",
+      "text": "Wisst ihr, was ich für meine Gesundheit tue? Ich bin Erna. Wenn ich Zeit habe, mache ich Sport. Ich gehe jeden Morgen laufen, weil es mir guttut. Wenn ich genug schlafe, bin ich am nächsten Tag fit. Wenn ich zu wenig schlafe, bin ich müde. Wenn ich gesund esse, fühle ich mich besser. Ich versuche, mich gut zu ernähren. Wenn ich krank werde, gehe ich zum Arzt. Das ist wichtig.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Erna", "Gertrud", "Dorothea"],
+          "answer": 0
+        },
+        {
+          "question": "Was macht Erna, wenn sie Zeit hat?",
+          "options": ["Sie macht Sport", "Sie schläft", "Sie liest"],
+          "answer": 0
+        },
+        {
+          "question": "Wann ist Erna fit?",
+          "options": ["Wenn sie genug schläft", "Wenn sie wenig schläft", "Wenn sie isst"],
+          "answer": 0
+        },
+        {
+          "question": "Wie fühlt sich Erna, wenn sie gesund isst?",
+          "options": ["Besser", "Schlechter", "Gleich"],
+          "answer": 0
+        },
+        {
+          "question": "Was macht Erna, wenn sie krank wird?",
+          "options": ["Sie geht zum Arzt", "Sie bleibt zu Hause", "Sie nimmt Tabletten"],
+          "answer": 0
+        },
+        {
+          "question": "Geht Erna jeden Morgen laufen?",
+          "options": ["Ja", "Nein", "Manchmal"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_5",
+      "title": "Wenn ich Urlaub habe...",
+      "text": "Guten Morgen! Ich bin Gertrud. Wenn ich Urlaub habe, fahre ich ans Meer. Ich liebe das Meer und den Strand. Wenn ich dort bin, werde ich viel schwimmen. Ich werde am Strand spazieren gehen. Wenn das Wetter gut ist, werde ich sonnenbaden. Wenn es zu heiß ist, gehe ich in ein Café. Ich werde die Zeit mit meiner Familie genießen. Das ist die beste Zeit des Jahres.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Erna", "Gertrud", "Anneliese"],
+          "answer": 1
+        },
+        {
+          "question": "Wohin fährt Gertrud, wenn sie Urlaub hat?",
+          "options": ["Ans Meer", "In die Berge", "In die Stadt"],
+          "answer": 0
+        },
+        {
+          "question": "Was liebt Gertrud?",
+          "options": ["Das Meer und den Strand", "Die Berge", "Die Wälder"],
+          "answer": 0
+        },
+        {
+          "question": "Was wird Gertrud am Strand machen?",
+          "options": ["Schwimmen und spazieren gehen", "Arbeiten", "Schlafen"],
+          "answer": 0
+        },
+        {
+          "question": "Was macht Gertrud, wenn es zu heiß ist?",
+          "options": ["Sie geht in ein Café", "Sie bleibt am Strand", "Sie geht nach Hause"],
+          "answer": 0
+        },
+        {
+          "question": "Mit wem wird Gertrud die Zeit verbringen?",
+          "options": ["Mit ihrer Familie", "Mit Freunden", "Alleine"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_6",
+      "title": "Wenn ich älter bin...",
+      "text": "Schön, dass ihr da seid! Ich bin Hildegard. Wenn ich älter bin, werde ich weniger arbeiten. Ich werde mehr Zeit für meine Hobbys haben. Ich werde viel reisen und die Welt entdecken. Wenn ich nicht mehr arbeiten muss, werde ich morgens lange schlafen. Ich werde jeden Tag etwas Neues lernen. Wenn ich alt bin, werde ich viele Erinnerungen haben. Ich hoffe, dass ich dann gesund bin.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Hildegard", "Gertrud", "Erna"],
+          "answer": 0
+        },
+        {
+          "question": "Was wird Hildegard machen, wenn sie älter ist?",
+          "options": ["Weniger arbeiten", "Mehr arbeiten", "Aufhören zu arbeiten"],
+          "answer": 0
+        },
+        {
+          "question": "Was wird Hildegard mit ihrer Zeit machen?",
+          "options": ["Reisen und Neues lernen", "Nur zu Hause sitzen", "Fernsehen"],
+          "answer": 0
+        },
+        {
+          "question": "Was wird Hildegard machen, wenn sie nicht mehr arbeiten muss?",
+          "options": ["Lange schlafen", "Früh aufstehen", "Garnicht schlafen"],
+          "answer": 0
+        },
+        {
+          "question": "Was wird Hildegard jeden Tag tun?",
+          "options": ["Etwas Neues lernen", "Nichts tun", "Nur essen"],
+          "answer": 0
+        },
+        {
+          "question": "Was wird Hildegard haben, wenn sie alt ist?",
+          "options": ["Viele Erinnerungen", "Viel Geld", "Viele Freunde"],
+          "answer": 0
+        }
+      ]
+    }
+  ]
+}

@@ -6,31 +6,26 @@
     {
       "id": "monolog_1",
       "title": "Was ist für mich wichtig?",
-      "text": "Hallo! Ich bin Annika. Für mich ist Familie das Wichtigste. Meine Familie unterstützt mich immer. Arbeit ist auch wichtig, aber nicht so wichtig wie Familie. Ich finde, dass Freunde auch sehr wichtig sind. Man sollte nicht zu viel arbeiten. Die Zeit mit der Familie ist wertvoll.",
+      "text": "Hallo! Ich bin Anna. Für mich ist Familie das Wichtigste. Meine Familie unterstützt mich immer. Arbeit ist auch wichtig, aber nicht so wichtig wie Familie. Ich finde, dass Freunde auch sehr wichtig sind. Man sollte nicht zu viel arbeiten.",
       "questions": [
         {
           "question": "Wie heißt die Frau?",
-          "options": ["Annika", "Dora", "Elfriede"],
+          "options": ["Anna", "Maria", "Julia"],
           "answer": 0
         },
         {
-          "question": "Was ist für Annika das Wichtigste?",
+          "question": "Was ist für Anna das Wichtigste?",
           "options": ["Familie", "Arbeit", "Freunde"],
           "answer": 0
         },
         {
-          "question": "Was unterstützt Annika immer?",
+          "question": "Was unterstützt Anna immer?",
           "options": ["Ihre Familie", "Ihre Arbeit", "Ihre Freunde"],
           "answer": 0
         },
         {
-          "question": "Was findet Annika auch wichtig?",
+          "question": "Was findet Anna auch wichtig?",
           "options": ["Freunde", "Reisen", "Geld"],
-          "answer": 0
-        },
-        {
-          "question": "Was ist für Annika wertvoll?",
-          "options": ["Die Zeit mit der Familie", "Die Zeit mit Freunden", "Die Zeit bei der Arbeit"],
           "answer": 0
         }
       ]
@@ -38,31 +33,26 @@
     {
       "id": "monolog_2",
       "title": "Meine Meinung zum Fernsehen",
-      "text": "Schön, dass ihr zuhört! Ich bin Dora. Ich finde, dass Fernsehen gut ist. Aber man sollte nicht zu viel fernsehen. Ich schaue etwa eine Stunde am Tag. Es gibt viele gute Sendungen. Aber ich mag es auch, ein Buch zu lesen. Man kann dabei mehr lernen. Lesen ist besser für den Kopf.",
+      "text": "Schön, dass ihr zuhört! Ich bin Maria. Ich finde, dass Fernsehen gut ist. Aber man sollte nicht zu viel fernsehen. Ich schaue etwa eine Stunde am Tag. Es gibt viele gute Sendungen. Aber ich mag es auch, ein Buch zu lesen. Lesen ist besser für den Kopf.",
       "questions": [
         {
           "question": "Wie heißt die Frau?",
-          "options": ["Annika", "Dora", "Elfriede"],
+          "options": ["Anna", "Maria", "Julia"],
           "answer": 1
         },
         {
-          "question": "Wie viel Fernsehen schaut Dora am Tag?",
+          "question": "Wie viel Fernsehen schaut Maria am Tag?",
           "options": ["Etwa eine Stunde", "Drei Stunden", "Keine Stunde"],
           "answer": 0
         },
         {
-          "question": "Was macht Dora auch gern?",
+          "question": "Was macht Maria auch gern?",
           "options": ["Ein Buch lesen", "Sport machen", "Musik hören"],
           "answer": 0
         },
         {
-          "question": "Was findet Dora besser für den Kopf?",
+          "question": "Was findet Maria besser für den Kopf?",
           "options": ["Lesen", "Fernsehen", "Radio hören"],
-          "answer": 0
-        },
-        {
-          "question": "Wie findet Dora Fernsehen?",
-          "options": ["Gut", "Langweilig", "Schlecht"],
           "answer": 0
         }
       ]
@@ -70,132 +60,26 @@
     {
       "id": "monolog_3",
       "title": "Über gesunde Ernährung",
-      "text": "Guten Tag! Ich bin Elfriede. Ich finde, dass gesunde Ernährung wichtig ist. Man sollte viel Obst und Gemüse essen. Zucker und Fett sind nicht gut für den Körper. Ich trinke auch viel Wasser. Ich fühle mich besser, wenn ich gesund esse. Das ist meine Meinung.",
+      "text": "Guten Tag! Ich bin Julia. Ich finde, dass gesunde Ernährung wichtig ist. Man sollte viel Obst und Gemüse essen. Zucker und Fett sind nicht gut für den Körper. Ich trinke auch viel Wasser. Ich fühle mich besser, wenn ich gesund esse.",
       "questions": [
         {
           "question": "Wie heißt die Frau?",
-          "options": ["Annika", "Dora", "Elfriede"],
+          "options": ["Anna", "Maria", "Julia"],
           "answer": 2
         },
         {
-          "question": "Was findet Elfriede wichtig?",
+          "question": "Was findet Julia wichtig?",
           "options": ["Gesunde Ernährung", "Fernsehen", "Arbeit"],
           "answer": 0
         },
         {
-          "question": "Was sollte man laut Elfriede essen?",
+          "question": "Was sollte man laut Julia essen?",
           "options": ["Obst und Gemüse", "Nur Fleisch", "Viel Zucker"],
           "answer": 0
         },
         {
-          "question": "Was trinkt Elfriede?",
+          "question": "Was trinkt Julia?",
           "options": ["Viel Wasser", "Viel Saft", "Viel Kaffee"],
-          "answer": 0
-        },
-        {
-          "question": "Wie fühlt sich Elfriede bei gesunder Ernährung?",
-          "options": ["Besser", "Schlechter", "Müde"],
-          "answer": 0
-        }
-      ]
-    },
-    {
-      "id": "monolog_4",
-      "title": "Arbeit und Freizeit",
-      "text": "Hallo zusammen! Ich bin Herta. Ich finde, dass Arbeit wichtig ist. Aber Freizeit ist auch wichtig. Man sollte beides haben. Ein gutes Gleichgewicht ist das Beste. Wer zu viel arbeitet, wird krank. Wer zu viel Freizeit hat, wird faul. Ich versuche, beides zu verbinden. So bin ich glücklich.",
-      "questions": [
-        {
-          "question": "Wie heißt die Frau?",
-          "options": ["Herta", "Martha", "Elfriede"],
-          "answer": 0
-        },
-        {
-          "question": "Was findet Herta wichtig?",
-          "options": ["Arbeit und Freizeit", "Nur Arbeit", "Nur Freizeit"],
-          "answer": 0
-        },
-        {
-          "question": "Was ist das Beste für Herta?",
-          "options": ["Ein gutes Gleichgewicht", "Viel Arbeit", "Viel Freizeit"],
-          "answer": 0
-        },
-        {
-          "question": "Was passiert bei zu viel Arbeit?",
-          "options": ["Man wird krank", "Man wird faul", "Man wird glücklich"],
-          "answer": 0
-        },
-        {
-          "question": "Was versucht Herta zu verbinden?",
-          "options": ["Arbeit und Freizeit", "Familie und Freunde", "Essen und Trinken"],
-          "answer": 0
-        }
-      ]
-    },
-    {
-      "id": "monolog_5",
-      "title": "Meine Meinung zu Social Media",
-      "text": "Grüß dich! Ich bin Martha. Social Media ist sehr beliebt. Aber ich finde, dass man vorsichtig sein sollte. Es kann süchtig machen. Man vergleicht sich oft mit anderen. Das ist nicht gut. Ich nutze Social Media nur manchmal. Ich finde, dass echte Gespräche besser sind.",
-      "questions": [
-        {
-          "question": "Wie heißt die Frau?",
-          "options": ["Herta", "Martha", "Annika"],
-          "answer": 1
-        },
-        {
-          "question": "Was ist sehr beliebt?",
-          "options": ["Social Media", "Fernsehen", "Radio"],
-          "answer": 0
-        },
-        {
-          "question": "Was findet Martha über Social Media?",
-          "options": ["Man sollte vorsichtig sein", "Es ist immer gut", "Es ist nicht wichtig"],
-          "answer": 0
-        },
-        {
-          "question": "Was kann Social Media machen?",
-          "options": ["Süchtig machen", "Gesund machen", "Glücklich machen"],
-          "answer": 0
-        },
-        {
-          "question": "Was sind für Martha besser?",
-          "options": ["Echte Gespräche", "Social Media", "Zeitungen"],
-          "answer": 0
-        }
-      ]
-    },
-    {
-      "id": "monolog_6",
-      "title": "Umweltschutz",
-      "text": "Schön, dass ihr da seid! Ich bin Klara. Ich finde, dass Umweltschutz wichtig ist. Jeder kann helfen. Man sollte Plastik vermeiden. Man sollte mehr Fahrrad fahren. Man sollte weniger Fleisch essen. Das ist gut für die Umwelt. Ich versuche, im Alltag darauf zu achten. Jeder kleine Beitrag hilft.",
-      "questions": [
-        {
-          "question": "Wie heißt die Frau?",
-          "options": ["Klara", "Martha", "Herta"],
-          "answer": 0
-        },
-        {
-          "question": "Was findet Klara wichtig?",
-          "options": ["Umweltschutz", "Fernsehen", "Arbeit"],
-          "answer": 0
-        },
-        {
-          "question": "Was sollte man laut Klara vermeiden?",
-          "options": ["Plastik", "Zucker", "Schlafen"],
-          "answer": 0
-        },
-        {
-          "question": "Was sollte man mehr machen?",
-          "options": ["Fahrrad fahren", "Auto fahren", "Fliegen"],
-          "answer": 0
-        },
-        {
-          "question": "Was versucht Klara im Alltag zu tun?",
-          "options": ["Auf die Umwelt zu achten", "Mehr zu arbeiten", "Mehr zu schlafen"],
-          "answer": 0
-        },
-        {
-          "question": "Was hilft laut Klara?",
-          "options": ["Jeder kleine Beitrag", "Nur große Aktionen", "Nichts"],
           "answer": 0
         }
       ]

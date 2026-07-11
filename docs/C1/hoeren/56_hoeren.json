@@ -6,7 +6,7 @@
     {
       "id": "monolog_1",
       "title": "Die Grundlagen von Verhandlungen",
-      "text": "Guten Tag! Ich bin Anna. Verhandlungen sind ein wichtiges Instrument im Berufsleben. Man verhandelt Gehälter, Verträge und Projekte. Eine gute Verhandlung beginnt mit der Vorbereitung. Man muss die Ziele kennen. Man muss die Interessen der anderen Seite verstehen. Man muss Alternativen haben. Eine gute Verhandlung ist fair und respektvoll. Sie führt zu einem Ergebnis, mit dem beide Seiten zufrieden sind.",
+      "text": "Die von der Verhandlungsexpertin Anna praktizierte Verhandlungsstrategie basiert auf jahrelanger Erfahrung. Die sorgfältige Vorbereitung bildet das Fundament jeder erfolgreichen Verhandlung. Die eigenen Ziele werden präzise definiert. Die Interessen der Gegenseite werden antizipiert. Die Verhandlungsalternativen werden bewertet. Die Kommunikation erfolgt wertschätzend. Ein konstruktives Verhandlungsklima wird angestrebt. Ziel ist eine für beide Seiten akzeptable Lösung.",
       "questions": [
         {
           "question": "Wie heißt die Frau?",
@@ -14,23 +14,23 @@
           "answer": 0
         },
         {
-          "question": "Was ist ein wichtiges Instrument im Berufsleben?",
-          "options": ["Verhandlungen", "Präsentationen", "Berichte"],
+          "question": "Was basiert auf jahrelanger Erfahrung?",
+          "options": ["Die Verhandlungsstrategie", "Die Vorbereitung", "Die Kommunikation"],
           "answer": 0
         },
         {
-          "question": "Womit beginnt eine gute Verhandlung?",
-          "options": ["Mit der Vorbereitung", "Mit der Einleitung", "Mit dem Abschluss"],
+          "question": "Was bildet das Fundament jeder erfolgreichen Verhandlung?",
+          "options": ["Die sorgfältige Vorbereitung", "Die schnelle Entscheidung", "Die emotionale Reaktion"],
           "answer": 0
         },
         {
-          "question": "Was muss man bei einer Verhandlung kennen?",
-          "options": ["Die eigenen Ziele", "Die Ziele der anderen", "Beide"],
-          "answer": 2
+          "question": "Was wird in einer Verhandlung präzise definiert?",
+          "options": ["Die eigenen Ziele", "Die eigenen Emotionen", "Die eigenen Vorurteile"],
+          "answer": 0
         },
         {
-          "question": "Wie sollte eine gute Verhandlung sein?",
-          "options": ["Fair und respektvoll", "Hart und kompromisslos", "Schnell und oberflächlich"],
+          "question": "Was wird in einer Verhandlung angestrebt?",
+          "options": ["Ein konstruktives Verhandlungsklima", "Ein destruktives Verhandlungsklima", "Ein emotionales Verhandlungsklima"],
           "answer": 0
         }
       ]
@@ -38,7 +38,7 @@
     {
       "id": "monolog_2",
       "title": "Die Kunst des Kompromisses",
-      "text": "Hallo! Ich bin Maria. Kompromisse sind in Verhandlungen oft notwendig. Man kann nicht immer alles bekommen. Man muss Abstriche machen. Ein guter Kompromiss ist ein Zeichen von Fairness. Er zeigt, dass man kooperativ ist. Man sollte nicht zu starr sein. Flexibilität ist gefragt. Der Kompromiss sollte für beide Seiten akzeptabel sein. Das ist das Ziel jeder Verhandlung.",
+      "text": "Die von der Mediatorin Maria entwickelte Kompromissstrategie hat sich in komplexen Verhandlungssituationen bewährt. Die Bereitschaft zum Kompromiss ist ein Zeichen von Kooperationsbereitschaft. Die eigenen Positionen werden flexibel gehalten. Die Interessen der Gegenseite werden berücksichtigt. Ein ausgewogenes Ergebnis wird angestrebt. Der Kompromiss muss für beide Verhandlungsparteien tragbar sein. Die Kunst des Kompromisses erfordert Einfühlungsvermögen und Verhandlungsgeschick.",
       "questions": [
         {
           "question": "Wie heißt die Frau?",
@@ -46,23 +46,23 @@
           "answer": 1
         },
         {
-          "question": "Was sind in Verhandlungen oft notwendig?",
-          "options": ["Kompromisse", "Konflikte", "Kündigungen"],
+          "question": "Was ist in komplexen Verhandlungssituationen von Bedeutung?",
+          "options": ["Die Kompromissstrategie", "Die Durchsetzungsstrategie", "Die Verzögerungsstrategie"],
           "answer": 0
         },
         {
-          "question": "Was ist ein guter Kompromiss ein Zeichen von?",
-          "options": ["Fairness", "Stärke", "Schwäche"],
+          "question": "Was ist ein Zeichen von Kooperationsbereitschaft?",
+          "options": ["Die Bereitschaft zum Kompromiss", "Die Weigerung zum Kompromiss", "Die Ignoranz des Kompromisses"],
           "answer": 0
         },
         {
-          "question": "Was zeigt der Kompromiss?",
-          "options": ["Kooperation", "Konkurrenz", "Kontroll"],
+          "question": "Wie werden die eigenen Positionen in einer Kompromissstrategie gehalten?",
+          "options": ["Flexibel", "Starr", "Unveränderlich"],
           "answer": 0
         },
         {
-          "question": "Was ist in Verhandlungen gefragt?",
-          "options": ["Flexibilität", "Starrheit", "Aggressivität"],
+          "question": "Was erfordert die Kunst des Kompromisses?",
+          "options": ["Einfühlungsvermögen und Verhandlungsgeschick", "Härte und Sturheit", "Gleichgültigkeit und Desinteresse"],
           "answer": 0
         }
       ]
@@ -70,7 +70,7 @@
     {
       "id": "monolog_3",
       "title": "Die Bewältigung von Konflikten",
-      "text": "Guten Morgen! Ich bin Julia. Konflikte sind im Berufsleben unvermeidlich. Man sollte sie nicht ignorieren. Man sollte sie frühzeitig ansprechen. Man sollte sachlich bleiben. Man sollte die andere Seite verstehen. Man sollte nach Lösungen suchen. Eine gute Konfliktlösung stärkt das Team. Sie verbessert die Zusammenarbeit. Sie führt zu besseren Ergebnissen.",
+      "text": "Die von der Konfliktmanagerin Julia angewandte Konfliktlösungsstrategie hat sich in der Praxis bewährt. Konflikte werden nicht ignoriert, sondern frühzeitig adressiert. Die sachliche Auseinandersetzung wird gefördert. Die Perspektive der anderen Partei wird verstanden. Gemeinsame Lösungen werden erarbeitet. Eine konstruktive Konfliktlösung stärkt das Team. Die Zusammenarbeit wird verbessert. Die Qualität der Ergebnisse wird gesteigert.",
       "questions": [
         {
           "question": "Wie heißt die Frau?",
@@ -78,23 +78,23 @@
           "answer": 2
         },
         {
-          "question": "Was ist im Berufsleben unvermeidlich?",
-          "options": ["Konflikte", "Erfolge", "Misserfolge"],
+          "question": "Was hat sich in der Praxis bewährt?",
+          "options": ["Die Konfliktlösungsstrategie", "Die Konfliktvermeidungsstrategie", "Die Konfliktverschärfungsstrategie"],
           "answer": 0
         },
         {
-          "question": "Was sollte man bei Konflikten nicht tun?",
-          "options": ["Sie ignorieren", "Sie ansprechen", "Sie lösen"],
+          "question": "Wie werden Konflikte behandelt?",
+          "options": ["Frühzeitig adressiert", "Ignoriert", "Verschwiegen"],
           "answer": 0
         },
         {
-          "question": "Wie sollte man bei Konflikten bleiben?",
-          "options": ["Sachlich", "Emotional", "Aggressiv"],
+          "question": "Was wird bei der Konfliktlösung gefördert?",
+          "options": ["Die sachliche Auseinandersetzung", "Die emotionale Auseinandersetzung", "Die persönliche Auseinandersetzung"],
           "answer": 0
         },
         {
-          "question": "Was stärkt eine gute Konfliktlösung?",
-          "options": ["Das Team", "Die Einzelperson", "Die Hierarchie"],
+          "question": "Was stärkt eine konstruktive Konfliktlösung?",
+          "options": ["Das Team", "Die Konkurrenz", "Die Hierarchie"],
           "answer": 0
         }
       ]
@@ -102,7 +102,7 @@
     {
       "id": "monolog_4",
       "title": "Die Vorbereitung auf schwierige Verhandlungen",
-      "text": "Hallo! Ich bin Laura. Schwierige Verhandlungen erfordern eine gründliche Vorbereitung. Man muss die Fakten kennen. Man muss die Position der anderen Seite kennen. Man muss mögliche Argumente vorbereiten. Man muss die eigenen Grenzen kennen. Man muss eine Strategie entwickeln. Man sollte auch einen Plan B haben. Die Vorbereitung gibt Sicherheit. Sie erhöht die Erfolgschancen.",
+      "text": "Die von der Verhandlungsstrategin Laura entwickelte Vorbereitungsmethodik hat sich in anspruchsvollen Verhandlungsumgebungen bewährt. Die Fakten werden umfassend recherchiert. Die Position der Gegenseite wird gründlich analysiert. Argumente werden systematisch vorbereitet. Die eigenen Grenzen werden realistisch eingeschätzt. Strategien werden flexibel entwickelt. Alternative Optionen werden erarbeitet. Die Vorbereitung vermittelt Sicherheit und erhöht die Erfolgswahrscheinlichkeit in schwierigen Verhandlungen.",
       "questions": [
         {
           "question": "Wie heißt die Frau?",
@@ -110,22 +110,22 @@
           "answer": 0
         },
         {
-          "question": "Was erfordern schwierige Verhandlungen?",
-          "options": ["Eine gründliche Vorbereitung", "Eine spontane Reaktion", "Eine emotionale Reaktion"],
+          "question": "Was hat sich in anspruchsvollen Verhandlungsumgebungen bewährt?",
+          "options": ["Die Vorbereitungsmethodik", "Die Spontanreaktion", "Die emotionale Reaktion"],
           "answer": 0
         },
         {
-          "question": "Was muss man bei der Vorbereitung kennen?",
-          "options": ["Die Fakten und die Position der anderen Seite", "Nur die eigenen Fakten", "Nur die Position der anderen"],
+          "question": "Was wird in der Verhandlungsvorbereitung umfassend recherchiert?",
+          "options": ["Die Fakten", "Die Meinungen", "Die Gerüchte"],
           "answer": 0
         },
         {
-          "question": "Was sollte man bei der Vorbereitung auch haben?",
-          "options": ["Einen Plan B", "Nur einen Plan A", "Keinen Plan"],
+          "question": "Was wird in der Verhandlungsvorbereitung systematisch vorbereitet?",
+          "options": ["Argumente", "Vorurteile", "Emotionen"],
           "answer": 0
         },
         {
-          "question": "Was gibt die Vorbereitung?",
+          "question": "Was vermittelt die Verhandlungsvorbereitung?",
           "options": ["Sicherheit", "Unsicherheit", "Verwirrung"],
           "answer": 0
         }
@@ -134,7 +134,7 @@
     {
       "id": "monolog_5",
       "title": "Die Kommunikation in schwierigen Situationen",
-      "text": "Guten Tag! Ich bin Lisa. Die Kommunikation ist in schwierigen Situationen entscheidend. Man sollte ruhig bleiben. Man sollte klar und deutlich sprechen. Man sollte aktiv zuhören. Man sollte Fragen stellen. Man sollte Missverständnisse vermeiden. Eine gute Kommunikation kann Konflikte entschärfen. Sie kann zu einer Lösung führen. Sie ist das wichtigste Werkzeug in Verhandlungen.",
+      "text": "Die von der Kommunikationstrainerin Lisa vermittelte Kommunikationskompetenz ist in schwierigen Gesprächssituationen von entscheidender Bedeutung. Die Gelassenheit wird bewahrt. Die Aussagen sind klar und präzise. Das aktive Zuhören wird praktiziert. Rückfragen werden gestellt. Missverständnisse werden frühzeitig ausgeräumt. Eine gelungene Kommunikation kann Konflikte entschärfen. Sie eröffnet Lösungswege. Die Kommunikationsfähigkeit ist die Schlüsselkompetenz in Verhandlungen.",
       "questions": [
         {
           "question": "Wie heißt die Frau?",
@@ -142,23 +142,23 @@
           "answer": 1
         },
         {
-          "question": "Was ist in schwierigen Situationen entscheidend?",
-          "options": ["Die Kommunikation", "Die Vorbereitung", "Die Strategie"],
+          "question": "Was ist in schwierigen Gesprächssituationen von entscheidender Bedeutung?",
+          "options": ["Die Kommunikationskompetenz", "Die Schreikompetenz", "Die Schweigekompetenz"],
           "answer": 0
         },
         {
-          "question": "Wie sollte man in schwierigen Situationen bleiben?",
-          "options": ["Ruhig", "Emotional", "Aggressiv"],
+          "question": "Was wird in schwierigen Gesprächssituationen bewahrt?",
+          "options": ["Die Gelassenheit", "Die Aufregung", "Die Ungeduld"],
           "answer": 0
         },
         {
-          "question": "Was sollte man in schwierigen Situationen tun?",
-          "options": ["Aktiv zuhören", "Nur reden", "Schweigen"],
+          "question": "Was wird in schwierigen Gesprächssituationen praktiziert?",
+          "options": ["Das aktive Zuhören", "Das passive Zuhören", "Das Nicht-Zuhören"],
           "answer": 0
         },
         {
-          "question": "Was kann gute Kommunikation?",
-          "options": ["Konflikte entschärfen", "Konflikte verschärfen", "Konflikte ignorieren"],
+          "question": "Was ist die Schlüsselkompetenz in Verhandlungen?",
+          "options": ["Die Kommunikationsfähigkeit", "Die Schreifähigkeit", "Die Schweigfähigkeit"],
           "answer": 0
         }
       ]
@@ -166,31 +166,31 @@
     {
       "id": "monolog_6",
       "title": "Die Nachbereitung von Verhandlungen",
-      "text": "Guten Morgen! Ich bin Emma. Die Nachbereitung wird oft vernachlässigt. Dabei ist sie sehr wichtig. Man sollte das Ergebnis dokumentieren. Man sollte offene Punkte notieren. Man sollte die nächsten Schritte planen. Man sollte Feedback einholen. Die Nachbereitung hilft, aus Fehlern zu lernen. Sie hilft, Verhandlungen zu verbessern. Ein guter Verhandler evaluiert immer seine Arbeit.",
+      "text": "Die von der Verhandlungsexpertin Emma durchgeführte Nachbereitung stellt einen oft unterschätzten Schritt im Verhandlungsprozess dar. Die Ergebnisse werden detailliert dokumentiert. Offene Punkte werden präzise notiert. Die weiteren Schritte werden verbindlich vereinbart. Feedback wird eingeholt. Die Nachbereitung dient der kontinuierlichen Verbesserung der Verhandlungsfähigkeiten. Aus Erfahrungen wird gelernt. Ein professioneller Verhandler evaluiert seine Verhandlungsperformance regelmäßig.",
       "questions": [
         {
           "question": "Wie heißt die Frau?",
-          "options": ["Emma", "Anna", "Laura"],
+          "options": ["Emma", "Lisa", "Laura"],
           "answer": 0
         },
         {
-          "question": "Was wird oft vernachlässigt?",
-          "options": ["Die Nachbereitung", "Die Vorbereitung", "Die Kommunikation"],
+          "question": "Was stellt die Nachbereitung im Verhandlungsprozess dar?",
+          "options": ["Einen oft unterschätzten Schritt", "Den wichtigsten Schritt", "Den unnötigsten Schritt"],
           "answer": 0
         },
         {
-          "question": "Was sollte man nach einer Verhandlung dokumentieren?",
-          "options": ["Das Ergebnis", "Die Vorbereitung", "Die Kommunikation"],
+          "question": "Was wird bei der Nachbereitung detailliert dokumentiert?",
+          "options": ["Die Ergebnisse", "Die Emotionen", "Die Vorurteile"],
           "answer": 0
         },
         {
-          "question": "Was sollte man nach einer Verhandlung planen?",
-          "options": ["Die nächsten Schritte", "Die nächsten Ferien", "Die nächste Party"],
+          "question": "Was wird bei der Nachbereitung eingeholt?",
+          "options": ["Feedback", "Kritik", "Kommentare"],
           "answer": 0
         },
         {
-          "question": "Was hilft die Nachbereitung?",
-          "options": ["Aus Fehlern zu lernen", "Die Zeit zu vertreiben", "Die Arbeit zu vermeiden"],
+          "question": "Was dient die Nachbereitung der?",
+          "options": ["Der kontinuierlichen Verbesserung", "Der Verschlechterung", "Der Stagnation"],
           "answer": 0
         }
       ]

@@ -407,4 +407,117 @@ function getDistractorsForPhrase(deWords, count) {
         const words = phrase.de.split(/\s+/);
         for (const w of words) {
             const clean = w.replace(/[.,!?;:]/g, '').toLowerCase();
-            if (clean.length > 2 && !deWords.includes(
+            if (clean.length > 2 && !deWords.includes(clean)) {
+                allWords.push(clean);
+            }
+        }
+    }
+    
+    // Убираем дубликаты
+    const unique = [...new Set(allWords)];
+    window.shuffleArray(unique);
+    
+    for (let i = 0; i < Math.min(count, unique.length); i++) {
+        if (unique[i]) {
+            distractors.push({
+                display: unique[i],
+                de: unique[i],
+                ru: unique[i],
+                isCorrect: false,
+                originalIndex: -1
+            });
+        }
+    }
+    
+    return distractors;
+}
+
+function updateGlobalPhrasesDisplay(container) {
+    const result = document.getElementById('globalPhrasesResult');
+    const wordsContainer = document.getElementById('globalPhrasesWordsContainer');
+    
+    if (result) {
+        const hasWords = globalPhrasesSelected.length > 0;
+        const displayText = globalPhrasesSelected.map(w => w.display).join(' ') || 'Нажмите на слова, чтобы собрать предложение';
+        result.textContent = displayText;
+        result.style.color = hasWords ? '#1A1A1A' : '#CCCCCC';
+        result.style.backgroundColor = '#FFFFFF';
+    }
+    
+    if (wordsContainer) {
+        wordsContainer.innerHTML = '';
+        globalPhrasesAvailable.forEach(word => {
+            const isActive = globalPhrasesActive[word.display];
+            const btn = document.createElement('button');
+            btn.className = 'word-btn';
+            btn.textContent = word.display;
+            btn.style.cssText = isActive 
+                ? 'padding:10px 8px; font-size:13px; text-align:center; min-height:44px; display:flex; align-items:center; justify-content:center; background:#E8F0FE; border:2px solid #D0D0D0; border-radius:40px; cursor:pointer;'
+                : 'padding:10px 8px; font-size:13px; text-align:center; min-height:44px; display:flex; align-items:center; justify-content:center; background:#E8F0FE; border:2px solid #D0D0D0; border-radius:40px; cursor:default; opacity:0.4; pointer-events:none;';
+            if (isActive) {
+                btn.addEventListener('click', function() {
+                    if (globalPhrasesActive[word.display]) {
+                        globalPhrasesActive[word.display] = false;
+                        const foundWord = globalPhrasesAvailable.find(w => w.display === word.display);
+                        if (foundWord) {
+                            globalPhrasesSelected.push(foundWord);
+                            updateGlobalPhrasesDisplay(container);
+                        }
+                    }
+                });
+            }
+            wordsContainer.appendChild(btn);
+        });
+    }
+}
+
+// ========== КОНТЕЙНЕР ДЛЯ ФРАЗ ==========
+function getGlobalPhrasesStudied() {
+    const level = window.currentLevel || 'A1';
+    return globalPhrasesWords.filter(p => {
+        const key = p.de + '|' + p.ru;
+        return globalPhrasesStudied[key];
+    });
+}
+
+function showGlobalPhrasesContainer(studiedPhrases) {
+    if (typeof window.ContainerManager !== 'undefined' && window.ContainerManager.show) {
+        window.ContainerManager.show({
+            title: '📦 КОНТЕЙНЕР (' + studiedPhrases.length + ' фраз)',
+            items: studiedPhrases,
+            emptyMessage: '📭 Контейнер пуст',
+            itemTemplate: function(p) { return p.de + ' — ' + p.ru; },
+            onReturnItem: function(phraseId) {
+                // Возвращаем фразу
+                const key = phraseId;
+                if (globalPhrasesStudied[key]) {
+                    delete globalPhrasesStudied[key];
+                    saveGlobalPhrasesProgress(window.currentLevel);
+                }
+                // Обновляем контейнер
+                const newStudied = getGlobalPhrasesStudied();
+                if (newStudied.length === 0) {
+                    const modal = document.getElementById('containerModal');
+                    if (modal) modal.remove();
+                    loadGlobalPhrases(globalPhrasesContainer, window.currentLevel);
+                }
+            },
+            onReturnAll: function() {
+                globalPhrasesStudied = {};
+                saveGlobalPhrasesProgress(window.currentLevel);
+                const modal = document.getElementById('containerModal');
+                if (modal) modal.remove();
+                loadGlobalPhrases(globalPhrasesContainer, window.currentLevel);
+            }
+        });
+    } else {
+        alert('📦 Контейнер (' + studiedPhrases.length + ' фраз):\n\n' + 
+              studiedPhrases.map(p => p.de + ' — ' + p.ru).join('\n'));
+    }
+}
+
+// ========== ЭКСПОРТ ==========
+window.loadGlobalPhrases = loadGlobalPhrases;
+window.globalPhrasesWords = globalPhrasesWords;
+
+console.log('🧩 phrasesGlobal.js загружен');

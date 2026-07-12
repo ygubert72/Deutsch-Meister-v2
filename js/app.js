@@ -10,7 +10,10 @@ let isRestoring = false;
 let isWelcomePageVisible = true;
 let appReady = false;
 let pendingState = null;
-let isLoadingLesson = false; // Флаг для предотвращения повторных загрузок
+let isLoadingLesson = false;
+
+// Новая переменная для секции (уроки / карточки / фразы)
+let currentSection = 'lessons';
 
 // ========== КЛЮЧИ ДЛЯ ХРАНЕНИЯ ==========
 const FIRST_LAUNCH_KEY = 'dm_first_launch';
@@ -23,6 +26,7 @@ function saveState() {
             level: currentLevel,
             lessonId: currentLesson?.id || null,
             mode: currentMode || 'grammar',
+            section: currentSection || 'lessons',
             timestamp: Date.now()
         };
         localStorage.setItem(APP_STATE_KEY, JSON.stringify(state));
@@ -70,6 +74,7 @@ function showWelcomePage() {
     currentLevel = 'A1';
     currentLesson = null;
     courseData = null;
+    currentSection = 'lessons';
     
     const content = document.getElementById('content');
     const indicator = document.getElementById('modeIndicator');
@@ -175,7 +180,7 @@ window.goBackFromInstruction = function() {
         if (currentLesson) {
             renderLesson(currentLesson);
         } else if (courseData) {
-            renderLevel();
+            renderLevelWithMenu();
         } else {
             showWelcomePage();
         }
@@ -231,13 +236,14 @@ async function loadLevel(level) {
     currentLevel = level;
     isWelcomePageVisible = false;
     appReady = true;
+    currentSection = 'lessons';
     console.log('📚 Загрузка уровня:', level);
     try {
         const response = await fetch(`docs/${level}/index.json`);
         if (!response.ok) throw new Error('Курс не найден');
         courseData = await response.json();
         console.log('✅ Курс загружен:', courseData.title);
-        renderLevel();
+        renderLevelWithMenu();
         saveState();
     } catch(e) {
         console.error('Ошибка загрузки курса:', e);
@@ -251,24 +257,125 @@ async function loadLevel(level) {
     }
 }
 
+// ========== НОВАЯ ФУНКЦИЯ: ОТОБРАЖЕНИЕ УРОВНЯ С ПОДМЕНЮ ==========
+function renderLevelWithMenu() {
+    if (!courseData) {
+        loadLevel(currentLevel);
+        return;
+    }
+
+    let html = `
+        <div style="display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 20px;">
+            <button class="section-btn ${currentSection === 'lessons' ? 'active' : ''}" data-section="lessons" style="padding: 10px 20px; background: ${currentSection === 'lessons' ? '#3B6FE0' : '#E8F0FE'}; color: ${currentSection === 'lessons' ? 'white' : '#333'}; border: 2px solid ${currentSection === 'lessons' ? '#2B5BC7' : '#D0D0D0'}; border-radius: 8px; cursor: pointer; font-weight: bold; transition: all 0.08s ease;">
+                📚 Уроки
+            </button>
+            <button class="section-btn ${currentSection === 'cards' ? 'active' : ''}" data-section="cards" style="padding: 10px 20px; background: ${currentSection === 'cards' ? '#3B6FE0' : '#E8F0FE'}; color: ${currentSection === 'cards' ? 'white' : '#333'}; border: 2px solid ${currentSection === 'cards' ? '#2B5BC7' : '#D0D0D0'}; border-radius: 8px; cursor: pointer; font-weight: bold; transition: all 0.08s ease;">
+                🃏 Карточки
+            </button>
+            <button class="section-btn ${currentSection === 'phrases' ? 'active' : ''}" data-section="phrases" style="padding: 10px 20px; background: ${currentSection === 'phrases' ? '#3B6FE0' : '#E8F0FE'}; color: ${currentSection === 'phrases' ? 'white' : '#333'}; border: 2px solid ${currentSection === 'phrases' ? '#2B5BC7' : '#D0D0D0'}; border-radius: 8px; cursor: pointer; font-weight: bold; transition: all 0.08s ease;">
+                🧩 Фразы
+            </button>
+        </div>
+        <div id="sectionContent"></div>
+    `;
+    
+    document.getElementById('content').innerHTML = html;
+    document.getElementById('modeIndicator').textContent = `Курс ${currentLevel}`;
+    updateCounter();
+    
+    // Обработчики кнопок секций
+    document.querySelectorAll('.section-btn').forEach(btn => {
+        btn.onclick = function() {
+            const section = this.getAttribute('data-section');
+            currentSection = section;
+            renderSection(section);
+            saveState();
+        };
+    });
+    
+    // Рендерим текущую секцию
+    renderSection(currentSection);
+}
+
+// ========== НОВАЯ ФУНКЦИЯ: РЕНДЕРИНГ СЕКЦИИ ==========
+function renderSection(section) {
+    const container = document.getElementById('sectionContent');
+    if (!container) return;
+    
+    // Обновляем активные кнопки
+    document.querySelectorAll('.section-btn').forEach(btn => {
+        const s = btn.getAttribute('data-section');
+        if (s === section) {
+            btn.style.background = '#3B6FE0';
+            btn.style.color = 'white';
+            btn.style.borderColor = '#2B5BC7';
+        } else {
+            btn.style.background = '#E8F0FE';
+            btn.style.color = '#333';
+            btn.style.borderColor = '#D0D0D0';
+        }
+    });
+    
+    switch(section) {
+        case 'lessons':
+            renderLessonList(container);
+            break;
+        case 'cards':
+            renderGlobalCards(container);
+            break;
+        case 'phrases':
+            renderGlobalPhrases(container);
+            break;
+        default:
+            container.innerHTML = '<div style="text-align:center;padding:40px;color:#999;">❌ Секция не найдена</div>';
+    }
+}
+
+// ========== ОТОБРАЖЕНИЕ СПИСКА УРОКОВ (ВЫНЕСЕНО ИЗ renderLevel) ==========
+function renderLessonList(container) {
+    if (!courseData) {
+        container.innerHTML = '<div style="text-align:center;padding:40px;color:#999;">📚 Курс не загружен</div>';
+        return;
+    }
+
+    let html = `<h2>📚 ${courseData.title}</h2><div style="margin-top: 20px;">`;
+    courseData.lessons.forEach(lesson => {
+        html += `
+            <button class="lesson-btn" data-lesson-id="${lesson.id}" style="transition: all 0.08s ease; display: block; width: 100%; padding: 15px; margin: 8px 0; background: #E8F0FE; border: 2px solid #D0D0D0; border-radius: 8px; cursor: pointer; text-align: left; font-size: 16px;">
+                📘 Урок ${lesson.id}: ${lesson.title}
+            </button>
+        `;
+    });
+    html += `</div>`;
+    container.innerHTML = html;
+    
+    document.getElementById('modeIndicator').textContent = `Курс ${currentLevel}`;
+    updateCounter();
+    saveState();
+
+    container.querySelectorAll('.lesson-btn').forEach(btn => {
+        btn.onclick = function() {
+            const id = parseInt(this.getAttribute('data-lesson-id'));
+            loadLesson(id);
+        };
+    });
+}
+
 // ========== ЗАГРУЗКА УРОКА ==========
 async function loadLesson(lessonId) {
     console.log('📖 loadLesson вызван с lessonId:', lessonId);
     
-    // Защита от повторных загрузок
     if (isLoadingLesson) {
         console.log('⏳ Урок уже загружается, пропускаем');
         return;
     }
     
-    // Если урок уже загружен и это тот же урок — просто показываем его
     if (currentLesson && currentLesson.id === lessonId) {
         console.log('✅ Урок уже загружен:', lessonId);
         renderLesson(currentLesson);
         return;
     }
     
-    // Проверка доступа (убрана проверка authInitialized)
     if (typeof window.hasAccessToLevel === 'function') {
         if (!window.auth) {
             console.log('⏳ Ожидание инициализации auth...');
@@ -295,7 +402,6 @@ async function loadLesson(lessonId) {
             level: currentLevel
         };
         
-        // Загрузка грамматики
         try {
             const grammarFile = `docs/${currentLevel}/grammar/${String(lessonId).padStart(2, '0')}_grammar.json`;
             console.log('📂 Загрузка грамматики:', grammarFile);
@@ -320,7 +426,6 @@ async function loadLesson(lessonId) {
             lesson.practice = [];
         }
         
-        // Загрузка тренировок
         try {
             const lessonFile = `docs/${currentLevel}/lessons/lesson_${String(lessonId).padStart(2, '0')}.json`;
             console.log('📂 Загрузка тренировок:', lessonFile);
@@ -362,11 +467,44 @@ async function loadLesson(lessonId) {
                 <div style="font-size: 48px; margin-bottom: 15px;">❌</div>
                 <div>Ошибка загрузки урока.</div>
                 <div style="font-size: 14px; margin-top: 10px;">${e.message}</div>
-                <button class="back-btn" onclick="renderLevel()" style="margin-top: 15px;">← Назад</button>
+                <button class="back-btn" onclick="renderLevelWithMenu()" style="margin-top: 15px;">← Назад</button>
             </div>
         `;
     } finally {
         isLoadingLesson = false;
+    }
+}
+
+// ========== НОВАЯ ФУНКЦИЯ: ГЛОБАЛЬНЫЕ КАРТОЧКИ ==========
+function renderGlobalCards(container) {
+    if (typeof window.loadGlobalCards === 'function') {
+        window.loadGlobalCards(container, currentLevel);
+    } else {
+        container.innerHTML = '<div style="text-align:center;padding:40px;color:#999;">🔄 Загрузка карточек...</div>';
+        // Ждём загрузки cardsGlobal.js
+        setTimeout(() => {
+            if (typeof window.loadGlobalCards === 'function') {
+                window.loadGlobalCards(container, currentLevel);
+            } else {
+                container.innerHTML = '<div style="text-align:center;padding:40px;color:#999;">❌ Ошибка загрузки карточек. Попробуйте обновить страницу.</div>';
+            }
+        }, 500);
+    }
+}
+
+// ========== НОВАЯ ФУНКЦИЯ: ГЛОБАЛЬНЫЕ ФРАЗЫ ==========
+function renderGlobalPhrases(container) {
+    if (typeof window.loadGlobalPhrases === 'function') {
+        window.loadGlobalPhrases(container, currentLevel);
+    } else {
+        container.innerHTML = '<div style="text-align:center;padding:40px;color:#999;">🔄 Загрузка фраз...</div>';
+        setTimeout(() => {
+            if (typeof window.loadGlobalPhrases === 'function') {
+                window.loadGlobalPhrases(container, currentLevel);
+            } else {
+                container.innerHTML = '<div style="text-align:center;padding:40px;color:#999;">❌ Ошибка загрузки фраз. Попробуйте обновить страницу.</div>';
+            }
+        }, 500);
     }
 }
 
@@ -463,35 +601,6 @@ function updateCounter() {
     el.textContent = count > 0 ? `${count} ${label}` : '';
 }
 
-// ========== ОТОБРАЖЕНИЕ УРОВНЕЙ ==========
-function renderLevel() {
-    if (!courseData) {
-        loadLevel(currentLevel);
-        return;
-    }
-
-    let html = `<h2>📚 ${courseData.title}</h2><div style="margin-top: 20px;">`;
-    courseData.lessons.forEach(lesson => {
-        html += `
-            <button class="lesson-btn" data-lesson-id="${lesson.id}" style="transition: all 0.08s ease;">
-                📘 Урок ${lesson.id}: ${lesson.title}
-            </button>
-        `;
-    });
-    html += `</div>`;
-    document.getElementById('content').innerHTML = html;
-    document.getElementById('modeIndicator').textContent = `Курс ${currentLevel}`;
-    updateCounter();
-    saveState();
-
-    document.querySelectorAll('.lesson-btn').forEach(btn => {
-        btn.onclick = function() {
-            const id = parseInt(this.getAttribute('data-lesson-id'));
-            loadLesson(id);
-        };
-    });
-}
-
 // ========== ОТОБРАЖЕНИЕ УРОКА ==========
 function renderLesson(lesson) {
     currentLesson = lesson;
@@ -525,7 +634,7 @@ function buildLessonHTML(lesson, hasListening) {
 
     let html = `
         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
-            <button class="back-btn" onclick="renderLevel()" style="transition: all 0.08s ease;">← К СПИСКУ УРОКОВ</button>
+            <button class="back-btn" onclick="renderLevelWithMenu()" style="transition: all 0.08s ease;">← К СПИСКУ УРОКОВ</button>
             <div id="modeHeaderControls"></div>
         </div>
         <h2>📖 Урок ${lesson.id}: ${lesson.title}</h2>
@@ -647,6 +756,9 @@ function restoreState() {
         if (savedState.mode) {
             currentMode = savedState.mode;
         }
+        if (savedState.section) {
+            currentSection = savedState.section;
+        }
         
         document.querySelectorAll('#levelsContainer .btn-level, #levelsContainerMobile .btn-level').forEach(btn => {
             if (btn.getAttribute('data-level') === savedState.level) {
@@ -665,6 +777,7 @@ function restoreState() {
                 courseData = data;
                 console.log('✅ Курс загружен:', courseData.title);
                 
+                // Если есть сохранённый урок и он существует
                 if (savedState.lessonId !== null && savedState.lessonId !== undefined) {
                     const lessonExists = courseData.lessons.some(l => l.id === savedState.lessonId);
                     if (lessonExists) {
@@ -673,7 +786,9 @@ function restoreState() {
                         return;
                     }
                 }
-                renderLevel();
+                
+                // Иначе загружаем уровень с подменю
+                renderLevelWithMenu();
             })
             .catch(() => {
                 showWelcomePage();
@@ -734,6 +849,7 @@ function initApp() {
             });
             currentLevel = level;
             isWelcomePageVisible = false;
+            currentSection = 'lessons';
             loadLevel(currentLevel);
         };
     });
@@ -781,6 +897,7 @@ function initApp() {
             });
             currentLevel = level;
             isWelcomePageVisible = false;
+            currentSection = 'lessons';
             loadLevel(currentLevel);
         };
     });
@@ -833,11 +950,14 @@ window.currentLesson = currentLesson;
 window.courseData = courseData;
 window.isWelcomePageVisible = isWelcomePageVisible;
 window.appReady = appReady;
+window.currentSection = currentSection;
 window.showWelcomePage = showWelcomePage;
 window.showInstruction = showInstruction;
 window.loadLevel = loadLevel;
 window.loadLesson = loadLesson;
-window.renderLevel = renderLevel;
+window.renderLevelWithMenu = renderLevelWithMenu;
+window.renderSection = renderSection;
+window.renderLessonList = renderLessonList;
 window.renderLesson = renderLesson;
 window.renderMode = renderMode;
 window.updateCounter = updateCounter;

@@ -8,21 +8,32 @@ let globalCardsLoading = false;
 
 // ========== ЗАГРУЗКА И ОТОБРАЖЕНИЕ ==========
 async function loadGlobalCards(container, level) {
-    // Защита от повторных загрузок — просто выходим, если уже загружается
+    // Защита от повторных загрузок
     if (globalCardsLoading) {
         console.log('⏳ Карточки уже загружаются, пропускаем...');
         return;
     }
     
-    globalCardsContainer = container;
+    // Сохраняем контейнер
+    if (container) {
+        globalCardsContainer = container;
+    } else {
+        // Если контейнер не передан — пытаемся найти
+        globalCardsContainer = document.getElementById('sectionContent');
+        if (!globalCardsContainer) {
+            console.error('❌ Контейнер #sectionContent не найден');
+            return;
+        }
+    }
+    
     globalCardsLoading = true;
     console.log('🔄 Начинаем загрузку карточек...');
     
     try {
-        // Проверяем, есть ли курс
+        // Проверяем курс
         if (!window.courseData) {
             console.log('⏳ courseData ещё не загружен, пробуем подождать...');
-            container.innerHTML = '<div style="text-align:center;padding:40px;color:#999;">🔄 Загрузка данных курса...</div>';
+            globalCardsContainer.innerHTML = '<div style="text-align:center;padding:40px;color:#999;">🔄 Загрузка данных курса...</div>';
             
             let attempts = 0;
             while (!window.courseData && attempts < 20) {
@@ -31,7 +42,7 @@ async function loadGlobalCards(container, level) {
             }
             
             if (!window.courseData) {
-                container.innerHTML = `
+                globalCardsContainer.innerHTML = `
                     <div style="text-align:center;padding:40px;color:#999;">
                         <div style="font-size:48px;margin-bottom:15px;">❌</div>
                         <div>Курс не загружен. Попробуйте выбрать уровень заново.</div>
@@ -42,12 +53,12 @@ async function loadGlobalCards(container, level) {
             }
         }
         
-        container.innerHTML = '<div style="text-align:center;padding:40px;color:#999;">🔄 Загрузка всех слов уровня...</div>';
+        globalCardsContainer.innerHTML = '<div style="text-align:center;padding:40px;color:#999;">🔄 Загрузка всех слов уровня...</div>';
         
         const allWords = await window.getAllWordsForLevel(level);
         
         if (!allWords || allWords.length === 0) {
-            container.innerHTML = '<div style="text-align:center;padding:40px;color:#999;">📭 Нет слов для этого уровня</div>';
+            globalCardsContainer.innerHTML = '<div style="text-align:center;padding:40px;color:#999;">📭 Нет слов для этого уровня</div>';
             return;
         }
         
@@ -56,18 +67,21 @@ async function loadGlobalCards(container, level) {
         globalCardsIndex = 0;
         globalCardsFlipped = false;
         
-        renderGlobalCards(container);
+        // ВАЖНО: Рендерим карточки
+        renderGlobalCards();
         
     } catch(e) {
         console.error('❌ Ошибка загрузки карточек:', e);
-        container.innerHTML = `
-            <div style="text-align:center;padding:40px;color:#999;">
-                <div style="font-size:48px;margin-bottom:15px;">❌</div>
-                <div>Ошибка загрузки карточек</div>
-                <div style="font-size:14px;margin-top:10px;">${e.message}</div>
-                <button onclick="window.renderLevelWithMenu()" style="margin-top:15px;padding:10px 20px;background:#3B6FE0;color:white;border:none;border-radius:8px;cursor:pointer;">← Назад</button>
-            </div>
-        `;
+        if (globalCardsContainer) {
+            globalCardsContainer.innerHTML = `
+                <div style="text-align:center;padding:40px;color:#999;">
+                    <div style="font-size:48px;margin-bottom:15px;">❌</div>
+                    <div>Ошибка загрузки карточек</div>
+                    <div style="font-size:14px;margin-top:10px;">${e.message}</div>
+                    <button onclick="window.renderLevelWithMenu()" style="margin-top:15px;padding:10px 20px;background:#3B6FE0;color:white;border:none;border-radius:8px;cursor:pointer;">← Назад</button>
+                </div>
+            `;
+        }
     } finally {
         globalCardsLoading = false;
         console.log('✅ Флаг загрузки карточек сброшен');
@@ -75,9 +89,15 @@ async function loadGlobalCards(container, level) {
 }
 
 // ========== ОТОБРАЖЕНИЕ КАРТОЧЕК ==========
-function renderGlobalCards(container) {
-    if (!container) container = globalCardsContainer;
-    if (!container) return;
+function renderGlobalCards() {
+    // Всегда используем сохранённый контейнер
+    const container = globalCardsContainer;
+    if (!container) {
+        console.error('❌ Нет контейнера для рендеринга карточек');
+        return;
+    }
+    
+    console.log('🎨 Рендеринг карточек, слов:', globalCardsWords.length);
     
     const isMobile = window.utils && window.utils.isMobileDevice();
     
@@ -314,5 +334,6 @@ function showGlobalWordsContainer(studiedWords) {
 // ========== ЭКСПОРТ ==========
 window.loadGlobalCards = loadGlobalCards;
 window.globalCardsWords = globalCardsWords;
+window.renderGlobalCards = renderGlobalCards;
 
 console.log('🃏 cardsGlobal.js загружен');

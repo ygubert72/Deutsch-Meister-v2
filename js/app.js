@@ -47,50 +47,6 @@ function loadState() {
     return null;
 }
 
-// ========== ОБНОВЛЕНИЕ КНОПОК УРОВНЕЙ (ДЛЯ ПРИВЕТСТВЕННОЙ) ==========
-function updateWelcomePageLevelButtons() {
-    const welcomeButtons = document.querySelectorAll('.welcome-level-btn');
-    if (!welcomeButtons.length) return;
-    
-    welcomeButtons.forEach(btn => {
-        const level = btn.getAttribute('data-level');
-        const hasAccess = typeof window.hasAccessToLevel === 'function' 
-            ? window.hasAccessToLevel(level) 
-            : level === 'A1';
-        const user = window.getCurrentUser ? window.getCurrentUser() : null;
-        
-        if (hasAccess) {
-            btn.style.opacity = '1';
-            btn.style.pointerEvents = 'auto';
-            btn.style.cursor = 'pointer';
-            btn.style.filter = 'none';
-            btn.title = '';
-        } else {
-            btn.style.opacity = '0.5';
-            btn.style.pointerEvents = 'none';
-            btn.style.cursor = 'not-allowed';
-            btn.style.filter = 'grayscale(0.6)';
-            
-            if (level === 'A2') {
-                if (!user) {
-                    btn.title = '🔐 Войдите в аккаунт';
-                } else {
-                    btn.title = '🔐 Требуется регистрация';
-                }
-            } else if (level === 'B1' || level === 'B2' || level === 'C1') {
-                const userData = window.getCurrentUserData ? window.getCurrentUserData() : null;
-                if (!user) {
-                    btn.title = '🔐 Войдите в аккаунт и оплатите премиум';
-                } else if (!userData || !userData.hasPremiumAccess) {
-                    btn.title = '💎 Требуется премиум-доступ';
-                } else {
-                    btn.title = '🚫 Доступ запрещён';
-                }
-            }
-        }
-    });
-}
-
 // ========== ПОКАЗАТЬ ПРИВЕТСТВЕННУЮ СТРАНИЦУ ==========
 function showWelcomePage() {
     isWelcomePageVisible = true;
@@ -104,12 +60,6 @@ function showWelcomePage() {
     
     indicator.textContent = '🏠 Главная';
     if (counter) counter.textContent = '';
-    
-    // Проверяем доступ к уровням
-    const hasAccess = typeof window.hasAccessToLevel === 'function' 
-        ? window.hasAccessToLevel 
-        : function(level) { return level === 'A1'; };
-    const user = window.getCurrentUser ? window.getCurrentUser() : null;
     
     content.innerHTML = `
         <div style="display:flex; flex-direction:column; align-items:center; justify-content:center; min-height:70vh; text-align:center; padding:20px;">
@@ -131,29 +81,7 @@ function showWelcomePage() {
             <button onclick="showInstruction()" style="padding:12px 40px; background:linear-gradient(135deg, #3B6FE0, #2B5BC7); color:white; border:none; border-radius:12px; cursor:pointer; font-size:16px; font-weight:bold; box-shadow:0 4px 15px rgba(59,111,224,0.3); transition:all 0.1s ease;">
                 ❓ Инструкция
             </button>
-            <div style="margin-top:30px; display:flex; gap:10px; flex-wrap:wrap; justify-content:center;">
-                ${['A1', 'A2', 'B1', 'B2', 'C1'].map(level => {
-                    const accessible = hasAccess(level);
-                    const isAdmin = user && user.email === 'ygubert72@gmail.com';
-                    const label = level + (accessible ? '' : ' 🔒');
-                    const userData = window.getCurrentUserData ? window.getCurrentUserData() : null;
-                    let extraInfo = '';
-                    if (!accessible) {
-                        if (level === 'A2' && !user) extraInfo = ' (войдите)';
-                        else if (level === 'A2' && user) extraInfo = ' (регистрация)';
-                        else if ((level === 'B1' || level === 'B2' || level === 'C1') && !user) extraInfo = ' (войти+премиум)';
-                        else if ((level === 'B1' || level === 'B2' || level === 'C1') && user && (!userData || !userData.hasPremiumAccess)) extraInfo = ' (премиум)';
-                    }
-                    return `
-                        <button class="welcome-level-btn" data-level="${level}" 
-                                onclick="window.selectLevelFromWelcome('${level}')"
-                                style="padding:10px 24px; background:${accessible ? '#E8F0FE' : '#f0f0f0'}; color:${accessible ? '#1A1A1A' : '#999'}; border:2px solid ${accessible ? '#3B6FE0' : '#ddd'}; border-radius:10px; cursor:${accessible ? 'pointer' : 'not-allowed'}; font-size:16px; font-weight:bold; transition:all 0.1s ease; ${!accessible ? 'opacity:0.5; pointer-events:none;' : ''}">
-                            ${label}${extraInfo}
-                        </button>
-                    `;
-                }).join('')}
-            </div>
-            <div style="margin-top:30px; font-size:12px; color:#bbb;">
+            <div style="margin-top:20px; font-size:12px; color:#bbb;">
                 🔒 A1 — доступен всем &nbsp;·&nbsp; A2 — после регистрации &nbsp;·&nbsp; B1-C1 — с премиумом
             </div>
         </div>
@@ -161,53 +89,12 @@ function showWelcomePage() {
     
     document.getElementById('modeIndicator').textContent = '🏠 Главная';
     
-    // Обновляем состояние кнопок
-    setTimeout(updateWelcomePageLevelButtons, 100);
-    
-    // Обновляем кнопки уровней в боковом меню
     if (typeof window.updateLevelButtons === 'function') {
         setTimeout(window.updateLevelButtons, 100);
     }
     
     saveState();
 }
-
-// ========== ВЫБОР УРОВНЯ С ПРИВЕТСТВЕННОЙ СТРАНИЦЫ ==========
-window.selectLevelFromWelcome = function(level) {
-    const hasAccess = typeof window.hasAccessToLevel === 'function' 
-        ? window.hasAccessToLevel(level) 
-        : level === 'A1';
-    
-    if (!hasAccess) {
-        const user = window.getCurrentUser ? window.getCurrentUser() : null;
-        let message = '🔒 Этот уровень недоступен.';
-        if (!user) {
-            message += '\n\n👤 Войдите в аккаунт.';
-            if (level === 'B1' || level === 'B2' || level === 'C1') {
-                message += ' Для уровней B1-C1 также нужен премиум-доступ.';
-            }
-        } else if (level === 'A2') {
-            message += '\n\n🔐 Для уровня A2 нужна регистрация. Вы уже вошли, но возможно требуется подтверждение.';
-        } else if (level === 'B1' || level === 'B2' || level === 'C1') {
-            message += '\n\n💎 Для уровня ' + level + ' требуется премиум-доступ. Нажмите "Оплатить премиум" в профиле.';
-        }
-        alert(message);
-        return;
-    }
-    
-    // Активируем кнопку уровня в меню
-    document.querySelectorAll('#levelsContainer .btn-level, #levelsContainerMobile .btn-level').forEach(btn => {
-        if (btn.getAttribute('data-level') === level) {
-            btn.classList.add('active');
-        } else {
-            btn.classList.remove('active');
-        }
-    });
-    
-    currentLevel = level;
-    isWelcomePageVisible = false;
-    loadLevel(level);
-};
 
 // ========== ПОКАЗАТЬ ИНСТРУКЦИЮ ==========
 function showInstruction() {
@@ -278,7 +165,6 @@ function showInstruction() {
         </div>
     `;
     
-    // Сохраняем страницу, с которой пришли
     window._instructionReturnPage = previousPage;
 }
 
@@ -287,7 +173,6 @@ window.goBackFromInstruction = function() {
     if (window._instructionReturnPage === 'welcome' || isWelcomePageVisible) {
         showWelcomePage();
     } else {
-        // Возврат к уровню
         if (currentLesson) {
             renderLesson(currentLesson);
         } else if (courseData) {
@@ -300,7 +185,6 @@ window.goBackFromInstruction = function() {
 
 // ========== ЗАГРУЗКА УРОВНЯ ==========
 async function loadLevel(level) {
-    // Проверяем доступ к уровню
     if (typeof window.hasAccessToLevel === 'function') {
         if (!window.hasAccessToLevel(level)) {
             const user = window.getCurrentUser ? window.getCurrentUser() : null;
@@ -368,7 +252,6 @@ async function loadLesson(lessonId) {
             level: currentLevel
         };
         
-        // 1. Загружаем ГРАММАТИКУ + ЛЕКСИКУ + УПРАЖНЕНИЯ
         try {
             const grammarFile = `docs/${currentLevel}/grammar/${String(lessonId).padStart(2, '0')}_grammar.json`;
             console.log('📂 Загрузка грамматики:', grammarFile);
@@ -393,7 +276,6 @@ async function loadLesson(lessonId) {
             lesson.practice = [];
         }
         
-        // 2. Загружаем ТЕСТ + ТРЕНАЖЁР + ДИКТАНТ
         try {
             const lessonFile = `docs/${currentLevel}/lessons/lesson_${String(lessonId).padStart(2, '0')}.json`;
             console.log('📂 Загрузка тренировок:', lessonFile);
@@ -769,10 +651,7 @@ function initApp() {
     
     const savedState = loadState();
     
-    // Всегда показываем приветственную страницу при загрузке
-    // Но сначала проверяем, есть ли сохранённое состояние для восстановления
     if (savedState && savedState.level && savedState.lessonId !== null && savedState.lessonId !== undefined) {
-        // Если есть сохранённый урок, загружаем его после показа приветственной
         setTimeout(() => {
             if (courseData && courseData.lessons) {
                 const lessonExists = courseData.lessons.some(l => l.id === savedState.lessonId);
@@ -787,15 +666,12 @@ function initApp() {
                     return;
                 }
             }
-            // Если не удалось восстановить урок, остаёмся на приветственной
             showWelcomePage();
         }, 300);
     } else {
-        // Показываем приветственную страницу
         showWelcomePage();
     }
     
-    // Обновляем кнопки уровней
     if (typeof window.updateLevelButtons === 'function') {
         setTimeout(window.updateLevelButtons, 200);
     }
@@ -810,7 +686,6 @@ document.addEventListener('DOMContentLoaded', function() {
     initApp();
 });
 
-// Экспорт для использования в других файлах
 window.showWelcomePage = showWelcomePage;
 window.showInstruction = showInstruction;
 window.isWelcomePageVisible = isWelcomePageVisible;

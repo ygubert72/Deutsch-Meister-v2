@@ -61,7 +61,7 @@ function shuffleArray(array) {
 }
 
 // ========== НОВАЯ ФУНКЦИЯ: ПОЛУЧЕНИЕ ВСЕХ УРОКОВ УРОВНЯ ==========
-async function getAllLessonsForLevel(level) {
+function getAllLessonsForLevel(level) {
     if (!window.courseData) {
         console.error('❌ courseData не загружен');
         return [];
@@ -72,22 +72,32 @@ async function getAllLessonsForLevel(level) {
 // ========== НОВАЯ ФУНКЦИЯ: ПОЛУЧЕНИЕ ВСЕХ СЛОВ УРОВНЯ ==========
 async function getAllWordsForLevel(level) {
     const allWords = [];
-    const lessons = await getAllLessonsForLevel(level);
+    const lessons = getAllLessonsForLevel(level);
+    
+    if (!lessons || lessons.length === 0) {
+        console.warn('⚠️ Нет уроков для уровня', level);
+        return [];
+    }
     
     console.log(`📚 Сбор всех слов для уровня ${level}, уроков: ${lessons.length}`);
     
+    // Проходим ТОЛЬКО по реальным урокам из courseData
     for (const lesson of lessons) {
         try {
-            const grammarFile = `docs/${level}/grammar/${String(lesson.id).padStart(2, '0')}_grammar.json`;
+            const lessonId = lesson.id;
+            const grammarFile = `docs/${level}/grammar/${String(lessonId).padStart(2, '0')}_grammar.json`;
             const response = await fetch(grammarFile);
             if (response.ok) {
                 const data = await response.json();
                 if (data.vocabulary && Array.isArray(data.vocabulary)) {
                     allWords.push(...data.vocabulary);
+                    console.log(`  ✅ Урок ${lessonId}: загружено ${data.vocabulary.length} слов`);
                 }
+            } else {
+                console.warn(`  ⚠️ Урок ${lessonId}: файл не найден (${grammarFile})`);
             }
         } catch(e) {
-            console.warn(`⚠️ Не удалось загрузить слова для урока ${lesson.id}:`, e.message);
+            console.warn(`  ⚠️ Ошибка загрузки урока ${lesson.id}:`, e.message);
         }
     }
     
@@ -108,22 +118,32 @@ async function getAllWordsForLevel(level) {
 // ========== НОВАЯ ФУНКЦИЯ: ПОЛУЧЕНИЕ ВСЕХ ФРАЗ УРОВНЯ ==========
 async function getAllPhrasesForLevel(level) {
     const allPhrases = [];
-    const lessons = await getAllLessonsForLevel(level);
+    const lessons = getAllLessonsForLevel(level);
+    
+    if (!lessons || lessons.length === 0) {
+        console.warn('⚠️ Нет уроков для уровня', level);
+        return [];
+    }
     
     console.log(`📚 Сбор всех фраз для уровня ${level}, уроков: ${lessons.length}`);
     
+    // Проходим ТОЛЬКО по реальным урокам из courseData
     for (const lesson of lessons) {
         try {
-            const lessonFile = `docs/${level}/lessons/lesson_${String(lesson.id).padStart(2, '0')}.json`;
+            const lessonId = lesson.id;
+            const lessonFile = `docs/${level}/lessons/lesson_${String(lessonId).padStart(2, '0')}.json`;
             const response = await fetch(lessonFile);
             if (response.ok) {
                 const data = await response.json();
                 if (data.trainer && Array.isArray(data.trainer)) {
                     allPhrases.push(...data.trainer);
+                    console.log(`  ✅ Урок ${lessonId}: загружено ${data.trainer.length} фраз`);
                 }
+            } else {
+                console.warn(`  ⚠️ Урок ${lessonId}: файл не найден (${lessonFile})`);
             }
         } catch(e) {
-            console.warn(`⚠️ Не удалось загрузить фразы для урока ${lesson.id}:`, e.message);
+            console.warn(`  ⚠️ Ошибка загрузки урока ${lesson.id}:`, e.message);
         }
     }
     

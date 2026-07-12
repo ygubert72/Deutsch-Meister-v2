@@ -31,16 +31,9 @@ function renderDictation(container, lesson) {
                     ${allCompleted ? ' 🎉 Все выполнено!' : ''}
                 </div>
             </div>
-        </div>
-        <div style="display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 15px;">
             <button onclick="window.history.back()" style="padding: 8px 20px; background: #3B6FE0; color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; transition: all 0.08s ease;">
                 ← К СПИСКУ УРОКОВ
             </button>
-            ${completedCount > 0 ? `
-                <button id="resetDictationBtn" style="padding: 8px 20px; background: #FF9800; color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; white-space: nowrap; box-shadow: 0 2px 8px rgba(255,152,0,0.3); transition: all 0.08s ease;">
-                    🔄 СБРОСИТЬ ПРОГРЕСС
-                </button>
-            ` : ''}
         </div>
         <p>Напишите перевод на немецком языке:</p>
     `;
@@ -76,6 +69,13 @@ function renderDictation(container, lesson) {
                         ПРОВЕРИТЬ
                     </button>
                     
+                    <!-- НОВАЯ КНОПКА СБРОСИТЬ (ГОЛУБАЯ) — справа от "Проверить" -->
+                    <button class="reset-answer-btn" data-dict-index="${index}" 
+                            ${isCompleted ? 'disabled style="opacity: 0.5; cursor: not-allowed;"' : ''}
+                            style="padding: 8px 20px; background: ${isCompleted ? '#E0E0E0' : '#4FC3F7'}; color: ${isCompleted ? '#999' : 'white'}; border: none; border-radius: 8px; cursor: ${isCompleted ? 'not-allowed' : 'pointer'}; font-weight: bold; white-space: nowrap; transition: all 0.08s ease; box-shadow: 0 2px 4px rgba(79,195,247,0.3);">
+                        🔄 СБРОСИТЬ
+                    </button>
+                    
                     <button class="hint-btn" data-dict-index="${index}" 
                             ${isCompleted ? 'disabled style="opacity: 0.5; cursor: not-allowed;"' : ''}
                             style="padding: 8px 20px; background: ${isCompleted ? '#E0E0E0' : '#E8F0FE'}; color: ${isCompleted ? '#999' : '#333'}; border: ${isCompleted ? 'none' : '2px solid #D0D0D0'}; border-radius: 8px; cursor: ${isCompleted ? 'not-allowed' : 'pointer'}; font-weight: bold; white-space: nowrap; transition: all 0.08s ease;">
@@ -96,17 +96,7 @@ function renderDictation(container, lesson) {
     });
     container.innerHTML = html;
 
-    const resetBtn = document.getElementById('resetDictationBtn');
-    if (resetBtn) {
-        resetBtn.addEventListener('click', function() {
-            if (!confirm('Вы уверены, что хотите сбросить весь прогресс в диктанте?')) return;
-            
-            dictationCompleted = {};
-            saveDictationProgress(dictationCurrentLessonId);
-            renderDictation(container, lesson);
-        });
-    }
-
+    // ===== КНОПКИ ПРОВЕРИТЬ =====
     container.querySelectorAll('.check-btn[data-dict-index]').forEach(btn => {
         btn.addEventListener('click', function() {
             const index = parseInt(this.getAttribute('data-dict-index'));
@@ -145,6 +135,13 @@ function renderDictation(container, lesson) {
                     hintBtn.style.cursor = 'not-allowed';
                 }
                 
+                const resetBtn = container.querySelector(`.reset-answer-btn[data-dict-index="${index}"]`);
+                if (resetBtn) {
+                    resetBtn.disabled = true;
+                    resetBtn.style.opacity = '0.5';
+                    resetBtn.style.cursor = 'not-allowed';
+                }
+                
                 const hintDisplay = container.querySelector(`.hint-display[data-dict-index="${index}"]`);
                 if (hintDisplay) {
                     hintDisplay.textContent = '✅ Выполнено!';
@@ -156,7 +153,7 @@ function renderDictation(container, lesson) {
                 }, 500);
                 
             } else {
-                result.innerHTML = '❌ Неправильно. Попробуйте снова.';
+                result.innerHTML = '❌ Неправильно. Попробуйте ещё раз!';
                 result.className = 'practice-result result-wrong';
                 input.style.borderColor = '#F44336';
                 input.style.backgroundColor = '#FFEBEE';
@@ -164,6 +161,43 @@ function renderDictation(container, lesson) {
         });
     });
 
+    // ===== НОВАЯ КНОПКА СБРОСИТЬ (ГОЛУБАЯ) =====
+    container.querySelectorAll('.reset-answer-btn[data-dict-index]').forEach(btn => {
+        btn.addEventListener('click', function() {
+            const index = parseInt(this.getAttribute('data-dict-index'));
+            const input = container.querySelector(`.practice-input[data-dict-index="${index}"]`);
+            const result = container.querySelector(`.practice-result[data-dict-index="${index}"]`);
+            const hintDisplay = container.querySelector(`.hint-display[data-dict-index="${index}"]`);
+            
+            if (!input) return;
+            if (input.disabled) return; // Если уже выполнено — не сбрасываем
+            
+            // Сбрасываем поле ввода
+            input.value = '';
+            input.style.borderColor = '#D0D0D0';
+            input.style.backgroundColor = '';
+            
+            // Сбрасываем результат
+            if (result) {
+                result.innerHTML = '';
+                result.className = 'practice-result';
+            }
+            
+            // Сбрасываем подсказку
+            if (hintDisplay) {
+                hintDisplay.textContent = '💡 Нажмите "Подсказка", чтобы добавить следующее слово';
+                hintDisplay.style.color = '#666';
+            }
+            
+            // Фокус на поле ввода
+            input.focus();
+            
+            // Сбрасываем состояние подсказок для этого предложения
+            hintStates[index] = 0;
+        });
+    });
+
+    // ===== КНОПКИ ПОДСКАЗКА =====
     container.querySelectorAll('.hint-btn[data-dict-index]').forEach(btn => {
         btn.addEventListener('click', function() {
             const index = parseInt(this.getAttribute('data-dict-index'));
@@ -254,6 +288,7 @@ function renderDictation(container, lesson) {
         });
     });
 
+    // ===== ИНПУТЫ =====
     container.querySelectorAll('.practice-input[data-dict-index]').forEach(input => {
         input.addEventListener('input', function() {
             const index = parseInt(this.getAttribute('data-dict-index'));

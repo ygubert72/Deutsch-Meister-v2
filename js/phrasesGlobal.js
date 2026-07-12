@@ -15,46 +15,45 @@ let globalPhrasesLoading = false;
 async function loadGlobalPhrases(container, level) {
     // Защита от повторных загрузок
     if (globalPhrasesLoading) {
-        console.log('⏳ Фразы уже загружаются...');
+        console.log('⏳ Фразы уже загружаются, пропускаем...');
         return;
     }
     
     globalPhrasesContainer = container;
     globalPhrasesLoading = true;
-    
-    // Проверяем, есть ли курс
-    if (!window.courseData) {
-        console.log('⏳ courseData ещё не загружен, пробуем подождать...');
-        container.innerHTML = '<div style="text-align:center;padding:40px;color:#999;">🔄 Загрузка данных курса...</div>';
-        
-        // Ждём максимум 2 секунды
-        let attempts = 0;
-        while (!window.courseData && attempts < 20) {
-            await new Promise(resolve => setTimeout(resolve, 100));
-            attempts++;
-        }
-        
-        if (!window.courseData) {
-            container.innerHTML = `
-                <div style="text-align:center;padding:40px;color:#999;">
-                    <div style="font-size:48px;margin-bottom:15px;">❌</div>
-                    <div>Курс не загружен. Попробуйте выбрать уровень заново.</div>
-                    <button onclick="window.renderLevelWithMenu()" style="margin-top:15px;padding:10px 20px;background:#3B6FE0;color:white;border:none;border-radius:8px;cursor:pointer;">← Назад</button>
-                </div>
-            `;
-            globalPhrasesLoading = false;
-            return;
-        }
-    }
-    
-    container.innerHTML = '<div style="text-align:center;padding:40px;color:#999;">🔄 Загрузка всех фраз уровня...</div>';
+    console.log('🔄 Начинаем загрузку фраз...');
     
     try {
+        // Проверяем, есть ли курс
+        if (!window.courseData) {
+            console.log('⏳ courseData ещё не загружен, пробуем подождать...');
+            container.innerHTML = '<div style="text-align:center;padding:40px;color:#999;">🔄 Загрузка данных курса...</div>';
+            
+            // Ждём максимум 2 секунды
+            let attempts = 0;
+            while (!window.courseData && attempts < 20) {
+                await new Promise(resolve => setTimeout(resolve, 100));
+                attempts++;
+            }
+            
+            if (!window.courseData) {
+                container.innerHTML = `
+                    <div style="text-align:center;padding:40px;color:#999;">
+                        <div style="font-size:48px;margin-bottom:15px;">❌</div>
+                        <div>Курс не загружен. Попробуйте выбрать уровень заново.</div>
+                        <button onclick="window.renderLevelWithMenu()" style="margin-top:15px;padding:10px 20px;background:#3B6FE0;color:white;border:none;border-radius:8px;cursor:pointer;">← Назад</button>
+                    </div>
+                `;
+                return;
+            }
+        }
+        
+        container.innerHTML = '<div style="text-align:center;padding:40px;color:#999;">🔄 Загрузка всех фраз уровня...</div>';
+        
         const allPhrases = await window.getAllPhrasesForLevel(level);
         
         if (!allPhrases || allPhrases.length === 0) {
             container.innerHTML = '<div style="text-align:center;padding:40px;color:#999;">📭 Нет фраз для этого уровня</div>';
-            globalPhrasesLoading = false;
             return;
         }
         
@@ -81,7 +80,9 @@ async function loadGlobalPhrases(container, level) {
             </div>
         `;
     } finally {
+        // ВАЖНО: сбрасываем флаг загрузки
         globalPhrasesLoading = false;
+        console.log('✅ Флаг загрузки фраз сброшен');
     }
 }
 

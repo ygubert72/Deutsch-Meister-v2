@@ -1,6 +1,6 @@
 // cardsGlobal.js — глобальные карточки для всех слов уровня
 
-let globalCardsWords = [];
+let globalCardsWords = [];.
 let globalCardsIndex = 0;
 let globalCardsFlipped = false;
 let globalCardsContainer = null;

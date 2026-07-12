@@ -74,6 +74,7 @@ function showWelcomePage() {
     currentLevel = 'A1';
     currentLesson = null;
     courseData = null;
+    window.courseData = null;
     currentSection = 'lessons';
     
     const content = document.getElementById('content');
@@ -242,6 +243,7 @@ async function loadLevel(level) {
         const response = await fetch(`docs/${level}/index.json`);
         if (!response.ok) throw new Error('Курс не найден');
         courseData = await response.json();
+        window.courseData = courseData; // 👈 ВАЖНО: сохраняем в глобальную переменную!
         console.log('✅ Курс загружен:', courseData.title);
         renderLevelWithMenu();
         saveState();
@@ -481,7 +483,6 @@ function renderGlobalCards(container) {
         window.loadGlobalCards(container, currentLevel);
     } else {
         container.innerHTML = '<div style="text-align:center;padding:40px;color:#999;">🔄 Загрузка карточек...</div>';
-        // Ждём загрузки cardsGlobal.js
         setTimeout(() => {
             if (typeof window.loadGlobalCards === 'function') {
                 window.loadGlobalCards(container, currentLevel);
@@ -775,9 +776,9 @@ function restoreState() {
             })
             .then(data => {
                 courseData = data;
+                window.courseData = data; // 👈 ВАЖНО: сохраняем в глобальную переменную!
                 console.log('✅ Курс загружен:', courseData.title);
                 
-                // Если есть сохранённый урок и он существует
                 if (savedState.lessonId !== null && savedState.lessonId !== undefined) {
                     const lessonExists = courseData.lessons.some(l => l.id === savedState.lessonId);
                     if (lessonExists) {
@@ -787,7 +788,6 @@ function restoreState() {
                     }
                 }
                 
-                // Иначе загружаем уровень с подменю
                 renderLevelWithMenu();
             })
             .catch(() => {

@@ -252,6 +252,8 @@ async function loadLevel(level) {
 
 // ========== ЗАГРУЗКА УРОКА ==========
 async function loadLesson(lessonId) {
+    console.log('📖 loadLesson вызван с lessonId:', lessonId);
+    
     if (typeof window.hasAccessToLevel === 'function') {
         if (!window.auth || !window.authInitialized) {
             console.log('⏳ Ожидание инициализации auth...');
@@ -646,6 +648,7 @@ function restoreState() {
                     const lessonExists = courseData.lessons.some(l => l.id === savedState.lessonId);
                     if (lessonExists) {
                         console.log('🔄 Загрузка сохранённого урока:', savedState.lessonId);
+                        // Используем loadLesson, который сам проверит auth
                         loadLesson(savedState.lessonId);
                         return;
                     }

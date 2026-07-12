@@ -795,4 +795,84 @@ function initApp() {
                 return;
             }
             if (!window.hasAccessToLevel(savedState.level)) {
-                console.log('⚠️ Сохранённый уровень недоступен, показываем приветствен
+                console.log('⚠️ Сохранённый уровень недоступен, показываем приветственную');
+                showWelcomePage();
+                return;
+            }
+        }
+        
+        // Активируем кнопку уровня
+        document.querySelectorAll('#levelsContainer .btn-level, #levelsContainerMobile .btn-level').forEach(btn => {
+            if (btn.getAttribute('data-level') === savedState.level) {
+                btn.classList.add('active');
+            } else {
+                btn.classList.remove('active');
+            }
+        });
+        
+        // Загружаем курс
+        fetch(`docs/${savedState.level}/index.json`)
+            .then(response => {
+                if (!response.ok) throw new Error('Курс не найден');
+                return response.json();
+            })
+            .then(data => {
+                courseData = data;
+                console.log('✅ Курс загружен:', courseData.title);
+                
+                if (savedState.lessonId !== null && savedState.lessonId !== undefined) {
+                    const lessonExists = courseData.lessons.some(l => l.id === savedState.lessonId);
+                    if (lessonExists) {
+                        console.log('🔄 Загрузка сохранённого урока:', savedState.lessonId);
+                        loadLesson(savedState.lessonId);
+                        return;
+                    }
+                }
+                renderLevel();
+            })
+            .catch(() => {
+                showWelcomePage();
+            });
+    } else {
+        console.log('👋 Нет сохранённого состояния → приветственная страница');
+        showWelcomePage();
+    }
+    
+    if (typeof window.updateLevelButtons === 'function') {
+        setTimeout(window.updateLevelButtons, 200);
+    }
+    
+    setTimeout(updateCounter, 1000);
+    setTimeout(updateCounter, 2000);
+    
+    console.log('✅ Deutsch-Meister готов!');
+}
+
+// ========== ГЛОБАЛЬНЫЙ ЭКСПОРТ ==========
+window.currentLevel = currentLevel;
+window.currentLesson = currentLesson;
+window.courseData = courseData;
+window.isWelcomePageVisible = isWelcomePageVisible;
+window.appReady = appReady;
+window.showWelcomePage = showWelcomePage;
+window.showInstruction = showInstruction;
+window.loadLevel = loadLevel;
+window.loadLesson = loadLesson;
+window.renderLevel = renderLevel;
+window.renderLesson = renderLesson;
+window.renderMode = renderMode;
+window.updateCounter = updateCounter;
+window.initApp = initApp;
+window.loadState = loadState;
+window.saveState = saveState;
+window.clearAppState = clearAppState;
+window.restoreState = restoreState;
+window.onAuthReady = onAuthReady;
+
+console.log('✅ Функции экспортированы глобально');
+
+document.addEventListener('DOMContentLoaded', function() {
+    initApp();
+});
+
+console.log('🚀 app.js загружен');

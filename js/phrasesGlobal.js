@@ -1,6 +1,6 @@
 // phrasesGlobal.js — глобальные фразы для всех фраз уровня
 
-let globalPhrasesWords = [];
+let globalPhrasesWords = [];.
 let globalPhrasesIndex = 0;
 let globalPhrasesContainer = null;
 let globalPhrasesSelected = [];

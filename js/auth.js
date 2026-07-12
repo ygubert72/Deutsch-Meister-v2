@@ -54,14 +54,18 @@ function initFirebase() {
             await checkIfBlocked(user);
         } else {
             currentUserData = null;
+            // Очищаем состояние при выходе
+            if (typeof window.clearAppState === 'function') {
+                window.clearAppState();
+            }
         }
         
         updateUI(user);
         updateLevelButtons();
         
-        // Обновляем приветственную страницу, если она открыта
-        if (typeof window.updateWelcomePage === 'function') {
-            window.updateWelcomePage();
+        // УВЕДОМЛЯЕМ APP, ЧТО AUTH ГОТОВ
+        if (typeof window.onAuthReady === 'function') {
+            window.onAuthReady();
         }
         
         if (typeof updateCounter === 'function') {
@@ -259,6 +263,10 @@ window.logout = async function() {
         await auth.signOut();
         if (window.Logger) Logger.info('Выход выполнен');
     }
+    // Очищаем состояние
+    if (typeof window.clearAppState === 'function') {
+        window.clearAppState();
+    }
     // Показываем приветственную страницу после выхода
     if (typeof window.showWelcomePage === 'function') {
         window.showWelcomePage();
@@ -275,8 +283,6 @@ function updateUI(user) {
     const userInfoMobile = document.getElementById('userInfoMobile');
     const adminBtn = document.getElementById('adminPanelBtn');
     const adminBtnMobile = document.getElementById('adminPanelBtnMobile');
-    const premiumPayBtn = document.getElementById('premiumPayBtn');
-    const premiumPayBtnMobile = document.getElementById('premiumPayBtnMobile');
     
     if (!loginBtn || !userInfo) return;
     
@@ -290,7 +296,6 @@ function updateUI(user) {
         const hasPremium = currentUserData && currentUserData.hasPremiumAccess === true;
         const isAdmin = user.email === 'ygubert72@gmail.com';
         
-        // Админ-панель (только для администратора)
         if (adminBtn) {
             adminBtn.style.display = isAdmin ? 'block' : 'none';
         }
@@ -337,7 +342,6 @@ function updateUI(user) {
         userInfo.style.display = 'block';
         if (userInfoMobile) userInfoMobile.style.display = 'block';
         
-        // Скрываем админ-кнопки
         if (adminBtn) adminBtn.style.display = 'none';
         if (adminBtnMobile) adminBtnMobile.style.display = 'none';
         

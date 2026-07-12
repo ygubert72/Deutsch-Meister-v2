@@ -66,9 +66,11 @@ async function loadGlobalCards(container, level) {
         globalCardsIndex = 0;
         globalCardsFlipped = false;
         
-        // 👇 ПРЯМОЙ ВЫЗОВ РЕНДЕРИНГА С ПРОВЕРКОЙ
+        // 👇 СНАЧАЛА СБРАСЫВАЕМ ФЛАГ, ПОТОМ ВЫЗЫВАЕМ РЕНДЕРИНГ
         console.log('✅ Данные загружены, вызываем рендеринг...');
+        globalCardsLoading = false;
         renderGlobalCards();
+        globalCardsLoading = true;
         
     } catch(e) {
         console.error('❌ Ошибка загрузки карточек:', e);
@@ -90,11 +92,9 @@ async function loadGlobalCards(container, level) {
 
 // ========== ОТОБРАЖЕНИЕ КАРТОЧЕК ==========
 function renderGlobalCards() {
-    // Всегда используем сохранённый контейнер
     const container = globalCardsContainer;
     if (!container) {
         console.error('❌ Нет контейнера для рендеринга карточек');
-        // Пробуем найти заново
         const newContainer = document.getElementById('sectionContent');
         if (newContainer) {
             globalCardsContainer = newContainer;
@@ -107,7 +107,6 @@ function renderGlobalCards() {
     
     console.log('🎨 Рендеринг карточек, слов:', globalCardsWords.length);
     
-    // Проверяем, что слова есть
     if (!globalCardsWords || globalCardsWords.length === 0) {
         container.innerHTML = '<div style="text-align:center;padding:40px;color:#999;">📭 Нет слов для отображения</div>';
         return;

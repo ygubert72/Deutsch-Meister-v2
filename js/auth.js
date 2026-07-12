@@ -39,7 +39,9 @@ function initFirebase() {
     if (window.Logger) Logger.info('Firebase готов');
     
     auth.onAuthStateChanged(async (user) => {
+        // Устанавливаем флаг инициализации СРАЗУ
         authInitialized = true;
+        console.log('🔐 authInitialized = true');
         
         if (user) {
             if (window.Logger) Logger.info('Пользователь в системе:', user.email);

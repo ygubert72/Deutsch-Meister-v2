@@ -28,10 +28,21 @@
                 <button data-level="B2" class="btn btn-level">B2</button>
                 <button data-level="C1" class="btn btn-level">C1</button>
             </div>
-            <button id="shareBtnDesktop" class="btn share-btn" style="margin-top: 15px;" onclick="openShareModal()">🔗 ПОДЕЛИТЬСЯ</button>
+            
+            <!-- НОВАЯ КНОПКА ИНСТРУКЦИЯ -->
+            <button id="instructionBtn" class="btn" style="margin-top: 10px; background: #E8F0FE; border: 2px solid #D0D0D0; border-radius: 8px; cursor: pointer; font-weight: bold; font-size: 14px; font-family: inherit;" onclick="showInstruction()">
+                ❓ Инструкция
+            </button>
+            
+            <button id="shareBtnDesktop" class="btn share-btn" style="margin-top: 10px;" onclick="openShareModal()">🔗 ПОДЕЛИТЬСЯ</button>
+            
+            <!-- НОВАЯ КНОПКА ПОМОЧЬ ПРОЕКТУ -->
+            <button id="donateBtn" class="btn" style="margin-top: 10px; background: #FF6B6B; color: white; border: 2px solid #E55555; border-radius: 8px; cursor: pointer; font-weight: bold; font-size: 14px; font-family: inherit; box-shadow: 0 2px 8px rgba(255,107,107,0.3);" onclick="openDonateModal()">
+                💛 Помочь проекту
+            </button>
             
             <!-- Админ-панель (только для администратора) -->
-            <button id="adminPanelBtn" class="btn" style="background: #FF9800; color: white; border: none; display: none; margin-top: 10px;" onclick="openAdminPanel()">
+            <button id="adminPanelBtn" class="btn" style="background: #FF9800; color: white; border: none; display: none; margin-top: 10px; box-shadow: 0 2px 8px rgba(255,152,0,0.3);" onclick="openAdminPanel()">
                 🛡️ АДМИН-ПАНЕЛЬ
             </button>
         </div>
@@ -42,9 +53,9 @@
         <div class="top-bar">
             <div class="top-bar-left">
                 <button class="hamburger-btn" id="hamburgerBtn">☰</button>
-                <span id="modeIndicator" class="mode-indicator">Курс A1</span>
+                <span id="modeIndicator" class="mode-indicator">🏠 Главная</span>
             </div>
-            <span id="counter">Загрузка...</span>
+            <span id="counter"></span>
         </div>
         <div class="content" id="content"></div>
     </div>
@@ -68,10 +79,21 @@
             <button data-level="B2" class="btn btn-level">B2</button>
             <button data-level="C1" class="btn btn-level">C1</button>
         </div>
-        <button id="shareBtnMobile" class="btn share-btn" style="margin-top: 15px;" onclick="openShareModal()">🔗 ПОДЕЛИТЬСЯ</button>
+        
+        <!-- НОВАЯ КНОПКА ИНСТРУКЦИЯ (МОБИЛЬНАЯ) -->
+        <button id="instructionBtnMobile" class="btn" style="margin-top: 10px; background: #E8F0FE; border: 2px solid #D0D0D0; border-radius: 8px; cursor: pointer; font-weight: bold; font-size: 14px; font-family: inherit;" onclick="showInstruction()">
+            ❓ Инструкция
+        </button>
+        
+        <button id="shareBtnMobile" class="btn share-btn" style="margin-top: 10px;" onclick="openShareModal()">🔗 ПОДЕЛИТЬСЯ</button>
+        
+        <!-- НОВАЯ КНОПКА ПОМОЧЬ ПРОЕКТУ (МОБИЛЬНАЯ) -->
+        <button id="donateBtnMobile" class="btn" style="margin-top: 10px; background: #FF6B6B; color: white; border: 2px solid #E55555; border-radius: 8px; cursor: pointer; font-weight: bold; font-size: 14px; font-family: inherit; box-shadow: 0 2px 8px rgba(255,107,107,0.3);" onclick="openDonateModal()">
+            💛 Помочь проекту
+        </button>
         
         <!-- Админ-панель (только для администратора) -->
-        <button id="adminPanelBtnMobile" class="btn" style="background: #FF9800; color: white; border: none; display: none; margin-top: 10px;" onclick="openAdminPanel()">
+        <button id="adminPanelBtnMobile" class="btn" style="background: #FF9800; color: white; border: none; display: none; margin-top: 10px; box-shadow: 0 2px 8px rgba(255,152,0,0.3);" onclick="openAdminPanel()">
             🛡️ АДМИН-ПАНЕЛЬ
         </button>
     </div>
@@ -115,6 +137,7 @@ console.log('✅ Firebase инициализирован');
 <script src="js/auth.js"></script>
 <script src="js/adminModal.js"></script>
 <script src="js/shareModal.js"></script>
+<script src="js/donateModal.js"></script>
 
 <script>
 // ===== МОБИЛЬНОЕ МЕНЮ =====

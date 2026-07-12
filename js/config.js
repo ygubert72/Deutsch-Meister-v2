@@ -1,3 +1,7 @@
+// ============================================================
+// config.js — Глобальные настройки приложения
+// ============================================================
+
 // Глобальные настройки
 const AppConfig = {
     currentLevel: 'A1',
@@ -8,6 +12,15 @@ const AppConfig = {
 
 // Глобальные состояния
 let currentMode = 'grammar';
+
+// SVG НЕМЕЦКОГО ФЛАГА
+const GERMAN_FLAG_SVG = `
+<svg width="60" height="40" viewBox="0 0 60 40" xmlns="http://www.w3.org/2000/svg">
+    <rect width="60" height="13.33" fill="#000000"/>
+    <rect y="13.33" width="60" height="13.33" fill="#DD0000"/>
+    <rect y="26.66" width="60" height="13.34" fill="#FFCC00"/>
+</svg>
+`;
 
 // БД
 let wordsDB = { A1: [], A2: [], B1: [], B2: [], C1: [] };
@@ -30,7 +43,6 @@ function saveProgress() {
         last_mode: currentMode
     }));
     
-    // Сохраняем прогресс в облако, если пользователь авторизован
     if (window.saveUserProgressToFirebase) {
         window.saveUserProgressToFirebase();
     }
@@ -62,5 +74,14 @@ function loadProgress() {
     });
 }
 
-// Функция speak() УДАЛЕНА — теперь она в speak.js
-// ВСЕ ВЫЗОВЫ speak() будут использовать функцию из speak.js
+// Экспорт в window
+window.AppConfig = AppConfig;
+window.currentMode = currentMode;
+window.GERMAN_FLAG_SVG = GERMAN_FLAG_SVG;
+window.wordsDB = wordsDB;
+window.sentencesDB = sentencesDB;
+window.wordsProgress = wordsProgress;
+window.sentencesProgress = sentencesProgress;
+window.grammarProgress = grammarProgress;
+window.saveProgress = saveProgress;
+window.loadProgress = loadProgress;

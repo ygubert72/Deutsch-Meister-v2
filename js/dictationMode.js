@@ -69,11 +69,11 @@ function renderDictation(container, lesson) {
                         ПРОВЕРИТЬ
                     </button>
                     
-                    <!-- НОВАЯ КНОПКА СБРОСИТЬ (ГОЛУБАЯ) — справа от "Проверить" -->
+                    <!-- КНОПКА СБРОСИТЬ — КАК ПОДСКАЗКА (голубовато-серая) -->
                     <button class="reset-answer-btn" data-dict-index="${index}" 
                             ${isCompleted ? 'disabled style="opacity: 0.5; cursor: not-allowed;"' : ''}
-                            style="padding: 8px 20px; background: ${isCompleted ? '#E0E0E0' : '#4FC3F7'}; color: ${isCompleted ? '#999' : 'white'}; border: none; border-radius: 8px; cursor: ${isCompleted ? 'not-allowed' : 'pointer'}; font-weight: bold; white-space: nowrap; transition: all 0.08s ease; box-shadow: 0 2px 4px rgba(79,195,247,0.3);">
-                        🔄 СБРОСИТЬ
+                            style="padding: 8px 20px; background: ${isCompleted ? '#E0E0E0' : '#E8F0FE'}; color: ${isCompleted ? '#999' : '#333'}; border: ${isCompleted ? 'none' : '2px solid #D0D0D0'}; border-radius: 8px; cursor: ${isCompleted ? 'not-allowed' : 'pointer'}; font-weight: bold; white-space: nowrap; transition: all 0.08s ease;">
+                        СБРОСИТЬ
                     </button>
                     
                     <button class="hint-btn" data-dict-index="${index}" 
@@ -161,7 +161,7 @@ function renderDictation(container, lesson) {
         });
     });
 
-    // ===== НОВАЯ КНОПКА СБРОСИТЬ (ГОЛУБАЯ) =====
+    // ===== КНОПКИ СБРОСИТЬ (КАК ПОДСКАЗКА) =====
     container.querySelectorAll('.reset-answer-btn[data-dict-index]').forEach(btn => {
         btn.addEventListener('click', function() {
             const index = parseInt(this.getAttribute('data-dict-index'));
@@ -170,29 +170,23 @@ function renderDictation(container, lesson) {
             const hintDisplay = container.querySelector(`.hint-display[data-dict-index="${index}"]`);
             
             if (!input) return;
-            if (input.disabled) return; // Если уже выполнено — не сбрасываем
+            if (input.disabled) return;
             
-            // Сбрасываем поле ввода
             input.value = '';
             input.style.borderColor = '#D0D0D0';
             input.style.backgroundColor = '';
             
-            // Сбрасываем результат
             if (result) {
                 result.innerHTML = '';
                 result.className = 'practice-result';
             }
             
-            // Сбрасываем подсказку
             if (hintDisplay) {
                 hintDisplay.textContent = '💡 Нажмите "Подсказка", чтобы добавить следующее слово';
                 hintDisplay.style.color = '#666';
             }
             
-            // Фокус на поле ввода
             input.focus();
-            
-            // Сбрасываем состояние подсказок для этого предложения
             hintStates[index] = 0;
         });
     });

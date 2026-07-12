@@ -2,7 +2,6 @@
 // instruction.js — Страница инструкции
 // ============================================================
 
-// ========== ПОКАЗАТЬ ИНСТРУКЦИЮ ==========
 function showInstruction() {
     const content = document.getElementById('content');
     const indicator = document.getElementById('modeIndicator');
@@ -51,8 +50,7 @@ function showInstruction() {
     window._instructionReturnPage = previousPage;
 }
 
-// ========== ВОЗВРАТ ИЗ ИНСТРУКЦИИ ==========
-window.goBackFromInstruction = function() {
+function goBackFromInstruction() {
     if (window._instructionReturnPage === 'welcome') {
         if (typeof window.showWelcomePage === 'function') {
             window.showWelcomePage();
@@ -74,9 +72,10 @@ window.goBackFromInstruction = function() {
             window.showWelcomePage();
         }
     }
-};
+}
 
 // Экспорт
 window.showInstruction = showInstruction;
+window.goBackFromInstruction = goBackFromInstruction;
 
 console.log('❓ instruction.js загружен');

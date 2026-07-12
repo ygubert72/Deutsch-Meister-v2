@@ -1,6 +1,6 @@
 // auth.js — ТОЛЬКО вход, выход, регистрация и состояние пользователя
 
-let auth = null;
+let auth = null;.
 let db = null;
 let currentUserData = null;
 let authInitialized = false;

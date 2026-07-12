@@ -161,8 +161,6 @@ window.goBackFromInstruction = function() {
 
 // ========== ЗАГРУЗКА УРОВНЯ ==========
 async function loadLevel(level) {
-    console.log('🔵 loadLevel вызван с уровнем:', level);
-    
     if (typeof window.hasAccessToLevel === 'function') {
         if (!window.hasAccessToLevel(level)) {
             const user = window.getCurrentUser ? window.getCurrentUser() : null;

@@ -54,7 +54,6 @@ function initFirebase() {
             await checkIfBlocked(user);
         } else {
             currentUserData = null;
-            // Очищаем состояние при выходе
             if (typeof window.clearAppState === 'function') {
                 window.clearAppState();
             }
@@ -63,8 +62,9 @@ function initFirebase() {
         updateUI(user);
         updateLevelButtons();
         
-        // УВЕДОМЛЯЕМ APP, ЧТО AUTH ГОТОВ
+        // ===== ВЫЗОВ onAuthReady =====
         if (typeof window.onAuthReady === 'function') {
+            console.log('🔄 Вызов onAuthReady из auth.js');
             window.onAuthReady();
         }
         
@@ -92,27 +92,22 @@ async function loadUserData(uid) {
 
 // ========== ПРОВЕРКА ДОСТУПА К УРОВНЮ ==========
 window.hasAccessToLevel = function(level) {
-    // Безопасная проверка: если auth ещё не инициализирован — доступен только A1
     if (!auth) {
         return level === 'A1';
     }
     
-    // Админ имеет доступ ко всем уровням
     if (auth.currentUser && auth.currentUser.email === 'ygubert72@gmail.com') {
         return true;
     }
     
-    // Уровень A1 доступен всем (даже без регистрации)
     if (level === 'A1') {
         return true;
     }
     
-    // Уровень A2 — только с регистрацией (премиум НЕ нужен)
     if (level === 'A2') {
         return auth.currentUser !== null;
     }
     
-    // Уровни B1, B2, C1 — только с регистрацией И премиумом
     if (level === 'B1' || level === 'B2' || level === 'C1') {
         if (!auth.currentUser) return false;
         if (currentUserData && currentUserData.hasPremiumAccess === true) return true;
@@ -136,7 +131,6 @@ function updateLevelButtons() {
     allButtons.forEach(btn => {
         const level = btn.getAttribute('data-level');
         const hasAccess = window.hasAccessToLevel(level);
-        const isActive = btn.classList.contains('active');
         
         if (hasAccess) {
             btn.style.opacity = '1';
@@ -263,11 +257,9 @@ window.logout = async function() {
         await auth.signOut();
         if (window.Logger) Logger.info('Выход выполнен');
     }
-    // Очищаем состояние
     if (typeof window.clearAppState === 'function') {
         window.clearAppState();
     }
-    // Показываем приветственную страницу после выхода
     if (typeof window.showWelcomePage === 'function') {
         window.showWelcomePage();
     } else {

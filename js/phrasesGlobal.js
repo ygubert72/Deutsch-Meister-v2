@@ -13,21 +13,31 @@ let globalPhrasesLoading = false;
 
 // ========== ЗАГРУЗКА И ОТОБРАЖЕНИЕ ==========
 async function loadGlobalPhrases(container, level) {
-    // Защита от повторных загрузок — просто выходим, если уже загружается
+    // Защита от повторных загрузок
     if (globalPhrasesLoading) {
         console.log('⏳ Фразы уже загружаются, пропускаем...');
         return;
     }
     
-    globalPhrasesContainer = container;
+    // Сохраняем контейнер
+    if (container) {
+        globalPhrasesContainer = container;
+    } else {
+        globalPhrasesContainer = document.getElementById('sectionContent');
+        if (!globalPhrasesContainer) {
+            console.error('❌ Контейнер #sectionContent не найден');
+            return;
+        }
+    }
+    
     globalPhrasesLoading = true;
     console.log('🔄 Начинаем загрузку фраз...');
     
     try {
-        // Проверяем, есть ли курс
+        // Проверяем курс
         if (!window.courseData) {
             console.log('⏳ courseData ещё не загружен, пробуем подождать...');
-            container.innerHTML = '<div style="text-align:center;padding:40px;color:#999;">🔄 Загрузка данных курса...</div>';
+            globalPhrasesContainer.innerHTML = '<div style="text-align:center;padding:40px;color:#999;">🔄 Загрузка данных курса...</div>';
             
             let attempts = 0;
             while (!window.courseData && attempts < 20) {
@@ -36,7 +46,7 @@ async function loadGlobalPhrases(container, level) {
             }
             
             if (!window.courseData) {
-                container.innerHTML = `
+                globalPhrasesContainer.innerHTML = `
                     <div style="text-align:center;padding:40px;color:#999;">
                         <div style="font-size:48px;margin-bottom:15px;">❌</div>
                         <div>Курс не загружен. Попробуйте выбрать уровень заново.</div>
@@ -47,12 +57,12 @@ async function loadGlobalPhrases(container, level) {
             }
         }
         
-        container.innerHTML = '<div style="text-align:center;padding:40px;color:#999;">🔄 Загрузка всех фраз уровня...</div>';
+        globalPhrasesContainer.innerHTML = '<div style="text-align:center;padding:40px;color:#999;">🔄 Загрузка всех фраз уровня...</div>';
         
         const allPhrases = await window.getAllPhrasesForLevel(level);
         
         if (!allPhrases || allPhrases.length === 0) {
-            container.innerHTML = '<div style="text-align:center;padding:40px;color:#999;">📭 Нет фраз для этого уровня</div>';
+            globalPhrasesContainer.innerHTML = '<div style="text-align:center;padding:40px;color:#999;">📭 Нет фраз для этого уровня</div>';
             return;
         }
         
@@ -63,18 +73,20 @@ async function loadGlobalPhrases(container, level) {
         globalPhrasesStudied = {};
         
         loadGlobalPhrasesProgress(level);
-        renderGlobalPhrases(container);
+        renderGlobalPhrases();
         
     } catch(e) {
         console.error('❌ Ошибка загрузки фраз:', e);
-        container.innerHTML = `
-            <div style="text-align:center;padding:40px;color:#999;">
-                <div style="font-size:48px;margin-bottom:15px;">❌</div>
-                <div>Ошибка загрузки фраз</div>
-                <div style="font-size:14px;margin-top:10px;">${e.message}</div>
-                <button onclick="window.renderLevelWithMenu()" style="margin-top:15px;padding:10px 20px;background:#3B6FE0;color:white;border:none;border-radius:8px;cursor:pointer;">← Назад</button>
-            </div>
-        `;
+        if (globalPhrasesContainer) {
+            globalPhrasesContainer.innerHTML = `
+                <div style="text-align:center;padding:40px;color:#999;">
+                    <div style="font-size:48px;margin-bottom:15px;">❌</div>
+                    <div>Ошибка загрузки фраз</div>
+                    <div style="font-size:14px;margin-top:10px;">${e.message}</div>
+                    <button onclick="window.renderLevelWithMenu()" style="margin-top:15px;padding:10px 20px;background:#3B6FE0;color:white;border:none;border-radius:8px;cursor:pointer;">← Назад</button>
+                </div>
+            `;
+        }
     } finally {
         globalPhrasesLoading = false;
         console.log('✅ Флаг загрузки фраз сброшен');
@@ -107,9 +119,14 @@ function saveGlobalPhrasesProgress(level) {
 }
 
 // ========== ОТОБРАЖЕНИЕ ФРАЗ ==========
-function renderGlobalPhrases(container) {
-    if (!container) container = globalPhrasesContainer;
-    if (!container) return;
+function renderGlobalPhrases() {
+    const container = globalPhrasesContainer;
+    if (!container) {
+        console.error('❌ Нет контейнера для рендеринга фраз');
+        return;
+    }
+    
+    console.log('🎨 Рендеринг фраз, всего:', globalPhrasesWords.length);
     
     const availablePhrases = globalPhrasesWords.filter(p => {
         const key = p.de + '|' + p.ru;
@@ -232,7 +249,7 @@ function renderGlobalPhrases(container) {
     document.getElementById('globalPhrasesDirBtn').addEventListener('click', function() {
         globalPhrasesDirection = globalPhrasesDirection === 'ru_to_de' ? 'de_to_ru' : 'ru_to_de';
         this.textContent = globalPhrasesDirection === 'ru_to_de' ? 'Ru → De' : 'De → Ru';
-        renderGlobalPhrases(container);
+        renderGlobalPhrases();
     });
     
     document.getElementById('globalPhrasesShuffleBtn').addEventListener('click', function() {
@@ -243,7 +260,7 @@ function renderGlobalPhrases(container) {
         window.shuffleArray(available);
         globalPhrasesWords = available;
         globalPhrasesIndex = 0;
-        renderGlobalPhrases(container);
+        renderGlobalPhrases();
     });
     
     document.getElementById('globalPhrasesBackBtn').addEventListener('click', function() {
@@ -290,7 +307,7 @@ function renderGlobalPhrases(container) {
             setTimeout(() => {
                 result.style.backgroundColor = '#FFFFFF';
                 globalPhrasesIndex++;
-                renderGlobalPhrases(container);
+                renderGlobalPhrases();
             }, 500);
         } else {
             result.style.backgroundColor = '#FFCDD2';
@@ -338,7 +355,7 @@ function renderGlobalPhrases(container) {
         });
         
         if (available.length === 0) {
-            renderGlobalPhrases(container);
+            renderGlobalPhrases();
             return;
         }
         
@@ -346,7 +363,7 @@ function renderGlobalPhrases(container) {
         if (globalPhrasesIndex >= globalPhrasesWords.length) {
             globalPhrasesIndex = 0;
         }
-        renderGlobalPhrases(container);
+        renderGlobalPhrases();
     });
     
     document.getElementById('globalPhrasesContainerBtn').addEventListener('click', function() {
@@ -365,7 +382,7 @@ function renderGlobalPhrases(container) {
         });
         if (globalPhrasesIndex > 0) {
             globalPhrasesIndex--;
-            renderGlobalPhrases(container);
+            renderGlobalPhrases();
         }
     });
     
@@ -376,7 +393,7 @@ function renderGlobalPhrases(container) {
         });
         if (globalPhrasesIndex + 1 < available.length) {
             globalPhrasesIndex++;
-            renderGlobalPhrases(container);
+            renderGlobalPhrases();
         }
     });
 }
@@ -500,5 +517,6 @@ function showGlobalPhrasesContainer(studiedPhrases) {
 // ========== ЭКСПОРТ ==========
 window.loadGlobalPhrases = loadGlobalPhrases;
 window.globalPhrasesWords = globalPhrasesWords;
+window.renderGlobalPhrases = renderGlobalPhrases;
 
 console.log('🧩 phrasesGlobal.js загружен');

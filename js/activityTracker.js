@@ -1,25 +1,15 @@
 // activityTracker.js — логирование активности пользователя и анализ флагов
 
-// ========== ПОЛУЧЕНИЕ IP И ГОРОДА ==========
+// ========== ПОЛУЧЕНИЕ IP И ГОРОДА (ЗАГЛУШКА, ЧТОБЫ ИЗБЕЖАТЬ CORS) ==========
 async function getUserLocation() {
-    try {
-        const response = await fetch('https://ipapi.co/json/');
-        const data = await response.json();
-        return {
-            ip: data.ip || 'unknown',
-            city: data.city || 'unknown',
-            country: data.country_name || 'unknown',
-            region: data.region || 'unknown'
-        };
-    } catch (e) {
-        Logger.debug('Не удалось определить геолокацию');
-        return {
-            ip: 'unknown',
-            city: 'unknown',
-            country: 'unknown',
-            region: 'unknown'
-        };
-    }
+    // Возвращаем заглушку, чтобы избежать CORS-ошибки с ipapi.co
+    // Если нужно реальное определение — можно заменить на другой сервис
+    return {
+        ip: 'unknown',
+        city: 'unknown',
+        country: 'unknown',
+        region: 'unknown'
+    };
 }
 
 // ========== ID УСТРОЙСТВА ==========

@@ -54,16 +54,15 @@ function initFirebase() {
             await checkIfBlocked(user);
         } else {
             currentUserData = null;
-            setTimeout(() => {
-                if (typeof window.applyAppState === 'function' && !window.stateApplied) {
-                    console.log('👤 Пользователь вышел, применяем состояние из localStorage');
-                    window.applyAppState();
-                }
-            }, 100);
         }
         
         updateUI(user);
         updateLevelButtons();
+        
+        // Обновляем приветственную страницу, если она открыта
+        if (typeof window.updateWelcomePage === 'function') {
+            window.updateWelcomePage();
+        }
         
         if (typeof updateCounter === 'function') {
             updateCounter();
@@ -104,8 +103,13 @@ window.hasAccessToLevel = function(level) {
         return true;
     }
     
-    // Уровни A2, B1, B2, C1 — только с регистрацией И премиумом
-    if (level === 'A2' || level === 'B1' || level === 'B2' || level === 'C1') {
+    // Уровень A2 — только с регистрацией (премиум НЕ нужен)
+    if (level === 'A2') {
+        return auth.currentUser !== null;
+    }
+    
+    // Уровни B1, B2, C1 — только с регистрацией И премиумом
+    if (level === 'B1' || level === 'B2' || level === 'C1') {
         if (!auth.currentUser) return false;
         if (currentUserData && currentUserData.hasPremiumAccess === true) return true;
         return false;
@@ -116,7 +120,6 @@ window.hasAccessToLevel = function(level) {
 
 // ========== ОБНОВЛЕНИЕ КНОПОК УРОВНЕЙ ==========
 function updateLevelButtons() {
-    // Ждём, пока auth инициализируется
     if (!auth) {
         setTimeout(updateLevelButtons, 200);
         return;
@@ -124,24 +127,32 @@ function updateLevelButtons() {
     
     const levelButtons = document.querySelectorAll('.btn-level');
     const levelButtonsMobile = document.querySelectorAll('#levelsContainerMobile .btn-level');
-    
     const allButtons = [...levelButtons, ...levelButtonsMobile];
     
     allButtons.forEach(btn => {
         const level = btn.getAttribute('data-level');
         const hasAccess = window.hasAccessToLevel(level);
+        const isActive = btn.classList.contains('active');
         
         if (hasAccess) {
             btn.style.opacity = '1';
             btn.style.pointerEvents = 'auto';
             btn.style.cursor = 'pointer';
             btn.title = '';
+            btn.classList.remove('locked');
         } else {
             btn.style.opacity = '0.5';
             btn.style.pointerEvents = 'none';
             btn.style.cursor = 'not-allowed';
+            btn.classList.add('locked');
             
-            if (level === 'A2' || level === 'B1' || level === 'B2' || level === 'C1') {
+            if (level === 'A2') {
+                if (!auth.currentUser) {
+                    btn.title = '🔐 Войдите в аккаунт';
+                } else {
+                    btn.title = '🔐 Требуется регистрация';
+                }
+            } else if (level === 'B1' || level === 'B2' || level === 'C1') {
                 if (!auth.currentUser) {
                     btn.title = '🔐 Войдите в аккаунт и оплатите премиум';
                 } else if (!currentUserData || !currentUserData.hasPremiumAccess) {
@@ -248,7 +259,12 @@ window.logout = async function() {
         await auth.signOut();
         if (window.Logger) Logger.info('Выход выполнен');
     }
-    location.reload();
+    // Показываем приветственную страницу после выхода
+    if (typeof window.showWelcomePage === 'function') {
+        window.showWelcomePage();
+    } else {
+        location.reload();
+    }
 };
 
 // ========== ОБНОВЛЕНИЕ ИНТЕРФЕЙСА ==========
@@ -259,6 +275,8 @@ function updateUI(user) {
     const userInfoMobile = document.getElementById('userInfoMobile');
     const adminBtn = document.getElementById('adminPanelBtn');
     const adminBtnMobile = document.getElementById('adminPanelBtnMobile');
+    const premiumPayBtn = document.getElementById('premiumPayBtn');
+    const premiumPayBtnMobile = document.getElementById('premiumPayBtnMobile');
     
     if (!loginBtn || !userInfo) return;
     
@@ -283,7 +301,7 @@ function updateUI(user) {
         const premiumButtonHtml = (!isAdmin) ? `
             <div style="margin-top:8px;">
                 ${!hasPremium 
-                    ? `<button id="premiumPayBtn" style="width:100%; padding:8px; background:linear-gradient(135deg, #FFD700, #FFA500); color:#333; border:none; border-radius:16px; cursor:pointer; font-weight:bold; font-size:12px;">💎 ОПЛАТИТЬ ПРЕМИУМ</button>`
+                    ? `<button id="premiumPayBtn" class="premium-pay-btn" style="width:100%; padding:8px; background:linear-gradient(135deg, #FFD700, #FFA500); color:#333; border:none; border-radius:16px; cursor:pointer; font-weight:bold; font-size:12px;">💎 ОПЛАТИТЬ ПРЕМИУМ</button>`
                     : `<div style="background:#4CAF50; border-radius:16px; padding:8px; text-align:center; color:white; font-weight:bold; font-size:12px;">✅ ПРЕМИУМ АКТИВЕН</div>`
                 }
             </div>
@@ -307,6 +325,8 @@ function updateUI(user) {
             setTimeout(() => {
                 const payBtn = document.getElementById('premiumPayBtn');
                 if (payBtn) payBtn.onclick = () => showPaymentModal();
+                const payBtnMobile = document.getElementById('premiumPayBtnMobile');
+                if (payBtnMobile) payBtnMobile.onclick = () => showPaymentModal();
             }, 100);
         }
         
@@ -324,7 +344,9 @@ function updateUI(user) {
         const guestHtml = `
             <div style="background:#E8F0FE; border-radius:8px; padding:8px; text-align:center;">
                 <div style="font-size:14px; font-weight:bold;">👋 Гостевой режим</div>
-                <div style="font-size:11px; color:#666; margin-top:4px;">доступен только уровень A1</div>
+                <div style="font-size:11px; color:#666; margin-top:4px;">доступен уровень A1</div>
+                <div style="font-size:11px; color:#666; margin-top:2px;">A2 — доступен после регистрации</div>
+                <div style="font-size:11px; color:#666; margin-top:2px;">B1-C1 — доступны с премиумом</div>
             </div>
         `;
         
@@ -336,7 +358,7 @@ function updateUI(user) {
     }
 }
 
-// ========== МОДАЛЬНОЕ ОКНО ОПЛАТЫ (С КРЕСТИКОМ) ==========
+// ========== МОДАЛЬНОЕ ОКНО ОПЛАТЫ ==========
 function showPaymentModal() {
     if (!auth.currentUser) {
         alert('Сначала войдите в аккаунт');
@@ -350,7 +372,6 @@ function showPaymentModal() {
         email: "ygubert72@gmail.com"
     };
     
-    // Удаляем старую модалку
     const oldModal = document.getElementById('paymentModal');
     if (oldModal) oldModal.remove();
     
@@ -362,7 +383,6 @@ function showPaymentModal() {
     modalContent.style.cssText = 'background:white; border-radius:20px; max-width:400px; width:90%; padding:25px; text-align:center; margin:20px; max-height:90vh; overflow-y:auto; position:relative;';
     
     modalContent.innerHTML = `
-        <!-- КРЕСТИК В ПРАВОМ ВЕРХНЕМ УГЛУ -->
         <button id="paymentCloseCross" style="
             position: absolute;
             top: 12px;
@@ -378,7 +398,7 @@ function showPaymentModal() {
         " onmouseover="this.style.color='#333'" onmouseout="this.style.color='#999'">✕</button>
         
         <h2 style="margin:0 0 10px 0; font-size:22px;">💎 Премиум доступ</h2>
-        <div style="font-size:13px; color:#666; margin-bottom:15px;">Уровни A2, B1, B2, C1</div>
+        <div style="font-size:13px; color:#666; margin-bottom:15px;">Уровни B1, B2, C1</div>
         <div style="font-size:32px; color:#3B6FE0; font-weight:bold; margin-bottom:10px;">${PREMIUM_PRICE} ₽</div>
         <div style="font-size:11px; color:#666; margin-bottom:15px;">Разовый платёж / бессрочный доступ</div>
         
@@ -410,20 +430,9 @@ function showPaymentModal() {
     modal.appendChild(modalContent);
     document.body.appendChild(modal);
     
-    // Закрытие по крестику
-    document.getElementById('paymentCloseCross').onclick = function() {
-        modal.remove();
-    };
-    
-    // Закрытие по кнопке "Закрыть"
-    document.getElementById('paymentCloseBtn').onclick = function() {
-        modal.remove();
-    };
-    
-    // Закрытие по клику на фон
-    modal.onclick = function(e) {
-        if (e.target === modal) modal.remove();
-    };
+    document.getElementById('paymentCloseCross').onclick = function() { modal.remove(); };
+    document.getElementById('paymentCloseBtn').onclick = function() { modal.remove(); };
+    modal.onclick = function(e) { if (e.target === modal) modal.remove(); };
 }
 
 // ========== МОДАЛЬНОЕ ОКНО ВХОДА/РЕГИСТРАЦИИ ==========
@@ -552,7 +561,7 @@ window.showLoginModal = function() {
     
     document.getElementById('guestBtn').onclick = () => {
         modal.remove();
-        alert('Гостевой режим (доступен только уровень A1, прогресс не сохраняется)');
+        alert('Гостевой режим (доступен уровень A1, прогресс не сохраняется)');
     };
     
     document.getElementById('closeModal').onclick = () => modal.remove();
@@ -610,12 +619,6 @@ window.saveUserProgressToFirebase = async function() {
 // ========== ЗАГРУЗКА ПРОГРЕССА ИЗ ОБЛАКА ==========
 window.loadUserProgressFromFirebase = async function() {
     if (!auth || !auth.currentUser) {
-        setTimeout(() => {
-            if (typeof window.applyAppState === 'function' && !window.stateApplied) {
-                console.log('👤 Пользователь не авторизован, применяем состояние из localStorage');
-                window.applyAppState();
-            }
-        }, 100);
         return false;
     }
     
@@ -654,27 +657,18 @@ window.loadUserProgressFromFirebase = async function() {
                 Logger.info('Прогресс загружен из облака');
             }
             
-            setTimeout(() => {
-                if (typeof window.applyAppState === 'function' && !window.stateApplied) {
-                    console.log('☁️ Применяем состояние после загрузки из облака');
-                    window.applyAppState();
-                }
-            }, 100);
-            
             return true;
         }
     } catch(e) {
         if (window.Logger) Logger.error('Ошибка загрузки прогресса:', e);
     }
     
-    setTimeout(() => {
-        if (typeof window.applyAppState === 'function' && !window.stateApplied) {
-            console.log('☁️ Облачного прогресса нет, применяем состояние из localStorage');
-            window.applyAppState();
-        }
-    }, 100);
-    
     return false;
+};
+
+// ========== ПОЛУЧИТЬ ТЕКУЩИЕ ДАННЫЕ ПОЛЬЗОВАТЕЛЯ ==========
+window.getCurrentUserData = function() {
+    return currentUserData;
 };
 
 // ========== ЗАПУСК ==========

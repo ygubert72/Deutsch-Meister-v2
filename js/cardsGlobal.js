@@ -4,29 +4,32 @@ let globalCardsWords = [];
 let globalCardsIndex = 0;
 let globalCardsFlipped = false;
 let globalCardsContainer = null;
+let globalCardsLoading = false;
 
 // ========== ЗАГРУЗКА И ОТОБРАЖЕНИЕ ==========
 async function loadGlobalCards(container, level) {
+    // Защита от повторных загрузок
+    if (globalCardsLoading) {
+        console.log('⏳ Карточки уже загружаются...');
+        return;
+    }
+    
     globalCardsContainer = container;
+    globalCardsLoading = true;
     
-    // Проверяем, есть ли курс — используем переданный или глобальный
-    let courseData = window.courseData;
-    
-    // Если курс ещё не загружен — ждём
-    if (!courseData) {
-        console.log('⏳ Ожидание загрузки courseData...');
+    // Проверяем, есть ли курс
+    if (!window.courseData) {
+        console.log('⏳ courseData ещё не загружен, пробуем подождать...');
         container.innerHTML = '<div style="text-align:center;padding:40px;color:#999;">🔄 Загрузка данных курса...</div>';
         
-        // Ждём загрузки courseData (максимум 5 секунд)
+        // Ждём максимум 2 секунды
         let attempts = 0;
-        const maxAttempts = 50;
-        while (!window.courseData && attempts < maxAttempts) {
+        while (!window.courseData && attempts < 20) {
             await new Promise(resolve => setTimeout(resolve, 100));
             attempts++;
-            courseData = window.courseData;
         }
         
-        if (!courseData) {
+        if (!window.courseData) {
             container.innerHTML = `
                 <div style="text-align:center;padding:40px;color:#999;">
                     <div style="font-size:48px;margin-bottom:15px;">❌</div>
@@ -34,6 +37,7 @@ async function loadGlobalCards(container, level) {
                     <button onclick="window.renderLevelWithMenu()" style="margin-top:15px;padding:10px 20px;background:#3B6FE0;color:white;border:none;border-radius:8px;cursor:pointer;">← Назад</button>
                 </div>
             `;
+            globalCardsLoading = false;
             return;
         }
     }
@@ -45,6 +49,7 @@ async function loadGlobalCards(container, level) {
         
         if (!allWords || allWords.length === 0) {
             container.innerHTML = '<div style="text-align:center;padding:40px;color:#999;">📭 Нет слов для этого уровня</div>';
+            globalCardsLoading = false;
             return;
         }
         
@@ -66,6 +71,8 @@ async function loadGlobalCards(container, level) {
                 <button onclick="window.renderLevelWithMenu()" style="margin-top:15px;padding:10px 20px;background:#3B6FE0;color:white;border:none;border-radius:8px;cursor:pointer;">← Назад</button>
             </div>
         `;
+    } finally {
+        globalCardsLoading = false;
     }
 }
 
@@ -250,7 +257,6 @@ function renderGlobalCardsDesktop(container) {
 
 // ========== МОБИЛЬНАЯ ВЕРСИЯ (КАРУСЕЛЬ) ==========
 function renderGlobalCardsMobile(container) {
-    // Используем существующую логику из cardsMode.js, но с нашими данными
     renderGlobalCardsDesktop(container);
     const wrapper = container.querySelector('.card');
     if (wrapper) {
@@ -265,9 +271,7 @@ function getGlobalStudiedWords() {
     if (!window.wordsProgress) window.wordsProgress = {};
     if (!window.wordsProgress[level]) window.wordsProgress[level] = [];
     
-    // Собираем все слова уровня
     const allWords = globalCardsWords.length > 0 ? globalCardsWords : [];
-    // Фильтруем изученные
     return allWords.filter(word => window.wordsProgress[level].includes(word.de));
 }
 

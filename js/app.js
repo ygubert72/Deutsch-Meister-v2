@@ -10,6 +10,7 @@ let isRestoring = false;
 let isWelcomePageVisible = true;
 let appReady = false;
 let pendingState = null;
+let isLoadingLesson = false; // Флаг для предотвращения повторных загрузок
 
 // ========== КЛЮЧИ ДЛЯ ХРАНЕНИЯ ==========
 const FIRST_LAUNCH_KEY = 'dm_first_launch';
@@ -185,7 +186,7 @@ window.goBackFromInstruction = function() {
 async function loadLevel(level) {
     // Проверяем доступ к уровню
     if (typeof window.hasAccessToLevel === 'function') {
-        if (!window.auth || !window.authInitialized) {
+        if (!window.auth) {
             console.log('⏳ Ожидание инициализации auth...');
             pendingState = { type: 'level', level: level };
             return;
@@ -254,8 +255,22 @@ async function loadLevel(level) {
 async function loadLesson(lessonId) {
     console.log('📖 loadLesson вызван с lessonId:', lessonId);
     
+    // Защита от повторных загрузок
+    if (isLoadingLesson) {
+        console.log('⏳ Урок уже загружается, пропускаем');
+        return;
+    }
+    
+    // Если урок уже загружен и это тот же урок — просто показываем его
+    if (currentLesson && currentLesson.id === lessonId) {
+        console.log('✅ Урок уже загружен:', lessonId);
+        renderLesson(currentLesson);
+        return;
+    }
+    
+    // Проверка доступа (убрана проверка authInitialized)
     if (typeof window.hasAccessToLevel === 'function') {
-        if (!window.auth || !window.authInitialized) {
+        if (!window.auth) {
             console.log('⏳ Ожидание инициализации auth...');
             pendingState = { type: 'lesson', lessonId: lessonId };
             return;
@@ -267,7 +282,9 @@ async function loadLesson(lessonId) {
         }
     }
     
+    isLoadingLesson = true;
     console.log('📖 Загрузка урока:', lessonId);
+    
     try {
         const lessonInfo = courseData.lessons.find(l => l.id === lessonId);
         if (!lessonInfo) throw new Error('Урок не найден');
@@ -278,6 +295,7 @@ async function loadLesson(lessonId) {
             level: currentLevel
         };
         
+        // Загрузка грамматики
         try {
             const grammarFile = `docs/${currentLevel}/grammar/${String(lessonId).padStart(2, '0')}_grammar.json`;
             console.log('📂 Загрузка грамматики:', grammarFile);
@@ -302,6 +320,7 @@ async function loadLesson(lessonId) {
             lesson.practice = [];
         }
         
+        // Загрузка тренировок
         try {
             const lessonFile = `docs/${currentLevel}/lessons/lesson_${String(lessonId).padStart(2, '0')}.json`;
             console.log('📂 Загрузка тренировок:', lessonFile);
@@ -337,7 +356,7 @@ async function loadLesson(lessonId) {
         saveState();
         
     } catch(e) {
-        console.error('Ошибка загрузки урока:', e);
+        console.error('❌ Ошибка загрузки урока:', e);
         document.getElementById('content').innerHTML = `
             <div style="text-align: center; padding: 40px; color: #999;">
                 <div style="font-size: 48px; margin-bottom: 15px;">❌</div>
@@ -346,6 +365,8 @@ async function loadLesson(lessonId) {
                 <button class="back-btn" onclick="renderLevel()" style="margin-top: 15px;">← Назад</button>
             </div>
         `;
+    } finally {
+        isLoadingLesson = false;
     }
 }
 
@@ -648,7 +669,6 @@ function restoreState() {
                     const lessonExists = courseData.lessons.some(l => l.id === savedState.lessonId);
                     if (lessonExists) {
                         console.log('🔄 Загрузка сохранённого урока:', savedState.lessonId);
-                        // Используем loadLesson, который сам проверит auth
                         loadLesson(savedState.lessonId);
                         return;
                     }
@@ -676,7 +696,7 @@ function initApp() {
             const level = this.getAttribute('data-level');
             
             if (typeof window.hasAccessToLevel === 'function') {
-                if (!window.auth || !window.authInitialized) {
+                if (!window.auth) {
                     alert('⏳ Пожалуйста, подождите, приложение загружается...');
                     return;
                 }
@@ -723,7 +743,7 @@ function initApp() {
             const level = this.getAttribute('data-level');
             
             if (typeof window.hasAccessToLevel === 'function') {
-                if (!window.auth || !window.authInitialized) {
+                if (!window.auth) {
                     alert('⏳ Пожалуйста, подождите, приложение загружается...');
                     return;
                 }
@@ -779,7 +799,7 @@ function initApp() {
         console.log('🔄 Попытка восстановления состояния');
         
         if (typeof window.hasAccessToLevel === 'function') {
-            if (!window.auth || !window.authInitialized) {
+            if (!window.auth) {
                 console.log('⏳ Auth не готов, откладываем восстановление');
                 pendingState = { type: 'restore' };
                 return;

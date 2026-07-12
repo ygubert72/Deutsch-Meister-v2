@@ -183,12 +183,10 @@ window.goBackFromInstruction = function() {
 
 // ========== ЗАГРУЗКА УРОВНЯ ==========
 async function loadLevel(level) {
-    // Проверяем доступ к уровню (только если auth инициализирован)
+    // Проверяем доступ к уровню
     if (typeof window.hasAccessToLevel === 'function') {
-        // Если auth ещё не инициализирован, ждём
         if (!window.auth || !window.authInitialized) {
-            console.log('⏳ Ожидание инициализации auth для проверки доступа...');
-            // Сохраняем запрос на загрузку
+            console.log('⏳ Ожидание инициализации auth...');
             pendingState = { type: 'level', level: level };
             return;
         }
@@ -254,15 +252,14 @@ async function loadLevel(level) {
 
 // ========== ЗАГРУЗКА УРОКА ==========
 async function loadLesson(lessonId) {
-    // Проверяем доступ к текущему уровню
     if (typeof window.hasAccessToLevel === 'function') {
         if (!window.auth || !window.authInitialized) {
-            console.log('⏳ Ожидание инициализации auth для загрузки урока...');
+            console.log('⏳ Ожидание инициализации auth...');
             pendingState = { type: 'lesson', lessonId: lessonId };
             return;
         }
         if (!window.hasAccessToLevel(currentLevel)) {
-            console.warn('⚠️ Нет доступа к уровню, показываем приветственную');
+            console.warn('⚠️ Нет доступа к уровню');
             showWelcomePage();
             return;
         }
@@ -360,6 +357,8 @@ function onAuthReady() {
             loadLevel(state.level);
         } else if (state.type === 'lesson') {
             loadLesson(state.lessonId);
+        } else if (state.type === 'restore') {
+            restoreState();
         }
     }
 }
@@ -605,7 +604,7 @@ function renderMode(mode, lesson) {
     setTimeout(updateCounter, 100);
 }
 
-// ========== ОБНОВЛЕНИЕ ПРИВЕТСТВЕННОЙ СТРАНИЦЫ (ИЗВНЕ) ==========
+// ========== ОБНОВЛЕНИЕ ПРИВЕТСТВЕННОЙ СТРАНИЦЫ ==========
 window.updateWelcomePage = function() {
     if (isWelcomePageVisible) {
         showWelcomePage();
@@ -626,7 +625,6 @@ function restoreState() {
             currentMode = savedState.mode;
         }
         
-        // Активируем кнопку уровня
         document.querySelectorAll('#levelsContainer .btn-level, #levelsContainerMobile .btn-level').forEach(btn => {
             if (btn.getAttribute('data-level') === savedState.level) {
                 btn.classList.add('active');
@@ -635,7 +633,6 @@ function restoreState() {
             }
         });
         
-        // Загружаем курс
         fetch(`docs/${savedState.level}/index.json`)
             .then(response => {
                 if (!response.ok) throw new Error('Курс не найден');
@@ -667,7 +664,6 @@ function restoreState() {
 function initApp() {
     console.log('🚀 Запуск Deutsch-Meister...');
     
-    // Снимаем выделение со всех кнопок уровней при загрузке
     document.querySelectorAll('#levelsContainer .btn-level, #levelsContainerMobile .btn-level').forEach(btn => {
         btn.classList.remove('active');
     });
@@ -676,7 +672,6 @@ function initApp() {
         btn.onclick = function() {
             const level = this.getAttribute('data-level');
             
-            // Проверка доступа
             if (typeof window.hasAccessToLevel === 'function') {
                 if (!window.auth || !window.authInitialized) {
                     alert('⏳ Пожалуйста, подождите, приложение загружается...');
@@ -771,70 +766,31 @@ function initApp() {
     const savedState = loadState();
     const firstLaunch = isFirstLaunch();
     
-    // Если первый запуск — показываем приветственную
     if (firstLaunch) {
         console.log('👋 Первый запуск → приветственная страница');
         showWelcomePage();
         return;
     }
     
-    // Если есть сохранённое состояние — пытаемся восстановить
     if (savedState && savedState.level) {
-        console.log('🔄 Попытка восстановления состояния:', savedState);
-        currentLevel = savedState.level;
-        isWelcomePageVisible = false;
-        if (savedState.mode) {
-            currentMode = savedState.mode;
-        }
+        console.log('🔄 Попытка восстановления состояния');
         
-        // Проверяем доступ к уровню
         if (typeof window.hasAccessToLevel === 'function') {
             if (!window.auth || !window.authInitialized) {
-                console.log('⏳ Auth ещё не готов, сохраняем состояние для восстановления');
-                pendingState = { type: 'restore', state: savedState };
+                console.log('⏳ Auth не готов, откладываем восстановление');
+                pendingState = { type: 'restore' };
                 return;
             }
             if (!window.hasAccessToLevel(savedState.level)) {
-                console.log('⚠️ Сохранённый уровень недоступен, показываем приветственную');
+                console.log('⚠️ Сохранённый уровень недоступен → приветственная');
                 showWelcomePage();
                 return;
             }
         }
         
-        // Активируем кнопку уровня
-        document.querySelectorAll('#levelsContainer .btn-level, #levelsContainerMobile .btn-level').forEach(btn => {
-            if (btn.getAttribute('data-level') === savedState.level) {
-                btn.classList.add('active');
-            } else {
-                btn.classList.remove('active');
-            }
-        });
-        
-        // Загружаем курс
-        fetch(`docs/${savedState.level}/index.json`)
-            .then(response => {
-                if (!response.ok) throw new Error('Курс не найден');
-                return response.json();
-            })
-            .then(data => {
-                courseData = data;
-                console.log('✅ Курс загружен:', courseData.title);
-                
-                if (savedState.lessonId !== null && savedState.lessonId !== undefined) {
-                    const lessonExists = courseData.lessons.some(l => l.id === savedState.lessonId);
-                    if (lessonExists) {
-                        console.log('🔄 Загрузка сохранённого урока:', savedState.lessonId);
-                        loadLesson(savedState.lessonId);
-                        return;
-                    }
-                }
-                renderLevel();
-            })
-            .catch(() => {
-                showWelcomePage();
-            });
+        restoreState();
     } else {
-        console.log('👋 Нет сохранённого состояния → приветственная страница');
+        console.log('👋 Нет сохранённого состояния → приветственная');
         showWelcomePage();
     }
     

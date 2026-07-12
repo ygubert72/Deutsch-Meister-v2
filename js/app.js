@@ -9,15 +9,6 @@ let courseData = null;
 let isRestoring = false;
 let isWelcomePageVisible = true;
 
-// ========== SVG НЕМЕЦКОГО ФЛАГА ==========
-const GERMAN_FLAG_SVG = `
-<svg width="60" height="40" viewBox="0 0 60 40" xmlns="http://www.w3.org/2000/svg">
-    <rect width="60" height="13.33" fill="#000000"/>
-    <rect y="13.33" width="60" height="13.33" fill="#DD0000"/>
-    <rect y="26.66" width="60" height="13.34" fill="#FFCC00"/>
-</svg>
-`;
-
 // ========== СОХРАНЕНИЕ СОСТОЯНИЯ ==========
 function saveState() {
     try {
@@ -61,10 +52,13 @@ function showWelcomePage() {
     indicator.textContent = '🏠 Главная';
     if (counter) counter.textContent = '';
     
+    // Используем флаг из config.js
+    const flagSvg = window.GERMAN_FLAG_SVG || '';
+    
     content.innerHTML = `
         <div style="display:flex; flex-direction:column; align-items:center; justify-content:center; min-height:70vh; text-align:center; padding:20px;">
             <div style="margin-bottom:20px;">
-                ${GERMAN_FLAG_SVG}
+                ${flagSvg}
             </div>
             <h1 style="font-size:42px; color:#1A1A1A; margin:0 0 10px 0;">Deutsch-Meister</h1>
             <p style="font-size:20px; color:#3B6FE0; margin:0 0 5px 0; font-weight:500;">Добро пожаловать в Deutsch-Meister!</p>

@@ -22,12 +22,11 @@
             <div id="userInfo" style="display: none; margin: 10px 0; padding: 8px; background: #E8F0FE; border-radius: 8px; text-align: center; font-size: 12px;"></div>
             <div style="margin: 15px 0 5px 0; font-size: 12px; color: #666; text-align: center; font-weight: bold;">📚 УРОВНИ</div>
             <div class="levels-container" id="levelsContainer">
-                <!-- УБРАЛ class="active" у A1 -->
-                <button data-level="A1" class="btn btn-level">A1</button>
-                <button data-level="A2" class="btn btn-level">A2</button>
-                <button data-level="B1" class="btn btn-level">B1</button>
-                <button data-level="B2" class="btn btn-level">B2</button>
-                <button data-level="C1" class="btn btn-level">C1</button>
+                <button data-level="A1" class="btn btn-level level-btn-click">A1</button>
+                <button data-level="A2" class="btn btn-level level-btn-click">A2</button>
+                <button data-level="B1" class="btn btn-level level-btn-click">B1</button>
+                <button data-level="B2" class="btn btn-level level-btn-click">B2</button>
+                <button data-level="C1" class="btn btn-level level-btn-click">C1</button>
             </div>
             
             <button id="instructionBtn" class="btn" style="margin-top: 10px; background: #E8F0FE; border: 2px solid #D0D0D0; border-radius: 8px; cursor: pointer; font-weight: bold; font-size: 14px; font-family: inherit;" onclick="showInstruction()">
@@ -71,12 +70,11 @@
         <div id="userInfoMobile" style="display: none; margin: 10px 0; padding: 8px; background: #E8F0FE; border-radius: 8px; text-align: center; font-size: 12px;"></div>
         <div style="margin: 15px 0 5px 0; font-size: 12px; color: #666; text-align: center; font-weight: bold;">📚 УРОВНИ</div>
         <div class="levels-container" id="levelsContainerMobile">
-            <!-- УБРАЛ class="active" у A1 -->
-            <button data-level="A1" class="btn btn-level">A1</button>
-            <button data-level="A2" class="btn btn-level">A2</button>
-            <button data-level="B1" class="btn btn-level">B1</button>
-            <button data-level="B2" class="btn btn-level">B2</button>
-            <button data-level="C1" class="btn btn-level">C1</button>
+            <button data-level="A1" class="btn btn-level level-btn-click">A1</button>
+            <button data-level="A2" class="btn btn-level level-btn-click">A2</button>
+            <button data-level="B1" class="btn btn-level level-btn-click">B1</button>
+            <button data-level="B2" class="btn btn-level level-btn-click">B2</button>
+            <button data-level="C1" class="btn btn-level level-btn-click">C1</button>
         </div>
         
         <button id="instructionBtnMobile" class="btn" style="margin-top: 10px; background: #E8F0FE; border: 2px solid #D0D0D0; border-radius: 8px; cursor: pointer; font-weight: bold; font-size: 14px; font-family: inherit;" onclick="showInstruction()">
@@ -138,6 +136,40 @@ console.log('✅ Firebase инициализирован');
 <script src="js/donateModal.js"></script>
 
 <script>
+// ===== ОБРАБОТЧИКИ КНОПОК УРОВНЕЙ (ПРЯМЫЕ) =====
+document.addEventListener('DOMContentLoaded', function() {
+    // Десктопные кнопки
+    document.querySelectorAll('#levelsContainer .level-btn-click').forEach(function(btn) {
+        btn.addEventListener('click', function(e) {
+            var level = this.getAttribute('data-level');
+            console.log('🖱️ Клик по уровню (десктоп):', level);
+            
+            if (typeof window.loadLevel === 'function') {
+                window.loadLevel(level);
+            } else {
+                console.error('❌ window.loadLevel не определена!');
+                alert('Ошибка: функция загрузки уровня не найдена. Попробуйте обновить страницу.');
+            }
+        });
+    });
+    
+    // Мобильные кнопки
+    document.querySelectorAll('#levelsContainerMobile .level-btn-click').forEach(function(btn) {
+        btn.addEventListener('click', function(e) {
+            var level = this.getAttribute('data-level');
+            console.log('🖱️ Клик по уровню (мобильный):', level);
+            
+            if (typeof window.loadLevel === 'function') {
+                window.loadLevel(level);
+            } else {
+                console.error('❌ window.loadLevel не определена!');
+                alert('Ошибка: функция загрузки уровня не найдена. Попробуйте обновить страницу.');
+            }
+        });
+    });
+});
+
+// ===== МОБИЛЬНОЕ МЕНЮ =====
 document.getElementById('hamburgerBtn').onclick = function() {
     document.getElementById('mobileMenu').classList.add('open');
     document.getElementById('menuOverlay').classList.add('show');

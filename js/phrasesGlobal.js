@@ -74,9 +74,11 @@ async function loadGlobalPhrases(container, level) {
         
         loadGlobalPhrasesProgress(level);
         
-        // 👇 ПРЯМОЙ ВЫЗОВ РЕНДЕРИНГА С ПРОВЕРКОЙ
+        // 👇 СНАЧАЛА СБРАСЫВАЕМ ФЛАГ, ПОТОМ ВЫЗЫВАЕМ РЕНДЕРИНГ
         console.log('✅ Данные загружены, вызываем рендеринг фраз...');
+        globalPhrasesLoading = false;
         renderGlobalPhrases();
+        globalPhrasesLoading = true;
         
     } catch(e) {
         console.error('❌ Ошибка загрузки фраз:', e);

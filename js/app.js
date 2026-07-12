@@ -1,5 +1,5 @@
 // ====================================================================
-// app.js — ГЛАВНЫЙ ФАЙЛ (навигация, загрузка, сохранение состояния)
+// app.js — ГЛАВНЫЙ ФАЙЛ (навигация, загрузка, отрисовка)
 // ====================================================================
 
 // ========== СОСТОЯНИЕ ==========
@@ -8,180 +8,6 @@ let currentLesson = null;
 let courseData = null;
 let isRestoring = false;
 let isWelcomePageVisible = true;
-
-// ========== SVG НЕМЕЦКОГО ФЛАГА ==========
-const GERMAN_FLAG_SVG = `
-<svg width="60" height="40" viewBox="0 0 60 40" xmlns="http://www.w3.org/2000/svg">
-    <rect width="60" height="13.33" fill="#000000"/>
-    <rect y="13.33" width="60" height="13.33" fill="#DD0000"/>
-    <rect y="26.66" width="60" height="13.34" fill="#FFCC00"/>
-</svg>
-`;
-
-// ========== СОХРАНЕНИЕ СОСТОЯНИЯ ==========
-function saveState() {
-    try {
-        const state = {
-            level: currentLevel,
-            lessonId: currentLesson?.id || null,
-            mode: currentMode || 'grammar'
-        };
-        localStorage.setItem('dm_app_state', JSON.stringify(state));
-        console.log('💾 Состояние сохранено:', state);
-    } catch(e) {
-        console.log('Ошибка сохранения состояния:', e);
-    }
-}
-
-function loadState() {
-    try {
-        const saved = localStorage.getItem('dm_app_state');
-        if (saved) {
-            const state = JSON.parse(saved);
-            console.log('📂 Состояние загружено из localStorage:', state);
-            return state;
-        }
-    } catch(e) {
-        console.log('Ошибка загрузки состояния:', e);
-    }
-    return null;
-}
-
-// ========== ПОКАЗАТЬ ПРИВЕТСТВЕННУЮ СТРАНИЦУ ==========
-function showWelcomePage() {
-    isWelcomePageVisible = true;
-    currentLevel = 'A1';
-    currentLesson = null;
-    courseData = null;
-    
-    const content = document.getElementById('content');
-    const indicator = document.getElementById('modeIndicator');
-    const counter = document.getElementById('counter');
-    
-    indicator.textContent = '🏠 Главная';
-    if (counter) counter.textContent = '';
-    
-    content.innerHTML = `
-        <div style="display:flex; flex-direction:column; align-items:center; justify-content:center; min-height:70vh; text-align:center; padding:20px;">
-            <div style="margin-bottom:20px;">
-                ${GERMAN_FLAG_SVG}
-            </div>
-            <h1 style="font-size:42px; color:#1A1A1A; margin:0 0 10px 0;">Deutsch-Meister</h1>
-            <p style="font-size:20px; color:#3B6FE0; margin:0 0 5px 0; font-weight:500;">Добро пожаловать в Deutsch-Meister!</p>
-            <p style="font-size:18px; color:#555; margin:5px 0 20px 0; font-style:italic;">
-                Übung macht den Meister <span style="color:#888;">—</span> Практика делает мастера.
-            </p>
-            <p style="font-size:16px; color:#666; max-width:550px; margin:0 auto 10px auto; line-height:1.7;">
-                Изучайте немецкий язык с нуля до уровня C1 по нашей современной методике.
-            </p>
-            <p style="font-size:14px; color:#888; max-width:550px; margin:0 auto 30px auto; line-height:1.7;">
-                Выберите свой уровень в меню слева и начинайте обучение.<br>
-                Все уроки содержат грамматику, тесты, тренажёр, диктант и аудирование.
-            </p>
-            <button onclick="showInstruction()" style="padding:12px 40px; background:linear-gradient(135deg, #3B6FE0, #2B5BC7); color:white; border:none; border-radius:12px; cursor:pointer; font-size:16px; font-weight:bold; box-shadow:0 4px 15px rgba(59,111,224,0.3); transition:all 0.1s ease;">
-                ❓ Инструкция
-            </button>
-            <div style="margin-top:20px; font-size:12px; color:#bbb;">
-                🔒 A1 — доступен всем &nbsp;·&nbsp; A2 — после регистрации &nbsp;·&nbsp; B1-C1 — с премиумом
-            </div>
-        </div>
-    `;
-    
-    document.getElementById('modeIndicator').textContent = '🏠 Главная';
-    
-    if (typeof window.updateLevelButtons === 'function') {
-        setTimeout(window.updateLevelButtons, 100);
-    }
-    
-    saveState();
-}
-
-// ========== ПОКАЗАТЬ ИНСТРУКЦИЮ ==========
-function showInstruction() {
-    const content = document.getElementById('content');
-    const indicator = document.getElementById('modeIndicator');
-    const counter = document.getElementById('counter');
-    
-    const previousPage = isWelcomePageVisible ? 'welcome' : 'level';
-    indicator.textContent = '❓ Инструкция';
-    if (counter) counter.textContent = '';
-    
-    content.innerHTML = `
-        <div style="max-width:800px; margin:0 auto; padding:20px 15px;">
-            <button onclick="window.goBackFromInstruction()" 
-                    style="padding:8px 20px; background:#E8F0FE; border:2px solid #D0D0D0; border-radius:8px; cursor:pointer; font-weight:bold; margin-bottom:20px; transition:all 0.08s ease;">
-                ← Назад
-            </button>
-            
-            <h1 style="font-size:32px; color:#1A1A1A; margin:0 0 25px 0;">❓ Инструкция</h1>
-            
-            <div style="background:#f8f9fa; border-radius:12px; padding:20px; margin-bottom:20px;">
-                <h3 style="margin:0 0 10px 0; color:#3B6FE0;">📚 Как пользоваться Deutsch-Meister</h3>
-                <ol style="line-height:2; padding-left:20px; font-size:15px; color:#444;">
-                    <li><strong>Выберите уровень</strong> — A1, A2, B1, B2 или C1 в меню слева</li>
-                    <li><strong>Откройте урок</strong> — нажмите на нужный урок в списке</li>
-                    <li><strong>Изучайте грамматику</strong> — теория, примеры, словарь и упражнения</li>
-                    <li><strong>Тренируйте слова</strong> — режим «Тест» с карточками и контейнером</li>
-                    <li><strong>Собирайте фразы</strong> — режим «Тренажёр» из слов</li>
-                    <li><strong>Пишите диктанты</strong> — проверяйте правописание</li>
-                    <li><strong>Слушайте аудирование</strong> — развивайте навыки восприятия на слух</li>
-                </ol>
-            </div>
-            
-            <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap:15px; margin-bottom:20px;">
-                <div style="background:#E8F0FE; border-radius:10px; padding:15px; text-align:center;">
-                    <div style="font-size:32px; margin-bottom:5px;">📘</div>
-                    <div style="font-size:13px; font-weight:bold; color:#333;">Грамматика</div>
-                </div>
-                <div style="background:#FFF3E0; border-radius:10px; padding:15px; text-align:center;">
-                    <div style="font-size:32px; margin-bottom:5px;">🎯</div>
-                    <div style="font-size:13px; font-weight:bold; color:#333;">Тест</div>
-                </div>
-                <div style="background:#E8F5E9; border-radius:10px; padding:15px; text-align:center;">
-                    <div style="font-size:32px; margin-bottom:5px;">🧩</div>
-                    <div style="font-size:13px; font-weight:bold; color:#333;">Тренажёр</div>
-                </div>
-                <div style="background:#FFF8E1; border-radius:10px; padding:15px; text-align:center;">
-                    <div style="font-size:32px; margin-bottom:5px;">✏️</div>
-                    <div style="font-size:13px; font-weight:bold; color:#333;">Диктант</div>
-                </div>
-                <div style="background:#F3E5F5; border-radius:10px; padding:15px; text-align:center;">
-                    <div style="font-size:32px; margin-bottom:5px;">🎧</div>
-                    <div style="font-size:13px; font-weight:bold; color:#333;">Аудирование</div>
-                </div>
-            </div>
-            
-            <div style="background:#FFF8E1; border-radius:12px; padding:15px 20px; margin-bottom:15px; border-left:4px solid #FFC107;">
-                <p style="margin:0; font-size:14px; color:#555;">
-                    💡 <strong>Прогресс сохраняется автоматически</strong> — слова и фразы, отмеченные как «Изучено», попадают в контейнер и не повторяются.
-                </p>
-            </div>
-            
-            <div style="background:#E8F5E9; border-radius:12px; padding:15px 20px; border-left:4px solid #4CAF50;">
-                <p style="margin:0; font-size:14px; color:#555;">
-                    🔐 <strong>Доступ к уровням:</strong> A1 — доступен всем · A2 — после регистрации · B1-C1 — с премиум-доступом
-                </p>
-            </div>
-        </div>
-    `;
-    
-    window._instructionReturnPage = previousPage;
-}
-
-// ========== ВОЗВРАТ ИЗ ИНСТРУКЦИИ ==========
-window.goBackFromInstruction = function() {
-    if (window._instructionReturnPage === 'welcome' || isWelcomePageVisible) {
-        showWelcomePage();
-    } else {
-        if (currentLesson) {
-            renderLesson(currentLesson);
-        } else if (courseData) {
-            renderLevel();
-        } else {
-            showWelcomePage();
-        }
-    }
-};
 
 // ========== ЗАГРУЗКА УРОВНЯ ==========
 async function loadLevel(level) {
@@ -197,7 +23,12 @@ async function loadLevel(level) {
             } else if (level === 'A2') {
                 message += '\n\n🔐 Для уровня A2 нужна регистрация.';
             } else if (level === 'B1' || level === 'B2' || level === 'C1') {
-                message += '\n\n💎 Для уровня ' + level + ' требуется премиум-доступ. Нажмите "Оплатить премиум" в профиле.';
+                const userData = window.getCurrentUserData ? window.getCurrentUserData() : null;
+                if (!userData || !userData.hasPremiumAccess) {
+                    message += '\n\n💎 Для уровня ' + level + ' требуется премиум-доступ. Нажмите "Оплатить премиум" в профиле.';
+                } else {
+                    message += '\n\n⛔ Доступ запрещён.';
+                }
             }
             alert(message);
             
@@ -226,7 +57,9 @@ async function loadLevel(level) {
         courseData = await response.json();
         console.log('✅ Курс загружен:', courseData.title);
         renderLevel();
-        saveState();
+        if (typeof window.saveState === 'function') {
+            window.saveState();
+        }
     } catch(e) {
         console.error('Ошибка загрузки курса:', e);
         document.getElementById('content').innerHTML = `
@@ -307,7 +140,9 @@ async function loadLesson(lessonId) {
         currentLesson = lesson;
         isWelcomePageVisible = false;
         renderLesson(lesson);
-        saveState();
+        if (typeof window.saveState === 'function') {
+            window.saveState();
+        }
         
     } catch(e) {
         console.error('Ошибка загрузки урока:', e);
@@ -333,7 +168,7 @@ function updateCounter() {
         return;
     }
     
-    const activeMode = currentMode || 'grammar';
+    const activeMode = window.currentMode || 'grammar';
     
     if (activeMode === 'grammar') {
         el.textContent = '';
@@ -418,7 +253,9 @@ function renderLevel() {
     document.getElementById('content').innerHTML = html;
     document.getElementById('modeIndicator').textContent = `Курс ${currentLevel}`;
     updateCounter();
-    saveState();
+    if (typeof window.saveState === 'function') {
+        window.saveState();
+    }
 
     document.querySelectorAll('.lesson-btn').forEach(btn => {
         btn.onclick = function() {
@@ -432,7 +269,9 @@ function renderLevel() {
 function renderLesson(lesson) {
     currentLesson = lesson;
     isWelcomePageVisible = false;
-    saveState();
+    if (typeof window.saveState === 'function') {
+        window.saveState();
+    }
 
     const lessonId = lesson.id || 1;
     const level = lesson.level || 'A1';
@@ -483,21 +322,23 @@ function buildLessonHTML(lesson, hasListening) {
             document.querySelectorAll('.mode-btn').forEach(b => b.classList.remove('active'));
             this.classList.add('active');
             const mode = this.getAttribute('data-mode');
-            currentMode = mode;
-            saveState();
+            window.currentMode = mode;
+            if (typeof window.saveState === 'function') {
+                window.saveState();
+            }
             renderMode(mode, lesson);
             setTimeout(updateCounter, 50);
         };
     });
 
     if (!isRestoring) {
-        const savedState = loadState();
+        const savedState = typeof window.loadState === 'function' ? window.loadState() : null;
         if (savedState && savedState.mode && savedState.lessonId === lesson.id) {
             const modeBtn = document.querySelector(`.mode-btn[data-mode="${savedState.mode}"]`);
             if (modeBtn) {
                 document.querySelectorAll('.mode-btn').forEach(b => b.classList.remove('active'));
                 modeBtn.classList.add('active');
-                currentMode = savedState.mode;
+                window.currentMode = savedState.mode;
                 renderMode(savedState.mode, lesson);
                 setTimeout(updateCounter, 50);
                 return;
@@ -566,7 +407,9 @@ function renderMode(mode, lesson) {
 // ========== ОБНОВЛЕНИЕ ПРИВЕТСТВЕННОЙ СТРАНИЦЫ (ИЗВНЕ) ==========
 window.updateWelcomePage = function() {
     if (isWelcomePageVisible) {
-        showWelcomePage();
+        if (typeof window.showWelcomePage === 'function') {
+            window.showWelcomePage();
+        }
     }
     if (typeof window.updateLevelButtons === 'function') {
         setTimeout(window.updateLevelButtons, 100);
@@ -649,7 +492,7 @@ function initApp() {
         };
     });
     
-    const savedState = loadState();
+    const savedState = typeof window.loadState === 'function' ? window.loadState() : null;
     
     if (savedState && savedState.level && savedState.lessonId !== null && savedState.lessonId !== undefined) {
         setTimeout(() => {
@@ -660,16 +503,20 @@ function initApp() {
                     currentLevel = savedState.level;
                     isWelcomePageVisible = false;
                     if (savedState.mode) {
-                        currentMode = savedState.mode;
+                        window.currentMode = savedState.mode;
                     }
                     loadLesson(savedState.lessonId);
                     return;
                 }
             }
-            showWelcomePage();
+            if (typeof window.showWelcomePage === 'function') {
+                window.showWelcomePage();
+            }
         }, 300);
     } else {
-        showWelcomePage();
+        if (typeof window.showWelcomePage === 'function') {
+            window.showWelcomePage();
+        }
     }
     
     if (typeof window.updateLevelButtons === 'function') {
@@ -682,10 +529,21 @@ function initApp() {
     console.log('✅ Deutsch-Meister готов!');
 }
 
+// ========== ЭКСПОРТ ==========
+window.currentLevel = currentLevel;
+window.currentLesson = currentLesson;
+window.courseData = courseData;
+window.isWelcomePageVisible = isWelcomePageVisible;
+window.loadLevel = loadLevel;
+window.loadLesson = loadLesson;
+window.renderLevel = renderLevel;
+window.renderLesson = renderLesson;
+window.renderMode = renderMode;
+window.updateCounter = updateCounter;
+window.initApp = initApp;
+
 document.addEventListener('DOMContentLoaded', function() {
     initApp();
 });
 
-window.showWelcomePage = showWelcomePage;
-window.showInstruction = showInstruction;
-window.isWelcomePageVisible = isWelcomePageVisible;
+console.log('🚀 app.js загружен');

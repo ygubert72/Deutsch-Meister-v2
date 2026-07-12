@@ -9,10 +9,33 @@ let globalCardsContainer = null;
 async function loadGlobalCards(container, level) {
     globalCardsContainer = container;
     
-    // Проверяем, есть ли курс
-    if (!window.courseData) {
-        container.innerHTML = '<div style="text-align:center;padding:40px;color:#999;">❌ Курс не загружен. Выберите уровень заново.</div>';
-        return;
+    // Проверяем, есть ли курс — используем переданный или глобальный
+    let courseData = window.courseData;
+    
+    // Если курс ещё не загружен — ждём
+    if (!courseData) {
+        console.log('⏳ Ожидание загрузки courseData...');
+        container.innerHTML = '<div style="text-align:center;padding:40px;color:#999;">🔄 Загрузка данных курса...</div>';
+        
+        // Ждём загрузки courseData (максимум 5 секунд)
+        let attempts = 0;
+        const maxAttempts = 50;
+        while (!window.courseData && attempts < maxAttempts) {
+            await new Promise(resolve => setTimeout(resolve, 100));
+            attempts++;
+            courseData = window.courseData;
+        }
+        
+        if (!courseData) {
+            container.innerHTML = `
+                <div style="text-align:center;padding:40px;color:#999;">
+                    <div style="font-size:48px;margin-bottom:15px;">❌</div>
+                    <div>Курс не загружен. Попробуйте выбрать уровень заново.</div>
+                    <button onclick="window.renderLevelWithMenu()" style="margin-top:15px;padding:10px 20px;background:#3B6FE0;color:white;border:none;border-radius:8px;cursor:pointer;">← Назад</button>
+                </div>
+            `;
+            return;
+        }
     }
     
     container.innerHTML = '<div style="text-align:center;padding:40px;color:#999;">🔄 Загрузка всех слов уровня...</div>';
@@ -150,13 +173,9 @@ function renderGlobalCardsDesktop(container) {
     }
     
     function updateGlobalCounter() {
-        const counter = container.querySelector('.hint');
-        if (counter && globalCardsWords.length) {
-            // Обновляем счётчик вверху
-            const progress = container.querySelector('.btn-group + div');
-            if (progress) {
-                progress.textContent = `${globalCardsIndex + 1} / ${globalCardsWords.length}`;
-            }
+        const progress = container.querySelector('.btn-group + div');
+        if (progress && globalCardsWords.length) {
+            progress.textContent = `${globalCardsIndex + 1} / ${globalCardsWords.length}`;
         }
     }
     
@@ -232,10 +251,7 @@ function renderGlobalCardsDesktop(container) {
 // ========== МОБИЛЬНАЯ ВЕРСИЯ (КАРУСЕЛЬ) ==========
 function renderGlobalCardsMobile(container) {
     // Используем существующую логику из cardsMode.js, но с нашими данными
-    // Для простоты — показываем десктопную версию с адаптивом
-    // Можно расширить позже, если нужно
     renderGlobalCardsDesktop(container);
-    // Добавляем мобильные стили через классы
     const wrapper = container.querySelector('.card');
     if (wrapper) {
         wrapper.style.maxWidth = '100%';
@@ -263,7 +279,6 @@ function showGlobalWordsContainer(studiedWords) {
             emptyMessage: '📭 Контейнер пуст',
             itemTemplate: function(word) { return word.de + ' — ' + word.ru; },
             onReturnItem: function(wordId) {
-                // Возвращаем слово
                 const level = window.currentLevel || 'A1';
                 if (window.wordsProgress && window.wordsProgress[level]) {
                     const index = window.wordsProgress[level].indexOf(wordId);
@@ -272,10 +287,8 @@ function showGlobalWordsContainer(studiedWords) {
                         if (typeof window.saveProgress === 'function') window.saveProgress();
                     }
                 }
-                // Обновляем контейнер
                 const newStudied = getGlobalStudiedWords();
                 if (newStudied.length === 0) {
-                    // Если контейнер пуст — закрываем модалку и обновляем карточки
                     const modal = document.getElementById('containerModal');
                     if (modal) modal.remove();
                     loadGlobalCards(globalCardsContainer, window.currentLevel);

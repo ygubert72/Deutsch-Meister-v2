@@ -73,6 +73,9 @@ async function loadGlobalPhrases(container, level) {
         globalPhrasesStudied = {};
         
         loadGlobalPhrasesProgress(level);
+        
+        // 👇 ПРЯМОЙ ВЫЗОВ РЕНДЕРИНГА С ПРОВЕРКОЙ
+        console.log('✅ Данные загружены, вызываем рендеринг фраз...');
         renderGlobalPhrases();
         
     } catch(e) {
@@ -123,10 +126,22 @@ function renderGlobalPhrases() {
     const container = globalPhrasesContainer;
     if (!container) {
         console.error('❌ Нет контейнера для рендеринга фраз');
+        const newContainer = document.getElementById('sectionContent');
+        if (newContainer) {
+            globalPhrasesContainer = newContainer;
+            console.log('✅ Контейнер найден заново');
+            renderGlobalPhrases();
+            return;
+        }
         return;
     }
     
     console.log('🎨 Рендеринг фраз, всего:', globalPhrasesWords.length);
+    
+    if (!globalPhrasesWords || globalPhrasesWords.length === 0) {
+        container.innerHTML = '<div style="text-align:center;padding:40px;color:#999;">📭 Нет фраз для отображения</div>';
+        return;
+    }
     
     const availablePhrases = globalPhrasesWords.filter(p => {
         const key = p.de + '|' + p.ru;

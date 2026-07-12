@@ -10,46 +10,45 @@ let globalCardsLoading = false;
 async function loadGlobalCards(container, level) {
     // Защита от повторных загрузок
     if (globalCardsLoading) {
-        console.log('⏳ Карточки уже загружаются...');
+        console.log('⏳ Карточки уже загружаются, пропускаем...');
         return;
     }
     
     globalCardsContainer = container;
     globalCardsLoading = true;
-    
-    // Проверяем, есть ли курс
-    if (!window.courseData) {
-        console.log('⏳ courseData ещё не загружен, пробуем подождать...');
-        container.innerHTML = '<div style="text-align:center;padding:40px;color:#999;">🔄 Загрузка данных курса...</div>';
-        
-        // Ждём максимум 2 секунды
-        let attempts = 0;
-        while (!window.courseData && attempts < 20) {
-            await new Promise(resolve => setTimeout(resolve, 100));
-            attempts++;
-        }
-        
-        if (!window.courseData) {
-            container.innerHTML = `
-                <div style="text-align:center;padding:40px;color:#999;">
-                    <div style="font-size:48px;margin-bottom:15px;">❌</div>
-                    <div>Курс не загружен. Попробуйте выбрать уровень заново.</div>
-                    <button onclick="window.renderLevelWithMenu()" style="margin-top:15px;padding:10px 20px;background:#3B6FE0;color:white;border:none;border-radius:8px;cursor:pointer;">← Назад</button>
-                </div>
-            `;
-            globalCardsLoading = false;
-            return;
-        }
-    }
-    
-    container.innerHTML = '<div style="text-align:center;padding:40px;color:#999;">🔄 Загрузка всех слов уровня...</div>';
+    console.log('🔄 Начинаем загрузку карточек...');
     
     try {
+        // Проверяем, есть ли курс
+        if (!window.courseData) {
+            console.log('⏳ courseData ещё не загружен, пробуем подождать...');
+            container.innerHTML = '<div style="text-align:center;padding:40px;color:#999;">🔄 Загрузка данных курса...</div>';
+            
+            // Ждём максимум 2 секунды
+            let attempts = 0;
+            while (!window.courseData && attempts < 20) {
+                await new Promise(resolve => setTimeout(resolve, 100));
+                attempts++;
+            }
+            
+            if (!window.courseData) {
+                container.innerHTML = `
+                    <div style="text-align:center;padding:40px;color:#999;">
+                        <div style="font-size:48px;margin-bottom:15px;">❌</div>
+                        <div>Курс не загружен. Попробуйте выбрать уровень заново.</div>
+                        <button onclick="window.renderLevelWithMenu()" style="margin-top:15px;padding:10px 20px;background:#3B6FE0;color:white;border:none;border-radius:8px;cursor:pointer;">← Назад</button>
+                    </div>
+                `;
+                return;
+            }
+        }
+        
+        container.innerHTML = '<div style="text-align:center;padding:40px;color:#999;">🔄 Загрузка всех слов уровня...</div>';
+        
         const allWords = await window.getAllWordsForLevel(level);
         
         if (!allWords || allWords.length === 0) {
             container.innerHTML = '<div style="text-align:center;padding:40px;color:#999;">📭 Нет слов для этого уровня</div>';
-            globalCardsLoading = false;
             return;
         }
         
@@ -72,7 +71,9 @@ async function loadGlobalCards(container, level) {
             </div>
         `;
     } finally {
+        // ВАЖНО: сбрасываем флаг загрузки
         globalCardsLoading = false;
+        console.log('✅ Флаг загрузки карточек сброшен');
     }
 }
 

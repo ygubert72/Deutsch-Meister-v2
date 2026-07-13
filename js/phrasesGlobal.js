@@ -9,9 +9,16 @@ let globalPhrasesSelected = [];
 let globalPhrasesAvailable = [];
 let globalPhrasesActive = {};
 let globalPhrasesHintIndex = 0;
+let globalPhrasesLoading = false;
 
 // ========== ОСНОВНАЯ ФУНКЦИЯ ==========
 async function loadGlobalPhrases(container, level) {
+    // Предотвращаем повторные вызовы
+    if (globalPhrasesLoading) {
+        console.log('⏳ Фразы уже загружаются, пропускаем');
+        return;
+    }
+    
     console.log('🔄 loadGlobalPhrases вызван, уровень:', level);
     
     globalPhrasesContainer = container || document.getElementById('sectionContent');
@@ -20,32 +27,50 @@ async function loadGlobalPhrases(container, level) {
         return;
     }
     
+    // Проверяем, что уровень передан
+    const actualLevel = level || window.currentLevel || 'A1';
+    if (!actualLevel) {
+        console.error('❌ Уровень не указан');
+        globalPhrasesContainer.innerHTML = '<div style="text-align:center;padding:40px;color:#999;">❌ Ошибка: уровень не указан</div>';
+        return;
+    }
+    
     // Ждем загрузки курса
     let attempts = 0;
-    while (!window.courseData && attempts < 15) {
+    while (!window.courseData && attempts < 20) {
         await new Promise(r => setTimeout(r, 200));
         attempts++;
-        console.log(`⏳ Ожидание courseData для фраз... попытка ${attempts}`);
+        if (attempts > 10) {
+            console.log(`⏳ Ожидание courseData для фраз... попытка ${attempts}`);
+        }
     }
     
     if (!window.courseData) {
         globalPhrasesContainer.innerHTML = `
             <div style="text-align:center;padding:40px;color:#999;">
                 <div style="font-size:48px;margin-bottom:15px;">⏳</div>
-                <div>Данные курса загружаются. Попробуйте обновить страницу.</div>
+                <div>Данные курса загружаются...</div>
                 <button onclick="window.renderLevelWithMenu()" style="margin-top:15px;padding:10px 20px;background:#3B6FE0;color:white;border:none;border-radius:8px;cursor:pointer;">← Назад</button>
             </div>
         `;
         return;
     }
     
+    globalPhrasesLoading = true;
     globalPhrasesContainer.innerHTML = '<div style="text-align:center;padding:40px;color:#999;">🔄 Загрузка фраз...</div>';
     
     try {
-        const allPhrases = await window.getAllPhrasesForLevel(level);
+        const allPhrases = await window.getAllPhrasesForLevel(actualLevel);
         
         if (!allPhrases || allPhrases.length === 0) {
-            globalPhrasesContainer.innerHTML = '<div style="text-align:center;padding:40px;color:#999;">📭 Нет фраз для этого уровня</div>';
+            globalPhrasesContainer.innerHTML = `
+                <div style="text-align:center;padding:40px;color:#999;">
+                    <div style="font-size:48px;margin-bottom:15px;">📭</div>
+                    <div>Нет фраз для уровня ${actualLevel}</div>
+                    <button onclick="window.renderLevelWithMenu()" style="margin-top:15px;padding:10px 20px;background:#3B6FE0;color:white;border:none;border-radius:8px;cursor:pointer;">← Назад</button>
+                </div>
+            `;
+            globalPhrasesLoading = false;
             return;
         }
         
@@ -55,8 +80,7 @@ async function loadGlobalPhrases(container, level) {
         globalPhrasesDirection = 'ru_to_de';
         globalPhrasesStudied = {};
         
-        // Загружаем прогресс
-        const key = 'dm_global_phrases_progress_' + level;
+        const key = 'dm_global_phrases_progress_' + actualLevel;
         try {
             const saved = localStorage.getItem(key);
             if (saved) globalPhrasesStudied = JSON.parse(saved);
@@ -73,6 +97,8 @@ async function loadGlobalPhrases(container, level) {
                 <button onclick="window.renderLevelWithMenu()" style="margin-top:15px;padding:10px 20px;background:#3B6FE0;color:white;border:none;border-radius:8px;cursor:pointer;">← Назад</button>
             </div>
         `;
+    } finally {
+        globalPhrasesLoading = false;
     }
 }
 
@@ -83,8 +109,6 @@ function renderGlobalPhrases() {
         console.error('❌ Нет контейнера');
         return;
     }
-    
-    console.log('🎨 Рендеринг фраз, всего:', globalPhrasesWords.length);
     
     const available = globalPhrasesWords.filter(p => {
         const key = p.de + '|' + p.ru;
@@ -112,7 +136,6 @@ function renderGlobalPhrases() {
     const deWords = current.de.replace(/[.,!?;:]/g, '').split(/\s+/);
     const ruWords = current.ru.replace(/[.,!?;:]/g, '').split(/\s+/);
     
-    // Слова для сборки
     const correctWords = deWords.map((w, i) => ({
         display: isRuToDe ? w : (ruWords[i] || w),
         de: w,
@@ -120,7 +143,6 @@ function renderGlobalPhrases() {
         isCorrect: true
     }));
     
-    // Дистракторы
     const distractors = [];
     const allWordsSet = new Set();
     for (const p of globalPhrasesWords) {
@@ -199,9 +221,11 @@ function renderGlobalPhrases() {
         </div>
     `;
     
-    // ===== ОБРАБОТЧИКИ =====
-    
-    // Слова
+    setupPhraseEventListeners(container, current, deWords, isRuToDe, available);
+}
+
+// ========== НАСТРОЙКА ОБРАБОТЧИКОВ ==========
+function setupPhraseEventListeners(container, current, deWords, isRuToDe, available) {
     document.querySelectorAll('#phrasesWordsContainer .word-btn').forEach(btn => {
         btn.addEventListener('click', function() {
             const word = this.getAttribute('data-word');
@@ -297,13 +321,12 @@ function renderGlobalPhrases() {
     
     document.getElementById('phrasesHintBtn').onclick = function() {
         const hintLabel = document.getElementById('phrasesHintLabel');
-        const hintWords = deWords;
-        if (globalPhrasesHintIndex < hintWords.length) {
-            const hint = hintWords.slice(0, globalPhrasesHintIndex + 1).join(' ');
+        if (globalPhrasesHintIndex < deWords.length) {
+            const hint = deWords.slice(0, globalPhrasesHintIndex + 1).join(' ');
             hintLabel.textContent = '💡 ' + hint;
             globalPhrasesHintIndex++;
         } else {
-            hintLabel.textContent = '💡 Полное предложение: ' + hintWords.join(' ');
+            hintLabel.textContent = '💡 Полное предложение: ' + deWords.join(' ');
         }
     };
     
@@ -340,10 +363,6 @@ function renderGlobalPhrases() {
     };
     
     document.getElementById('phrasesPrevBtn').onclick = function() {
-        const available2 = globalPhrasesWords.filter(p => {
-            const key = p.de + '|' + p.ru;
-            return !globalPhrasesStudied[key];
-        });
         if (globalPhrasesIndex > 0) {
             globalPhrasesIndex--;
             renderGlobalPhrases();
@@ -363,7 +382,6 @@ function renderGlobalPhrases() {
 }
 
 // ========== ВСПОМОГАТЕЛЬНЫЕ ФУНКЦИИ ==========
-
 function updatePhrasesDisplay() {
     const result = document.getElementById('phrasesResult');
     const container = document.getElementById('phrasesWordsContainer');
@@ -441,4 +459,4 @@ window.loadGlobalPhrases = loadGlobalPhrases;
 window.globalPhrasesWords = globalPhrasesWords;
 window.renderGlobalPhrases = renderGlobalPhrases;
 
-console.log('🧩 phrasesGlobal.js загружен (исправленная версия)');
+console.log('🧩 phrasesGlobal.js загружен');

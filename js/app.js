@@ -11,9 +11,8 @@ let isWelcomePageVisible = true;
 let appReady = false;
 let pendingState = null;
 let isLoadingLesson = false;
-
-// Новая переменная для секции (уроки / карточки / фразы)
 let currentSection = 'lessons';
+let isRendering = false;
 
 // ========== КЛЮЧИ ДЛЯ ХРАНЕНИЯ ==========
 const FIRST_LAUNCH_KEY = 'dm_first_launch';
@@ -190,7 +189,11 @@ window.goBackFromInstruction = function() {
 
 // ========== ЗАГРУЗКА УРОВНЯ ==========
 async function loadLevel(level) {
-    // Проверяем доступ к уровню
+    if (isRendering) {
+        console.log('⏳ Уже идет рендеринг, пропускаем');
+        return;
+    }
+    
     if (typeof window.hasAccessToLevel === 'function') {
         if (!window.auth) {
             console.log('⏳ Ожидание инициализации auth...');
@@ -239,6 +242,7 @@ async function loadLevel(level) {
     appReady = true;
     currentSection = 'lessons';
     console.log('📚 Загрузка уровня:', level);
+    
     try {
         const response = await fetch(`docs/${level}/index.json`);
         if (!response.ok) throw new Error('Курс не найден');
@@ -259,13 +263,20 @@ async function loadLevel(level) {
     }
 }
 
-// ========== НОВАЯ ФУНКЦИЯ: ОТОБРАЖЕНИЕ УРОВНЯ С ПОДМЕНЮ ==========
+// ========== ОТОБРАЖЕНИЕ УРОВНЯ С ПОДМЕНЮ ==========
 function renderLevelWithMenu() {
+    if (isRendering) {
+        console.log('⏳ Уже идет рендеринг, пропускаем');
+        return;
+    }
+    
     if (!courseData) {
         loadLevel(currentLevel);
         return;
     }
 
+    isRendering = true;
+    
     let html = `
         <div style="display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 20px;">
             <button class="section-btn ${currentSection === 'lessons' ? 'active' : ''}" data-section="lessons" style="padding: 10px 20px; background: ${currentSection === 'lessons' ? '#3B6FE0' : '#E8F0FE'}; color: ${currentSection === 'lessons' ? 'white' : '#333'}; border: 2px solid ${currentSection === 'lessons' ? '#2B5BC7' : '#D0D0D0'}; border-radius: 8px; cursor: pointer; font-weight: bold; transition: all 0.08s ease;">
@@ -285,7 +296,6 @@ function renderLevelWithMenu() {
     document.getElementById('modeIndicator').textContent = `Курс ${currentLevel}`;
     updateCounter();
     
-    // Обработчики кнопок секций
     document.querySelectorAll('.section-btn').forEach(btn => {
         btn.onclick = function() {
             const section = this.getAttribute('data-section');
@@ -295,16 +305,15 @@ function renderLevelWithMenu() {
         };
     });
     
-    // Рендерим текущую секцию
     renderSection(currentSection);
+    isRendering = false;
 }
 
-// ========== НОВАЯ ФУНКЦИЯ: РЕНДЕРИНГ СЕКЦИИ ==========
+// ========== РЕНДЕРИНГ СЕКЦИИ ==========
 function renderSection(section) {
     const container = document.getElementById('sectionContent');
     if (!container) return;
     
-    // Обновляем активные кнопки
     document.querySelectorAll('.section-btn').forEach(btn => {
         const s = btn.getAttribute('data-section');
         if (s === section) {
@@ -318,13 +327,11 @@ function renderSection(section) {
         }
     });
     
-    // Убеждаемся, что courseData загружен
     if (!window.courseData) {
         container.innerHTML = '<div style="text-align:center;padding:40px;color:#999;">⏳ Загрузка данных курса...</div>';
         return;
     }
     
-    // ВАЖНО: используем currentLevel, который всегда определен
     const level = currentLevel || 'A1';
     
     switch(section) {
@@ -332,17 +339,25 @@ function renderSection(section) {
             renderLessonList(container);
             break;
         case 'cards':
-            renderGlobalCards(container, level);
+            if (typeof window.loadGlobalCards === 'function') {
+                window.loadGlobalCards(container, level);
+            } else {
+                container.innerHTML = '<div style="text-align:center;padding:40px;color:#999;">❌ Ошибка загрузки карточек</div>';
+            }
             break;
         case 'phrases':
-            renderGlobalPhrases(container, level);
+            if (typeof window.loadGlobalPhrases === 'function') {
+                window.loadGlobalPhrases(container, level);
+            } else {
+                container.innerHTML = '<div style="text-align:center;padding:40px;color:#999;">❌ Ошибка загрузки фраз</div>';
+            }
             break;
         default:
             container.innerHTML = '<div style="text-align:center;padding:40px;color:#999;">❌ Секция не найдена</div>';
     }
 }
 
-// ========== ОТОБРАЖЕНИЕ СПИСКА УРОКОВ (ВЫНЕСЕНО ИЗ renderLevel) ==========
+// ========== ОТОБРАЖЕНИЕ СПИСКА УРОКОВ ==========
 function renderLessonList(container) {
     if (!courseData) {
         container.innerHTML = '<div style="text-align:center;padding:40px;color:#999;">📚 Курс не загружен</div>';
@@ -483,46 +498,6 @@ async function loadLesson(lessonId) {
         `;
     } finally {
         isLoadingLesson = false;
-    }
-}
-
-// ========== НОВАЯ ФУНКЦИЯ: ГЛОБАЛЬНЫЕ КАРТОЧКИ ==========
-function renderGlobalCards(container, level) {
-    // Всегда используем currentLevel если level не передан или undefined
-    const actualLevel = level || currentLevel || 'A1';
-    console.log('🃏 renderGlobalCards вызван с уровнем:', actualLevel);
-    
-    if (typeof window.loadGlobalCards === 'function') {
-        window.loadGlobalCards(container, actualLevel);
-    } else {
-        container.innerHTML = '<div style="text-align:center;padding:40px;color:#999;">🔄 Загрузка карточек...</div>';
-        setTimeout(() => {
-            if (typeof window.loadGlobalCards === 'function') {
-                window.loadGlobalCards(container, actualLevel);
-            } else {
-                container.innerHTML = '<div style="text-align:center;padding:40px;color:#999;">❌ Ошибка загрузки карточек. Попробуйте обновить страницу.</div>';
-            }
-        }, 500);
-    }
-}
-
-// ========== НОВАЯ ФУНКЦИЯ: ГЛОБАЛЬНЫЕ ФРАЗЫ ==========
-function renderGlobalPhrases(container, level) {
-    // Всегда используем currentLevel если level не передан или undefined
-    const actualLevel = level || currentLevel || 'A1';
-    console.log('🧩 renderGlobalPhrases вызван с уровнем:', actualLevel);
-    
-    if (typeof window.loadGlobalPhrases === 'function') {
-        window.loadGlobalPhrases(container, actualLevel);
-    } else {
-        container.innerHTML = '<div style="text-align:center;padding:40px;color:#999;">🔄 Загрузка фраз...</div>';
-        setTimeout(() => {
-            if (typeof window.loadGlobalPhrases === 'function') {
-                window.loadGlobalPhrases(container, actualLevel);
-            } else {
-                container.innerHTML = '<div style="text-align:center;padding:40px;color:#999;">❌ Ошибка загрузки фраз. Попробуйте обновить страницу.</div>';
-            }
-        }, 500);
     }
 }
 
@@ -919,7 +894,6 @@ function initApp() {
         };
     });
     
-    // ========== ОСНОВНАЯ ЛОГИКА ЗАГРУЗКИ ==========
     const savedState = loadState();
     const firstLaunch = isFirstLaunch();
     
@@ -984,8 +958,6 @@ window.saveState = saveState;
 window.clearAppState = clearAppState;
 window.restoreState = restoreState;
 window.onAuthReady = onAuthReady;
-window.renderGlobalCards = renderGlobalCards;
-window.renderGlobalPhrases = renderGlobalPhrases;
 
 console.log('✅ Функции экспортированы глобально');
 

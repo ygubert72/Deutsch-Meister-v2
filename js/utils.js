@@ -72,6 +72,12 @@ function getAllLessonsForLevel(level) {
 
 // ========== ПОЛУЧЕНИЕ ВСЕХ СЛОВ УРОВНЯ ==========
 async function getAllWordsForLevel(level) {
+    // Проверяем, что уровень передан
+    if (!level) {
+        console.error('❌ getAllWordsForLevel: уровень не указан!');
+        return [];
+    }
+    
     const allWords = [];
     const lessons = getAllLessonsForLevel(level);
     
@@ -118,6 +124,12 @@ async function getAllWordsForLevel(level) {
 
 // ========== ПОЛУЧЕНИЕ ВСЕХ ФРАЗ УРОВНЯ ==========
 async function getAllPhrasesForLevel(level) {
+    // Проверяем, что уровень передан
+    if (!level) {
+        console.error('❌ getAllPhrasesForLevel: уровень не указан!');
+        return [];
+    }
+    
     const allPhrases = [];
     const lessons = getAllLessonsForLevel(level);
     

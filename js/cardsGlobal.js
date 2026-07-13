@@ -8,7 +8,6 @@ let globalCardsLoading = false;
 
 // ========== ОСНОВНАЯ ФУНКЦИЯ ==========
 async function loadGlobalCards(container, level) {
-    // Предотвращаем повторные вызовы
     if (globalCardsLoading) {
         console.log('⏳ Карточки уже загружаются, пропускаем');
         return;
@@ -22,7 +21,6 @@ async function loadGlobalCards(container, level) {
         return;
     }
     
-    // Проверяем, что уровень передан
     const actualLevel = level || window.currentLevel || 'A1';
     if (!actualLevel) {
         console.error('❌ Уровень не указан');
@@ -30,7 +28,6 @@ async function loadGlobalCards(container, level) {
         return;
     }
     
-    // Ждем загрузки курса
     let attempts = 0;
     while (!window.courseData && attempts < 20) {
         await new Promise(r => setTimeout(r, 200));
@@ -45,6 +42,17 @@ async function loadGlobalCards(container, level) {
             <div style="text-align:center;padding:40px;color:#999;">
                 <div style="font-size:48px;margin-bottom:15px;">⏳</div>
                 <div>Данные курса загружаются...</div>
+                <button onclick="window.renderLevelWithMenu()" style="margin-top:15px;padding:10px 20px;background:#3B6FE0;color:white;border:none;border-radius:8px;cursor:pointer;">← Назад</button>
+            </div>
+        `;
+        return;
+    }
+    
+    if (!window.courseData.lessons || window.courseData.lessons.length === 0) {
+        globalCardsContainer.innerHTML = `
+            <div style="text-align:center;padding:40px;color:#999;">
+                <div style="font-size:48px;margin-bottom:15px;">📭</div>
+                <div>Нет уроков для уровня ${actualLevel}</div>
                 <button onclick="window.renderLevelWithMenu()" style="margin-top:15px;padding:10px 20px;background:#3B6FE0;color:white;border:none;border-radius:8px;cursor:pointer;">← Назад</button>
             </div>
         `;
@@ -69,11 +77,11 @@ async function loadGlobalCards(container, level) {
             return;
         }
         
-        window.shuffleArray(allWords);
         globalCardsWords = allWords;
         globalCardsIndex = 0;
         globalCardsFlipped = false;
         
+        console.log('✅ Загружено слов:', globalCardsWords.length);
         renderGlobalCards();
         
     } catch(e) {
@@ -98,7 +106,24 @@ function renderGlobalCards() {
         return;
     }
     
-    if (!globalCardsWords || globalCardsWords.length === 0) {
+    const level = window.currentLevel || 'A1';
+    const studiedWords = window.wordsProgress?.[level] || [];
+    const availableWords = globalCardsWords.filter(w => !studiedWords.includes(w.de));
+    
+    console.log(`📊 Всего слов: ${globalCardsWords.length}, изучено: ${studiedWords.length}, доступно: ${availableWords.length}`);
+    
+    if (availableWords.length === 0 && globalCardsWords.length > 0) {
+        container.innerHTML = `
+            <div style="text-align:center;padding:40px;">
+                <div style="font-size:64px;margin-bottom:20px;">🎉</div>
+                <div style="font-size:24px;margin-bottom:20px;">Все слова изучены!</div>
+                <button onclick="window.renderLevelWithMenu()" style="padding:10px 30px;background:#3B6FE0;color:white;border:none;border-radius:8px;cursor:pointer;">← Назад</button>
+            </div>
+        `;
+        return;
+    }
+    
+    if (globalCardsWords.length === 0) {
         container.innerHTML = `
             <div style="text-align:center;padding:40px;color:#999;">
                 <div style="font-size:48px;margin-bottom:15px;">📭</div>
@@ -108,6 +133,9 @@ function renderGlobalCards() {
         `;
         return;
     }
+    
+    const displayWords = availableWords;
+    if (globalCardsIndex >= displayWords.length) globalCardsIndex = 0;
     
     const containerHtml = `
         <div style="text-align: center;">
@@ -127,7 +155,7 @@ function renderGlobalCards() {
                 <button class="ctrl-btn" id="globalNextBtn">ВПЕРЕД ▶</button>
                 <button class="ctrl-btn" id="globalResetStartBtn">⏮ В НАЧАЛО</button>
             </div>
-            <div style="font-size:14px;color:#888;margin-top:10px;">${globalCardsIndex + 1} / ${globalCardsWords.length}</div>
+            <div style="font-size:14px;color:#888;margin-top:10px;">${globalCardsIndex + 1} / ${displayWords.length}</div>
             <div class="hint" style="font-size:12px;color:#999;margin-top:8px;">👆 Нажмите на карточку для перевода</div>
         </div>
     `;
@@ -145,39 +173,55 @@ function setupCardEventListeners(container) {
     };
     
     document.getElementById('globalPrevBtn').onclick = function() {
-        if (globalCardsWords.length) {
-            globalCardsIndex = (globalCardsIndex - 1 + globalCardsWords.length) % globalCardsWords.length;
+        const level = window.currentLevel || 'A1';
+        const studiedWords = window.wordsProgress?.[level] || [];
+        const availableWords = globalCardsWords.filter(w => !studiedWords.includes(w.de));
+        if (availableWords.length) {
+            globalCardsIndex = (globalCardsIndex - 1 + availableWords.length) % availableWords.length;
             globalCardsFlipped = false;
             updateCardDisplay();
-            if (typeof updateCounter === 'function') updateCounter();
+            const counter = document.querySelector('#globalCard + div');
+            if (counter) counter.textContent = `${globalCardsIndex + 1} / ${availableWords.length}`;
         }
     };
     
     document.getElementById('globalNextBtn').onclick = function() {
-        if (globalCardsWords.length) {
-            globalCardsIndex = (globalCardsIndex + 1) % globalCardsWords.length;
+        const level = window.currentLevel || 'A1';
+        const studiedWords = window.wordsProgress?.[level] || [];
+        const availableWords = globalCardsWords.filter(w => !studiedWords.includes(w.de));
+        if (availableWords.length) {
+            globalCardsIndex = (globalCardsIndex + 1) % availableWords.length;
             globalCardsFlipped = false;
             updateCardDisplay();
-            if (typeof updateCounter === 'function') updateCounter();
+            const counter = document.querySelector('#globalCard + div');
+            if (counter) counter.textContent = `${globalCardsIndex + 1} / ${availableWords.length}`;
         }
     };
     
     document.getElementById('globalResetStartBtn').onclick = function() {
-        if (globalCardsWords.length) {
-            globalCardsIndex = 0;
-            globalCardsFlipped = false;
-            updateCardDisplay();
-            if (typeof updateCounter === 'function') updateCounter();
-        }
+        globalCardsIndex = 0;
+        globalCardsFlipped = false;
+        updateCardDisplay();
+        const level = window.currentLevel || 'A1';
+        const studiedWords = window.wordsProgress?.[level] || [];
+        const availableWords = globalCardsWords.filter(w => !studiedWords.includes(w.de));
+        const counter = document.querySelector('#globalCard + div');
+        if (counter) counter.textContent = `${globalCardsIndex + 1} / ${availableWords.length}`;
     };
     
     document.getElementById('globalShuffleBtn').onclick = function() {
-        if (globalCardsWords.length) {
-            window.shuffleArray(globalCardsWords);
+        const level = window.currentLevel || 'A1';
+        const studiedWords = window.wordsProgress?.[level] || [];
+        const availableWords = globalCardsWords.filter(w => !studiedWords.includes(w.de));
+        if (availableWords.length) {
+            window.shuffleArray(availableWords);
+            const studied = globalCardsWords.filter(w => studiedWords.includes(w.de));
+            globalCardsWords = [...studied, ...availableWords];
             globalCardsIndex = 0;
             globalCardsFlipped = false;
             updateCardDisplay();
-            if (typeof updateCounter === 'function') updateCounter();
+            const counter = document.querySelector('#globalCard + div');
+            if (counter) counter.textContent = `${globalCardsIndex + 1} / ${availableWords.length}`;
             const hint = container.querySelector('.hint');
             if (hint) {
                 hint.textContent = '🔄 Перемешано!';
@@ -201,47 +245,78 @@ function setupCardEventListeners(container) {
     };
     
     document.getElementById('globalStudyBtn').onclick = function() {
-        if (!globalCardsWords.length || !globalCardsWords[globalCardsIndex]) return;
-        
-        const word = globalCardsWords[globalCardsIndex];
-        if (!window.wordsProgress) window.wordsProgress = {};
         const level = window.currentLevel || 'A1';
+        const studiedWords = window.wordsProgress?.[level] || [];
+        const availableWords = globalCardsWords.filter(w => !studiedWords.includes(w.de));
+        
+        if (!availableWords.length || !availableWords[globalCardsIndex]) {
+            console.log('⚠️ Нет доступных слов для изучения');
+            return;
+        }
+        
+        const word = availableWords[globalCardsIndex];
+        if (!window.wordsProgress) window.wordsProgress = {};
         if (!window.wordsProgress[level]) window.wordsProgress[level] = [];
         if (!window.wordsProgress[level].includes(word.de)) {
             window.wordsProgress[level].push(word.de);
             if (typeof window.saveProgress === 'function') window.saveProgress();
+            console.log('✅ Слово добавлено в прогресс:', word.de);
         }
         
-        globalCardsWords.splice(globalCardsIndex, 1);
-        if (globalCardsIndex >= globalCardsWords.length) globalCardsIndex = 0;
-        updateCardDisplay();
+        // ОБНОВЛЯЕМ globalCardsWords — убираем изученное слово
+        globalCardsWords = globalCardsWords.filter(w => w.de !== word.de);
+        
+        // Проверяем, остались ли слова
+        if (globalCardsWords.length === 0) {
+            renderGlobalCards();
+            return;
+        }
+        
+        // Обновляем индекс
+        if (globalCardsIndex >= globalCardsWords.length) {
+            globalCardsIndex = 0;
+        }
+        
+        // Перерисовываем
+        renderGlobalCards();
         if (typeof updateCounter === 'function') updateCounter();
     };
     
-    document.getElementById('globalContainerBtn').onclick = function() {
-        // Используем ТУ ЖЕ логику, что и в quizMode
-        showGlobalCardsContainer();
-    };
+    // КНОПКА КОНТЕЙНЕРА
+    const containerBtn = document.getElementById('globalContainerBtn');
+    if (containerBtn) {
+        containerBtn.onclick = function() {
+            console.log('📦 Нажата кнопка "В КОНТЕЙНЕР" (Карточки)');
+            showGlobalCardsContainer();
+        };
+    }
     
     document.getElementById('globalSpeakBtn').onclick = function() {
-        if (globalCardsWords[globalCardsIndex] && typeof window.speak === 'function') {
-            window.speak(globalCardsWords[globalCardsIndex].de);
+        const level = window.currentLevel || 'A1';
+        const studiedWords = window.wordsProgress?.[level] || [];
+        const availableWords = globalCardsWords.filter(w => !studiedWords.includes(w.de));
+        if (availableWords[globalCardsIndex] && typeof window.speak === 'function') {
+            window.speak(availableWords[globalCardsIndex].de);
         }
     };
 }
 
-// ========== КОНТЕЙНЕР ДЛЯ КАРТОЧЕК (как в quizMode) ==========
+// ========== КОНТЕЙНЕР ДЛЯ КАРТОЧЕК ==========
 function showGlobalCardsContainer() {
+    console.log('📦 showGlobalCardsContainer вызван');
+    
     const level = window.currentLevel || 'A1';
+    console.log('  Уровень:', level);
+    
+    // Получаем актуальные изученные слова из прогресса
     if (!window.wordsProgress) window.wordsProgress = {};
     if (!window.wordsProgress[level]) window.wordsProgress[level] = [];
     
-    // Получаем все слова уровня из прогресса
-    const studiedWords = globalCardsWords.filter(word => 
-        window.wordsProgress[level].includes(word.de)
-    );
+    // Получаем слова, которые есть в прогресе
+    const studiedWords = window.wordsProgress[level] || [];
+    console.log('  Изученных слов в прогрессе:', studiedWords.length);
     
-    if (!studiedWords || studiedWords.length === 0) {
+    if (studiedWords.length === 0) {
         alert('📦 Контейнер пуст. Выучите слова, чтобы они появились здесь.');
         return;
     }
@@ -264,6 +339,7 @@ function showGlobalCardsContainer() {
         align-items: center;
         z-index: 9999999 !important;
         overflow: auto;
+        padding: 20px;
     `;
 
     const modalContent = document.createElement('div');
@@ -271,11 +347,11 @@ function showGlobalCardsContainer() {
         background: white;
         border-radius: 20px;
         max-width: 500px;
-        width: 90%;
+        width: 100%;
         max-height: 80vh;
         display: flex;
         flex-direction: column;
-        margin: 20px;
+        margin: 0;
         padding: 0;
         overflow: hidden;
         box-shadow: 0 20px 60px rgba(0,0,0,0.5);
@@ -287,34 +363,41 @@ function showGlobalCardsContainer() {
     modalContent.appendChild(header);
 
     const itemsContainer = document.createElement('div');
-    itemsContainer.style.cssText = 'overflow-y: auto; flex: 1; padding: 5px 0;';
+    itemsContainer.style.cssText = 'overflow-y: auto; flex: 1; padding: 5px 0; max-height: 50vh;';
     
-    studiedWords.forEach((word) => {
+    // Для каждого изученного слова ищем его полные данные
+    studiedWords.forEach((wordDe) => {
+        // Ищем слово в globalCardsWords
+        const wordData = globalCardsWords.find(w => w.de === wordDe);
+        if (!wordData) return;
+        
         const item = document.createElement('div');
         item.style.cssText = 'display: flex; justify-content: space-between; align-items: center; padding: 10px 20px; border-bottom: 1px solid #f0f0f0;';
         item.innerHTML = `
-            <span><strong>${word.de}</strong> — ${word.ru}</span>
-            <button class="unstudy-btn" data-word="${word.de}" style="padding: 4px 14px; background: #F44336; color: white; border: none; border-radius: 8px; cursor: pointer; font-size: 12px; font-weight: bold;">✕ ВЕРНУТЬ</button>
+            <span><strong>${wordData.de}</strong> — ${wordData.ru}</span>
+            <button class="unstudy-btn" data-word="${wordData.de}" style="padding: 4px 14px; background: #F44336; color: white; border: none; border-radius: 8px; cursor: pointer; font-size: 12px; font-weight: bold;">✕ ВЕРНУТЬ</button>
         `;
         
         const btn = item.querySelector('.unstudy-btn');
         btn.addEventListener('click', function() {
-            const wordDe = this.getAttribute('data-word');
+            const wordDe2 = this.getAttribute('data-word');
             const level2 = window.currentLevel || 'A1';
             if (window.wordsProgress && window.wordsProgress[level2]) {
-                const idx = window.wordsProgress[level2].indexOf(wordDe);
+                const idx = window.wordsProgress[level2].indexOf(wordDe2);
                 if (idx !== -1) {
                     window.wordsProgress[level2].splice(idx, 1);
                     if (typeof window.saveProgress === 'function') window.saveProgress();
+                    console.log('🔄 Слово возвращено из контейнера:', wordDe2);
                 }
             }
-            // Обновляем контейнер
+            // Закрываем и переоткрываем контейнер
             modal.remove();
-            showGlobalCardsContainer();
-            // Обновляем карточки
+            // Перезагружаем карточки
             if (typeof window.loadGlobalCards === 'function') {
                 window.loadGlobalCards(globalCardsContainer, window.currentLevel);
             }
+            // Показываем контейнер снова
+            setTimeout(() => showGlobalCardsContainer(), 100);
         });
         
         itemsContainer.appendChild(item);
@@ -331,6 +414,7 @@ function showGlobalCardsContainer() {
 
     modal.appendChild(modalContent);
     document.body.appendChild(modal);
+    console.log('✅ Модалка контейнера создана');
 
     document.getElementById('returnAllBtn').addEventListener('click', function() {
         if (!confirm('Вернуть все слова из контейнера?')) return;
@@ -359,12 +443,25 @@ function updateCardDisplay() {
     const wordEl = document.getElementById('globalCardWord');
     if (!wordEl) return;
     
-    if (!globalCardsWords.length) {
+    const level = window.currentLevel || 'A1';
+    const studiedWords = window.wordsProgress?.[level] || [];
+    const availableWords = globalCardsWords.filter(w => !studiedWords.includes(w.de));
+    
+    if (!availableWords.length) {
         wordEl.textContent = '🎉 Все слова изучены!';
         return;
     }
     
-    const word = globalCardsWords[globalCardsIndex];
+    if (globalCardsIndex >= availableWords.length) {
+        globalCardsIndex = 0;
+    }
+    
+    const word = availableWords[globalCardsIndex];
+    if (!word) {
+        wordEl.textContent = '🎉 Все слова изучены!';
+        return;
+    }
+    
     if (!globalCardsFlipped) {
         wordEl.textContent = AppConfig.show_language === 'de' ? word.de : word.ru;
     } else {
@@ -380,5 +477,6 @@ function updateCardDisplay() {
 window.loadGlobalCards = loadGlobalCards;
 window.globalCardsWords = globalCardsWords;
 window.renderGlobalCards = renderGlobalCards;
+window.showGlobalCardsContainer = showGlobalCardsContainer;
 
 console.log('🃏 cardsGlobal.js загружен (исправлен)');

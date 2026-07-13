@@ -243,7 +243,7 @@ async function loadLevel(level) {
         const response = await fetch(`docs/${level}/index.json`);
         if (!response.ok) throw new Error('Курс не найден');
         courseData = await response.json();
-        window.courseData = courseData; // 👈 ВАЖНО: сохраняем в глобальную переменную!
+        window.courseData = courseData;
         console.log('✅ Курс загружен:', courseData.title);
         renderLevelWithMenu();
         saveState();
@@ -324,8 +324,8 @@ function renderSection(section) {
         return;
     }
     
-    // ВАЖНО: используем currentLevel, а не level из параметра
-    const level = currentLevel;
+    // ВАЖНО: используем currentLevel, который всегда определен
+    const level = currentLevel || 'A1';
     
     switch(section) {
         case 'lessons':
@@ -488,13 +488,17 @@ async function loadLesson(lessonId) {
 
 // ========== НОВАЯ ФУНКЦИЯ: ГЛОБАЛЬНЫЕ КАРТОЧКИ ==========
 function renderGlobalCards(container, level) {
+    // Всегда используем currentLevel если level не передан или undefined
+    const actualLevel = level || currentLevel || 'A1';
+    console.log('🃏 renderGlobalCards вызван с уровнем:', actualLevel);
+    
     if (typeof window.loadGlobalCards === 'function') {
-        window.loadGlobalCards(container, level);
+        window.loadGlobalCards(container, actualLevel);
     } else {
         container.innerHTML = '<div style="text-align:center;padding:40px;color:#999;">🔄 Загрузка карточек...</div>';
         setTimeout(() => {
             if (typeof window.loadGlobalCards === 'function') {
-                window.loadGlobalCards(container, level);
+                window.loadGlobalCards(container, actualLevel);
             } else {
                 container.innerHTML = '<div style="text-align:center;padding:40px;color:#999;">❌ Ошибка загрузки карточек. Попробуйте обновить страницу.</div>';
             }
@@ -504,13 +508,17 @@ function renderGlobalCards(container, level) {
 
 // ========== НОВАЯ ФУНКЦИЯ: ГЛОБАЛЬНЫЕ ФРАЗЫ ==========
 function renderGlobalPhrases(container, level) {
+    // Всегда используем currentLevel если level не передан или undefined
+    const actualLevel = level || currentLevel || 'A1';
+    console.log('🧩 renderGlobalPhrases вызван с уровнем:', actualLevel);
+    
     if (typeof window.loadGlobalPhrases === 'function') {
-        window.loadGlobalPhrases(container, level);
+        window.loadGlobalPhrases(container, actualLevel);
     } else {
         container.innerHTML = '<div style="text-align:center;padding:40px;color:#999;">🔄 Загрузка фраз...</div>';
         setTimeout(() => {
             if (typeof window.loadGlobalPhrases === 'function') {
-                window.loadGlobalPhrases(container, level);
+                window.loadGlobalPhrases(container, actualLevel);
             } else {
                 container.innerHTML = '<div style="text-align:center;padding:40px;color:#999;">❌ Ошибка загрузки фраз. Попробуйте обновить страницу.</div>';
             }
@@ -785,7 +793,7 @@ function restoreState() {
             })
             .then(data => {
                 courseData = data;
-                window.courseData = data; // 👈 ВАЖНО: сохраняем в глобальную переменную!
+                window.courseData = data;
                 console.log('✅ Курс загружен:', courseData.title);
                 
                 if (savedState.lessonId !== null && savedState.lessonId !== undefined) {

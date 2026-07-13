@@ -219,12 +219,8 @@ function setupCardEventListeners(container) {
     };
     
     document.getElementById('globalContainerBtn').onclick = function() {
-        const studied = getStudiedWords();
-        if (!studied || studied.length === 0) {
-            alert('📦 Контейнер пуст. Выучите слова, чтобы они появились здесь.');
-            return;
-        }
-        showContainer(studied);
+        // Используем ТУ ЖЕ логику, что и в quizMode
+        showGlobalCardsContainer();
     };
     
     document.getElementById('globalSpeakBtn').onclick = function() {
@@ -232,6 +228,130 @@ function setupCardEventListeners(container) {
             window.speak(globalCardsWords[globalCardsIndex].de);
         }
     };
+}
+
+// ========== КОНТЕЙНЕР ДЛЯ КАРТОЧЕК (как в quizMode) ==========
+function showGlobalCardsContainer() {
+    const level = window.currentLevel || 'A1';
+    if (!window.wordsProgress) window.wordsProgress = {};
+    if (!window.wordsProgress[level]) window.wordsProgress[level] = [];
+    
+    // Получаем все слова уровня из прогресса
+    const studiedWords = globalCardsWords.filter(word => 
+        window.wordsProgress[level].includes(word.de)
+    );
+    
+    if (!studiedWords || studiedWords.length === 0) {
+        alert('📦 Контейнер пуст. Выучите слова, чтобы они появились здесь.');
+        return;
+    }
+    
+    // Удаляем старую модалку
+    const oldModal = document.getElementById('containerModal');
+    if (oldModal) oldModal.remove();
+
+    const modal = document.createElement('div');
+    modal.id = 'containerModal';
+    modal.style.cssText = `
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0,0,0,0.7);
+        display: flex !important;
+        justify-content: center;
+        align-items: center;
+        z-index: 9999999 !important;
+        overflow: auto;
+    `;
+
+    const modalContent = document.createElement('div');
+    modalContent.style.cssText = `
+        background: white;
+        border-radius: 20px;
+        max-width: 500px;
+        width: 90%;
+        max-height: 80vh;
+        display: flex;
+        flex-direction: column;
+        margin: 20px;
+        padding: 0;
+        overflow: hidden;
+        box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+    `;
+
+    const header = document.createElement('div');
+    header.style.cssText = 'padding: 15px 20px; border-bottom: 1px solid #ddd; text-align: center; flex-shrink: 0;';
+    header.innerHTML = `<h3 style="margin: 0;">📦 КОНТЕЙНЕР (${studiedWords.length} слов)</h3>`;
+    modalContent.appendChild(header);
+
+    const itemsContainer = document.createElement('div');
+    itemsContainer.style.cssText = 'overflow-y: auto; flex: 1; padding: 5px 0;';
+    
+    studiedWords.forEach((word) => {
+        const item = document.createElement('div');
+        item.style.cssText = 'display: flex; justify-content: space-between; align-items: center; padding: 10px 20px; border-bottom: 1px solid #f0f0f0;';
+        item.innerHTML = `
+            <span><strong>${word.de}</strong> — ${word.ru}</span>
+            <button class="unstudy-btn" data-word="${word.de}" style="padding: 4px 14px; background: #F44336; color: white; border: none; border-radius: 8px; cursor: pointer; font-size: 12px; font-weight: bold;">✕ ВЕРНУТЬ</button>
+        `;
+        
+        const btn = item.querySelector('.unstudy-btn');
+        btn.addEventListener('click', function() {
+            const wordDe = this.getAttribute('data-word');
+            const level2 = window.currentLevel || 'A1';
+            if (window.wordsProgress && window.wordsProgress[level2]) {
+                const idx = window.wordsProgress[level2].indexOf(wordDe);
+                if (idx !== -1) {
+                    window.wordsProgress[level2].splice(idx, 1);
+                    if (typeof window.saveProgress === 'function') window.saveProgress();
+                }
+            }
+            // Обновляем контейнер
+            modal.remove();
+            showGlobalCardsContainer();
+            // Обновляем карточки
+            if (typeof window.loadGlobalCards === 'function') {
+                window.loadGlobalCards(globalCardsContainer, window.currentLevel);
+            }
+        });
+        
+        itemsContainer.appendChild(item);
+    });
+    modalContent.appendChild(itemsContainer);
+
+    const footer = document.createElement('div');
+    footer.style.cssText = 'padding: 15px 20px; border-top: 1px solid #ddd; display: flex; gap: 10px; flex-shrink: 0;';
+    footer.innerHTML = `
+        <button id="returnAllBtn" style="flex: 1; padding: 10px; background: #FF9800; color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: bold;">🔄 ВЕРНУТЬ ВСЁ</button>
+        <button id="closeContainerBtn" style="flex: 1; padding: 10px; background: #ddd; border: none; border-radius: 8px; cursor: pointer; font-weight: bold;">ЗАКРЫТЬ</button>
+    `;
+    modalContent.appendChild(footer);
+
+    modal.appendChild(modalContent);
+    document.body.appendChild(modal);
+
+    document.getElementById('returnAllBtn').addEventListener('click', function() {
+        if (!confirm('Вернуть все слова из контейнера?')) return;
+        const level3 = window.currentLevel || 'A1';
+        if (window.wordsProgress) {
+            window.wordsProgress[level3] = [];
+            if (typeof window.saveProgress === 'function') window.saveProgress();
+        }
+        modal.remove();
+        if (typeof window.loadGlobalCards === 'function') {
+            window.loadGlobalCards(globalCardsContainer, window.currentLevel);
+        }
+    });
+
+    document.getElementById('closeContainerBtn').addEventListener('click', function() {
+        modal.remove();
+    });
+
+    modal.addEventListener('click', function(e) {
+        if (e.target === modal) modal.remove();
+    });
 }
 
 // ========== ВСПОМОГАТЕЛЬНЫЕ ФУНКЦИИ ==========
@@ -256,55 +376,9 @@ function updateCardDisplay() {
     }
 }
 
-function getStudiedWords() {
-    const level = window.currentLevel || 'A1';
-    if (!window.wordsProgress) window.wordsProgress = {};
-    if (!window.wordsProgress[level]) window.wordsProgress[level] = [];
-    
-    const allWords = globalCardsWords.length > 0 ? globalCardsWords : [];
-    return allWords.filter(word => window.wordsProgress[level].includes(word.de));
-}
-
-function showContainer(studiedWords) {
-    if (typeof window.ContainerManager !== 'undefined' && window.ContainerManager.show) {
-        window.ContainerManager.show({
-            title: '📦 КОНТЕЙНЕР (' + studiedWords.length + ' слов)',
-            items: studiedWords,
-            emptyMessage: '📭 Контейнер пуст',
-            itemTemplate: function(word) { return word.de + ' — ' + word.ru; },
-            onReturnItem: function(wordId) {
-                const level = window.currentLevel || 'A1';
-                if (window.wordsProgress && window.wordsProgress[level]) {
-                    const idx = window.wordsProgress[level].indexOf(wordId);
-                    if (idx !== -1) {
-                        window.wordsProgress[level].splice(idx, 1);
-                        if (typeof window.saveProgress === 'function') window.saveProgress();
-                    }
-                }
-                const modal = document.getElementById('containerModal');
-                if (modal) modal.remove();
-                loadGlobalCards(globalCardsContainer, window.currentLevel);
-            },
-            onReturnAll: function() {
-                const level = window.currentLevel || 'A1';
-                if (window.wordsProgress) {
-                    window.wordsProgress[level] = [];
-                    if (typeof window.saveProgress === 'function') window.saveProgress();
-                }
-                const modal = document.getElementById('containerModal');
-                if (modal) modal.remove();
-                loadGlobalCards(globalCardsContainer, window.currentLevel);
-            }
-        });
-    } else {
-        alert('📦 Контейнер (' + studiedWords.length + ' слов):\n\n' + 
-              studiedWords.map(w => w.de + ' — ' + w.ru).join('\n'));
-    }
-}
-
 // ========== ЭКСПОРТ ==========
 window.loadGlobalCards = loadGlobalCards;
 window.globalCardsWords = globalCardsWords;
 window.renderGlobalCards = renderGlobalCards;
 
-console.log('🃏 cardsGlobal.js загружен');
+console.log('🃏 cardsGlobal.js загружен (исправлен)');

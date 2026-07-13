@@ -63,6 +63,10 @@ function shuffleArray(array) {
 // ========== ПОЛУЧЕНИЕ ВСЕХ УРОКОВ УРОВНЯ ==========
 function getAllLessonsForLevel(level) {
     // Проверяем, загружены ли данные курса
+    if (!level) {
+        console.error('❌ getAllLessonsForLevel: уровень не указан!');
+        return [];
+    }
     if (!window.courseData || !window.courseData.lessons) {
         console.warn(`⚠️ Данные для уровня ${level} еще не загружены.`);
         return [];

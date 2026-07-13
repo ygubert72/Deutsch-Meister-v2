@@ -318,15 +318,21 @@ function renderSection(section) {
         }
     });
     
+    // Убеждаемся, что courseData загружен
+    if (!window.courseData) {
+        container.innerHTML = '<div style="text-align:center;padding:40px;color:#999;">⏳ Загрузка данных курса...</div>';
+        return;
+    }
+    
     switch(section) {
         case 'lessons':
             renderLessonList(container);
             break;
         case 'cards':
-            renderGlobalCards(container);
+            renderGlobalCards(container, currentLevel);
             break;
         case 'phrases':
-            renderGlobalPhrases(container);
+            renderGlobalPhrases(container, currentLevel);
             break;
         default:
             container.innerHTML = '<div style="text-align:center;padding:40px;color:#999;">❌ Секция не найдена</div>';
@@ -478,14 +484,14 @@ async function loadLesson(lessonId) {
 }
 
 // ========== НОВАЯ ФУНКЦИЯ: ГЛОБАЛЬНЫЕ КАРТОЧКИ ==========
-function renderGlobalCards(container) {
+function renderGlobalCards(container, level) {
     if (typeof window.loadGlobalCards === 'function') {
-        window.loadGlobalCards(container, currentLevel);
+        window.loadGlobalCards(container, level);
     } else {
         container.innerHTML = '<div style="text-align:center;padding:40px;color:#999;">🔄 Загрузка карточек...</div>';
         setTimeout(() => {
             if (typeof window.loadGlobalCards === 'function') {
-                window.loadGlobalCards(container, currentLevel);
+                window.loadGlobalCards(container, level);
             } else {
                 container.innerHTML = '<div style="text-align:center;padding:40px;color:#999;">❌ Ошибка загрузки карточек. Попробуйте обновить страницу.</div>';
             }
@@ -494,14 +500,14 @@ function renderGlobalCards(container) {
 }
 
 // ========== НОВАЯ ФУНКЦИЯ: ГЛОБАЛЬНЫЕ ФРАЗЫ ==========
-function renderGlobalPhrases(container) {
+function renderGlobalPhrases(container, level) {
     if (typeof window.loadGlobalPhrases === 'function') {
-        window.loadGlobalPhrases(container, currentLevel);
+        window.loadGlobalPhrases(container, level);
     } else {
         container.innerHTML = '<div style="text-align:center;padding:40px;color:#999;">🔄 Загрузка фраз...</div>';
         setTimeout(() => {
             if (typeof window.loadGlobalPhrases === 'function') {
-                window.loadGlobalPhrases(container, currentLevel);
+                window.loadGlobalPhrases(container, level);
             } else {
                 container.innerHTML = '<div style="text-align:center;padding:40px;color:#999;">❌ Ошибка загрузки фраз. Попробуйте обновить страницу.</div>';
             }
@@ -967,6 +973,8 @@ window.saveState = saveState;
 window.clearAppState = clearAppState;
 window.restoreState = restoreState;
 window.onAuthReady = onAuthReady;
+window.renderGlobalCards = renderGlobalCards;
+window.renderGlobalPhrases = renderGlobalPhrases;
 
 console.log('✅ Функции экспортированы глобально');
 

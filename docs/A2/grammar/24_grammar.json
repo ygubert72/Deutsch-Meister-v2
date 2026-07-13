@@ -25,7 +25,15 @@
     {"de": "der Winter", "ru": "зима"},
     {"de": "das Wetter", "ru": "погода"},
     {"de": "regnen", "ru": "идти (о дожде)"},
-    {"de": "schneien", "ru": "идти (о снеге)"}
+    {"de": "schneien", "ru": "идти (о снеге)"},
+    {"de": "der Hagel", "ru": "град"},
+    {"de": "die Hitze", "ru": "жара"},
+    {"de": "die Kälte", "ru": "холод"},
+    {"de": "der Frost", "ru": "мороз"},
+    {"de": "das Eis", "ru": "лёд"},
+    {"de": "der Regenbogen", "ru": "радуга"},
+    {"de": "das Thermometer", "ru": "термометр"},
+    {"de": "die Temperatur", "ru": "температура"}
   ],
   "examples": [
     {"de": "Heute ist es sonnig.", "ru": "Сегодня солнечно."},
@@ -37,7 +45,10 @@
     {"de": "Morgen wird es regnen.", "ru": "Завтра будет дождь."},
     {"de": "Die Sonne scheint.", "ru": "Солнце светит."},
     {"de": "Es gibt Wolken am Himmel.", "ru": "На небе есть облака."},
-    {"de": "Im Frühling blühen die Blumen.", "ru": "Весной цветут цветы."}
+    {"de": "Im Frühling blühen die Blumen.", "ru": "Весной цветут цветы."},
+    {"de": "Die Temperatur liegt bei 25 Grad.", "ru": "Температура составляет 25 градусов."},
+    {"de": "Es gibt Hagel heute.", "ru": "Сегодня град."},
+    {"de": "Im Winter gibt es oft Frost.", "ru": "Зимой часто бывает мороз."}
   ],
   "practice": [
     {"type": "fill", "question": "Вставьте правильное прилагательное:", "sentence": "Heute ist es ___. (солнечный)", "answer": "sonnig", "hint": "Сегодня солнечно."},
@@ -51,6 +62,8 @@
     {"type": "fill", "question": "Вставьте правильное слово:", "sentence": "Es gibt ___ am Himmel. (облака)", "answer": "Wolken", "hint": "На небе есть облака."},
     {"type": "fill", "question": "Вставьте правильный предлог (im/am):", "sentence": "___ Sommer ist es warm.", "answer": "Im", "hint": "Летом тепло."},
     {"type": "fill", "question": "Вставьте правильный предлог (im/am):", "sentence": "___ Montag regnet es.", "answer": "Am", "hint": "В понедельник идёт дождь."},
+    {"type": "fill", "question": "Вставьте правильное слово (погода):", "sentence": "Die ___ liegt bei 25 Grad. (температура)", "answer": "Temperatur", "hint": "Температура составляет 25 градусов."},
+    {"type": "fill", "question": "Вставьте правильное слово (погода):", "sentence": "Im Winter gibt es oft ___. (мороз)", "answer": "Frost", "hint": "Зимой часто бывает мороз."},
     {"type": "transform", "question": "Переделайте в вопрос с Wie:", "sentence": "Das Wetter ist sonnig.", "answer": "Wie ist das Wetter?", "hint": "Какая погода?"},
     {"type": "transform", "question": "Переделайте предложение в Perfekt:", "sentence": "Es regnet.", "answer": "Es hat geregnet.", "hint": "Шёл дождь."},
     {"type": "transform", "question": "Переделайте предложение в Perfekt:", "sentence": "Es schneit.", "answer": "Es hat geschneit.", "hint": "Шёл снег."}

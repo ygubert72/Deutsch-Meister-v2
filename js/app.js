@@ -187,6 +187,56 @@ window.goBackFromInstruction = function() {
     }
 };
 
+// ========== ЗАГРУЗКА ГЛОБАЛЬНЫХ ДАННЫХ ДЛЯ КАРТОЧЕК И ФРАЗ ==========
+async function loadGlobalData() {
+    try {
+        const level = window.currentLevel || 'A1';
+        console.log('🔄 Загрузка глобальных данных для уровня', level);
+        
+        // Загружаем слова
+        const words = await window.getAllWordsForLevel(level);
+        window.globalCardsWords = words;
+        console.log('  ✅ Слов загружено:', words.length);
+        
+        // Загружаем фразы
+        const phrases = await window.getAllPhrasesForLevel(level);
+        window.globalPhrasesWords = phrases;
+        console.log('  ✅ Фраз загружено:', phrases.length);
+        
+        // Загружаем прогресс фраз из localStorage
+        const key = 'dm_global_phrases_progress_' + level;
+        const saved = localStorage.getItem(key);
+        window.globalPhrasesStudied = saved ? JSON.parse(saved) : {};
+        console.log('  ✅ Изученных фраз:', Object.keys(window.globalPhrasesStudied).length);
+        
+        // Проверяем wordsProgress
+        if (!window.wordsProgress) window.wordsProgress = {};
+        if (!window.wordsProgress[level]) window.wordsProgress[level] = [];
+        console.log('  ✅ Изученных слов:', window.wordsProgress[level].length);
+        
+        // Перерисовываем интерфейс, если нужно
+        const container = document.getElementById('sectionContent');
+        if (container) {
+            if (window.currentSection === 'cards' && typeof window.renderGlobalCards === 'function') {
+                window.renderGlobalCards();
+                console.log('  ✅ Карточки перерисованы');
+            }
+            if (window.currentSection === 'phrases' && typeof window.renderGlobalPhrases === 'function') {
+                window.renderGlobalPhrases();
+                console.log('  ✅ Фразы перерисованы');
+            }
+        }
+        
+        console.log('✅ Глобальные данные загружены');
+        console.log('  📊 Слов всего:', window.globalCardsWords.length);
+        console.log('  📊 Слов изучено:', window.wordsProgress[level].length);
+        console.log('  📊 Фраз всего:', window.globalPhrasesWords.length);
+        console.log('  📊 Фраз изучено:', Object.keys(window.globalPhrasesStudied).length);
+    } catch(e) {
+        console.error('❌ Ошибка загрузки глобальных данных:', e);
+    }
+}
+
 // ========== ЗАГРУЗКА УРОВНЯ ==========
 async function loadLevel(level) {
     if (isRendering) {
@@ -251,6 +301,10 @@ async function loadLevel(level) {
         console.log('✅ Курс загружен:', courseData.title);
         renderLevelWithMenu();
         saveState();
+        
+        // Загружаем глобальные данные для карточек и фраз
+        setTimeout(loadGlobalData, 500);
+        
     } catch(e) {
         console.error('Ошибка загрузки курса:', e);
         document.getElementById('content').innerHTML = `
@@ -781,6 +835,8 @@ function restoreState() {
                 }
                 
                 renderLevelWithMenu();
+                // Загружаем глобальные данные
+                setTimeout(loadGlobalData, 500);
             })
             .catch(() => {
                 showWelcomePage();
@@ -958,6 +1014,7 @@ window.saveState = saveState;
 window.clearAppState = clearAppState;
 window.restoreState = restoreState;
 window.onAuthReady = onAuthReady;
+window.loadGlobalData = loadGlobalData;
 
 console.log('✅ Функции экспортированы глобально');
 

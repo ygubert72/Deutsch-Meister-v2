@@ -62,7 +62,6 @@ function shuffleArray(array) {
 
 // ========== ПОЛУЧЕНИЕ ВСЕХ УРОКОВ УРОВНЯ ==========
 function getAllLessonsForLevel(level) {
-    // Проверяем, загружены ли данные курса
     if (!level) {
         console.error('❌ getAllLessonsForLevel: уровень не указан!');
         return [];
@@ -71,12 +70,12 @@ function getAllLessonsForLevel(level) {
         console.warn(`⚠️ Данные для уровня ${level} еще не загружены.`);
         return [];
     }
+    // ВОЗВРАЩАЕМ ТОЛЬКО РЕАЛЬНЫЕ УРОКИ ИЗ COURSE DATA
     return window.courseData.lessons || [];
 }
 
 // ========== ПОЛУЧЕНИЕ ВСЕХ СЛОВ УРОВНЯ ==========
 async function getAllWordsForLevel(level) {
-    // Проверяем, что уровень передан
     if (!level) {
         console.error('❌ getAllWordsForLevel: уровень не указан!');
         return [];
@@ -86,7 +85,7 @@ async function getAllWordsForLevel(level) {
     const lessons = getAllLessonsForLevel(level);
     
     if (!lessons || lessons.length === 0) {
-        console.warn('⚠️ Нет уроков для уровня', level);
+        console.warn(`⚠️ Нет уроков для уровня ${level}`);
         return [];
     }
     
@@ -96,7 +95,9 @@ async function getAllWordsForLevel(level) {
     for (const lesson of lessons) {
         try {
             const lessonId = lesson.id;
-            const grammarFile = `docs/${level}/grammar/${String(lessonId).padStart(2, '0')}_grammar.json`;
+            // Форматируем ID с ведущим нулем
+            const paddedId = String(lessonId).padStart(2, '0');
+            const grammarFile = `docs/${level}/grammar/${paddedId}_grammar.json`;
             const response = await fetch(grammarFile);
             if (response.ok) {
                 const data = await response.json();
@@ -128,7 +129,6 @@ async function getAllWordsForLevel(level) {
 
 // ========== ПОЛУЧЕНИЕ ВСЕХ ФРАЗ УРОВНЯ ==========
 async function getAllPhrasesForLevel(level) {
-    // Проверяем, что уровень передан
     if (!level) {
         console.error('❌ getAllPhrasesForLevel: уровень не указан!');
         return [];
@@ -138,7 +138,7 @@ async function getAllPhrasesForLevel(level) {
     const lessons = getAllLessonsForLevel(level);
     
     if (!lessons || lessons.length === 0) {
-        console.warn('⚠️ Нет уроков для уровня', level);
+        console.warn(`⚠️ Нет уроков для уровня ${level}`);
         return [];
     }
     
@@ -148,7 +148,8 @@ async function getAllPhrasesForLevel(level) {
     for (const lesson of lessons) {
         try {
             const lessonId = lesson.id;
-            const lessonFile = `docs/${level}/lessons/lesson_${String(lessonId).padStart(2, '0')}.json`;
+            const paddedId = String(lessonId).padStart(2, '0');
+            const lessonFile = `docs/${level}/lessons/lesson_${paddedId}.json`;
             const response = await fetch(lessonFile);
             if (response.ok) {
                 const data = await response.json();

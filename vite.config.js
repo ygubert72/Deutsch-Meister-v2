@@ -1,43 +1,47 @@
 import { defineConfig } from 'vite';
 import { copyFileSync, mkdirSync, existsSync, readdirSync, statSync } from 'fs';
-import { join, relative } from 'path';
+import { join } from 'path';
 
-// Плагин для копирования папки docs в dist
-function copyDocsPlugin() {
+// Плагин для копирования папок в dist
+function copyAssetsPlugin() {
   return {
-    name: 'copy-docs',
+    name: 'copy-assets',
     writeBundle() {
-      const srcDir = 'docs';
-      const destDir = 'dist/docs';
+      const foldersToCopy = ['js', 'css', 'docs', 'icons'];
       
-      if (!existsSync(srcDir)) return;
-      
-      // Создаем папку назначения
-      if (!existsSync(destDir)) {
-        mkdirSync(destDir, { recursive: true });
-      }
-      
-      // Рекурсивное копирование
-      function copyDir(src, dest) {
-        const entries = readdirSync(src, { withFileTypes: true });
-        for (const entry of entries) {
-          const srcPath = join(src, entry.name);
-          const destPath = join(dest, entry.name);
-          if (entry.isDirectory()) {
-            if (!existsSync(destPath)) {
-              mkdirSync(destPath, { recursive: true });
-            }
-            copyDir(srcPath, destPath);
-          } else {
-            copyFileSync(srcPath, destPath);
-          }
+      for (const folder of foldersToCopy) {
+        const srcDir = folder;
+        const destDir = `dist/${folder}`;
+        
+        if (!existsSync(srcDir)) continue;
+        
+        // Создаем папку назначения
+        if (!existsSync(destDir)) {
+          mkdirSync(destDir, { recursive: true });
         }
+        
+        // Рекурсивное копирование
+        copyDir(srcDir, destDir);
+        console.log(`✅ Папка ${folder} скопирована в dist`);
       }
-      
-      copyDir(srcDir, destDir);
-      console.log('✅ Папка docs скопирована в dist');
     }
   };
+}
+
+function copyDir(src, dest) {
+  const entries = readdirSync(src, { withFileTypes: true });
+  for (const entry of entries) {
+    const srcPath = join(src, entry.name);
+    const destPath = join(dest, entry.name);
+    if (entry.isDirectory()) {
+      if (!existsSync(destPath)) {
+        mkdirSync(destPath, { recursive: true });
+      }
+      copyDir(srcPath, destPath);
+    } else {
+      copyFileSync(srcPath, destPath);
+    }
+  }
 }
 
 export default defineConfig({
@@ -54,7 +58,7 @@ export default defineConfig({
         });
       }
     },
-    copyDocsPlugin()
+    copyAssetsPlugin()
   ],
   
   build: {

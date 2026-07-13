@@ -1,7 +1,7 @@
 // utils.js — общие утилиты для всего приложения
 
 // ========== ОПРЕДЕЛЕНИЕ УСТРОЙСТВА ==========
-function isMobileDevice() {.
+function isMobileDevice() {
     return window.innerWidth <= 768;
 }
 

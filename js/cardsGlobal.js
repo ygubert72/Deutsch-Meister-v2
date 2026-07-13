@@ -16,27 +16,23 @@ async function loadGlobalCards(container, level) {
         return;
     }
     
-    // Проверяем курс
+    // Ждем загрузки курса
+    let attempts = 0;
+    while (!window.courseData && attempts < 15) {
+        await new Promise(r => setTimeout(r, 200));
+        attempts++;
+        console.log(`⏳ Ожидание courseData... попытка ${attempts}`);
+    }
+    
     if (!window.courseData) {
-        console.log('⏳ Ожидание courseData...');
-        globalCardsContainer.innerHTML = '<div style="text-align:center;padding:40px;color:#999;">⏳ Загрузка данных курса...</div>';
-        
-        // Ждём максимум 3 секунды
-        for (let i = 0; i < 30; i++) {
-            await new Promise(r => setTimeout(r, 100));
-            if (window.courseData) break;
-        }
-        
-        if (!window.courseData) {
-            globalCardsContainer.innerHTML = `
-                <div style="text-align:center;padding:40px;color:#999;">
-                    <div style="font-size:48px;margin-bottom:15px;">❌</div>
-                    <div>Курс не загружен. Попробуйте выбрать уровень заново.</div>
-                    <button onclick="window.renderLevelWithMenu()" style="margin-top:15px;padding:10px 20px;background:#3B6FE0;color:white;border:none;border-radius:8px;cursor:pointer;">← Назад</button>
-                </div>
-            `;
-            return;
-        }
+        globalCardsContainer.innerHTML = `
+            <div style="text-align:center;padding:40px;color:#999;">
+                <div style="font-size:48px;margin-bottom:15px;">⏳</div>
+                <div>Данные курса загружаются. Попробуйте обновить страницу.</div>
+                <button onclick="window.renderLevelWithMenu()" style="margin-top:15px;padding:10px 20px;background:#3B6FE0;color:white;border:none;border-radius:8px;cursor:pointer;">← Назад</button>
+            </div>
+        `;
+        return;
     }
     
     // Загружаем слова
@@ -297,4 +293,4 @@ window.loadGlobalCards = loadGlobalCards;
 window.globalCardsWords = globalCardsWords;
 window.renderGlobalCards = renderGlobalCards;
 
-console.log('🃏 cardsGlobal.js загружен (простая версия)');
+console.log('🃏 cardsGlobal.js загружен (исправленная версия)');

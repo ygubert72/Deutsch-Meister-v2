@@ -324,15 +324,18 @@ function renderSection(section) {
         return;
     }
     
+    // ВАЖНО: используем currentLevel, а не level из параметра
+    const level = currentLevel;
+    
     switch(section) {
         case 'lessons':
             renderLessonList(container);
             break;
         case 'cards':
-            renderGlobalCards(container, currentLevel);
+            renderGlobalCards(container, level);
             break;
         case 'phrases':
-            renderGlobalPhrases(container, currentLevel);
+            renderGlobalPhrases(container, level);
             break;
         default:
             container.innerHTML = '<div style="text-align:center;padding:40px;color:#999;">❌ Секция не найдена</div>';

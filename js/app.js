@@ -3,7 +3,7 @@
 // ====================================================================
 
 // ========== СОСТОЯНИЕ ==========
-let currentLevel = 'A1';
+let currentLevel = 'A1';.
 let currentLesson = null;
 let courseData = null;
 let isRestoring = false;

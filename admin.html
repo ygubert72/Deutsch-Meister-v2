@@ -307,14 +307,15 @@
     
     <script>
         // ========== КОНФИГ FIREBASE ==========
-        const firebaseConfig = {
-            apiKey: "AIzaSyAUj_2cLQyWvs2JTT7Zl2BYox0krDb3X7I",
-            authDomain: "deutsch-meister-248cf.firebaseapp.com",
-            projectId: "deutsch-meister-248cf",
-            storageBucket: "deutsch-meister-248cf.firebasestorage.app",
-            messagingSenderId: "549700335996",
-            appId: "1:549700335996:web:97ed9e8f91224e34ab0cf9"
-        };
+        // Конфигурация загружается из .env файла
+const firebaseConfig = {
+    apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
+    authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
+    projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
+    storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
+    messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
+    appId: import.meta.env.VITE_FIREBASE_APP_ID
+};
         
         let auth, db;
         let allUsers = [];

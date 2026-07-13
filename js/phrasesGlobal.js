@@ -20,22 +20,23 @@ async function loadGlobalPhrases(container, level) {
         return;
     }
     
+    // Ждем загрузки курса
+    let attempts = 0;
+    while (!window.courseData && attempts < 15) {
+        await new Promise(r => setTimeout(r, 200));
+        attempts++;
+        console.log(`⏳ Ожидание courseData для фраз... попытка ${attempts}`);
+    }
+    
     if (!window.courseData) {
-        globalPhrasesContainer.innerHTML = '<div style="text-align:center;padding:40px;color:#999;">⏳ Загрузка данных курса...</div>';
-        for (let i = 0; i < 30; i++) {
-            await new Promise(r => setTimeout(r, 100));
-            if (window.courseData) break;
-        }
-        if (!window.courseData) {
-            globalPhrasesContainer.innerHTML = `
-                <div style="text-align:center;padding:40px;color:#999;">
-                    <div style="font-size:48px;margin-bottom:15px;">❌</div>
-                    <div>Курс не загружен</div>
-                    <button onclick="window.renderLevelWithMenu()" style="margin-top:15px;padding:10px 20px;background:#3B6FE0;color:white;border:none;border-radius:8px;cursor:pointer;">← Назад</button>
-                </div>
-            `;
-            return;
-        }
+        globalPhrasesContainer.innerHTML = `
+            <div style="text-align:center;padding:40px;color:#999;">
+                <div style="font-size:48px;margin-bottom:15px;">⏳</div>
+                <div>Данные курса загружаются. Попробуйте обновить страницу.</div>
+                <button onclick="window.renderLevelWithMenu()" style="margin-top:15px;padding:10px 20px;background:#3B6FE0;color:white;border:none;border-radius:8px;cursor:pointer;">← Назад</button>
+            </div>
+        `;
+        return;
     }
     
     globalPhrasesContainer.innerHTML = '<div style="text-align:center;padding:40px;color:#999;">🔄 Загрузка фраз...</div>';
@@ -440,4 +441,4 @@ window.loadGlobalPhrases = loadGlobalPhrases;
 window.globalPhrasesWords = globalPhrasesWords;
 window.renderGlobalPhrases = renderGlobalPhrases;
 
-console.log('🧩 phrasesGlobal.js загружен (простая версия)');
+console.log('🧩 phrasesGlobal.js загружен (исправленная версия)');

@@ -15,12 +15,82 @@ let allVocabWords = [];
 let trainerStudiedSentences = {};
 let trainerCurrentLessonId = null;
 let trainerCurrentLessonData = null;
-let allTrainerTemplates = []; // Все фразы урока (не фильтрованные)
+let allTrainerTemplates = [];
+let globalVocabularyCache = {}; // Кеш всех слов по уровням
+
+// ========== ЗАГРУЗКА ВСЕХ СЛОВ УРОВНЯ ==========
+async function loadAllVocabularyForLevel(level) {
+    if (globalVocabularyCache[level]) {
+        return globalVocabularyCache[level];
+    }
+    
+    try {
+        // Загружаем index.json чтобы узнать все уроки
+        const indexResponse = await fetch(`docs/${level}/index.json`);
+        if (!indexResponse.ok) throw new Error('Не удалось загрузить индекс уровня');
+        const indexData = await indexResponse.json();
+        
+        let allWords = [];
+        
+        // Проходим по всем урокам уровня
+        for (const lesson of indexData.lessons) {
+            const lessonId = lesson.id;
+            const grammarFile = `docs/${level}/grammar/${String(lessonId).padStart(2, '0')}_grammar.json`;
+            try {
+                const response = await fetch(grammarFile);
+                if (response.ok) {
+                    const data = await response.json();
+                    if (data.vocabulary && Array.isArray(data.vocabulary)) {
+                        allWords = allWords.concat(data.vocabulary);
+                    }
+                }
+            } catch(e) {
+                // Пропускаем уроки без грамматики
+            }
+        }
+        
+        // Добавляем слова из quiz и trainer тоже
+        for (const lesson of indexData.lessons) {
+            const lessonId = lesson.id;
+            const lessonFile = `docs/${level}/lessons/lesson_${String(lessonId).padStart(2, '0')}.json`;
+            try {
+                const response = await fetch(lessonFile);
+                if (response.ok) {
+                    const data = await response.json();
+                    if (data.quiz && Array.isArray(data.quiz)) {
+                        allWords = allWords.concat(data.quiz);
+                    }
+                }
+            } catch(e) {
+                // Пропускаем
+            }
+        }
+        
+        // Удаляем дубликаты по полю de
+        const uniqueWords = [];
+        const seen = new Set();
+        for (const word of allWords) {
+            if (word.de && !seen.has(word.de)) {
+                seen.add(word.de);
+                uniqueWords.push(word);
+            }
+        }
+        
+        globalVocabularyCache[level] = uniqueWords;
+        console.log(`📚 Загружено ${uniqueWords.length} уникальных слов для уровня ${level}`);
+        return uniqueWords;
+        
+    } catch(e) {
+        console.error('Ошибка загрузки словаря уровня:', e);
+        return [];
+    }
+}
 
 function renderTrainer(container, lesson) {
     trainerCurrentLessonData = lesson;
     const lessonId = lesson.id || 1;
     trainerCurrentLessonId = lessonId;
+    const level = lesson.level || 'A1';
     
     loadTrainerState(lessonId);
     
@@ -36,35 +106,49 @@ function renderTrainer(container, lesson) {
         return;
     }
 
-    // Сохраняем ВСЕ фразы урока
     allTrainerTemplates = [...templates];
     
-    // Берем все слова из vocabulary для подсказок
-    allVocabWords = lesson.vocabulary || [];
-    
+    // ===== ЗАГРУЖАЕМ ВСЕ СЛОВА УРОВНЯ =====
+    // Если слова уже загружены в кеше или из lesson.vocabulary
+    if (lesson.vocabulary && lesson.vocabulary.length >= 10) {
+        allVocabWords = [...lesson.vocabulary];
+        proceedWithRender(container);
+    } else {
+        // Асинхронно загружаем все слова уровня
+        loadAllVocabularyForLevel(level).then(words => {
+            if (words && words.length > 0) {
+                allVocabWords = words;
+            } else {
+                // Запасной вариант — используем то, что есть
+                allVocabWords = lesson.vocabulary || [];
+            }
+            proceedWithRender(container);
+        });
+    }
+}
+
+function proceedWithRender(container) {
     if (allVocabWords.length < 5) {
         container.innerHTML = `
             <div style="text-align: center; padding: 40px; color: #999;">
                 <div style="font-size: 48px; margin-bottom: 15px;">📝</div>
                 <div>Недостаточно слов для тренажёра.</div>
-                <div style="font-size: 14px; margin-top: 10px;">Пройдите больше уроков, чтобы увеличить количество слов.</div>
+                <div style="font-size: 14px; margin-top: 10px;">Нужно минимум 10 слов в словаре уровня.</div>
             </div>
         `;
         return;
     }
     
-    // Фильтруем НЕИЗУЧЕННЫЕ фразы для прохождения
-    const availableTemplates = templates.filter(t => {
+    const availableTemplates = allTrainerTemplates.filter(t => {
         const key = t.de + '|' + t.ru;
         return !trainerStudiedSentences[key];
     });
     
     let finalTemplates = availableTemplates;
     if (finalTemplates.length === 0) {
-        // Все фразы изучены — используем все для повторения
-        finalTemplates = [...templates];
+        finalTemplates = [...allTrainerTemplates];
         trainerStudiedSentences = {};
-        localStorage.removeItem('dm_trainer_studied_' + lessonId);
+        localStorage.removeItem('dm_trainer_studied_' + trainerCurrentLessonId);
     }
     
     const shuffled = [...finalTemplates];
@@ -107,8 +191,6 @@ function loadTrainerState(lessonId) {
 }
 
 function showTrainerContainer() {
-    console.log('📦 showTrainerContainer вызван');
-    
     const oldModal = document.getElementById('containerModal');
     if (oldModal) oldModal.remove();
 
@@ -145,7 +227,6 @@ function showTrainerContainer() {
 
     function renderContainerContent() {
         const studied = getStudiedSentencesList();
-        console.log('📦 Рендеринг контейнера, фраз:', studied.length);
         
         const header = document.createElement('div');
         header.style.cssText = 'padding: 15px 20px; border-bottom: 1px solid #ddd; text-align: center; flex-shrink: 0;';
@@ -170,11 +251,9 @@ function showTrainerContainer() {
                 const btn = item.querySelector('.unstudy-btn');
                 btn.addEventListener('click', function() {
                     const key = this.getAttribute('data-key');
-                    console.log('🔄 Возвращаем фразу:', key);
                     delete trainerStudiedSentences[key];
                     saveTrainerState();
                     
-                    // Обновляем список НЕИЗУЧЕННЫХ фраз
                     const lesson = trainerCurrentLessonData || window.currentLesson;
                     if (lesson) {
                         const templates = lesson.trainer || [];
@@ -220,13 +299,11 @@ function showTrainerContainer() {
 
         modal.appendChild(modalContent);
         document.body.appendChild(modal);
-        console.log('✅ Модалка добавлена в DOM');
 
         const returnAllBtn = document.getElementById('returnAllBtn');
         if (returnAllBtn) {
             returnAllBtn.addEventListener('click', function() {
                 if (!confirm('Вернуть все фразы из контейнера?')) return;
-                console.log('🔄 Возвращаем все фразы');
                 allTrainerTemplates.forEach(t => {
                     const key = t.de + '|' + t.ru;
                     delete trainerStudiedSentences[key];
@@ -285,7 +362,7 @@ function showTrainerSentence(container) {
         originalIndex: i
     }));
 
-    // ===== ВАЖНО: используем ВСЕ слова из vocabulary для выбора =====
+    // ===== ИСПОЛЬЗУЕМ ВСЕ СЛОВА УРОВНЯ (allVocabWords) =====
     const allWords = [...allVocabWords];
     const shuffledAll = [...allWords];
     for (let i = shuffledAll.length - 1; i > 0; i--) {
@@ -299,22 +376,49 @@ function showTrainerSentence(container) {
             const key = w.de.toLowerCase().replace(/[.,!?;:]/g, '');
             return !correctSet.has(key) && key.length > 0;
         })
-        .slice(0, 12 - deWords.length) // Всегда 12 вариантов (правильные + дистракторы)
-        .map(w => ({
-            display: isRuToDe ? w.de : w.ru,
-            de: w.de,
-            ru: w.ru,
-            isCorrect: false,
-            originalIndex: -1
-        }));
+        .slice(0, 12 - deWords.length);
+    
+    // Если дистракторов меньше чем нужно (мало слов в словаре), 
+    // то повторно используем правильные слова как дистракторы 
+    // (но только если их больше чем правильных)
+    let finalDistractors = [...distractors];
+    if (finalDistractors.length < 12 - deWords.length && allWords.length > deWords.length * 2) {
+        // Добавляем дополнительные дистракторы из оставшихся слов
+        const remaining = shuffledAll
+            .filter(w => {
+                const key = w.de.toLowerCase().replace(/[.,!?;:]/g, '');
+                return !correctSet.has(key) && !finalDistractors.some(d => d.de === w.de);
+            });
+        finalDistractors = finalDistractors.concat(remaining.slice(0, 12 - deWords.length - finalDistractors.length));
+    }
 
-    // Собираем 12 вариантов: все правильные слова + дистракторы
+    // Собираем ровно 12 вариантов
     let allWordsForChoice = [...correctWords];
-    // Добавляем дистракторы, но не больше 12 всего
+    
+    // Добавляем дистракторы, но максимум 12 всего
     const maxTotal = 12;
-    const neededDistractors = Math.max(0, maxTotal - correctWords.length);
-    const selectedDistractors = distractors.slice(0, neededDistractors);
-    allWordsForChoice = [...correctWords, ...selectedDistractors];
+    const needed = Math.max(0, maxTotal - correctWords.length);
+    const selectedDistractors = finalDistractors.slice(0, needed);
+    
+    // Если всё равно не хватает до 12, добираем из любых слов (включая правильные, но с пометкой что они не правильные)
+    let finalAll = [...correctWords, ...selectedDistractors];
+    while (finalAll.length < maxTotal && allWords.length > 0) {
+        // Берём любое слово из всех
+        const extraWord = allWords.find(w => !finalAll.some(f => f.de === w.de));
+        if (extraWord) {
+            finalAll.push({
+                display: isRuToDe ? extraWord.de : extraWord.ru,
+                de: extraWord.de,
+                ru: extraWord.ru,
+                isCorrect: false,
+                originalIndex: -1
+            });
+        } else {
+            break;
+        }
+    }
+    
+    allWordsForChoice = finalAll;
     
     // Перемешиваем
     for (let i = allWordsForChoice.length - 1; i > 0; i--) {
@@ -389,6 +493,7 @@ function showTrainerSentence(container) {
 
     container.innerHTML = html;
 
+    // Привязка обработчиков (остаётся без изменений)
     document.querySelectorAll('#trainerWordsContainer .word-btn').forEach(btn => {
         btn.addEventListener('click', function() {
             const word = this.getAttribute('data-word');
@@ -482,7 +587,6 @@ function showTrainerSentence(container) {
             trainerStudiedSentences[key] = true;
             saveTrainerState();
             
-            // Обновляем список НЕИЗУЧЕННЫХ фраз
             const lesson = trainerCurrentLessonData || window.currentLesson;
             if (lesson) {
                 const templates = lesson.trainer || [];
@@ -515,25 +619,15 @@ function showTrainerSentence(container) {
         containerBtn.removeEventListener('click', containerBtn._handler);
         
         containerBtn._handler = function() {
-            console.log('📦 Кнопка "В КОНТЕЙНЕР" нажата (Тренажер)');
             const studied = getStudiedSentencesList();
-            console.log('📦 Изученных фраз:', studied?.length);
-            
             if (!studied || studied.length === 0) {
                 alert('📦 Контейнер пуст\n\nВыучите фразы, чтобы они появились здесь.');
                 return;
             }
-            
-            if (typeof showTrainerContainer === 'function') {
-                showTrainerContainer();
-            } else {
-                console.error('❌ showTrainerContainer не найдена!');
-                alert('Ошибка: функция контейнера не найдена');
-            }
+            showTrainerContainer();
         };
         
         containerBtn.addEventListener('click', containerBtn._handler);
-        console.log('✅ Кнопка "В КОНТЕЙНЕР" (Тренажер) перепривязана!');
     }
 
     document.getElementById('trainerPrevBtn').addEventListener('click', function() {

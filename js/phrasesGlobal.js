@@ -10,11 +10,9 @@ let globalPhrasesAvailable = [];
 let globalPhrasesActive = {};
 let globalPhrasesHintIndex = 0;
 let globalPhrasesLoading = false;
-let globalPhrasesCurrentLessonId = 'global';
 
 // ========== ОСНОВНАЯ ФУНКЦИЯ ==========
 async function loadGlobalPhrases(container, level) {
-    // Предотвращаем повторные вызовы
     if (globalPhrasesLoading) {
         console.log('⏳ Фразы уже загружаются, пропускаем');
         return;
@@ -28,7 +26,6 @@ async function loadGlobalPhrases(container, level) {
         return;
     }
     
-    // Проверяем, что уровень передан
     const actualLevel = level || window.currentLevel || 'A1';
     if (!actualLevel) {
         console.error('❌ Уровень не указан');
@@ -36,7 +33,6 @@ async function loadGlobalPhrases(container, level) {
         return;
     }
     
-    // Ждем загрузки курса
     let attempts = 0;
     while (!window.courseData && attempts < 20) {
         await new Promise(r => setTimeout(r, 200));
@@ -84,8 +80,13 @@ async function loadGlobalPhrases(container, level) {
         const key = 'dm_global_phrases_progress_' + actualLevel;
         try {
             const saved = localStorage.getItem(key);
-            if (saved) globalPhrasesStudied = JSON.parse(saved);
-        } catch(e) {}
+            if (saved) {
+                globalPhrasesStudied = JSON.parse(saved);
+                console.log('📂 Загружен прогресс фраз:', Object.keys(globalPhrasesStudied).length, 'фраз');
+            }
+        } catch(e) {
+            console.warn('Ошибка загрузки прогресса фраз:', e);
+        }
         
         renderGlobalPhrases();
         
@@ -298,7 +299,19 @@ function setupPhraseEventListeners(container, current, deWords, isRuToDe, availa
             result.textContent = '✅ ПРАВИЛЬНО!';
             setTimeout(() => {
                 result.style.backgroundColor = '#FFFFFF';
-                globalPhrasesIndex++;
+                // Удаляем изученную фразу из списка
+                const key = current.de + '|' + current.ru;
+                globalPhrasesStudied[key] = true;
+                const level = window.currentLevel || 'A1';
+                localStorage.setItem('dm_global_phrases_progress_' + level, JSON.stringify(globalPhrasesStudied));
+                
+                // Обновляем список доступных фраз
+                const available2 = globalPhrasesWords.filter(p => {
+                    const k = p.de + '|' + p.ru;
+                    return !globalPhrasesStudied[k];
+                });
+                globalPhrasesWords = available2;
+                globalPhrasesIndex = 0;
                 renderGlobalPhrases();
             }, 500);
         } else {
@@ -351,8 +364,8 @@ function setupPhraseEventListeners(container, current, deWords, isRuToDe, availa
         renderGlobalPhrases();
     };
     
+    // КНОПКА КОНТЕЙНЕРА ДЛЯ ФРАЗ
     document.getElementById('phrasesContainerBtn').onclick = function() {
-        // Используем ТУ ЖЕ логику, что и в trainerMode
         showGlobalPhrasesContainer();
     };
     
@@ -375,13 +388,17 @@ function setupPhraseEventListeners(container, current, deWords, isRuToDe, availa
     };
 }
 
-// ========== КОНТЕЙНЕР ДЛЯ ФРАЗ (как в trainerMode) ==========
+// ========== КОНТЕЙНЕР ДЛЯ ФРАЗ ==========
 function showGlobalPhrasesContainer() {
-    // Получаем изученные фразы
+    console.log('📦 showGlobalPhrasesContainer вызван');
+    
+    // Получаем актуальные изученные фразы
     const studied = globalPhrasesWords.filter(p => {
         const key = p.de + '|' + p.ru;
         return globalPhrasesStudied[key];
     });
+    
+    console.log('  Изученных фраз:', studied.length);
     
     if (!studied || studied.length === 0) {
         alert('📦 Контейнер пуст. Выучите фразы, чтобы они появились здесь.');
@@ -406,6 +423,7 @@ function showGlobalPhrasesContainer() {
         align-items: center;
         z-index: 9999999 !important;
         overflow: auto;
+        padding: 20px;
     `;
 
     const modalContent = document.createElement('div');
@@ -413,11 +431,11 @@ function showGlobalPhrasesContainer() {
         background: white;
         border-radius: 20px;
         max-width: 500px;
-        width: 90%;
+        width: 100%;
         max-height: 80vh;
         display: flex;
         flex-direction: column;
-        margin: 20px;
+        margin: 0;
         padding: 0;
         overflow: hidden;
         box-shadow: 0 20px 60px rgba(0,0,0,0.5);
@@ -429,7 +447,7 @@ function showGlobalPhrasesContainer() {
     modalContent.appendChild(header);
 
     const itemsContainer = document.createElement('div');
-    itemsContainer.style.cssText = 'overflow-y: auto; flex: 1; padding: 5px 0;';
+    itemsContainer.style.cssText = 'overflow-y: auto; flex: 1; padding: 5px 0; max-height: 50vh;';
     
     studied.forEach((phrase) => {
         const key = phrase.de + '|' + phrase.ru;
@@ -447,12 +465,14 @@ function showGlobalPhrasesContainer() {
                 delete globalPhrasesStudied[key2];
                 const level = window.currentLevel || 'A1';
                 localStorage.setItem('dm_global_phrases_progress_' + level, JSON.stringify(globalPhrasesStudied));
+                console.log('🔄 Фраза возвращена из контейнера');
             }
             modal.remove();
-            showGlobalPhrasesContainer();
+            // Перезагружаем фразы и открываем контейнер снова
             if (typeof window.loadGlobalPhrases === 'function') {
                 window.loadGlobalPhrases(globalPhrasesContainer, window.currentLevel);
             }
+            setTimeout(() => showGlobalPhrasesContainer(), 100);
         });
         
         itemsContainer.appendChild(item);
@@ -469,6 +489,7 @@ function showGlobalPhrasesContainer() {
 
     modal.appendChild(modalContent);
     document.body.appendChild(modal);
+    console.log('✅ Модалка контейнера фраз создана');
 
     document.getElementById('returnAllBtn').addEventListener('click', function() {
         if (!confirm('Вернуть все фразы из контейнера?')) return;
@@ -534,5 +555,6 @@ function updatePhrasesDisplay() {
 window.loadGlobalPhrases = loadGlobalPhrases;
 window.globalPhrasesWords = globalPhrasesWords;
 window.renderGlobalPhrases = renderGlobalPhrases;
+window.showGlobalPhrasesContainer = showGlobalPhrasesContainer;
 
 console.log('🧩 phrasesGlobal.js загружен (исправлен)');

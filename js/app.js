@@ -1018,81 +1018,79 @@ async function loadLevelStats(level) {
 }
 
 // ========== ПЕРЕХВАТ КЛИКОВ ПО УРОВНЯМ ==========
-// Эту функцию нужно вызвать один раз после загрузки страницы
 function setupLevelButtons() {
-    const levelButtons = document.querySelectorAll('.btn-level');
-    const levelButtonsMobile = document.querySelectorAll('#levelsContainerMobile .btn-level');
-    
-    const allButtons = [...levelButtons, ...levelButtonsMobile];
-    
-    allButtons.forEach(btn => {
-        // Убираем старые обработчики
-        const newBtn = btn.cloneNode(true);
-        btn.parentNode.replaceChild(newBtn, btn);
+    // Даём время на загрузку DOM
+    setTimeout(function() {
+        const levelButtons = document.querySelectorAll('.btn-level');
+        const levelButtonsMobile = document.querySelectorAll('#levelsContainerMobile .btn-level');
         
-        newBtn.addEventListener('click', function(e) {
-            const level = this.getAttribute('data-level');
+        console.log('🔍 Найдено кнопок уровней:', levelButtons.length, 'десктоп,', levelButtonsMobile.length, 'мобильных');
+        
+        if (levelButtons.length === 0 && levelButtonsMobile.length === 0) {
+            console.warn('⚠️ Кнопки уровней не найдены, пробуем ещё раз...');
+            setTimeout(setupLevelButtons, 500);
+            return;
+        }
+        
+        const allButtons = [...levelButtons, ...levelButtonsMobile];
+        
+        allButtons.forEach(btn => {
+            // Проверяем, есть ли уже обработчик (чтобы не навешивать дважды)
+            if (btn.dataset.handled === 'true') return;
+            btn.dataset.handled = 'true';
             
-            if (typeof window.hasAccessToLevel === 'function') {
-                if (!window.hasAccessToLevel(level)) {
-                    const user = window.getCurrentUser ? window.getCurrentUser() : null;
-                    let message = '🔒 Этот уровень недоступен.';
-                    if (!user) {
-                        message += '\n\n👤 Войдите в аккаунт.';
-                        if (level === 'B1' || level === 'B2' || level === 'C1') {
-                            message += ' Для уровней B1-C1 также нужен премиум-доступ.';
+            btn.addEventListener('click', function(e) {
+                const level = this.getAttribute('data-level');
+                console.log('🔄 Клик по уровню:', level);
+                
+                // Проверка доступа (если есть)
+                if (typeof window.hasAccessToLevel === 'function') {
+                    if (!window.hasAccessToLevel(level)) {
+                        const user = window.getCurrentUser ? window.getCurrentUser() : null;
+                        let message = '🔒 Этот уровень недоступен.';
+                        if (!user) {
+                            message += '\n\n👤 Войдите в аккаунт.';
+                            if (level === 'B1' || level === 'B2' || level === 'C1') {
+                                message += ' Для уровней B1-C1 также нужен премиум-доступ.';
+                            }
+                        } else if (level === 'A2') {
+                            message += '\n\n🔐 Для уровня A2 нужна регистрация.';
+                        } else if (level === 'B1' || level === 'B2' || level === 'C1') {
+                            const userData = window.getCurrentUserData ? window.getCurrentUserData() : null;
+                            if (!userData || !userData.hasPremiumAccess) {
+                                message += '\n\n💎 Для уровня ' + level + ' требуется премиум-доступ.';
+                            } else {
+                                message += '\n\n⛔ Доступ запрещён.';
+                            }
                         }
-                    } else if (level === 'A2') {
-                        message += '\n\n🔐 Для уровня A2 нужна регистрация.';
-                    } else if (level === 'B1' || level === 'B2' || level === 'C1') {
-                        const userData = window.getCurrentUserData ? window.getCurrentUserData() : null;
-                        if (!userData || !userData.hasPremiumAccess) {
-                            message += '\n\n💎 Для уровня ' + level + ' требуется премиум-доступ.';
-                        } else {
-                            message += '\n\n⛔ Доступ запрещён.';
-                        }
+                        alert(message);
+                        return;
                     }
-                    alert(message);
-                    return;
                 }
-            }
-            
-            // Подсветка кнопок
-            document.querySelectorAll('.btn-level').forEach(b => b.classList.remove('active'));
-            this.classList.add('active');
-            document.querySelectorAll('#levelsContainerMobile .btn-level').forEach(b => {
-                if (b.getAttribute('data-level') === level) {
-                    b.classList.add('active');
+                
+                // Подсветка кнопок
+                document.querySelectorAll('.btn-level').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                document.querySelectorAll('#levelsContainerMobile .btn-level').forEach(b => {
+                    if (b.getAttribute('data-level') === level) {
+                        b.classList.add('active');
+                    } else {
+                        b.classList.remove('active');
+                    }
+                });
+                
+                // Показываем выбор режима
+                if (typeof showLevelModeSelector === 'function') {
+                    showLevelModeSelector(level);
                 } else {
-                    b.classList.remove('active');
+                    // Запасной вариант
+                    if (typeof window.loadLevel === 'function') {
+                        window.loadLevel(level);
+                    }
                 }
             });
-            
-            // Показываем выбор режима
-            if (typeof showLevelModeSelector === 'function') {
-                showLevelModeSelector(level);
-            } else {
-                // Запасной вариант
-                if (typeof window.loadLevel === 'function') {
-                    window.loadLevel(level);
-                }
-            }
         });
-    });
+    }, 200);
 }
-
-// Запускаем после загрузки страницы
-if (document.readyState === 'complete' || document.readyState === 'interactive') {
-    setTimeout(setupLevelButtons, 300);
-} else {
-    document.addEventListener('DOMContentLoaded', function() {
-        setTimeout(setupLevelButtons, 300);
-    });
-}
-
-// Экспортируем новые функции в window
-window.showLevelModeSelector = showLevelModeSelector;
-window.loadLevelStats = loadLevelStats;
-window.setupLevelButtons = setupLevelButtons;
 
 console.log('🚀 app.js загружен');

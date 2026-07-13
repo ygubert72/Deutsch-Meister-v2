@@ -1,8 +1,8 @@
 {
-  "lesson": 88,
+  "lesson": 59,
   "title": "Культурная критика и искусствоведение",
   "level": "C1",
-  "theory": "<h3>📌 Искусствоведческая лексика</h3><table border='1' cellpadding='8' style='border-collapse: collapse; width: 100%; margin: 10px 0;'><tr style='background: #3B6FE0; color: white;'><th>Русский</th><th>Немецкий</th></tr><tr style='background: #E3F2FD;'><td>стиль</td><td><strong>der Stil</strong></td></tr><tr style='background: #F5F5F5;'><td>эпоха</td><td><strong>die Epoche</strong></td></tr><tr style='background: #E3F2FD;'><td>интерпретация</td><td><strong>die Interpretation</strong></td></tr><tr style='background: #F5F5F5'><td>символика</td><td><strong>die Symbolik</strong></td></tr><tr style='background: #E3F2FD'><td>эстетика</td><td><strong>die Ästhetik</strong></td></tr><tr style='background: #F5F5F5'><td>критика</td><td><strong>die Kritik</strong></td></tr><tr style='background: #E3F2FD'><td>восприятие / рецепция</td><td><strong>die Rezeption</strong></td></tr><tr style='background: #F5F5F5'><td>дискурс</td><td><strong>der Diskurs</strong></td></tr><tr style='background: #E3F2FD'><td>перспектива</td><td><strong>die Perspektive</strong></td></tr><tr style='background: #F5F5F5'><td>произведение искусства</td><td><strong>das Kunstwerk</strong></td></tr></table><h3>📌 Стилистические приёмы</h3><table border='1' cellpadding='10' style='border-collapse: collapse; width: 100%; margin: 15px 0;'><tr style='background: #3B6FE0; color: white;'><th>Приём</th><th>Описание</th><th>Пример</th></tr><tr style='background: #E3F2FD;'><td><strong>Ironie</strong></td><td>ирония</td><td>Das ist ja eine tolle Idee! (ironisch)</td></tr><tr style='background: #F5F5F5;'><td><strong>Paradoxon</strong></td><td>парадокс</td><td>Weniger ist mehr.</td></tr><tr style='background: #E3F2FD;'><td><strong>Metapher</strong></td><td>метафора</td><td>Das Leben ist eine Reise.</td></tr><tr style='background: #F5F5F5'><td><strong>Symbolik</strong></td><td>символика</td><td>Die Taube symbolisiert den Frieden.</td></tr></table>",
+  "theory": "<h3>📌 Искусствоведческая лексика</h3><table border='1' cellpadding='8' style='border-collapse: collapse; width: 100%; margin: 10px 0;'><tr style='background: #3B6FE0; color: white;'><th>Русский</th><th>Немецкий</th></tr><tr style='background: #E3F2FD;'><td>стиль</td><td><strong>der Stil</strong></td></tr><tr style='background: #F5F5F5'><td>эпоха</td><td><strong>die Epoche</strong></td></tr><tr style='background: #E3F2FD'><td>интерпретация</td><td><strong>die Interpretation</strong></td></tr><tr style='background: #F5F5F5'><td>символика</td><td><strong>die Symbolik</strong></td></tr><tr style='background: #E3F2FD'><td>эстетика</td><td><strong>die Ästhetik</strong></td></tr><tr style='background: #F5F5F5'><td>критика</td><td><strong>die Kritik</strong></td></tr><tr style='background: #E3F2FD'><td>восприятие / рецепция</td><td><strong>die Rezeption</strong></td></tr><tr style='background: #F5F5F5'><td>дискурс</td><td><strong>der Diskurs</strong></td></tr><tr style='background: #E3F2FD'><td>перспектива</td><td><strong>die Perspektive</strong></td></tr><tr style='background: #F5F5F5'><td>произведение искусства</td><td><strong>das Kunstwerk</strong></td></tr><tr style='background: #E3F2FD'><td>художник</td><td><strong>der Künstler</strong></td></tr></table><h3>📌 Стилистические приёмы</h3><table border='1' cellpadding='10' style='border-collapse: collapse; width: 100%; margin: 15px 0;'><tr style='background: #3B6FE0; color: white;'><th>Приём</th><th>Описание</th><th>Пример</th></tr><tr style='background: #E3F2FD;'><td><strong>Ironie</strong></td><td>ирония</td><td>Das ist ja eine tolle Idee! (ironisch)</td></tr><tr style='background: #F5F5F5'><td><strong>Paradoxon</strong></td><td>парадокс</td><td>Weniger ist mehr.</td></tr><tr style='background: #E3F2FD'><td><strong>Metapher</strong></td><td>метафора</td><td>Das Leben ist eine Reise.</td></tr><tr style='background: #F5F5F5'><td><strong>Symbolik</strong></td><td>символика</td><td>Die Taube symbolisiert den Frieden.</td></tr></table><h3>📌 Культурная лексика</h3><table border='1' cellpadding='8' style='border-collapse: collapse; width: 100%; margin: 10px 0;'><tr style='background: #3B6FE0; color: white;'><th>Русский</th><th>Немецкий</th></tr><tr style='background: #E3F2FD;'><td>культурное наследие</td><td><strong>das Kulturerbe</strong></td></tr><tr style='background: #F5F5F5'><td>искусствовед</td><td><strong>der Kunsthistoriker</strong></td></tr><tr style='background: #E3F2FD'><td>критик</td><td><strong>der Kritiker</strong></td></tr><tr style='background: #F5F5F5'><td>выставка</td><td><strong>die Ausstellung</strong></td></tr><tr style='background: #E3F2FD'><td>музей</td><td><strong>das Museum</strong></td></tr><tr style='background: #F5F5F5'><td>галерея</td><td><strong>die Galerie</strong></td></tr><tr style='background: #E3F2FD'><td>живопись</td><td><strong>die Malerei</strong></td></tr><tr style='background: #F5F5F5'><td>скульптура</td><td><strong>die Skulptur</strong></td></tr><tr style='background: #E3F2FD'><td>архитектура</td><td><strong>die Architektur</strong></td></tr><tr style='background: #F5F5F5'><td>литература</td><td><strong>die Literatur</strong></td></tr><tr style='background: #E3F2FD'><td>музыка</td><td><strong>die Musik</strong></td></tr><tr style='background: #F5F5F5'><td>театр</td><td><strong>das Theater</strong></td></tr><tr style='background: #E3F2FD'><td>кино</td><td><strong>das Kino</strong></td></tr><tr style='background: #F5F5F5'><td>культурная критика</td><td><strong>die Kulturkritik</strong></td></tr><tr style='background: #E3F2FD'><td>эстетический опыт</td><td><strong>die ästhetische Erfahrung</strong></td></tr></table>",
   "vocabulary": [
     {"de": "der Stil", "ru": "стиль"},
     {"de": "die Epoche", "ru": "эпоха"},
@@ -23,7 +23,17 @@
     {"de": "verstehen", "ru": "понимать"},
     {"de": "einordnen", "ru": "классифицировать"},
     {"de": "vergleichen", "ru": "сравнивать"},
-    {"de": "gegenüberstellen", "ru": "противопоставлять"}
+    {"de": "gegenüberstellen", "ru": "противопоставлять"},
+    {"de": "das Kulturerbe", "ru": "культурное наследие"},
+    {"de": "der Kunsthistoriker", "ru": "искусствовед"},
+    {"de": "der Kritiker", "ru": "критик"},
+    {"de": "die Ausstellung", "ru": "выставка"},
+    {"de": "die Galerie", "ru": "галерея"},
+    {"de": "die Malerei", "ru": "живопись"},
+    {"de": "die Skulptur", "ru": "скульптура"},
+    {"de": "die Architektur", "ru": "архитектура"},
+    {"de": "die Kulturkritik", "ru": "культурная критика"},
+    {"de": "die ästhetische Erfahrung", "ru": "эстетический опыт"}
   ],
   "examples": [
     {"de": "Das ist ja eine tolle Idee! (ironisch)", "ru": "Это же отличная идея! (иронично)"},
@@ -31,15 +41,19 @@
     {"de": "Das Leben ist eine Reise. (Metapher)", "ru": "Жизнь — это путешествие. (метафора)"},
     {"de": "Die Taube symbolisiert den Frieden. (Symbolik)", "ru": "Голубь символизирует мир. (символика)"},
     {"de": "Die Interpretation des Kunstwerks ist subjektiv.", "ru": "Интерпретация произведения искусства субъективна."},
-    {"de": "Die Ästhetik des Bildes ist beeindruckend.", "ru": "Эстетика картины впечатляет."}
+    {"de": "Die Ästhetik des Bildes ist beeindruckend.", "ru": "Эстетика картины впечатляет."},
+    {"de": "Die Kulturkritik ist ein wichtiger Diskurs.", "ru": "Культурная критика — важный дискурс."},
+    {"de": "Die Malerei der Renaissance ist einzigartig.", "ru": "Живопись эпохи Возрождения уникальна."}
   ],
   "practice": [
     {"type": "fill", "question": "Вставьте правильное слово (стилистический приём):", "sentence": "Das ist ja eine tolle Idee! — das ist ein Beispiel für ___. (Ironie)", "answer": "Ironie", "hint": "Это пример иронии."},
     {"type": "fill", "question": "Вставьте правильное слово (стилистический приём):", "sentence": "Weniger ist mehr. — das ist ein Beispiel für ein ___. (Paradoxon)", "answer": "Paradoxon", "hint": "Это пример парадокса."},
     {"type": "fill", "question": "Вставьте правильное слово (стилистический приём):", "sentence": "Das Leben ist eine Reise. — das ist eine ___. (Metapher)", "answer": "Metapher", "hint": "Это метафора."},
     {"type": "fill", "question": "Вставьте правильное слово (стилистический приём):", "sentence": "Die Taube symbolisiert den Frieden. — das ist ein Beispiel für ___. (Symbolik)", "answer": "Symbolik", "hint": "Это пример символики."},
-    {"type": "fill", "question": "Вставьте правильное слово:", "sentence": "Die ___ des Kunstwerks ist subjektiv. (Interpretation)", "answer": "Interpretation", "hint": "Интерпретация произведения искусства субъективна."},
-    {"type": "fill", "question": "Вставьте правильное слово:", "sentence": "Die ___ des Bildes ist beeindruckend. (Ästhetik)", "answer": "Ästhetik", "hint": "Эстетика картины впечатляет."},
+    {"type": "fill", "question": "Вставьте правильное слово (искусство):", "sentence": "Die ___ des Kunstwerks ist subjektiv. (интерпретация)", "answer": "Interpretation", "hint": "Интерпретация произведения искусства субъективна."},
+    {"type": "fill", "question": "Вставьте правильное слово (искусство):", "sentence": "Die ___ des Bildes ist beeindruckend. (эстетика)", "answer": "Ästhetik", "hint": "Эстетика картины впечатляет."},
+    {"type": "fill", "question": "Вставьте правильное слово (искусство):", "sentence": "Die ___ ist ein wichtiger Diskurs. (культурная критика)", "answer": "Kulturkritik", "hint": "Культурная критика — важный дискурс."},
+    {"type": "fill", "question": "Вставьте правильное слово (искусство):", "sentence": "Die ___ der Renaissance ist einzigartig. (живопись)", "answer": "Malerei", "hint": "Живопись эпохи Возрождения уникальна."},
     {"type": "transform", "question": "Переделайте предложение с метафорой:", "sentence": "Das Leben ist schön.", "answer": "Das Leben ist eine Reise.", "hint": "Жизнь — это путешествие (метафора)."},
     {"type": "transform", "question": "Переделайте предложение с символикой:", "sentence": "Die Taube steht für Frieden.", "answer": "Die Taube symbolisiert den Frieden.", "hint": "Голубь символизирует мир."}
   ]

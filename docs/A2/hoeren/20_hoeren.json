@@ -1,0 +1,73 @@
+{
+  "lesson": 20,
+  "level": "A2",
+  "title": "Perfekt с haben",
+  "dialogs": [
+    {
+      "id": "monolog_1",
+      "title": "Mein Wochenende",
+      "text": "Hallo! Ich bin Anna. Am Wochenende habe ich viel gemacht. Ich habe Tennis gespielt. Ich habe meine Wohnung geputzt. Ich habe einen Film gesehen, weil das Wetter schlecht war.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Anna", "Maria", "Julia"],
+          "answer": 0
+        },
+        {
+          "question": "Was hat Anna am Wochenende gemacht?",
+          "options": ["Tennis gespielt und geputzt", "Gearbeitet", "Geschlafen"],
+          "answer": 0
+        },
+        {
+          "question": "Warum hat Anna einen Film gesehen?",
+          "options": ["Weil das Wetter schlecht war", "Weil sie müde war", "Weil sie keine Zeit hatte"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_2",
+      "title": "Meine Arbeit",
+      "text": "Grüß dich! Ich bin Maria. Ich habe gestern gearbeitet. Ich habe viele E-Mails geschrieben, weil ich wichtige Kunden habe. Ich habe mit Kunden telefoniert. Die Arbeit war anstrengend, aber ich habe alles geschafft.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Anna", "Maria", "Julia"],
+          "answer": 1
+        },
+        {
+          "question": "Was hat Maria gemacht?",
+          "options": ["E-Mails geschrieben und telefoniert", "Gekocht", "Geschlafen"],
+          "answer": 0
+        },
+        {
+          "question": "Warum hat Maria E-Mails geschrieben?",
+          "options": ["Weil sie wichtige Kunden hat", "Weil sie langweilig war", "Weil sie keine Zeit hatte"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_3",
+      "title": "Mein Deutschkurs",
+      "text": "Guten Tag! Ich bin Julia. Ich habe Deutsch gelernt, weil ich in Deutschland arbeiten möchte. Ich habe viele neue Wörter gelernt. Ich habe Grammatik geübt. Der Kurs war interessant und ich habe viel verstanden.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Anna", "Maria", "Julia"],
+          "answer": 2
+        },
+        {
+          "question": "Warum hat Julia Deutsch gelernt?",
+          "options": ["Weil sie in Deutschland arbeiten möchte", "Weil sie Urlaub macht", "Weil sie Freunde hat"],
+          "answer": 0
+        },
+        {
+          "question": "Was hat Julia im Deutschkurs gemacht?",
+          "options": ["Wörter gelernt und Grammatik geübt", "Nur geschlafen", "Nur gesprochen"],
+          "answer": 0
+        }
+      ]
+    }
+  ]
+}

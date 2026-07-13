@@ -1,0 +1,42 @@
+{
+  "lesson": 37,
+  "title": "Придаточные уступки и причины",
+  "level": "B1",
+  "theory": "<h3>📌 Что такое уступительное придаточное?</h3><p><strong>obwohl</strong> — это союз уступки. Он показывает <strong>противоречие</strong> между двумя частями предложения. Переводится как «хотя».</p><div class='info-box' style='background: #E8F0FE; padding: 15px; border-radius: 12px; margin: 15px 0;'><strong>📌 ПРИМЕРЫ С obwohl:</strong><br><span style='color:#2E7D32;font-weight:bold;'>Ich gehe ins Kino, <u>obwohl</u> ich müde bin.</span><br>Я иду в кино, хотя я устал.<br><br><span style='color:#2E7D32;font-weight:bold;'><u>Obwohl</u> es regnet, gehe ich spazieren.</span><br>Хотя идёт дождь, я иду гулять.</div><h3>📌 Сравнение <span style='color:#2E7D32;font-weight:bold;'>obwohl</span> и <span style='color:#2E7D32;font-weight:bold;'>weil</span></h3><table border='1' cellpadding='10' style='border-collapse: collapse; width: 100%; margin: 15px 0;'><tr style='background: #3B6FE0; color: white;'><th>Союз</th><th>Значение</th><th>Пример</th></tr><tr style='background: #E3F2FD;'><td><strong>weil</strong></td><td>потому что (причина)</td><td>Ich gehe ins Kino, <u>weil</u> ich den Film sehen will.</td></tr><tr style='background: #F5F5F5;'><td><strong>obwohl</strong></td><td>хотя (уступка)</td><td>Ich gehe ins Kino, <u>obwohl</u> ich müde bin.</td></tr></table><div class='warning-box' style='background: #FFF3E0; padding: 15px; border-radius: 12px; margin: 15px 0; border-left: 5px solid #FF9800;'><strong>💡 ВАЖНО!</strong><br>• <strong>weil</strong> — показывает <strong>причину</strong> (почему?)<br>• <strong>obwohl</strong> — показывает <strong>противоречие</strong> (несмотря на что?)<br>• В обоих случаях <strong>глагол стоит в конце</strong> придаточного!</div>",
+  "vocabulary": [
+    {"de": "obwohl", "ru": "хотя"},
+    {"de": "weil", "ru": "потому что"},
+    {"de": "das Engagement", "ru": "активность / вовлечённость"},
+    {"de": "die Freiwilligenarbeit", "ru": "волонтёрская работа"},
+    {"de": "die Spende", "ru": "пожертвование"},
+    {"de": "die Hilfe", "ru": "помощь"},
+    {"de": "helfen", "ru": "помогать"},
+    {"de": "unterstützen", "ru": "поддерживать"},
+    {"de": "sich engagieren", "ru": "участвовать / вовлекаться"},
+    {"de": "spenden", "ru": "жертвовать"},
+    {"de": "das Projekt", "ru": "проект"},
+    {"de": "die Organisation", "ru": "организация"},
+    {"de": "der Verein", "ru": "общество / клуб"},
+    {"de": "die Sozialarbeit", "ru": "социальная работа"}
+  ],
+  "examples": [
+    {"de": "Ich gehe ins Kino, obwohl ich müde bin.", "ru": "Я иду в кино, хотя я устал."},
+    {"de": "Obwohl es regnet, gehe ich spazieren.", "ru": "Хотя идёт дождь, я иду гулять."},
+    {"de": "Ich helfe im Verein, obwohl ich wenig Zeit habe.", "ru": "Я помогаю в обществе, хотя у меня мало времени."},
+    {"de": "Sie engagiert sich für die Umwelt, weil es ihr wichtig ist.", "ru": "Она участвует в защите окружающей среды, потому что это ей важно."},
+    {"de": "Obwohl er müde war, half er bei dem Projekt.", "ru": "Хотя он устал, он помогал с проектом."},
+    {"de": "Ich spende Geld, obwohl ich nicht viel verdiene.", "ru": "Я жертвую деньги, хотя я мало зарабатываю."}
+  ],
+  "practice": [
+    {"type": "fill", "question": "Вставьте правильный союз (obwohl/weil):", "sentence": "Ich gehe ins Kino, ___ ich den Film sehen will.", "answer": "weil", "hint": "Я иду в кино, потому что хочу посмотреть фильм."},
+    {"type": "fill", "question": "Вставьте правильный союз (obwohl/weil):", "sentence": "Ich gehe ins Kino, ___ ich müde bin.", "answer": "obwohl", "hint": "Я иду в кино, хотя я устал."},
+    {"type": "fill", "question": "Вставьте правильный союз (obwohl/weil):", "sentence": "___ es regnet, gehe ich spazieren.", "answer": "Obwohl", "hint": "Хотя идёт дождь, я иду гулять."},
+    {"type": "fill", "question": "Вставьте правильный союз (obwohl/weil):", "sentence": "Ich helfe im Verein, ___ ich wenig Zeit habe.", "answer": "obwohl", "hint": "Я помогаю в обществе, хотя у меня мало времени."},
+    {"type": "fill", "question": "Вставьте правильный союз (obwohl/weil):", "sentence": "Sie engagiert sich für die Umwelt, ___ es ihr wichtig ist.", "answer": "weil", "hint": "Она участвует в защите окружающей среды, потому что это ей важно."},
+    {"type": "fill", "question": "Вставьте правильную форму глагола:", "sentence": "Ich gehe ins Kino, obwohl ich müde ___ (sein)", "answer": "bin", "hint": "Я иду в кино, хотя я устал."},
+    {"type": "fill", "question": "Вставьте правильное слово:", "sentence": "Ich mache ___arbeit. (волонтёрская)", "answer": "Freiwilligen", "hint": "Я занимаюсь волонтёрской работой."},
+    {"type": "fill", "question": "Вставьте правильное слово:", "sentence": "Ich ___ Geld für die Organisation. (spenden)", "answer": "spende", "hint": "Я жертвую деньги для организации."},
+    {"type": "transform", "question": "Переделайте предложение с obwohl:", "sentence": "Ich bin müde. Ich gehe ins Kino.", "answer": "Ich gehe ins Kino, obwohl ich müde bin.", "hint": "Я иду в кино, хотя я устал."},
+    {"type": "transform", "question": "Переделайте предложение с obwohl (в начале):", "sentence": "Es regnet. Ich gehe spazieren.", "answer": "Obwohl es regnet, gehe ich spazieren.", "hint": "Хотя идёт дождь, я иду гулять."}
+  ]
+}

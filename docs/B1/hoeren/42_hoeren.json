@@ -1,0 +1,103 @@
+{
+  "lesson": 42,
+  "level": "B1",
+  "title": "Инфинитивные конструкции (um…zu, ohne…zu, statt…zu)",
+  "dialogs": [
+    {
+      "id": "monolog_1",
+      "title": "Warum ich Sport treibe",
+      "text": "Guten Tag! Ich bin Anna. Ich treibe Sport, um fit zu bleiben. Jeden Morgen laufe ich eine Stunde. Ohne Sport zu treiben, fühle ich mich müde. Ich gehe ins Fitnessstudio, um Muskeln aufzubauen. Statt fernzusehen, mache ich Übungen zu Hause. Es ist nicht immer leicht, aber es lohnt sich.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Anna", "Maria", "Julia"],
+          "answer": 0
+        },
+        {
+          "question": "Warum treibt Anna Sport?",
+          "options": ["Um fit zu bleiben", "Um abzunehmen", "Um Geld zu verdienen"],
+          "answer": 0
+        },
+        {
+          "question": "Wie fühlt sich Anna ohne Sport?",
+          "options": ["Müde", "Fit", "Glücklich"],
+          "answer": 0
+        },
+        {
+          "question": "Warum geht Anna ins Fitnessstudio?",
+          "options": ["Um Muskeln aufzubauen", "Um Freunde zu treffen", "Um zu entspannen"],
+          "answer": 0
+        },
+        {
+          "question": "Was macht Anna statt fernzusehen?",
+          "options": ["Sie macht Übungen zu Hause", "Sie liest", "Sie schläft"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_2",
+      "title": "Meine Arbeit und Weiterbildung",
+      "text": "Hallo zusammen! Ich bin Maria. Ich mache eine Weiterbildung, um beruflich aufzusteigen. Ich lerne jeden Abend zwei Stunden, um die Prüfung zu bestehen. Statt mit Freunden auszugehen, lerne ich zu Hause. Ich möchte eine bessere Stelle bekommen, um mehr zu verdienen. Am Ende wird sich das auszahlen.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Anna", "Maria", "Julia"],
+          "answer": 1
+        },
+        {
+          "question": "Warum macht Maria eine Weiterbildung?",
+          "options": ["Um beruflich aufzusteigen", "Um Spaß zu haben", "Um Freunde zu treffen"],
+          "answer": 0
+        },
+        {
+          "question": "Wie lange lernt Maria jeden Abend?",
+          "options": ["Zwei Stunden", "Eine Stunde", "Drei Stunden"],
+          "answer": 0
+        },
+        {
+          "question": "Was macht Maria statt mit Freunden auszugehen?",
+          "options": ["Sie lernt zu Hause", "Sie schläft", "Sie sieht fern"],
+          "answer": 0
+        },
+        {
+          "question": "Warum möchte Maria eine bessere Stelle bekommen?",
+          "options": ["Um mehr zu verdienen", "Um weniger zu arbeiten", "Um zu reisen"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_3",
+      "title": "Ein gesunder Lebensstil",
+      "text": "Schön, dass ihr zuhört! Ich bin Julia. Ich koche frisch, um gesund zu essen. Ich gehe früh schlafen, um ausgeruht zu sein. Statt Fertiggerichte zu essen, koche ich selbst. Ich trinke viel Wasser, um den Körper zu reinigen. Es ist wichtig, auf sich selbst zu achten.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Anna", "Maria", "Julia"],
+          "answer": 2
+        },
+        {
+          "question": "Warum kocht Julia frisch?",
+          "options": ["Um gesund zu essen", "Um Geld zu sparen", "Um Zeit zu sparen"],
+          "answer": 0
+        },
+        {
+          "question": "Warum geht Julia früh schlafen?",
+          "options": ["Um ausgeruht zu sein", "Um nicht zu arbeiten", "Um zu träumen"],
+          "answer": 0
+        },
+        {
+          "question": "Was isst Julia statt Fertiggerichte?",
+          "options": ["Selbstgekochtes", "Fast Food", "Nur Salat"],
+          "answer": 0
+        },
+        {
+          "question": "Warum trinkt Julia viel Wasser?",
+          "options": ["Um den Körper zu reinigen", "Um satt zu sein", "Um zu schlafen"],
+          "answer": 0
+        }
+      ]
+    }
+  ]
+}

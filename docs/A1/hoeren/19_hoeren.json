@@ -1,0 +1,88 @@
+{
+  "lesson": 19,
+  "level": "A1",
+  "title": "Письменная коммуникация",
+  "dialogs": [
+    {
+      "id": "monolog_1",
+      "title": "Eine Einladung",
+      "text": "Guten Tag! Ich bin Anna. Ich schreibe eine Einladung. Ich schreibe: 'Liebe Maria, ich lade dich zu meinem Geburtstag ein'. Der Geburtstag ist am Samstag. Ich schreibe die Adresse und die Zeit.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Anna", "Maria", "Julia"],
+          "answer": 0
+        },
+        {
+          "question": "Was schreibt Anna?",
+          "options": ["Eine Einladung", "Einen Brief", "Eine E-Mail"],
+          "answer": 0
+        },
+        {
+          "question": "Wann ist der Geburtstag?",
+          "options": ["Am Samstag", "Am Sonntag", "Am Freitag"],
+          "answer": 0
+        },
+        {
+          "question": "Was schreibt Anna in die Einladung?",
+          "options": ["Die Adresse und die Zeit", "Die Geschenke", "Das Essen"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_2",
+      "title": "Meine Adresse",
+      "text": "Hallo! Ich bin Maria. Ich wohne in der Hauptstraße 15. Meine Postleitzahl ist 50667. Ich wohne in Köln. Meine Telefonnummer ist 0176 1234567.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Anna", "Maria", "Julia"],
+          "answer": 1
+        },
+        {
+          "question": "Wie lautet Marias Straße?",
+          "options": ["Hauptstraße 15", "Hauptstraße 10", "Berliner Straße 5"],
+          "answer": 0
+        },
+        {
+          "question": "Wie lautet Marias Postleitzahl?",
+          "options": ["50667", "50668", "50669"],
+          "answer": 0
+        },
+        {
+          "question": "Wo wohnt Maria?",
+          "options": ["In Köln", "In Berlin", "In Hamburg"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_3",
+      "title": "Eine Antwort",
+      "text": "Guten Morgen! Ich bin Julia. Ich bekomme eine Einladung. Ich schreibe eine Antwort: 'Liebe Anna, ich komme gern.' Ich schreibe auch: 'Was kann ich mitbringen?' Ich freue mich auf den Geburtstag.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Anna", "Maria", "Julia"],
+          "answer": 2
+        },
+        {
+          "question": "Was bekommt Julia?",
+          "options": ["Eine Einladung", "Einen Brief", "Eine E-Mail"],
+          "answer": 0
+        },
+        {
+          "question": "Was schreibt Julia in der Antwort?",
+          "options": ["'Ich komme gern'", "'Ich komme nicht'", "'Ich weiß nicht'"],
+          "answer": 0
+        },
+        {
+          "question": "Was fragt Julia?",
+          "options": ["Was kann ich mitbringen?", "Wann ist der Geburtstag?", "Wo ist der Geburtstag?"],
+          "answer": 0
+        }
+      ]
+    }
+  ]
+}

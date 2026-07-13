@@ -1,0 +1,199 @@
+{
+  "lesson": 50,
+  "level": "B2",
+  "title": "Право и обязанности",
+  "dialogs": [
+    {
+      "id": "monolog_1",
+      "title": "Die Grundrechte",
+      "text": "Ich möchte heute über die Grundrechte in Deutschland sprechen. Ich bin Anna. Die Grundrechte sind im Grundgesetz festgelegt. Sie schützen die Bürger vor dem Staat. Jeder Mensch hat das Recht auf Leben und körperliche Unversehrtheit. Die Meinungsfreiheit ist ein wichtiges Grundrecht. Die Pressefreiheit ist ebenfalls geschützt. Auch die Religionsfreiheit ist garantiert. Die Grundrechte sind nicht einschränkbar.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Anna", "Maria", "Julia"],
+          "answer": 0
+        },
+        {
+          "question": "Wo sind die Grundrechte festgelegt?",
+          "options": ["Im Grundgesetz", "Im Strafgesetzbuch", "Im Bürgerlichen Gesetzbuch"],
+          "answer": 0
+        },
+        {
+          "question": "Was schützen die Grundrechte?",
+          "options": ["Die Bürger vor dem Staat", "Den Staat vor den Bürgern", "Die Unternehmen vor dem Staat"],
+          "answer": 0
+        },
+        {
+          "question": "Welches Recht ist ein wichtiges Grundrecht?",
+          "options": ["Die Meinungsfreiheit", "Die Steuerfreiheit", "Die Impfpflicht"],
+          "answer": 0
+        },
+        {
+          "question": "Sind die Grundrechte einschränkbar?",
+          "options": ["Nein", "Ja", "Manchmal"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_2",
+      "title": "Die Pflichten der Bürger",
+      "text": "In der heutigen Zeit wird viel über die Pflichten der Bürger gesprochen. Ich bin Maria. Jeder Bürger hat nicht nur Rechte, sondern auch Pflichten. Man muss Steuern zahlen. Das ist eine wichtige Pflicht. Man muss die Gesetze befolgen. Man muss seine Kinder zur Schule schicken. Die Schulpflicht besteht bis zum 18. Lebensjahr. Die Pflichten sind wichtig für das Zusammenleben.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Anna", "Maria", "Julia"],
+          "answer": 1
+        },
+        {
+          "question": "Hat jeder Bürger nur Rechte?",
+          "options": ["Nein, auch Pflichten", "Ja, nur Rechte", "Weiß nicht"],
+          "answer": 0
+        },
+        {
+          "question": "Was muss man als Bürger zahlen?",
+          "options": ["Steuern", "Strafen", "Zölle"],
+          "answer": 0
+        },
+        {
+          "question": "Was muss man als Bürger befolgen?",
+          "options": ["Die Gesetze", "Die Empfehlungen", "Die Vorschläge"],
+          "answer": 0
+        },
+        {
+          "question": "Wie lange besteht die Schulpflicht?",
+          "options": ["Bis zum 18. Lebensjahr", "Bis zum 16. Lebensjahr", "Bis zum 21. Lebensjahr"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_3",
+      "title": "Das deutsche Rechtssystem",
+      "text": "Ich habe mich intensiv mit dem deutschen Rechtssystem beschäftigt. Ich bin Julia. Das Rechtssystem ist komplex. Es gibt verschiedene Gerichte. Die Zivilgerichte sind für Streitigkeiten zwischen Bürgern zuständig. Die Strafgerichte entscheiden über Straftaten. Es gibt auch Arbeitsgerichte und Sozialgerichte. Die Richter sind unabhängig. Das ist wichtig für die Gerechtigkeit. Die Anwälte vertreten die Parteien.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Anna", "Maria", "Julia"],
+          "answer": 2
+        },
+        {
+          "question": "Wie ist das deutsche Rechtssystem?",
+          "options": ["Komplex", "Einfach", "Übersichtlich"],
+          "answer": 0
+        },
+        {
+          "question": "Welche Gerichte gibt es?",
+          "options": ["Zivilgerichte, Strafgerichte, Arbeitsgerichte", "Nur Zivilgerichte", "Nur Strafgerichte"],
+          "answer": 0
+        },
+        {
+          "question": "Wofür sind die Zivilgerichte zuständig?",
+          "options": ["Für Streitigkeiten zwischen Bürgern", "Für Straftaten", "Für Arbeitskonflikte"],
+          "answer": 0
+        },
+        {
+          "question": "Was entscheiden die Strafgerichte?",
+          "options": ["Über Straftaten", "Über Verträge", "Über Steuern"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_4",
+      "title": "Die Rolle der Polizei",
+      "text": "Wisst ihr, welche Rolle die Polizei hat? Ich bin Laura. Die Polizei sorgt für die öffentliche Sicherheit. Sie schützt die Bürger. Sie verfolgt Straftaten. Die Polizei kontrolliert den Verkehr. Sie hilft bei Unfällen. Die Polizei hat auch präventive Aufgaben. Sie informiert die Bevölkerung. Die Polizei muss sich an die Gesetze halten. Sie darf nicht willkürlich handeln.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Laura", "Lisa", "Anna"],
+          "answer": 0
+        },
+        {
+          "question": "Wofür sorgt die Polizei?",
+          "options": ["Für die öffentliche Sicherheit", "Für die Wirtschaft", "Für die Kultur"],
+          "answer": 0
+        },
+        {
+          "question": "Was verfolgt die Polizei?",
+          "options": ["Straftaten", "Verkehrsverstöße", "Steuerhinterziehung"],
+          "answer": 0
+        },
+        {
+          "question": "Was kontrolliert die Polizei?",
+          "options": ["Den Verkehr", "Die Wirtschaft", "Die Bildung"],
+          "answer": 0
+        },
+        {
+          "question": "Bei was hilft die Polizei?",
+          "options": ["Bei Unfällen", "Bei Krankheiten", "Bei Reisen"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_5",
+      "title": "Die Verantwortung der Unternehmen",
+      "text": "Ich möchte euch heute von der Verantwortung der Unternehmen erzählen. Ich bin Lisa. Die Unternehmen haben nicht nur wirtschaftliche Ziele. Sie haben auch eine soziale Verantwortung. Sie müssen die Umwelt schützen. Sie müssen ihre Mitarbeiter fair behandeln. Sie müssen Steuern zahlen. Die Unternehmen müssen sich an die Gesetze halten. Sie dürfen keine Kinderarbeit nutzen.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Laura", "Lisa", "Anna"],
+          "answer": 1
+        },
+        {
+          "question": "Was haben Unternehmen nicht nur?",
+          "options": ["Wirtschaftliche Ziele", "Soziale Ziele", "Politische Ziele"],
+          "answer": 0
+        },
+        {
+          "question": "Was müssen Unternehmen schützen?",
+          "options": ["Die Umwelt", "Die Wirtschaft", "Die Kultur"],
+          "answer": 0
+        },
+        {
+          "question": "Wie müssen Unternehmen ihre Mitarbeiter behandeln?",
+          "options": ["Fair", "Ungerecht", "Gleichgültig"],
+          "answer": 0
+        },
+        {
+          "question": "Dürfen Unternehmen Kinderarbeit nutzen?",
+          "options": ["Nein", "Ja", "Manchmal"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_6",
+      "title": "Die Rechte der Arbeitnehmer",
+      "text": "In der heutigen Zeit wird viel über die Rechte der Arbeitnehmer gesprochen. Ich bin Emma. Die Arbeitnehmer haben viele Rechte. Sie haben das Recht auf faire Bezahlung. Sie haben das Recht auf Urlaub. Sie haben das Recht auf Arbeitszeitbegrenzung. Sie dürfen nicht diskriminiert werden. Die Gewerkschaften vertreten die Interessen der Arbeitnehmer. Die Rechte der Arbeitnehmer sind gesetzlich geschützt.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Emma", "Lisa", "Laura"],
+          "answer": 0
+        },
+        {
+          "question": "Welche Rechte haben Arbeitnehmer?",
+          "options": ["Recht auf faire Bezahlung, Urlaub, Arbeitszeitbegrenzung", "Nur Recht auf Bezahlung", "Nur Recht auf Urlaub"],
+          "answer": 0
+        },
+        {
+          "question": "Dürfen Arbeitnehmer diskriminiert werden?",
+          "options": ["Nein", "Ja", "Manchmal"],
+          "answer": 0
+        },
+        {
+          "question": "Was vertreten die Gewerkschaften?",
+          "options": ["Die Interessen der Arbeitnehmer", "Die Interessen der Arbeitgeber", "Die Interessen des Staates"],
+          "answer": 0
+        },
+        {
+          "question": "Sind die Rechte der Arbeitnehmer geschützt?",
+          "options": ["Ja, gesetzlich", "Nein", "Weiß nicht"],
+          "answer": 0
+        }
+      ]
+    }
+  ]
+}

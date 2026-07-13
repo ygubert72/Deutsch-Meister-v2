@@ -1,0 +1,93 @@
+{
+  "lesson": 26,
+  "level": "A2",
+  "title": "Профессиональные обязанности и навыки",
+  "dialogs": [
+    {
+      "id": "monolog_1",
+      "title": "Meine Aufgaben im Büro",
+      "text": "Einen schönen Tag! Ich bin Anna. Ich arbeite in einem Büro. Ich muss E-Mails schreiben und telefonieren. Ich organisiere Termine für meine Chefin. Ich kann gut mit Menschen umgehen. Ich arbeite gern im Team.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Anna", "Maria", "Julia"],
+          "answer": 0
+        },
+        {
+          "question": "Was muss Anna in ihrem Beruf machen?",
+          "options": ["E-Mails schreiben und telefonieren", "Kochen", "Auto fahren"],
+          "answer": 0
+        },
+        {
+          "question": "Was organisiert Anna?",
+          "options": ["Termine", "Reisen", "Partys"],
+          "answer": 0
+        },
+        {
+          "question": "Was kann Anna gut?",
+          "options": ["Mit Menschen umgehen", "Kochen", "Programmieren"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_2",
+      "title": "Meine Fähigkeiten",
+      "text": "Hallo, hier ist Maria! Ich kann drei Sprachen sprechen: Deutsch, Englisch und Französisch. Ich kann gut mit Computern arbeiten. Ich kann Projekte planen. Diese Fähigkeiten helfen mir in meinem Beruf.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Anna", "Maria", "Julia"],
+          "answer": 1
+        },
+        {
+          "question": "Wie viele Sprachen kann Maria sprechen?",
+          "options": ["Drei", "Zwei", "Vier"],
+          "answer": 0
+        },
+        {
+          "question": "Welche Sprachen kann Maria?",
+          "options": ["Deutsch, Englisch und Französisch", "Nur Deutsch", "Deutsch und Englisch"],
+          "answer": 0
+        },
+        {
+          "question": "Was kann Maria mit Computern machen?",
+          "options": ["Gut arbeiten", "Nichts", "Spiele spielen"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_3",
+      "title": "Ein typischer Arbeitstag",
+      "text": "Guten Morgen! Ich bin Julia. Mein Arbeitstag beginnt um 8 Uhr. Ich lese zuerst meine E-Mails. Um 10 Uhr habe ich eine Besprechung. Mittags esse ich in der Kantine. Am Nachmittag telefoniere ich mit Kunden. Um 17 Uhr beende ich meine Arbeit.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Anna", "Maria", "Julia"],
+          "answer": 2
+        },
+        {
+          "question": "Wann beginnt Julias Arbeit?",
+          "options": ["Um 8 Uhr", "Um 9 Uhr", "Um 7 Uhr"],
+          "answer": 0
+        },
+        {
+          "question": "Was macht Julia um 10 Uhr?",
+          "options": ["Sie hat eine Besprechung", "Sie schreibt E-Mails", "Sie macht Pause"],
+          "answer": 0
+        },
+        {
+          "question": "Wo isst Julia zu Mittag?",
+          "options": ["In der Kantine", "Zu Hause", "Im Restaurant"],
+          "answer": 0
+        },
+        {
+          "question": "Wann beendet Julia ihre Arbeit?",
+          "options": ["Um 17 Uhr", "Um 18 Uhr", "Um 16 Uhr"],
+          "answer": 0
+        }
+      ]
+    }
+  ]
+}

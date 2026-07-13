@@ -1,0 +1,88 @@
+{
+  "lesson": 11,
+  "level": "A1",
+  "title": "Предлоги направления (Wohin? — Akkusativ)",
+  "dialogs": [
+    {
+      "id": "monolog_1",
+      "title": "Ich räume auf",
+      "text": "Guten Tag! Ich bin Anna. Heute räume ich mein Zimmer auf. Ich lege das Buch auf den Tisch. Ich stelle die Lampe neben das Bett. Ich hänge das Bild an die Wand.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Anna", "Maria", "Julia"],
+          "answer": 0
+        },
+        {
+          "question": "Wo legt Anna das Buch hin?",
+          "options": ["Auf den Tisch", "Auf das Bett", "Auf den Stuhl"],
+          "answer": 0
+        },
+        {
+          "question": "Wo stellt Anna die Lampe hin?",
+          "options": ["Neben das Bett", "Auf den Tisch", "Unter das Bett"],
+          "answer": 0
+        },
+        {
+          "question": "Wo hängt Anna das Bild hin?",
+          "options": ["An die Wand", "An die Tür", "An den Schrank"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_2",
+      "title": "Ich gehe einkaufen",
+      "text": "Hallo! Ich bin Maria. Ich gehe in den Supermarkt. Ich stelle den Einkaufswagen neben die Kasse. Ich lege das Brot in den Einkaufswagen. Ich stelle die Milch in den Kühlschrank.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Anna", "Maria", "Julia"],
+          "answer": 1
+        },
+        {
+          "question": "Wohin geht Maria?",
+          "options": ["In den Supermarkt", "In die Schule", "In das Kino"],
+          "answer": 0
+        },
+        {
+          "question": "Wo stellt Maria den Einkaufswagen hin?",
+          "options": ["Neben die Kasse", "Vor die Kasse", "Hinter die Kasse"],
+          "answer": 0
+        },
+        {
+          "question": "Wohin legt Maria das Brot?",
+          "options": ["In den Einkaufswagen", "In den Korb", "In den Kühlschrank"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_3",
+      "title": "Ich fahre nach Berlin",
+      "text": "Guten Morgen! Ich bin Julia. Ich fahre nach Berlin. Ich gehe in den Bahnhof. Ich setze mich auf einen Stuhl. Ich lege meine Tasche auf den Boden. Dann steige ich in den Zug.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Anna", "Maria", "Julia"],
+          "answer": 2
+        },
+        {
+          "question": "Wohin fährt Julia?",
+          "options": ["Nach Berlin", "Nach München", "Nach Hamburg"],
+          "answer": 0
+        },
+        {
+          "question": "Wohin geht Julia zuerst?",
+          "options": ["In den Bahnhof", "In das Kino", "In die Schule"],
+          "answer": 0
+        },
+        {
+          "question": "Wohin steigt Julia?",
+          "options": ["In den Zug", "In den Bus", "In das Auto"],
+          "answer": 0
+        }
+      ]
+    }
+  ]
+}

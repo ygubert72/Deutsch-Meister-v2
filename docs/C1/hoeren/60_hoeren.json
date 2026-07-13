@@ -1,0 +1,199 @@
+{
+  "lesson": 60,
+  "level": "C1",
+  "title": "Межкультурная коммуникация и глобальные вызовы",
+  "dialogs": [
+    {
+      "id": "monolog_1",
+      "title": "Die Bedeutung der interkulturellen Kommunikation",
+      "text": "Die von der Kommunikationswissenschaftlerin Anna betonte Bedeutung der interkulturellen Kommunikation hat in der globalisierten Welt enorm zugenommen. Die zunehmende Vernetzung der Welt erfordert interkulturelle Kompetenz. Die Unterschiede zwischen Kulturen müssen verstanden werden. Die kulturellen Besonderheiten sind zu respektieren. Die interkulturelle Kommunikation verhindert Missverständnisse. Sie fördert die internationale Zusammenarbeit. Die interkulturelle Kompetenz ist ein entscheidender Erfolgsfaktor.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Anna", "Maria", "Julia"],
+          "answer": 0
+        },
+        {
+          "question": "Was hat in der globalisierten Welt enorm zugenommen?",
+          "options": ["Die Bedeutung der interkulturellen Kommunikation", "Die Bedeutung der nationalen Kommunikation", "Die Bedeutung der regionalen Kommunikation"],
+          "answer": 0
+        },
+        {
+          "question": "Was erfordert die zunehmende Vernetzung der Welt?",
+          "options": ["Interkulturelle Kompetenz", "Nationale Kompetenz", "Regionale Kompetenz"],
+          "answer": 0
+        },
+        {
+          "question": "Was muss bei der interkulturellen Kommunikation verstanden werden?",
+          "options": ["Die Unterschiede zwischen Kulturen", "Die Gemeinsamkeiten zwischen Kulturen", "Die Gleichheit der Kulturen"],
+          "answer": 0
+        },
+        {
+          "question": "Was verhindert interkulturelle Kommunikation?",
+          "options": ["Missverständnisse", "Zusammenarbeit", "Erfolge"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_2",
+      "title": "Kulturelle Unterschiede im Berufsleben",
+      "text": "Die von der interkulturellen Trainerin Maria identifizierten kulturellen Unterschiede im Berufsleben sind von großer praktischer Relevanz. Die Arbeitsweise variiert von Kultur zu Kultur. Die Pünktlichkeitserwartungen unterscheiden sich. Die Kommunikationsstile sind unterschiedlich. Die direkte versus indirekte Kommunikation ist ein zentraler Unterschied. Die Kenntnis dieser Unterschiede ist für die erfolgreiche internationale Zusammenarbeit unerlässlich. Die interkulturelle Sensibilität ist eine Schlüsselqualifikation.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Anna", "Maria", "Julia"],
+          "answer": 1
+        },
+        {
+          "question": "Was ist von großer praktischer Relevanz?",
+          "options": ["Die kulturellen Unterschiede im Berufsleben", "Die nationalen Unterschiede im Berufsleben", "Die regionalen Unterschiede im Berufsleben"],
+          "answer": 0
+        },
+        {
+          "question": "Was variiert von Kultur zu Kultur?",
+          "options": ["Die Arbeitsweise", "Die Arbeitszeit", "Der Arbeitsort"],
+          "answer": 0
+        },
+        {
+          "question": "Was ist ein zentraler Unterschied in der Kommunikation?",
+          "options": ["Die direkte versus indirekte Kommunikation", "Die laute versus leise Kommunikation", "Die schnelle versus langsame Kommunikation"],
+          "answer": 0
+        },
+        {
+          "question": "Was ist eine Schlüsselqualifikation?",
+          "options": ["Die interkulturelle Sensibilität", "Die nationale Sensibilität", "Die regionale Sensibilität"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_3",
+      "title": "Die Herausforderungen der Globalisierung",
+      "text": "Die von der Globalisierungsforscherin Julia untersuchten Herausforderungen der Globalisierung sind vielschichtig und komplex. Die wirtschaftliche Verflechtung bringt Chancen und Risiken mit sich. Die soziale Ungleichheit wird durch die Globalisierung verstärkt. Die Umweltbelastung nimmt zu. Die kulturelle Homogenisierung schreitet voran. Die Globalisierung muss aktiv gestaltet werden. Die Chancen der Globalisierung sind zu nutzen. Die Risiken der Globalisierung sind zu minimieren.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Anna", "Maria", "Julia"],
+          "answer": 2
+        },
+        {
+          "question": "Was sind vielschichtig und komplex?",
+          "options": ["Die Herausforderungen der Globalisierung", "Die Vorteile der Globalisierung", "Die Chancen der Globalisierung"],
+          "answer": 0
+        },
+        {
+          "question": "Was wird durch die Globalisierung verstärkt?",
+          "options": ["Die soziale Ungleichheit", "Die soziale Gleichheit", "Die soziale Harmonie"],
+          "answer": 0
+        },
+        {
+          "question": "Was nimmt durch die Globalisierung zu?",
+          "options": ["Die Umweltbelastung", "Die Umweltverbesserung", "Die Umweltstabilität"],
+          "answer": 0
+        },
+        {
+          "question": "Was muss aktiv gestaltet werden?",
+          "options": ["Die Globalisierung", "Die Nationalisierung", "Die Regionalisierung"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_4",
+      "title": "Die Bedeutung von Empathie in der Kommunikation",
+      "text": "Die von der Psychologin Laura hervorgehobene Bedeutung von Empathie in der zwischenmenschlichen Kommunikation ist von grundlegender Wichtigkeit. Die Fähigkeit, sich in andere hineinzuversetzen, ist die Basis erfolgreicher Kommunikation. Die Perspektive des Gegenübers wird verstanden. Die Emotionen des anderen werden respektiert. Die Empathie verhindert Konflikte. Sie fördert das Vertrauen. Die empathische Kommunikation ist die Grundlage für tragfähige zwischenmenschliche Beziehungen.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Laura", "Lisa", "Anna"],
+          "answer": 0
+        },
+        {
+          "question": "Was ist von grundlegender Wichtigkeit?",
+          "options": ["Die Bedeutung von Empathie in der Kommunikation", "Die Bedeutung von Effizienz in der Kommunikation", "Die Bedeutung von Geschwindigkeit in der Kommunikation"],
+          "answer": 0
+        },
+        {
+          "question": "Was ist die Basis erfolgreicher Kommunikation?",
+          "options": ["Die Fähigkeit, sich in andere hineinzuversetzen", "Die Fähigkeit, schnell zu sprechen", "Die Fähigkeit, laut zu sprechen"],
+          "answer": 0
+        },
+        {
+          "question": "Was wird durch Empathie verhindert?",
+          "options": ["Konflikte", "Kooperation", "Kommunikation"],
+          "answer": 0
+        },
+        {
+          "question": "Was fördert Empathie?",
+          "options": ["Das Vertrauen", "Das Misstrauen", "Die Gleichgültigkeit"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_5",
+      "title": "Die Rolle der Sprache in der interkulturellen Kommunikation",
+      "text": "Die von der Linguistin Lisa analysierte Rolle der Sprache in der interkulturellen Kommunikation ist von zentraler Bedeutung. Das Verständnis der fremden Sprache ist grundlegend. Die kulturellen Nuancen müssen erkannt werden. Die sprachliche Anpassung ist erforderlich. Die klare und einfache Sprache wird bevorzugt. Die Fachbegriffe werden vermieden. Die Missverständnisse werden umgehend geklärt. Die Sprachkompetenz ist ein entscheidender Faktor für den Erfolg interkultureller Kommunikation.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Laura", "Lisa", "Anna"],
+          "answer": 1
+        },
+        {
+          "question": "Was ist von zentraler Bedeutung?",
+          "options": ["Die Rolle der Sprache in der interkulturellen Kommunikation", "Die Rolle der Kleidung in der interkulturellen Kommunikation", "Die Rolle des Essens in der interkulturellen Kommunikation"],
+          "answer": 0
+        },
+        {
+          "question": "Was ist grundlegend für die interkulturelle Kommunikation?",
+          "options": ["Das Verständnis der fremden Sprache", "Das Verständnis der fremden Kultur", "Das Verständnis der fremden Politik"],
+          "answer": 0
+        },
+        {
+          "question": "Was muss in der interkulturellen Kommunikation erkannt werden?",
+          "options": ["Die kulturellen Nuancen", "Die politischen Nuancen", "Die wirtschaftlichen Nuancen"],
+          "answer": 0
+        },
+        {
+          "question": "Was ist ein entscheidender Faktor für den Erfolg interkultureller Kommunikation?",
+          "options": ["Die Sprachkompetenz", "Die Kleidungskompetenz", "Die Esskompetenz"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_6",
+      "title": "Die Zukunft der interkulturellen Zusammenarbeit",
+      "text": "Die von der Zukunftsforscherin Emma prognostizierte Entwicklung der interkulturellen Zusammenarbeit zeigt eine zunehmende Bedeutung auf. Die Welt wird immer vernetzter. Die Mobilität der Menschen nimmt zu. Die Teams werden internationaler. Die Projekte werden globaler. Die Zusammenarbeit über Grenzen hinweg wird zur Norm. Die interkulturelle Zusammenarbeit bietet enorme Chancen. Sie stellt die größte Herausforderung und zugleich die größte Chance unserer Zeit dar.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Emma", "Lisa", "Laura"],
+          "answer": 0
+        },
+        {
+          "question": "Was zeigt eine zunehmende Bedeutung auf?",
+          "options": ["Die Entwicklung der interkulturellen Zusammenarbeit", "Die Entwicklung der nationalen Zusammenarbeit", "Die Entwicklung der regionalen Zusammenarbeit"],
+          "answer": 0
+        },
+        {
+          "question": "Wie wird die Welt immer?",
+          "options": ["Vernetzter", "Unvernetzter", "Isolierter"],
+          "answer": 0
+        },
+        {
+          "question": "Was nimmt zu?",
+          "options": ["Die Mobilität der Menschen", "Die Immobilität der Menschen", "Die Sesshaftigkeit der Menschen"],
+          "answer": 0
+        },
+        {
+          "question": "Was stellt die interkulturelle Zusammenarbeit dar?",
+          "options": ["Die größte Herausforderung und zugleich die größte Chance unserer Zeit", "Die kleinste Herausforderung und zugleich die kleinste Chance unserer Zeit", "Eine unbedeutende Herausforderung und zugleich eine unbedeutende Chance"],
+          "answer": 0
+        }
+      ]
+    }
+  ]
+}

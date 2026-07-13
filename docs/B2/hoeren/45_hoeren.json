@@ -1,0 +1,199 @@
+{
+  "lesson": 45,
+  "level": "B2",
+  "title": "Формальные клише в деловой и академической переписке",
+  "dialogs": [
+    {
+      "id": "monolog_1",
+      "title": "Eine Bewerbung",
+      "text": "Guten Tag! Ich bin Anna. Ich möchte mich auf eine Stelle bewerben. In meinem Anschreiben verwende ich formelle Formulierungen. Ich beginne mit 'Sehr geehrte Damen und Herren'. Dann schreibe ich 'hiermit bewerbe ich mich um die Stelle als...'. Im zweiten Absatz erläutere ich meine Qualifikationen. Ich schließe mit 'Mit freundlichen Grüßen'. Die Form ist bei einer Bewerbung sehr wichtig.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Anna", "Maria", "Julia"],
+          "answer": 0
+        },
+        {
+          "question": "Was möchte Anna tun?",
+          "options": ["Sich auf eine Stelle bewerben", "Eine Reise machen", "Ein Buch schreiben"],
+          "answer": 0
+        },
+        {
+          "question": "Wie beginnt sie das Anschreiben?",
+          "options": ["Mit 'Sehr geehrte Damen und Herren'", "Mit 'Hallo'", "Mit 'Liebe Kollegen'"],
+          "answer": 0
+        },
+        {
+          "question": "Was schreibt sie im zweiten Absatz?",
+          "options": ["Sie erläutert ihre Qualifikationen", "Sie schreibt über ihre Hobbys", "Sie beschreibt ihre Familie"],
+          "answer": 0
+        },
+        {
+          "question": "Wie schließt sie ab?",
+          "options": ["Mit 'Mit freundlichen Grüßen'", "Mit 'Tschüss'", "Mit 'Viele Grüße'"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_2",
+      "title": "Eine offizielle Anfrage",
+      "text": "In der heutigen Zeit muss man oft formelle Anfragen schreiben. Ich bin Maria. Ich schreibe manchmal an Behörden. Dabei verwende ich bestimmte Formulierungen. Ich beginne mit 'Bezüglich Ihrer Anfrage...' oder 'Gemäß Ihrem Schreiben...'. Ich bedanke mich mit 'Ich danke Ihnen für Ihre Aufmerksamkeit'. Am Ende schreibe ich 'Mit freundlichen Grüßen'. Die Höflichkeit ist in offiziellen Briefen sehr wichtig.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Anna", "Maria", "Julia"],
+          "answer": 1
+        },
+        {
+          "question": "An wen schreibt Maria manchmal?",
+          "options": ["An Behörden", "An Freunde", "An die Familie"],
+          "answer": 0
+        },
+        {
+          "question": "Wie beginnt sie solche Briefe oft?",
+          "options": ["Mit 'Bezüglich Ihrer Anfrage...'", "Mit 'Hallo'", "Mit 'Liebe Behörde'"],
+          "answer": 0
+        },
+        {
+          "question": "Wofür bedankt sie sich?",
+          "options": ["Für die Aufmerksamkeit", "Für die Zeit", "Für den Brief"],
+          "answer": 0
+        },
+        {
+          "question": "Wie schließt sie den Brief ab?",
+          "options": ["Mit 'Mit freundlichen Grüßen'", "Mit 'Tschüss'", "Mit 'Viele Grüße'"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_3",
+      "title": "Eine akademische E-Mail",
+      "text": "Ich habe mich intensiv mit der akademischen Kommunikation beschäftigt. Ich bin Julia. Ich schreibe oft E-Mails an Professoren. Die Anrede ist immer 'Sehr geehrter Professor...'. Dann stelle ich mich kurz vor. Ich schreibe 'Ich schreibe Ihnen bezüglich...'. Am Ende bedanke ich mich für die Zeit. Ich schließe mit 'Mit freundlichen Grüßen'. Die Form ist in der akademischen Welt sehr wichtig.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Anna", "Maria", "Julia"],
+          "answer": 2
+        },
+        {
+          "question": "An wen schreibt Julia oft?",
+          "options": ["An Professoren", "An Freunde", "An die Familie"],
+          "answer": 0
+        },
+        {
+          "question": "Wie ist die Anrede?",
+          "options": ["'Sehr geehrter Professor...'", "'Hallo Professor'", "'Lieber Professor'"],
+          "answer": 0
+        },
+        {
+          "question": "Was schreibt sie nach der Anrede?",
+          "options": ["Sie stellt sich kurz vor", "Sie schreibt über das Wetter", "Sie fragt nach dem Befinden"],
+          "answer": 0
+        },
+        {
+          "question": "Wie schließt sie die E-Mail ab?",
+          "options": ["Mit 'Mit freundlichen Grüßen'", "Mit 'Tschüss'", "Mit 'Viele Grüße'"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_4",
+      "title": "Eine Beschwerde schreiben",
+      "text": "Wisst ihr, wie man eine formelle Beschwerde schreibt? Ich bin Laura. Ich habe schon einmal eine Beschwerde geschrieben. Man sollte sachlich bleiben. Ich beginne mit 'Sehr geehrte Damen und Herren'. Dann beschreibe ich das Problem genau. Ich schließe mit 'Ich bitte um eine schnelle Antwort'. Die Form ist auch bei Beschwerden wichtig.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Laura", "Lisa", "Anna"],
+          "answer": 0
+        },
+        {
+          "question": "Was hat Laura schon einmal geschrieben?",
+          "options": ["Eine Beschwerde", "Einen Liebesbrief", "Eine Einladung"],
+          "answer": 0
+        },
+        {
+          "question": "Wie sollte man bei einer Beschwerde bleiben?",
+          "options": ["Sachlich", "Emotional", "Laut"],
+          "answer": 0
+        },
+        {
+          "question": "Wie beginnt sie die Beschwerde?",
+          "options": ["Mit 'Sehr geehrte Damen und Herren'", "Mit 'Hallo'", "Mit 'Liebe Beschwerde'"],
+          "answer": 0
+        },
+        {
+          "question": "Was bittet sie am Ende?",
+          "options": ["Um eine schnelle Antwort", "Um mehr Zeit", "Um eine Entschuldigung"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_5",
+      "title": "Eine formelle Einladung",
+      "text": "Ich möchte euch heute von einer formellen Einladung erzählen. Ich bin Lisa. Ich habe letzte Woche eine Einladung zu einer Konferenz bekommen. Die Einladung war sehr förmlich. Sie begann mit 'Sehr geehrte Frau Lisa...'. Dann wurden die Details der Konferenz erklärt. Am Ende stand 'Wir würden uns freuen, Sie begrüßen zu dürfen'. Die Einladung war sehr professionell.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Laura", "Lisa", "Anna"],
+          "answer": 1
+        },
+        {
+          "question": "Was hat Lisa letzte Woche bekommen?",
+          "options": ["Eine Einladung", "Eine Beschwerde", "Ein Geschenk"],
+          "answer": 0
+        },
+        {
+          "question": "Wohin wurde sie eingeladen?",
+          "options": ["Zu einer Konferenz", "Zu einer Party", "Zu einem Konzert"],
+          "answer": 0
+        },
+        {
+          "question": "Wie begann die Einladung?",
+          "options": ["Mit 'Sehr geehrte Frau Lisa...'", "Mit 'Hallo Lisa'", "Mit 'Liebe Lisa'"],
+          "answer": 0
+        },
+        {
+          "question": "Was stand am Ende der Einladung?",
+          "options": ["'Wir würden uns freuen, Sie begrüßen zu dürfen'", "'Tschüss'", "'Viele Grüße'"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_6",
+      "title": "Eine offizielle Absage",
+      "text": "In der heutigen Zeit muss man auch Absagen schreiben. Ich bin Emma. Ich habe letzte Woche eine offizielle Absage erhalten. Die Absage war sehr höflich. Sie begann mit 'Sehr geehrte Frau Emma...'. Dann wurde die Entscheidung erklärt. Es stand 'Leider müssen wir Ihnen mitteilen, dass...'. Die Absage war professionell formuliert.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Emma", "Lisa", "Laura"],
+          "answer": 0
+        },
+        {
+          "question": "Was hat Emma letzte Woche erhalten?",
+          "options": ["Eine Absage", "Eine Einladung", "Ein Geschenk"],
+          "answer": 0
+        },
+        {
+          "question": "Wie war die Absage?",
+          "options": ["Höflich", "Unhöflich", "Kurz"],
+          "answer": 0
+        },
+        {
+          "question": "Wie begann die Absage?",
+          "options": ["Mit 'Sehr geehrte Frau Emma...'", "Mit 'Hallo Emma'", "Mit 'Liebe Emma'"],
+          "answer": 0
+        },
+        {
+          "question": "Was wurde in der Absage erklärt?",
+          "options": ["Die Entscheidung", "Das Wetter", "Die Geschichte"],
+          "answer": 0
+        }
+      ]
+    }
+  ]
+}

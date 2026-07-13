@@ -1,0 +1,93 @@
+{
+  "lesson": 25,
+  "level": "A2",
+  "title": "Сравнительная степень прилагательных",
+  "dialogs": [
+    {
+      "id": "monolog_1",
+      "title": "Meine Stadt",
+      "text": "Schönen guten Tag! Ich bin Anna. Ich wohne in Berlin. Berlin ist größer als Hamburg. Die Straßen sind breiter. Die Gebäude sind höher. Das Leben ist hier aufregender. Aber Berlin ist auch lauter.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Anna", "Maria", "Julia"],
+          "answer": 0
+        },
+        {
+          "question": "Welche Stadt ist größer: Berlin oder Hamburg?",
+          "options": ["Berlin", "Hamburg", "Beide sind gleich"],
+          "answer": 0
+        },
+        {
+          "question": "Wie sind die Straßen in Berlin?",
+          "options": ["Breiter", "Schmaler", "Kürzer"],
+          "answer": 0
+        },
+        {
+          "question": "Wie ist das Leben in Berlin?",
+          "options": ["Aufregender", "Langweiliger", "Ruhiger"],
+          "answer": 0
+        },
+        {
+          "question": "Was ist in Berlin negativ?",
+          "options": ["Es ist lauter", "Es ist teurer", "Es ist kälter"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_2",
+      "title": "Meine Familie",
+      "text": "Hallo zusammen! Ich bin Maria. Meine Schwester ist älter als ich. Sie ist 28 Jahre alt und ich bin 24. Meine Mutter ist freundlicher als meine Tante. Mein Vater ist ruhiger als meine Mutter. Mein Bruder ist größer als alle.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Anna", "Maria", "Julia"],
+          "answer": 1
+        },
+        {
+          "question": "Wer ist älter: Maria oder ihre Schwester?",
+          "options": ["Maria", "Ihre Schwester", "Beide sind gleich alt"],
+          "answer": 1
+        },
+        {
+          "question": "Wie ist Marias Mutter im Vergleich zu ihrer Tante?",
+          "options": ["Freundlicher", "Strenge", "Lauter"],
+          "answer": 0
+        },
+        {
+          "question": "Wer ist in der Familie am größten?",
+          "options": ["Marias Bruder", "Marias Vater", "Maria selbst"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_3",
+      "title": "Meine Wohnung",
+      "text": "Guten Morgen! Ich bin Julia. Meine neue Wohnung ist größer als die alte. Das Wohnzimmer ist heller und die Küche ist moderner. Aber die alte Wohnung war billiger. Jetzt zahle ich mehr Miete. Die Lage ist aber besser.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Anna", "Maria", "Julia"],
+          "answer": 2
+        },
+        {
+          "question": "Wie ist die neue Wohnung im Vergleich zur alten?",
+          "options": ["Größer", "Kleiner", "Gleich groß"],
+          "answer": 0
+        },
+        {
+          "question": "Wie ist die Küche in der neuen Wohnung?",
+          "options": ["Moderner", "Älter", "Kleiner"],
+          "answer": 0
+        },
+        {
+          "question": "Was war an der alten Wohnung besser?",
+          "options": ["Sie war billiger", "Sie war größer", "Sie war heller"],
+          "answer": 0
+        }
+      ]
+    }
+  ]
+}

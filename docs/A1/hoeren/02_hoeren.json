@@ -1,0 +1,73 @@
+{
+  "lesson": 2,
+  "level": "A1",
+  "title": "Приветствия и прощания",
+  "dialogs": [
+    {
+      "id": "monolog_1",
+      "title": "Begrüßung am Morgen",
+      "text": "Guten Morgen! Ich bin Anna. Ich sage 'Guten Morgen' bis 10 Uhr. Am Tag sage ich 'Guten Tag'. Am Abend sage ich 'Guten Abend'.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Anna", "Maria", "Julia"],
+          "answer": 0
+        },
+        {
+          "question": "Was sagt Anna am Morgen?",
+          "options": ["Guten Morgen", "Guten Tag", "Guten Abend"],
+          "answer": 0
+        },
+        {
+          "question": "Was sagt Anna am Tag?",
+          "options": ["Guten Abend", "Guten Tag", "Guten Morgen"],
+          "answer": 1
+        }
+      ]
+    },
+    {
+      "id": "monolog_2",
+      "title": "Verabschiedung",
+      "text": "Hallo! Ich bin Maria. Wenn ich gehe, sage ich 'Auf Wiedersehen'. Wenn ich mit Freunden spreche, sage ich 'Tschüss'. Wenn ich jemanden treffe, sage ich 'Hallo'.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Anna", "Maria", "Julia"],
+          "answer": 1
+        },
+        {
+          "question": "Was sagt Maria, wenn sie geht?",
+          "options": ["Hallo", "Tschüss", "Auf Wiedersehen"],
+          "answer": 2
+        },
+        {
+          "question": "Was sagt Maria zu Freunden?",
+          "options": ["Auf Wiedersehen", "Tschüss", "Guten Tag"],
+          "answer": 1
+        }
+      ]
+    },
+    {
+      "id": "monolog_3",
+      "title": "Höflichkeit",
+      "text": "Guten Tag! Ich bin Julia. Wenn ich etwas möchte, sage ich 'Bitte'. Wenn ich etwas bekomme, sage ich 'Danke'. Wenn ich einen Fehler mache, sage ich 'Entschuldigung'.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Anna", "Maria", "Julia"],
+          "answer": 2
+        },
+        {
+          "question": "Was sagt Julia, wenn sie etwas möchte?",
+          "options": ["Danke", "Bitte", "Entschuldigung"],
+          "answer": 1
+        },
+        {
+          "question": "Was sagt Julia, wenn sie etwas bekommt?",
+          "options": ["Bitte", "Entschuldigung", "Danke"],
+          "answer": 2
+        }
+      ]
+    }
+  ]
+}

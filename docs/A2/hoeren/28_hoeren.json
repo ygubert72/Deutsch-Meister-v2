@@ -1,0 +1,88 @@
+{
+  "lesson": 28,
+  "level": "A2",
+  "title": "Будущее время (Futur I) и планы",
+  "dialogs": [
+    {
+      "id": "monolog_1",
+      "title": "Meine Pläne für nächstes Jahr",
+      "text": "Liebe Hörerinnen und Hörer! Ich bin Anna. Nächstes Jahr werde ich nach Italien reisen. Ich werde in Rom und Florenz sein. Ich werde viel Sightseeing machen. Das wird bestimmt ein toller Urlaub.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Anna", "Maria", "Julia"],
+          "answer": 0
+        },
+        {
+          "question": "Wohin wird Anna nächstes Jahr reisen?",
+          "options": ["Nach Italien", "Nach Spanien", "Nach Frankreich"],
+          "answer": 0
+        },
+        {
+          "question": "Welche Städte wird Anna besuchen?",
+          "options": ["Rom und Florenz", "Nur Rom", "Mailand und Neapel"],
+          "answer": 0
+        },
+        {
+          "question": "Wie wird der Urlaub?",
+          "options": ["Toll", "Schlecht", "Langweilig"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_2",
+      "title": "Mein Wochenende",
+      "text": "Herzlich willkommen! Ich bin Maria. Am Wochenende werde ich viel unternehmen. Ich werde mit meiner Familie ins Kino gehen. Danach werden wir etwas essen gehen. Das wird ein schönes Wochenende.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Anna", "Maria", "Julia"],
+          "answer": 1
+        },
+        {
+          "question": "Was wird Maria am Wochenende machen?",
+          "options": ["Ins Kino gehen und essen gehen", "Arbeiten", "Schlafen"],
+          "answer": 0
+        },
+        {
+          "question": "Mit wem wird Maria ins Kino gehen?",
+          "options": ["Mit ihrer Familie", "Mit Freunden", "Alleine"],
+          "answer": 0
+        },
+        {
+          "question": "Wie wird das Wochenende?",
+          "options": ["Schön", "Schlecht", "Langweilig"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_3",
+      "title": "Meine beruflichen Ziele",
+      "text": "Guten Tag! Ich bin Julia. In den nächsten Jahren werde ich mich weiterbilden. Ich werde einen Sprachkurs machen. Danach werde ich mich für einen neuen Job bewerben. Ich werde in einer internationalen Firma arbeiten. Das ist mein Ziel.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Anna", "Maria", "Julia"],
+          "answer": 2
+        },
+        {
+          "question": "Was wird Julia in den nächsten Jahren machen?",
+          "options": ["Sich weiterbilden", "In Rente gehen", "Reisen"],
+          "answer": 0
+        },
+        {
+          "question": "Welche Sprache wird Julia verbessern?",
+          "options": ["Englisch", "Französisch", "Spanisch"],
+          "answer": 0
+        },
+        {
+          "question": "Was wird Julia nach dem Sprachkurs machen?",
+          "options": ["Sich bewerben", "Reisen", "Studieren"],
+          "answer": 0
+        }
+      ]
+    }
+  ]
+}

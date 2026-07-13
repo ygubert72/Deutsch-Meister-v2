@@ -1,0 +1,199 @@
+{
+  "lesson": 47,
+  "level": "B2",
+  "title": "Аргументация и дискуссионная лексика",
+  "dialogs": [
+    {
+      "id": "monolog_1",
+      "title": "Pro und Contra: Social Media",
+      "text": "Ich möchte heute über die Vor- und Nachteile von Social Media diskutieren. Ich bin Anna. Einerseits ermöglichen Social Media schnelle Kommunikation. Man kann mit Freunden weltweit in Kontakt bleiben. Andererseits gibt es viele Probleme wie Datenschutz. Auch Fake News werden schnell verbreitet. Zudem kann Social Media süchtig machen. Ein weiterer Punkt ist, dass viele Menschen sich vergleichen. Das kann zu Unzufriedenheit führen. Die Diskussion darüber ist wichtig.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Anna", "Maria", "Julia"],
+          "answer": 0
+        },
+        {
+          "question": "Was ermöglichen Social Media?",
+          "options": ["Schnelle Kommunikation", "Langsame Kommunikation", "Keine Kommunikation"],
+          "answer": 0
+        },
+        {
+          "question": "Was ist ein Problem von Social Media?",
+          "options": ["Datenschutz", "Geschwindigkeit", "Kosten"],
+          "answer": 0
+        },
+        {
+          "question": "Was wird in Social Media schnell verbreitet?",
+          "options": ["Fake News", "Wahre Nachrichten", "Keine Nachrichten"],
+          "answer": 0
+        },
+        {
+          "question": "Was kann Social Media machen?",
+          "options": ["Süchtig machen", "Gesund machen", "Reich machen"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_2",
+      "title": "Die Debatte um Fleischkonsum",
+      "text": "In der heutigen Zeit wird viel über Fleischkonsum diskutiert. Ich bin Maria. Einerseits ist Fleisch eine wichtige Proteinquelle. Es enthält wichtige Nährstoffe. Andererseits verursacht die Fleischproduktion viele Emissionen. Sie trägt zum Klimawandel bei. Die Tierhaltung ist oft nicht artgerecht. Eine Alternative sind pflanzliche Produkte. Sie sind besser für die Umwelt. Die Debatte wird weitergehen.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Anna", "Maria", "Julia"],
+          "answer": 1
+        },
+        {
+          "question": "Was ist ein Vorteil von Fleisch?",
+          "options": ["Es ist eine Proteinquelle", "Es ist günstig", "Es ist gesund"],
+          "answer": 0
+        },
+        {
+          "question": "Was verursacht die Fleischproduktion?",
+          "options": ["Viele Emissionen", "Wenige Emissionen", "Keine Emissionen"],
+          "answer": 0
+        },
+        {
+          "question": "Wie ist die Tierhaltung oft?",
+          "options": ["Nicht artgerecht", "Artgerecht", "Weder noch"],
+          "answer": 0
+        },
+        {
+          "question": "Was ist eine Alternative zu Fleisch?",
+          "options": ["Pflanzliche Produkte", "Fisch", "Eier"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_3",
+      "title": "Die Diskussion um Bildung",
+      "text": "Ich habe mich intensiv mit der Bildungsdebatte beschäftigt. Ich bin Julia. Einerseits ist das deutsche Bildungssystem gut. Es bietet viele Möglichkeiten. Andererseits gibt es auch Probleme. Die soziale Ungleichheit ist groß. Kinder aus armen Familien haben weniger Chancen. Die Digitalisierung kommt zu langsam. Die Lehrer sind oft überlastet. Es braucht Reformen.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Anna", "Maria", "Julia"],
+          "answer": 2
+        },
+        {
+          "question": "Wie ist das deutsche Bildungssystem?",
+          "options": ["Gut", "Schlecht", "Mittel"],
+          "answer": 0
+        },
+        {
+          "question": "Was ist ein Problem im Bildungssystem?",
+          "options": ["Soziale Ungleichheit", "Zu viele Lehrer", "Zu viel Geld"],
+          "answer": 0
+        },
+        {
+          "question": "Welche Kinder haben weniger Chancen?",
+          "options": ["Kinder aus armen Familien", "Kinder aus reichen Familien", "Alle Kinder"],
+          "answer": 0
+        },
+        {
+          "question": "Wie kommt die Digitalisierung voran?",
+          "options": ["Zu langsam", "Sehr schnell", "Angemessen"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_4",
+      "title": "Pro und Contra: Homeoffice",
+      "text": "Wisst ihr, was ich über Homeoffice denke? Ich bin Laura. Einerseits hat Homeoffice viele Vorteile. Man spart Zeit für den Arbeitsweg. Man kann flexibler arbeiten. Die Work-Life-Balance kann besser sein. Andererseits gibt es auch Nachteile. Die Kommunikation mit Kollegen ist schwieriger. Man vermisst den persönlichen Kontakt. Die Grenze zwischen Arbeit und Freizeit verschwimmt. Trotzdem wird Homeoffice bleiben.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Laura", "Lisa", "Anna"],
+          "answer": 0
+        },
+        {
+          "question": "Was spart man im Homeoffice?",
+          "options": ["Zeit für den Arbeitsweg", "Geld", "Energie"],
+          "answer": 0
+        },
+        {
+          "question": "Wie kann die Work-Life-Balance sein?",
+          "options": ["Besser", "Schlechter", "Gleich"],
+          "answer": 0
+        },
+        {
+          "question": "Was ist schwieriger im Homeoffice?",
+          "options": ["Die Kommunikation", "Die Arbeit", "Das Mittagessen"],
+          "answer": 0
+        },
+        {
+          "question": "Was vermisst man im Homeoffice?",
+          "options": ["Den persönlichen Kontakt", "Das Gehalt", "Die Pause"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_5",
+      "title": "Die Debatte um erneuerbare Energien",
+      "text": "Ich möchte euch heute von der Debatte um erneuerbare Energien erzählen. Ich bin Lisa. Einerseits sind erneuerbare Energien gut für das Klima. Sie produzieren keine Emissionen. Sie sind unendlich verfügbar. Andererseits gibt es auch Probleme. Die Windräder verändern die Landschaft. Die Solarenergie ist nicht immer verfügbar. Die Speicherung ist schwierig. Die Kosten sind hoch. Trotzdem ist der Ausbau notwendig.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Laura", "Lisa", "Anna"],
+          "answer": 1
+        },
+        {
+          "question": "Warum sind erneuerbare Energien gut?",
+          "options": ["Sie produzieren keine Emissionen", "Sie sind günstig", "Sie sind einfach"],
+          "answer": 0
+        },
+        {
+          "question": "Was verändern die Windräder?",
+          "options": ["Die Landschaft", "Das Klima", "Die Wirtschaft"],
+          "answer": 0
+        },
+        {
+          "question": "Was ist schwierig bei erneuerbaren Energien?",
+          "options": ["Die Speicherung", "Die Produktion", "Die Verteilung"],
+          "answer": 0
+        },
+        {
+          "question": "Wie sind die Kosten?",
+          "options": ["Hoch", "Niedrig", "Mittel"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_6",
+      "title": "Die Diskussion um Impfpflicht",
+      "text": "In der heutigen Zeit wird viel über die Impfpflicht diskutiert. Ich bin Emma. Einerseits ist die Impfpflicht wichtig, um andere zu schützen. Sie kann die Verbreitung von Krankheiten verhindern. Schwache Menschen werden so geschützt. Andererseits gibt es Bedenken. Manche sehen darin einen Eingriff in die Freiheit. Die Selbstbestimmung ist ein wichtiges Grundrecht. Es gibt viele unterschiedliche Meinungen. Die Diskussion ist emotional.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Emma", "Lisa", "Laura"],
+          "answer": 0
+        },
+        {
+          "question": "Warum ist die Impfpflicht wichtig?",
+          "options": ["Um andere zu schützen", "Um Geld zu sparen", "Um Zeit zu sparen"],
+          "answer": 0
+        },
+        {
+          "question": "Was kann die Impfpflicht verhindern?",
+          "options": ["Die Verbreitung von Krankheiten", "Die Verbreitung von Gerüchten", "Die Verbreitung von Nachrichten"],
+          "answer": 0
+        },
+        {
+          "question": "Wer wird durch die Impfpflicht geschützt?",
+          "options": ["Schwache Menschen", "Reiche Menschen", "Gesunde Menschen"],
+          "answer": 0
+        },
+        {
+          "question": "Was sehen manche in der Impfpflicht?",
+          "options": ["Einen Eingriff in die Freiheit", "Eine gute Idee", "Kein Problem"],
+          "answer": 0
+        }
+      ]
+    }
+  ]
+}

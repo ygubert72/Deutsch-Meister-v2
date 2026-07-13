@@ -1,0 +1,103 @@
+{
+  "lesson": 23,
+  "level": "A2",
+  "title": "Путешествия: транспорт и бронирование",
+  "dialogs": [
+    {
+      "id": "monolog_1",
+      "title": "Meine Zugreise",
+      "text": "Guten Tag! Ich bin Anna. Ich bin nach Hamburg gefahren. Ich bin mit dem Zug gefahren. Die Fahrt hat vier Stunden gedauert. Ich habe das Ticket im Internet gekauft. Im Zug habe ich Kaffee getrunken. In Hamburg bin ich in ein Hotel gegangen.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Anna", "Maria", "Julia"],
+          "answer": 0
+        },
+        {
+          "question": "Wohin ist Anna gefahren?",
+          "options": ["Nach Hamburg", "Nach Berlin", "Nach München"],
+          "answer": 0
+        },
+        {
+          "question": "Womit ist Anna gefahren?",
+          "options": ["Mit dem Zug", "Mit dem Auto", "Mit dem Flugzeug"],
+          "answer": 0
+        },
+        {
+          "question": "Wie lange hat die Fahrt gedauert?",
+          "options": ["Vier Stunden", "Drei Stunden", "Fünf Stunden"],
+          "answer": 0
+        },
+        {
+          "question": "Wo hat Anna das Ticket gekauft?",
+          "options": ["Im Internet", "Am Bahnhof", "Im Reisebüro"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_2",
+      "title": "Am Flughafen",
+      "text": "Hallo! Ich bin Maria. Ich bin nach London geflogen. Ich war zwei Stunden vor dem Abflug am Flughafen. Ich habe den Koffer aufgegeben. Der Flug hatte eine Stunde Verspätung. Ich habe im Flugzeug geschlafen. In London hat mich meine Freundin abgeholt.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Anna", "Maria", "Julia"],
+          "answer": 1
+        },
+        {
+          "question": "Wohin ist Maria geflogen?",
+          "options": ["Nach London", "Nach Paris", "Nach Rom"],
+          "answer": 0
+        },
+        {
+          "question": "Wie lange vor dem Abflug war Maria am Flughafen?",
+          "options": ["Zwei Stunden", "Eine Stunde", "Drei Stunden"],
+          "answer": 0
+        },
+        {
+          "question": "Was hatte der Flug?",
+          "options": ["Eine Stunde Verspätung", "Keine Verspätung", "Zwei Stunden Verspätung"],
+          "answer": 0
+        },
+        {
+          "question": "Wer hat Maria in London abgeholt?",
+          "options": ["Ihre Freundin", "Ihre Mutter", "Ein Taxifahrer"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_3",
+      "title": "Ein Hotel buchen",
+      "text": "Grüß dich! Ich bin Julia. Ich habe gestern ein Hotel gebucht. Ich habe ein Zimmer mit Balkon genommen. Das Zimmer hat 80 Euro pro Nacht gekostet. Frühstück war inklusive. Ich habe die Buchung per E-Mail bekommen. Ich freue mich auf die Reise.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Anna", "Maria", "Julia"],
+          "answer": 2
+        },
+        {
+          "question": "Was hat Julia gestern gemacht?",
+          "options": ["Ein Hotel gebucht", "Eine Reise gemacht", "Gearbeitet"],
+          "answer": 0
+        },
+        {
+          "question": "Was für ein Zimmer hat Julia genommen?",
+          "options": ["Ein Zimmer mit Balkon", "Ein Zimmer ohne Balkon", "Ein Dreibettzimmer"],
+          "answer": 0
+        },
+        {
+          "question": "Wie viel hat das Zimmer pro Nacht gekostet?",
+          "options": ["80 Euro", "70 Euro", "90 Euro"],
+          "answer": 0
+        },
+        {
+          "question": "Wie hat Julia die Buchung bekommen?",
+          "options": ["Per E-Mail", "Per Telefon", "Per Post"],
+          "answer": 0
+        }
+      ]
+    }
+  ]
+}

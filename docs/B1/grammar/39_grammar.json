@@ -1,0 +1,45 @@
+{
+  "lesson": 39,
+  "title": "СМИ и новости: анализ информации",
+  "level": "B1",
+  "theory": "<h3>📰 СМИ и медиа</h3><table border='1' cellpadding='8' style='border-collapse: collapse; width: 100%; margin: 10px 0;'><tr style='background: #3B6FE0; color: white;'><th>Русский</th><th>Немецкий</th></tr><tr style='background: #E3F2FD;'><td>новости</td><td><strong>die Nachrichten</strong></td></tr><tr style='background: #F5F5F5;'><td>источник</td><td><strong>die Quelle</strong></td></tr><tr style='background: #E3F2FD;'><td>достоверность</td><td><strong>die Glaubwürdigkeit</strong></td></tr><tr style='background: #F5F5F5;'><td>фейковые новости</td><td><strong>die Fake News</strong></td></tr><tr style='background: #E3F2FD;'><td>журналист</td><td><strong>der Journalist</strong></td></tr><tr style='background: #F5F5F5;'><td>интервью</td><td><strong>das Interview</strong></td></tr><tr style='background: #E3F2FD;'><td>репортаж</td><td><strong>der Bericht</strong></td></tr></table><h3>📌 Konjunktiv I — косвенная речь</h3><p><strong>Konjunktiv I</strong> используется для передачи <strong>чужой речи</strong> (цитирования). В современном немецком языке он часто заменяется на <strong>Konjunktiv II</strong> или <strong>Indikativ</strong>.</p><div class='info-box' style='background: #E8F0FE; padding: 15px; border-radius: 12px; margin: 15px 0;'><strong>📌 ПРИМЕРЫ (ознакомление):</strong><br>• <span style='color:#2E7D32;font-weight:bold;'>Er sagt, er <u>habe</u> keine Zeit.</span> — Он говорит, что у него нет времени.<br>• <span style='color:#2E7D32;font-weight:bold;'>Sie behauptet, sie <u>sei</u> krank.</span> — Она утверждает, что больна.<br>• <span style='color:#2E7D32;font-weight:bold;'>Der Journalist berichtet, die Situation <u>habe</u> sich verbessert.</span><br>Журналист сообщает, что ситуация улучшилась.</div>",
+  "vocabulary": [
+    {"de": "die Nachrichten", "ru": "новости"},
+    {"de": "die Quelle", "ru": "источник"},
+    {"de": "die Glaubwürdigkeit", "ru": "достоверность"},
+    {"de": "die Fake News", "ru": "фейковые новости"},
+    {"de": "der Journalist", "ru": "журналист"},
+    {"de": "das Interview", "ru": "интервью"},
+    {"de": "der Bericht", "ru": "репортаж"},
+    {"de": "berichten", "ru": "сообщать"},
+    {"de": "behaupten", "ru": "утверждать"},
+    {"de": "zitieren", "ru": "цитировать"},
+    {"de": "informieren", "ru": "информировать"},
+    {"de": "recherchieren", "ru": "исследовать / искать информацию"},
+    {"de": "analysieren", "ru": "анализировать"},
+    {"de": "glauben", "ru": "верить"},
+    {"de": "zweifeln", "ru": "сомневаться"},
+    {"de": "die Information", "ru": "информация"},
+    {"de": "die Medien", "ru": "СМИ"},
+    {"de": "der Artikel", "ru": "статья"}
+  ],
+  "examples": [
+    {"de": "Der Journalist berichtet, die Situation habe sich verbessert.", "ru": "Журналист сообщает, что ситуация улучшилась."},
+    {"de": "Er sagt, er habe keine Zeit.", "ru": "Он говорит, что у него нет времени."},
+    {"de": "Die Quelle ist nicht glaubwürdig.", "ru": "Источник недостоверен."},
+    {"de": "Man sollte nicht alles glauben, was in den Nachrichten steht.", "ru": "Не следует всему верить, что написано в новостях."},
+    {"de": "Der Journalist hat ein Interview geführt.", "ru": "Журналист провёл интервью."},
+    {"de": "Fake News sind ein großes Problem.", "ru": "Фейковые новости — большая проблема."}
+  ],
+  "practice": [
+    {"type": "fill", "question": "Вставьте правильное слово:", "sentence": "Der ___ berichtet über die Situation. (журналист)", "answer": "Journalist", "hint": "Журналист сообщает о ситуации."},
+    {"type": "fill", "question": "Вставьте правильное слово:", "sentence": "Die ___ ist nicht glaubwürdig. (источник)", "answer": "Quelle", "hint": "Источник недостоверен."},
+    {"type": "fill", "question": "Вставьте правильное слово:", "sentence": "___ sind ein großes Problem. (фейковые новости)", "answer": "Fake News", "hint": "Фейковые новости — большая проблема."},
+    {"type": "fill", "question": "Вставьте правильную форму глагола в Konjunktiv I:", "sentence": "Er sagt, er ___ keine Zeit. (haben)", "answer": "habe", "hint": "Он говорит, что у него нет времени."},
+    {"type": "fill", "question": "Вставьте правильную форму глагола в Konjunktiv I:", "sentence": "Der Journalist berichtet, die Situation ___ sich verbessert. (haben)", "answer": "habe", "hint": "Журналист сообщает, что ситуация улучшилась."},
+    {"type": "fill", "question": "Вставьте правильное слово:", "sentence": "Der Journalist hat ein ___ geführt. (интервью)", "answer": "Interview", "hint": "Журналист провёл интервью."},
+    {"type": "fill", "question": "Вставьте правильное слово:", "sentence": "Man sollte nicht alles ___, was in den Nachrichten steht. (glauben)", "answer": "glauben", "hint": "Не следует всему верить, что написано в новостях."},
+    {"type": "transform", "question": "Переделайте предложение в косвенную речь (Konjunktiv I):", "sentence": "Er sagt: 'Ich habe keine Zeit.'", "answer": "Er sagt, er habe keine Zeit.", "hint": "Он говорит, что у него нет времени."},
+    {"type": "transform", "question": "Переделайте предложение в косвенную речь (Konjunktiv I):", "sentence": "Der Journalist berichtet: 'Die Situation hat sich verbessert.'", "answer": "Der Journalist berichtet, die Situation habe sich verbessert.", "hint": "Журналист сообщает, что ситуация улучшилась."}
+  ]
+}

@@ -1,0 +1,48 @@
+{
+  "lesson": 48,
+  "title": "Публичные выступления и презентации",
+  "level": "B2",
+  "theory": "<h3>📌 Структура презентации</h3><div class='info-box' style='background: #E8F0FE; padding: 15px; border-radius: 12px; margin: 15px 0;'><strong>1. EINLEITUNG (введение)</strong><br>• Thema vorstellen<br>• Ziel der Präsentation nennen<br>• Interesse wecken</div><div class='info-box' style='background: #E8F0FE; padding: 15px; border-radius: 12px; margin: 15px 0;'><strong>2. HAUPTTEIL (основная часть)</strong><br>• Argumente strukturiert darstellen<br>• Beispiele geben<br>• Visualisierungen nutzen</div><div class='info-box' style='background: #E8F0FE; padding: 15px; border-radius: 12px; margin: 15px 0;'><strong>3. SCHLUSS (заключение)</strong><br>• Zusammenfassung<br>• Fazit<br>• Ausblick</div><h3>📌 Стилистические приёмы</h3><table border='1' cellpadding='10' style='border-collapse: collapse; width: 100%; margin: 15px 0;'><tr style='background: #3B6FE0; color: white;'><th>Приём</th><th>Пример</th></tr><tr style='background: #E3F2FD;'><td><strong>rhetorische Frage</strong></td><td>Wer möchte nicht in einer besseren Welt leben?</td></tr><tr style='background: #F5F5F5;'><td><strong>Emphase (Betonung)</strong></td><td>Genau das ist das Problem!</td></tr><tr style='background: #E3F2FD;'><td><strong>Inversion</strong></td><td>Nie war die Lage so ernst wie heute.</td></tr></table>",
+  "vocabulary": [
+    {"de": "die Einleitung", "ru": "введение"},
+    {"de": "der Hauptteil", "ru": "основная часть"},
+    {"de": "der Schluss", "ru": "заключение"},
+    {"de": "die Überleitung", "ru": "переход"},
+    {"de": "die Visualisierung", "ru": "визуализация"},
+    {"de": "die Rhetorik", "ru": "риторика"},
+    {"de": "die Präsentation", "ru": "презентация"},
+    {"de": "der Vortrag", "ru": "доклад"},
+    {"de": "der Redner", "ru": "докладчик"},
+    {"de": "die Rednerin", "ru": "докладчица"},
+    {"de": "das Publikum", "ru": "публика"},
+    {"de": "die Folie", "ru": "слайд"},
+    {"de": "das Diagramm", "ru": "диаграмма"},
+    {"de": "die Statistik", "ru": "статистика"},
+    {"de": "präsentieren", "ru": "презентовать"},
+    {"de": "vortragen", "ru": "докладывать"},
+    {"de": "erklären", "ru": "объяснять"},
+    {"de": "veranschaulichen", "ru": "наглядно показывать"},
+    {"de": "zusammenfassen", "ru": "резюмировать"},
+    {"de": "einleiten", "ru": "вводить / начинать"},
+    {"de": "überleiten", "ru": "переходить"}
+  ],
+  "examples": [
+    {"de": "Wer möchte nicht in einer besseren Welt leben?", "ru": "Кто не хотел бы жить в лучшем мире?"},
+    {"de": "Genau das ist das Problem!", "ru": "Именно в этом проблема!"},
+    {"de": "Nie war die Lage so ernst wie heute.", "ru": "Никогда ситуация не была такой серьёзной, как сегодня."},
+    {"de": "Ich möchte meine Präsentation mit einer Frage beginnen.", "ru": "Я хотел бы начать свою презентацию с вопроса."},
+    {"de": "Abschließend möchte ich ein Fazit ziehen.", "ru": "В заключение я хотел бы подвести итог."},
+    {"de": "Die Statistik zeigt deutlich den Anstieg.", "ru": "Статистика наглядно показывает рост."}
+  ],
+  "practice": [
+    {"type": "fill", "question": "Вставьте правильное слово (структура презентации):", "sentence": "Ich möchte meine Präsentation mit einer ___ beginnen. (введение)", "answer": "Einleitung", "hint": "Я хотел бы начать свою презентацию с введения."},
+    {"type": "fill", "question": "Вставьте правильное слово (структура презентации):", "sentence": "Abschließend möchte ich ein ___ ziehen. (итог)", "answer": "Fazit", "hint": "В заключение я хотел бы подвести итог."},
+    {"type": "fill", "question": "Вставьте правильный стилистический приём:", "sentence": "___ möchte nicht in einer besseren Welt leben? (риторический вопрос)", "answer": "Wer", "hint": "Кто не хотел бы жить в лучшем мире?"},
+    {"type": "fill", "question": "Вставьте правильный стилистический приём (Emphase):", "sentence": "___ das ist das Problem!", "answer": "Genau", "hint": "Именно в этом проблема!"},
+    {"type": "fill", "question": "Вставьте правильный стилистический приём (Inversion):", "sentence": "___ war die Lage so ernst wie heute.", "answer": "Nie", "hint": "Никогда ситуация не была такой серьёзной, как сегодня."},
+    {"type": "fill", "question": "Вставьте правильное слово:", "sentence": "Die ___ zeigt deutlich den Anstieg. (статистика)", "answer": "Statistik", "hint": "Статистика наглядно показывает рост."},
+    {"type": "fill", "question": "Вставьте правильное слово:", "sentence": "Ich möchte die ___ nutzen, um den Punkt zu veranschaulichen. (визуализация)", "answer": "Visualisierung", "hint": "Я хотел бы использовать визуализацию, чтобы наглядно показать пункт."},
+    {"type": "transform", "question": "Переделайте предложение в риторический вопрос:", "sentence": "Jeder möchte in einer besseren Welt leben.", "answer": "Wer möchte nicht in einer besseren Welt leben?", "hint": "Кто не хотел бы жить в лучшем мире?"},
+    {"type": "transform", "question": "Переделайте предложение с эмфазой (genau):", "sentence": "Das ist das Problem.", "answer": "Genau das ist das Problem!", "hint": "Именно в этом проблема!"}
+  ]
+}

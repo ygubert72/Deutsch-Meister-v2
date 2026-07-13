@@ -1,0 +1,199 @@
+{
+  "lesson": 58,
+  "level": "C1",
+  "title": "Немецкая философия и интеллектуальный дискурс",
+  "dialogs": [
+    {
+      "id": "monolog_1",
+      "title": "Die Bedeutung der deutschen Philosophie",
+      "text": "Die von der Philosophin Anna analysierte deutsche Philosophie hat das abendländische Denken nachhaltig geprägt. Kant, Hegel und Nietzsche zählen zu den bedeutendsten Denkern der Geistesgeschichte. Ihre Fragestellungen nach der menschlichen Existenz, der Freiheit und der Moral sind bis heute von aktueller Relevanz. Die deutsche Philosophie stellt ein zentrales Element des intellektuellen Erbes dar. Ihr Einfluss auf das zeitgenössische Denken ist ungebrochen.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Anna", "Maria", "Julia"],
+          "answer": 0
+        },
+        {
+          "question": "Was hat das abendländische Denken nachhaltig geprägt?",
+          "options": ["Die deutsche Philosophie", "Die deutsche Literatur", "Die deutsche Kunst"],
+          "answer": 0
+        },
+        {
+          "question": "Welche Denker werden als bedeutendste genannt?",
+          "options": ["Kant, Hegel und Nietzsche", "Goethe, Schiller und Lessing", "Bach, Beethoven und Mozart"],
+          "answer": 0
+        },
+        {
+          "question": "Welche Fragestellungen sind bis heute von aktueller Relevanz?",
+          "options": ["Fragen nach der menschlichen Existenz, der Freiheit und der Moral", "Fragen nach der Technologie", "Fragen nach der Wirtschaft"],
+          "answer": 0
+        },
+        {
+          "question": "Was stellt die deutsche Philosophie ein zentrales Element von dar?",
+          "options": ["Des intellektuellen Erbes", "Des wirtschaftlichen Erbes", "Des politischen Erbes"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_2",
+      "title": "Die Philosophie von Immanuel Kant",
+      "text": "Die von der Philosophiehistorikerin Maria analysierte Philosophie Immanuel Kants stellt einen Meilenstein der Geistesgeschichte dar. Die Frage nach dem Wesen des Menschen steht im Zentrum seines Denkens. Die Vernunft wird als das charakteristische Merkmal des Menschen definiert. Kant appellierte an den Mut, sich des eigenen Verstandes zu bedienen. Diese aufklärerische Botschaft hat ihre Aktualität bis heute bewahrt. Kants Gedanken haben das moderne Verständnis von Freiheit und Ethik revolutioniert.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Anna", "Maria", "Julia"],
+          "answer": 1
+        },
+        {
+          "question": "Was stellt die Philosophie Kants dar?",
+          "options": ["Einen Meilenstein der Geistesgeschichte", "Einen Rückschritt der Geistesgeschichte", "Eine Randerscheinung der Geistesgeschichte"],
+          "answer": 0
+        },
+        {
+          "question": "Was steht im Zentrum von Kants Denken?",
+          "options": ["Die Frage nach dem Wesen des Menschen", "Die Frage nach der Technologie", "Die Frage nach der Wirtschaft"],
+          "answer": 0
+        },
+        {
+          "question": "Was wird von Kant als charakteristisches Merkmal des Menschen definiert?",
+          "options": ["Die Vernunft", "Der Wille", "Die Emotion"],
+          "answer": 0
+        },
+        {
+          "question": "Was hat Kant mit seiner aufklärerischen Botschaft revolutioniert?",
+          "options": ["Das moderne Verständnis von Freiheit und Ethik", "Das moderne Verständnis von Technologie", "Das moderne Verständnis von Wirtschaft"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_3",
+      "title": "Die Philosophie von Friedrich Nietzsche",
+      "text": "Die von der Kulturphilosophin Julia untersuchte Philosophie Friedrich Nietzsches gilt als provokativ und wirkmächtig. Die bestehenden Werte wurden von ihm radikal in Frage gestellt. Der 'Wille zur Macht' wird als zentrales Motiv menschlichen Handelns postuliert. Die traditionelle Moral wurde einer fundamentalen Kritik unterzogen. Nietzsche forderte die Individuen auf, eigene Werte zu schaffen. Sein Denken regt zum kritischen Hinterfragen an. Seine Ideen sind aus dem modernen philosophischen Diskurs nicht mehr wegzudenken.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Anna", "Maria", "Julia"],
+          "answer": 2
+        },
+        {
+          "question": "Wie gilt die Philosophie Nietzsches?",
+          "options": ["Als provokativ und wirkmächtig", "Als konventionell und wirkungslos", "Als irrelevant und bedeutungslos"],
+          "answer": 0
+        },
+        {
+          "question": "Was wurde von Nietzsche radikal in Frage gestellt?",
+          "options": ["Die bestehenden Werte", "Die bestehenden Gesetze", "Die bestehenden Regierungen"],
+          "answer": 0
+        },
+        {
+          "question": "Was wird von Nietzsche als zentrales Motiv menschlichen Handelns postuliert?",
+          "options": ["Der 'Wille zur Macht'", "Der 'Wille zum Leben'", "Der 'Wille zur Freiheit'"],
+          "answer": 0
+        },
+        {
+          "question": "Wozu regt Nietzsches Denken an?",
+          "options": ["Zum kritischen Hinterfragen", "Zum unkritischen Akzeptieren", "Zum Ignorieren"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_4",
+      "title": "Die Philosophie von Georg Wilhelm Friedrich Hegel",
+      "text": "Die von der Hegel-Expertin Laura erläuterte Philosophie Georg Wilhelm Friedrich Hegels zeichnet sich durch ihre dialektische Methode aus. Die Dialektik als Denkbewegung von These, Antithese und Synthese ist sein Markenzeichen. Die Entwicklung der Geschichte wird als fortschrittlicher Prozess verstanden. Die Vernunft wird als sich in der Geschichte entfaltend gedacht. Hegels Philosophie ist zwar komplex, aber von außerordentlichem Einfluss. Die dialektische Methode wird bis heute in verschiedenen Disziplinen angewendet.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Laura", "Lisa", "Anna"],
+          "answer": 0
+        },
+        {
+          "question": "Wodurch zeichnet sich Hegels Philosophie aus?",
+          "options": ["Durch ihre dialektische Methode", "Durch ihre logische Methode", "Durch ihre empirische Methode"],
+          "answer": 0
+        },
+        {
+          "question": "Was ist Hegels Markenzeichen?",
+          "options": ["Die Dialektik", "Die Logik", "Die Ethik"],
+          "answer": 0
+        },
+        {
+          "question": "Wie wird die Entwicklung der Geschichte von Hegel verstanden?",
+          "options": ["Als fortschrittlicher Prozess", "Als rückschrittlicher Prozess", "Als stagnierender Prozess"],
+          "answer": 0
+        },
+        {
+          "question": "Wo wird die dialektische Methode bis heute angewendet?",
+          "options": ["In verschiedenen Disziplinen", "Nur in der Philosophie", "Nur in der Geschichte"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_5",
+      "title": "Die Bedeutung der Aufklärung",
+      "text": "Die von der Aufklärungsforscherin Lisa untersuchte Epoche der Aufklärung stellt eine entscheidende Wende in der europäischen Geistesgeschichte dar. Die Individuen wurden zum selbständigen Denken aufgefordert. Die Autorität der Kirche wurde kritisch hinterfragt. Die Freiheit des Individuums wurde eingefordert. Die Aufklärung hat die Französische Revolution beeinflusst. Sie hat die Menschenrechte geprägt. Die Ideale der Aufklärung sind bis heute relevant. Sie bilden die Grundlage unserer modernen demokratischen Gesellschaft.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Laura", "Lisa", "Anna"],
+          "answer": 1
+        },
+        {
+          "question": "Was stellt die Epoche der Aufklärung dar?",
+          "options": ["Eine entscheidende Wende in der europäischen Geistesgeschichte", "Eine unbedeutende Wende in der europäischen Geistesgeschichte", "Eine rückschrittliche Wende in der europäischen Geistesgeschichte"],
+          "answer": 0
+        },
+        {
+          "question": "Wozu wurden die Individuen in der Aufklärung aufgefordert?",
+          "options": ["Zum selbständigen Denken", "Zum unselbständigen Denken", "Zum Nicht-Denken"],
+          "answer": 0
+        },
+        {
+          "question": "Was wurde in der Aufklärung kritisch hinterfragt?",
+          "options": ["Die Autorität der Kirche", "Die Autorität des Staates", "Die Autorität der Familie"],
+          "answer": 0
+        },
+        {
+          "question": "Was bilden die Ideale der Aufklärung die Grundlage für?",
+          "options": ["Unsere moderne demokratische Gesellschaft", "Unsere monarchische Gesellschaft", "Unsere totalitäre Gesellschaft"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_6",
+      "title": "Die Relevanz der Philosophie heute",
+      "text": "Die von der Philosophin Emma hervorgehobene Relevanz der Philosophie in der Gegenwart ist unbestritten. Die grundlegenden Fragen des Lebens werden durch die Philosophie adressiert. Die Ethik und die Frage nach dem richtigen Handeln bleiben zentral. Die Philosophie bietet keine einfachen Antworten. Sie schärft jedoch das Denkvermögen. Sie befähigt zu kritischer Reflexion. Die Philosophie ist ein unverzichtbarer Bestandteil einer mündigen Gesellschaft. Sie bleibt eine essentielle Grundlage des geistigen Lebens.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Emma", "Lisa", "Laura"],
+          "answer": 0
+        },
+        {
+          "question": "Was ist unbestritten?",
+          "options": ["Die Relevanz der Philosophie in der Gegenwart", "Die Irrelevanz der Philosophie in der Gegenwart", "Die Überflüssigkeit der Philosophie in der Gegenwart"],
+          "answer": 0
+        },
+        {
+          "question": "Was werden durch die Philosophie adressiert?",
+          "options": ["Die grundlegenden Fragen des Lebens", "Die grundlegenden Fragen der Technologie", "Die grundlegenden Fragen der Wirtschaft"],
+          "answer": 0
+        },
+        {
+          "question": "Was schärft die Philosophie?",
+          "options": ["Das Denkvermögen", "Das Sportvermögen", "Das Handwerk"],
+          "answer": 0
+        },
+        {
+          "question": "Was ist die Philosophie ein unverzichtbarer Bestandteil von?",
+          "options": ["Einer mündigen Gesellschaft", "Einer unmündigen Gesellschaft", "Einer totalitären Gesellschaft"],
+          "answer": 0
+        }
+      ]
+    }
+  ]
+}

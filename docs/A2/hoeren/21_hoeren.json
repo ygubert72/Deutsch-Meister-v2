@@ -1,0 +1,88 @@
+{
+  "lesson": 21,
+  "level": "A2",
+  "title": "Perfekt с sein",
+  "dialogs": [
+    {
+      "id": "monolog_1",
+      "title": "Meine Reise nach Berlin",
+      "text": "Hallo! Ich bin Laura. Ich bin nach Berlin gefahren, weil ich meine Freundin besuchen wollte. Ich bin mit dem Zug gefahren. Wir sind in ein Restaurant gegangen. Es war ein schöner Tag.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Laura", "Lisa", "Anna"],
+          "answer": 0
+        },
+        {
+          "question": "Warum ist Laura nach Berlin gefahren?",
+          "options": ["Weil sie ihre Freundin besuchen wollte", "Weil sie arbeiten musste", "Weil sie Urlaub machte"],
+          "answer": 0
+        },
+        {
+          "question": "Womit ist Laura gefahren?",
+          "options": ["Mit dem Zug", "Mit dem Auto", "Mit dem Flugzeug"],
+          "answer": 0
+        },
+        {
+          "question": "Wohin sind Laura und ihre Freundin gegangen?",
+          "options": ["In ein Restaurant", "Ins Kino", "Ins Museum"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_2",
+      "title": "Mein Umzug",
+      "text": "Grüß dich! Ich bin Lisa. Ich bin umgezogen, weil ich eine neue Wohnung gefunden habe. Ich bin von Berlin nach München gezogen. Meine Freundin hat mir geholfen. Wir sind mit dem Auto gefahren. Jetzt wohne ich in München.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Laura", "Lisa", "Anna"],
+          "answer": 1
+        },
+        {
+          "question": "Warum ist Lisa umgezogen?",
+          "options": ["Weil sie eine neue Wohnung gefunden hat", "Weil sie Arbeit gefunden hat", "Weil sie keine Freunde hatte"],
+          "answer": 0
+        },
+        {
+          "question": "Wer hat Lisa geholfen?",
+          "options": ["Ihre Freundin", "Ihre Schwester", "Ihre Mutter"],
+          "answer": 0
+        },
+        {
+          "question": "Womit sind sie gefahren?",
+          "options": ["Mit dem Auto", "Mit dem Zug", "Mit dem Flugzeug"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_3",
+      "title": "Mein Ausflug",
+      "text": "Guten Tag! Ich bin Emma. Ich bin in die Berge gefahren, weil ich die Natur liebe. Ich bin mit meinen Freunden gewandert. Wir sind auf den Gipfel gestiegen. Die Aussicht war wunderschön. Wir sind am Abend nach Hause gekommen.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Emma", "Laura", "Lisa"],
+          "answer": 0
+        },
+        {
+          "question": "Warum ist Emma in die Berge gefahren?",
+          "options": ["Weil sie die Natur liebt", "Weil sie arbeiten musste", "Weil sie Urlaub machte"],
+          "answer": 0
+        },
+        {
+          "question": "Mit wem ist Emma gewandert?",
+          "options": ["Mit ihren Freunden", "Mit ihrer Familie", "Alleine"],
+          "answer": 0
+        },
+        {
+          "question": "Wie war die Aussicht?",
+          "options": ["Wunderschön", "Schlecht", "Nicht gut"],
+          "answer": 0
+        }
+      ]
+    }
+  ]
+}

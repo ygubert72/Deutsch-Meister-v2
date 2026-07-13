@@ -1,0 +1,199 @@
+{
+  "lesson": 34,
+  "level": "B1",
+  "title": "Написание резюме и сопроводительного письма",
+  "dialogs": [
+    {
+      "id": "monolog_1",
+      "title": "Meine Bewerbung",
+      "text": "Guten Tag! Ich bin Anna. Ich habe mich auf eine neue Stelle beworben. Zuerst habe ich meinen Lebenslauf aktualisiert. Dann habe ich ein Bewerbungsschreiben verfasst. Im Schreiben habe ich meine Erfahrungen beschrieben. Ich habe auch meine Motivation erklärt. Die Bewerbung habe ich per E-Mail geschickt. Jetzt warte ich auf eine Antwort.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Anna", "Maria", "Julia"],
+          "answer": 0
+        },
+        {
+          "question": "Was hat Anna zuerst gemacht?",
+          "options": ["Ihren Lebenslauf aktualisiert", "Ein Schreiben verfasst", "Eine E-Mail geschickt"],
+          "answer": 0
+        },
+        {
+          "question": "Was hat Anna im Schreiben beschrieben?",
+          "options": ["Ihre Erfahrungen", "Ihre Hobbys", "Ihre Familie"],
+          "answer": 0
+        },
+        {
+          "question": "Wie hat Anna die Bewerbung geschickt?",
+          "options": ["Per E-Mail", "Per Post", "Persönlich"],
+          "answer": 0
+        },
+        {
+          "question": "Was macht Anna jetzt?",
+          "options": ["Sie wartet auf eine Antwort", "Sie arbeitet", "Sie reist"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_2",
+      "title": "Der Lebenslauf",
+      "text": "Schön, dass ihr zuhört! Ich bin Maria. Ein Lebenslauf ist sehr wichtig für die Bewerbung. In meinem Lebenslauf schreibe ich meine persönlichen Daten. Dann kommen meine Ausbildung und meine Berufserfahrung. Ich liste auch meine Kenntnisse auf. Der Lebenslauf sollte übersichtlich sein. Ich habe meinen Lebenslauf immer aktualisiert.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Anna", "Maria", "Julia"],
+          "answer": 1
+        },
+        {
+          "question": "Was steht im Lebenslauf?",
+          "options": ["Persönliche Daten, Ausbildung, Berufserfahrung", "Nur der Name", "Hobbys und Interessen"],
+          "answer": 0
+        },
+        {
+          "question": "Was listet Maria noch auf?",
+          "options": ["Kenntnisse wie Sprachen und Computer", "Ihre Familie", "Ihre Reisen"],
+          "answer": 0
+        },
+        {
+          "question": "Wie sollte der Lebenslauf sein?",
+          "options": ["Übersichtlich", "Lang", "Kompliziert"],
+          "answer": 0
+        },
+        {
+          "question": "Was hat Maria mit ihrem Lebenslauf gemacht?",
+          "options": ["Ihn immer aktualisiert", "Ihn nie geändert", "Ihn vergessen"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_3",
+      "title": "Das Bewerbungsschreiben",
+      "text": "Guten Morgen! Ich bin Julia. Das Bewerbungsschreiben ist fast so wichtig wie der Lebenslauf. Ich schreibe, warum ich die Stelle haben möchte. Ich beziehe mich auf die Anforderungen der Firma. Das Schreiben sollte persönlich sein. Ich habe für jede Bewerbung ein neues Schreiben verfasst.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Anna", "Maria", "Julia"],
+          "answer": 2
+        },
+        {
+          "question": "Was erklärt Julia im Bewerbungsschreiben?",
+          "options": ["Warum sie die Stelle haben möchte", "Ihre Hobbys", "Ihre Familie"],
+          "answer": 0
+        },
+        {
+          "question": "Worauf bezieht sich Julia im Schreiben?",
+          "options": ["Auf die Anforderungen der Firma", "Auf ihre Freunde", "Auf ihre Reisen"],
+          "answer": 0
+        },
+        {
+          "question": "Wie sollte das Schreiben sein?",
+          "options": ["Persönlich", "Standard", "Kurz"],
+          "answer": 0
+        },
+        {
+          "question": "Was hat Julia für jede Bewerbung gemacht?",
+          "options": ["Ein neues Schreiben verfasst", "Den gleichen Text verwendet", "Nichts geschrieben"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_4",
+      "title": "Die richtige Form",
+      "text": "Hallo zusammen! Ich bin Laura. Bei der Bewerbung muss man auf die Form achten. Man beginnt mit 'Sehr geehrte Damen und Herren'. Man schreibt in der Sie-Form. Das Schreiben sollte fehlerfrei sein. Ich lasse meine Bewerbung immer von einer Freundin korrigieren.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Laura", "Lisa", "Anna"],
+          "answer": 0
+        },
+        {
+          "question": "Wie beginnt man ein formelles Bewerbungsschreiben?",
+          "options": ["Mit 'Sehr geehrte Damen und Herren'", "Mit 'Hallo'", "Mit 'Liebe Kollegen'"],
+          "answer": 0
+        },
+        {
+          "question": "In welcher Form schreibt man?",
+          "options": ["In der Sie-Form", "In der Du-Form", "In der Wir-Form"],
+          "answer": 0
+        },
+        {
+          "question": "Wie sollte das Schreiben sein?",
+          "options": ["Fehlerfrei", "Lang", "Kompliziert"],
+          "answer": 0
+        },
+        {
+          "question": "Was macht Laura mit ihrer Bewerbung?",
+          "options": ["Sie lässt sie von einer Freundin korrigieren", "Sie schickt sie sofort", "Sie liest sie nicht mehr"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_5",
+      "title": "Tipps für die Bewerbung",
+      "text": "Grüß dich! Ich bin Lisa. Ich habe viele Bewerbungen geschrieben. Seid ehrlich und übertreibt nicht. Schreibt klar und deutlich. Passt das Schreiben an die Stelle an. Macht keine Rechtschreibfehler. Seid pünktlich mit der Bewerbung. Habt Selbstvertrauen!",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Laura", "Lisa", "Anna"],
+          "answer": 1
+        },
+        {
+          "question": "Was ist Lisas erster Tipp?",
+          "options": ["Seid ehrlich", "Übertreibt", "Schreibt lange Texte"],
+          "answer": 0
+        },
+        {
+          "question": "Was soll man an die Stelle anpassen?",
+          "options": ["Das Schreiben", "Den Lebenslauf", "Die Fotos"],
+          "answer": 0
+        },
+        {
+          "question": "Was soll man nicht machen?",
+          "options": ["Rechtschreibfehler", "Ehrlich sein", "Pünktlich sein"],
+          "answer": 0
+        },
+        {
+          "question": "Was ist sehr wichtig?",
+          "options": ["Selbstvertrauen", "Viel Geld", "Ein Auto"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_6",
+      "title": "Die Bewerbungsmappe",
+      "text": "Schön, dass ihr da seid! Ich bin Emma. Früher hat man eine Bewerbungsmappe abgegeben. Heute macht man vieles online. Ich habe beide Varianten erlebt. In der Mappe waren der Lebenslauf, das Anschreiben und Zeugnisse. Heute schickt man alles als PDF. Das ist praktischer.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Emma", "Lisa", "Laura"],
+          "answer": 0
+        },
+        {
+          "question": "Was war früher in der Bewerbungsmappe?",
+          "options": ["Lebenslauf, Anschreiben und Zeugnisse", "Nur der Lebenslauf", "Ein Foto"],
+          "answer": 0
+        },
+        {
+          "question": "Wie macht man es heute?",
+          "options": ["Online als PDF", "Per Post", "Persönlich"],
+          "answer": 0
+        },
+        {
+          "question": "Was ist praktischer?",
+          "options": ["Online als PDF", "Die Mappe", "Beides"],
+          "answer": 0
+        },
+        {
+          "question": "Was ist wichtig?",
+          "options": ["Der Inhalt", "Die Verpackung", "Das Papier"],
+          "answer": 0
+        }
+      ]
+    }
+  ]
+}

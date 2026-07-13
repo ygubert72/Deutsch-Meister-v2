@@ -1,0 +1,199 @@
+{
+  "lesson": 52,
+  "level": "C1",
+  "title": "Структура научного текста",
+  "dialogs": [
+    {
+      "id": "monolog_1",
+      "title": "Die Einleitung eines wissenschaftlichen Textes",
+      "text": "Die von der Wissenschaftlerin Anna vorgestellte Einleitung eines wissenschaftlichen Textes ist von entscheidender Bedeutung. Die Einleitung dient der thematischen Hinführung des Lesers. Die Relevanz des Themas wird erläutert. Die Forschungslage wird prägnant zusammengefasst. Die zentrale Forschungsfrage wird präzise formuliert. Die gewählte Methodik wird kurz skizziert. Die Einleitung soll das Interesse wecken und den Leser auf den folgenden Hauptteil vorbereiten.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Anna", "Maria", "Julia"],
+          "answer": 0
+        },
+        {
+          "question": "Was ist die Einleitung eines wissenschaftlichen Textes?",
+          "options": ["Der erste Teil", "Der letzte Teil", "Der mittlere Teil"],
+          "answer": 0
+        },
+        {
+          "question": "Was wird in der Einleitung zusammengefasst?",
+          "options": ["Die Forschungslage", "Die Ergebnisse", "Die Diskussion"],
+          "answer": 0
+        },
+        {
+          "question": "Was wird in der Einleitung formuliert?",
+          "options": ["Die Forschungsfrage", "Die Antwort", "Die Hypothese"],
+          "answer": 0
+        },
+        {
+          "question": "Was wird in der Einleitung skizziert?",
+          "options": ["Die Methodik", "Die Ergebnisse", "Das Fazit"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_2",
+      "title": "Der Hauptteil einer wissenschaftlichen Arbeit",
+      "text": "Der von der Doktorandin Maria verfasste Hauptteil einer wissenschaftlichen Arbeit stellt das Kernstück der Untersuchung dar. In diesem Abschnitt werden die angewandten Methoden detailliert beschrieben. Die erhobenen Daten werden systematisch ausgewertet. Die erzielten Ergebnisse werden präsentiert und kritisch diskutiert. Der Hauptteil zeichnet sich durch eine stringente Argumentation aus. Jede These wird durch empirische Belege untermauert. Die Schlussfolgerungen werden logisch aus den Daten abgeleitet.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Anna", "Maria", "Julia"],
+          "answer": 1
+        },
+        {
+          "question": "Was stellt der Hauptteil einer wissenschaftlichen Arbeit dar?",
+          "options": ["Das Kernstück der Untersuchung", "Die Einleitung", "Das Fazit"],
+          "answer": 0
+        },
+        {
+          "question": "Was wird im Hauptteil beschrieben?",
+          "options": ["Die Methoden", "Die Einleitung", "Die Danksagung"],
+          "answer": 0
+        },
+        {
+          "question": "Was wird im Hauptteil präsentiert?",
+          "options": ["Die Ergebnisse", "Die Einleitung", "Die Literatur"],
+          "answer": 0
+        },
+        {
+          "question": "Wie wird im Hauptteil argumentiert?",
+          "options": ["Stringent", "Unscharf", "Subjektiv"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_3",
+      "title": "Das Fazit einer wissenschaftlichen Arbeit",
+      "text": "Das von der promovierenden Studentin Julia erstellte Fazit rundet die wissenschaftliche Arbeit ab. Die zentralen Erkenntnisse werden resümierend dargestellt. Die eingangs formulierte Forschungsfrage wird abschließend beantwortet. Die Limitationen der Studie werden offen thematisiert. Ein Ausblick auf zukünftige Forschungsvorhaben wird gegeben. Das Fazit enthält keinerlei neue Informationen. Es dient der Synthese der gewonnenen Erkenntnisse. Der Leser erhält eine abschließende Bewertung der Untersuchung.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Anna", "Maria", "Julia"],
+          "answer": 2
+        },
+        {
+          "question": "Was rundet das Fazit ab?",
+          "options": ["Die wissenschaftliche Arbeit", "Die Einleitung", "Die Methode"],
+          "answer": 0
+        },
+        {
+          "question": "Was wird im Fazit beantwortet?",
+          "options": ["Die Forschungsfrage", "Die Methode", "Die Einleitung"],
+          "answer": 0
+        },
+        {
+          "question": "Was wird im Fazit thematisiert?",
+          "options": ["Die Limitationen der Studie", "Die Ergebnisse", "Die Methode"],
+          "answer": 0
+        },
+        {
+          "question": "Enthält das Fazit neue Informationen?",
+          "options": ["Nein", "Ja", "Manchmal"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_4",
+      "title": "Die Bedeutung der Literaturübersicht",
+      "text": "Die von der Linguistin Laura erstellte Literaturübersicht bildet das Fundament jeder wissenschaftlichen Arbeit. Die relevanten Forschungsergebnisse werden systematisch aufgearbeitet. Die eigene Forschungsarbeit wird in den wissenschaftlichen Diskurs eingeordnet. Bestehende Forschungslücken werden identifiziert. Der Beitrag der eigenen Arbeit zur Weiterentwicklung des Forschungsfeldes wird aufgezeigt. Die Auswahl der zitierten Quellen erfolgt nach strengen wissenschaftlichen Kriterien.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Laura", "Lisa", "Anna"],
+          "answer": 0
+        },
+        {
+          "question": "Was bildet die Literaturübersicht?",
+          "options": ["Das Fundament jeder wissenschaftlichen Arbeit", "Den Abschluss jeder wissenschaftlichen Arbeit", "Die Einleitung jeder wissenschaftlichen Arbeit"],
+          "answer": 0
+        },
+        {
+          "question": "Was wird in der Literaturübersicht identifiziert?",
+          "options": ["Forschungslücken", "Die Ergebnisse", "Die Methode"],
+          "answer": 0
+        },
+        {
+          "question": "Was wird in der Literaturübersicht aufgezeigt?",
+          "options": ["Der Beitrag der eigenen Arbeit", "Die Einleitung", "Das Fazit"],
+          "answer": 0
+        },
+        {
+          "question": "Nach welchen Kriterien erfolgt die Quellenauswahl?",
+          "options": ["Nach strengen wissenschaftlichen Kriterien", "Nach persönlichen Vorlieben", "Nach Zufall"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_5",
+      "title": "Die Wahl der richtigen Methode",
+      "text": "Die von der Sozialwissenschaftlerin Lisa getroffene Wahl der Forschungsmethode ist von zentraler Bedeutung für die Validität der Untersuchung. Die Methode muss der Fragestellung adäquat sein. Qualitative und quantitative Ansätze werden in Abhängigkeit vom Forschungsgegenstand gewählt. Die Durchführung der Methode wird detailliert dokumentiert. Die Grenzen der gewählten Methode werden transparent dargelegt. Nur eine methodisch saubere Arbeit kann zu verlässlichen Ergebnissen führen.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Laura", "Lisa", "Anna"],
+          "answer": 1
+        },
+        {
+          "question": "Was ist von zentraler Bedeutung für die Validität der Untersuchung?",
+          "options": ["Die Wahl der Forschungsmethode", "Die Einleitung", "Das Fazit"],
+          "answer": 0
+        },
+        {
+          "question": "Wovon hängt die Wahl der Methode ab?",
+          "options": ["Vom Forschungsgegenstand", "Von der Einleitung", "Von der Literatur"],
+          "answer": 0
+        },
+        {
+          "question": "Was wird in der Methodenbeschreibung dokumentiert?",
+          "options": ["Die Durchführung der Methode", "Die Ergebnisse", "Die Einleitung"],
+          "answer": 0
+        },
+        {
+          "question": "Was wird transparent dargelegt?",
+          "options": ["Die Grenzen der Methode", "Die Ergebnisse", "Die Einleitung"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_6",
+      "title": "Die Struktur eines wissenschaftlichen Artikels",
+      "text": "Die von der Redakteurin Emma betreute wissenschaftliche Publikation folgt einer etablierten Struktur. Der Artikel beginnt mit einem prägnanten Titel und einer aussagekräftigen Zusammenfassung. Die Einleitung führt in die Thematik ein. Der Hauptteil präsentiert die Methoden und Ergebnisse. Die Diskussion der Befunde schließt sich an. Das Fazit rundet den Beitrag ab. Ein umfangreiches Literaturverzeichnis dokumentiert die verwendeten Quellen. Die Leser können sich so mühelos orientieren.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Emma", "Lisa", "Laura"],
+          "answer": 0
+        },
+        {
+          "question": "Womit beginnt ein wissenschaftlicher Artikel?",
+          "options": ["Mit dem Titel und der Zusammenfassung", "Mit der Einleitung", "Mit dem Fazit"],
+          "answer": 0
+        },
+        {
+          "question": "Was folgt nach der Einleitung?",
+          "options": ["Der Hauptteil", "Das Fazit", "Die Diskussion"],
+          "answer": 0
+        },
+        {
+          "question": "Was schließt den Artikel ab?",
+          "options": ["Das Fazit", "Die Einleitung", "Die Diskussion"],
+          "answer": 0
+        },
+        {
+          "question": "Was dokumentiert das Literaturverzeichnis?",
+          "options": ["Die verwendeten Quellen", "Die Ergebnisse", "Die Methode"],
+          "answer": 0
+        }
+      ]
+    }
+  ]
+}

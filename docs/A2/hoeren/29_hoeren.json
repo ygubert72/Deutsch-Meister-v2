@@ -1,0 +1,88 @@
+{
+  "lesson": 29,
+  "level": "A2",
+  "title": "Культурные мероприятия",
+  "dialogs": [
+    {
+      "id": "monolog_1",
+      "title": "Ein Kinobesuch",
+      "text": "Hallo! Ich freue mich, dass ihr da seid! Ich bin Anna. Letztes Wochenende war ich im Kino. Ich habe einen neuen Film gesehen. Der Film war sehr spannend. Nach dem Film habe ich mit meiner Freundin noch geredet. Der Film war großartig!",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Anna", "Maria", "Julia"],
+          "answer": 0
+        },
+        {
+          "question": "Wo war Anna letztes Wochenende?",
+          "options": ["Im Kino", "Im Theater", "Im Museum"],
+          "answer": 0
+        },
+        {
+          "question": "Wie war der Film?",
+          "options": ["Spannend", "Langweilig", "Schlecht"],
+          "answer": 0
+        },
+        {
+          "question": "Was hat Anna nach dem Film gemacht?",
+          "options": ["Mit ihrer Freundin geredet", "Nach Hause gegangen", "Geschlafen"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_2",
+      "title": "Ein Konzertbesuch",
+      "text": "Schön, dass ihr zuhört! Ich bin Maria. Ich war gestern auf einem Konzert. Es war eine deutsche Band. Die Band hat sehr gut gespielt. Die Musik war laut. Ich habe mitgesungen und getanzt. Es war ein unvergesslicher Abend.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Anna", "Maria", "Julia"],
+          "answer": 1
+        },
+        {
+          "question": "Wo war Maria gestern?",
+          "options": ["Auf einem Konzert", "Im Kino", "Im Theater"],
+          "answer": 0
+        },
+        {
+          "question": "Wie war die Musik?",
+          "options": ["Laut", "Leise", "Langsam"],
+          "answer": 0
+        },
+        {
+          "question": "Was hat Maria auf dem Konzert gemacht?",
+          "options": ["Mitgesungen und getanzt", "Nur zugehört", "Geschlafen"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_3",
+      "title": "Ein Besuch im Museum",
+      "text": "Heute erzähle ich euch über meinen Besuch im Museum. Ich bin Julia. Ich war letzte Woche im Museum. Ich habe eine Ausstellung über alte Kunst gesehen. Die Führung war sehr interessant. Ich habe viel Neues gelernt.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Anna", "Maria", "Julia"],
+          "answer": 2
+        },
+        {
+          "question": "Wo war Julia letzte Woche?",
+          "options": ["Im Museum", "Im Kino", "Im Konzert"],
+          "answer": 0
+        },
+        {
+          "question": "Was für eine Ausstellung hat Julia gesehen?",
+          "options": ["Über alte Kunst", "Über moderne Kunst", "Über Natur"],
+          "answer": 0
+        },
+        {
+          "question": "Wie war die Führung?",
+          "options": ["Sehr interessant", "Langweilig", "Zu lang"],
+          "answer": 0
+        }
+      ]
+    }
+  ]
+}

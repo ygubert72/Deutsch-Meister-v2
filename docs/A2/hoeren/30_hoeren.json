@@ -1,0 +1,88 @@
+{
+  "lesson": 30,
+  "level": "A2",
+  "title": "СМИ и информация",
+  "dialogs": [
+    {
+      "id": "monolog_1",
+      "title": "Wie ich mich informiere",
+      "text": "Hallo zusammen! Heute geht es um Medien. Ich bin Anna. Ich informiere mich täglich. Am Morgen lese ich die Zeitung. Am Abend sehe ich die Nachrichten im Fernsehen. Manchmal höre ich auch Radio. Ich bin immer auf dem Laufenden.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Anna", "Maria", "Julia"],
+          "answer": 0
+        },
+        {
+          "question": "Was macht Anna am Morgen?",
+          "options": ["Sie liest die Zeitung", "Sie sieht fern", "Sie hört Radio"],
+          "answer": 0
+        },
+        {
+          "question": "Was macht Anna am Abend?",
+          "options": ["Sie sieht die Nachrichten", "Sie liest ein Buch", "Sie geht schlafen"],
+          "answer": 0
+        },
+        {
+          "question": "Was hört Anna manchmal?",
+          "options": ["Radio", "Musik", "Podcasts"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_2",
+      "title": "Nachrichten im Fernsehen",
+      "text": "Schön, dass ihr zuhört! Ich bin Maria. Ich sehe jeden Abend die Nachrichten im Fernsehen. Die Nachrichten dauern 30 Minuten. Es gibt Berichte aus aller Welt. Oft geht es um Politik oder Wirtschaft. Die Nachrichten sind wichtig für mich.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Anna", "Maria", "Julia"],
+          "answer": 1
+        },
+        {
+          "question": "Was macht Maria jeden Abend?",
+          "options": ["Sie sieht die Nachrichten", "Sie liest die Zeitung", "Sie hört Radio"],
+          "answer": 0
+        },
+        {
+          "question": "Wie lange dauern die Nachrichten?",
+          "options": ["30 Minuten", "Eine Stunde", "15 Minuten"],
+          "answer": 0
+        },
+        {
+          "question": "Worüber geht es oft in den Nachrichten?",
+          "options": ["Politik oder Wirtschaft", "Nur über Sport", "Nur über Wetter"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_3",
+      "title": "Zeitungen und Zeitschriften",
+      "text": "Ich lese gern und informiere mich. Ich bin Julia. Ich kaufe jeden Samstag eine Zeitung. Ich lese auch Zeitschriften. Mein Lieblingsmagazin ist über Reisen. Die Artikel sind gut geschrieben. Ich habe viele Ideen für meine Reisen.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Anna", "Maria", "Julia"],
+          "answer": 2
+        },
+        {
+          "question": "Was kauft Julia jeden Samstag?",
+          "options": ["Eine Zeitung", "Ein Magazin", "Ein Buch"],
+          "answer": 0
+        },
+        {
+          "question": "Was ist Julias Lieblingsmagazin?",
+          "options": ["Über Reisen", "Über Mode", "Über Sport"],
+          "answer": 0
+        },
+        {
+          "question": "Was helfen Julia die Artikel?",
+          "options": ["Sie geben Ideen für Reisen", "Sie sind schön", "Sie sind praktisch"],
+          "answer": 0
+        }
+      ]
+    }
+  ]
+}

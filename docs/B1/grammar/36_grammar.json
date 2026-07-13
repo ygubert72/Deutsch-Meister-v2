@@ -1,0 +1,41 @@
+{
+  "lesson": 36,
+  "title": "Пассив с модальными глаголами",
+  "level": "B1",
+  "theory": "<h3>📌 Пассив с модальными глаголами</h3><p>В немецком языке пассив часто используется с <strong>модальными глаголами</strong> (müssen, können, sollen, wollen, dürfen).</p><div class='info-box' style='background: #E8F0FE; padding: 15px; border-radius: 12px; margin: 15px 0;'><strong>📌 КАК ОБРАЗОВАТЬ:</strong><br><span style='color:#2E7D32;font-weight:bold;'>Modalverb + werden + Partizip II</span><br><br>• <span style='color:#2E7D32;font-weight:bold;'>Der Müll muss getrennt werden.</span> — Мусор должен быть разделён.<br>• <span style='color:#2E7D32;font-weight:bold;'>Die Umwelt kann geschützt werden.</span> — Окружающая среда может быть защищена.</div><h3>📌 Сравнение с обычным пассивом</h3><table border='1' cellpadding='10' style='border-collapse: collapse; width: 100%; margin: 15px 0;'><tr style='background: #3B6FE0; color: white;'><th>Обычный пассив</th><th>Пассив с модальным глаголом</th></tr><tr style='background: #E3F2FD;'><td>Der Müll wird getrennt.</td><td>Der Müll muss getrennt werden.</td></tr><tr style='background: #F5F5F5;'><td>Die Umwelt wird geschützt.</td><td>Die Umwelt kann geschützt werden.</td></tr></table><h3>📌 Модальные глаголы в пассиве</h3><table border='1' cellpadding='10' style='border-collapse: collapse; width: 100%; margin: 15px 0;'><tr style='background: #3B6FE0; color: white;'><th>Модальный глагол</th><th>Значение</th><th>Пример</th></tr><tr style='background: #E3F2FD;'><td><strong>müssen</strong></td><td>должен</td><td>Der Müll muss getrennt werden.</td></tr><tr style='background: #F5F5F5;'><td><strong>können</strong></td><td>может</td><td>Die Umwelt kann geschützt werden.</td></tr><tr style='background: #E3F2FD;'><td><strong>sollen</strong></td><td>следует</td><td>Die Energie soll gespart werden.</td></tr><tr style='background: #F5F5F5;'><td><strong>wollen</strong></td><td>хотеть</td><td>Das Problem will gelöst werden.</td></tr></table>",
+  "vocabulary": [
+    {"de": "der Müll", "ru": "мусор"},
+    {"de": "trennen", "ru": "разделять"},
+    {"de": "die Umwelt", "ru": "окружающая среда"},
+    {"de": "schützen", "ru": "защищать"},
+    {"de": "die Energie", "ru": "энергия"},
+    {"de": "sparen", "ru": "экономить"},
+    {"de": "die Umweltverschmutzung", "ru": "загрязнение окружающей среды"},
+    {"de": "der Klimawandel", "ru": "изменение климата"},
+    {"de": "das Recycling", "ru": "переработка"},
+    {"de": "erneuerbare Energien", "ru": "возобновляемая энергия"},
+    {"de": "die Abfälle", "ru": "отходы"},
+    {"de": "reduzieren", "ru": "сокращать"},
+    {"de": "vermeiden", "ru": "избегать"}
+  ],
+  "examples": [
+    {"de": "Der Müll muss getrennt werden.", "ru": "Мусор должен быть разделён."},
+    {"de": "Die Umwelt kann geschützt werden.", "ru": "Окружающая среда может быть защищена."},
+    {"de": "Die Energie soll gespart werden.", "ru": "Энергию следует экономить."},
+    {"de": "Das Problem will gelöst werden.", "ru": "Проблему хотят решить."},
+    {"de": "Plastik sollte vermieden werden.", "ru": "Пластика следует избегать."},
+    {"de": "Mehr Recycling muss gemacht werden.", "ru": "Должно быть больше переработки."}
+  ],
+  "practice": [
+    {"type": "fill", "question": "Вставьте правильную форму пассива с модальным глаголом:", "sentence": "Der Müll ___ getrennt ___. (müssen)", "answer": "muss werden", "hint": "Мусор должен быть разделён."},
+    {"type": "fill", "question": "Вставьте правильную форму пассива с модальным глаголом:", "sentence": "Die Umwelt ___ geschützt ___. (können)", "answer": "kann werden", "hint": "Окружающая среда может быть защищена."},
+    {"type": "fill", "question": "Вставьте правильную форму пассива с модальным глаголом:", "sentence": "Die Energie ___ gespart ___. (sollen)", "answer": "soll werden", "hint": "Энергию следует экономить."},
+    {"type": "fill", "question": "Вставьте правильную форму пассива с модальным глаголом:", "sentence": "Das Problem ___ gelöst ___. (wollen)", "answer": "will werden", "hint": "Проблему хотят решить."},
+    {"type": "fill", "question": "Вставьте правильную форму пассива с модальным глаголом:", "sentence": "Plastik ___ vermieden ___. (sollen)", "answer": "sollte werden", "hint": "Пластика следует избегать."},
+    {"type": "fill", "question": "Вставьте правильное слово:", "sentence": "Der ___ muss getrennt werden. (мусор)", "answer": "Müll", "hint": "Мусор должен быть разделён."},
+    {"type": "fill", "question": "Вставьте правильное слово:", "sentence": "Die ___ kann geschützt werden. (окружающая среда)", "answer": "Umwelt", "hint": "Окружающая среда может быть защищена."},
+    {"type": "fill", "question": "Вставьте правильное слово:", "sentence": "Die ___ soll gespart werden. (энергия)", "answer": "Energie", "hint": "Энергию следует экономить."},
+    {"type": "transform", "question": "Переделайте предложение в пассив с модальным глаголом (müssen):", "sentence": "Man muss den Müll trennen.", "answer": "Der Müll muss getrennt werden.", "hint": "Мусор должен быть разделён."},
+    {"type": "transform", "question": "Переделайте предложение в пассив с модальным глаголом (können):", "sentence": "Man kann die Umwelt schützen.", "answer": "Die Umwelt kann geschützt werden.", "hint": "Окружающая среда может быть защищена."}
+  ]
+}

@@ -1,0 +1,88 @@
+{
+  "lesson": 6,
+  "level": "A1",
+  "title": "Семья и притяжательные местоимения",
+  "dialogs": [
+    {
+      "id": "monolog_1",
+      "title": "Meine Familie",
+      "text": "Guten Tag! Ich bin Anna. Ich habe eine kleine Familie. Mein Vater heißt Thomas. Meine Mutter heißt Sabine. Ich habe einen Bruder. Sein Name ist Max.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Anna", "Maria", "Julia"],
+          "answer": 0
+        },
+        {
+          "question": "Wie heißt der Vater von Anna?",
+          "options": ["Thomas", "Tom", "Max"],
+          "answer": 0
+        },
+        {
+          "question": "Wie heißt der Bruder von Anna?",
+          "options": ["Thomas", "Max", "Peter"],
+          "answer": 1
+        },
+        {
+          "question": "Hat Anna eine große Familie?",
+          "options": ["Nein, sie hat eine kleine Familie", "Ja, sie hat eine große Familie", "Sie hat keine Familie"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_2",
+      "title": "Meine Eltern",
+      "text": "Hallo! Ich bin Maria. Mein Vater ist Arzt. Meine Mutter ist Lehrerin. Meine Schwester heißt Laura. Sie ist Studentin. Wir wohnen in München.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Anna", "Maria", "Julia"],
+          "answer": 1
+        },
+        {
+          "question": "Was ist der Vater von Maria von Beruf?",
+          "options": ["Arzt", "Lehrer", "Ingenieur"],
+          "answer": 0
+        },
+        {
+          "question": "Was macht Marias Schwester?",
+          "options": ["Sie studiert", "Sie arbeitet", "Sie ist zu Hause"],
+          "answer": 0
+        },
+        {
+          "question": "Wo wohnt die Familie von Maria?",
+          "options": ["In Berlin", "In München", "In Hamburg"],
+          "answer": 1
+        }
+      ]
+    },
+    {
+      "id": "monolog_3",
+      "title": "Meine Großeltern",
+      "text": "Guten Morgen! Ich bin Julia. Meine Großeltern wohnen in Hamburg. Mein Opa heißt Klaus. Meine Oma heißt Ilse. Sie sind 70 Jahre alt. Ich besuche sie oft.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Anna", "Maria", "Julia"],
+          "answer": 2
+        },
+        {
+          "question": "Wo wohnen die Großeltern von Julia?",
+          "options": ["In Berlin", "In Hamburg", "In München"],
+          "answer": 1
+        },
+        {
+          "question": "Wie heißt der Opa von Julia?",
+          "options": ["Klaus", "Karl", "Thomas"],
+          "answer": 0
+        },
+        {
+          "question": "Wie alt sind die Großeltern?",
+          "options": ["65 Jahre", "70 Jahre", "75 Jahre"],
+          "answer": 1
+        }
+      ]
+    }
+  ]
+}

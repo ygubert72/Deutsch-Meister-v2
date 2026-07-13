@@ -1,0 +1,113 @@
+{
+  "lesson": 36,
+  "level": "B1",
+  "title": "Пассив с модальными глаголами",
+  "dialogs": [
+    {
+      "id": "monolog_1",
+      "title": "Umweltschutz",
+      "text": "Man muss viel beachten, wenn es um Umweltschutz geht. Ich bin Anna. Plastik muss vermieden werden. Abfälle müssen getrennt werden. Papier und Glas müssen recycelt werden. Öffentliche Verkehrsmittel sollten benutzt werden. Mehr Bäume müssen gepflanzt werden. Alle Bürger müssen mithelfen.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Anna", "Maria", "Julia"],
+          "answer": 0
+        },
+        {
+          "question": "Was muss vermieden werden?",
+          "options": ["Plastik", "Papier", "Glas"],
+          "answer": 0
+        },
+        {
+          "question": "Was muss getrennt werden?",
+          "options": ["Abfälle", "Papier", "Glas"],
+          "answer": 0
+        },
+        {
+          "question": "Was sollte benutzt werden?",
+          "options": ["Öffentliche Verkehrsmittel", "Private Autos", "Flugzeuge"],
+          "answer": 0
+        },
+        {
+          "question": "Was muss gepflanzt werden?",
+          "options": ["Mehr Bäume", "Mehr Blumen", "Mehr Sträucher"],
+          "answer": 0
+        },
+        {
+          "question": "Wer muss mithelfen?",
+          "options": ["Alle Bürger", "Nur die Regierung", "Nur die Unternehmen"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_2",
+      "title": "Arbeitssicherheit",
+      "text": "Wisst ihr, was in einer Firma beachtet werden muss? Ich bin Maria. Die Arbeitssicherheit muss ernst genommen werden. Schutzkleidung muss getragen werden. Sicherheitsregeln müssen befolgt werden. Die Maschinen müssen regelmäßig geprüft werden. Notfallpläne müssen erstellt werden. Unfälle können so vermieden werden.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Anna", "Maria", "Julia"],
+          "answer": 1
+        },
+        {
+          "question": "Was muss ernst genommen werden?",
+          "options": ["Die Arbeitssicherheit", "Die Pause", "Die Kantine"],
+          "answer": 0
+        },
+        {
+          "question": "Was muss getragen werden?",
+          "options": ["Schutzkleidung", "Normale Kleidung", "Keine Kleidung"],
+          "answer": 0
+        },
+        {
+          "question": "Was muss regelmäßig geprüft werden?",
+          "options": ["Die Maschinen", "Die Büros", "Die Kollegen"],
+          "answer": 0
+        },
+        {
+          "question": "Was muss erstellt werden?",
+          "options": ["Notfallpläne", "Berichte", "Listen"],
+          "answer": 0
+        },
+        {
+          "question": "Können Unfälle vermieden werden?",
+          "options": ["Ja", "Nein", "Weiß nicht"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_3",
+      "title": "Gesundes Essen in der Schule",
+      "text": "Könnt ihr euch vorstellen, dass Schulessen verbessert werden muss? Ich bin Julia. Gesundes Essen muss angeboten werden. Frisches Obst und Gemüse sollten serviert werden. Fertiggerichte sollten vermieden werden. Die Schüler müssen über Ernährung aufgeklärt werden. Süße Getränke müssen eingeschränkt werden.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Anna", "Maria", "Julia"],
+          "answer": 2
+        },
+        {
+          "question": "Was muss in der Schule angeboten werden?",
+          "options": ["Gesundes Essen", "Nur Pizza", "Nur Fast Food"],
+          "answer": 0
+        },
+        {
+          "question": "Was sollte serviert werden?",
+          "options": ["Frisches Obst und Gemüse", "Nur Fleisch", "Nur Suppe"],
+          "answer": 0
+        },
+        {
+          "question": "Was sollte vermieden werden?",
+          "options": ["Fertiggerichte", "Frisches Obst", "Wasser"],
+          "answer": 0
+        },
+        {
+          "question": "Was muss eingeschränkt werden?",
+          "options": ["Süße Getränke", "Wasser", "Milch"],
+          "answer": 0
+        }
+      ]
+    }
+  ]
+}

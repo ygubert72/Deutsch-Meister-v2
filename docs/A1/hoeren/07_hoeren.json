@@ -1,0 +1,88 @@
+{
+  "lesson": 7,
+  "level": "A1",
+  "title": "Хобби, свободное время и глаголы",
+  "dialogs": [
+    {
+      "id": "monolog_1",
+      "title": "Meine Hobbys",
+      "text": "Guten Tag! Ich bin Anna. Ich habe viele Hobbys. Ich spiele gern Tennis. Ich höre gern Musik. Am Wochenende gehe ich ins Kino. Ich lese auch gern Bücher.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Anna", "Maria", "Julia"],
+          "answer": 0
+        },
+        {
+          "question": "Was spielt Anna gern?",
+          "options": ["Fußball", "Tennis", "Schach"],
+          "answer": 1
+        },
+        {
+          "question": "Wohin geht Anna am Wochenende?",
+          "options": ["Ins Kino", "Ins Konzert", "Ins Museum"],
+          "answer": 0
+        },
+        {
+          "question": "Was macht Anna auch gern?",
+          "options": ["Sie liest Bücher", "Sie schwimmt", "Sie tanzt"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_2",
+      "title": "Sport und Bewegung",
+      "text": "Hallo! Ich bin Maria. Ich treibe gern Sport. Im Sommer schwimme ich. Im Winter laufe ich. Mein Bruder spielt Fußball. Meine Schwester tanzt gern.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Anna", "Maria", "Julia"],
+          "answer": 1
+        },
+        {
+          "question": "Was macht Maria im Sommer?",
+          "options": ["Sie läuft", "Sie schwimmt", "Sie spielt Tennis"],
+          "answer": 1
+        },
+        {
+          "question": "Was macht Marias Bruder?",
+          "options": ["Er schwimmt", "Er spielt Fußball", "Er tanzt"],
+          "answer": 1
+        },
+        {
+          "question": "Was macht Marias Schwester?",
+          "options": ["Sie tanzt", "Sie läuft", "Sie schwimmt"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_3",
+      "title": "Freizeitaktivitäten",
+      "text": "Guten Morgen! Ich bin Julia. Ich gehe gern spazieren. Ich treffe mich mit Freunden. Wir gehen ins Café. Manchmal koche ich auch. Kochen macht mir Spaß.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Anna", "Maria", "Julia"],
+          "answer": 2
+        },
+        {
+          "question": "Was macht Julia gern?",
+          "options": ["Sie geht spazieren", "Sie schwimmt", "Sie tanzt"],
+          "answer": 0
+        },
+        {
+          "question": "Mit wem trifft sich Julia?",
+          "options": ["Mit Freunden", "Mit ihrer Familie", "Mit Kollegen"],
+          "answer": 0
+        },
+        {
+          "question": "Macht Julia gern?",
+          "options": ["Kochen", "Tanzen", "Lesen"],
+          "answer": 0
+        }
+      ]
+    }
+  ]
+}

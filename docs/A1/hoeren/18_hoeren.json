@@ -1,0 +1,88 @@
+{
+  "lesson": 18,
+  "level": "A1",
+  "title": "Путешествия и транспорт",
+  "dialogs": [
+    {
+      "id": "monolog_1",
+      "title": "Meine Reise nach Berlin",
+      "text": "Guten Tag! Ich bin Anna. Ich fahre mit dem Zug nach Berlin. Der Zug fährt um 8 Uhr ab. Die Fahrt dauert 4 Stunden. Ich besuche dort meine Freundin.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Anna", "Maria", "Julia"],
+          "answer": 0
+        },
+        {
+          "question": "Wohin fährt Anna?",
+          "options": ["Nach Berlin", "Nach München", "Nach Hamburg"],
+          "answer": 0
+        },
+        {
+          "question": "Wann fährt der Zug ab?",
+          "options": ["Um 8 Uhr", "Um 9 Uhr", "Um 10 Uhr"],
+          "answer": 0
+        },
+        {
+          "question": "Wie lange dauert die Fahrt?",
+          "options": ["4 Stunden", "3 Stunden", "5 Stunden"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_2",
+      "title": "Im Flughafen",
+      "text": "Hallo! Ich bin Maria. Ich fliege nach Italien. Ich bin am Flughafen. Ich habe meinen Pass und mein Ticket. Das Flugzeug fliegt um 14 Uhr ab. Der Flug dauert 2 Stunden.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Anna", "Maria", "Julia"],
+          "answer": 1
+        },
+        {
+          "question": "Wohin fliegt Maria?",
+          "options": ["Nach Italien", "Nach Spanien", "Nach Frankreich"],
+          "answer": 0
+        },
+        {
+          "question": "Wann fliegt das Flugzeug ab?",
+          "options": ["Um 14 Uhr", "Um 15 Uhr", "Um 16 Uhr"],
+          "answer": 0
+        },
+        {
+          "question": "Wie lange dauert der Flug?",
+          "options": ["2 Stunden", "3 Stunden", "4 Stunden"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_3",
+      "title": "Mit dem Bus",
+      "text": "Guten Morgen! Ich bin Julia. Ich fahre mit dem Bus zur Arbeit. Der Bus kommt um 7 Uhr an der Haltestelle. Ich fahre jeden Tag mit dem Bus. Es ist praktisch und nicht teuer.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Anna", "Maria", "Julia"],
+          "answer": 2
+        },
+        {
+          "question": "Wie fährt Julia zur Arbeit?",
+          "options": ["Mit dem Bus", "Mit dem Auto", "Mit dem Fahrrad"],
+          "answer": 0
+        },
+        {
+          "question": "Wann kommt der Bus?",
+          "options": ["Um 7 Uhr", "Um 8 Uhr", "Um 9 Uhr"],
+          "answer": 0
+        },
+        {
+          "question": "Warum fährt Julia mit dem Bus?",
+          "options": ["Es ist praktisch und nicht teuer", "Es ist schnell", "Es ist bequem"],
+          "answer": 0
+        }
+      ]
+    }
+  ]
+}

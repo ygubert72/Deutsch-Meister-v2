@@ -1,0 +1,108 @@
+{
+  "lesson": 40,
+  "level": "B1",
+  "title": "Выражение эмоций и межличностные отношения",
+  "dialogs": [
+    {
+      "id": "monolog_1",
+      "title": "Wie ich meine Gefühle ausdrücke",
+      "text": "Wie geht es euch heute? Ich möchte über Emotionen sprechen. Ich bin Anna. Früher war es schwer für mich, meine Gefühle zu zeigen. Heute spreche ich offen darüber. Wenn ich traurig bin, sage ich es meinen Freunden. Wenn ich mich freue, zeige ich das auch. Es ist wichtig, ehrlich zu sich selbst zu sein. Ich fühle mich viel besser.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Anna", "Maria", "Julia"],
+          "answer": 0
+        },
+        {
+          "question": "Wie war es für Anna früher?",
+          "options": ["Es war schwer, ihre Gefühle zu zeigen", "Es war leicht", "Sie zeigte immer ihre Gefühle"],
+          "answer": 0
+        },
+        {
+          "question": "Was macht Anna heute?",
+          "options": ["Sie spricht offen über ihre Gefühle", "Sie schweigt", "Sie schreibt Briefe"],
+          "answer": 0
+        },
+        {
+          "question": "Was sagt Anna, wenn sie traurig ist?",
+          "options": ["Sie sagt es ihren Freunden", "Sie schweigt", "Sie weint alleine"],
+          "answer": 0
+        },
+        {
+          "question": "Wie fühlt sich Anna jetzt?",
+          "options": ["Viel besser", "Schlechter", "Genauso"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_2",
+      "title": "Konflikte in der Familie",
+      "text": "Beziehungen sind nicht immer einfach. Ich bin Maria. In meiner Familie gibt es manchmal Konflikte. Früher habe ich mich immer geärgert. Aber ich habe gelernt, dass es wichtig ist, zu reden. Wenn ich wütend bin, sage ich, warum. Ich versuche, die andere Seite zu verstehen. So können wir eine Lösung finden. Kommunikation ist der Schlüssel.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Anna", "Maria", "Julia"],
+          "answer": 1
+        },
+        {
+          "question": "Was gibt es manchmal in Marias Familie?",
+          "options": ["Konflikte", "Keine Probleme", "Nur Freude"],
+          "answer": 0
+        },
+        {
+          "question": "Wie hat Maria früher reagiert?",
+          "options": ["Sie hat sich geärgert", "Sie hat geredet", "Sie hat geweint"],
+          "answer": 0
+        },
+        {
+          "question": "Was hat Maria gelernt?",
+          "options": ["Dass es wichtig ist zu reden", "Dass es besser ist zu schweigen", "Dass Konflikte unvermeidlich sind"],
+          "answer": 0
+        },
+        {
+          "question": "Was macht Maria, wenn sie wütend ist?",
+          "options": ["Sie sagt, warum sie wütend ist", "Sie schreit", "Sie geht weg"],
+          "answer": 0
+        },
+        {
+          "question": "Was ist der Schlüssel für Maria?",
+          "options": ["Kommunikation", "Schweigen", "Weggehen"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_3",
+      "title": "Meine beste Freundin",
+      "text": "Ich habe gelernt, offen über meine Gefühle zu sprechen. Ich bin Julia. Meine beste Freundin ist für mich sehr wichtig. Wir kennen uns seit der Schulzeit. Wir können über alles reden. Wenn ich ein Problem habe, hilft sie mir. Sie ist wie eine Schwester für mich.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Anna", "Maria", "Julia"],
+          "answer": 2
+        },
+        {
+          "question": "Wie lange kennen sich Julia und ihre Freundin?",
+          "options": ["Seit der Schulzeit", "Seit einem Jahr", "Seit der Arbeit"],
+          "answer": 0
+        },
+        {
+          "question": "Was können sie tun?",
+          "options": ["Über alles reden", "Nichts sagen", "Nur lachen"],
+          "answer": 0
+        },
+        {
+          "question": "Was macht die Freundin, wenn Julia ein Problem hat?",
+          "options": ["Sie hilft ihr", "Sie geht weg", "Sie schweigt"],
+          "answer": 0
+        },
+        {
+          "question": "Wie ist die Freundin für Julia?",
+          "options": ["Wie eine Schwester", "Wie eine Mutter", "Wie eine Kollegin"],
+          "answer": 0
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,88 @@
+{
+  "lesson": 24,
+  "level": "A2",
+  "title": "Погода и сезоны",
+  "dialogs": [
+    {
+      "id": "monolog_1",
+      "title": "Meine Lieblingsjahreszeit",
+      "text": "Hallo! Ich bin Anna. Meine Lieblingsjahreszeit ist der Sommer. Ich liebe den Sommer, weil es warm ist. Ich kann draußen sein und schwimmen gehen. Die Tage sind lang und die Sonne scheint viel.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Anna", "Maria", "Julia"],
+          "answer": 0
+        },
+        {
+          "question": "Was ist Annas Lieblingsjahreszeit?",
+          "options": ["Der Sommer", "Der Winter", "Der Frühling"],
+          "answer": 0
+        },
+        {
+          "question": "Warum mag Anna den Sommer?",
+          "options": ["Weil es warm ist", "Weil es schneit", "Weil es kalt ist"],
+          "answer": 0
+        },
+        {
+          "question": "Wie sind die Tage im Sommer?",
+          "options": ["Lang", "Kurz", "Kalt"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_2",
+      "title": "Das Wetter im Winter",
+      "text": "Grüß dich! Ich bin Maria. Der Winter ist bei uns sehr kalt. Es schneit oft. Ich trage immer eine warme Jacke und Handschuhe. Im Winter bleibe ich gern zu Hause. Ich trinke heißen Tee und lese ein Buch.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Anna", "Maria", "Julia"],
+          "answer": 1
+        },
+        {
+          "question": "Wie ist das Wetter im Winter?",
+          "options": ["Sehr kalt", "Sehr warm", "Regnerisch"],
+          "answer": 0
+        },
+        {
+          "question": "Was trägt Maria im Winter?",
+          "options": ["Eine warme Jacke und Handschuhe", "Ein T-Shirt", "Einen Schal"],
+          "answer": 0
+        },
+        {
+          "question": "Was macht Maria im Winter gern zu Hause?",
+          "options": ["Heißen Tee trinken und lesen", "Fernsehen", "Schlafen"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_3",
+      "title": "Der Frühling",
+      "text": "Guten Tag! Ich bin Julia. Der Frühling ist eine schöne Jahreszeit. Die Tage werden länger. Die Blumen blühen und die Vögel singen. Die Temperaturen sind angenehm. Ich gehe gern spazieren und genieße die Natur.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Anna", "Maria", "Julia"],
+          "answer": 2
+        },
+        {
+          "question": "Was passiert im Frühling?",
+          "options": ["Die Blumen blühen", "Es schneit", "Es ist sehr heiß"],
+          "answer": 0
+        },
+        {
+          "question": "Wie sind die Temperaturen im Frühling?",
+          "options": ["Angenehm", "Unter null Grad", "Über 30 Grad"],
+          "answer": 0
+        },
+        {
+          "question": "Was macht Julia im Frühling gern?",
+          "options": ["Sie geht spazieren", "Sie schwimmt", "Sie fährt Ski"],
+          "answer": 0
+        }
+      ]
+    }
+  ]
+}

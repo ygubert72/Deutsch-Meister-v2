@@ -1,0 +1,98 @@
+{
+  "lesson": 22,
+  "level": "A2",
+  "title": "Неправильные глаголы в Perfekt",
+  "dialogs": [
+    {
+      "id": "monolog_1",
+      "title": "Mein Tag",
+      "text": "Guten Morgen! Ich bin Anna. Ich bin um 7 Uhr aufgestanden. Ich habe ein Buch gelesen. Ich habe Kaffee getrunken. Ich bin ins Büro gefahren. Ich habe einen Brief geschrieben. Am Abend bin ich nach Hause gekommen.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Anna", "Maria", "Julia"],
+          "answer": 0
+        },
+        {
+          "question": "Wann ist Anna aufgestanden?",
+          "options": ["Um 7 Uhr", "Um 8 Uhr", "Um 6 Uhr"],
+          "answer": 0
+        },
+        {
+          "question": "Was hat Anna am Morgen gemacht?",
+          "options": ["Ein Buch gelesen und Kaffee getrunken", "Geschlafen", "Sport gemacht"],
+          "answer": 0
+        },
+        {
+          "question": "Was hat Anna im Büro gemacht?",
+          "options": ["Einen Brief geschrieben", "E-Mails gelesen", "Telefoniert"],
+          "answer": 0
+        },
+        {
+          "question": "Wann ist Anna nach Hause gekommen?",
+          "options": ["Am Abend", "Am Mittag", "Am Morgen"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_2",
+      "title": "Meine Kindheit",
+      "text": "Hallo! Ich bin Maria. Als Kind bin ich oft in den Wald gegangen. Ich habe mit meiner Schwester gespielt. Meine Mutter hat Kuchen gebacken. Das war eine schöne Zeit. Später bin ich nach Berlin gezogen.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Anna", "Maria", "Julia"],
+          "answer": 1
+        },
+        {
+          "question": "Wo ist Maria als Kind oft gegangen?",
+          "options": ["In den Wald", "In die Stadt", "Ans Meer"],
+          "answer": 0
+        },
+        {
+          "question": "Mit wem hat Maria gespielt?",
+          "options": ["Mit ihrer Schwester", "Mit ihrer Mutter", "Mit Freunden"],
+          "answer": 0
+        },
+        {
+          "question": "Was hat Marias Mutter gemacht?",
+          "options": ["Kuchen gebacken", "Gearbeitet", "Gelesen"],
+          "answer": 0
+        },
+        {
+          "question": "Wohin ist Maria später gezogen?",
+          "options": ["Nach Berlin", "Nach München", "Nach Hamburg"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_3",
+      "title": "Mein Konzert",
+      "text": "Grüß dich! Ich bin Julia. Ich bin zu einem Konzert gegangen. Die Band hat gut gespielt. Ich habe neue Leute kennengelernt. Wir haben zusammen gesungen. Ich bin erst um 2 Uhr nach Hause gekommen.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Anna", "Maria", "Julia"],
+          "answer": 2
+        },
+        {
+          "question": "Wohin ist Julia gegangen?",
+          "options": ["Zu einem Konzert", "Ins Kino", "Ins Restaurant"],
+          "answer": 0
+        },
+        {
+          "question": "Was hat Julia auf dem Konzert gemacht?",
+          "options": ["Neue Leute kennengelernt und gesungen", "Geschlafen", "Gearbeitet"],
+          "answer": 0
+        },
+        {
+          "question": "Wann ist Julia nach Hause gekommen?",
+          "options": ["Um 2 Uhr", "Um 24 Uhr", "Um 1 Uhr"],
+          "answer": 0
+        }
+      ]
+    }
+  ]
+}

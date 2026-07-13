@@ -1,0 +1,103 @@
+{
+  "lesson": 35,
+  "level": "B1",
+  "title": "Пассивный залог в настоящем времени",
+  "dialogs": [
+    {
+      "id": "monolog_1",
+      "title": "Wie wird Kaffee hergestellt?",
+      "text": "Wisst ihr, wie Kaffee hergestellt wird? Ich bin Anna. Die Kaffeebohnen werden in Brasilien angebaut. Danach werden sie geerntet und getrocknet. Die Bohnen werden in die Rösterei geschickt. Hier werden sie geröstet und gemahlen. Der Kaffee wird in Tüten verpackt. Dann wird er in die Geschäfte geliefert.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Anna", "Maria", "Julia"],
+          "answer": 0
+        },
+        {
+          "question": "Wo werden die Kaffeebohnen angebaut?",
+          "options": ["In Brasilien", "In Deutschland", "In Italien"],
+          "answer": 0
+        },
+        {
+          "question": "Was wird mit den Bohnen in der Rösterei gemacht?",
+          "options": ["Sie werden geröstet und gemahlen", "Sie werden nur verpackt", "Sie werden getrocknet"],
+          "answer": 0
+        },
+        {
+          "question": "Wo wird der Kaffee verpackt?",
+          "options": ["In der Rösterei", "In Brasilien", "Im Geschäft"],
+          "answer": 0
+        },
+        {
+          "question": "Wohin wird der Kaffee geliefert?",
+          "options": ["In die Geschäfte", "Ins Ausland", "In die Fabrik"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_2",
+      "title": "Wie wird ein Buch gedruckt?",
+      "text": "Hallo! Ich bin Maria. Zuerst wird der Text geschrieben. Dann wird er von Lektoren korrigiert. Der Text wird in ein Computerprogramm eingegeben. Danach wird das Buchlayout erstellt. Die Seiten werden gedruckt. Die Bücher werden gebunden. Schließlich werden sie in Buchläden geliefert.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Anna", "Maria", "Julia"],
+          "answer": 1
+        },
+        {
+          "question": "Was wird zuerst gemacht?",
+          "options": ["Der Text wird geschrieben", "Das Buch wird gedruckt", "Das Buch wird gebunden"],
+          "answer": 0
+        },
+        {
+          "question": "Wer korrigiert den Text?",
+          "options": ["Lektoren", "Autoren", "Drucker"],
+          "answer": 0
+        },
+        {
+          "question": "Was wird nach dem Layout gemacht?",
+          "options": ["Die Seiten werden gedruckt", "Der Text wird geschrieben", "Das Buch wird gebunden"],
+          "answer": 0
+        },
+        {
+          "question": "Wohin werden die Bücher geliefert?",
+          "options": ["In Buchläden", "Ins Museum", "Ins Lager"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_3",
+      "title": "Wie wird Brot gebacken?",
+      "text": "Guten Morgen! Ich bin Julia. Zuerst werden die Zutaten abgewogen. Mehl, Wasser, Hefe und Salz werden gemischt. Der Teig wird geknetet. Dann wird er eine Stunde ruhen gelassen. Der Teig wird geformt. Im Ofen wird das Brot gebacken. Dann wird es in der Bäckerei verkauft.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Anna", "Maria", "Julia"],
+          "answer": 2
+        },
+        {
+          "question": "Was wird zuerst gemacht?",
+          "options": ["Die Zutaten werden abgewogen", "Der Teig wird geknetet", "Das Brot wird gebacken"],
+          "answer": 0
+        },
+        {
+          "question": "Welche Zutaten werden gemischt?",
+          "options": ["Mehl, Wasser, Hefe und Salz", "Nur Mehl und Wasser", "Mehl, Zucker und Eier"],
+          "answer": 0
+        },
+        {
+          "question": "Wie lange wird der Teig ruhen gelassen?",
+          "options": ["Eine Stunde", "Zwei Stunden", "Drei Stunden"],
+          "answer": 0
+        },
+        {
+          "question": "Wo wird das Brot gebacken?",
+          "options": ["Im Ofen", "Auf dem Herd", "In der Mikrowelle"],
+          "answer": 0
+        }
+      ]
+    }
+  ]
+}

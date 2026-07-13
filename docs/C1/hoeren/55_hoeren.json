@@ -1,0 +1,199 @@
+{
+  "lesson": 55,
+  "level": "C1",
+  "title": "Управление проектами и деловая лексика",
+  "dialogs": [
+    {
+      "id": "monolog_1",
+      "title": "Die Grundlagen des Projektmanagements",
+      "text": "Die von der Projektmanagerin Anna entwickelte Projektstruktur folgt den Prinzipien moderner Projektplanung. Die Projektziele werden präzise definiert. Die verfügbaren Ressourcen werden effizient zugewiesen. Ein detaillierter Zeitplan wird erstellt. Die Aufgaben werden klar verteilt. Der Fortschritt wird regelmäßig überwacht. Die Kommunikation mit den Stakeholdern wird gewährleistet. Ein erfolgreiches Projektmanagement führt zur termingerechten und budgetkonformen Fertigstellung des Projekts.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Anna", "Maria", "Julia"],
+          "answer": 0
+        },
+        {
+          "question": "Was sind die Prinzipien, denen die Projektstruktur folgt?",
+          "options": ["Den Prinzipien moderner Projektplanung", "Den Prinzipien schneller Arbeit", "Den Prinzipien großer Teams"],
+          "answer": 0
+        },
+        {
+          "question": "Was wird im Projektmanagement präzise definiert?",
+          "options": ["Die Projektziele", "Die Projektmitarbeiter", "Die Projektkosten"],
+          "answer": 0
+        },
+        {
+          "question": "Wohin werden die Ressourcen effizient zugewiesen?",
+          "options": ["An die Projekte", "An die Mitarbeiter", "An die Abteilungen"],
+          "answer": 0
+        },
+        {
+          "question": "Was wird regelmäßig überwacht?",
+          "options": ["Der Fortschritt", "Die Mitarbeiter", "Die Büros"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_2",
+      "title": "Die Rolle des Projektmanagers",
+      "text": "Die von der Projektleiterin Maria ausgeübte Führungsfunktion umfasst vielfältige Aufgabenbereiche. Die Koordination des Teams stellt eine Kernaufgabe dar. Die Kommunikation mit den Stakeholdern wird von ihr aktiv gestaltet. Entscheidungen werden zeitnah getroffen. Konflikte werden konstruktiv gelöst. Das Team wird durch ihre Führung motiviert. Die Einhaltung der Termine wird konsequent überwacht. Der Projektmanager ist der zentrale Erfolgsfaktor für die Projektabwicklung.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Anna", "Maria", "Julia"],
+          "answer": 1
+        },
+        {
+          "question": "Was stellt die Koordination des Teams dar?",
+          "options": ["Eine Kernaufgabe", "Eine Nebenaufgabe", "Eine unnötige Aufgabe"],
+          "answer": 0
+        },
+        {
+          "question": "Was wird von der Projektleiterin aktiv gestaltet?",
+          "options": ["Die Kommunikation mit den Stakeholdern", "Die Bürogestaltung", "Die Kantinenplanung"],
+          "answer": 0
+        },
+        {
+          "question": "Wie werden Entscheidungen getroffen?",
+          "options": ["Zeitnah", "Spät", "Gar nicht"],
+          "answer": 0
+        },
+        {
+          "question": "Wie werden Konflikte gelöst?",
+          "options": ["Konstruktiv", "Destruktiv", "Ignoriert"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_3",
+      "title": "Die Planung eines Projekts",
+      "text": "Die von der Projektplanerin Julia erstellte Projektplanung bildet die Grundlage für die erfolgreiche Projektdurchführung. Die Ziele werden präzise definiert. Der Projektplan wird detailliert ausgearbeitet. Die Ressourcen werden bedarfsgerecht geplant. Die Kosten werden sorgfältig kalkuliert. Der Zeitplan wird realistisch erstellt. Mögliche Risiken werden frühzeitig identifiziert. Maßnahmen zur Risikominimierung werden entwickelt. Eine sorgfältige Planung ist der Schlüssel zum Projekterfolg.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Anna", "Maria", "Julia"],
+          "answer": 2
+        },
+        {
+          "question": "Was bildet die Projektplanung die Grundlage für?",
+          "options": ["Die erfolgreiche Projektdurchführung", "Die erfolglose Projektdurchführung", "Die Projektverzögerung"],
+          "answer": 0
+        },
+        {
+          "question": "Was wird in der Projektplanung detailliert ausgearbeitet?",
+          "options": ["Der Projektplan", "Die Projektkosten", "Die Projektmitarbeiter"],
+          "answer": 0
+        },
+        {
+          "question": "Was wird in der Projektplanung sorgfältig kalkuliert?",
+          "options": ["Die Kosten", "Die Zeit", "Die Mitarbeiter"],
+          "answer": 0
+        },
+        {
+          "question": "Was wird in der Projektplanung frühzeitig identifiziert?",
+          "options": ["Mögliche Risiken", "Mögliche Erfolge", "Mögliche Fehler"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_4",
+      "title": "Die Kommunikation im Projekt",
+      "text": "Die von der Kommunikationsmanagerin Laura etablierte Kommunikationsstruktur ist für den Projekterfolg von entscheidender Bedeutung. Das Team wird regelmäßig über aktuelle Entwicklungen informiert. Konstruktives Feedback wird gegeben und empfangen. Probleme werden offen angesprochen. Erfolge werden gemeinsam gefeiert. Entscheidungen werden dokumentiert. Die Kommunikation erfolgt transparent und regelmäßig. Eine effektive Kommunikation verhindert Missverständnisse und fördert die Zusammenarbeit im Team.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Laura", "Lisa", "Anna"],
+          "answer": 0
+        },
+        {
+          "question": "Was ist für den Projekterfolg von entscheidender Bedeutung?",
+          "options": ["Die Kommunikationsstruktur", "Die Büroausstattung", "Die Kantinenqualität"],
+          "answer": 0
+        },
+        {
+          "question": "Was wird über aktuelle Entwicklungen informiert?",
+          "options": ["Das Team", "Die Konkurrenz", "Die Kunden"],
+          "answer": 0
+        },
+        {
+          "question": "Wie werden Probleme behandelt?",
+          "options": ["Offen angesprochen", "Ignoriert", "Verschwiegen"],
+          "answer": 0
+        },
+        {
+          "question": "Was verhindert effektive Kommunikation?",
+          "options": ["Missverständnisse", "Erfolge", "Kosten"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_5",
+      "title": "Die Bewertung eines Projekts",
+      "text": "Die von der Qualitätsmanagerin Lisa durchgeführte Projektevaluation stellt den abschließenden Schritt der Projektarbeit dar. Die erzielten Ergebnisse werden mit den ursprünglichen Zielen verglichen. Abweichungen werden analysiert. Die Teamzusammenarbeit wird bewertet. Erfahrungen werden dokumentiert. Verbesserungspotenziale werden identifiziert. Die Projektevaluation ist von großer Bedeutung für zukünftige Projekte. Aus gemachten Fehlern wird gelernt. Ein Projekt ist erst mit der vollständigen Evaluation abgeschlossen.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Laura", "Lisa", "Anna"],
+          "answer": 1
+        },
+        {
+          "question": "Was stellt die Projektevaluation dar?",
+          "options": ["Den abschließenden Schritt der Projektarbeit", "Den ersten Schritt der Projektarbeit", "Den mittleren Schritt der Projektarbeit"],
+          "answer": 0
+        },
+        {
+          "question": "Mit was werden die erzielten Ergebnisse verglichen?",
+          "options": ["Mit den ursprünglichen Zielen", "Mit den ursprünglichen Kosten", "Mit den ursprünglichen Mitarbeitern"],
+          "answer": 0
+        },
+        {
+          "question": "Was wird bei der Projektevaluation dokumentiert?",
+          "options": ["Erfahrungen", "Erfolge", "Kosten"],
+          "answer": 0
+        },
+        {
+          "question": "Was wird aus gemachten Fehlern?",
+          "options": ["Es wird gelernt", "Es wird geschwiegen", "Es wird vergessen"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_6",
+      "title": "Die Bedeutung von Teamarbeit",
+      "text": "Die von der Teamleiterin Emma hervorgehobene Bedeutung der Teamarbeit ist ein zentraler Erfolgsfaktor in Projektumgebungen. Die Aufgabenverteilung erfolgt gemäß den individuellen Stärken der Teammitglieder. Die gegenseitige Unterstützung wird gefördert. Von den verschiedenen Kompetenzen der Teammitglieder wird profitiert. Der kontinuierliche Austausch von Wissen wird ermöglicht. Ein leistungsfähiges Team übertrifft die Summe seiner Einzelmitglieder. Teamarbeit fördert die Kreativität und führt zu qualitativ besseren Ergebnissen.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Emma", "Lisa", "Laura"],
+          "answer": 0
+        },
+        {
+          "question": "Was ist ein zentraler Erfolgsfaktor in Projektumgebungen?",
+          "options": ["Die Teamarbeit", "Die Einzelarbeit", "Die Konkurrenz"],
+          "answer": 0
+        },
+        {
+          "question": "Wie erfolgt die Aufgabenverteilung im Team?",
+          "options": ["Gemäß den individuellen Stärken", "Nach Zufall", "Nach Alphabet"],
+          "answer": 0
+        },
+        {
+          "question": "Was wird in der Teamarbeit gefördert?",
+          "options": ["Die gegenseitige Unterstützung", "Die gegenseitige Konkurrenz", "Die gegenseitige Ablehnung"],
+          "answer": 0
+        },
+        {
+          "question": "Was fördert Teamarbeit?",
+          "options": ["Die Kreativität", "Die Stagnation", "Die Langeweile"],
+          "answer": 0
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,88 @@
+{
+  "lesson": 17,
+  "level": "A1",
+  "title": "Письменная коммуникация",
+  "dialogs": [
+    {
+      "id": "monolog_1",
+      "title": "Ein Brief",
+      "text": "Guten Tag! Ich bin Anna. Ich schreibe einen Brief an meine Freundin. Ich schreibe: 'Liebe Maria'. Ich schreibe über meine Familie und meine Arbeit. Am Ende schreibe ich 'Viele Grüße'.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Anna", "Maria", "Julia"],
+          "answer": 0
+        },
+        {
+          "question": "An wen schreibt Anna einen Brief?",
+          "options": ["An ihre Freundin", "An ihre Mutter", "An ihren Bruder"],
+          "answer": 0
+        },
+        {
+          "question": "Was schreibt Anna in den Brief?",
+          "options": ["Über ihre Familie und Arbeit", "Über ihre Reise", "Über ihr Hobby"],
+          "answer": 0
+        },
+        {
+          "question": "Was schreibt Anna am Ende des Briefes?",
+          "options": ["Viele Grüße", "Liebe Grüße", "Tschüss"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_2",
+      "title": "Eine E-Mail",
+      "text": "Hallo! Ich bin Maria. Ich schreibe oft E-Mails. Ich schreibe: 'Lieber Tom' am Anfang. Ich schreibe über meinen neuen Job. Am Ende schreibe ich 'Liebe Grüße'.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Anna", "Maria", "Julia"],
+          "answer": 1
+        },
+        {
+          "question": "Was macht Maria oft?",
+          "options": ["Sie schreibt E-Mails", "Sie liest Briefe", "Sie telefoniert"],
+          "answer": 0
+        },
+        {
+          "question": "Was schreibt Maria in der E-Mail?",
+          "options": ["Über ihren neuen Job", "Über ihre Reise", "Über ihre Familie"],
+          "answer": 0
+        },
+        {
+          "question": "Was schreibt Maria am Ende der E-Mail?",
+          "options": ["Liebe Grüße", "Viele Grüße", "Tschüss"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_3",
+      "title": "Ein Formular",
+      "text": "Guten Morgen! Ich bin Julia. Ich möchte einen Deutschkurs machen. Ich fülle ein Formular aus: Vorname, Nachname, Adresse, Telefonnummer. Ich unterschreibe das Formular.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Anna", "Maria", "Julia"],
+          "answer": 2
+        },
+        {
+          "question": "Was möchte Julia machen?",
+          "options": ["Einen Deutschkurs", "Einen Englischkurs", "Einen Französischkurs"],
+          "answer": 0
+        },
+        {
+          "question": "Was schreibt Julia im Formular?",
+          "options": ["Vorname, Nachname, Adresse, Telefonnummer", "Nur Name und Adresse", "Name, Beruf und Hobby"],
+          "answer": 0
+        },
+        {
+          "question": "Was unterschreibt Julia?",
+          "options": ["Das Formular", "Den Brief", "Die E-Mail"],
+          "answer": 0
+        }
+      ]
+    }
+  ]
+}

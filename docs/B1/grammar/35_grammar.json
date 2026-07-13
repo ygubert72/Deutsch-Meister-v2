@@ -1,0 +1,44 @@
+{
+  "lesson": 35,
+  "title": "Пассивный залог в настоящем времени",
+  "level": "B1",
+  "theory": "<h3>📌 Что такое пассивный залог?</h3><p>В немецком языке есть два залога: <strong>активный</strong> (кто-то делает) и <strong>пассивный</strong> (что-то делают с чем-то).</p><div class='info-box' style='background: #E8F0FE; padding: 15px; border-radius: 12px; margin: 15px 0;'><strong>📌 АКТИВ → ПАССИВ:</strong><br><span style='color:#2E7D32;font-weight:bold;'>Aktiv:</span> Der Mechaniker repariert das Auto.<br><span style='color:#2E7D32;font-weight:bold;'>Passiv:</span> Das Auto <u>wird</u> repariert.<br><br>Машину ремонтируют. (кто — неважно)</div><h3>📌 КАК ОБРАЗОВАТЬ PASSIV</h3><table border='1' cellpadding='10' style='border-collapse: collapse; width: 100%; margin: 15px 0;'><tr style='background: #3B6FE0; color: white;'><th>Компонент</th><th>Пример</th></tr><tr style='background: #E3F2FD;'><td><strong>werden</strong> (в Präsens)</td><td>wird</td></tr><tr style='background: #F5F5F5;'><td><strong>Partizip II</strong></td><td>repariert</td></tr><tr style='background: #E3F2FD;'><td><strong>Результат</strong></td><td><span style='color:#2E7D32;font-weight:bold;'>Das Auto wird repariert.</span></td></tr></table><h3>📌 Замена <span style='color:#2E7D32;font-weight:bold;'>man</span> на Passiv</h3><p>В немецком языке часто используют <strong>man</strong> + Aktiv. В официальном языке это заменяется на Passiv.</p><div class='info-box' style='background: #E8F0FE; padding: 15px; border-radius: 12px; margin: 15px 0;'><strong>📌 ПРИМЕРЫ:</strong><br>• <span style='color:#2E7D32;font-weight:bold;'>Man öffnet die Tür um 8 Uhr.</span> → <span style='color:#2E7D32;font-weight:bold;'>Die Tür wird um 8 Uhr geöffnet.</span><br>• <span style='color:#2E7D32;font-weight:bold;'>Man verkauft hier Brot.</span> → <span style='color:#2E7D32;font-weight:bold;'>Hier wird Brot verkauft.</span></div>",
+  "vocabulary": [
+    {"de": "produzieren", "ru": "производить"},
+    {"de": "herstellen", "ru": "изготавливать"},
+    {"de": "öffnen", "ru": "открывать"},
+    {"de": "schließen", "ru": "закрывать"},
+    {"de": "bauen", "ru": "строить"},
+    {"de": "reparieren", "ru": "ремонтировать"},
+    {"de": "reinigen", "ru": "чистить"},
+    {"de": "verkaufen", "ru": "продавать"},
+    {"de": "liefern", "ru": "доставлять"},
+    {"de": "das Produkt", "ru": "продукт"},
+    {"de": "die Produktion", "ru": "производство"},
+    {"de": "der Service", "ru": "обслуживание"},
+    {"de": "die Lieferung", "ru": "доставка"},
+    {"de": "werden", "ru": "быть (в пассиве)"}
+  ],
+  "examples": [
+    {"de": "Das Auto wird repariert.", "ru": "Машину ремонтируют."},
+    {"de": "Die Tür wird um 8 Uhr geöffnet.", "ru": "Дверь открывают в 8 часов."},
+    {"de": "Hier wird Brot verkauft.", "ru": "Здесь продают хлеб."},
+    {"de": "Das Produkt wird in Deutschland hergestellt.", "ru": "Продукт производится в Германии."},
+    {"de": "Die Wohnung wird gereinigt.", "ru": "Квартиру убирают."},
+    {"de": "Die Lieferung wird morgen geliefert.", "ru": "Доставка будет завтра."}
+  ],
+  "practice": [
+    {"type": "fill", "question": "Вставьте правильную форму werden:", "sentence": "Das Auto ___ repariert.", "answer": "wird", "hint": "Машину ремонтируют."},
+    {"type": "fill", "question": "Вставьте правильную форму werden:", "sentence": "Die Tür ___ um 8 Uhr geöffnet.", "answer": "wird", "hint": "Дверь открывают в 8 часов."},
+    {"type": "fill", "question": "Вставьте правильную форму werden:", "sentence": "Hier ___ Brot verkauft.", "answer": "wird", "hint": "Здесь продают хлеб."},
+    {"type": "fill", "question": "Вставьте правильную форму werden:", "sentence": "Die Wohnung ___ gereinigt.", "answer": "wird", "hint": "Квартиру убирают."},
+    {"type": "fill", "question": "Вставьте правильную форму werden:", "sentence": "Die Lieferung ___ morgen geliefert.", "answer": "wird", "hint": "Доставка будет завтра."},
+    {"type": "fill", "question": "Вставьте правильную форму Partizip II:", "sentence": "Das Auto wird ___. (reparieren)", "answer": "repariert", "hint": "Машину ремонтируют."},
+    {"type": "fill", "question": "Вставьте правильную форму Partizip II:", "sentence": "Die Tür wird ___. (öffnen)", "answer": "geöffnet", "hint": "Дверь открывают."},
+    {"type": "fill", "question": "Вставьте правильный переход из man в Passiv:", "sentence": "Man öffnet die Tür um 8 Uhr. → Die Tür ___ um 8 Uhr ___.", "answer": "wird geöffnet", "hint": "Дверь открывают в 8 часов."},
+    {"type": "fill", "question": "Вставьте правильный переход из man в Passiv:", "sentence": "Man verkauft hier Brot. → Hier ___ Brot ___.", "answer": "wird verkauft", "hint": "Здесь продают хлеб."},
+    {"type": "transform", "question": "Переделайте активное предложение в пассив:", "sentence": "Der Mechaniker repariert das Auto.", "answer": "Das Auto wird repariert.", "hint": "Машину ремонтируют."},
+    {"type": "transform", "question": "Переделайте активное предложение в пассив:", "sentence": "Man öffnet die Tür um 8 Uhr.", "answer": "Die Tür wird um 8 Uhr geöffnet.", "hint": "Дверь открывают в 8 часов."},
+    {"type": "transform", "question": "Переделайте активное предложение в пассив:", "sentence": "Man verkauft hier Brot.", "answer": "Hier wird Brot verkauft.", "hint": "Здесь продают хлеб."}
+  ]
+}

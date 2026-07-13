@@ -1,0 +1,199 @@
+{
+  "lesson": 53,
+  "level": "C1",
+  "title": "Цитирование и косвенная речь в академическом контексте",
+  "dialogs": [
+    {
+      "id": "monolog_1",
+      "title": "Die Bedeutung des Zitierens",
+      "text": "Die von der Wissenschaftlerin Anna praktizierte Zitierweise ist ein essenzieller Bestandteil wissenschaftlicher Arbeit. Durch das Zitieren wird die eigene Forschung in den wissenschaftlichen Diskurs eingebettet. Die Quellenangabe erfolgt nach eindeutigen Regeln. Direkte Zitate werden wörtlich übernommen. Indirekte Zitate geben den Inhalt paraphrasiert wieder. Beide Formen dienen der Vermeidung von Plagiaten. Die Zitierweise muss innerhalb einer Arbeit konsequent angewendet werden.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Anna", "Maria", "Julia"],
+          "answer": 0
+        },
+        {
+          "question": "Was ist Zitieren ein essenzieller Bestandteil von?",
+          "options": ["Wissenschaftlicher Arbeit", "Literarischer Arbeit", "Alltagssprache"],
+          "answer": 0
+        },
+        {
+          "question": "Wie werden direkte Zitate übernommen?",
+          "options": ["Wörtlich", "Paraphrasiert", "Indirekt"],
+          "answer": 0
+        },
+        {
+          "question": "Wie werden indirekte Zitate übernommen?",
+          "options": ["Paraphrasiert", "Wörtlich", "Kopiert"],
+          "answer": 0
+        },
+        {
+          "question": "Was dient das Zitieren der Vermeidung von?",
+          "options": ["Plagiaten", "Fehlern", "Missverständnissen"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_2",
+      "title": "Die korrekte Quellenangabe",
+      "text": "Die von der Doktorandin Maria erstellte Quellenangabe folgt den akademischen Konventionen. Autor, Erscheinungsjahr, Titel und Seitenzahl werden präzise angegeben. Bei Zeitschriftenartikeln wird der vollständige Titel der Zeitschrift genannt. Bei Monografien erfolgt die Angabe des Verlags. Die korrekte Quellenangabe ermöglicht die Nachvollziehbarkeit der Argumentation. Sie dient der Überprüfbarkeit der Forschung. Die Leser können so die zitierten Quellen eigenständig konsultieren.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Anna", "Maria", "Julia"],
+          "answer": 1
+        },
+        {
+          "question": "Welche Angaben werden bei einer korrekten Quellenangabe präzise genannt?",
+          "options": ["Autor, Jahr, Titel, Seitenzahl", "Nur Autor und Jahr", "Nur Titel"],
+          "answer": 0
+        },
+        {
+          "question": "Was wird bei Zeitschriftenartikeln genannt?",
+          "options": ["Der vollständige Titel der Zeitschrift", "Der Verlag", "Die Ausgabe"],
+          "answer": 0
+        },
+        {
+          "question": "Was dient die korrekte Quellenangabe der?",
+          "options": ["Der Überprüfbarkeit der Forschung", "Der Verschleierung der Forschung", "Der Verkürzung der Arbeit"],
+          "answer": 0
+        },
+        {
+          "question": "Was können die Leser durch die Quellenangabe tun?",
+          "options": ["Die zitierten Quellen eigenständig konsultieren", "Die Arbeit ignorieren", "Die Methode verändern"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_3",
+      "title": "Die indirekte Rede in wissenschaftlichen Texten",
+      "text": "Die von der Linguistin Julia verwendete indirekte Rede ermöglicht eine neutrale Wiedergabe von Aussagen. Der Konjunktiv I wird zur Kennzeichnung der indirekten Rede eingesetzt. Durch diese grammatische Form wird Distanz zur zitierten Aussage hergestellt. Die indirekte Rede trägt zur Objektivierung des Textes bei. Sie ermöglicht die Darstellung unterschiedlicher Positionen. Die Leser können so zwischen eigenen und fremden Gedanken unterscheiden. Die wissenschaftliche Neutralität bleibt gewahrt.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Anna", "Maria", "Julia"],
+          "answer": 2
+        },
+        {
+          "question": "Was ermöglicht die indirekte Rede?",
+          "options": ["Eine neutrale Wiedergabe von Aussagen", "Eine subjektive Wiedergabe von Aussagen", "Eine emotionale Wiedergabe von Aussagen"],
+          "answer": 0
+        },
+        {
+          "question": "Welcher Modus wird zur Kennzeichnung der indirekten Rede eingesetzt?",
+          "options": ["Der Konjunktiv I", "Der Konjunktiv II", "Der Indikativ"],
+          "answer": 0
+        },
+        {
+          "question": "Was wird durch den Konjunktiv I in der indirekten Rede hergestellt?",
+          "options": ["Distanz zur zitierten Aussage", "Nähe zur zitierten Aussage", "Zustimmung zur zitierten Aussage"],
+          "answer": 0
+        },
+        {
+          "question": "Wozu trägt die indirekte Rede bei?",
+          "options": ["Zur Objektivierung des Textes", "Zur Subjektivierung des Textes", "Zur Emotionalisierung des Textes"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_4",
+      "title": "Der Unterschied zwischen direkter und indirekter Rede",
+      "text": "Die von der Germanistin Laura erläuterte Unterscheidung zwischen direkter und indirekter Rede ist von großer Bedeutung. Die direkte Rede gibt Aussagen wörtlich wieder und wird durch Anführungszeichen markiert. Die indirekte Rede gibt den Inhalt einer Aussage paraphrasiert wieder. Während die direkte Rede bei wichtigen Zitaten verwendet wird, findet die indirekte Rede Anwendung in Zusammenfassungen. Die Wahl der jeweiligen Form richtet sich nach dem Grad der Wichtigkeit der Aussage.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Laura", "Lisa", "Anna"],
+          "answer": 0
+        },
+        {
+          "question": "Was gibt die direkte Rede wieder?",
+          "options": ["Aussagen wörtlich", "Aussagen paraphrasiert", "Aussagen zusammengefasst"],
+          "answer": 0
+        },
+        {
+          "question": "Wodurch wird die direkte Rede markiert?",
+          "options": ["Durch Anführungszeichen", "Durch Klammern", "Durch Kommas"],
+          "answer": 0
+        },
+        {
+          "question": "Wann wird die direkte Rede verwendet?",
+          "options": ["Bei wichtigen Zitaten", "Bei Zusammenfassungen", "Bei der Einleitung"],
+          "answer": 0
+        },
+        {
+          "question": "Wann findet die indirekte Rede Anwendung?",
+          "options": ["In Zusammenfassungen", "Bei wichtigen Zitaten", "Bei der Methode"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_5",
+      "title": "Die Vermeidung von Plagiaten",
+      "text": "Die von der Forscherin Lisa betonte Bedeutung der Plagiatsvermeidung ist ein zentrales Anliegen der akademischen Ethik. Fremde Gedanken dürfen nicht als eigene ausgegeben werden. Die korrekte Quellenangabe ist daher unerlässlich. Das Paraphrasieren von Texten erfordert sprachliches Geschick. Die eigene Meinung ist klar von übernommenen Gedanken zu trennen. Die akademische Integrität ist von höchstem Wert. Plagiate können zu schwerwiegenden Konsequenzen führen, einschließlich akademischer Sanktionen.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Laura", "Lisa", "Anna"],
+          "answer": 1
+        },
+        {
+          "question": "Was ist ein zentrales Anliegen der akademischen Ethik?",
+          "options": ["Die Plagiatsvermeidung", "Die Länge der Arbeit", "Die Geschwindigkeit der Arbeit"],
+          "answer": 0
+        },
+        {
+          "question": "Was ist in der Wissenschaft unerlässlich?",
+          "options": ["Die korrekte Quellenangabe", "Die eigene Meinung", "Die Länge der Arbeit"],
+          "answer": 0
+        },
+        {
+          "question": "Was erfordert das Paraphrasieren von Texten?",
+          "options": ["Sprachliches Geschick", "Technisches Geschick", "Mathematisches Geschick"],
+          "answer": 0
+        },
+        {
+          "question": "Wovon ist die akademische Integrität von höchstem Wert?",
+          "options": ["Von höchstem Wert", "Von geringem Wert", "Von keinem Wert"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_6",
+      "title": "Die Bedeutung der akademischen Integrität",
+      "text": "Die von der Professorin Emma vertretene Auffassung zur akademischen Integrität ist von grundlegender Bedeutung für die Wissenschaft. Ehrlichkeit und Transparenz sind die Säulen wissenschaftlichen Arbeitens. Die Arbeit anderer Forscher wird durch korrektes Zitieren respektiert. Die Regeln guter wissenschaftlicher Praxis sind verbindlich. Die akademische Integrität ist nicht verhandelbar. Sie stellt die Grundlage für das Vertrauen in die Wissenschaft dar. Ohne Integrität verliert die Wissenschaft ihre Glaubwürdigkeit.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Emma", "Lisa", "Laura"],
+          "answer": 0
+        },
+        {
+          "question": "Was sind die Säulen wissenschaftlichen Arbeitens?",
+          "options": ["Ehrlichkeit und Transparenz", "Schnelligkeit und Effizienz", "Komplexität und Schwere"],
+          "answer": 0
+        },
+        {
+          "question": "Wie wird die Arbeit anderer Forscher respektiert?",
+          "options": ["Durch korrektes Zitieren", "Durch Ignorieren", "Durch Kopieren"],
+          "answer": 0
+        },
+        {
+          "question": "Sind die Regeln guter wissenschaftlicher Praxis verbindlich?",
+          "options": ["Ja", "Nein", "Manchmal"],
+          "answer": 0
+        },
+        {
+          "question": "Was stellt die akademische Integrität die Grundlage für dar?",
+          "options": ["Das Vertrauen in die Wissenschaft", "Das Misstrauen in die Wissenschaft", "Die Ablehnung der Wissenschaft"],
+          "answer": 0
+        }
+      ]
+    }
+  ]
+}

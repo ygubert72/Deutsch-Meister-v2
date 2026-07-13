@@ -1,0 +1,117 @@
+{
+  "lesson": 3,
+  "level": "A1",
+  "title": "Глагол sein и знакомство",
+  "dialogs": [
+    {
+      "id": "monolog_1",
+      "title": "Vorstellung",
+      "text": "Guten Tag! Ich bin Anna. Ich bin 25 Jahre alt. Ich komme aus Russland. Ich wohne in Berlin.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Anna", "Maria", "Julia"],
+          "answer": 0
+        },
+        {
+          "question": "Woher kommt Anna?",
+          "options": ["Aus Russland", "Aus Deutschland", "Aus Italien"],
+          "answer": 0
+        },
+        {
+          "question": "Wo wohnt Anna?",
+          "options": ["In Berlin", "In München", "In Hamburg"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_2",
+      "title": "Meine Freundin",
+      "text": "Hallo! Ich bin Sophie. Das ist meine Freundin Laura. Sie ist 30 Jahre alt. Sie kommt aus Deutschland. Sie wohnt in Köln.",
+      "questions": [
+        {
+          "question": "Wie heißt die Freundin?",
+          "options": ["Sophie", "Laura", "Anna"],
+          "answer": 1
+        },
+        {
+          "question": "Woher kommt Laura?",
+          "options": ["Aus Deutschland", "Aus Russland", "Aus Italien"],
+          "answer": 0
+        },
+        {
+          "question": "Wo wohnt Laura?",
+          "options": ["In Köln", "In Berlin", "In Hamburg"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_3",
+      "title": "Meine Familie",
+      "text": "Guten Morgen! Ich bin Maria. Ich bin 28 Jahre alt. Ich komme aus Österreich. Ich wohne in Wien. Das ist meine Stadt.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Anna", "Maria", "Julia"],
+          "answer": 1
+        },
+        {
+          "question": "Woher kommt Maria?",
+          "options": ["Aus Österreich", "Aus Deutschland", "Aus Russland"],
+          "answer": 0
+        },
+        {
+          "question": "Wo wohnt Maria?",
+          "options": ["In Wien", "In Berlin", "In München"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_4",
+      "title": "Mein Beruf",
+      "text": "Grüß dich! Ich bin Julia. Ich bin 32 Jahre alt. Ich komme aus der Schweiz. Ich bin Ärztin. Ich arbeite in Zürich.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Anna", "Maria", "Julia"],
+          "answer": 2
+        },
+        {
+          "question": "Woher kommt Julia?",
+          "options": ["Aus der Schweiz", "Aus Deutschland", "Aus Österreich"],
+          "answer": 0
+        },
+        {
+          "question": "Was ist Julia von Beruf?",
+          "options": ["Ärztin", "Lehrerin", "Ingenieurin"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_5",
+      "title": "Meine Sprachen",
+      "text": "Guten Abend! Ich bin Emma. Ich bin 27 Jahre alt. Ich komme aus Deutschland. Ich spreche Deutsch und Englisch. Ich lerne Spanisch.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Anna", "Emma", "Julia"],
+          "answer": 1
+        },
+        {
+          "question": "Woher kommt Emma?",
+          "options": ["Aus Deutschland", "Aus Österreich", "Aus der Schweiz"],
+          "answer": 0
+        },
+        {
+          "question": "Welche Sprachen spricht Emma?",
+          "options": ["Deutsch und Englisch", "Deutsch und Spanisch", "Nur Deutsch"],
+          "answer": 0
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,199 @@
+{
+  "lesson": 44,
+  "level": "B2",
+  "title": "Причастные обороты и атрибутивные конструкции",
+  "dialogs": [
+    {
+      "id": "monolog_1",
+      "title": "Ein neues Museum",
+      "text": "Ich möchte heute über das neu eröffnete Museum sprechen. Ich bin Anna. Das im letzten Jahr errichtete Gebäude ist sehr beeindruckend. Die von berühmten Architekten entworfene Konstruktion zieht viele Besucher an. Die im Museum ausgestellten Exponate stammen aus verschiedenen Epochen. Besonders interessant ist die von Experten zusammengestellte Ausstellung. Die täglich stattfindenden Führungen sind sehr beliebt.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Anna", "Maria", "Julia"],
+          "answer": 0
+        },
+        {
+          "question": "Wann wurde das Gebäude errichtet?",
+          "options": ["Im letzten Jahr", "In diesem Jahr", "Vor zwei Jahren"],
+          "answer": 0
+        },
+        {
+          "question": "Von wem wurde die Konstruktion entworfen?",
+          "options": ["Von berühmten Architekten", "Von jungen Architekten", "Von unbekannten Architekten"],
+          "answer": 0
+        },
+        {
+          "question": "Woher stammen die ausgestellten Exponate?",
+          "options": ["Aus verschiedenen Epochen", "Aus einer Epoche", "Aus der Zukunft"],
+          "answer": 0
+        },
+        {
+          "question": "Was ist besonders interessant?",
+          "options": ["Die von Experten zusammengestellte Ausstellung", "Die Gebäude", "Die Führungen"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_2",
+      "title": "Die Ernährung der Zukunft",
+      "text": "In der heutigen Zeit wird viel über die Ernährung der Zukunft diskutiert. Ich bin Maria. Die von Wissenschaftlern entwickelten Alternativen zu Fleisch werden immer beliebter. Die aus pflanzlichen Proteinen hergestellten Produkte sind schon jetzt sehr gefragt. Die in vielen Ländern durchgeführten Studien zeigen vielversprechende Ergebnisse. Die in der Zukunft erwarteten Veränderungen werden unsere Essgewohnheiten revolutionieren.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Anna", "Maria", "Julia"],
+          "answer": 1
+        },
+        {
+          "question": "Was wurde von Wissenschaftlern entwickelt?",
+          "options": ["Alternativen zu Fleisch", "Neue Medikamente", "Neue Technologien"],
+          "answer": 0
+        },
+        {
+          "question": "Was ist schon jetzt sehr gefragt?",
+          "options": ["Die aus pflanzlichen Proteinen hergestellten Produkte", "Neue Medikamente", "Neue Technologien"],
+          "answer": 0
+        },
+        {
+          "question": "Was zeigen die durchgeführten Studien?",
+          "options": ["Vielversprechende Ergebnisse", "Negative Ergebnisse", "Keine Ergebnisse"],
+          "answer": 0
+        },
+        {
+          "question": "Was wird unsere Essgewohnheiten revolutionieren?",
+          "options": ["Die in der Zukunft erwarteten Veränderungen", "Die in der Vergangenheit durchgeführten Veränderungen", "Die aktuellen Veränderungen"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_3",
+      "title": "Die Bildung der Zukunft",
+      "text": "Ich habe mich intensiv mit der Bildung der Zukunft beschäftigt. Ich bin Julia. Die von Experten geforderten Reformen im Bildungssystem sind dringend notwendig. Die in vielen Ländern eingeführten digitalen Lernplattformen bieten neue Möglichkeiten. Die von Schülern häufig genutzten Online-Kurse sind sehr beliebt. Die zukünftige Bildung wird sich stark verändern. Die Diskussion über dieses Thema wird kontrovers geführt.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Anna", "Maria", "Julia"],
+          "answer": 2
+        },
+        {
+          "question": "Was haben Experten gefordert?",
+          "options": ["Reformen im Bildungssystem", "Neue Technologien", "Neue Lehrer"],
+          "answer": 0
+        },
+        {
+          "question": "Was wurde in vielen Ländern eingeführt?",
+          "options": ["Digitale Lernplattformen", "Neue Schulgebäude", "Neue Fächer"],
+          "answer": 0
+        },
+        {
+          "question": "Was bieten die digitalen Lernplattformen?",
+          "options": ["Neue Möglichkeiten", "Alte Möglichkeiten", "Keine Möglichkeiten"],
+          "answer": 0
+        },
+        {
+          "question": "Wie wird die zukünftige Bildung sein?",
+          "options": ["Sie wird sich stark verändern", "Sie wird gleich bleiben", "Sie wird sich verschlechtern"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_4",
+      "title": "Die Umweltverschmutzung",
+      "text": "Wisst ihr, wie die Umweltverschmutzung bekämpft werden kann? Ich bin Laura. Die von den Industriestaaten verursachten Emissionen sind das Hauptproblem. Die in den Städten gemessenen Werte überschreiten oft die Grenzwerte. Die von Wissenschaftlern vorgeschlagenen Lösungen werden jedoch nicht immer umgesetzt. Die in den letzten Jahren ergriffenen Maßnahmen haben erste Erfolge gezeigt. Die Diskussion über dieses Thema wird leidenschaftlich geführt.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Laura", "Lisa", "Anna"],
+          "answer": 0
+        },
+        {
+          "question": "Was ist das Hauptproblem?",
+          "options": ["Die von den Industriestaaten verursachten Emissionen", "Die von den Entwicklungsländern verursachten Emissionen", "Die von allen Ländern verursachten Emissionen"],
+          "answer": 0
+        },
+        {
+          "question": "Was überschreiten oft die Grenzwerte?",
+          "options": ["Die in den Städten gemessenen Werte", "Die in den Dörfern gemessenen Werte", "Die in den Wäldern gemessenen Werte"],
+          "answer": 0
+        },
+        {
+          "question": "Was wurde von Wissenschaftlern vorgeschlagen?",
+          "options": ["Lösungen", "Neue Maßnahmen", "Neue Gesetze"],
+          "answer": 0
+        },
+        {
+          "question": "Was haben erste Erfolge gezeigt?",
+          "options": ["Die ergriffenen Maßnahmen", "Die neuen Gesetze", "Die neuen Technologien"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_5",
+      "title": "Die Zukunft der Arbeit",
+      "text": "Ich möchte euch heute von der Zukunft der Arbeit erzählen. Ich bin Lisa. Die durch die Digitalisierung veränderten Arbeitsplätze fordern neue Qualifikationen. Die von Unternehmen angebotenen Weiterbildungen sind daher sehr wichtig. Die in vielen Berufen geforderten Fähigkeiten werden immer spezifischer. Die von Arbeitnehmern gewünschte Flexibilität wird immer größer. Die Diskussion über dieses Thema wird vielseitig geführt.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Laura", "Lisa", "Anna"],
+          "answer": 1
+        },
+        {
+          "question": "Was fordern die veränderten Arbeitsplätze?",
+          "options": ["Neue Qualifikationen", "Neue Arbeitsplätze", "Neue Technologien"],
+          "answer": 0
+        },
+        {
+          "question": "Was ist daher sehr wichtig?",
+          "options": ["Die von Unternehmen angebotenen Weiterbildungen", "Die neuen Arbeitsplätze", "Die neuen Technologien"],
+          "answer": 0
+        },
+        {
+          "question": "Was werden immer spezifischer?",
+          "options": ["Die geforderten Fähigkeiten", "Die Arbeitsplätze", "Die Technologien"],
+          "answer": 0
+        },
+        {
+          "question": "Was wird immer größer?",
+          "options": ["Die gewünschte Flexibilität", "Die Arbeitszeit", "Das Gehalt"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_6",
+      "title": "Die Gesellschaft von morgen",
+      "text": "In der heutigen Zeit wird viel über die Gesellschaft von morgen diskutiert. Ich bin Emma. Die von den soziologischen Studien aufgezeigten Trends sind alarmierend. Die in der Gesellschaft zu beobachtenden Veränderungen sind rasant. Die von den Bürgern geforderten Reformen werden immer lauter. Die in der Vergangenheit gemachten Erfahrungen sollten nicht vergessen werden. Die Diskussion über dieses Thema wird intensiv geführt.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Emma", "Lisa", "Laura"],
+          "answer": 0
+        },
+        {
+          "question": "Was zeigen die Studien?",
+          "options": ["Alarmierende Trends", "Positive Trends", "Keine Trends"],
+          "answer": 0
+        },
+        {
+          "question": "Wie sind die Veränderungen in der Gesellschaft?",
+          "options": ["Rasant", "Langsam", "Stagnierend"],
+          "answer": 0
+        },
+        {
+          "question": "Was wird immer lauter?",
+          "options": ["Die von den Bürgern geforderten Reformen", "Die neuen Gesetze", "Die neuen Technologien"],
+          "answer": 0
+        },
+        {
+          "question": "Was sollten nicht vergessen werden?",
+          "options": ["Die gemachten Erfahrungen", "Die neuen Gesetze", "Die neuen Technologien"],
+          "answer": 0
+        }
+      ]
+    }
+  ]
+}

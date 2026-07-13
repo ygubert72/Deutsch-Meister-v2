@@ -1,0 +1,199 @@
+{
+  "lesson": 59,
+  "level": "C1",
+  "title": "Культурная критика и искусствоведение",
+  "dialogs": [
+    {
+      "id": "monolog_1",
+      "title": "Die Bedeutung der Kunst",
+      "text": "Die von der Kunstkritikerin Anna analysierte Bedeutung der Kunst für die Gesellschaft ist von fundamentaler Bedeutung. Die Kunst ist mehr als reine Dekoration. Sie stellt einen Ausdruck der menschlichen Kreativität dar. Sie reflektiert gesellschaftliche Entwicklungen. Sie übt Kritik an bestehenden Verhältnissen. Sie macht das Unsichtbare sichtbar. Die Kunst ist ein Spiegel der Zeit. Sie ist ein essenzieller Bestandteil der Kultur. Die Welt wäre ohne Kunst kulturell ärmer.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Anna", "Maria", "Julia"],
+          "answer": 0
+        },
+        {
+          "question": "Was stellt die Kunst mehr als dar?",
+          "options": ["Mehr als reine Dekoration", "Mehr als reine Unterhaltung", "Mehr als reines Handwerk"],
+          "answer": 0
+        },
+        {
+          "question": "Was reflektiert die Kunst?",
+          "options": ["Gesellschaftliche Entwicklungen", "Wirtschaftliche Entwicklungen", "Politische Entwicklungen"],
+          "answer": 0
+        },
+        {
+          "question": "Was macht die Kunst sichtbar?",
+          "options": ["Das Unsichtbare", "Das Sichtbare", "Das Verborgene"],
+          "answer": 0
+        },
+        {
+          "question": "Was wäre die Welt ohne Kunst?",
+          "options": ["Kulturell ärmer", "Kulturell reicher", "Kulturell gleich"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_2",
+      "title": "Die Rolle des Kunstkritikers",
+      "text": "Die von der Kunsthistorikerin Maria ausgeübte Rolle des Kunstkritikers ist von entscheidender Bedeutung für den kulturellen Diskurs. Die Analyse von Kunstwerken erfordert fachliche Expertise. Die Interpretation von Kunstwerken bedarf künstlerischer Sensibilität. Die Bewertung von Kunstwerken setzt eine fundierte Kenntnis der Kunstgeschichte voraus. Der Kunstkritiker macht Kunst der Öffentlichkeit zugänglich. Die Kunstkritik trägt zur gesellschaftlichen Auseinandersetzung mit Kunst bei.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Anna", "Maria", "Julia"],
+          "answer": 1
+        },
+        {
+          "question": "Was ist von entscheidender Bedeutung für den kulturellen Diskurs?",
+          "options": ["Die Rolle des Kunstkritikers", "Die Rolle des Künstlers", "Die Rolle des Sammlers"],
+          "answer": 0
+        },
+        {
+          "question": "Was erfordert die Analyse von Kunstwerken?",
+          "options": ["Fachliche Expertise", "Künstlerische Begabung", "Technisches Wissen"],
+          "answer": 0
+        },
+        {
+          "question": "Was setzt die Bewertung von Kunstwerken voraus?",
+          "options": ["Eine fundierte Kenntnis der Kunstgeschichte", "Eine fundierte Kenntnis der Wirtschaft", "Eine fundierte Kenntnis der Politik"],
+          "answer": 0
+        },
+        {
+          "question": "Wozu trägt die Kunstkritik bei?",
+          "options": ["Zur gesellschaftlichen Auseinandersetzung mit Kunst", "Zur gesellschaftlichen Ablehnung von Kunst", "Zur gesellschaftlichen Ignoranz von Kunst"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_3",
+      "title": "Die Bedeutung der modernen Kunst",
+      "text": "Die von der Kunsttheoretikerin Julia untersuchte moderne Kunst stellt eine Herausforderung für den traditionellen Kunstbegriff dar. Die konventionellen ästhetischen Normen werden in Frage gestellt. Die experimentellen Kunstformen brechen mit etablierten Konventionen. Die provokative Kunst fordert den Betrachter zur aktiven Auseinandersetzung heraus. Die moderne Kunst ist nicht immer ästhetisch ansprechend. Sie ist jedoch stets intellektuell anregend. Sie reflektiert die gesellschaftlichen Veränderungen der Moderne.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Anna", "Maria", "Julia"],
+          "answer": 2
+        },
+        {
+          "question": "Was stellt die moderne Kunst für den traditionellen Kunstbegriff dar?",
+          "options": ["Eine Herausforderung", "Eine Bestätigung", "Eine Fortsetzung"],
+          "answer": 0
+        },
+        {
+          "question": "Was wird durch die moderne Kunst in Frage gestellt?",
+          "options": ["Die konventionellen ästhetischen Normen", "Die politischen Normen", "Die wirtschaftlichen Normen"],
+          "answer": 0
+        },
+        {
+          "question": "Was fordert die provokative Kunst?",
+          "options": ["Den Betrachter zur aktiven Auseinandersetzung heraus", "Den Betrachter zur passiven Rezeption auf", "Den Betrachter zur Ablehnung auf"],
+          "answer": 0
+        },
+        {
+          "question": "Was reflektiert die moderne Kunst?",
+          "options": ["Die gesellschaftlichen Veränderungen der Moderne", "Die wirtschaftlichen Veränderungen der Moderne", "Die politischen Veränderungen der Moderne"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_4",
+      "title": "Die Interpretation von Kunst",
+      "text": "Die von der Kunstinterpretin Laura vertretene These zur Interpretation von Kunst betont die Subjektivität des Betrachtungsprozesses. Jeder Betrachter bringt seine eigenen Erfahrungen und Perspektiven in die Interpretation ein. Die kulturelle Prägung des Betrachters beeinflusst die Wahrnehmung. Es gibt keine objektiv richtige Interpretation. Die Offenheit der Kunst für verschiedene Lesarten ist ihr wesentliches Merkmal. Die Interpretation lädt zum Dialog und zur Diskussion ein.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Laura", "Lisa", "Anna"],
+          "answer": 0
+        },
+        {
+          "question": "Was betont die Interpretation von Kunst?",
+          "options": ["Die Subjektivität des Betrachtungsprozesses", "Die Objektivität des Betrachtungsprozesses", "Die Wissenschaftlichkeit des Betrachtungsprozesses"],
+          "answer": 0
+        },
+        {
+          "question": "Was bringt jeder Betrachter in die Interpretation ein?",
+          "options": ["Seine eigenen Erfahrungen und Perspektiven", "Seine eigenen Vorurteile", "Seine eigenen Ängste"],
+          "answer": 0
+        },
+        {
+          "question": "Was beeinflusst die Wahrnehmung des Betrachters?",
+          "options": ["Die kulturelle Prägung", "Die wirtschaftliche Situation", "Die politische Einstellung"],
+          "answer": 0
+        },
+        {
+          "question": "Wozu lädt die Kunstinterpretation ein?",
+          "options": ["Zum Dialog und zur Diskussion", "Zum Schweigen und zur Passivität", "Zur Ablehnung und zum Widerspruch"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_5",
+      "title": "Die Bedeutung der Architektur",
+      "text": "Die von der Architekturkritikerin Lisa analysierte Bedeutung der Architektur geht über den reinen Zweck des Bauens hinaus. Die Architektur prägt das Stadtbild und das Lebensgefühl der Bewohner. Die funktionale Architektur erfüllt praktische Bedürfnisse. Die ästhetisch anspruchsvolle Architektur bereichert das kulturelle Erbe. Die nachhaltige Architektur berücksichtigt ökologische Aspekte. Die Architektur spiegelt die Werte einer Gesellschaft wider. Sie ist ein Ausdruck des Zeitgeistes.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Laura", "Lisa", "Anna"],
+          "answer": 1
+        },
+        {
+          "question": "Was geht über den reinen Zweck des Bauens hinaus?",
+          "options": ["Die Bedeutung der Architektur", "Die Bedeutung der Malerei", "Die Bedeutung der Bildhauerei"],
+          "answer": 0
+        },
+        {
+          "question": "Was prägt die Architektur?",
+          "options": ["Das Stadtbild und das Lebensgefühl", "Die Wirtschaft und die Politik", "Die Kultur und die Religion"],
+          "answer": 0
+        },
+        {
+          "question": "Was berücksichtigt die nachhaltige Architektur?",
+          "options": ["Ökologische Aspekte", "Wirtschaftliche Aspekte", "Politische Aspekte"],
+          "answer": 0
+        },
+        {
+          "question": "Was spiegelt die Architektur wider?",
+          "options": ["Die Werte einer Gesellschaft", "Die Vorurteile einer Gesellschaft", "Die Ängste einer Gesellschaft"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_6",
+      "title": "Die Bedeutung von Literatur",
+      "text": "Die von der Literaturwissenschaftlerin Emma erforschte Bedeutung der Literatur für die gesellschaftliche Entwicklung ist von erheblichem Gewicht. Die Literatur erzählt Geschichten und vermittelt Werte. Sie regt zum kritischen Nachdenken an. Sie fördert das Verständnis für die Welt. Sie ermöglicht Selbsterkenntnis. Die gute Literatur ist zeitlos. Sie bleibt auch über Generationen hinweg relevant. Die Literatur ist das kulturelle Gedächtnis der Gesellschaft. Sie verdient Bewahrung und Pflege.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Emma", "Lisa", "Laura"],
+          "answer": 0
+        },
+        {
+          "question": "Was ist von erheblichem Gewicht?",
+          "options": ["Die Bedeutung der Literatur", "Die Bedeutung der Malerei", "Die Bedeutung der Bildhauerei"],
+          "answer": 0
+        },
+        {
+          "question": "Was vermittelt die Literatur?",
+          "options": ["Werte", "Fakten", "Zahlen"],
+          "answer": 0
+        },
+        {
+          "question": "Was fördert die Literatur?",
+          "options": ["Das Verständnis für die Welt", "Das Verständnis für die Wirtschaft", "Das Verständnis für die Politik"],
+          "answer": 0
+        },
+        {
+          "question": "Was ist die Literatur das kulturelle Gedächtnis von?",
+          "options": ["Der Gesellschaft", "Der Wirtschaft", "Der Politik"],
+          "answer": 0
+        }
+      ]
+    }
+  ]
+}

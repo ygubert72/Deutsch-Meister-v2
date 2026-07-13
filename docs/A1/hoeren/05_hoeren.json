@@ -1,0 +1,88 @@
+{
+  "lesson": 5,
+  "level": "A1",
+  "title": "Время, дни недели и месяцы",
+  "dialogs": [
+    {
+      "id": "monolog_1",
+      "title": "Mein Tag",
+      "text": "Guten Tag! Ich bin Anna. Ich stehe um 7 Uhr auf. Am Morgen trinke ich Kaffee. Am Abend sehe ich fern. Ich gehe um 22 Uhr schlafen.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Anna", "Maria", "Julia"],
+          "answer": 0
+        },
+        {
+          "question": "Wann steht Anna auf?",
+          "options": ["Um 6 Uhr", "Um 7 Uhr", "Um 8 Uhr"],
+          "answer": 1
+        },
+        {
+          "question": "Was macht Anna am Morgen?",
+          "options": ["Sie trinkt Kaffee", "Sie frühstückt", "Sie macht Sport"],
+          "answer": 0
+        },
+        {
+          "question": "Wann geht Anna schlafen?",
+          "options": ["Um 21 Uhr", "Um 22 Uhr", "Um 23 Uhr"],
+          "answer": 1
+        }
+      ]
+    },
+    {
+      "id": "monolog_2",
+      "title": "Meine Woche",
+      "text": "Hallo! Ich bin Maria. Am Montag gehe ich zur Arbeit. Am Mittwoch habe ich Deutschkurs. Am Samstag gehe ich einkaufen. Am Sonntag räume ich meine Wohnung auf.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Anna", "Maria", "Julia"],
+          "answer": 1
+        },
+        {
+          "question": "Was macht Maria am Montag?",
+          "options": ["Sie geht zur Arbeit", "Sie geht zum Deutschkurs", "Sie geht einkaufen"],
+          "answer": 0
+        },
+        {
+          "question": "Wann hat Maria Deutschkurs?",
+          "options": ["Am Montag", "Am Mittwoch", "Am Samstag"],
+          "answer": 1
+        },
+        {
+          "question": "Was macht Maria am Sonntag?",
+          "options": ["Sie räumt die Wohnung auf", "Sie geht einkaufen", "Sie geht zur Arbeit"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_3",
+      "title": "Jahreszeiten",
+      "text": "Guten Morgen! Ich bin Julia. Ich mag den Sommer. Im Sommer ist es warm. Im Winter ist es kalt. Im Frühling blühen die Blumen. Im Herbst fallen die Blätter.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Anna", "Maria", "Julia"],
+          "answer": 2
+        },
+        {
+          "question": "Welche Jahreszeit mag Julia?",
+          "options": ["Den Frühling", "Den Sommer", "Den Winter"],
+          "answer": 1
+        },
+        {
+          "question": "Wie ist das Wetter im Sommer?",
+          "options": ["Warm", "Kalt", "Regnerisch"],
+          "answer": 0
+        },
+        {
+          "question": "Was passiert im Frühling?",
+          "options": ["Die Blumen blühen", "Die Blätter fallen", "Es schneit"],
+          "answer": 0
+        }
+      ]
+    }
+  ]
+}

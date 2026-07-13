@@ -1,0 +1,88 @@
+{
+  "lesson": 16,
+  "level": "A1",
+  "title": "Модальные глаголы müssen, können, wollen",
+  "dialogs": [
+    {
+      "id": "monolog_1",
+      "title": "Mein Arbeitstag",
+      "text": "Guten Tag! Ich bin Anna. Ich muss jeden Tag um 7 Uhr aufstehen. Ich kann gut Deutsch sprechen. Ich will mehr lernen. Ich möchte eine gute Arbeit machen.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Anna", "Maria", "Julia"],
+          "answer": 0
+        },
+        {
+          "question": "Was muss Anna jeden Tag machen?",
+          "options": ["Um 7 Uhr aufstehen", "Um 8 Uhr aufstehen", "Um 6 Uhr aufstehen"],
+          "answer": 0
+        },
+        {
+          "question": "Welche Sprache kann Anna gut sprechen?",
+          "options": ["Deutsch", "Englisch", "Französisch"],
+          "answer": 0
+        },
+        {
+          "question": "Was will Anna machen?",
+          "options": ["Mehr lernen", "Mehr arbeiten", "Mehr schlafen"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_2",
+      "title": "Mein Beruf",
+      "text": "Hallo! Ich bin Maria. Ich kann gut mit Menschen arbeiten. Ich will mich weiterbilden. Ich möchte einen neuen Job finden. Ich muss mich bewerben.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Anna", "Maria", "Julia"],
+          "answer": 1
+        },
+        {
+          "question": "Was kann Maria gut?",
+          "options": ["Mit Menschen arbeiten", "Kochen", "Malerei"],
+          "answer": 0
+        },
+        {
+          "question": "Was will Maria machen?",
+          "options": ["Sich weiterbilden", "In Rente gehen", "In eine andere Stadt ziehen"],
+          "answer": 0
+        },
+        {
+          "question": "Was möchte Maria?",
+          "options": ["Einen neuen Job finden", "Reisen", "Studieren"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_3",
+      "title": "Meine Pläne",
+      "text": "Guten Morgen! Ich bin Julia. Ich will Ärztin werden. Ich muss Medizin studieren. Ich kann gut mit Menschen umgehen. Ich will in einer großen Klinik arbeiten.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Anna", "Maria", "Julia"],
+          "answer": 2
+        },
+        {
+          "question": "Was will Julia werden?",
+          "options": ["Ärztin", "Lehrerin", "Anwältin"],
+          "answer": 0
+        },
+        {
+          "question": "Was muss Julia für ihren Beruf tun?",
+          "options": ["Medizin studieren", "Eine Lehre machen", "Praktikum machen"],
+          "answer": 0
+        },
+        {
+          "question": "Wo will Julia arbeiten?",
+          "options": ["In einer großen Klinik", "In einer kleinen Praxis", "In einem Krankenhaus"],
+          "answer": 0
+        }
+      ]
+    }
+  ]
+}

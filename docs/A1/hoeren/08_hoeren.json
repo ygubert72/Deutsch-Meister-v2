@@ -1,0 +1,88 @@
+{
+  "lesson": 8,
+  "level": "A1",
+  "title": "Описание внешности и характера",
+  "dialogs": [
+    {
+      "id": "monolog_1",
+      "title": "Mein Aussehen",
+      "text": "Guten Tag! Ich bin Anna. Ich bin 25 Jahre alt. Ich bin groß und schlank. Ich habe lange braune Haare. Ich habe blaue Augen. Ich bin freundlich und nett.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Anna", "Maria", "Julia"],
+          "answer": 0
+        },
+        {
+          "question": "Wie ist Anna?",
+          "options": ["Groß und schlank", "Klein und dick", "Mittelgroß und schlank"],
+          "answer": 0
+        },
+        {
+          "question": "Welche Haarfarbe hat Anna?",
+          "options": ["Blonde Haare", "Braune Haare", "Schwarze Haare"],
+          "answer": 1
+        },
+        {
+          "question": "Welche Augenfarbe hat Anna?",
+          "options": ["Grüne Augen", "Blaue Augen", "Braune Augen"],
+          "answer": 1
+        }
+      ]
+    },
+    {
+      "id": "monolog_2",
+      "title": "Mein Bruder",
+      "text": "Hallo! Ich bin Maria. Mein Bruder heißt Paul. Er ist 22 Jahre alt. Er ist groß und sportlich. Er hat kurze blonde Haare. Er ist sehr freundlich und hilfsbereit.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Anna", "Maria", "Julia"],
+          "answer": 1
+        },
+        {
+          "question": "Wie heißt der Bruder von Maria?",
+          "options": ["Paul", "Tom", "Max"],
+          "answer": 0
+        },
+        {
+          "question": "Wie sieht der Bruder von Maria aus?",
+          "options": ["Groß und sportlich", "Klein und dick", "Groß und dünn"],
+          "answer": 0
+        },
+        {
+          "question": "Welche Augenfarbe hat der Bruder?",
+          "options": ["Grüne Augen", "Blaue Augen", "Braune Augen"],
+          "answer": 1
+        }
+      ]
+    },
+    {
+      "id": "monolog_3",
+      "title": "Meine beste Freundin",
+      "text": "Guten Morgen! Ich bin Julia. Meine beste Freundin heißt Laura. Sie ist 24 Jahre alt. Sie ist klein und hübsch. Sie hat lange blonde Haare. Sie ist sehr lustig und intelligent.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Anna", "Maria", "Julia"],
+          "answer": 2
+        },
+        {
+          "question": "Wie heißt Julias beste Freundin?",
+          "options": ["Laura", "Lisa", "Anna"],
+          "answer": 0
+        },
+        {
+          "question": "Wie ist Laura?",
+          "options": ["Klein und hübsch", "Groß und schlank", "Klein und dick"],
+          "answer": 0
+        },
+        {
+          "question": "Welche Haarfarbe hat Laura?",
+          "options": ["Blonde Haare", "Braune Haare", "Schwarze Haare"],
+          "answer": 0
+        }
+      ]
+    }
+  ]
+}

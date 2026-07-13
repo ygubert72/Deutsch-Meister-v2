@@ -1,0 +1,199 @@
+{
+  "lesson": 33,
+  "level": "B1",
+  "title": "Описание профессионального опыта",
+  "dialogs": [
+    {
+      "id": "monolog_1",
+      "title": "Mein Berufsweg",
+      "text": "Guten Tag! Ich bin Anna. Nachdem ich die Schule beendet hatte, machte ich eine Ausbildung zur Krankenschwester. Die Ausbildung war anstrengend. Danach arbeitete ich in einem Krankenhaus. Später studierte ich Pflegemanagement. Nach dem Studium bekam ich eine Stelle als Stationsleiterin. Heute bin ich sehr zufrieden.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Anna", "Maria", "Julia"],
+          "answer": 0
+        },
+        {
+          "question": "Was machte Anna nach der Schule?",
+          "options": ["Eine Ausbildung zur Krankenschwester", "Ein Studium", "Eine Reise"],
+          "answer": 0
+        },
+        {
+          "question": "Wo arbeitete Anna nach der Ausbildung?",
+          "options": ["In einem Krankenhaus", "In einer Schule", "In einem Büro"],
+          "answer": 0
+        },
+        {
+          "question": "Was studierte Anna später?",
+          "options": ["Pflegemanagement", "Medizin", "Jura"],
+          "answer": 0
+        },
+        {
+          "question": "Was ist Anna heute?",
+          "options": ["Stationsleiterin", "Ärztin", "Lehrerin"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_2",
+      "title": "Meine Erfahrungen im Ausland",
+      "text": "Schön, dass ihr zuhört! Ich bin Maria. Nachdem ich mein Studium beendet hatte, ging ich nach England. Dort arbeitete ich als Deutschlehrerin. Das war eine tolle Erfahrung. Ich lernte Englisch und die Kultur kennen. Nach zwei Jahren kehrte ich nach Deutschland zurück. Heute arbeite ich in einer internationalen Firma.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Anna", "Maria", "Julia"],
+          "answer": 1
+        },
+        {
+          "question": "Was machte Maria nach dem Studium?",
+          "options": ["Sie ging nach England", "Sie arbeitete in Deutschland", "Sie reiste"],
+          "answer": 0
+        },
+        {
+          "question": "Was arbeitete Maria in England?",
+          "options": ["Als Deutschlehrerin", "Als Ärztin", "Als Sekretärin"],
+          "answer": 0
+        },
+        {
+          "question": "Wie lange blieb Maria in England?",
+          "options": ["Zwei Jahre", "Drei Jahre", "Ein Jahr"],
+          "answer": 0
+        },
+        {
+          "question": "Was lernte Maria in England?",
+          "options": ["Englisch und die Kultur", "Nur Englisch", "Nur die Kultur"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_3",
+      "title": "Ein wichtiges Projekt",
+      "text": "Guten Morgen! Ich bin Julia. Nachdem ich in der Firma angefangen hatte, arbeitete ich an einem großen Projekt. Das Projekt dauerte zwei Jahre. Wir hatten viel Arbeit. Ich lernte viele neue Dinge. Als das Projekt beendet war, waren wir alle sehr stolz. Die Firma war sehr zufrieden.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Anna", "Maria", "Julia"],
+          "answer": 2
+        },
+        {
+          "question": "Wie lange dauerte das Projekt?",
+          "options": ["Zwei Jahre", "Ein Jahr", "Drei Jahre"],
+          "answer": 0
+        },
+        {
+          "question": "Was lernte Julia in dem Projekt?",
+          "options": ["Viele neue Dinge", "Nichts", "Nur Theorie"],
+          "answer": 0
+        },
+        {
+          "question": "Wie waren alle, als das Projekt beendet war?",
+          "options": ["Stolz", "Traurig", "Müde"],
+          "answer": 0
+        },
+        {
+          "question": "War die Firma zufrieden?",
+          "options": ["Ja", "Nein", "Weiß nicht"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_4",
+      "title": "Meine erste Stelle",
+      "text": "Hallo zusammen! Ich bin Laura. Nachdem ich mein Studium beendet hatte, bewarb ich mich bei einer großen Firma. Ich bekam die Stelle und war sehr glücklich. Die ersten Monate waren schwierig. Meine Kolleginnen haben mir gut geholfen. Nach einem Jahr fühlte ich mich sicher. Heute bin ich Expertin auf meinem Gebiet.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Laura", "Lisa", "Anna"],
+          "answer": 0
+        },
+        {
+          "question": "Was machte Laura nach dem Studium?",
+          "options": ["Sie bewarb sich bei einer großen Firma", "Sie reiste", "Sie machte eine Ausbildung"],
+          "answer": 0
+        },
+        {
+          "question": "Wie waren die ersten Monate?",
+          "options": ["Schwierig", "Leicht", "Langweilig"],
+          "answer": 0
+        },
+        {
+          "question": "Wer hat Laura geholfen?",
+          "options": ["Ihre Kolleginnen", "Ihre Familie", "Ihre Freunde"],
+          "answer": 0
+        },
+        {
+          "question": "Wann fühlte sich Laura sicher?",
+          "options": ["Nach einem Jahr", "Nach einem Monat", "Nach einer Woche"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_5",
+      "title": "Fortbildung und Weiterbildung",
+      "text": "Grüß dich! Ich bin Lisa. Nachdem ich einige Jahre gearbeitet hatte, machte ich eine Fortbildung. Ich lernte neue Techniken. Danach bekam ich eine Beförderung. Ich wurde Teamleiterin. Weiterbildung hat mir sehr geholfen. Man sollte nie aufhören, zu lernen.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Laura", "Lisa", "Anna"],
+          "answer": 1
+        },
+        {
+          "question": "Was machte Lisa nach einigen Jahren Arbeit?",
+          "options": ["Eine Fortbildung", "Eine Reise", "Ein Studium"],
+          "answer": 0
+        },
+        {
+          "question": "Was lernte Lisa in der Fortbildung?",
+          "options": ["Neue Techniken", "Nur Theorie", "Nichts"],
+          "answer": 0
+        },
+        {
+          "question": "Was bekam Lisa nach der Fortbildung?",
+          "options": ["Eine Beförderung", "Eine Kündigung", "Nichts"],
+          "answer": 0
+        },
+        {
+          "question": "Was wurde Lisa?",
+          "options": ["Teamleiterin", "Chefin", "Expertin"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_6",
+      "title": "Arbeit und Familie vereinbaren",
+      "text": "Schön, dass ihr da seid! Ich bin Emma. Nachdem ich Mutter geworden war, arbeitete ich in Teilzeit. Das war eine gute Lösung. Ich konnte mich um meine Kinder kümmern und trotzdem arbeiten. Später, als die Kinder größer waren, arbeitete ich wieder Vollzeit. Es war eine Herausforderung, aber es hat sich gelohnt.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Emma", "Lisa", "Laura"],
+          "answer": 0
+        },
+        {
+          "question": "Was machte Emma, nachdem sie Mutter geworden war?",
+          "options": ["Sie arbeitete in Teilzeit", "Sie arbeitete in Vollzeit", "Sie hörte auf zu arbeiten"],
+          "answer": 0
+        },
+        {
+          "question": "War das eine gute Lösung?",
+          "options": ["Ja", "Nein", "Weiß nicht"],
+          "answer": 0
+        },
+        {
+          "question": "Wann arbeitete Emma wieder Vollzeit?",
+          "options": ["Als die Kinder größer waren", "Nach einem Jahr", "Nach der Ausbildung"],
+          "answer": 0
+        },
+        {
+          "question": "Wie war es für Emma?",
+          "options": ["Eine Herausforderung, aber es hat sich gelohnt", "Zu schwer", "Leicht"],
+          "answer": 0
+        }
+      ]
+    }
+  ]
+}

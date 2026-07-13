@@ -1,0 +1,199 @@
+{
+  "lesson": 56,
+  "level": "C1",
+  "title": "Переговоры высшего уровня и урегулирование конфликтов",
+  "dialogs": [
+    {
+      "id": "monolog_1",
+      "title": "Die Grundlagen von Verhandlungen",
+      "text": "Die von der Verhandlungsexpertin Anna praktizierte Verhandlungsstrategie basiert auf jahrelanger Erfahrung. Die sorgfältige Vorbereitung bildet das Fundament jeder erfolgreichen Verhandlung. Die eigenen Ziele werden präzise definiert. Die Interessen der Gegenseite werden antizipiert. Die Verhandlungsalternativen werden bewertet. Die Kommunikation erfolgt wertschätzend. Ein konstruktives Verhandlungsklima wird angestrebt. Ziel ist eine für beide Seiten akzeptable Lösung.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Anna", "Maria", "Julia"],
+          "answer": 0
+        },
+        {
+          "question": "Was basiert auf jahrelanger Erfahrung?",
+          "options": ["Die Verhandlungsstrategie", "Die Vorbereitung", "Die Kommunikation"],
+          "answer": 0
+        },
+        {
+          "question": "Was bildet das Fundament jeder erfolgreichen Verhandlung?",
+          "options": ["Die sorgfältige Vorbereitung", "Die schnelle Entscheidung", "Die emotionale Reaktion"],
+          "answer": 0
+        },
+        {
+          "question": "Was wird in einer Verhandlung präzise definiert?",
+          "options": ["Die eigenen Ziele", "Die eigenen Emotionen", "Die eigenen Vorurteile"],
+          "answer": 0
+        },
+        {
+          "question": "Was wird in einer Verhandlung angestrebt?",
+          "options": ["Ein konstruktives Verhandlungsklima", "Ein destruktives Verhandlungsklima", "Ein emotionales Verhandlungsklima"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_2",
+      "title": "Die Kunst des Kompromisses",
+      "text": "Die von der Mediatorin Maria entwickelte Kompromissstrategie hat sich in komplexen Verhandlungssituationen bewährt. Die Bereitschaft zum Kompromiss ist ein Zeichen von Kooperationsbereitschaft. Die eigenen Positionen werden flexibel gehalten. Die Interessen der Gegenseite werden berücksichtigt. Ein ausgewogenes Ergebnis wird angestrebt. Der Kompromiss muss für beide Verhandlungsparteien tragbar sein. Die Kunst des Kompromisses erfordert Einfühlungsvermögen und Verhandlungsgeschick.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Anna", "Maria", "Julia"],
+          "answer": 1
+        },
+        {
+          "question": "Was ist in komplexen Verhandlungssituationen von Bedeutung?",
+          "options": ["Die Kompromissstrategie", "Die Durchsetzungsstrategie", "Die Verzögerungsstrategie"],
+          "answer": 0
+        },
+        {
+          "question": "Was ist ein Zeichen von Kooperationsbereitschaft?",
+          "options": ["Die Bereitschaft zum Kompromiss", "Die Weigerung zum Kompromiss", "Die Ignoranz des Kompromisses"],
+          "answer": 0
+        },
+        {
+          "question": "Wie werden die eigenen Positionen in einer Kompromissstrategie gehalten?",
+          "options": ["Flexibel", "Starr", "Unveränderlich"],
+          "answer": 0
+        },
+        {
+          "question": "Was erfordert die Kunst des Kompromisses?",
+          "options": ["Einfühlungsvermögen und Verhandlungsgeschick", "Härte und Sturheit", "Gleichgültigkeit und Desinteresse"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_3",
+      "title": "Die Bewältigung von Konflikten",
+      "text": "Die von der Konfliktmanagerin Julia angewandte Konfliktlösungsstrategie hat sich in der Praxis bewährt. Konflikte werden nicht ignoriert, sondern frühzeitig adressiert. Die sachliche Auseinandersetzung wird gefördert. Die Perspektive der anderen Partei wird verstanden. Gemeinsame Lösungen werden erarbeitet. Eine konstruktive Konfliktlösung stärkt das Team. Die Zusammenarbeit wird verbessert. Die Qualität der Ergebnisse wird gesteigert.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Anna", "Maria", "Julia"],
+          "answer": 2
+        },
+        {
+          "question": "Was hat sich in der Praxis bewährt?",
+          "options": ["Die Konfliktlösungsstrategie", "Die Konfliktvermeidungsstrategie", "Die Konfliktverschärfungsstrategie"],
+          "answer": 0
+        },
+        {
+          "question": "Wie werden Konflikte behandelt?",
+          "options": ["Frühzeitig adressiert", "Ignoriert", "Verschwiegen"],
+          "answer": 0
+        },
+        {
+          "question": "Was wird bei der Konfliktlösung gefördert?",
+          "options": ["Die sachliche Auseinandersetzung", "Die emotionale Auseinandersetzung", "Die persönliche Auseinandersetzung"],
+          "answer": 0
+        },
+        {
+          "question": "Was stärkt eine konstruktive Konfliktlösung?",
+          "options": ["Das Team", "Die Konkurrenz", "Die Hierarchie"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_4",
+      "title": "Die Vorbereitung auf schwierige Verhandlungen",
+      "text": "Die von der Verhandlungsstrategin Laura entwickelte Vorbereitungsmethodik hat sich in anspruchsvollen Verhandlungsumgebungen bewährt. Die Fakten werden umfassend recherchiert. Die Position der Gegenseite wird gründlich analysiert. Argumente werden systematisch vorbereitet. Die eigenen Grenzen werden realistisch eingeschätzt. Strategien werden flexibel entwickelt. Alternative Optionen werden erarbeitet. Die Vorbereitung vermittelt Sicherheit und erhöht die Erfolgswahrscheinlichkeit in schwierigen Verhandlungen.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Laura", "Lisa", "Anna"],
+          "answer": 0
+        },
+        {
+          "question": "Was hat sich in anspruchsvollen Verhandlungsumgebungen bewährt?",
+          "options": ["Die Vorbereitungsmethodik", "Die Spontanreaktion", "Die emotionale Reaktion"],
+          "answer": 0
+        },
+        {
+          "question": "Was wird in der Verhandlungsvorbereitung umfassend recherchiert?",
+          "options": ["Die Fakten", "Die Meinungen", "Die Gerüchte"],
+          "answer": 0
+        },
+        {
+          "question": "Was wird in der Verhandlungsvorbereitung systematisch vorbereitet?",
+          "options": ["Argumente", "Vorurteile", "Emotionen"],
+          "answer": 0
+        },
+        {
+          "question": "Was vermittelt die Verhandlungsvorbereitung?",
+          "options": ["Sicherheit", "Unsicherheit", "Verwirrung"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_5",
+      "title": "Die Kommunikation in schwierigen Situationen",
+      "text": "Die von der Kommunikationstrainerin Lisa vermittelte Kommunikationskompetenz ist in schwierigen Gesprächssituationen von entscheidender Bedeutung. Die Gelassenheit wird bewahrt. Die Aussagen sind klar und präzise. Das aktive Zuhören wird praktiziert. Rückfragen werden gestellt. Missverständnisse werden frühzeitig ausgeräumt. Eine gelungene Kommunikation kann Konflikte entschärfen. Sie eröffnet Lösungswege. Die Kommunikationsfähigkeit ist die Schlüsselkompetenz in Verhandlungen.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Laura", "Lisa", "Anna"],
+          "answer": 1
+        },
+        {
+          "question": "Was ist in schwierigen Gesprächssituationen von entscheidender Bedeutung?",
+          "options": ["Die Kommunikationskompetenz", "Die Schreikompetenz", "Die Schweigekompetenz"],
+          "answer": 0
+        },
+        {
+          "question": "Was wird in schwierigen Gesprächssituationen bewahrt?",
+          "options": ["Die Gelassenheit", "Die Aufregung", "Die Ungeduld"],
+          "answer": 0
+        },
+        {
+          "question": "Was wird in schwierigen Gesprächssituationen praktiziert?",
+          "options": ["Das aktive Zuhören", "Das passive Zuhören", "Das Nicht-Zuhören"],
+          "answer": 0
+        },
+        {
+          "question": "Was ist die Schlüsselkompetenz in Verhandlungen?",
+          "options": ["Die Kommunikationsfähigkeit", "Die Schreifähigkeit", "Die Schweigfähigkeit"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_6",
+      "title": "Die Nachbereitung von Verhandlungen",
+      "text": "Die von der Verhandlungsexpertin Emma durchgeführte Nachbereitung stellt einen oft unterschätzten Schritt im Verhandlungsprozess dar. Die Ergebnisse werden detailliert dokumentiert. Offene Punkte werden präzise notiert. Die weiteren Schritte werden verbindlich vereinbart. Feedback wird eingeholt. Die Nachbereitung dient der kontinuierlichen Verbesserung der Verhandlungsfähigkeiten. Aus Erfahrungen wird gelernt. Ein professioneller Verhandler evaluiert seine Verhandlungsperformance regelmäßig.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Emma", "Lisa", "Laura"],
+          "answer": 0
+        },
+        {
+          "question": "Was stellt die Nachbereitung im Verhandlungsprozess dar?",
+          "options": ["Einen oft unterschätzten Schritt", "Den wichtigsten Schritt", "Den unnötigsten Schritt"],
+          "answer": 0
+        },
+        {
+          "question": "Was wird bei der Nachbereitung detailliert dokumentiert?",
+          "options": ["Die Ergebnisse", "Die Emotionen", "Die Vorurteile"],
+          "answer": 0
+        },
+        {
+          "question": "Was wird bei der Nachbereitung eingeholt?",
+          "options": ["Feedback", "Kritik", "Kommentare"],
+          "answer": 0
+        },
+        {
+          "question": "Was dient die Nachbereitung der?",
+          "options": ["Der kontinuierlichen Verbesserung", "Der Verschlechterung", "Der Stagnation"],
+          "answer": 0
+        }
+      ]
+    }
+  ]
+}

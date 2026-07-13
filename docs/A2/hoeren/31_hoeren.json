@@ -1,0 +1,88 @@
+{
+  "lesson": 31,
+  "level": "A2",
+  "title": "Выражение мнения и аргументы",
+  "dialogs": [
+    {
+      "id": "monolog_1",
+      "title": "Was ist für mich wichtig?",
+      "text": "Hallo! Ich bin Anna. Für mich ist Familie das Wichtigste. Meine Familie unterstützt mich immer. Arbeit ist auch wichtig, aber nicht so wichtig wie Familie. Ich finde, dass Freunde auch sehr wichtig sind. Man sollte nicht zu viel arbeiten.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Anna", "Maria", "Julia"],
+          "answer": 0
+        },
+        {
+          "question": "Was ist für Anna das Wichtigste?",
+          "options": ["Familie", "Arbeit", "Freunde"],
+          "answer": 0
+        },
+        {
+          "question": "Was unterstützt Anna immer?",
+          "options": ["Ihre Familie", "Ihre Arbeit", "Ihre Freunde"],
+          "answer": 0
+        },
+        {
+          "question": "Was findet Anna auch wichtig?",
+          "options": ["Freunde", "Reisen", "Geld"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_2",
+      "title": "Meine Meinung zum Fernsehen",
+      "text": "Schön, dass ihr zuhört! Ich bin Maria. Ich finde, dass Fernsehen gut ist. Aber man sollte nicht zu viel fernsehen. Ich schaue etwa eine Stunde am Tag. Es gibt viele gute Sendungen. Aber ich mag es auch, ein Buch zu lesen. Lesen ist besser für den Kopf.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Anna", "Maria", "Julia"],
+          "answer": 1
+        },
+        {
+          "question": "Wie viel Fernsehen schaut Maria am Tag?",
+          "options": ["Etwa eine Stunde", "Drei Stunden", "Keine Stunde"],
+          "answer": 0
+        },
+        {
+          "question": "Was macht Maria auch gern?",
+          "options": ["Ein Buch lesen", "Sport machen", "Musik hören"],
+          "answer": 0
+        },
+        {
+          "question": "Was findet Maria besser für den Kopf?",
+          "options": ["Lesen", "Fernsehen", "Radio hören"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_3",
+      "title": "Über gesunde Ernährung",
+      "text": "Guten Tag! Ich bin Julia. Ich finde, dass gesunde Ernährung wichtig ist. Man sollte viel Obst und Gemüse essen. Zucker und Fett sind nicht gut für den Körper. Ich trinke auch viel Wasser. Ich fühle mich besser, wenn ich gesund esse.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Anna", "Maria", "Julia"],
+          "answer": 2
+        },
+        {
+          "question": "Was findet Julia wichtig?",
+          "options": ["Gesunde Ernährung", "Fernsehen", "Arbeit"],
+          "answer": 0
+        },
+        {
+          "question": "Was sollte man laut Julia essen?",
+          "options": ["Obst und Gemüse", "Nur Fleisch", "Viel Zucker"],
+          "answer": 0
+        },
+        {
+          "question": "Was trinkt Julia?",
+          "options": ["Viel Wasser", "Viel Saft", "Viel Kaffee"],
+          "answer": 0
+        }
+      ]
+    }
+  ]
+}

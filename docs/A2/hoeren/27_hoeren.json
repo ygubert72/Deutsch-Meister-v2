@@ -1,0 +1,93 @@
+{
+  "lesson": 27,
+  "level": "A2",
+  "title": "Здоровье: у врача",
+  "dialogs": [
+    {
+      "id": "monolog_1",
+      "title": "Ich bin krank",
+      "text": "Hallo, liebe Zuhörer! Ich bin Anna. Ich fühle mich heute nicht gut. Ich habe Kopfschmerzen und Fieber. Mein Hals tut weh. Ich muss zum Arzt gehen. Ich bleibe heute zu Hause. Ich hoffe, es wird bald besser.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Anna", "Maria", "Julia"],
+          "answer": 0
+        },
+        {
+          "question": "Wie fühlt sich Anna heute?",
+          "options": ["Nicht gut", "Sehr gut", "Okay"],
+          "answer": 0
+        },
+        {
+          "question": "Was hat Anna?",
+          "options": ["Kopfschmerzen und Fieber", "Nur Kopfschmerzen", "Bauchschmerzen"],
+          "answer": 0
+        },
+        {
+          "question": "Was muss Anna machen?",
+          "options": ["Zum Arzt gehen", "Zur Arbeit gehen", "Einkaufen gehen"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_2",
+      "title": "Ein Besuch beim Arzt",
+      "text": "Guten Tag! Ich bin Maria. Ich war gestern beim Arzt. Ich hatte starke Halsschmerzen. Der Arzt hat mich untersucht. Er hat mir Medikamente verschrieben. Ich soll viel trinken und mich schonen. Ich muss drei Tage zu Hause bleiben.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Anna", "Maria", "Julia"],
+          "answer": 1
+        },
+        {
+          "question": "Was hatte Maria?",
+          "options": ["Starke Halsschmerzen", "Kopfschmerzen", "Bauchschmerzen"],
+          "answer": 0
+        },
+        {
+          "question": "Was hat der Arzt gemacht?",
+          "options": ["Sie untersucht und Medikamente verschrieben", "Nur gefragt", "Nichts gemacht"],
+          "answer": 0
+        },
+        {
+          "question": "Was soll Maria tun?",
+          "options": ["Viel trinken und sich schonen", "Viel essen", "Sport machen"],
+          "answer": 0
+        },
+        {
+          "question": "Wie lange muss Maria zu Hause bleiben?",
+          "options": ["Drei Tage", "Eine Woche", "Einen Tag"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_3",
+      "title": "Gesund leben",
+      "text": "Grüß dich! Ich bin Julia. Ich versuche, gesund zu leben. Ich esse viel Obst und Gemüse. Ich trinke viel Wasser. Ich mache regelmäßig Sport. Ich schlafe acht Stunden pro Nacht. Das hilft mir, fit zu bleiben.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Anna", "Maria", "Julia"],
+          "answer": 2
+        },
+        {
+          "question": "Was isst Julia viel?",
+          "options": ["Obst und Gemüse", "Nur Brot", "Viel Fleisch"],
+          "answer": 0
+        },
+        {
+          "question": "Was trinkt Julia?",
+          "options": ["Viel Wasser", "Viel Kaffee", "Viel Saft"],
+          "answer": 0
+        },
+        {
+          "question": "Wie viel schläft Julia pro Nacht?",
+          "options": ["Acht Stunden", "Sechs Stunden", "Zehn Stunden"],
+          "answer": 0
+        }
+      ]
+    }
+  ]
+}

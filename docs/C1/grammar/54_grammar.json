@@ -1,0 +1,45 @@
+{
+  "lesson": 54,
+  "title": "Редактирование и стилистическая коррекция текста",
+  "level": "C1",
+  "theory": "<h3>📌 Что такое стилистическая коррекция?</h3><p>Редактирование текста — это процесс улучшения языка, стиля и ясности текста.</p><h3>📌 Критерии качества текста</h3><table border='1' cellpadding='10' style='border-collapse: collapse; width: 100%; margin: 15px 0;'><tr style='background: #3B6FE0; color: white;'><th>Критерий</th><th>Описание</th></tr><tr style='background: #E3F2FD;'><td><strong>Stil</strong></td><td>стиль (формальный, нейтральный, informell)</td></tr><tr style='background: #F5F5F5;'><td><strong>Kohärenz</strong></td><td>логическая связность</td></tr><tr style='background: #E3F2FD;'><td><strong>Kohäsion</strong></td><td>языковая связность (средства связи)</td></tr><tr style='background: #F5F5F5'><td><strong>Redundanz</strong></td><td>повторы, избыточность</td></tr><tr style='background: #E3F2FD'><td><strong>Präzision</strong></td><td>точность выражений</td></tr><tr style='background: #F5F5F5'><td><strong>Varietät</strong></td><td>разнообразие языка</td></tr></table><h3>📌 Nominalisierung und Verbalisierung</h3><div class='info-box' style='background: #E8F0FE; padding: 15px; border-radius: 12px; margin: 15px 0;'><strong>📌 NOMINALISIERUNG:</strong> превращение глагола в существительное<br><span style='color:#2E7D32;font-weight:bold;'>analysieren → die Analyse</span><br><br><strong>📌 VERBALISIERUNG:</strong> превращение существительного в глагол<br><span style='color:#2E7D32;font-weight:bold;'>die Diskussion → diskutieren</span></div>",
+  "vocabulary": [
+    {"de": "verbessern", "ru": "улучшать"},
+    {"de": "überarbeiten", "ru": "перерабатывать"},
+    {"de": "korrigieren", "ru": "исправлять"},
+    {"de": "präzisieren", "ru": "уточнять"},
+    {"de": "variieren", "ru": "варьировать"},
+    {"de": "ersetzen", "ru": "заменять"},
+    {"de": "kürzen", "ru": "сокращать"},
+    {"de": "der Stil", "ru": "стиль"},
+    {"de": "die Kohärenz", "ru": "логическая связность"},
+    {"de": "die Kohäsion", "ru": "языковая связность"},
+    {"de": "die Redundanz", "ru": "избыточность"},
+    {"de": "die Präzision", "ru": "точность"},
+    {"de": "die Varietät", "ru": "разнообразие"},
+    {"de": "die Nominalisierung", "ru": "субстантивация"},
+    {"de": "die Verbalisierung", "ru": "вербализация"},
+    {"de": "die Synonymie", "ru": "синонимия"},
+    {"de": "die Stilistik", "ru": "стилистика"}
+  ],
+  "examples": [
+    {"de": "Der Text muss stilistisch verbessert werden.", "ru": "Текст должен быть стилистически улучшен."},
+    {"de": "Die Analyse wurde durchgeführt. → Die Durchführung der Analyse.", "ru": "Nominalisierung: анализ был проведён → проведение анализа."},
+    {"de": "Die Diskussion war sehr intensiv. → Die Teilnehmer diskutierten intensiv.", "ru": "Verbalisierung: дискуссия была интенсивной → участники интенсивно обсуждали."},
+    {"de": "Redundanzen sollten vermieden werden.", "ru": "Избыточности следует избегать."},
+    {"de": "Der Stil des Textes ist zu informell.", "ru": "Стиль текста слишком неформальный."},
+    {"de": "Die Kohärenz des Arguments ist nicht gegeben.", "ru": "Логическая связность аргумента отсутствует."}
+  ],
+  "practice": [
+    {"type": "fill", "question": "Вставьте правильное слово (Nominalisierung):", "sentence": "Die ___ wurde durchgeführt. (analysieren)", "answer": "Analyse", "hint": "Анализ был проведён."},
+    {"type": "fill", "question": "Вставьте правильное слово (Verbalisierung):", "sentence": "Die Teilnehmer ___ intensiv. (die Diskussion)", "answer": "diskutierten", "hint": "Участники интенсивно обсуждали."},
+    {"type": "fill", "question": "Вставьте правильное слово (Nominalisierung):", "sentence": "Die ___ der Ergebnisse war erfolgreich. (interpretieren)", "answer": "Interpretation", "hint": "Интерпретация результатов была успешной."},
+    {"type": "fill", "question": "Вставьте правильное слово (Verbalisierung):", "sentence": "Die Forscher ___ die Theorie. (die Überprüfung)", "answer": "überprüften", "hint": "Исследователи проверили теорию."},
+    {"type": "fill", "question": "Вставьте правильное слово:", "sentence": "Redundanzen sollten ___ werden. (vermeiden)", "answer": "vermieden", "hint": "Избыточности следует избегать."},
+    {"type": "fill", "question": "Вставьте правильное слово:", "sentence": "Der ___ des Textes ist zu informell. (стиль)", "answer": "Stil", "hint": "Стиль текста слишком неформальный."},
+    {"type": "fill", "question": "Вставьте правильное слово:", "sentence": "Die ___ des Arguments ist nicht gegeben. (логическая связность)", "answer": "Kohärenz", "hint": "Логическая связность аргумента отсутствует."},
+    {"type": "transform", "question": "Переделайте предложение, используя Nominalisierung:", "sentence": "Die Analyse wurde durchgeführt.", "answer": "Die Durchführung der Analyse.", "hint": "Анализ был проведён → проведение анализа."},
+    {"type": "transform", "question": "Переделайте предложение, используя Verbalisierung:", "sentence": "Die Diskussion war sehr intensiv.", "answer": "Die Teilnehmer diskutierten intensiv.", "hint": "Дискуссия была интенсивной → участники интенсивно обсуждали."},
+    {"type": "transform", "question": "Переделайте предложение в Passiv:", "sentence": "Man sollte Redundanzen vermeiden.", "answer": "Redundanzen sollten vermieden werden.", "hint": "Избыточности следует избегать."}
+  ]
+}

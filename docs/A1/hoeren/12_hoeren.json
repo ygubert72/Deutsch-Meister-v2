@@ -1,0 +1,88 @@
+{
+  "lesson": 12,
+  "level": "A1",
+  "title": "Продукты питания и напитки",
+  "dialogs": [
+    {
+      "id": "monolog_1",
+      "title": "Mein Frühstück",
+      "text": "Guten Tag! Ich bin Anna. Ich esse gern Brot zum Frühstück. Ich trinke Kaffee mit Milch. Ich esse auch manchmal Müsli. Am Wochenende frühstücke ich mit meiner Familie.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Anna", "Maria", "Julia"],
+          "answer": 0
+        },
+        {
+          "question": "Was isst Anna zum Frühstück?",
+          "options": ["Brot", "Suppe", "Salat"],
+          "answer": 0
+        },
+        {
+          "question": "Was trinkt Anna?",
+          "options": ["Kaffee mit Milch", "Tee", "Saft"],
+          "answer": 0
+        },
+        {
+          "question": "Mit wem frühstückt Anna am Wochenende?",
+          "options": ["Mit ihrer Familie", "Mit Freunden", "Alleine"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_2",
+      "title": "Mittagessen",
+      "text": "Hallo! Ich bin Maria. Ich esse gern Suppe zum Mittagessen. Ich mag auch Nudeln mit Tomatensauce. Mein Bruder isst gern Fleisch mit Kartoffeln. Das Essen ist immer lecker.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Anna", "Maria", "Julia"],
+          "answer": 1
+        },
+        {
+          "question": "Was isst Maria gern zum Mittagessen?",
+          "options": ["Suppe", "Salat", "Brot"],
+          "answer": 0
+        },
+        {
+          "question": "Was mag Marias Bruder?",
+          "options": ["Fleisch mit Kartoffeln", "Nudeln", "Suppe"],
+          "answer": 0
+        },
+        {
+          "question": "Wie ist das Essen?",
+          "options": ["Lecker", "Schlecht", "Langweilig"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_3",
+      "title": "Ich mag Obst",
+      "text": "Guten Morgen! Ich bin Julia. Ich esse gern Obst. Ich mag Äpfel und Bananen sehr. Ich esse auch Orangen. Obst ist gesund und lecker. Ich kaufe Obst auf dem Markt.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Anna", "Maria", "Julia"],
+          "answer": 2
+        },
+        {
+          "question": "Was isst Julia gern?",
+          "options": ["Obst", "Gemüse", "Fleisch"],
+          "answer": 0
+        },
+        {
+          "question": "Welches Obst mag Julia?",
+          "options": ["Äpfel und Bananen", "Nur Äpfel", "Nur Bananen"],
+          "answer": 0
+        },
+        {
+          "question": "Wo kauft Julia Obst?",
+          "options": ["Auf dem Markt", "Im Supermarkt", "Im Garten"],
+          "answer": 0
+        }
+      ]
+    }
+  ]
+}

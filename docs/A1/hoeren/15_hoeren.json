@@ -1,0 +1,88 @@
+{
+  "lesson": 15,
+  "level": "A1",
+  "title": "Профессии и обязанности",
+  "dialogs": [
+    {
+      "id": "monolog_1",
+      "title": "Mein Beruf",
+      "text": "Guten Tag! Ich bin Anna. Ich arbeite als Lehrerin. Ich arbeite in einer Schule. Ich unterrichte Deutsch. Meine Arbeit macht mir Spaß. Die Schüler sind nett.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Anna", "Maria", "Julia"],
+          "answer": 0
+        },
+        {
+          "question": "Was ist Anna von Beruf?",
+          "options": ["Lehrerin", "Ärztin", "Ingenieurin"],
+          "answer": 0
+        },
+        {
+          "question": "Wo arbeitet Anna?",
+          "options": ["In einer Schule", "In einem Krankenhaus", "In einem Büro"],
+          "answer": 0
+        },
+        {
+          "question": "Was unterrichtet Anna?",
+          "options": ["Deutsch", "Mathematik", "Englisch"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_2",
+      "title": "Mein Vater",
+      "text": "Hallo! Ich bin Maria. Mein Vater ist Arzt. Er arbeitet in einem Krankenhaus. Er hilft kranken Menschen. Mein Vater mag seinen Job. Er arbeitet oft am Wochenende.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Anna", "Maria", "Julia"],
+          "answer": 1
+        },
+        {
+          "question": "Was ist der Vater von Maria von Beruf?",
+          "options": ["Arzt", "Lehrer", "Ingenieur"],
+          "answer": 0
+        },
+        {
+          "question": "Wo arbeitet der Vater von Maria?",
+          "options": ["In einem Krankenhaus", "In einer Schule", "In einem Büro"],
+          "answer": 0
+        },
+        {
+          "question": "Arbeitet der Vater von Maria oft am Wochenende?",
+          "options": ["Ja", "Nein", "Manchmal"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_3",
+      "title": "Meine Mutter",
+      "text": "Guten Morgen! Ich bin Julia. Meine Mutter ist Verkäuferin. Sie arbeitet in einem Supermarkt. Sie verkauft Lebensmittel. Meine Mutter arbeitet viel. Sie ist immer freundlich zu den Kunden.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Anna", "Maria", "Julia"],
+          "answer": 2
+        },
+        {
+          "question": "Was ist die Mutter von Julia von Beruf?",
+          "options": ["Verkäuferin", "Lehrerin", "Sekretärin"],
+          "answer": 0
+        },
+        {
+          "question": "Wo arbeitet die Mutter von Julia?",
+          "options": ["In einem Supermarkt", "In einer Schule", "In einem Büro"],
+          "answer": 0
+        },
+        {
+          "question": "Wie ist die Mutter von Julia zu den Kunden?",
+          "options": ["Freundlich", "Strenge", "Laut"],
+          "answer": 0
+        }
+      ]
+    }
+  ]
+}

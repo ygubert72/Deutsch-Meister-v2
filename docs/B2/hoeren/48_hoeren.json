@@ -1,0 +1,199 @@
+{
+  "lesson": 48,
+  "level": "B2",
+  "title": "Публичные выступления и презентации",
+  "dialogs": [
+    {
+      "id": "monolog_1",
+      "title": "Tipps für eine gute Präsentation",
+      "text": "Ich möchte heute über die Kunst der Präsentation sprechen. Ich bin Anna. Eine gute Präsentation ist klar strukturiert. Man beginnt mit einer Einleitung. Dann kommt der Hauptteil. Am Ende folgt das Fazit. Man sollte deutlich sprechen und Blickkontakt halten. Die Folien sollen nicht zu voll sein. Bilder helfen, das Gesagte zu veranschaulichen. Man sollte sich gut vorbereiten.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Anna", "Maria", "Julia"],
+          "answer": 0
+        },
+        {
+          "question": "Wie ist eine gute Präsentation strukturiert?",
+          "options": ["Klar strukturiert", "Unstrukturiert", "Chaotisch"],
+          "answer": 0
+        },
+        {
+          "question": "Mit was beginnt eine gute Präsentation?",
+          "options": ["Mit einer Einleitung", "Mit dem Hauptteil", "Mit dem Fazit"],
+          "answer": 0
+        },
+        {
+          "question": "Was sollte man mit dem Publikum machen?",
+          "options": ["Blickkontakt halten", "Nichts machen", "Nur lesen"],
+          "answer": 0
+        },
+        {
+          "question": "Wie sollen die Folien sein?",
+          "options": ["Nicht zu voll", "Sehr voll", "Leer"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_2",
+      "title": "Die richtige Körpersprache",
+      "text": "In der heutigen Zeit wird die Körpersprache oft unterschätzt. Ich bin Maria. Die Körpersprache ist sehr wichtig bei Präsentationen. Man sollte aufrecht stehen. Die Hände sollten ruhig sein. Man sollte nicht zu viel gestikulieren. Das Gesicht sollte freundlich sein. Ein Lächeln wirkt sympathisch. Die Stimme sollte klar sein. Die Körpersprache kann die Botschaft verstärken.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Anna", "Maria", "Julia"],
+          "answer": 1
+        },
+        {
+          "question": "Was wird oft unterschätzt?",
+          "options": ["Die Körpersprache", "Die Sprache", "Die Vorbereitung"],
+          "answer": 0
+        },
+        {
+          "question": "Wie sollte man bei einer Präsentation stehen?",
+          "options": ["Aufrecht", "Gebückt", "Gequält"],
+          "answer": 0
+        },
+        {
+          "question": "Was sollte man mit den Händen machen?",
+          "options": ["Sie ruhig halten", "Viel gestikulieren", "In die Taschen stecken"],
+          "answer": 0
+        },
+        {
+          "question": "Was wirkt sympathisch?",
+          "options": ["Ein Lächeln", "Ein strenger Blick", "Eine traurige Miene"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_3",
+      "title": "Die richtige Vorbereitung",
+      "text": "Ich habe mich intensiv mit der Vorbereitung von Präsentationen beschäftigt. Ich bin Julia. Eine gute Vorbereitung ist entscheidend. Man sollte das Publikum kennen. Man sollte die Ziele der Präsentation klären. Die Inhalte sollten gut recherchiert sein. Man sollte mögliche Fragen vorbereiten. Ein Probevortrag ist sehr hilfreich. Die Technik sollte vorher getestet werden.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Anna", "Maria", "Julia"],
+          "answer": 2
+        },
+        {
+          "question": "Was ist entscheidend für eine Präsentation?",
+          "options": ["Die Vorbereitung", "Die Kleidung", "Die Zeit"],
+          "answer": 0
+        },
+        {
+          "question": "Was sollte man kennen?",
+          "options": ["Das Publikum", "Die Stadt", "Die Geschichte"],
+          "answer": 0
+        },
+        {
+          "question": "Was sollte man klären?",
+          "options": ["Die Ziele der Präsentation", "Das Wetter", "Die Uhrzeit"],
+          "answer": 0
+        },
+        {
+          "question": "Wie sollten die Inhalte sein?",
+          "options": ["Gut recherchiert", "Schlecht recherchiert", "Nicht recherchiert"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_4",
+      "title": "Die richtige Einstellung",
+      "text": "Wisst ihr, was bei Präsentationen wirklich wichtig ist? Ich bin Laura. Die richtige Einstellung ist entscheidend. Man sollte positiv denken. Man sollte Selbstvertrauen haben. Man darf keine Angst vor dem Publikum haben. Die Angst ist ganz normal. Atemübungen können helfen. Man sollte sich nicht zu ernst nehmen. Ein bisschen Humor ist gut.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Laura", "Lisa", "Anna"],
+          "answer": 0
+        },
+        {
+          "question": "Was ist bei Präsentationen entscheidend?",
+          "options": ["Die richtige Einstellung", "Die richtige Kleidung", "Die richtige Zeit"],
+          "answer": 0
+        },
+        {
+          "question": "Wie sollte man bei Präsentationen denken?",
+          "options": ["Positiv", "Negativ", "Gleichgültig"],
+          "answer": 0
+        },
+        {
+          "question": "Was sollte man bei Präsentationen haben?",
+          "options": ["Selbstvertrauen", "Angst", "Zweifel"],
+          "answer": 0
+        },
+        {
+          "question": "Was kann bei Angst helfen?",
+          "options": ["Atemübungen", "Schreien", "Weinen"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_5",
+      "title": "Die Rolle der Sprache",
+      "text": "Ich möchte euch heute von der Rolle der Sprache in Präsentationen erzählen. Ich bin Lisa. Die Sprache ist das wichtigste Werkzeug. Man sollte einfache Sätze verwenden. Man sollte aktiv formulieren. Aktivsätze sind verständlicher. Man sollte Wiederholungen vermeiden. Abwechslung macht die Sprache lebendig. Man sollte auf die Betonung achten. Die Stimme sollte variiert werden.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Laura", "Lisa", "Anna"],
+          "answer": 1
+        },
+        {
+          "question": "Was ist das wichtigste Werkzeug bei Präsentationen?",
+          "options": ["Die Sprache", "Die Kleidung", "Die Technik"],
+          "answer": 0
+        },
+        {
+          "question": "Was sollte man bei Präsentationen verwenden?",
+          "options": ["Einfache Sätze", "Komplizierte Sätze", "Keine Sätze"],
+          "answer": 0
+        },
+        {
+          "question": "Was ist verständlicher bei Präsentationen?",
+          "options": ["Aktivsätze", "Passivsätze", "Bedingungssätze"],
+          "answer": 0
+        },
+        {
+          "question": "Was sollte man bei Präsentationen vermeiden?",
+          "options": ["Wiederholungen", "Betonung", "Pausen"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_6",
+      "title": "Abschluss einer Präsentation",
+      "text": "In der heutigen Zeit wird der Abschluss von Präsentationen oft unterschätzt. Ich bin Emma. Der Abschluss ist sehr wichtig. Man sollte die wichtigsten Punkte zusammenfassen. Man sollte einen klaren Schluss ziehen. Man sollte keine neuen Informationen bringen. Die Zuhörer sollen etwas mitnehmen. Eine offene Frage kann gut sein. Sie regt zum Nachdenken an. Man sollte sich bedanken.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Emma", "Lisa", "Laura"],
+          "answer": 0
+        },
+        {
+          "question": "Was wird oft unterschätzt?",
+          "options": ["Der Abschluss", "Die Einleitung", "Der Hauptteil"],
+          "answer": 0
+        },
+        {
+          "question": "Was sollte man beim Abschluss zusammenfassen?",
+          "options": ["Die wichtigsten Punkte", "Alle Punkte", "Keine Punkte"],
+          "answer": 0
+        },
+        {
+          "question": "Was sollte man beim Abschluss nicht bringen?",
+          "options": ["Neue Informationen", "Alte Informationen", "Falsche Informationen"],
+          "answer": 0
+        },
+        {
+          "question": "Was sollte man beim Abschluss tun?",
+          "options": ["Sich bedanken", "Gehen", "Schweigen"],
+          "answer": 0
+        }
+      ]
+    }
+  ]
+}

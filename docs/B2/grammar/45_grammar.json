@@ -1,0 +1,44 @@
+{
+  "lesson": 45,
+  "title": "Формальные клише в деловой и академической переписке",
+  "level": "B2",
+  "theory": "<h3>📌 Предлоги с Genitiv</h3><p>В официальном немецком языке часто используются предлоги с <strong>Genitiv</strong> (родительным падежом).</p><table border='1' cellpadding='10' style='border-collapse: collapse; width: 100%; margin: 15px 0;'><tr style='background: #3B6FE0; color: white;'><th>Предлог</th><th>Значение</th><th>Пример</th></tr><tr style='background: #E3F2FD;'><td><strong>wegen</strong></td><td>из-за</td><td>wegen des Wetters</td></tr><tr style='background: #F5F5F5;'><td><strong>während</strong></td><td>во время</td><td>während des Meetings</td></tr><tr style='background: #E3F2FD;'><td><strong>trotz</strong></td><td>несмотря на</td><td>trotz der Schwierigkeiten</td></tr><tr style='background: #F5F5F5;'><td><strong>anstatt</strong></td><td>вместо</td><td>anstatt eines Anrufs</td></tr><tr style='background: #E3F2FD;'><td><strong>außerhalb</strong></td><td>вне</td><td>außerhalb des Büros</td></tr><tr style='background: #F5F5F5;'><td><strong>innerhalb</strong></td><td>внутри</td><td>innerhalb einer Woche</td></tr><tr style='background: #E3F2FD;'><td><strong>aufgrund</strong></td><td>на основании</td><td>aufgrund Ihrer Anfrage</td></tr><tr style='background: #F5F5F5;'><td><strong>bezüglich</strong></td><td>относительно</td><td>bezüglich Ihrer E-Mail</td></tr></table><h3>📌 Деловая лексика</h3><table border='1' cellpadding='8' style='border-collapse: collapse; width: 100%; margin: 10px 0;'><tr style='background: #3B6FE0; color: white;'><th>Русский</th><th>Немецкий</th></tr><tr style='background: #E3F2FD;'><td>ссылка / отношение</td><td><strong>der Bezug</strong></td></tr><tr style='background: #F5F5F5;'><td>дело / забота</td><td><strong>das Anliegen</strong></td></tr><tr style='background: #E3F2FD;'><td>распоряжение</td><td><strong>die Verfügung</strong></td></tr><tr style='background: #F5F5F5;'><td>заявление / позиция</td><td><strong>die Stellungnahme</strong></td></tr><tr style='background: #E3F2FD;'><td>разрешение</td><td><strong>die Genehmigung</strong></td></tr><tr style='background: #F5F5F5'><td>заявка</td><td><strong>der Antrag</strong></td></tr><tr style='background: #E3F2FD'><td>запрос</td><td><strong>die Anfrage</strong></td></tr><tr style='background: #F5F5F5'><td>подтверждение</td><td><strong>die Bestätigung</strong></td></tr></table>",
+  "vocabulary": [
+    {"de": "der Bezug", "ru": "ссылка / отношение"},
+    {"de": "das Anliegen", "ru": "дело / забота"},
+    {"de": "die Verfügung", "ru": "распоряжение"},
+    {"de": "die Stellungnahme", "ru": "заявление / позиция"},
+    {"de": "die Genehmigung", "ru": "разрешение"},
+    {"de": "der Antrag", "ru": "заявка"},
+    {"de": "die Anfrage", "ru": "запрос"},
+    {"de": "die Bestätigung", "ru": "подтверждение"},
+    {"de": "wegen", "ru": "из-за"},
+    {"de": "während", "ru": "во время"},
+    {"de": "trotz", "ru": "несмотря на"},
+    {"de": "anstatt", "ru": "вместо"},
+    {"de": "außerhalb", "ru": "вне"},
+    {"de": "innerhalb", "ru": "внутри"},
+    {"de": "aufgrund", "ru": "на основании"},
+    {"de": "bezüglich", "ru": "относительно"}
+  ],
+  "examples": [
+    {"de": "Wegen des schlechten Wetters fiel die Veranstaltung aus.", "ru": "Из-за плохой погоды мероприятие отменили."},
+    {"de": "Während des Meetings wurden wichtige Entscheidungen getroffen.", "ru": "Во время встречи были приняты важные решения."},
+    {"de": "Trotz der Schwierigkeiten wurde das Projekt abgeschlossen.", "ru": "Несмотря на трудности, проект был завершён."},
+    {"de": "Aufgrund Ihrer Anfrage sende ich Ihnen die Unterlagen.", "ru": "На основании Вашего запроса я высылаю Вам документы."},
+    {"de": "Bezüglich Ihrer E-Mail möchten wir Sie informieren.", "ru": "Относительно Вашего письма мы хотели бы Вас проинформировать."},
+    {"de": "Ich bitte um Ihre Stellungnahme zu diesem Thema.", "ru": "Я прошу Вашу позицию по этой теме."}
+  ],
+  "practice": [
+    {"type": "fill", "question": "Вставьте правильный предлог с Genitiv:", "sentence": "___ des schlechten Wetters fiel die Veranstaltung aus. (из-за)", "answer": "Wegen", "hint": "Из-за плохой погоды мероприятие отменили."},
+    {"type": "fill", "question": "Вставьте правильный предлог с Genitiv:", "sentence": "___ des Meetings wurden wichtige Entscheidungen getroffen. (во время)", "answer": "Während", "hint": "Во время встречи были приняты важные решения."},
+    {"type": "fill", "question": "Вставьте правильный предлог с Genitiv:", "sentence": "___ der Schwierigkeiten wurde das Projekt abgeschlossen. (несмотря на)", "answer": "Trotz", "hint": "Несмотря на трудности, проект был завершён."},
+    {"type": "fill", "question": "Вставьте правильный предлог с Genitiv:", "sentence": "___ Ihrer Anfrage sende ich Ihnen die Unterlagen. (на основании)", "answer": "Aufgrund", "hint": "На основании Вашего запроса я высылаю Вам документы."},
+    {"type": "fill", "question": "Вставьте правильный предлог с Genitiv:", "sentence": "___ Ihrer E-Mail möchten wir Sie informieren. (относительно)", "answer": "Bezüglich", "hint": "Относительно Вашего письма мы хотели бы Вас проинформировать."},
+    {"type": "fill", "question": "Вставьте правильное слово:", "sentence": "Ich bitte um Ihre ___ zu diesem Thema. (заявление / позиция)", "answer": "Stellungnahme", "hint": "Я прошу Вашу позицию по этой теме."},
+    {"type": "fill", "question": "Вставьте правильное слово:", "sentence": "Wir haben einen ___ gestellt. (заявка)", "answer": "Antrag", "hint": "Мы подали заявку."},
+    {"type": "fill", "question": "Вставьте правильное слово:", "sentence": "Vielen Dank für Ihre ___. (подтверждение)", "answer": "Bestätigung", "hint": "Благодарим за подтверждение."},
+    {"type": "transform", "question": "Переделайте предложение, используя предлог с Genitiv:", "sentence": "Das Wetter war schlecht. Die Veranstaltung fiel aus.", "answer": "Wegen des schlechten Wetters fiel die Veranstaltung aus.", "hint": "Из-за плохой погоды мероприятие отменили."},
+    {"type": "transform", "question": "Переделайте предложение, используя предлог с Genitiv:", "sentence": "Es gab Schwierigkeiten. Das Projekt wurde abgeschlossen.", "answer": "Trotz der Schwierigkeiten wurde das Projekt abgeschlossen.", "hint": "Несмотря на трудности, проект был завершён."}
+  ]
+}

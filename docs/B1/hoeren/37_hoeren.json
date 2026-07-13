@@ -1,0 +1,108 @@
+{
+  "lesson": 37,
+  "level": "B1",
+  "title": "Придаточные уступки и причины",
+  "dialogs": [
+    {
+      "id": "monolog_1",
+      "title": "Ehrenamtliche Arbeit",
+      "text": "Obwohl ich wenig Zeit habe, engagiere ich mich ehrenamtlich. Ich bin Anna. Ich helfe in einer Suppenküche, weil ich Menschen unterstützen möchte. Jede Woche verbringe ich drei Stunden dort. Obwohl die Arbeit anstrengend ist, macht sie mir viel Freude. Ich koche mit anderen Freiwilligen, weil viele Menschen warmes Essen brauchen.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Anna", "Maria", "Julia"],
+          "answer": 0
+        },
+        {
+          "question": "Wo engagiert sich Anna ehrenamtlich?",
+          "options": ["In einer Suppenküche", "In einer Schule", "In einem Krankenhaus"],
+          "answer": 0
+        },
+        {
+          "question": "Warum hilft Anna?",
+          "options": ["Weil sie Menschen unterstützen möchte", "Weil sie Geld verdienen möchte", "Weil sie keine Freunde hat"],
+          "answer": 0
+        },
+        {
+          "question": "Wie lange verbringt Anna jede Woche dort?",
+          "options": ["Drei Stunden", "Zwei Stunden", "Vier Stunden"],
+          "answer": 0
+        },
+        {
+          "question": "Obwohl die Arbeit anstrengend ist, wie ist sie?",
+          "options": ["Sie macht viel Freude", "Sie ist langweilig", "Sie ist sinnlos"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_2",
+      "title": "Ein Projekt für die Umwelt",
+      "text": "Viele Menschen engagieren sich, weil sie die Umwelt schützen wollen. Ich bin Maria. Obwohl ich schon alt bin, beteilige ich mich an einem Umweltprojekt. Wir pflanzen Bäume, weil die Wälder wichtig sind. Die Arbeit ist schwer, aber wir machen weiter, weil wir an die Zukunft glauben. Wir sind stolz auf unsere Arbeit.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Anna", "Maria", "Julia"],
+          "answer": 1
+        },
+        {
+          "question": "Warum engagieren sich viele Menschen?",
+          "options": ["Weil sie die Umwelt schützen wollen", "Weil sie Geld verdienen wollen", "Weil sie nichts zu tun haben"],
+          "answer": 0
+        },
+        {
+          "question": "Obwohl Maria schon alt ist, was macht sie?",
+          "options": ["Sie beteiligt sich an einem Umweltprojekt", "Sie bleibt zu Hause", "Sie reist"],
+          "answer": 0
+        },
+        {
+          "question": "Warum pflanzen sie Bäume?",
+          "options": ["Weil die Wälder wichtig sind", "Weil sie Geld bekommen", "Weil sie es müssen"],
+          "answer": 0
+        },
+        {
+          "question": "Wie fühlen sie sich?",
+          "options": ["Sie sind stolz", "Sie sind müde", "Sie sind traurig"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_3",
+      "title": "Ein schwieriger Berufsweg",
+      "text": "Ich möchte über etwas sprechen, das mich bewegt. Ich bin Julia. Obwohl ich viele Bewerbungen geschrieben habe, habe ich lange keine Stelle gefunden. Das war schwierig, weil ich viel Erfahrung habe. Ich habe weitergemacht, weil ich nicht aufgeben wollte. Endlich habe ich einen Job gefunden. Obwohl das Gehalt nicht hoch ist, bin ich zufrieden.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Anna", "Maria", "Julia"],
+          "answer": 2
+        },
+        {
+          "question": "Was war schwierig für Julia?",
+          "options": ["Keine Stelle zu finden", "Eine Bewerbung zu schreiben", "Ein Studium zu machen"],
+          "answer": 0
+        },
+        {
+          "question": "Warum war es schwierig?",
+          "options": ["Weil sie viel Erfahrung hat", "Weil sie keine Erfahrung hat", "Weil sie jung ist"],
+          "answer": 0
+        },
+        {
+          "question": "Warum hat Julia weitergemacht?",
+          "options": ["Weil sie nicht aufgeben wollte", "Weil sie Geld brauchte", "Weil sie musste"],
+          "answer": 0
+        },
+        {
+          "question": "Was hat Julia endlich gefunden?",
+          "options": ["Einen Job", "Eine Wohnung", "Einen Freund"],
+          "answer": 0
+        },
+        {
+          "question": "Obwohl das Gehalt nicht hoch ist, wie ist Julia?",
+          "options": ["Sie ist zufrieden", "Sie ist unzufrieden", "Sie sucht weiter"],
+          "answer": 0
+        }
+      ]
+    }
+  ]
+}

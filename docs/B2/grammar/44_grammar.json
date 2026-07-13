@@ -1,0 +1,43 @@
+{
+  "lesson": 44,
+  "title": "Причастные обороты и атрибутивные конструкции",
+  "level": "B2",
+  "theory": "<h3>📌 Что такое причастные обороты?</h3><p>Причастные обороты позволяют заменить <strong>придаточные предложения</strong> на более <strong>компактные конструкции</strong>. Они часто используются в письменной речи.</p><div class='info-box' style='background: #E8F0FE; padding: 15px; border-radius: 12px; margin: 15px 0;'><strong>📌 PARTIZIP I — активное значение</strong><br><span style='color:#2E7D32;font-weight:bold;'>der lesende Mann</span> — читающий мужчина<br>Придаточное: der Mann, der liest</div><div class='info-box' style='background: #E8F0FE; padding: 15px; border-radius: 12px; margin: 15px 0;'><strong>📌 PARTIZIP II — пассивное значение</strong><br><span style='color:#2E7D32;font-weight:bold;'>das gelesene Buch</span> — прочитанная книга<br>Придаточное: das Buch, das gelesen wurde</div><h3>📌 Расширенные атрибутивные конструкции</h3><p>Когда перед существительным стоит <strong>несколько слов</strong> с причастием:</p><div class='info-box' style='background: #E8F0FE; padding: 15px; border-radius: 12px; margin: 15px 0;'><span style='color:#2E7D32;font-weight:bold;'>der im letzten Jahr entwickelte Roboter</span><br>робот, разработанный в прошлом году<br><br><span style='color:#2E7D32;font-weight:bold;'>die von Forschern durchgeführte Studie</span><br>исследование, проведённое учёными</div>",
+  "vocabulary": [
+    {"de": "die Entwicklung", "ru": "разработка / развитие"},
+    {"de": "die Technologie", "ru": "технология"},
+    {"de": "die Innovation", "ru": "инновация"},
+    {"de": "der Roboter", "ru": "робот"},
+    {"de": "die KI", "ru": "искусственный интеллект (ИИ)"},
+    {"de": "die Digitalisierung", "ru": "цифровизация"},
+    {"de": "die Automatisierung", "ru": "автоматизация"},
+    {"de": "die Software", "ru": "программное обеспечение"},
+    {"de": "entwickeln", "ru": "разрабатывать"},
+    {"de": "programmieren", "ru": "программировать"},
+    {"de": "steuern", "ru": "управлять"},
+    {"de": "optimieren", "ru": "оптимизировать"},
+    {"de": "die Anwendung", "ru": "применение"},
+    {"de": "der Bereich", "ru": "область / сфера"}
+  ],
+  "examples": [
+    {"de": "der lesende Mann", "ru": "читающий мужчина"},
+    {"de": "das gelesene Buch", "ru": "прочитанная книга"},
+    {"de": "der im letzten Jahr entwickelte Roboter", "ru": "робот, разработанный в прошлом году"},
+    {"de": "die von Forschern durchgeführte Studie", "ru": "исследование, проведённое учёными"},
+    {"de": "Die digitalisierte Gesellschaft", "ru": "Цифровое общество"},
+    {"de": "Die automatisierte Produktion", "ru": "Автоматизированное производство"},
+    {"de": "Die optimierte Software", "ru": "Оптимизированное программное обеспечение"}
+  ],
+  "practice": [
+    {"type": "fill", "question": "Вставьте правильную форму Partizip I:", "sentence": "der ___ Mann (lesen)", "answer": "lesende", "hint": "Читающий мужчина."},
+    {"type": "fill", "question": "Вставьте правильную форму Partizip II:", "sentence": "das ___ Buch (lesen)", "answer": "gelesene", "hint": "Прочитанная книга."},
+    {"type": "fill", "question": "Вставьте правильную форму Partizip I:", "sentence": "die ___ Frau (arbeiten)", "answer": "arbeitende", "hint": "Работающая женщина."},
+    {"type": "fill", "question": "Вставьте правильную форму Partizip II:", "sentence": "die ___ Studie (durchführen)", "answer": "durchgeführte", "hint": "Проведённое исследование."},
+    {"type": "fill", "question": "Вставьте правильную форму Partizip II:", "sentence": "der im letzten Jahr ___ Roboter (entwickeln)", "answer": "entwickelte", "hint": "Робот, разработанный в прошлом году."},
+    {"type": "fill", "question": "Вставьте правильную форму Partizip II:", "sentence": "die von Forschern ___ Studie (durchführen)", "answer": "durchgeführte", "hint": "Исследование, проведённое учёными."},
+    {"type": "fill", "question": "Вставьте правильную форму Partizip I:", "sentence": "die ___ Technologie (sich entwickeln)", "answer": "sich entwickelnde", "hint": "Развивающаяся технология."},
+    {"type": "transform", "question": "Замените придаточное предложение на причастный оборот (Partizip I):", "sentence": "Der Mann, der liest.", "answer": "Der lesende Mann.", "hint": "Читающий мужчина."},
+    {"type": "transform", "question": "Замените придаточное предложение на причастный оборот (Partizip II):", "sentence": "Das Buch, das gelesen wurde.", "answer": "Das gelesene Buch.", "hint": "Прочитанная книга."},
+    {"type": "transform", "question": "Замените придаточное предложение на расширенный причастный оборот:", "sentence": "Der Roboter, der im letzten Jahr entwickelt wurde.", "answer": "Der im letzten Jahr entwickelte Roboter.", "hint": "Робот, разработанный в прошлом году."}
+  ]
+}

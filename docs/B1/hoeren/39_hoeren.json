@@ -1,0 +1,113 @@
+{
+  "lesson": 39,
+  "level": "B1",
+  "title": "СМИ и новости: анализ информации",
+  "dialogs": [
+    {
+      "id": "monolog_1",
+      "title": "Wie ich die Nachrichten verfolge",
+      "text": "Ich informiere mich täglich über die Nachrichten. Ich bin Anna. Jeden Morgen höre ich die Nachrichten im Radio. Am Mittag lese ich online die neuesten Artikel. Am Abend schaue ich die Tagesschau im Fernsehen. Ich mag es, informiert zu sein. Die Nachrichten helfen mir, die Welt zu verstehen. Ich achte immer darauf, ob die Informationen aktuell sind.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Anna", "Maria", "Julia"],
+          "answer": 0
+        },
+        {
+          "question": "Was macht Anna jeden Morgen?",
+          "options": ["Sie hört Nachrichten im Radio", "Sie liest die Zeitung", "Sie sieht fern"],
+          "answer": 0
+        },
+        {
+          "question": "Wann liest Anna online Artikel?",
+          "options": ["Am Mittag", "Am Abend", "Am Morgen"],
+          "answer": 0
+        },
+        {
+          "question": "Was schaut Anna am Abend?",
+          "options": ["Die Tagesschau", "Einen Film", "Eine Serie"],
+          "answer": 0
+        },
+        {
+          "question": "Warum verfolgt Anna die Nachrichten?",
+          "options": ["Sie mag es, informiert zu sein", "Sie hat nichts zu tun", "Ihre Freunde machen es"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_2",
+      "title": "Kritisch mit Nachrichten umgehen",
+      "text": "Es ist wichtig, Nachrichten kritisch zu hinterfragen. Ich bin Maria. Nicht alle Informationen, die wir lesen, sind wahr. Man sollte immer die Quelle überprüfen. Ich frage mich: Wer hat das geschrieben? Sind die Fakten belegt? Oft gibt es verschiedene Perspektiven. Ich vergleiche mehrere Quellen. Das ist wichtig bei Fake News.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Anna", "Maria", "Julia"],
+          "answer": 1
+        },
+        {
+          "question": "Was ist wichtig bei Nachrichten?",
+          "options": ["Sie kritisch zu hinterfragen", "Alles zu glauben", "Nur die Überschrift zu lesen"],
+          "answer": 0
+        },
+        {
+          "question": "Was sollte man immer überprüfen?",
+          "options": ["Die Quelle", "Die Bilder", "Die Kommentare"],
+          "answer": 0
+        },
+        {
+          "question": "Was fragt sich Maria?",
+          "options": ["Wer hat es geschrieben?", "Ist es interessant?", "Ist es schön?"],
+          "answer": 0
+        },
+        {
+          "question": "Was macht Maria, um die Wahrheit zu erkennen?",
+          "options": ["Sie vergleicht mehrere Quellen", "Sie fragt ihre Freunde", "Sie rät"],
+          "answer": 0
+        },
+        {
+          "question": "Wann ist das besonders wichtig?",
+          "options": ["Bei Fake News", "Bei Sportnachrichten", "Bei Wettervorhersagen"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_3",
+      "title": "Fake News erkennen",
+      "text": "Wisst ihr, wie man Fake News erkennt? Ich bin Julia. Fake News sind falsche Informationen. Sie werden oft verbreitet, um Menschen zu beeinflussen. Man erkennt sie an reißerischen Überschriften. Die Quellen sind meistens unbekannt. Ich schaue immer auf seriöse Nachrichtenportale. Wenn die Nachrichten zu gut oder zu schlecht sind, bin ich misstrauisch. Man sollte nicht alles glauben.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Anna", "Maria", "Julia"],
+          "answer": 2
+        },
+        {
+          "question": "Was sind Fake News?",
+          "options": ["Falsche Informationen", "Wahre Informationen", "Alte Informationen"],
+          "answer": 0
+        },
+        {
+          "question": "Warum werden Fake News verbreitet?",
+          "options": ["Um Menschen zu beeinflussen", "Um zu informieren", "Um zu unterhalten"],
+          "answer": 0
+        },
+        {
+          "question": "Woran erkennt man Fake News?",
+          "options": ["An reißerischen Überschriften", "An langen Texten", "An schönen Bildern"],
+          "answer": 0
+        },
+        {
+          "question": "Was sind die Quellen meistens?",
+          "options": ["Unbekannt", "Bekannt", "Seriös"],
+          "answer": 0
+        },
+        {
+          "question": "Worauf schaut Julia?",
+          "options": ["Auf seriöse Nachrichtenportale", "Auf soziale Medien", "Auf Kommentare"],
+          "answer": 0
+        }
+      ]
+    }
+  ]
+}

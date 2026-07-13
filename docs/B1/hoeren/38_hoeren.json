@@ -1,0 +1,103 @@
+{
+  "lesson": 38,
+  "level": "B1",
+  "title": "Немецкая культура и традиции",
+  "dialogs": [
+    {
+      "id": "monolog_1",
+      "title": "Weihnachten in Deutschland",
+      "text": "Heute möchte ich euch über etwas typisch Deutsches erzählen. Ich bin Anna. Weihnachten ist das wichtigste Fest in Deutschland. Die Vorbereitungen beginnen schon im November. Überall gibt es Weihnachtsmärkte. Man trinkt Glühwein und isst Lebkuchen. Am Heiligabend kommt die Familie zusammen. Die Kinder singen Weihnachtslieder. Für viele ist das die schönste Zeit des Jahres.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Anna", "Maria", "Julia"],
+          "answer": 0
+        },
+        {
+          "question": "Was ist das wichtigste Fest in Deutschland?",
+          "options": ["Weihnachten", "Ostern", "Karneval"],
+          "answer": 0
+        },
+        {
+          "question": "Wann beginnen die Vorbereitungen?",
+          "options": ["Im November", "Im Dezember", "Im Oktober"],
+          "answer": 0
+        },
+        {
+          "question": "Was gibt es auf Weihnachtsmärkten?",
+          "options": ["Glühwein und Lebkuchen", "Nur Essen", "Nur Getränke"],
+          "answer": 0
+        },
+        {
+          "question": "Was machen die Kinder an Heiligabend?",
+          "options": ["Sie singen Weihnachtslieder", "Sie spielen", "Sie schlafen"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_2",
+      "title": "Das Oktoberfest",
+      "text": "In Deutschland gibt es viele Traditionen, die weltweit bekannt sind. Ich bin Maria. Das Oktoberfest in München ist eines davon. Es findet jedes Jahr statt und dauert etwa zwei Wochen. Die Menschen tragen Trachten wie Dirndl und Lederhosen. Es gibt große Bierzelte und viele Karussells. Die Besucher kommen aus aller Welt. Das Fest ist sehr fröhlich.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Anna", "Maria", "Julia"],
+          "answer": 1
+        },
+        {
+          "question": "Wo findet das Oktoberfest statt?",
+          "options": ["In München", "In Berlin", "In Hamburg"],
+          "answer": 0
+        },
+        {
+          "question": "Wie lange dauert das Oktoberfest?",
+          "options": ["Etwa zwei Wochen", "Eine Woche", "Einen Monat"],
+          "answer": 0
+        },
+        {
+          "question": "Was tragen die Menschen auf dem Oktoberfest?",
+          "options": ["Dirndl und Lederhosen", "Normale Kleidung", "Kostüme"],
+          "answer": 0
+        },
+        {
+          "question": "Woher kommen die Besucher?",
+          "options": ["Aus aller Welt", "Nur aus Deutschland", "Nur aus Europa"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_3",
+      "title": "Ostern in Deutschland",
+      "text": "Wisst ihr, was zu Ostern in Deutschland gefeiert wird? Ich bin Julia. Ostern ist ein wichtiges Fest im Frühling. Die Kinder bemalen Eier und verstecken sie. Der Osterhase bringt die Eier in den Garten. Die Familien kommen zusammen und essen ein großes Festmahl. Es gibt auch Osterbräuche wie Osterfeuer. Das Fest ist sehr fröhlich.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Anna", "Maria", "Julia"],
+          "answer": 2
+        },
+        {
+          "question": "Was machen die Kinder zu Ostern?",
+          "options": ["Sie bemalen und verstecken Eier", "Sie schlafen", "Sie singen"],
+          "answer": 0
+        },
+        {
+          "question": "Wer bringt die Ostereier?",
+          "options": ["Der Osterhase", "Die Eltern", "Die Lehrer"],
+          "answer": 0
+        },
+        {
+          "question": "Was machen die Familien an Ostern?",
+          "options": ["Sie kommen zusammen und essen ein Festmahl", "Sie reisen", "Sie arbeiten"],
+          "answer": 0
+        },
+        {
+          "question": "Was gibt es noch als Osterbrauch?",
+          "options": ["Osterfeuer", "Osterbäume", "Osterhügel"],
+          "answer": 0
+        }
+      ]
+    }
+  ]
+}

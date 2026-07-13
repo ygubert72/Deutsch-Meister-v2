@@ -1,0 +1,199 @@
+{
+  "lesson": 54,
+  "level": "C1",
+  "title": "Редактирование и стилистическая коррекция текста",
+  "dialogs": [
+    {
+      "id": "monolog_1",
+      "title": "Die Bedeutung des Editierens",
+      "text": "Die von der Lektorin Anna durchgeführte Textüberarbeitung ist ein essenzieller Schritt im Schreibprozess. Der fertige Text wird einer gründlichen Revision unterzogen. Rechtschreibfehler werden korrigiert. Der sprachliche Ausdruck wird optimiert. Überflüssige Formulierungen werden gestrichen. Die logische Struktur wird überprüft. Das Editieren stellt die letzte Möglichkeit zur Verbesserung eines Textes dar. Jeder hochwertige Text durchläuft diesen Prozess der Feinabstimmung.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Anna", "Maria", "Julia"],
+          "answer": 0
+        },
+        {
+          "question": "Was ist das Editieren ein essenzieller Schritt von?",
+          "options": ["Im Schreibprozess", "Im Lesevorgang", "Im Verkauf"],
+          "answer": 0
+        },
+        {
+          "question": "Was wird beim Editieren korrigiert?",
+          "options": ["Rechtschreibfehler", "Die Schriftart", "Die Seitenzahl"],
+          "answer": 0
+        },
+        {
+          "question": "Was wird beim Editieren optimiert?",
+          "options": ["Der sprachliche Ausdruck", "Die Schriftart", "Die Seitenzahl"],
+          "answer": 0
+        },
+        {
+          "question": "Was stellt das Editieren die letzte Möglichkeit zur Verbesserung dar?",
+          "options": ["Eines Textes", "Eines Bildes", "Einer Grafik"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_2",
+      "title": "Die stilistische Korrektur",
+      "text": "Die von der Redakteurin Maria vorgenommene stilistische Korrektur zielt auf die Optimierung des sprachlichen Ausdrucks ab. Der Satzbau wird vereinfacht. Schachtelsätze werden aufgelöst. Aktive Formulierungen werden bevorzugt. Füllwörter werden konsequent eliminiert. Ein klarer und prägnanter Stil wird angestrebt. Die stilistische Überarbeitung macht den Text lesbarer und verständlicher. Ein guter Stil ist das Aushängeschild des Autors.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Anna", "Maria", "Julia"],
+          "answer": 1
+        },
+        {
+          "question": "Was wird bei der stilistischen Korrektur vereinfacht?",
+          "options": ["Der Satzbau", "Die Schriftart", "Die Seitenzahl"],
+          "answer": 0
+        },
+        {
+          "question": "Was wird bei der stilistischen Korrektur aufgelöst?",
+          "options": ["Schachtelsätze", "Einfache Sätze", "Kurze Sätze"],
+          "answer": 0
+        },
+        {
+          "question": "Welche Formulierungen werden bei der stilistischen Korrektur bevorzugt?",
+          "options": ["Aktive Formulierungen", "Passive Formulierungen", "Frageformulierungen"],
+          "answer": 0
+        },
+        {
+          "question": "Was wird bei der stilistischen Korrektur angestrebt?",
+          "options": ["Ein klarer und prägnanter Stil", "Ein komplizierter Stil", "Ein emotionaler Stil"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_3",
+      "title": "Die Überprüfung der Rechtschreibung",
+      "text": "Die von der Korrektorin Julia durchgeführte Rechtschreibprüfung stellt die sprachliche Korrektheit des Textes sicher. Rechtschreibfehler werden systematisch aufgespürt. Grammatische Unregelmäßigkeiten werden korrigiert. Die Zeichensetzung wird überprüft. Die computergestützte Rechtschreibprüfung kann hilfreich sein, ersetzt jedoch nicht die manuelle Kontrolle. Ein fehlerfreier Text hinterlässt beim Leser einen professionellen Eindruck. Die sprachliche Präzision ist ein Qualitätsmerkmal.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Anna", "Maria", "Julia"],
+          "answer": 2
+        },
+        {
+          "question": "Was stellt die Rechtschreibprüfung sicher?",
+          "options": ["Die sprachliche Korrektheit des Textes", "Die Länge des Textes", "Die Schriftart des Textes"],
+          "answer": 0
+        },
+        {
+          "question": "Was wird bei der Rechtschreibprüfung korrigiert?",
+          "options": ["Grammatische Unregelmäßigkeiten", "Die Schriftart", "Die Seitenzahl"],
+          "answer": 0
+        },
+        {
+          "question": "Was kann die computergestützte Rechtschreibprüfung nicht ersetzen?",
+          "options": ["Die manuelle Kontrolle", "Die automatische Korrektur", "Die Druckvorbereitung"],
+          "answer": 0
+        },
+        {
+          "question": "Was hinterlässt ein fehlerfreier Text beim Leser?",
+          "options": ["Einen professionellen Eindruck", "Einen unprofessionellen Eindruck", "Keinen Eindruck"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_4",
+      "title": "Die Überprüfung der Logik",
+      "text": "Die von der Wissenschaftlerin Laura durchgeführte logische Überprüfung des Textes ist von großer Bedeutung. Die Argumentationslinie wird auf ihre Stimmigkeit hin untersucht. Logische Brüche werden identifiziert und behoben. Die Beweisführung wird überprüft. Die Schlussfolgerungen müssen aus den vorgebrachten Argumenten logisch folgen. Eine stringente Logik macht den Text überzeugend. Die logische Struktur ist das Fundament eines jeden guten Textes.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Laura", "Lisa", "Anna"],
+          "answer": 0
+        },
+        {
+          "question": "Was wird bei der logischen Überprüfung untersucht?",
+          "options": ["Die Argumentationslinie", "Die Schriftart", "Die Seitenzahl"],
+          "answer": 0
+        },
+        {
+          "question": "Was wird bei der logischen Überprüfung identifiziert?",
+          "options": ["Logische Brüche", "Rechtschreibfehler", "Grammatikalische Fehler"],
+          "answer": 0
+        },
+        {
+          "question": "Was macht eine stringente Logik?",
+          "options": ["Den Text überzeugend", "Den Text unverständlich", "Den Text langweilig"],
+          "answer": 0
+        },
+        {
+          "question": "Was ist die logische Struktur das Fundament von?",
+          "options": ["Eines jeden guten Textes", "Eines jeden Bildes", "Einer jeden Grafik"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_5",
+      "title": "Die Überprüfung der Konsistenz",
+      "text": "Die von der Textanalytikerin Lisa durchgeführte Konsistenzprüfung stellt die Einheitlichkeit des Textes sicher. Die verwendeten Begriffe werden auf ihre einheitliche Verwendung hin überprüft. Die Zeitformen werden konsequent angewendet. Die Perspektive bleibt im gesamten Text erhalten. Die Konsistenz verleiht dem Text Professionalität. Sie erleichtert dem Leser das Textverständnis. Ein konsistenter Text wirkt durchdacht und sorgfältig erarbeitet.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Laura", "Lisa", "Anna"],
+          "answer": 1
+        },
+        {
+          "question": "Was stellt die Konsistenzprüfung sicher?",
+          "options": ["Die Einheitlichkeit des Textes", "Die Länge des Textes", "Die Schriftart des Textes"],
+          "answer": 0
+        },
+        {
+          "question": "Auf was werden die Begriffe bei der Konsistenzprüfung überprüft?",
+          "options": ["Auf einheitliche Verwendung", "Auf Vielfalt", "Auf Kreativität"],
+          "answer": 0
+        },
+        {
+          "question": "Wie bleiben die Zeitformen in einem konsistenten Text?",
+          "options": ["Konsequent", "Inkonsequent", "Wechselnd"],
+          "answer": 0
+        },
+        {
+          "question": "Was verleiht die Konsistenz dem Text?",
+          "options": ["Professionalität", "Unprofessionalität", "Emotionalität"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_6",
+      "title": "Der letzte Schritt: das Lektorat",
+      "text": "Die von der Lektorin Emma durchgeführte abschließende Textprüfung stellt den letzten Schritt vor der Veröffentlichung dar. Eine externe Person mit fachlicher Kompetenz wird mit der Durchsicht betraut. Die frische Perspektive ermöglicht die Entdeckung letzter Unstimmigkeiten. Der Inhalt wird auf Vollständigkeit geprüft. Der Stil wird auf Angemessenheit überprüft. Die Grammatik wird final kontrolliert. Ohne dieses professionelle Lektorat bleibt kein Text perfekt.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Emma", "Lisa", "Laura"],
+          "answer": 0
+        },
+        {
+          "question": "Was stellt das Lektorat den letzten Schritt dar?",
+          "options": ["Vor der Veröffentlichung", "Nach der Veröffentlichung", "Während des Schreibprozesses"],
+          "answer": 0
+        },
+        {
+          "question": "Welche Person wird mit der Durchsicht betraut?",
+          "options": ["Eine externe Person mit fachlicher Kompetenz", "Eine interne Person ohne Kompetenz", "Der Autor selbst"],
+          "answer": 0
+        },
+        {
+          "question": "Was ermöglicht die frische Perspektive beim Lektorat?",
+          "options": ["Die Entdeckung letzter Unstimmigkeiten", "Die Verschleierung von Fehlern", "Die Verlängerung des Textes"],
+          "answer": 0
+        },
+        {
+          "question": "Ohne was bleibt kein Text perfekt?",
+          "options": ["Ohne professionelles Lektorat", "Ohne schnelles Schreiben", "Ohne viele Bilder"],
+          "answer": 0
+        }
+      ]
+    }
+  ]
+}

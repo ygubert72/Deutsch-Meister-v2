@@ -1,0 +1,88 @@
+{
+  "lesson": 13,
+  "level": "A1",
+  "title": "В кафе и ресторане",
+  "dialogs": [
+    {
+      "id": "monolog_1",
+      "title": "Im Café",
+      "text": "Guten Tag! Ich bin Anna. Ich gehe gern ins Café. Ich bestelle einen Kaffee und einen Kuchen. Ich sitze am Tisch und lese eine Zeitung. Das Café ist gemütlich.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Anna", "Maria", "Julia"],
+          "answer": 0
+        },
+        {
+          "question": "Was bestellt Anna im Café?",
+          "options": ["Einen Kaffee und einen Kuchen", "Einen Tee und ein Brötchen", "Einen Saft und eine Pizza"],
+          "answer": 0
+        },
+        {
+          "question": "Was macht Anna im Café?",
+          "options": ["Sie liest eine Zeitung", "Sie arbeitet", "Sie trifft Freunde"],
+          "answer": 0
+        },
+        {
+          "question": "Wie ist das Café?",
+          "options": ["Gemütlich", "Laut", "Teuer"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_2",
+      "title": "Im Restaurant",
+      "text": "Hallo! Ich bin Maria. Ich gehe heute ins Restaurant. Ich hätte gern eine Pizza. Ich bestelle auch einen Salat. Ich trinke ein Glas Wasser. Zum Nachtisch esse ich ein Eis.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Anna", "Maria", "Julia"],
+          "answer": 1
+        },
+        {
+          "question": "Was hätte Maria gern?",
+          "options": ["Eine Pizza", "Eine Suppe", "Einen Salat"],
+          "answer": 0
+        },
+        {
+          "question": "Was trinkt Maria?",
+          "options": ["Ein Glas Wasser", "Ein Glas Wein", "Eine Tasse Kaffee"],
+          "answer": 0
+        },
+        {
+          "question": "Was isst Maria zum Nachtisch?",
+          "options": ["Ein Eis", "Einen Kuchen", "Ein Stück Schokolade"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_3",
+      "title": "Die Rechnung",
+      "text": "Guten Morgen! Ich bin Julia. Ich esse im Restaurant. Ich bestelle ein Steak mit Pommes. Ich trinke ein Bier. Nach dem Essen sage ich: 'Die Rechnung, bitte.' Ich bezahle mit Karte.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Anna", "Maria", "Julia"],
+          "answer": 2
+        },
+        {
+          "question": "Was bestellt Julia?",
+          "options": ["Ein Steak mit Pommes", "Einen Fisch", "Eine Pizza"],
+          "answer": 0
+        },
+        {
+          "question": "Was sagt Julia nach dem Essen?",
+          "options": ["Die Rechnung, bitte", "Ich hätte gern einen Kaffee", "Alles ist gut"],
+          "answer": 0
+        },
+        {
+          "question": "Wie bezahlt Julia?",
+          "options": ["Mit Karte", "Mit Bargeld", "Mit Scheck"],
+          "answer": 0
+        }
+      ]
+    }
+  ]
+}

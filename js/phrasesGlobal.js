@@ -10,6 +10,7 @@ let globalPhrasesAvailable = [];
 let globalPhrasesActive = {};
 let globalPhrasesHintIndex = 0;
 let globalPhrasesLoading = false;
+let globalPhrasesCurrentLessonId = 'global';
 
 // ========== ОСНОВНАЯ ФУНКЦИЯ ==========
 async function loadGlobalPhrases(container, level) {
@@ -351,15 +352,8 @@ function setupPhraseEventListeners(container, current, deWords, isRuToDe, availa
     };
     
     document.getElementById('phrasesContainerBtn').onclick = function() {
-        const studied = globalPhrasesWords.filter(p => {
-            const key = p.de + '|' + p.ru;
-            return globalPhrasesStudied[key];
-        });
-        if (!studied.length) {
-            alert('📦 Контейнер пуст');
-            return;
-        }
-        showPhrasesContainer(studied);
+        // Используем ТУ ЖЕ логику, что и в trainerMode
+        showGlobalPhrasesContainer();
     };
     
     document.getElementById('phrasesPrevBtn').onclick = function() {
@@ -379,6 +373,121 @@ function setupPhraseEventListeners(container, current, deWords, isRuToDe, availa
             renderGlobalPhrases();
         }
     };
+}
+
+// ========== КОНТЕЙНЕР ДЛЯ ФРАЗ (как в trainerMode) ==========
+function showGlobalPhrasesContainer() {
+    // Получаем изученные фразы
+    const studied = globalPhrasesWords.filter(p => {
+        const key = p.de + '|' + p.ru;
+        return globalPhrasesStudied[key];
+    });
+    
+    if (!studied || studied.length === 0) {
+        alert('📦 Контейнер пуст. Выучите фразы, чтобы они появились здесь.');
+        return;
+    }
+    
+    // Удаляем старую модалку
+    const oldModal = document.getElementById('containerModal');
+    if (oldModal) oldModal.remove();
+
+    const modal = document.createElement('div');
+    modal.id = 'containerModal';
+    modal.style.cssText = `
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0,0,0,0.7);
+        display: flex !important;
+        justify-content: center;
+        align-items: center;
+        z-index: 9999999 !important;
+        overflow: auto;
+    `;
+
+    const modalContent = document.createElement('div');
+    modalContent.style.cssText = `
+        background: white;
+        border-radius: 20px;
+        max-width: 500px;
+        width: 90%;
+        max-height: 80vh;
+        display: flex;
+        flex-direction: column;
+        margin: 20px;
+        padding: 0;
+        overflow: hidden;
+        box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+    `;
+
+    const header = document.createElement('div');
+    header.style.cssText = 'padding: 15px 20px; border-bottom: 1px solid #ddd; text-align: center; flex-shrink: 0;';
+    header.innerHTML = `<h3 style="margin: 0;">📦 КОНТЕЙНЕР (${studied.length} фраз)</h3>`;
+    modalContent.appendChild(header);
+
+    const itemsContainer = document.createElement('div');
+    itemsContainer.style.cssText = 'overflow-y: auto; flex: 1; padding: 5px 0;';
+    
+    studied.forEach((phrase) => {
+        const key = phrase.de + '|' + phrase.ru;
+        const item = document.createElement('div');
+        item.style.cssText = 'display: flex; justify-content: space-between; align-items: center; padding: 10px 20px; border-bottom: 1px solid #f0f0f0;';
+        item.innerHTML = `
+            <span><strong>${phrase.de}</strong> — ${phrase.ru}</span>
+            <button class="unstudy-btn" data-key="${key}" style="padding: 4px 14px; background: #F44336; color: white; border: none; border-radius: 8px; cursor: pointer; font-size: 12px; font-weight: bold;">✕ ВЕРНУТЬ</button>
+        `;
+        
+        const btn = item.querySelector('.unstudy-btn');
+        btn.addEventListener('click', function() {
+            const key2 = this.getAttribute('data-key');
+            if (globalPhrasesStudied[key2]) {
+                delete globalPhrasesStudied[key2];
+                const level = window.currentLevel || 'A1';
+                localStorage.setItem('dm_global_phrases_progress_' + level, JSON.stringify(globalPhrasesStudied));
+            }
+            modal.remove();
+            showGlobalPhrasesContainer();
+            if (typeof window.loadGlobalPhrases === 'function') {
+                window.loadGlobalPhrases(globalPhrasesContainer, window.currentLevel);
+            }
+        });
+        
+        itemsContainer.appendChild(item);
+    });
+    modalContent.appendChild(itemsContainer);
+
+    const footer = document.createElement('div');
+    footer.style.cssText = 'padding: 15px 20px; border-top: 1px solid #ddd; display: flex; gap: 10px; flex-shrink: 0;';
+    footer.innerHTML = `
+        <button id="returnAllBtn" style="flex: 1; padding: 10px; background: #FF9800; color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: bold;">🔄 ВЕРНУТЬ ВСЁ</button>
+        <button id="closeContainerBtn" style="flex: 1; padding: 10px; background: #ddd; border: none; border-radius: 8px; cursor: pointer; font-weight: bold;">ЗАКРЫТЬ</button>
+    `;
+    modalContent.appendChild(footer);
+
+    modal.appendChild(modalContent);
+    document.body.appendChild(modal);
+
+    document.getElementById('returnAllBtn').addEventListener('click', function() {
+        if (!confirm('Вернуть все фразы из контейнера?')) return;
+        globalPhrasesStudied = {};
+        const level = window.currentLevel || 'A1';
+        localStorage.setItem('dm_global_phrases_progress_' + level, JSON.stringify(globalPhrasesStudied));
+        modal.remove();
+        if (typeof window.loadGlobalPhrases === 'function') {
+            window.loadGlobalPhrases(globalPhrasesContainer, window.currentLevel);
+        }
+    });
+
+    document.getElementById('closeContainerBtn').addEventListener('click', function() {
+        modal.remove();
+    });
+
+    modal.addEventListener('click', function(e) {
+        if (e.target === modal) modal.remove();
+    });
 }
 
 // ========== ВСПОМОГАТЕЛЬНЫЕ ФУНКЦИИ ==========
@@ -421,42 +530,9 @@ function updatePhrasesDisplay() {
     }
 }
 
-function showPhrasesContainer(studiedPhrases) {
-    if (typeof window.ContainerManager !== 'undefined' && window.ContainerManager.show) {
-        window.ContainerManager.show({
-            title: '📦 КОНТЕЙНЕР (' + studiedPhrases.length + ' фраз)',
-            items: studiedPhrases,
-            emptyMessage: '📭 Контейнер пуст',
-            itemTemplate: function(p) { return p.de + ' — ' + p.ru; },
-            onReturnItem: function(phraseId) {
-                const key = phraseId;
-                if (globalPhrasesStudied[key]) {
-                    delete globalPhrasesStudied[key];
-                    const level = window.currentLevel || 'A1';
-                    localStorage.setItem('dm_global_phrases_progress_' + level, JSON.stringify(globalPhrasesStudied));
-                }
-                const modal = document.getElementById('containerModal');
-                if (modal) modal.remove();
-                loadGlobalPhrases(globalPhrasesContainer, window.currentLevel);
-            },
-            onReturnAll: function() {
-                globalPhrasesStudied = {};
-                const level = window.currentLevel || 'A1';
-                localStorage.setItem('dm_global_phrases_progress_' + level, JSON.stringify(globalPhrasesStudied));
-                const modal = document.getElementById('containerModal');
-                if (modal) modal.remove();
-                loadGlobalPhrases(globalPhrasesContainer, window.currentLevel);
-            }
-        });
-    } else {
-        alert('📦 Контейнер (' + studiedPhrases.length + ' фраз):\n\n' + 
-              studiedPhrases.map(p => p.de + ' — ' + p.ru).join('\n'));
-    }
-}
-
 // ========== ЭКСПОРТ ==========
 window.loadGlobalPhrases = loadGlobalPhrases;
 window.globalPhrasesWords = globalPhrasesWords;
 window.renderGlobalPhrases = renderGlobalPhrases;
 
-console.log('🧩 phrasesGlobal.js загружен');
+console.log('🧩 phrasesGlobal.js загружен (исправлен)');

@@ -1,9 +1,5 @@
 {
-  "lesson": 38,
-  "title": "Немецкая культура и традиции",
-  "level": "B1",
-  "theory": "<h3>🎄 Немецкие праздники и традиции</h3><p>Германия славится своими культурными традициями и праздниками.</p><table border='1' cellpadding='10' style='border-collapse: collapse; width: 100%; margin: 15px 0;'><tr style='background: #3B6FE0; color: white;'><th>Праздник</th><th>Описание</th></tr><tr style='background: #E3F2FD;'><td><strong>Weihnachten</strong></td><td>Рождество (24-26 декабря)</td></tr><tr style='background: #F5F5F5;'><td><strong>Ostern</strong></td><td>Пасха (весной)</td></tr><tr style='background: #E3F2FD;'><td><strong>Karneval</strong></td><td>Карнавал (февраль)</td></tr><tr style='background: #F5F5F5;'><td><strong>Oktoberfest</strong></td><td>Октоберфест (сентябрь-октябрь)</td></tr><tr style='background: #E3F2FD;'><td><strong>Silvester</strong></td><td>Новый год (31 декабря)</td></tr><tr style='background: #F5F5F5;'><td><strong>der Nikolaustag</strong></td><td>День Святого Николая (6 декабря)</td></tr><tr style='background: #E3F2FD;'><td><strong>der Advent</strong></td><td>Адвент (4 воскресенья до Рождества)</td></tr></table><h3>🎭 Культура и искусство — новая лексика</h3><table border='1' cellpadding='8' style='border-collapse: collapse; width: 100%; margin: 10px 0;'><tr style='background: #3B6FE0; color: white;'><th>Русский</th><th>Немецкий</th></tr><tr style='background: #E3F2FD;'><td>выставка</td><td><strong>die Ausstellung</strong></td></tr><tr style='background: #F5F5F5;'><td>музыкальный фестиваль</td><td><strong>das Musikfestival</strong></td></tr><tr style='background: #E3F2FD;'><td>театр</td><td><strong>das Theater</strong></td></tr><tr style='background: #F5F5F5;'><td>опера</td><td><strong>die Oper</strong></td></tr><tr style='background: #E3F2FD;'><td>оркестр</td><td><strong>das Orchester</strong></td></tr><tr style='background: #F5F5F5;'><td>художник</td><td><strong>der Künstler</strong></td></tr><tr style='background: #E3F2FD;'><td>музыкант</td><td><strong>der Musiker</strong></td></tr><tr style='background: #F5F5F5;'><td>традиция</td><td><strong>die Tradition</strong></td></tr><tr style='background: #E3F2FD;'><td>обычай</td><td><strong>der Brauch</strong></td></tr><tr style='background: #F5F5F5;'><td>праздновать</td><td><strong>feiern</strong></td></tr><tr style='background: #E3F2FD;'><td>украшать</td><td><strong>schmücken</strong></td></tr><tr style='background: #F5F5F5;'><td>подарок</td><td><strong>das Geschenk</strong></td></tr><tr style='background: #E3F2FD;'><td>ёлкa</td><td><strong>der Weihnachtsbaum</strong></td></tr><tr style='background: #F5F5F5;'><td>рождественский рынок</td><td><strong>der Weihnachtsmarkt</strong></td></tr><tr style='background: #E3F2FD;'><td>народный праздник</td><td><strong>das Volksfest</strong></td></tr></table><h3>📌 Относительные предложения с <span style='color:#2E7D32;font-weight:bold;'>der, die, das</span></h3><p>Относительные предложения уточняют существительное. <strong>Глагол стоит в конце!</strong></p><div class='info-box' style='background: #E8F0FE; padding: 15px; border-radius: 12px; margin: 15px 0;'><strong>📌 ПРИМЕРЫ:</strong><br>• <span style='color:#2E7D32;font-weight:bold;'>Das ist der Mann, <u>der</u> Deutsch lehrt.</span><br>Это мужчина, который преподаёт немецкий.<br><br>• <span style='color:#2E7D32;font-weight:bold;'>Das ist die Frau, <u>die</u> in Berlin wohnt.</span><br>Это женщина, которая живёт в Берлине.<br><br>• <span style='color:#2E7D32;font-weight:bold;'>Das ist das Buch, <u>das</u> ich gelesen habe.</span><br>Это книга, которую я прочитал.</div>",
-  "vocabulary": [
+  "quiz": [
     {"de": "Weihnachten", "ru": "Рождество"},
     {"de": "Ostern", "ru": "Пасха"},
     {"de": "Karneval", "ru": "Карнавал"},
@@ -33,7 +29,7 @@
     {"de": "der Weihnachtsmarkt", "ru": "рождественский рынок"},
     {"de": "das Volksfest", "ru": "народный праздник"}
   ],
-  "examples": [
+  "trainer": [
     {"de": "Das ist der Mann, der Deutsch lehrt.", "ru": "Это мужчина, который преподаёт немецкий."},
     {"de": "Das ist die Frau, die in Berlin wohnt.", "ru": "Это женщина, которая живёт в Берлине."},
     {"de": "Das ist das Buch, das ich gelesen habe.", "ru": "Это книга, которую я прочитал."},
@@ -41,20 +37,30 @@
     {"de": "Oktoberfest ist das größte Volksfest der Welt.", "ru": "Октоберфест — самый большой народный праздник в мире."},
     {"de": "Der Nikolaustag ist ein wichtiger Brauch in Deutschland.", "ru": "День Святого Николая — важный обычай в Германии."},
     {"de": "Ich liebe den Weihnachtsmarkt.", "ru": "Я люблю рождественский рынок."},
-    {"de": "Wir schmücken den Weihnachtsbaum.", "ru": "Мы украшаем ёлку."}
+    {"de": "Wir schmücken den Weihnachtsbaum.", "ru": "Мы украшаем ёлку."},
+    {"de": "Die Ausstellung ist sehr interessant.", "ru": "Выставка очень интересная."},
+    {"de": "Ich war im Theater.", "ru": "Я был в театре."},
+    {"de": "Die Oper ist wunderschön.", "ru": "Опера прекрасна."},
+    {"de": "Das Orchester spielt gut.", "ru": "Оркестр играет хорошо."},
+    {"de": "Der Künstler ist bekannt.", "ru": "Художник известен."},
+    {"de": "Ich habe ein Geschenk bekommen.", "ru": "Я получил подарок."},
+    {"de": "Das Volksfest war großartig.", "ru": "Народный праздник был великолепен."}
   ],
-  "practice": [
-    {"type": "fill", "question": "Вставьте правильное относительное местоимение (der/die/das):", "sentence": "Das ist der Mann, ___ Deutsch lehrt.", "answer": "der", "hint": "Это мужчина, который преподаёт немецкий (м.р.)."},
-    {"type": "fill", "question": "Вставьте правильное относительное местоимение (der/die/das):", "sentence": "Das ist die Frau, ___ in Berlin wohnt.", "answer": "die", "hint": "Это женщина, которая живёт в Берлине (ж.р.)."},
-    {"type": "fill", "question": "Вставьте правильное относительное местоимение (der/die/das):", "sentence": "Das ist das Buch, ___ ich gelesen habe.", "answer": "das", "hint": "Это книга, которую я прочитал (ср.р.)."},
-    {"type": "fill", "question": "Вставьте правильное слово:", "sentence": "___ wird in Deutschland groß gefeiert. (Рождество)", "answer": "Weihnachten", "hint": "Рождество широко празднуется в Германии."},
-    {"type": "fill", "question": "Вставьте правильное слово:", "sentence": "Oktoberfest ist das größte ___ der Welt. (народный праздник)", "answer": "Volksfest", "hint": "Октоберфест — самый большой народный праздник в мире."},
-    {"type": "fill", "question": "Вставьте правильную форму глагола:", "sentence": "Das ist der Mann, der Deutsch ___ (lehren)", "answer": "lehrt", "hint": "Это мужчина, который преподаёт немецкий."},
-    {"type": "fill", "question": "Вставьте правильное слово (культура):", "sentence": "Ich liebe den ___. (рождественский рынок)", "answer": "Weihnachtsmarkt", "hint": "Я люблю рождественский рынок."},
-    {"type": "fill", "question": "Вставьте правильное слово (культура):", "sentence": "Wir ___ den Weihnachtsbaum. (украшать)", "answer": "schmücken", "hint": "Мы украшаем ёлку."},
-    {"type": "fill", "question": "Вставьте правильное слово (культура):", "sentence": "Die ___ findet im Museum statt. (выставка)", "answer": "Ausstellung", "hint": "Выставка проходит в музее."},
-    {"type": "transform", "question": "Переделайте два предложения в одно с относительным местоимением:", "sentence": "Das ist der Mann. Er lehrt Deutsch.", "answer": "Das ist der Mann, der Deutsch lehrt.", "hint": "Это мужчина, который преподаёт немецкий."},
-    {"type": "transform", "question": "Переделайте два предложения в одно с относительным местоимением:", "sentence": "Das ist die Frau. Sie wohnt in Berlin.", "answer": "Das ist die Frau, die in Berlin wohnt.", "hint": "Это женщина, которая живёт в Берлине."},
-    {"type": "transform", "question": "Переделайте два предложения в одно с относительным местоимением:", "sentence": "Das ist das Buch. Ich habe es gelesen.", "answer": "Das ist das Buch, das ich gelesen habe.", "hint": "Это книга, которую я прочитал."}
+  "dictation": [
+    {"de": "Das ist der Mann, der Deutsch lehrt.", "ru": "Это мужчина, который преподаёт немецкий."},
+    {"de": "Das ist die Frau, die in Berlin wohnt.", "ru": "Это женщина, которая живёт в Берлине."},
+    {"de": "Das ist das Buch, das ich gelesen habe.", "ru": "Это книга, которую я прочитал."},
+    {"de": "Weihnachten wird in Deutschland groß gefeiert.", "ru": "Рождество широко празднуется в Германии."},
+    {"de": "Oktoberfest ist das größte Volksfest der Welt.", "ru": "Октоберфест — самый большой народный праздник в мире."},
+    {"de": "Der Nikolaustag ist ein wichtiger Brauch in Deutschland.", "ru": "День Святого Николая — важный обычай в Германии."},
+    {"de": "Ich liebe den Weihnachtsmarkt.", "ru": "Я люблю рождественский рынок."},
+    {"de": "Wir schmücken den Weihnachtsbaum.", "ru": "Мы украшаем ёлку."},
+    {"de": "Die Ausstellung ist sehr interessant.", "ru": "Выставка очень интересная."},
+    {"de": "Ich war im Theater.", "ru": "Я был в театре."},
+    {"de": "Die Oper ist wunderschön.", "ru": "Опера прекрасна."},
+    {"de": "Das Orchester spielt gut.", "ru": "Оркестр играет хорошо."},
+    {"de": "Der Künstler ist bekannt.", "ru": "Художник известен."},
+    {"de": "Ich habe ein Geschenk bekommen.", "ru": "Я получил подарок."},
+    {"de": "Das Volksfest war großartig.", "ru": "Народный праздник был великолепен."}
   ]
 }

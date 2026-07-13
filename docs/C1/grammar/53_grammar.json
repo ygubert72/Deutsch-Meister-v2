@@ -2,7 +2,7 @@
   "lesson": 53,
   "title": "Цитирование и косвенная речь в академическом контексте",
   "level": "C1",
-  "theory": "<h3>📌 Способы цитирования</h3><table border='1' cellpadding='10' style='border-collapse: collapse; width: 100%; margin: 15px 0;'><tr style='background: #3B6FE0; color: white;'><th>Тип</th><th>Описание</th><th>Пример</th></tr><tr style='background: #E3F2FD;'><td><strong>wörtliches Zitat</strong></td><td>прямая речь</td><td>„Die Studie zeigt...“</td></tr><tr style='background: #F5F5F5;'><td><strong>sinngemäßes Zitat</strong></td><td>пересказ смысла</td><td>Laut der Studie zeigt sich...</td></tr><tr style='background: #E3F2FD;'><td><strong>paraphrasieren</strong></td><td>своими словами</td><td>Mit anderen Worten...</td></tr></table><h3>📌 Konjunktiv I в косвенной речи</h3><p>В академическом контексте Konjunktiv I используется для <strong>точного</strong> цитирования.</p><div class='info-box' style='background: #E8F0FE; padding: 15px; border-radius: 12px; margin: 15px 0;'><strong>📌 ПРИМЕРЫ:</strong><br>• <span style='color:#2E7D32;font-weight:bold;'>Der Autor behauptet, die Ergebnisse <u>seien</u> signifikant.</span><br>Автор утверждает, что результаты значительны.<br><br>• <span style='color:#2E7D32;font-weight:bold;'>Die Forscher betonen, dass die Methode <u>sei</u> neu.</span><br>Исследователи подчёркивают, что метод нов.<br><br>• <span style='color:#2E7D32;font-weight:bold;'>Er erklärte, die Studie <u>habe</u> gezeigt, dass...</span><br>Он объяснил, что исследование показало, что...</div>",
+  "theory": "<h3>📌 Способы цитирования</h3><table border='1' cellpadding='10' style='border-collapse: collapse; width: 100%; margin: 15px 0;'><tr style='background: #3B6FE0; color: white;'><th>Тип</th><th>Описание</th><th>Пример</th></tr><tr style='background: #E3F2FD;'><td><strong>wörtliches Zitat</strong></td><td>прямая речь</td><td>„Die Studie zeigt...“</td></tr><tr style='background: #F5F5F5;'><td><strong>sinngemäßes Zitat</strong></td><td>пересказ смысла</td><td>Laut der Studie zeigt sich...</td></tr><tr style='background: #E3F2FD;'><td><strong>paraphrasieren</strong></td><td>своими словами</td><td>Mit anderen Worten...</td></tr></table><h3>📌 Konjunktiv I в косвенной речи</h3><p>В академическом контексте Konjunktiv I используется для <strong>точного</strong> цитирования.</p><div class='info-box' style='background: #E8F0FE; padding: 15px; border-radius: 12px; margin: 15px 0;'><strong>📌 ПРИМЕРЫ:</strong><br>• <span style='color:#2E7D32;font-weight:bold;'>Der Autor behauptet, die Ergebnisse <u>seien</u> signifikant.</span><br>Автор утверждает, что результаты значительны.<br><br>• <span style='color:#2E7D32;font-weight:bold;'>Die Forscher betonen, dass die Methode <u>sei</u> neu.</span><br>Исследователи подчёркивают, что метод нов.<br><br>• <span style='color:#2E7D32;font-weight:bold;'>Er erklärte, die Studie <u>habe</u> gezeigt, dass...</span><br>Он объяснил, что исследование показало, что...</div><h3>📌 Академическая лексика</h3><table border='1' cellpadding='8' style='border-collapse: collapse; width: 100%; margin: 10px 0;'><tr style='background: #3B6FE0; color: white;'><th>Русский</th><th>Немецкий</th></tr><tr style='background: #E3F2FD;'><td>цитата</td><td><strong>das Zitat</strong></td></tr><tr style='background: #F5F5F5'><td>ссылка</td><td><strong>der Verweis</strong></td></tr><tr style='background: #E3F2FD'><td>сноска</td><td><strong>die Fußnote</strong></td></tr><tr style='background: #F5F5F5'><td>источник</td><td><strong>die Quelle</strong></td></tr><tr style='background: #E3F2FD'><td>контекст</td><td><strong>der Kontext</strong></td></tr><tr style='background: #F5F5F5'><td>академическая честность</td><td><strong>die akademische Integrität</strong></td></tr><tr style='background: #E3F2FD'><td>плагиат</td><td><strong>das Plagiat</strong></td></tr><tr style='background: #F5F5F5'><td>оригинальный текст</td><td><strong>der Originaltext</strong></td></tr><tr style='background: #E3F2FD'><td>перефразирование</td><td><strong>die Paraphrase</strong></td></tr><tr style='background: #F5F5F5'><td>научная работа</td><td><strong>die wissenschaftliche Arbeit</strong></td></tr><tr style='background: #E3F2FD'><td>публикация</td><td><strong>die Publikation</strong></td></tr><tr style='background: #F5F5F5'><td>рецензия</td><td><strong>die Rezension</strong></td></tr><tr style='background: #E3F2FD'><td>автор</td><td><strong>der Autor</strong></td></tr><tr style='background: #F5F5F5'><td>читатель</td><td><strong>der Leser</strong></td></tr><tr style='background: #E3F2FD'><td>научное сообщество</td><td><strong>die wissenschaftliche Gemeinschaft</strong></td></tr></table>",
   "vocabulary": [
     {"de": "zitieren", "ru": "цитировать"},
     {"de": "paraphrasieren", "ru": "пересказывать своими словами"},
@@ -21,7 +21,17 @@
     {"de": "die Quelle", "ru": "источник"},
     {"de": "die Fußnote", "ru": "сноска"},
     {"de": "das Literaturverzeichnis", "ru": "список литературы"},
-    {"de": "der Verweis", "ru": "ссылка"}
+    {"de": "der Verweis", "ru": "ссылка"},
+    {"de": "das Zitat", "ru": "цитата"},
+    {"de": "der Kontext", "ru": "контекст"},
+    {"de": "die akademische Integrität", "ru": "академическая честность"},
+    {"de": "das Plagiat", "ru": "плагиат"},
+    {"de": "der Originaltext", "ru": "оригинальный текст"},
+    {"de": "die Paraphrase", "ru": "перефразирование"},
+    {"de": "die wissenschaftliche Arbeit", "ru": "научная работа"},
+    {"de": "der Autor", "ru": "автор"},
+    {"de": "der Leser", "ru": "читатель"},
+    {"de": "die wissenschaftliche Gemeinschaft", "ru": "научное сообщество"}
   ],
   "examples": [
     {"de": "Der Autor behauptet, die Ergebnisse seien signifikant.", "ru": "Автор утверждает, что результаты значительны."},
@@ -29,15 +39,19 @@
     {"de": "Er erklärte, die Studie habe gezeigt, dass die Theorie stimmt.", "ru": "Он объяснил, что исследование показало, что теория верна."},
     {"de": "Laut der Studie zeigt sich ein deutlicher Zusammenhang.", "ru": "Согласно исследованию, обнаруживается явная связь."},
     {"de": "Die Quelle ist im Literaturverzeichnis angegeben.", "ru": "Источник указан в списке литературы."},
-    {"de": "Der Verweis auf die Fußnote ist wichtig.", "ru": "Ссылка на сноску важна."}
+    {"de": "Der Verweis auf die Fußnote ist wichtig.", "ru": "Ссылка на сноску важна."},
+    {"de": "Das Plagiat ist eine ernste akademische Verfehlung.", "ru": "Плагиат — серьёзный академический проступок."},
+    {"de": "Die Paraphrase ist korrekt.", "ru": "Перефразирование корректно."}
   ],
   "practice": [
     {"type": "fill", "question": "Вставьте правильную форму Konjunktiv I:", "sentence": "Der Autor behauptet, die Ergebnisse ___ signifikant. (sein)", "answer": "seien", "hint": "Автор утверждает, что результаты значительны."},
     {"type": "fill", "question": "Вставьте правильную форму Konjunktiv I:", "sentence": "Die Forscher betonen, dass die Methode neu ___ (sein)", "answer": "sei", "hint": "Исследователи подчёркивают, что метод нов."},
     {"type": "fill", "question": "Вставьте правильную форму Konjunktiv I:", "sentence": "Er erklärte, die Studie ___ gezeigt, dass die Theorie stimmt. (haben)", "answer": "habe", "hint": "Он объяснил, что исследование показало, что теория верна."},
-    {"type": "fill", "question": "Вставьте правильное слово:", "sentence": "___ der Studie zeigt sich ein deutlicher Zusammenhang. (согласно)", "answer": "Laut", "hint": "Согласно исследованию, обнаруживается явная связь."},
-    {"type": "fill", "question": "Вставьте правильное слово:", "sentence": "Die Quelle ist im ___ angegeben. (список литературы)", "answer": "Literaturverzeichnis", "hint": "Источник указан в списке литературы."},
-    {"type": "fill", "question": "Вставьте правильное слово:", "sentence": "Der ___ auf die Fußnote ist wichtig. (ссылка)", "answer": "Verweis", "hint": "Ссылка на сноску важна."},
+    {"type": "fill", "question": "Вставьте правильное слово (академическая):", "sentence": "Das ___ ist eine ernste akademische Verfehlung. (плагиат)", "answer": "Plagiat", "hint": "Плагиат — серьёзный академический проступок."},
+    {"type": "fill", "question": "Вставьте правильное слово (академическая):", "sentence": "Die ___ ist korrekt. (перефразирование)", "answer": "Paraphrase", "hint": "Перефразирование корректно."},
+    {"type": "fill", "question": "Вставьте правильное слово (академическая):", "sentence": "Die Quelle ist im ___ angegeben. (список литературы)", "answer": "Literaturverzeichnis", "hint": "Источник указан в списке литературы."},
+    {"type": "fill", "question": "Вставьте правильное слово (академическая):", "sentence": "Der ___ auf die Fußnote ist wichtig. (ссылка)", "answer": "Verweis", "hint": "Ссылка на сноску важна."},
+    {"type": "fill", "question": "Вставьте правильное слово (академическая):", "sentence": "Die ___ ist ein wichtiger Begriff. (академическая честность)", "answer": "akademische Integrität", "hint": "Академическая честность — важное понятие."},
     {"type": "transform", "question": "Переделайте прямую речь в косвенную (Konjunktiv I):", "sentence": "Der Autor sagt: 'Die Ergebnisse sind signifikant.'", "answer": "Der Autor sagt, die Ergebnisse seien signifikant.", "hint": "Автор утверждает, что результаты значительны."},
     {"type": "transform", "question": "Переделайте прямую речь в косвенную (Konjunktiv I):", "sentence": "Die Forscher sagen: 'Die Methode ist neu.'", "answer": "Die Forscher sagen, dass die Methode neu sei.", "hint": "Исследователи подчёркивают, что метод нов."},
     {"type": "transform", "question": "Переделайте предложение с 'laut':", "sentence": "Die Studie zeigt einen deutlichen Zusammenhang.", "answer": "Laut der Studie zeigt sich ein deutlicher Zusammenhang.", "hint": "Согласно исследованию, обнаруживается явная связь."}

@@ -30,11 +30,7 @@ function renderDictation(container, lesson) {
                     📊 Прогресс: ${completedCount} из ${total} предложений выполнено
                     ${allCompleted ? ' 🎉 Все выполнено!' : ''}
                 </div>
-            </div>
-            <button onclick="window.history.back()" style="padding: 8px 20px; background: #3B6FE0; color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; transition: all 0.08s ease;">
-                ← К СПИСКУ УРОКОВ
-            </button>
-        </div>
+            
         <p>Напишите перевод на немецком языке:</p>
     `;
     

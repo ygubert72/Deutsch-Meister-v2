@@ -9,18 +9,21 @@ let quizDirection = 'de_to_ru';
 let quizStudiedWords = {};
 let currentLessonId = null;
 let currentLessonData = null;
+let allQuizWords = []; // Все слова урока (не фильтрованные)
 
 function renderQuiz(container, lesson) {
     currentLessonData = lesson;
     currentLessonId = lesson.id || 1;
     
-    // Берем слова для теста из загруженного урока
     let quizData = lesson.quiz || [];
     
     if (!quizData || quizData.length === 0) {
         container.innerHTML = '<div style="text-align: center; padding: 40px; color: #999;">📭 Нет слов для теста</div>';
         return;
     }
+
+    // Сохраняем ВСЕ слова урока
+    allQuizWords = [...quizData];
 
     try {
         const saved = localStorage.getItem('dm_quiz_studied_' + currentLessonId);
@@ -33,11 +36,13 @@ function renderQuiz(container, lesson) {
         quizStudiedWords = {};
     }
 
+    // Формируем список НЕИЗУЧЕННЫХ слов для прохождения
+    // НО для выбора вариантов будем использовать ВСЕ слова
     quizWords = quizData.filter(word => !quizStudiedWords[word.de]);
+    
     if (quizWords.length === 0) {
+        // Все слова изучены — показываем сообщение, но варианты всё равно берём из всех слов
         quizWords = [...quizData];
-        quizStudiedWords = {};
-        localStorage.removeItem('dm_quiz_studied_' + currentLessonId);
     }
     
     quizIndex = 0;
@@ -80,7 +85,8 @@ function renderQuiz(container, lesson) {
         if (quizCurrentWord) {
             quizStudiedWords[quizCurrentWord.de] = true;
             saveQuizState();
-            quizWords = quizWords.filter(w => w.de !== quizCurrentWord.de);
+            // Обновляем список НЕИЗУЧЕННЫХ слов
+            quizWords = allQuizWords.filter(w => !quizStudiedWords[w.de]);
             if (quizWords.length === 0) {
                 document.getElementById('quizQuestion').textContent = '🎉 Все слова изучены!';
                 document.getElementById('quizGrid').innerHTML = '';
@@ -132,10 +138,8 @@ function saveQuizState() {
 }
 
 function getStudiedWordsList() {
-    const lesson = currentLessonData || window.currentLesson;
-    if (!lesson) return [];
-    const vocab = lesson.quiz || [];
-    return vocab.filter(word => quizStudiedWords[word.de]);
+    if (!allQuizWords) return [];
+    return allQuizWords.filter(word => quizStudiedWords[word.de]);
 }
 
 function showQuizContainer() {
@@ -199,10 +203,10 @@ function showQuizContainer() {
                 const wordDe = this.getAttribute('data-word');
                 delete quizStudiedWords[wordDe];
                 saveQuizState();
-                const lesson = currentLessonData || window.currentLesson;
-                if (lesson) {
-                    const vocab = lesson.quiz || [];
-                    quizWords = vocab.filter(w => !quizStudiedWords[w.de]);
+                // Обновляем ВСЕ слова для выбора
+                quizWords = allQuizWords.filter(w => !quizStudiedWords[w.de]);
+                if (quizWords.length === 0) {
+                    quizWords = [...allQuizWords];
                 }
                 if (quizWords.length > 0 && quizIndex >= quizWords.length) {
                     quizIndex = 0;
@@ -232,16 +236,9 @@ function showQuizContainer() {
 
     document.getElementById('returnAllBtn').addEventListener('click', function() {
         if (!confirm('Вернуть все слова из контейнера?')) return;
-        const lesson = currentLessonData || window.currentLesson;
-        if (lesson) {
-            const vocab = lesson.quiz || [];
-            vocab.forEach(word => { delete quizStudiedWords[word.de]; });
-        }
+        allQuizWords.forEach(word => { delete quizStudiedWords[word.de]; });
         saveQuizState();
-        const lesson2 = currentLessonData || window.currentLesson;
-        if (lesson2) {
-            quizWords = [...lesson2.quiz];
-        }
+        quizWords = [...allQuizWords];
         quizIndex = 0;
         modal.remove();
         showQuizQuestion();
@@ -272,13 +269,16 @@ function showQuizQuestion() {
     document.getElementById('quizQuestion').textContent = question;
     document.getElementById('quizProgress').textContent = `${quizIndex + 1} / ${quizWords.length}`;
 
-    const allWords = [...quizWords];
+    // ===== ВАЖНО: используем ВСЕ слова (allQuizWords) для выбора, а не только quizWords =====
+    const allWords = [...allQuizWords];
     const otherWords = allWords.filter(w => w !== quizCurrentWord);
     const shuffled = [...otherWords];
     for (let i = shuffled.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
         [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
     }
+    
+    // Берём 5 других слов + правильное = 6 вариантов
     const options = [quizCurrentWord, ...shuffled.slice(0, 5)];
     for (let i = options.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));

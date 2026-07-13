@@ -51,7 +51,7 @@ function isAdminUser(user) {
     return user.email === 'ygubert72@gmail.com';
 }
 
-// ========== НОВАЯ ФУНКЦИЯ: ПЕРЕМЕШИВАНИЕ МАССИВА ==========
+// ========== ПЕРЕМЕШИВАНИЕ МАССИВА ==========
 function shuffleArray(array) {
     for (let i = array.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
@@ -60,16 +60,17 @@ function shuffleArray(array) {
     return array;
 }
 
-// ========== НОВАЯ ФУНКЦИЯ: ПОЛУЧЕНИЕ ВСЕХ УРОКОВ УРОВНЯ ==========
+// ========== ПОЛУЧЕНИЕ ВСЕХ УРОКОВ УРОВНЯ ==========
 function getAllLessonsForLevel(level) {
-    if (!window.courseData) {
-        console.error('❌ courseData не загружен');
+    // Проверяем, загружены ли данные курса
+    if (!window.courseData || !window.courseData.lessons) {
+        console.warn(`⚠️ Данные для уровня ${level} еще не загружены.`);
         return [];
     }
     return window.courseData.lessons || [];
 }
 
-// ========== НОВАЯ ФУНКЦИЯ: ПОЛУЧЕНИЕ ВСЕХ СЛОВ УРОВНЯ ==========
+// ========== ПОЛУЧЕНИЕ ВСЕХ СЛОВ УРОВНЯ ==========
 async function getAllWordsForLevel(level) {
     const allWords = [];
     const lessons = getAllLessonsForLevel(level);
@@ -115,7 +116,7 @@ async function getAllWordsForLevel(level) {
     return unique;
 }
 
-// ========== НОВАЯ ФУНКЦИЯ: ПОЛУЧЕНИЕ ВСЕХ ФРАЗ УРОВНЯ ==========
+// ========== ПОЛУЧЕНИЕ ВСЕХ ФРАЗ УРОВНЯ ==========
 async function getAllPhrasesForLevel(level) {
     const allPhrases = [];
     const lessons = getAllLessonsForLevel(level);

@@ -10,9 +10,7 @@ let isRestoring = false;
 let isWelcomePageVisible = true;
 let appReady = false;
 let pendingState = null;
-let isLoadingLesson = false;
-let currentSection = 'lessons';
-let isRendering = false;
+let isLoadingLesson = false; // Флаг для предотвращения повторных загрузок
 
 // ========== КЛЮЧИ ДЛЯ ХРАНЕНИЯ ==========
 const FIRST_LAUNCH_KEY = 'dm_first_launch';
@@ -25,7 +23,6 @@ function saveState() {
             level: currentLevel,
             lessonId: currentLesson?.id || null,
             mode: currentMode || 'grammar',
-            section: currentSection || 'lessons',
             timestamp: Date.now()
         };
         localStorage.setItem(APP_STATE_KEY, JSON.stringify(state));
@@ -73,8 +70,6 @@ function showWelcomePage() {
     currentLevel = 'A1';
     currentLesson = null;
     courseData = null;
-    window.courseData = null;
-    currentSection = 'lessons';
     
     const content = document.getElementById('content');
     const indicator = document.getElementById('modeIndicator');
@@ -180,70 +175,16 @@ window.goBackFromInstruction = function() {
         if (currentLesson) {
             renderLesson(currentLesson);
         } else if (courseData) {
-            renderLevelWithMenu();
+            renderLevel();
         } else {
             showWelcomePage();
         }
     }
 };
 
-// ========== ЗАГРУЗКА ГЛОБАЛЬНЫХ ДАННЫХ ДЛЯ КАРТОЧЕК И ФРАЗ ==========
-async function loadGlobalData() {
-    try {
-        const level = window.currentLevel || 'A1';
-        console.log('🔄 Загрузка глобальных данных для уровня', level);
-        
-        // Загружаем слова
-        const words = await window.getAllWordsForLevel(level);
-        window.globalCardsWords = words;
-        console.log('  ✅ Слов загружено:', words.length);
-        
-        // Загружаем фразы
-        const phrases = await window.getAllPhrasesForLevel(level);
-        window.globalPhrasesWords = phrases;
-        console.log('  ✅ Фраз загружено:', phrases.length);
-        
-        // Загружаем прогресс фраз из localStorage
-        const key = 'dm_global_phrases_progress_' + level;
-        const saved = localStorage.getItem(key);
-        window.globalPhrasesStudied = saved ? JSON.parse(saved) : {};
-        console.log('  ✅ Изученных фраз:', Object.keys(window.globalPhrasesStudied).length);
-        
-        // Проверяем wordsProgress
-        if (!window.wordsProgress) window.wordsProgress = {};
-        if (!window.wordsProgress[level]) window.wordsProgress[level] = [];
-        console.log('  ✅ Изученных слов:', window.wordsProgress[level].length);
-        
-        // Перерисовываем интерфейс, если нужно
-        const container = document.getElementById('sectionContent');
-        if (container) {
-            if (window.currentSection === 'cards' && typeof window.renderGlobalCards === 'function') {
-                window.renderGlobalCards();
-                console.log('  ✅ Карточки перерисованы');
-            }
-            if (window.currentSection === 'phrases' && typeof window.renderGlobalPhrases === 'function') {
-                window.renderGlobalPhrases();
-                console.log('  ✅ Фразы перерисованы');
-            }
-        }
-        
-        console.log('✅ Глобальные данные загружены');
-        console.log('  📊 Слов всего:', window.globalCardsWords.length);
-        console.log('  📊 Слов изучено:', window.wordsProgress[level].length);
-        console.log('  📊 Фраз всего:', window.globalPhrasesWords.length);
-        console.log('  📊 Фраз изучено:', Object.keys(window.globalPhrasesStudied).length);
-    } catch(e) {
-        console.error('❌ Ошибка загрузки глобальных данных:', e);
-    }
-}
-
 // ========== ЗАГРУЗКА УРОВНЯ ==========
 async function loadLevel(level) {
-    if (isRendering) {
-        console.log('⏳ Уже идет рендеринг, пропускаем');
-        return;
-    }
-    
+    // Проверяем доступ к уровню
     if (typeof window.hasAccessToLevel === 'function') {
         if (!window.auth) {
             console.log('⏳ Ожидание инициализации auth...');
@@ -290,21 +231,14 @@ async function loadLevel(level) {
     currentLevel = level;
     isWelcomePageVisible = false;
     appReady = true;
-    currentSection = 'lessons';
     console.log('📚 Загрузка уровня:', level);
-    
     try {
         const response = await fetch(`docs/${level}/index.json`);
         if (!response.ok) throw new Error('Курс не найден');
         courseData = await response.json();
-        window.courseData = courseData;
         console.log('✅ Курс загружен:', courseData.title);
-        renderLevelWithMenu();
+        renderLevel();
         saveState();
-        
-        // Загружаем глобальные данные для карточек и фраз
-        setTimeout(loadGlobalData, 500);
-        
     } catch(e) {
         console.error('Ошибка загрузки курса:', e);
         document.getElementById('content').innerHTML = `
@@ -317,145 +251,24 @@ async function loadLevel(level) {
     }
 }
 
-// ========== ОТОБРАЖЕНИЕ УРОВНЯ С ПОДМЕНЮ ==========
-function renderLevelWithMenu() {
-    if (isRendering) {
-        console.log('⏳ Уже идет рендеринг, пропускаем');
-        return;
-    }
-    
-    if (!courseData) {
-        loadLevel(currentLevel);
-        return;
-    }
-
-    isRendering = true;
-    
-    let html = `
-        <div style="display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 20px;">
-            <button class="section-btn ${currentSection === 'lessons' ? 'active' : ''}" data-section="lessons" style="padding: 10px 20px; background: ${currentSection === 'lessons' ? '#3B6FE0' : '#E8F0FE'}; color: ${currentSection === 'lessons' ? 'white' : '#333'}; border: 2px solid ${currentSection === 'lessons' ? '#2B5BC7' : '#D0D0D0'}; border-radius: 8px; cursor: pointer; font-weight: bold; transition: all 0.08s ease;">
-                📚 Уроки
-            </button>
-            <button class="section-btn ${currentSection === 'cards' ? 'active' : ''}" data-section="cards" style="padding: 10px 20px; background: ${currentSection === 'cards' ? '#3B6FE0' : '#E8F0FE'}; color: ${currentSection === 'cards' ? 'white' : '#333'}; border: 2px solid ${currentSection === 'cards' ? '#2B5BC7' : '#D0D0D0'}; border-radius: 8px; cursor: pointer; font-weight: bold; transition: all 0.08s ease;">
-                🃏 Карточки
-            </button>
-            <button class="section-btn ${currentSection === 'phrases' ? 'active' : ''}" data-section="phrases" style="padding: 10px 20px; background: ${currentSection === 'phrases' ? '#3B6FE0' : '#E8F0FE'}; color: ${currentSection === 'phrases' ? 'white' : '#333'}; border: 2px solid ${currentSection === 'phrases' ? '#2B5BC7' : '#D0D0D0'}; border-radius: 8px; cursor: pointer; font-weight: bold; transition: all 0.08s ease;">
-                🧩 Фразы
-            </button>
-        </div>
-        <div id="sectionContent"></div>
-    `;
-    
-    document.getElementById('content').innerHTML = html;
-    document.getElementById('modeIndicator').textContent = `Курс ${currentLevel}`;
-    updateCounter();
-    
-    document.querySelectorAll('.section-btn').forEach(btn => {
-        btn.onclick = function() {
-            const section = this.getAttribute('data-section');
-            currentSection = section;
-            renderSection(section);
-            saveState();
-        };
-    });
-    
-    renderSection(currentSection);
-    isRendering = false;
-}
-
-// ========== РЕНДЕРИНГ СЕКЦИИ ==========
-function renderSection(section) {
-    const container = document.getElementById('sectionContent');
-    if (!container) return;
-    
-    document.querySelectorAll('.section-btn').forEach(btn => {
-        const s = btn.getAttribute('data-section');
-        if (s === section) {
-            btn.style.background = '#3B6FE0';
-            btn.style.color = 'white';
-            btn.style.borderColor = '#2B5BC7';
-        } else {
-            btn.style.background = '#E8F0FE';
-            btn.style.color = '#333';
-            btn.style.borderColor = '#D0D0D0';
-        }
-    });
-    
-    if (!window.courseData) {
-        container.innerHTML = '<div style="text-align:center;padding:40px;color:#999;">⏳ Загрузка данных курса...</div>';
-        return;
-    }
-    
-    const level = currentLevel || 'A1';
-    
-    switch(section) {
-        case 'lessons':
-            renderLessonList(container);
-            break;
-        case 'cards':
-            if (typeof window.loadGlobalCards === 'function') {
-                window.loadGlobalCards(container, level);
-            } else {
-                container.innerHTML = '<div style="text-align:center;padding:40px;color:#999;">❌ Ошибка загрузки карточек</div>';
-            }
-            break;
-        case 'phrases':
-            if (typeof window.loadGlobalPhrases === 'function') {
-                window.loadGlobalPhrases(container, level);
-            } else {
-                container.innerHTML = '<div style="text-align:center;padding:40px;color:#999;">❌ Ошибка загрузки фраз</div>';
-            }
-            break;
-        default:
-            container.innerHTML = '<div style="text-align:center;padding:40px;color:#999;">❌ Секция не найдена</div>';
-    }
-}
-
-// ========== ОТОБРАЖЕНИЕ СПИСКА УРОКОВ ==========
-function renderLessonList(container) {
-    if (!courseData) {
-        container.innerHTML = '<div style="text-align:center;padding:40px;color:#999;">📚 Курс не загружен</div>';
-        return;
-    }
-
-    let html = `<h2>📚 ${courseData.title}</h2><div style="margin-top: 20px;">`;
-    courseData.lessons.forEach(lesson => {
-        html += `
-            <button class="lesson-btn" data-lesson-id="${lesson.id}" style="transition: all 0.08s ease; display: block; width: 100%; padding: 15px; margin: 8px 0; background: #E8F0FE; border: 2px solid #D0D0D0; border-radius: 8px; cursor: pointer; text-align: left; font-size: 16px;">
-                📘 Урок ${lesson.id}: ${lesson.title}
-            </button>
-        `;
-    });
-    html += `</div>`;
-    container.innerHTML = html;
-    
-    document.getElementById('modeIndicator').textContent = `Курс ${currentLevel}`;
-    updateCounter();
-    saveState();
-
-    container.querySelectorAll('.lesson-btn').forEach(btn => {
-        btn.onclick = function() {
-            const id = parseInt(this.getAttribute('data-lesson-id'));
-            loadLesson(id);
-        };
-    });
-}
-
 // ========== ЗАГРУЗКА УРОКА ==========
 async function loadLesson(lessonId) {
     console.log('📖 loadLesson вызван с lessonId:', lessonId);
     
+    // Защита от повторных загрузок
     if (isLoadingLesson) {
         console.log('⏳ Урок уже загружается, пропускаем');
         return;
     }
     
+    // Если урок уже загружен и это тот же урок — просто показываем его
     if (currentLesson && currentLesson.id === lessonId) {
         console.log('✅ Урок уже загружен:', lessonId);
         renderLesson(currentLesson);
         return;
     }
     
+    // Проверка доступа (убрана проверка authInitialized)
     if (typeof window.hasAccessToLevel === 'function') {
         if (!window.auth) {
             console.log('⏳ Ожидание инициализации auth...');
@@ -482,6 +295,7 @@ async function loadLesson(lessonId) {
             level: currentLevel
         };
         
+        // Загрузка грамматики
         try {
             const grammarFile = `docs/${currentLevel}/grammar/${String(lessonId).padStart(2, '0')}_grammar.json`;
             console.log('📂 Загрузка грамматики:', grammarFile);
@@ -506,6 +320,7 @@ async function loadLesson(lessonId) {
             lesson.practice = [];
         }
         
+        // Загрузка тренировок
         try {
             const lessonFile = `docs/${currentLevel}/lessons/lesson_${String(lessonId).padStart(2, '0')}.json`;
             console.log('📂 Загрузка тренировок:', lessonFile);
@@ -547,7 +362,7 @@ async function loadLesson(lessonId) {
                 <div style="font-size: 48px; margin-bottom: 15px;">❌</div>
                 <div>Ошибка загрузки урока.</div>
                 <div style="font-size: 14px; margin-top: 10px;">${e.message}</div>
-                <button class="back-btn" onclick="renderLevelWithMenu()" style="margin-top: 15px;">← Назад</button>
+                <button class="back-btn" onclick="renderLevel()" style="margin-top: 15px;">← Назад</button>
             </div>
         `;
     } finally {
@@ -648,6 +463,35 @@ function updateCounter() {
     el.textContent = count > 0 ? `${count} ${label}` : '';
 }
 
+// ========== ОТОБРАЖЕНИЕ УРОВНЕЙ ==========
+function renderLevel() {
+    if (!courseData) {
+        loadLevel(currentLevel);
+        return;
+    }
+
+    let html = `<h2>📚 ${courseData.title}</h2><div style="margin-top: 20px;">`;
+    courseData.lessons.forEach(lesson => {
+        html += `
+            <button class="lesson-btn" data-lesson-id="${lesson.id}" style="transition: all 0.08s ease;">
+                📘 Урок ${lesson.id}: ${lesson.title}
+            </button>
+        `;
+    });
+    html += `</div>`;
+    document.getElementById('content').innerHTML = html;
+    document.getElementById('modeIndicator').textContent = `Курс ${currentLevel}`;
+    updateCounter();
+    saveState();
+
+    document.querySelectorAll('.lesson-btn').forEach(btn => {
+        btn.onclick = function() {
+            const id = parseInt(this.getAttribute('data-lesson-id'));
+            loadLesson(id);
+        };
+    });
+}
+
 // ========== ОТОБРАЖЕНИЕ УРОКА ==========
 function renderLesson(lesson) {
     currentLesson = lesson;
@@ -681,7 +525,7 @@ function buildLessonHTML(lesson, hasListening) {
 
     let html = `
         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
-            <button class="back-btn" onclick="renderLevelWithMenu()" style="transition: all 0.08s ease;">← К СПИСКУ УРОКОВ</button>
+            <button class="back-btn" onclick="renderLevel()" style="transition: all 0.08s ease;">← К СПИСКУ УРОКОВ</button>
             <div id="modeHeaderControls"></div>
         </div>
         <h2>📖 Урок ${lesson.id}: ${lesson.title}</h2>
@@ -803,9 +647,6 @@ function restoreState() {
         if (savedState.mode) {
             currentMode = savedState.mode;
         }
-        if (savedState.section) {
-            currentSection = savedState.section;
-        }
         
         document.querySelectorAll('#levelsContainer .btn-level, #levelsContainerMobile .btn-level').forEach(btn => {
             if (btn.getAttribute('data-level') === savedState.level) {
@@ -822,7 +663,6 @@ function restoreState() {
             })
             .then(data => {
                 courseData = data;
-                window.courseData = data;
                 console.log('✅ Курс загружен:', courseData.title);
                 
                 if (savedState.lessonId !== null && savedState.lessonId !== undefined) {
@@ -833,10 +673,7 @@ function restoreState() {
                         return;
                     }
                 }
-                
-                renderLevelWithMenu();
-                // Загружаем глобальные данные
-                setTimeout(loadGlobalData, 500);
+                renderLevel();
             })
             .catch(() => {
                 showWelcomePage();
@@ -897,7 +734,6 @@ function initApp() {
             });
             currentLevel = level;
             isWelcomePageVisible = false;
-            currentSection = 'lessons';
             loadLevel(currentLevel);
         };
     });
@@ -945,11 +781,11 @@ function initApp() {
             });
             currentLevel = level;
             isWelcomePageVisible = false;
-            currentSection = 'lessons';
             loadLevel(currentLevel);
         };
     });
     
+    // ========== ОСНОВНАЯ ЛОГИКА ЗАГРУЗКИ ==========
     const savedState = loadState();
     const firstLaunch = isFirstLaunch();
     
@@ -997,14 +833,11 @@ window.currentLesson = currentLesson;
 window.courseData = courseData;
 window.isWelcomePageVisible = isWelcomePageVisible;
 window.appReady = appReady;
-window.currentSection = currentSection;
 window.showWelcomePage = showWelcomePage;
 window.showInstruction = showInstruction;
 window.loadLevel = loadLevel;
 window.loadLesson = loadLesson;
-window.renderLevelWithMenu = renderLevelWithMenu;
-window.renderSection = renderSection;
-window.renderLessonList = renderLessonList;
+window.renderLevel = renderLevel;
 window.renderLesson = renderLesson;
 window.renderMode = renderMode;
 window.updateCounter = updateCounter;
@@ -1014,7 +847,6 @@ window.saveState = saveState;
 window.clearAppState = clearAppState;
 window.restoreState = restoreState;
 window.onAuthReady = onAuthReady;
-window.loadGlobalData = loadGlobalData;
 
 console.log('✅ Функции экспортированы глобально');
 

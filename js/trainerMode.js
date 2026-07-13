@@ -15,6 +15,7 @@ let allVocabWords = [];
 let trainerStudiedSentences = {};
 let trainerCurrentLessonId = null;
 let trainerCurrentLessonData = null;
+let allTrainerTemplates = []; // Все фразы урока (не фильтрованные)
 
 function renderTrainer(container, lesson) {
     trainerCurrentLessonData = lesson;
@@ -23,7 +24,6 @@ function renderTrainer(container, lesson) {
     
     loadTrainerState(lessonId);
     
-    // Берем фразы из загруженного урока
     let templates = lesson.trainer || [];
     
     if (!templates || templates.length === 0) {
@@ -35,6 +35,9 @@ function renderTrainer(container, lesson) {
         `;
         return;
     }
+
+    // Сохраняем ВСЕ фразы урока
+    allTrainerTemplates = [...templates];
     
     // Берем все слова из vocabulary для подсказок
     allVocabWords = lesson.vocabulary || [];
@@ -50,6 +53,7 @@ function renderTrainer(container, lesson) {
         return;
     }
     
+    // Фильтруем НЕИЗУЧЕННЫЕ фразы для прохождения
     const availableTemplates = templates.filter(t => {
         const key = t.de + '|' + t.ru;
         return !trainerStudiedSentences[key];
@@ -57,6 +61,7 @@ function renderTrainer(container, lesson) {
     
     let finalTemplates = availableTemplates;
     if (finalTemplates.length === 0) {
+        // Все фразы изучены — используем все для повторения
         finalTemplates = [...templates];
         trainerStudiedSentences = {};
         localStorage.removeItem('dm_trainer_studied_' + lessonId);
@@ -75,10 +80,8 @@ function renderTrainer(container, lesson) {
 }
 
 function getStudiedSentencesList() {
-    const lesson = trainerCurrentLessonData || window.currentLesson;
-    if (!lesson) return [];
-    const templates = lesson.trainer || [];
-    return templates.filter(sentence => {
+    if (!allTrainerTemplates) return [];
+    return allTrainerTemplates.filter(sentence => {
         const key = sentence.de + '|' + sentence.ru;
         return trainerStudiedSentences[key] === true;
     });
@@ -171,6 +174,7 @@ function showTrainerContainer() {
                     delete trainerStudiedSentences[key];
                     saveTrainerState();
                     
+                    // Обновляем список НЕИЗУЧЕННЫХ фраз
                     const lesson = trainerCurrentLessonData || window.currentLesson;
                     if (lesson) {
                         const templates = lesson.trainer || [];
@@ -223,19 +227,12 @@ function showTrainerContainer() {
             returnAllBtn.addEventListener('click', function() {
                 if (!confirm('Вернуть все фразы из контейнера?')) return;
                 console.log('🔄 Возвращаем все фразы');
-                const lesson = trainerCurrentLessonData || window.currentLesson;
-                if (lesson) {
-                    const templates = lesson.trainer || [];
-                    templates.forEach(t => {
-                        const key = t.de + '|' + t.ru;
-                        delete trainerStudiedSentences[key];
-                    });
-                }
+                allTrainerTemplates.forEach(t => {
+                    const key = t.de + '|' + t.ru;
+                    delete trainerStudiedSentences[key];
+                });
                 saveTrainerState();
-                const lesson2 = trainerCurrentLessonData || window.currentLesson;
-                if (lesson2) {
-                    trainerSentences = [...lesson2.trainer];
-                }
+                trainerSentences = [...allTrainerTemplates];
                 trainerIndex = 0;
                 modal.remove();
                 const container = document.getElementById('modeContent');
@@ -288,6 +285,7 @@ function showTrainerSentence(container) {
         originalIndex: i
     }));
 
+    // ===== ВАЖНО: используем ВСЕ слова из vocabulary для выбора =====
     const allWords = [...allVocabWords];
     const shuffledAll = [...allWords];
     for (let i = shuffledAll.length - 1; i > 0; i--) {
@@ -301,7 +299,7 @@ function showTrainerSentence(container) {
             const key = w.de.toLowerCase().replace(/[.,!?;:]/g, '');
             return !correctSet.has(key) && key.length > 0;
         })
-        .slice(0, 12 - deWords.length)
+        .slice(0, 12 - deWords.length) // Всегда 12 вариантов (правильные + дистракторы)
         .map(w => ({
             display: isRuToDe ? w.de : w.ru,
             de: w.de,
@@ -310,7 +308,15 @@ function showTrainerSentence(container) {
             originalIndex: -1
         }));
 
-    const allWordsForChoice = [...correctWords, ...distractors];
+    // Собираем 12 вариантов: все правильные слова + дистракторы
+    let allWordsForChoice = [...correctWords];
+    // Добавляем дистракторы, но не больше 12 всего
+    const maxTotal = 12;
+    const neededDistractors = Math.max(0, maxTotal - correctWords.length);
+    const selectedDistractors = distractors.slice(0, neededDistractors);
+    allWordsForChoice = [...correctWords, ...selectedDistractors];
+    
+    // Перемешиваем
     for (let i = allWordsForChoice.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
         [allWordsForChoice[i], allWordsForChoice[j]] = [allWordsForChoice[j], allWordsForChoice[i]];
@@ -363,7 +369,6 @@ function showTrainerSentence(container) {
             <div style="display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; margin: 15px 0;">
                 <button class="ctrl-btn" id="trainerUndoBtn">↩️ ВЕРНУТЬ СЛОВО</button>
                 <button class="ctrl-btn" id="trainerResetBtn">🔄 СБРОСИТЬ ВСЁ</button>
-                <!-- КНОПКА ПРОВЕРИТЬ — СИНЯЯ -->
                 <button class="ctrl-btn" id="trainerCheckBtn" style="background: #3B6FE0 !important; color: white !important; border-color: #2B5BC7 !important;">✅ ПРОВЕРИТЬ</button>
                 <button class="ctrl-btn" id="trainerSpeakBtn">🔊 ОЗВУЧИТЬ</button>
             </div>
@@ -477,10 +482,15 @@ function showTrainerSentence(container) {
             trainerStudiedSentences[key] = true;
             saveTrainerState();
             
-            trainerSentences = trainerSentences.filter(t => {
-                const k = t.de + '|' + t.ru;
-                return k !== key;
-            });
+            // Обновляем список НЕИЗУЧЕННЫХ фраз
+            const lesson = trainerCurrentLessonData || window.currentLesson;
+            if (lesson) {
+                const templates = lesson.trainer || [];
+                trainerSentences = templates.filter(t => {
+                    const k = t.de + '|' + t.ru;
+                    return !trainerStudiedSentences[k];
+                });
+            }
             
             if (trainerSentences.length === 0) {
                 document.getElementById('trainerResult').textContent = '🎉 Все фразы изучены!';

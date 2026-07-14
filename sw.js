@@ -1,31 +1,41 @@
-// sw.js — Service Worker для PWA
+// sw.js — Service Worker для PWA с автоматическим версионированием
 
-const CACHE_NAME = 'deutsch-meister-v2';
-const STATIC_CACHE = 'static-v2';
+// Версия приложения (меняется автоматически при сборке)
+// ВНИМАНИЕ: При каждом обновлении меняйте номер версии!
+const APP_VERSION = '2.0.0';
+const CACHE_NAME = `deutsch-meister-${APP_VERSION}`;
+const STATIC_CACHE = `static-${APP_VERSION}`;
 
 // Файлы, которые кешируем при установке
 const STATIC_ASSETS = [
   '/Deutsch-Meister/',
   '/Deutsch-Meister/index.html',
+  '/Deutsch-Meister/admin.html',
+  '/Deutsch-Meister/manifest.json',
+  '/Deutsch-Meister/sw.js',
   '/Deutsch-Meister/css/style.css',
   '/Deutsch-Meister/js/config.js',
   '/Deutsch-Meister/js/utils.js',
   '/Deutsch-Meister/js/logger.js',
   '/Deutsch-Meister/js/containerManager.js',
-  '/Deutsch-Meister/js/carousel.js',
-  '/Deutsch-Meister/js/wordsManager.js',
-  '/Deutsch-Meister/js/sentencesManager.js',
-  '/Deutsch-Meister/js/cardsMode.js',
-  '/Deutsch-Meister/js/quizMode.js',
-  '/Deutsch-Meister/js/sentencesMode.js',
   '/Deutsch-Meister/js/grammarMode.js',
   '/Deutsch-Meister/js/app.js',
   '/Deutsch-Meister/js/auth.js',
   '/Deutsch-Meister/js/userService.js',
   '/Deutsch-Meister/js/activityTracker.js',
-  '/Deutsch-Meister/js/adminUI.js',
-  '/Deutsch-Meister/admin.html',
-  '/Deutsch-Meister/manifest.json',
+  '/Deutsch-Meister/js/adminModal.js',
+  '/Deutsch-Meister/js/dictationMode.js',
+  '/Deutsch-Meister/js/donateModal.js',
+  '/Deutsch-Meister/js/instruction.js',
+  '/Deutsch-Meister/js/listeningMode.js',
+  '/Deutsch-Meister/js/practiceMode.js',
+  '/Deutsch-Meister/js/quizMode.js',
+  '/Deutsch-Meister/js/shareModal.js',
+  '/Deutsch-Meister/js/speak.js',
+  '/Deutsch-Meister/js/trainerMode.js',
+  '/Deutsch-Meister/js/vocabularyMode.js',
+  '/Deutsch-Meister/js/voiceSelector.js',
+  '/Deutsch-Meister/js/welcome.js',
   '/Deutsch-Meister/icons/icon.svg',
   '/Deutsch-Meister/icons/icon-192x192.png',
   '/Deutsch-Meister/icons/icon-512x512.png'
@@ -33,27 +43,27 @@ const STATIC_ASSETS = [
 
 // ========== УСТАНОВКА ==========
 self.addEventListener('install', function(event) {
-  console.log('[SW] Установка...');
+  console.log(`[SW v${APP_VERSION}] Установка...`);
   
   event.waitUntil(
     caches.open(STATIC_CACHE)
       .then(function(cache) {
-        console.log('[SW] Кешируем статические файлы');
+        console.log(`[SW v${APP_VERSION}] Кешируем статические файлы`);
         return cache.addAll(STATIC_ASSETS);
       })
       .then(function() {
-        console.log('[SW] Кеширование завершено');
+        console.log(`[SW v${APP_VERSION}] Кеширование завершено`);
         return self.skipWaiting();
       })
       .catch(function(err) {
-        console.error('[SW] Ошибка кеширования:', err);
+        console.error(`[SW v${APP_VERSION}] Ошибка кеширования:`, err);
       })
   );
 });
 
 // ========== АКТИВАЦИЯ ==========
 self.addEventListener('activate', function(event) {
-  console.log('[SW] Активация...');
+  console.log(`[SW v${APP_VERSION}] Активация...`);
   
   event.waitUntil(
     caches.keys()
@@ -61,16 +71,17 @@ self.addEventListener('activate', function(event) {
         return Promise.all(
           cacheNames
             .filter(function(name) {
-              return name !== STATIC_CACHE;
+              // Удаляем все старые кеши, которые не соответствуют текущей версии
+              return name !== STATIC_CACHE && name !== CACHE_NAME;
             })
             .map(function(name) {
-              console.log('[SW] Удаляем старый кеш:', name);
+              console.log(`[SW v${APP_VERSION}] Удаляем старый кеш:`, name);
               return caches.delete(name);
             })
         );
       })
       .then(function() {
-        console.log('[SW] Service Worker активирован');
+        console.log(`[SW v${APP_VERSION}] Service Worker активирован`);
         return self.clients.claim();
       })
   );
@@ -111,7 +122,37 @@ self.addEventListener('fetch', function(event) {
     return;
   }
   
-  // Стратегия: сначала кеш, потом сеть
+  // ===== НЕ КЕШИРУЕМ SERVICE WORKER (всегда свежий) =====
+  if (url.pathname.includes('/sw.js')) {
+    event.respondWith(fetch(request));
+    return;
+  }
+  
+  // Стратегия: сначала сеть, потом кеш (для HTML)
+  // Это гарантирует, что пользователь всегда видит свежую версию
+  if (request.headers.get('accept') && request.headers.get('accept').includes('text/html')) {
+    event.respondWith(
+      fetch(request)
+        .then(function(networkResponse) {
+          // Кешируем свежий HTML
+          if (networkResponse && networkResponse.status === 200) {
+            var responseClone = networkResponse.clone();
+            caches.open(STATIC_CACHE)
+              .then(function(cache) {
+                cache.put(request, responseClone);
+              });
+          }
+          return networkResponse;
+        })
+        .catch(function() {
+          // Если сеть недоступна — показываем кеш
+          return caches.match(request);
+        })
+    );
+    return;
+  }
+  
+  // Для всех остальных файлов: сначала кеш, потом сеть
   event.respondWith(
     caches.match(request)
       .then(function(cachedResponse) {

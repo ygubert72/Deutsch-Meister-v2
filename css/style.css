@@ -127,6 +127,60 @@ body { font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-
 .close-menu-btn { background: none; border: none; font-size: 28px; cursor: pointer; color: #666; padding: 0 10px; }
 
 /* ============================================================ */
+/* ========== КНОПКА "ВСЕ СЛОВА УРОВНЯ" ========== */
+/* ============================================================ */
+
+.all-words-btn {
+    border-color: #4CAF50 !important;
+    background: #E8F5E9 !important;
+    margin-top: 20px !important;
+    font-weight: bold !important;
+    border-width: 3px !important;
+    transition: all 0.08s ease !important;
+}
+
+.all-words-btn:hover {
+    background: #C8E6C9 !important;
+    transform: scale(1.01);
+}
+
+.all-words-btn:active {
+    transform: scale(0.97);
+}
+
+/* ============================================================ */
+/* ========== ПРОГРЕСС-БАР В РЕЖИМЕ "ВСЕ СЛОВА" ========== */
+/* ============================================================ */
+
+.progress-container {
+    background: #E8F5E9;
+    border-radius: 12px;
+    padding: 10px 15px;
+    margin-bottom: 15px;
+    border: 2px solid #4CAF50;
+}
+
+.progress-text {
+    font-weight: bold;
+    color: #2E7D32;
+}
+
+.progress-bar-bg {
+    background: #E0E0E0;
+    border-radius: 10px;
+    height: 8px;
+    margin-top: 6px;
+    overflow: hidden;
+}
+
+.progress-bar-inner {
+    background: #4CAF50;
+    height: 100%;
+    border-radius: 10px;
+    transition: width 0.3s ease;
+}
+
+/* ============================================================ */
 /* ========== ПЛАНШЕТЫ (769-1024px) ========== */
 /* ============================================================ */
 @media (max-width: 1024px) and (min-width: 769px) {

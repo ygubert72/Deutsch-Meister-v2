@@ -14,7 +14,6 @@ let allQuizWords = []; // Все слова урока (не фильтрова�
 // ===== НОВЫЕ ПЕРЕМЕННЫЕ ДЛЯ РЕЖИМА "ВСЕ СЛОВА УРОВНЯ" =====
 let isAllWordsMode = false; // false = урок, true = все слова уровня
 let allLevelWords = []; // Все слова уровня (собранные из всех уроков)
-let currentLevel = 'A1';
 
 // ===== НОВЫЙ КЛЮЧ ДЛЯ КОНТЕЙНЕРА УРОВНЯ =====
 function getLevelContainerKey(level) {

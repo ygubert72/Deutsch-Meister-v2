@@ -66,7 +66,7 @@ function renderDictation(container, lesson) {
                         ПРОВЕРИТЬ
                     </button>
                     
-                    <!-- КНОПКА СБРОСИТЬ — ТЕПЕРЬ ВСЕГДА АКТИВНА -->
+                    <!-- КНОПКА СБРОСИТЬ — ТЕПЕРЬ ВСЕГДА АКТИВНА И ЯРКАЯ -->
                     <button class="reset-answer-btn" data-dict-index="${index}" 
                             style="padding: 8px 20px; background: #E8F0FE; color: #333; border: 2px solid #D0D0D0; border-radius: 8px; cursor: pointer; font-weight: bold; white-space: nowrap; transition: all 0.08s ease;">
                         СБРОСИТЬ

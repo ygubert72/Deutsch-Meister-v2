@@ -30,7 +30,8 @@ function renderDictation(container, lesson) {
                     📊 Прогресс: ${completedCount} из ${total} предложений выполнено
                     ${allCompleted ? ' 🎉 Все выполнено!' : ''}
                 </div>
-            
+            </div>
+        </div>
         <p>Напишите перевод на немецком языке:</p>
     `;
     
@@ -65,10 +66,9 @@ function renderDictation(container, lesson) {
                         ПРОВЕРИТЬ
                     </button>
                     
-                    <!-- КНОПКА СБРОСИТЬ — КАК ПОДСКАЗКА (голубовато-серая) -->
+                    <!-- КНОПКА СБРОСИТЬ — ТЕПЕРЬ ВСЕГДА АКТИВНА -->
                     <button class="reset-answer-btn" data-dict-index="${index}" 
-                            ${isCompleted ? 'disabled style="opacity: 0.5; cursor: not-allowed;"' : ''}
-                            style="padding: 8px 20px; background: ${isCompleted ? '#E0E0E0' : '#E8F0FE'}; color: ${isCompleted ? '#999' : '#333'}; border: ${isCompleted ? 'none' : '2px solid #D0D0D0'}; border-radius: 8px; cursor: ${isCompleted ? 'not-allowed' : 'pointer'}; font-weight: bold; white-space: nowrap; transition: all 0.08s ease;">
+                            style="padding: 8px 20px; background: #E8F0FE; color: #333; border: 2px solid #D0D0D0; border-radius: 8px; cursor: pointer; font-weight: bold; white-space: nowrap; transition: all 0.08s ease;">
                         СБРОСИТЬ
                     </button>
                     
@@ -131,13 +131,6 @@ function renderDictation(container, lesson) {
                     hintBtn.style.cursor = 'not-allowed';
                 }
                 
-                const resetBtn = container.querySelector(`.reset-answer-btn[data-dict-index="${index}"]`);
-                if (resetBtn) {
-                    resetBtn.disabled = true;
-                    resetBtn.style.opacity = '0.5';
-                    resetBtn.style.cursor = 'not-allowed';
-                }
-                
                 const hintDisplay = container.querySelector(`.hint-display[data-dict-index="${index}"]`);
                 if (hintDisplay) {
                     hintDisplay.textContent = '✅ Выполнено!';
@@ -157,32 +150,70 @@ function renderDictation(container, lesson) {
         });
     });
 
-    // ===== КНОПКИ СБРОСИТЬ (КАК ПОДСКАЗКА) =====
+    // ===== НОВАЯ ЛОГИКА ДЛЯ КНОПКИ СБРОСИТЬ =====
     container.querySelectorAll('.reset-answer-btn[data-dict-index]').forEach(btn => {
         btn.addEventListener('click', function() {
             const index = parseInt(this.getAttribute('data-dict-index'));
             const input = container.querySelector(`.practice-input[data-dict-index="${index}"]`);
             const result = container.querySelector(`.practice-result[data-dict-index="${index}"]`);
             const hintDisplay = container.querySelector(`.hint-display[data-dict-index="${index}"]`);
+            const hintBtn = container.querySelector(`.hint-btn[data-dict-index="${index}"]`);
+            const checkBtn = container.querySelector(`.check-btn[data-dict-index="${index}"]`);
+            const dictationItem = document.getElementById(`dictation-item-${index}`);
             
             if (!input) return;
-            if (input.disabled) return;
             
+            // 1. Сбрасываем статус выполнения в памяти
+            dictationCompleted[index] = false;
+            saveDictationProgress(dictationCurrentLessonId);
+            
+            // 2. Очищаем поле ввода
             input.value = '';
+            input.disabled = false;
             input.style.borderColor = '#D0D0D0';
             input.style.backgroundColor = '';
             
+            // 3. Убираем класс "выполнено" у блока
+            if (dictationItem) {
+                dictationItem.style.opacity = '1';
+                dictationItem.style.background = '';
+                dictationItem.style.padding = '';
+            }
+            
+            // 4. Очищаем результат
             if (result) {
                 result.innerHTML = '';
                 result.className = 'practice-result';
             }
             
+            // 5. Восстанавливаем подсказку
             if (hintDisplay) {
                 hintDisplay.textContent = '💡 Нажмите "Подсказка", чтобы добавить следующее слово';
                 hintDisplay.style.color = '#666';
             }
             
+            // 6. Восстанавливаем кнопку "Проверить"
+            if (checkBtn) {
+                checkBtn.disabled = false;
+                checkBtn.style.opacity = '1';
+                checkBtn.style.cursor = 'pointer';
+                checkBtn.style.background = '#3B6FE0';
+            }
+            
+            // 7. Восстанавливаем кнопку "Подсказка"
+            if (hintBtn) {
+                hintBtn.disabled = false;
+                hintBtn.style.opacity = '1';
+                hintBtn.style.cursor = 'pointer';
+                hintBtn.style.background = '#E8F0FE';
+                hintBtn.style.border = '2px solid #D0D0D0';
+                hintBtn.style.color = '#333';
+            }
+            
+            // 8. Фокус на поле ввода
             input.focus();
+            
+            // 9. Сбрасываем счётчик подсказок
             hintStates[index] = 0;
         });
     });

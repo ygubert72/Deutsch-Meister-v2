@@ -3,7 +3,7 @@
 // ============================================================
 
 // Глобальные настройки
-const AppConfig = {
+const AppConfig = {.
     currentLevel: 'A1',
     show_language: 'de',
     quiz_direction: 'de_to_ru',

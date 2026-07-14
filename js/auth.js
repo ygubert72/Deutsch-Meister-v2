@@ -528,7 +528,6 @@ window.showLoginModal = function() {
             if (isLogin) {
                 const result = await login(email, password);
                 if (result.success) {
-                    alert('Добро пожаловать, ' + email + '!');
                     modal.remove();
                     location.reload();
                 } else {

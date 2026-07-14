@@ -2,7 +2,7 @@
 // app.js — ГЛАВНЫЙ ФАЙЛ (навигация, загрузка, сохранение состояния)
 // ====================================================================
 
-// ========== СОСТОЯНИЕ ==========
+// ========== СОСТОЯНИЕ (объявлено ОДИН раз) ==========
 let currentLevel = 'A1';
 let currentLesson = null;
 let courseData = null;
@@ -15,6 +15,7 @@ let isLoadingLesson = false;
 // ========== КЛЮЧИ ДЛЯ ХРАНЕНИЯ ==========
 const FIRST_LAUNCH_KEY = 'dm_first_launch';
 const APP_STATE_KEY = 'dm_app_state';
+const CACHE_KEY = 'dm_lesson_cache';
 
 // ========== СОХРАНЕНИЕ СОСТОЯНИЯ ==========
 function saveState() {
@@ -22,7 +23,7 @@ function saveState() {
         const state = {
             level: currentLevel,
             lessonId: currentLesson?.id || null,
-            mode: currentMode || 'grammar',
+            mode: typeof currentMode !== 'undefined' ? currentMode : 'grammar',
             timestamp: Date.now()
         };
         localStorage.setItem(APP_STATE_KEY, JSON.stringify(state));
@@ -42,7 +43,6 @@ function loadState() {
     return null;
 }
 
-// ========== ПРОВЕРКА ПЕРВОГО ЗАПУСКА ==========
 function isFirstLaunch() {
     const firstLaunch = localStorage.getItem(FIRST_LAUNCH_KEY);
     if (firstLaunch === null) {
@@ -57,8 +57,6 @@ function clearAppState() {
 }
 
 // ========== КЕШИРОВАНИЕ УРОКОВ ==========
-const CACHE_KEY = 'dm_lesson_cache';
-
 function cacheLesson(level, lessonId, lessonData) {
     try {
         const cache = JSON.parse(localStorage.getItem(CACHE_KEY) || '{}');
@@ -418,7 +416,7 @@ function updateCounter() {
         return;
     }
     
-    const activeMode = currentMode || 'grammar';
+    const activeMode = typeof currentMode !== 'undefined' ? currentMode : 'grammar';
     
     if (activeMode === 'grammar') {
         el.textContent = '';
@@ -484,14 +482,13 @@ function updateCounter() {
     el.textContent = count > 0 ? `${count} ${label}` : '';
 }
 
-// ========== ОТОБРАЖЕНИЕ УРОВНЕЙ (С КНОПКОЙ "ВСЕ СЛОВА") ==========
+// ========== ОТОБРАЖЕНИЕ УРОВНЕЙ ==========
 function renderLevel() {
     if (!courseData) {
         loadLevel(currentLevel);
         return;
     }
 
-    // Считаем общее количество слов в уровне
     let totalWords = 0;
     const countWordsInLevel = async function() {
         let count = 0;
@@ -506,9 +503,7 @@ function renderLevel() {
                         count += data.quiz.length;
                     }
                 }
-            } catch(e) {
-                // игнорируем ошибки
-            }
+            } catch(e) {}
         }
         return count;
     };
@@ -622,7 +617,9 @@ function buildLessonHTML(lesson, hasListening) {
             document.querySelectorAll('.mode-btn').forEach(b => b.classList.remove('active'));
             this.classList.add('active');
             const mode = this.getAttribute('data-mode');
-            currentMode = mode;
+            if (typeof currentMode !== 'undefined') {
+                window.currentMode = mode;
+            }
             saveState();
             renderMode(mode, lesson);
             setTimeout(updateCounter, 50);
@@ -636,7 +633,9 @@ function buildLessonHTML(lesson, hasListening) {
             if (modeBtn) {
                 document.querySelectorAll('.mode-btn').forEach(b => b.classList.remove('active'));
                 modeBtn.classList.add('active');
-                currentMode = savedState.mode;
+                if (typeof currentMode !== 'undefined') {
+                    window.currentMode = savedState.mode;
+                }
                 renderMode(savedState.mode, lesson);
                 setTimeout(updateCounter, 50);
                 return;
@@ -718,8 +717,8 @@ function restoreState() {
     if (savedState && savedState.level) {
         currentLevel = savedState.level;
         isWelcomePageVisible = false;
-        if (savedState.mode) {
-            currentMode = savedState.mode;
+        if (savedState.mode && typeof currentMode !== 'undefined') {
+            window.currentMode = savedState.mode;
         }
         
         document.querySelectorAll('#levelsContainer .btn-level, #levelsContainerMobile .btn-level').forEach(btn => {

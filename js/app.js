@@ -916,3 +916,5 @@ window.clearLevelCache = clearLevelCache;
 document.addEventListener('DOMContentLoaded', function() {
     initApp();
 });
+
+console.log('🚀 app.js загружен');

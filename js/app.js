@@ -10,7 +10,7 @@ let isRestoring = false;
 let isWelcomePageVisible = true;
 let appReady = false;
 let pendingState = null;
-let isLoadingLesson = false; // Флаг для предотвращения повторных загрузок
+let isLoadingLesson = false;
 
 // ========== КЛЮЧИ ДЛЯ ХРАНЕНИЯ ==========
 const FIRST_LAUNCH_KEY = 'dm_first_launch';
@@ -26,10 +26,8 @@ function saveState() {
             timestamp: Date.now()
         };
         localStorage.setItem(APP_STATE_KEY, JSON.stringify(state));
-        console.log('💾 Состояние сохранено:', state);
         return state;
     } catch(e) {
-        console.log('Ошибка сохранения состояния:', e);
         return null;
     }
 }
@@ -38,13 +36,9 @@ function loadState() {
     try {
         const saved = localStorage.getItem(APP_STATE_KEY);
         if (saved) {
-            const state = JSON.parse(saved);
-            console.log('📂 Состояние загружено из localStorage:', state);
-            return state;
+            return JSON.parse(saved);
         }
-    } catch(e) {
-        console.log('Ошибка загрузки состояния:', e);
-    }
+    } catch(e) {}
     return null;
 }
 
@@ -58,16 +52,13 @@ function isFirstLaunch() {
     return false;
 }
 
-// ========== ОЧИСТКА СОСТОЯНИЯ (ПРИ ВЫХОДЕ) ==========
 function clearAppState() {
     localStorage.removeItem(APP_STATE_KEY);
-    console.log('🗑️ Состояние очищено');
 }
 
 // ========== КЕШИРОВАНИЕ УРОКОВ ==========
 const CACHE_KEY = 'dm_lesson_cache';
 
-// Сохраняет урок в кеш
 function cacheLesson(level, lessonId, lessonData) {
     try {
         const cache = JSON.parse(localStorage.getItem(CACHE_KEY) || '{}');
@@ -78,49 +69,33 @@ function cacheLesson(level, lessonId, lessonData) {
             version: '1.0'
         };
         localStorage.setItem(CACHE_KEY, JSON.stringify(cache));
-        console.log('💾 Урок сохранён в кеш:', level, lessonId);
-    } catch(e) {
-        console.warn('⚠️ Ошибка сохранения кеша:', e);
-    }
+    } catch(e) {}
 }
 
-// Загружает урок из кеша
 function getCachedLesson(level, lessonId) {
     try {
         const cache = JSON.parse(localStorage.getItem(CACHE_KEY) || '{}');
         if (cache[level] && cache[level][lessonId]) {
             const cached = cache[level][lessonId];
-            // Проверяем, что кеш не старше 7 дней (можно настроить)
             const isExpired = (Date.now() - cached.timestamp) > 7 * 24 * 60 * 60 * 1000;
             if (!isExpired) {
-                console.log('📂 Урок загружен из кеша:', level, lessonId);
                 return cached.data;
-            } else {
-                console.log('⏳ Кеш устарел, будет загружена свежая версия');
             }
         }
-    } catch(e) {
-        console.warn('⚠️ Ошибка чтения кеша:', e);
-    }
+    } catch(e) {}
     return null;
 }
 
-// Очищает кеш всех уроков
 function clearLessonCache() {
     localStorage.removeItem(CACHE_KEY);
-    console.log('🗑️ Кеш уроков очищен');
 }
 
-// Очищает кеш для конкретного уровня
 function clearLevelCache(level) {
     try {
         const cache = JSON.parse(localStorage.getItem(CACHE_KEY) || '{}');
         delete cache[level];
         localStorage.setItem(CACHE_KEY, JSON.stringify(cache));
-        console.log('🗑️ Кеш уровня', level, 'очищен');
-    } catch(e) {
-        console.warn('⚠️ Ошибка очистки кеша уровня:', e);
-    }
+    } catch(e) {}
 }
 
 // ========== ПОКАЗАТЬ ПРИВЕТСТВЕННУЮ СТРАНИЦУ ==========
@@ -243,10 +218,8 @@ window.goBackFromInstruction = function() {
 
 // ========== ЗАГРУЗКА УРОВНЯ ==========
 async function loadLevel(level) {
-    // Проверяем доступ к уровню
     if (typeof window.hasAccessToLevel === 'function') {
         if (!window.auth) {
-            console.log('⏳ Ожидание инициализации auth...');
             pendingState = { type: 'level', level: level };
             return;
         }
@@ -290,16 +263,14 @@ async function loadLevel(level) {
     currentLevel = level;
     isWelcomePageVisible = false;
     appReady = true;
-    console.log('📚 Загрузка уровня:', level);
+    
     try {
         const response = await fetch(`docs/${level}/index.json`);
         if (!response.ok) throw new Error('Курс не найден');
         courseData = await response.json();
-        console.log('✅ Курс загружен:', courseData.title);
         renderLevel();
         saveState();
     } catch(e) {
-        console.error('Ошибка загрузки курса:', e);
         document.getElementById('content').innerHTML = `
             <div style="text-align: center; padding: 40px; color: #999;">
                 <div style="font-size: 48px; margin-bottom: 15px;">📚</div>
@@ -312,66 +283,49 @@ async function loadLevel(level) {
 
 // ========== ЗАГРУЗКА УРОКА ==========
 async function loadLesson(lessonId) {
-    console.log('📖 loadLesson вызван с lessonId:', lessonId);
-    
-    // Защита от повторных загрузок
     if (isLoadingLesson) {
-        console.log('⏳ Урок уже загружается, пропускаем');
         return;
     }
     
-    // Если урок уже загружен и это тот же урок — просто показываем его
     if (currentLesson && currentLesson.id === lessonId) {
-        console.log('✅ Урок уже загружен:', lessonId);
         renderLesson(currentLesson);
         return;
     }
     
-    // Проверка доступа (убрана проверка authInitialized)
     if (typeof window.hasAccessToLevel === 'function') {
         if (!window.auth) {
-            console.log('⏳ Ожидание инициализации auth...');
             pendingState = { type: 'lesson', lessonId: lessonId };
             return;
         }
         if (!window.hasAccessToLevel(currentLevel)) {
-            console.warn('⚠️ Нет доступа к уровню');
             showWelcomePage();
             return;
         }
     }
     
     isLoadingLesson = true;
-    console.log('📖 Загрузка урока:', lessonId);
     
     try {
         const lessonInfo = courseData.lessons.find(l => l.id === lessonId);
         if (!lessonInfo) throw new Error('Урок не найден');
         
-        // ===== ПРОВЕРЯЕМ КЕШ =====
         const cachedLesson = getCachedLesson(currentLevel, lessonId);
         let lesson = null;
         
         if (cachedLesson) {
-            // Если есть кеш — используем его
-            console.log('📂 Используем кешированную версию урока');
             lesson = cachedLesson;
             lesson.id = lessonId;
             lesson.title = lessonInfo.title;
             lesson.level = currentLevel;
         } else {
-            // Если кеша нет — загружаем с сервера
-            console.log('🌐 Загружаем урок с сервера');
             lesson = {
                 id: lessonId,
                 title: lessonInfo.title,
                 level: currentLevel
             };
             
-            // Загрузка грамматики
             try {
                 const grammarFile = `docs/${currentLevel}/grammar/${String(lessonId).padStart(2, '0')}_grammar.json`;
-                console.log('📂 Загрузка грамматики:', grammarFile);
                 const grammarResponse = await fetch(grammarFile);
                 if (grammarResponse.ok) {
                     const grammarData = await grammarResponse.json();
@@ -379,45 +333,36 @@ async function loadLesson(lessonId) {
                     lesson.examples = grammarData.examples || [];
                     lesson.vocabulary = grammarData.vocabulary || [];
                     lesson.practice = grammarData.practice || [];
-                    console.log('✅ Грамматика + лексика + упражнения загружены');
                 } else {
-                    console.log('ℹ️ Файл грамматики не найден:', grammarFile);
                     lesson.grammar = '<div style="text-align:center;padding:40px;color:#999;">📭 Грамматика не загружена</div>';
                     lesson.vocabulary = [];
                     lesson.practice = [];
                 }
             } catch(e) {
-                console.log('ℹ️ Ошибка загрузки грамматики:', e.message);
                 lesson.grammar = '<div style="text-align:center;padding:40px;color:#999;">📭 Грамматика не загружена</div>';
                 lesson.vocabulary = [];
                 lesson.practice = [];
             }
             
-            // Загрузка тренировок
             try {
                 const lessonFile = `docs/${currentLevel}/lessons/lesson_${String(lessonId).padStart(2, '0')}.json`;
-                console.log('📂 Загрузка тренировок:', lessonFile);
                 const lessonResponse = await fetch(lessonFile);
                 if (lessonResponse.ok) {
                     const lessonData = await lessonResponse.json();
                     lesson.quiz = lessonData.quiz || [];
                     lesson.trainer = lessonData.trainer || [];
                     lesson.dictation = lessonData.dictation || [];
-                    console.log('✅ Тест, тренажёр, диктант загружены');
                 } else {
-                    console.log('ℹ️ Файл тренировок не найден:', lessonFile);
                     lesson.quiz = [];
                     lesson.trainer = [];
                     lesson.dictation = [];
                 }
             } catch(e) {
-                console.log('ℹ️ Ошибка загрузки тренировок:', e.message);
                 lesson.quiz = [];
                 lesson.trainer = [];
                 lesson.dictation = [];
             }
             
-            // ===== СОХРАНЯЕМ В КЕШ =====
             if (lesson.grammar || lesson.vocabulary.length > 0 || lesson.quiz.length > 0) {
                 cacheLesson(currentLevel, lessonId, lesson);
             }
@@ -427,7 +372,6 @@ async function loadLesson(lessonId) {
             throw new Error('Не удалось загрузить данные урока');
         }
         
-        console.log('✅ Урок загружен полностью:', lesson.title);
         currentLesson = lesson;
         isWelcomePageVisible = false;
         appReady = true;
@@ -435,7 +379,6 @@ async function loadLesson(lessonId) {
         saveState();
         
     } catch(e) {
-        console.error('❌ Ошибка загрузки урока:', e);
         document.getElementById('content').innerHTML = `
             <div style="text-align: center; padding: 40px; color: #999;">
                 <div style="font-size: 48px; margin-bottom: 15px;">❌</div>
@@ -451,7 +394,6 @@ async function loadLesson(lessonId) {
 
 // ========== ОБРАБОТЧИК ГОТОВНОСТИ AUTH ==========
 function onAuthReady() {
-    console.log('🔐 Auth готов, проверяем отложенные запросы');
     if (pendingState) {
         const state = pendingState;
         pendingState = null;
@@ -542,12 +484,34 @@ function updateCounter() {
     el.textContent = count > 0 ? `${count} ${label}` : '';
 }
 
-// ========== ОТОБРАЖЕНИЕ УРОВНЕЙ ==========
+// ========== ОТОБРАЖЕНИЕ УРОВНЕЙ (С КНОПКОЙ "ВСЕ СЛОВА") ==========
 function renderLevel() {
     if (!courseData) {
         loadLevel(currentLevel);
         return;
     }
+
+    // Считаем общее количество слов в уровне
+    let totalWords = 0;
+    const countWordsInLevel = async function() {
+        let count = 0;
+        for (const lesson of courseData.lessons) {
+            const lessonId = lesson.id;
+            const lessonFile = `docs/${currentLevel}/lessons/lesson_${String(lessonId).padStart(2, '0')}.json`;
+            try {
+                const response = await fetch(lessonFile);
+                if (response.ok) {
+                    const data = await response.json();
+                    if (data.quiz && Array.isArray(data.quiz)) {
+                        count += data.quiz.length;
+                    }
+                }
+            } catch(e) {
+                // игнорируем ошибки
+            }
+        }
+        return count;
+    };
 
     let html = `<h2>📚 ${courseData.title}</h2><div style="margin-top: 20px;">`;
     courseData.lessons.forEach(lesson => {
@@ -557,18 +521,50 @@ function renderLevel() {
             </button>
         `;
     });
+    
+    html += `
+        <button id="allWordsLevelBtn" class="lesson-btn all-words-btn" style="
+            border-color: #4CAF50; 
+            background: #E8F5E9;
+            margin-top: 20px;
+            font-weight: bold;
+            transition: all 0.08s ease;
+            border: 3px solid #4CAF50;
+        ">
+            🔄 ВСЕ СЛОВА УРОВНЯ <span id="wordCountPlaceholder">(загрузка...)</span>
+        </button>
+    `;
     html += `</div>`;
     document.getElementById('content').innerHTML = html;
     document.getElementById('modeIndicator').textContent = `Курс ${currentLevel}`;
     updateCounter();
     saveState();
 
-    document.querySelectorAll('.lesson-btn').forEach(btn => {
+    document.querySelectorAll('.lesson-btn[data-lesson-id]').forEach(btn => {
         btn.onclick = function() {
             const id = parseInt(this.getAttribute('data-lesson-id'));
             loadLesson(id);
         };
     });
+
+    const allWordsBtn = document.getElementById('allWordsLevelBtn');
+    if (allWordsBtn) {
+        countWordsInLevel().then(count => {
+            totalWords = count;
+            const placeholder = document.getElementById('wordCountPlaceholder');
+            if (placeholder) {
+                placeholder.textContent = `(${totalWords} слов)`;
+            }
+        });
+
+        allWordsBtn.onclick = function() {
+            if (typeof window.loadAllWordsMode === 'function') {
+                window.loadAllWordsMode(currentLevel);
+            } else {
+                alert('⚠️ Режим "Все слова" временно недоступен. Пожалуйста, обновите страницу.');
+            }
+        };
+    }
 }
 
 // ========== ОТОБРАЖЕНИЕ УРОКА ==========
@@ -577,10 +573,8 @@ function renderLesson(lesson) {
     isWelcomePageVisible = false;
     saveState();
 
-    // Сразу показываем урок без проверки аудирования
     buildLessonHTML(lesson, false);
     
-    // Проверяем наличие аудирования тихо (без ошибок в консоли)
     const lessonId = lesson.id || 1;
     const level = lesson.level || 'A1';
     const hoerenPath = `docs/${level}/hoeren/${String(lessonId).padStart(2, '0')}_hoeren.json`;
@@ -588,21 +582,17 @@ function renderLesson(lesson) {
     fetch(hoerenPath, { method: 'HEAD' })
         .then(response => {
             if (response.ok) {
-                // Если файл есть — добавляем кнопку "Аудирование"
                 const listeningBtn = document.querySelector('.mode-btn[data-mode="listening"]');
                 if (listeningBtn) {
                     listeningBtn.style.display = 'inline-block';
                 } else {
-                    // Перестраиваем HTML с кнопкой
                     buildLessonHTML(lesson, true);
                 }
             }
-            // Если файла нет — ничего не делаем (ошибка 404 не выводится)
         })
-        .catch(() => {
-            // Ошибка игнорируется (файл просто отсутствует)
-        });
+        .catch(() => {});
 }
+
 function buildLessonHTML(lesson, hasListening) {
     const listeningButtonHtml = hasListening 
         ? `<button class="mode-btn" data-mode="listening">🎧 Аудирование</button>` 
@@ -726,7 +716,6 @@ window.updateWelcomePage = function() {
 function restoreState() {
     const savedState = loadState();
     if (savedState && savedState.level) {
-        console.log('🔄 Восстановление состояния:', savedState);
         currentLevel = savedState.level;
         isWelcomePageVisible = false;
         if (savedState.mode) {
@@ -748,12 +737,10 @@ function restoreState() {
             })
             .then(data => {
                 courseData = data;
-                console.log('✅ Курс загружен:', courseData.title);
                 
                 if (savedState.lessonId !== null && savedState.lessonId !== undefined) {
                     const lessonExists = courseData.lessons.some(l => l.id === savedState.lessonId);
                     if (lessonExists) {
-                        console.log('🔄 Загрузка сохранённого урока:', savedState.lessonId);
                         loadLesson(savedState.lessonId);
                         return;
                     }
@@ -770,8 +757,6 @@ function restoreState() {
 
 // ========== ИНИЦИАЛИЗАЦИЯ ==========
 function initApp() {
-    console.log('🚀 Запуск Deutsch-Meister...');
-    
     document.querySelectorAll('#levelsContainer .btn-level, #levelsContainerMobile .btn-level').forEach(btn => {
         btn.classList.remove('active');
     });
@@ -870,27 +855,21 @@ function initApp() {
         };
     });
     
-    // ========== ОСНОВНАЯ ЛОГИКА ЗАГРУЗКИ ==========
     const savedState = loadState();
     const firstLaunch = isFirstLaunch();
     
     if (firstLaunch) {
-        console.log('👋 Первый запуск → приветственная страница');
         showWelcomePage();
         return;
     }
     
     if (savedState && savedState.level) {
-        console.log('🔄 Попытка восстановления состояния');
-        
         if (typeof window.hasAccessToLevel === 'function') {
             if (!window.auth) {
-                console.log('⏳ Auth не готов, откладываем восстановление');
                 pendingState = { type: 'restore' };
                 return;
             }
             if (!window.hasAccessToLevel(savedState.level)) {
-                console.log('⚠️ Сохранённый уровень недоступен → приветственная');
                 showWelcomePage();
                 return;
             }
@@ -898,7 +877,6 @@ function initApp() {
         
         restoreState();
     } else {
-        console.log('👋 Нет сохранённого состояния → приветственная');
         showWelcomePage();
     }
     
@@ -908,8 +886,6 @@ function initApp() {
     
     setTimeout(updateCounter, 1000);
     setTimeout(updateCounter, 2000);
-    
-    console.log('✅ Deutsch-Meister готов!');
 }
 
 // ========== ГЛОБАЛЬНЫЙ ЭКСПОРТ ==========
@@ -937,10 +913,6 @@ window.getCachedLesson = getCachedLesson;
 window.clearLessonCache = clearLessonCache;
 window.clearLevelCache = clearLevelCache;
 
-console.log('✅ Функции экспортированы глобально');
-
 document.addEventListener('DOMContentLoaded', function() {
     initApp();
 });
-
-console.log('🚀 app.js загружен');

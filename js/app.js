@@ -577,26 +577,32 @@ function renderLesson(lesson) {
     isWelcomePageVisible = false;
     saveState();
 
+    // Сразу показываем урок без проверки аудирования
+    buildLessonHTML(lesson, false);
+    
+    // Проверяем наличие аудирования тихо (без ошибок в консоли)
     const lessonId = lesson.id || 1;
     const level = lesson.level || 'A1';
     const hoerenPath = `docs/${level}/hoeren/${String(lessonId).padStart(2, '0')}_hoeren.json`;
     
-    buildLessonHTML(lesson, false);
-    
     fetch(hoerenPath, { method: 'HEAD' })
         .then(response => {
             if (response.ok) {
+                // Если файл есть — добавляем кнопку "Аудирование"
                 const listeningBtn = document.querySelector('.mode-btn[data-mode="listening"]');
-                if (!listeningBtn) {
-                    buildLessonHTML(lesson, true);
-                } else {
+                if (listeningBtn) {
                     listeningBtn.style.display = 'inline-block';
+                } else {
+                    // Перестраиваем HTML с кнопкой
+                    buildLessonHTML(lesson, true);
                 }
             }
+            // Если файла нет — ничего не делаем (ошибка 404 не выводится)
         })
-        .catch(() => {});
+        .catch(() => {
+            // Ошибка игнорируется (файл просто отсутствует)
+        });
 }
-
 function buildLessonHTML(lesson, hasListening) {
     const listeningButtonHtml = hasListening 
         ? `<button class="mode-btn" data-mode="listening">🎧 Аудирование</button>` 

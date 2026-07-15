@@ -106,7 +106,6 @@
 <script>
 // Конфигурация загружается из .env файла
 // Конфигурация Firebase (подставляется Vite при сборке)
-// Конфигурация Firebase (подставляется Vite при сборке)
 const firebaseConfig = {
     apiKey: "%VITE_FIREBASE_API_KEY%",
     authDomain: "%VITE_FIREBASE_AUTH_DOMAIN%",
@@ -115,6 +114,9 @@ const firebaseConfig = {
     messagingSenderId: "%VITE_FIREBASE_MESSAGING_SENDER_ID%",
     appId: "%VITE_FIREBASE_APP_ID%"
 };
+
+// ===== ДОБАВЛЕНО: EMAIL АДМИНИСТРАТОРА =====
+const ADMIN_EMAIL = "%VITE_ADMIN_EMAIL%";
 
 firebase.initializeApp(firebaseConfig);
 console.log('✅ Firebase инициализирован');

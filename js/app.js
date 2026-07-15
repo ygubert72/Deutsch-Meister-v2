@@ -2,7 +2,7 @@
 // app.js — ГЛАВНЫЙ ФАЙЛ (навигация, загрузка, сохранение состояния)
 // ====================================================================
 
-// ========== СОСТОЯНИЕ ==========
+// ========== СОСТОЯНИЕ (объявлено ОДИН раз) ==========
 let currentLevel = 'A1';
 let currentLesson = null;
 let courseData = null;
@@ -29,7 +29,6 @@ function saveState() {
         localStorage.setItem(APP_STATE_KEY, JSON.stringify(state));
         return state;
     } catch(e) {
-        console.warn('⚠️ Ошибка сохранения состояния:', e);
         return null;
     }
 }
@@ -40,9 +39,7 @@ function loadState() {
         if (saved) {
             return JSON.parse(saved);
         }
-    } catch(e) {
-        console.warn('⚠️ Ошибка загрузки состояния:', e);
-    }
+    } catch(e) {}
     return null;
 }
 
@@ -70,9 +67,7 @@ function cacheLesson(level, lessonId, lessonData) {
             version: '1.0'
         };
         localStorage.setItem(CACHE_KEY, JSON.stringify(cache));
-    } catch(e) {
-        console.warn('⚠️ Ошибка кеширования урока:', e);
-    }
+    } catch(e) {}
 }
 
 function getCachedLesson(level, lessonId) {
@@ -85,9 +80,7 @@ function getCachedLesson(level, lessonId) {
                 return cached.data;
             }
         }
-    } catch(e) {
-        console.warn('⚠️ Ошибка чтения кеша:', e);
-    }
+    } catch(e) {}
     return null;
 }
 
@@ -100,9 +93,7 @@ function clearLevelCache(level) {
         const cache = JSON.parse(localStorage.getItem(CACHE_KEY) || '{}');
         delete cache[level];
         localStorage.setItem(CACHE_KEY, JSON.stringify(cache));
-    } catch(e) {
-        console.warn('⚠️ Ошибка очистки кеша:', e);
-    }
+    } catch(e) {}
 }
 
 // ========== ПОКАЗАТЬ ПРИВЕТСТВЕННУЮ СТРАНИЦУ ==========
@@ -111,7 +102,6 @@ function showWelcomePage() {
     currentLevel = 'A1';
     currentLesson = null;
     courseData = null;
-    isRestoring = false;
     
     const content = document.getElementById('content');
     const indicator = document.getElementById('modeIndicator');
@@ -154,26 +144,11 @@ function showWelcomePage() {
         setTimeout(window.updateLevelButtons, 100);
     }
     
-    clearActiveLevelButtons();
-    saveState();
-}
-
-// ========== ОЧИСТКА АКТИВНЫХ КНОПОК УРОВНЕЙ ==========
-function clearActiveLevelButtons() {
     document.querySelectorAll('#levelsContainer .btn-level, #levelsContainerMobile .btn-level').forEach(btn => {
         btn.classList.remove('active');
     });
-}
-
-// ========== УСТАНОВКА АКТИВНОЙ КНОПКИ УРОВНЯ ==========
-function setActiveLevelButton(level) {
-    document.querySelectorAll('#levelsContainer .btn-level, #levelsContainerMobile .btn-level').forEach(btn => {
-        if (btn.getAttribute('data-level') === level) {
-            btn.classList.add('active');
-        } else {
-            btn.classList.remove('active');
-        }
-    });
+    
+    saveState();
 }
 
 // ========== ПОКАЗАТЬ ИНСТРУКЦИЮ ==========
@@ -239,12 +214,12 @@ window.goBackFromInstruction = function() {
     }
 };
 
-// ========== ПРОВЕРКА ДОСТУПА К УРОВНЮ (ВСПОМОГАТЕЛЬНАЯ) ==========
-function checkLevelAccess(level) {
+// ========== ЗАГРУЗКА УРОВНЯ ==========
+async function loadLevel(level) {
     if (typeof window.hasAccessToLevel === 'function') {
         if (!window.auth) {
             pendingState = { type: 'level', level: level };
-            return { hasAccess: false, pending: true };
+            return;
         }
         
         if (!window.hasAccessToLevel(level)) {
@@ -266,29 +241,25 @@ function checkLevelAccess(level) {
                 }
             }
             alert(message);
-            return { hasAccess: false, pending: false };
+            
+            if (level === 'A1') return;
+            if (window.hasAccessToLevel('A1')) {
+                currentLevel = 'A1';
+                document.querySelectorAll('#levelsContainer .btn-level, #levelsContainerMobile .btn-level').forEach(btn => {
+                    if (btn.getAttribute('data-level') === 'A1') {
+                        btn.classList.add('active');
+                    } else {
+                        btn.classList.remove('active');
+                    }
+                });
+                loadLevel('A1');
+            }
+            return;
         }
-    }
-    return { hasAccess: true, pending: false };
-}
-
-// ========== ЗАГРУЗКА УРОВНЯ ==========
-async function loadLevel(level) {
-    const accessCheck = checkLevelAccess(level);
-    if (!accessCheck.hasAccess) {
-        if (accessCheck.pending) return;
-        // Если A1 недоступен — выходим, иначе переключаем на A1
-        if (level !== 'A1' && window.hasAccessToLevel && window.hasAccessToLevel('A1')) {
-            currentLevel = 'A1';
-            setActiveLevelButton('A1');
-            loadLevel('A1');
-        }
-        return;
     }
     
     currentLevel = level;
     isWelcomePageVisible = false;
-    isRestoring = false;
     appReady = true;
     
     try {
@@ -298,13 +269,11 @@ async function loadLevel(level) {
         renderLevel();
         saveState();
     } catch(e) {
-        console.error('❌ Ошибка загрузки уровня:', e);
         document.getElementById('content').innerHTML = `
             <div style="text-align: center; padding: 40px; color: #999;">
                 <div style="font-size: 48px; margin-bottom: 15px;">📚</div>
                 <div>Курс для уровня ${level} пока не загружен.</div>
                 <div style="font-size: 14px; margin-top: 10px;">${e.message}</div>
-                <button onclick="showWelcomePage()" style="margin-top:20px; padding:10px 30px; background:#3B6FE0; color:white; border:none; border-radius:8px; cursor:pointer;">🏠 На главную</button>
             </div>
         `;
     }
@@ -313,7 +282,6 @@ async function loadLevel(level) {
 // ========== ЗАГРУЗКА УРОКА ==========
 async function loadLesson(lessonId) {
     if (isLoadingLesson) {
-        console.log('⏳ Урок уже загружается, пропускаем');
         return;
     }
     
@@ -322,7 +290,6 @@ async function loadLesson(lessonId) {
         return;
     }
     
-    // Проверяем доступ к уровню
     if (typeof window.hasAccessToLevel === 'function') {
         if (!window.auth) {
             pendingState = { type: 'lesson', lessonId: lessonId };
@@ -340,7 +307,6 @@ async function loadLesson(lessonId) {
         const lessonInfo = courseData.lessons.find(l => l.id === lessonId);
         if (!lessonInfo) throw new Error('Урок не найден');
         
-        // Пытаемся загрузить из кеша
         const cachedLesson = getCachedLesson(currentLevel, lessonId);
         let lesson = null;
         
@@ -349,7 +315,6 @@ async function loadLesson(lessonId) {
             lesson.id = lessonId;
             lesson.title = lessonInfo.title;
             lesson.level = currentLevel;
-            console.log('📦 Урок загружен из кеша');
         } else {
             lesson = {
                 id: lessonId,
@@ -357,7 +322,6 @@ async function loadLesson(lessonId) {
                 level: currentLevel
             };
             
-            // Загружаем грамматику
             try {
                 const grammarFile = `docs/${currentLevel}/grammar/${String(lessonId).padStart(2, '0')}_grammar.json`;
                 const grammarResponse = await fetch(grammarFile);
@@ -371,17 +335,13 @@ async function loadLesson(lessonId) {
                     lesson.grammar = '<div style="text-align:center;padding:40px;color:#999;">📭 Грамматика не загружена</div>';
                     lesson.vocabulary = [];
                     lesson.practice = [];
-                    lesson.examples = [];
                 }
             } catch(e) {
-                console.warn('⚠️ Ошибка загрузки грамматики:', e);
                 lesson.grammar = '<div style="text-align:center;padding:40px;color:#999;">📭 Грамматика не загружена</div>';
                 lesson.vocabulary = [];
                 lesson.practice = [];
-                lesson.examples = [];
             }
             
-            // Загружаем остальные данные урока
             try {
                 const lessonFile = `docs/${currentLevel}/lessons/lesson_${String(lessonId).padStart(2, '0')}.json`;
                 const lessonResponse = await fetch(lessonFile);
@@ -396,39 +356,33 @@ async function loadLesson(lessonId) {
                     lesson.dictation = [];
                 }
             } catch(e) {
-                console.warn('⚠️ Ошибка загрузки данных урока:', e);
                 lesson.quiz = [];
                 lesson.trainer = [];
                 lesson.dictation = [];
             }
             
-            // Сохраняем в кеш, если есть данные
             if (lesson.grammar || lesson.vocabulary.length > 0 || lesson.quiz.length > 0) {
                 cacheLesson(currentLevel, lessonId, lesson);
             }
         }
         
-        // Проверяем, что урок не пустой
-        if (!lesson.grammar && lesson.vocabulary.length === 0 && lesson.practice.length === 0 && 
-            lesson.quiz.length === 0 && lesson.trainer.length === 0 && lesson.dictation.length === 0) {
+        if (!lesson.grammar && lesson.vocabulary.length === 0 && lesson.practice.length === 0 && lesson.quiz.length === 0 && lesson.trainer.length === 0 && lesson.dictation.length === 0) {
             throw new Error('Не удалось загрузить данные урока');
         }
         
         currentLesson = lesson;
         isWelcomePageVisible = false;
-        isRestoring = false;
         appReady = true;
         renderLesson(lesson);
         saveState();
         
     } catch(e) {
-        console.error('❌ Ошибка загрузки урока:', e);
         document.getElementById('content').innerHTML = `
             <div style="text-align: center; padding: 40px; color: #999;">
                 <div style="font-size: 48px; margin-bottom: 15px;">❌</div>
                 <div>Ошибка загрузки урока.</div>
                 <div style="font-size: 14px; margin-top: 10px;">${e.message}</div>
-                <button class="back-btn" onclick="renderLevel()" style="margin-top: 15px; padding:10px 30px; background:#3B6FE0; color:white; border:none; border-radius:8px; cursor:pointer;">← Назад</button>
+                <button class="back-btn" onclick="renderLevel()" style="margin-top: 15px;">← Назад</button>
             </div>
         `;
     } finally {
@@ -438,7 +392,6 @@ async function loadLesson(lessonId) {
 
 // ========== ОБРАБОТЧИК ГОТОВНОСТИ AUTH ==========
 function onAuthReady() {
-    console.log('🔄 onAuthReady вызван, pendingState:', pendingState);
     if (pendingState) {
         const state = pendingState;
         pendingState = null;
@@ -536,6 +489,25 @@ function renderLevel() {
         return;
     }
 
+    let totalWords = 0;
+    const countWordsInLevel = async function() {
+        let count = 0;
+        for (const lesson of courseData.lessons) {
+            const lessonId = lesson.id;
+            const lessonFile = `docs/${currentLevel}/lessons/lesson_${String(lessonId).padStart(2, '0')}.json`;
+            try {
+                const response = await fetch(lessonFile);
+                if (response.ok) {
+                    const data = await response.json();
+                    if (data.quiz && Array.isArray(data.quiz)) {
+                        count += data.quiz.length;
+                    }
+                }
+            } catch(e) {}
+        }
+        return count;
+    };
+
     let html = `<h2>📚 ${courseData.title}</h2><div style="margin-top: 20px;">`;
     courseData.lessons.forEach(lesson => {
         html += `
@@ -563,7 +535,6 @@ function renderLevel() {
     updateCounter();
     saveState();
 
-    // Обработчики для уроков
     document.querySelectorAll('.lesson-btn[data-lesson-id]').forEach(btn => {
         btn.onclick = function() {
             const id = parseInt(this.getAttribute('data-lesson-id'));
@@ -571,13 +542,13 @@ function renderLevel() {
         };
     });
 
-    // Подсчёт слов для кнопки "Все слова"
     const allWordsBtn = document.getElementById('allWordsLevelBtn');
     if (allWordsBtn) {
         countWordsInLevel().then(count => {
+            totalWords = count;
             const placeholder = document.getElementById('wordCountPlaceholder');
             if (placeholder) {
-                placeholder.textContent = `(${count} слов)`;
+                placeholder.textContent = `(${totalWords} слов)`;
             }
         });
 
@@ -591,39 +562,14 @@ function renderLevel() {
     }
 }
 
-// ========== ПОДСЧЁТ СЛОВ В УРОВНЕ ==========
-async function countWordsInLevel() {
-    let count = 0;
-    if (!courseData) return 0;
-    
-    for (const lesson of courseData.lessons) {
-        const lessonId = lesson.id;
-        const lessonFile = `docs/${currentLevel}/lessons/lesson_${String(lessonId).padStart(2, '0')}.json`;
-        try {
-            const response = await fetch(lessonFile);
-            if (response.ok) {
-                const data = await response.json();
-                if (data.quiz && Array.isArray(data.quiz)) {
-                    count += data.quiz.length;
-                }
-            }
-        } catch(e) {
-            // Игнорируем ошибки
-        }
-    }
-    return count;
-}
-
 // ========== ОТОБРАЖЕНИЕ УРОКА ==========
 function renderLesson(lesson) {
     currentLesson = lesson;
     isWelcomePageVisible = false;
-    isRestoring = false;
     saveState();
 
     buildLessonHTML(lesson, false);
     
-    // Проверяем наличие аудирования
     const lessonId = lesson.id || 1;
     const level = lesson.level || 'A1';
     const hoerenPath = `docs/${level}/hoeren/${String(lessonId).padStart(2, '0')}_hoeren.json`;
@@ -639,12 +585,9 @@ function renderLesson(lesson) {
                 }
             }
         })
-        .catch(() => {
-            // Аудирования нет — ничего не делаем
-        });
+        .catch(() => {});
 }
 
-// ========== ПОСТРОЕНИЕ HTML УРОКА ==========
 function buildLessonHTML(lesson, hasListening) {
     const listeningButtonHtml = hasListening 
         ? `<button class="mode-btn" data-mode="listening">🎧 Аудирование</button>` 
@@ -669,7 +612,6 @@ function buildLessonHTML(lesson, hasListening) {
     document.getElementById('modeIndicator').textContent = `Урок ${lesson.id}: ${lesson.title}`;
     updateCounter();
 
-    // Обработчики для кнопок режимов
     document.querySelectorAll('.mode-btn').forEach(btn => {
         btn.onclick = function() {
             document.querySelectorAll('.mode-btn').forEach(b => b.classList.remove('active'));
@@ -684,7 +626,6 @@ function buildLessonHTML(lesson, hasListening) {
         };
     });
 
-    // Восстановление сохранённого режима
     if (!isRestoring) {
         const savedState = loadState();
         if (savedState && savedState.mode && savedState.lessonId === lesson.id) {
@@ -773,130 +714,155 @@ window.updateWelcomePage = function() {
 // ========== ВОССТАНОВЛЕНИЕ СОСТОЯНИЯ ==========
 function restoreState() {
     const savedState = loadState();
-    if (!savedState || !savedState.level) {
-        showWelcomePage();
-        return;
-    }
-    
-    // Проверяем доступ к уровню
-    if (typeof window.hasAccessToLevel === 'function') {
-        if (!window.auth) {
-            pendingState = { type: 'restore' };
-            return;
+    if (savedState && savedState.level) {
+        currentLevel = savedState.level;
+        isWelcomePageVisible = false;
+        if (savedState.mode && typeof currentMode !== 'undefined') {
+            window.currentMode = savedState.mode;
         }
-        if (!window.hasAccessToLevel(savedState.level)) {
-            showWelcomePage();
-            return;
-        }
-    }
-    
-    isRestoring = true;
-    currentLevel = savedState.level;
-    isWelcomePageVisible = false;
-    
-    if (savedState.mode && typeof currentMode !== 'undefined') {
-        window.currentMode = savedState.mode;
-    }
-    
-    setActiveLevelButton(savedState.level);
-    
-    fetch(`docs/${savedState.level}/index.json`)
-        .then(response => {
-            if (!response.ok) throw new Error('Курс не найден');
-            return response.json();
-        })
-        .then(data => {
-            courseData = data;
-            
-            if (savedState.lessonId !== null && savedState.lessonId !== undefined) {
-                const lessonExists = courseData.lessons.some(l => l.id === savedState.lessonId);
-                if (lessonExists) {
-                    loadLesson(savedState.lessonId);
-                    return;
-                }
+        
+        document.querySelectorAll('#levelsContainer .btn-level, #levelsContainerMobile .btn-level').forEach(btn => {
+            if (btn.getAttribute('data-level') === savedState.level) {
+                btn.classList.add('active');
+            } else {
+                btn.classList.remove('active');
             }
-            renderLevel();
-        })
-        .catch(() => {
-            showWelcomePage();
-        })
-        .finally(() => {
-            isRestoring = false;
         });
-}
-
-// ========== ОБРАБОТЧИК ДЛЯ КНОПКИ УРОВНЯ (ОБЩАЯ ФУНКЦИЯ) ==========
-function handleLevelButtonClick(level) {
-    // Проверяем доступ
-    if (typeof window.hasAccessToLevel === 'function') {
-        if (!window.auth) {
-            alert('⏳ Пожалуйста, подождите, приложение загружается...');
-            return;
-        }
-        if (!window.hasAccessToLevel(level)) {
-            const user = window.getCurrentUser ? window.getCurrentUser() : null;
-            let message = '🔒 Этот уровень недоступен.';
-            if (!user) {
-                message += '\n\n👤 Войдите в аккаунт.';
-                if (level === 'B1' || level === 'B2' || level === 'C1') {
-                    message += ' Для уровней B1-C1 также нужен премиум-доступ.';
+        
+        fetch(`docs/${savedState.level}/index.json`)
+            .then(response => {
+                if (!response.ok) throw new Error('Курс не найден');
+                return response.json();
+            })
+            .then(data => {
+                courseData = data;
+                
+                if (savedState.lessonId !== null && savedState.lessonId !== undefined) {
+                    const lessonExists = courseData.lessons.some(l => l.id === savedState.lessonId);
+                    if (lessonExists) {
+                        loadLesson(savedState.lessonId);
+                        return;
+                    }
                 }
-            } else if (level === 'A2') {
-                message += '\n\n🔐 Для уровня A2 нужна регистрация.';
-            } else if (level === 'B1' || level === 'B2' || level === 'C1') {
-                const userData = window.getCurrentUserData ? window.getCurrentUserData() : null;
-                if (!userData || !userData.hasPremiumAccess) {
-                    message += '\n\n💎 Для уровня ' + level + ' требуется премиум-доступ. Нажмите "Оплатить премиум" в профиле.';
-                } else {
-                    message += '\n\n⛔ Доступ запрещён.';
-                }
-            }
-            alert(message);
-            return;
-        }
+                renderLevel();
+            })
+            .catch(() => {
+                showWelcomePage();
+            });
+    } else {
+        showWelcomePage();
     }
-    
-    setActiveLevelButton(level);
-    currentLevel = level;
-    isWelcomePageVisible = false;
-    loadLevel(currentLevel);
 }
 
 // ========== ИНИЦИАЛИЗАЦИЯ ==========
 function initApp() {
-    console.log('🚀 Инициализация приложения...');
+    document.querySelectorAll('#levelsContainer .btn-level, #levelsContainerMobile .btn-level').forEach(btn => {
+        btn.classList.remove('active');
+    });
     
-    // Очищаем активные кнопки
-    clearActiveLevelButtons();
-    
-    // ===== ДЕСКТОПНЫЕ КНОПКИ УРОВНЕЙ =====
     document.querySelectorAll('#levelsContainer .btn-level').forEach(btn => {
         btn.onclick = function() {
             const level = this.getAttribute('data-level');
-            handleLevelButtonClick(level);
+            
+            if (typeof window.hasAccessToLevel === 'function') {
+                if (!window.auth) {
+                    alert('⏳ Пожалуйста, подождите, приложение загружается...');
+                    return;
+                }
+                if (!window.hasAccessToLevel(level)) {
+                    const user = window.getCurrentUser ? window.getCurrentUser() : null;
+                    let message = '🔒 Этот уровень недоступен.';
+                    if (!user) {
+                        message += '\n\n👤 Войдите в аккаунт.';
+                        if (level === 'B1' || level === 'B2' || level === 'C1') {
+                            message += ' Для уровней B1-C1 также нужен премиум-доступ.';
+                        }
+                    } else if (level === 'A2') {
+                        message += '\n\n🔐 Для уровня A2 нужна регистрация.';
+                    } else if (level === 'B1' || level === 'B2' || level === 'C1') {
+                        const userData = window.getCurrentUserData ? window.getCurrentUserData() : null;
+                        if (!userData || !userData.hasPremiumAccess) {
+                            message += '\n\n💎 Для уровня ' + level + ' требуется премиум-доступ. Нажмите "Оплатить премиум" в профиле.';
+                        } else {
+                            message += '\n\n⛔ Доступ запрещён.';
+                        }
+                    }
+                    alert(message);
+                    return;
+                }
+            }
+            
+            document.querySelectorAll('#levelsContainer .btn-level').forEach(b => b.classList.remove('active'));
+            this.classList.add('active');
+            document.querySelectorAll('#levelsContainerMobile .btn-level').forEach(b => {
+                if (b.getAttribute('data-level') === level) {
+                    b.classList.add('active');
+                } else {
+                    b.classList.remove('active');
+                }
+            });
+            currentLevel = level;
+            isWelcomePageVisible = false;
+            loadLevel(currentLevel);
         };
     });
     
-    // ===== МОБИЛЬНЫЕ КНОПКИ УРОВНЕЙ =====
     document.querySelectorAll('#levelsContainerMobile .btn-level').forEach(btn => {
         btn.onclick = function() {
             const level = this.getAttribute('data-level');
-            handleLevelButtonClick(level);
+            
+            if (typeof window.hasAccessToLevel === 'function') {
+                if (!window.auth) {
+                    alert('⏳ Пожалуйста, подождите, приложение загружается...');
+                    return;
+                }
+                if (!window.hasAccessToLevel(level)) {
+                    const user = window.getCurrentUser ? window.getCurrentUser() : null;
+                    let message = '🔒 Этот уровень недоступен.';
+                    if (!user) {
+                        message += '\n\n👤 Войдите в аккаунт.';
+                        if (level === 'B1' || level === 'B2' || level === 'C1') {
+                            message += ' Для уровней B1-C1 также нужен премиум-доступ.';
+                        }
+                    } else if (level === 'A2') {
+                        message += '\n\n🔐 Для уровня A2 нужна регистрация.';
+                    } else if (level === 'B1' || level === 'B2' || level === 'C1') {
+                        const userData = window.getCurrentUserData ? window.getCurrentUserData() : null;
+                        if (!userData || !userData.hasPremiumAccess) {
+                            message += '\n\n💎 Для уровня ' + level + ' требуется премиум-доступ. Нажмите "Оплатить премиум" в профиле.';
+                        } else {
+                            message += '\n\n⛔ Доступ запрещён.';
+                        }
+                    }
+                    alert(message);
+                    return;
+                }
+            }
+            
+            document.querySelectorAll('#levelsContainerMobile .btn-level').forEach(b => b.classList.remove('active'));
+            this.classList.add('active');
+            document.querySelectorAll('#levelsContainer .btn-level').forEach(b => {
+                if (b.getAttribute('data-level') === level) {
+                    b.classList.add('active');
+                } else {
+                    b.classList.remove('active');
+                }
+            });
+            currentLevel = level;
+            isWelcomePageVisible = false;
+            loadLevel(currentLevel);
         };
     });
     
-    // ===== ВОССТАНОВЛЕНИЕ СОСТОЯНИЯ =====
     const savedState = loadState();
     const firstLaunch = isFirstLaunch();
     
     if (firstLaunch) {
-        console.log('👋 Первый запуск, показываем приветствие');
         showWelcomePage();
         return;
     }
     
     if (savedState && savedState.level) {
-        console.log('🔄 Восстанавливаем состояние:', savedState);
         if (typeof window.hasAccessToLevel === 'function') {
             if (!window.auth) {
                 pendingState = { type: 'restore' };
@@ -907,20 +873,18 @@ function initApp() {
                 return;
             }
         }
+        
         restoreState();
     } else {
         showWelcomePage();
     }
     
-    // Обновляем кнопки уровней после загрузки
     if (typeof window.updateLevelButtons === 'function') {
         setTimeout(window.updateLevelButtons, 200);
     }
     
     setTimeout(updateCounter, 1000);
     setTimeout(updateCounter, 2000);
-    
-    console.log('✅ Инициализация завершена');
 }
 
 // ========== ГЛОБАЛЬНЫЙ ЭКСПОРТ ==========
@@ -947,14 +911,9 @@ window.cacheLesson = cacheLesson;
 window.getCachedLesson = getCachedLesson;
 window.clearLessonCache = clearLessonCache;
 window.clearLevelCache = clearLevelCache;
-window.setActiveLevelButton = setActiveLevelButton;
-window.clearActiveLevelButtons = clearActiveLevelButtons;
 
-// ===== ЗАПУСК =====
 document.addEventListener('DOMContentLoaded', function() {
-    console.log('📄 DOM загружен, запускаем initApp');
-    // Небольшая задержка для загрузки других скриптов
-    setTimeout(initApp, 50);
+    initApp();
 });
 
 console.log('🚀 app.js загружен');

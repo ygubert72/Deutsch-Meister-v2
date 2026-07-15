@@ -46,7 +46,8 @@ async function findUserByEmail(email) {
 
 // ========== АКТИВАЦИЯ ПРЕМИУМА ==========
 async function activatePremium(uid) {
-    if (!auth.currentUser || auth.currentUser.email !== 'ygubert72@gmail.com') {
+    // ИСПРАВЛЕНО: используем ADMIN_EMAIL из глобальной переменной
+    if (!auth.currentUser || auth.currentUser.email !== ADMIN_EMAIL) {
         return { success: false, error: 'Нет прав администратора' };
     }
     try {
@@ -64,7 +65,8 @@ async function activatePremium(uid) {
 
 // ========== ДЕАКТИВАЦИЯ ПРЕМИУМА ==========
 async function deactivatePremium(uid) {
-    if (!auth.currentUser || auth.currentUser.email !== 'ygubert72@gmail.com') {
+    // ИСПРАВЛЕНО: используем ADMIN_EMAIL из глобальной переменной
+    if (!auth.currentUser || auth.currentUser.email !== ADMIN_EMAIL) {
         return { success: false, error: 'Нет прав администратора' };
     }
     try {
@@ -82,7 +84,8 @@ async function deactivatePremium(uid) {
 
 // ========== БЛОКИРОВКА ПОЛЬЗОВАТЕЛЯ ==========
 async function blockUser(uid) {
-    if (!auth.currentUser || auth.currentUser.email !== 'ygubert72@gmail.com') {
+    // ИСПРАВЛЕНО: используем ADMIN_EMAIL из глобальной переменной
+    if (!auth.currentUser || auth.currentUser.email !== ADMIN_EMAIL) {
         return { success: false, error: 'Нет прав администратора' };
     }
     try {
@@ -97,7 +100,8 @@ async function blockUser(uid) {
 
 // ========== РАЗБЛОКИРОВКА ПОЛЬЗОВАТЕЛЯ ==========
 async function unblockUser(uid) {
-    if (!auth.currentUser || auth.currentUser.email !== 'ygubert72@gmail.com') {
+    // ИСПРАВЛЕНО: используем ADMIN_EMAIL из глобальной переменной
+    if (!auth.currentUser || auth.currentUser.email !== ADMIN_EMAIL) {
         return { success: false, error: 'Нет прав администратора' };
     }
     try {
@@ -112,7 +116,8 @@ async function unblockUser(uid) {
 
 // ========== УДАЛЕНИЕ ПОЛЬЗОВАТЕЛЯ ==========
 async function deleteUser(uid) {
-    if (!auth.currentUser || auth.currentUser.email !== 'ygubert72@gmail.com') {
+    // ИСПРАВЛЕНО: используем ADMIN_EMAIL из глобальной переменной
+    if (!auth.currentUser || auth.currentUser.email !== ADMIN_EMAIL) {
         return { success: false, error: 'Нет прав администратора' };
     }
     try {

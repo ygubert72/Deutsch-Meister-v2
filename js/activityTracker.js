@@ -126,7 +126,8 @@ async function logUserActivity(user) {
     if (!user || !db) return;
     
     // Админ не отслеживается
-    if (user.email === 'ygubert72@gmail.com') {
+    // ИСПРАВЛЕНО: используем ADMIN_EMAIL
+    if (user.email === ADMIN_EMAIL) {
         Logger.debug('Админ не отслеживается');
         return;
     }

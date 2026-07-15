@@ -197,9 +197,7 @@ function buildQuizHTML(container) {
             ` : `
                 ${isAllWordsMode ? `
                     <h2>🌍 Все слова уровня ${window.currentLevel}</h2>
-                ` : `
-                    <h2>🎯 Тест: Урок ${currentLessonId}</h2>
-                `}
+                ` : ``}
                 
                 <div style="background: #FFFFFF; border-radius: 20px; box-shadow: 0 8px 24px rgba(0,0,0,0.1); max-width: 550px; margin: 15px auto; min-height: 150px; display: flex; align-items: center; justify-content: center; text-align: center; padding: 20px;">
                     <div style="font-size: 32px; font-weight: bold; color: #1A1A1A;" id="quizQuestion">Загрузка...</div>

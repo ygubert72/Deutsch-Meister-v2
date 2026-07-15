@@ -190,7 +190,7 @@
         
         .no-users .icon { font-size: 48px; margin-bottom: 15px; }
         
-        /* ===== ЛОГИ — ТЕПЕРЬ МОЖНО ВЫДЕЛЯТЬ И КОПИРОВАТЬ ===== */
+        /* ===== ЛОГИ — МОЖНО ВЫДЕЛЯТЬ И КОПИРОВАТЬ ===== */
         .log-entry {
             background: #f8f9fa;
             border-radius: 6px;
@@ -307,16 +307,17 @@
     
     <script>
         // ========== КОНФИГ FIREBASE ==========
-        // Конфигурация загружается из .env файла
-// Конфигурация Firebase (подставляется Vite при сборке)
-const firebaseConfig = {
-    apiKey: "%VITE_FIREBASE_API_KEY%",
-    authDomain: "%VITE_FIREBASE_AUTH_DOMAIN%",
-    projectId: "%VITE_FIREBASE_PROJECT_ID%",
-    storageBucket: "%VITE_FIREBASE_STORAGE_BUCKET%",
-    messagingSenderId: "%VITE_FIREBASE_MESSAGING_SENDER_ID%",
-    appId: "%VITE_FIREBASE_APP_ID%"
-};
+        const firebaseConfig = {
+            apiKey: "%VITE_FIREBASE_API_KEY%",
+            authDomain: "%VITE_FIREBASE_AUTH_DOMAIN%",
+            projectId: "%VITE_FIREBASE_PROJECT_ID%",
+            storageBucket: "%VITE_FIREBASE_STORAGE_BUCKET%",
+            messagingSenderId: "%VITE_FIREBASE_MESSAGING_SENDER_ID%",
+            appId: "%VITE_FIREBASE_APP_ID%"
+        };
+        
+        // ========== EMAIL АДМИНИСТРАТОРА ИЗ ПЕРЕМЕННОЙ ==========
+        const ADMIN_EMAIL = "%VITE_ADMIN_EMAIL%";
         
         let auth, db;
         let allUsers = [];
@@ -329,7 +330,8 @@ const firebaseConfig = {
             db = firebase.firestore();
             
             auth.onAuthStateChanged(async (user) => {
-                if (!user || user.email !== 'ygubert72@gmail.com') {
+                // ИСПРАВЛЕНО: используем ADMIN_EMAIL из переменной
+                if (!user || user.email !== ADMIN_EMAIL) {
                     document.getElementById('usersContainer').innerHTML = `
                         <div class="no-users">
                             <div class="icon">🔒</div>
@@ -577,10 +579,9 @@ const firebaseConfig = {
             container.innerHTML = html;
         }
         
-        // ========== ПОКАЗ ЛОГОВ (ИСПРАВЛЕНО) ==========
+        // ========== ПОКАЗ ЛОГОВ ==========
         async function showUserLogs(uid) {
             try {
-                // Проверяем, есть ли логи в admin_logs
                 const logsSnapshot = await db.collection('admin_logs')
                     .where('userId', '==', uid)
                     .orderBy('timestamp', 'desc')
@@ -590,9 +591,7 @@ const firebaseConfig = {
                 let logs = [];
                 logsSnapshot.forEach(doc => logs.push(doc.data()));
                 
-                // Если логов нет — показываем сообщение
                 if (logs.length === 0) {
-                    // Проверяем, есть ли логи в user_actions (действия пользователя)
                     const actionsSnapshot = await db.collection('user_actions')
                         .where('userId', '==', uid)
                         .orderBy('timestamp', 'desc')
@@ -614,14 +613,12 @@ const firebaseConfig = {
                 
             } catch(e) {
                 console.error('Ошибка загрузки логов:', e);
-                // Показываем модалку с сообщением об ошибке
                 showLogModal(uid, [], []);
             }
         }
         
-        // ========== МОДАЛКА ЛОГОВ (С ВОЗМОЖНОСТЬЮ КОПИРОВАТЬ) ==========
+        // ========== МОДАЛКА ЛОГОВ ==========
         function showLogModal(uid, logs, actions) {
-            // Удаляем старую модалку
             const oldModal = document.getElementById('logModal');
             if (oldModal) oldModal.remove();
             
@@ -652,7 +649,6 @@ const firebaseConfig = {
                     </div>
                 `;
             } else {
-                // Показываем логи admin_logs (подозрения)
                 if (logs.length > 0) {
                     logsHtml += `<div style="margin-bottom:15px;"><strong>📋 Логи подозрений (${logs.length}):</strong></div>`;
                     logs.forEach(log => {
@@ -676,7 +672,6 @@ const firebaseConfig = {
                     });
                 }
                 
-                // Показываем действия пользователя (user_actions)
                 if (actions.length > 0) {
                     if (logs.length > 0) logsHtml += `<div style="margin:15px 0 10px 0;"><strong>📊 Действия пользователя (${actions.length}):</strong></div>`;
                     actions.forEach(action => {
@@ -731,7 +726,6 @@ const firebaseConfig = {
             modal.appendChild(modalContent);
             document.body.appendChild(modal);
             
-            // Закрытие по клику на фон
             modal.onclick = (e) => {
                 if (e.target === modal) modal.remove();
             };
@@ -792,9 +786,7 @@ const firebaseConfig = {
             if (!confirm('⚠️ УДАЛИТЬ ПОЛЬЗОВАТЕЛЯ? Это действие НЕЛЬЗЯ отменить!')) return;
             if (!confirm('Вы уверены? Все данные пользователя будут удалены навсегда.')) return;
             try {
-                // Удаляем документ пользователя
                 await db.collection('users').doc(uid).delete();
-                // Удаляем логи пользователя
                 const logsSnapshot = await db.collection('admin_logs').where('userId', '==', uid).get();
                 logsSnapshot.forEach(async doc => await doc.ref.delete());
                 const actionsSnapshot = await db.collection('user_actions').where('userId', '==', uid).get();

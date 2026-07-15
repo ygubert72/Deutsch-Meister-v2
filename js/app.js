@@ -602,7 +602,10 @@ function buildLessonHTML(lesson, hasListening) {
             <button class="back-btn" onclick="renderLevel()" style="transition: all 0.08s ease;">← К СПИСКУ УРОКОВ</button>
             <div id="modeHeaderControls"></div>
         </div>
-        <h2>📖 Урок ${lesson.id}: ${lesson.title}</h2>
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+            <h2 style="margin: 0;">📖 Урок ${lesson.id}: ${lesson.title}</h2>
+            <div id="modeHeaderControlsTitle"></div>
+        </div>
         <div class="mode-buttons">
             <button class="mode-btn active" data-mode="grammar" style="transition: all 0.08s ease;">📘 Грамматика</button>
             <button class="mode-btn" data-mode="quiz" style="transition: all 0.08s ease;">🎯 Тест</button>
@@ -657,9 +660,15 @@ function renderMode(mode, lesson) {
 
     window.currentLesson = lesson;
 
+    // Очищаем контейнер для кнопок в заголовке
     const headerControls = document.getElementById('modeHeaderControls');
     if (headerControls) {
         headerControls.innerHTML = '';
+    }
+    
+    const headerControlsTitle = document.getElementById('modeHeaderControlsTitle');
+    if (headerControlsTitle) {
+        headerControlsTitle.innerHTML = '';
     }
 
     switch(mode) {

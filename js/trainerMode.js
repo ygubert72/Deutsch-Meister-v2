@@ -687,3 +687,6 @@ function updateTrainerDisplay(container) {
         });
     }
 }
+
+// ===== ЭКСПОРТ =====
+window.renderTrainer = renderTrainer;  // ДОБАВЛЕНО!

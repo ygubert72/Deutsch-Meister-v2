@@ -8,7 +8,8 @@ let adminFilteredUsers = [];
 // ========== ОТКРЫТЬ АДМИН-ПАНЕЛЬ ==========
 function openAdminPanel() {
     // Проверяем, что пользователь — админ
-    if (!window.auth || !window.auth.currentUser || window.auth.currentUser.email !== 'ygubert72@gmail.com') {
+    // ИСПРАВЛЕНО: используем ADMIN_EMAIL
+    if (!window.auth || !window.auth.currentUser || window.auth.currentUser.email !== ADMIN_EMAIL) {
         alert('Доступ запрещён. Только для администратора.');
         return;
     }

@@ -48,7 +48,8 @@ function clearTimer(timer) {
 // ========== ПРОВЕРКА, ЯВЛЯЕТСЯ ЛИ ПОЛЬЗОВАТЕЛЬ АДМИНОМ ==========
 function isAdminUser(user) {
     if (!user) return false;
-    return user.email === 'ygubert72@gmail.com';
+    // ИСПРАВЛЕНО: используем ADMIN_EMAIL из глобальной переменной
+    return user.email === ADMIN_EMAIL;
 }
 
 // ========== ЭКСПОРТ ==========

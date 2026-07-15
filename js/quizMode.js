@@ -186,18 +186,11 @@ function buildQuizHTML(container) {
                     <div>Нет слов для этого режима</div>
                 </div>
             ` : `
-                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
-                    ${isAllWordsMode ? `
-                        <button class="back-btn" onclick="window.renderLevel()" style="transition: all 0.08s ease;">← К УРОКАМ</button>
-                    ` : `
-                        <button class="back-btn" onclick="window.renderLevel()" style="transition: all 0.08s ease;">← К СПИСКУ УРОКОВ</button>
-                    `}
-                    <div id="modeHeaderControls">
-                        <button id="quizDirBtn" class="dir-btn" style="background: #3B6FE0; color: white; padding: 6px 14px; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; font-size: 13px; box-shadow: 0 2px 4px rgba(0,0,0,0.2);">
-                            ${quizDirection === 'de_to_ru' ? 'De → Ru' : 'Ru → De'}
-                        </button>
-                    </div>
-                </div>
+                <div style="display: flex; justify-content: flex-end; align-items: center; margin-bottom: 10px;">
+    <div id="modeHeaderControls">
+        <button id="quizDirBtn" ...>...</button>
+    </div>
+</div>
                 
                 ${isAllWordsMode ? `
                     <h2>🌍 Все слова уровня ${window.currentLevel}</h2>

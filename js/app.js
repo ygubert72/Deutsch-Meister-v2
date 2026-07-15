@@ -680,6 +680,15 @@ function renderMode(mode, lesson) {
             }
             break;
         case 'quiz':
+            // Добавляем кнопку переключения направления в заголовок для раздела "Тест"
+            if (headerControlsTitle) {
+                headerControlsTitle.innerHTML = `
+                    <button id="quizDirBtn" class="dir-btn" style="background: #3B6FE0; color: white; padding: 6px 14px; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; font-size: 13px; box-shadow: 0 2px 4px rgba(0,0,0,0.2);">
+                        ${typeof quizDirection !== 'undefined' && quizDirection === 'de_to_ru' ? 'De → Ru' : 'Ru → De'}
+                    </button>
+                `;
+            }
+            
             if (typeof renderQuiz === 'function') {
                 renderQuiz(container, lesson);
             } else {
@@ -687,6 +696,15 @@ function renderMode(mode, lesson) {
             }
             break;
         case 'trainer':
+            // Добавляем кнопку переключения направления в заголовок для раздела "Тренажёр"
+            if (headerControlsTitle) {
+                headerControlsTitle.innerHTML = `
+                    <button id="trainerDirBtn" class="dir-btn" style="background: #3B6FE0; color: white; padding: 6px 14px; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; font-size: 13px; box-shadow: 0 2px 4px rgba(0,0,0,0.2);">
+                        ${typeof trainerDirection !== 'undefined' && trainerDirection === 'ru_to_de' ? 'Ru → De' : 'De → Ru'}
+                    </button>
+                `;
+            }
+            
             if (typeof renderTrainer === 'function') {
                 renderTrainer(container, lesson);
             } else {

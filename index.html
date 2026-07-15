@@ -106,7 +106,6 @@
 <script>
 // Конфигурация загружается из .env файла
 // Конфигурация Firebase (подставляется Vite при сборке)
-// Конфигурация Firebase (подставляется Vite при сборке)
 const firebaseConfig = {
     apiKey: "AIzaSyAUj_2cLQyWvs2JTT7Zl2BYox0krDb3X7I",
     authDomain: "deutsch-meister-248cf.firebaseapp.com",
@@ -115,6 +114,9 @@ const firebaseConfig = {
     messagingSenderId: "549700335996",
     appId: "1:549700335996:web:97ed9e8f91224e34ab0cf9"
 };
+
+// ===== ДОБАВЛЕНО: EMAIL АДМИНИСТРАТОРА =====
+const ADMIN_EMAIL = "ygubert72@gmail.com";
 
 firebase.initializeApp(firebaseConfig);
 console.log('✅ Firebase инициализирован');

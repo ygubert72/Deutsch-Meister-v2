@@ -688,18 +688,6 @@ function renderMode(mode, lesson) {
                         ${typeof quizDirection !== 'undefined' && quizDirection === 'de_to_ru' ? 'De → Ru' : 'Ru → De'}
                     </button>
                 `;
-                // ПОДКЛЮЧАЕМ ОБРАБОТЧИК СРАЗУ
-                const quizBtn = document.getElementById('quizDirBtn');
-                if (quizBtn) {
-                    quizBtn.addEventListener('click', function() {
-                        quizDirection = quizDirection === 'de_to_ru' ? 'ru_to_de' : 'de_to_ru';
-                        this.textContent = quizDirection === 'de_to_ru' ? 'De → Ru' : 'Ru → De';
-                        // Обновляем вопрос
-                        if (typeof window.showQuizQuestion === 'function') {
-                            window.showQuizQuestion();
-                        }
-                    });
-                }
             }
             
             if (typeof renderQuiz === 'function') {
@@ -707,6 +695,26 @@ function renderMode(mode, lesson) {
             } else {
                 container.innerHTML = '<div>Режим "Тест" загружается...</div>';
             }
+            
+            // ПОДКЛЮЧАЕМ ОБРАБОТЧИК ПОСЛЕ РЕНДЕРА
+            setTimeout(function() {
+                const quizBtn = document.getElementById('quizDirBtn');
+                if (quizBtn) {
+                    // Удаляем старые обработчики
+                    quizBtn.replaceWith(quizBtn.cloneNode(true));
+                    const newQuizBtn = document.getElementById('quizDirBtn');
+                    if (newQuizBtn) {
+                        newQuizBtn.addEventListener('click', function() {
+                            quizDirection = quizDirection === 'de_to_ru' ? 'ru_to_de' : 'de_to_ru';
+                            this.textContent = quizDirection === 'de_to_ru' ? 'De → Ru' : 'Ru → De';
+                            // Обновляем вопрос через глобальную функцию
+                            if (typeof showQuizQuestion === 'function') {
+                                showQuizQuestion();
+                            }
+                        });
+                    }
+                }
+            }, 50);
             break;
             
         case 'trainer':
@@ -717,18 +725,6 @@ function renderMode(mode, lesson) {
                         ${typeof trainerDirection !== 'undefined' && trainerDirection === 'ru_to_de' ? 'Ru → De' : 'De → Ru'}
                     </button>
                 `;
-                // ПОДКЛЮЧАЕМ ОБРАБОТЧИК СРАЗУ
-                const trainerBtn = document.getElementById('trainerDirBtn');
-                if (trainerBtn) {
-                    trainerBtn.addEventListener('click', function() {
-                        trainerDirection = trainerDirection === 'ru_to_de' ? 'de_to_ru' : 'ru_to_de';
-                        this.textContent = trainerDirection === 'ru_to_de' ? 'Ru → De' : 'De → Ru';
-                        // Перерисовываем тренажёр через глобальную переменную
-                        if (typeof window.renderTrainer === 'function') {
-                            window.renderTrainer(container, lesson);
-                        }
-                    });
-                }
             }
             
             if (typeof renderTrainer === 'function') {
@@ -736,6 +732,26 @@ function renderMode(mode, lesson) {
             } else {
                 container.innerHTML = '<div>Режим "Тренажёр" загружается...</div>';
             }
+            
+            // ПОДКЛЮЧАЕМ ОБРАБОТЧИК ПОСЛЕ РЕНДЕРА
+            setTimeout(function() {
+                const trainerBtn = document.getElementById('trainerDirBtn');
+                if (trainerBtn) {
+                    // Удаляем старые обработчики
+                    trainerBtn.replaceWith(trainerBtn.cloneNode(true));
+                    const newTrainerBtn = document.getElementById('trainerDirBtn');
+                    if (newTrainerBtn) {
+                        newTrainerBtn.addEventListener('click', function() {
+                            trainerDirection = trainerDirection === 'ru_to_de' ? 'de_to_ru' : 'ru_to_de';
+                            this.textContent = trainerDirection === 'ru_to_de' ? 'Ru → De' : 'De → Ru';
+                            // Перерисовываем тренажёр через глобальную функцию
+                            if (typeof renderTrainer === 'function') {
+                                renderTrainer(container, lesson);
+                            }
+                        });
+                    }
+                }
+            }, 50);
             break;
             
         case 'dictation':

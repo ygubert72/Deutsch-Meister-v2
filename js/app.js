@@ -492,6 +492,7 @@ function renderLevel() {
     let totalWords = 0;
     const countWordsInLevel = async function() {
         let count = 0;
+        // Используем только те уроки, которые есть в courseData
         for (const lesson of courseData.lessons) {
             const lessonId = lesson.id;
             const lessonFile = `docs/${currentLevel}/lessons/lesson_${String(lessonId).padStart(2, '0')}.json`;
@@ -503,7 +504,10 @@ function renderLevel() {
                         count += data.quiz.length;
                     }
                 }
-            } catch(e) {}
+            } catch(e) {
+                // Просто игнорируем ошибки загрузки
+                console.log('⚠️ Не удалось загрузить урок', lessonId);
+            }
         }
         return count;
     };

@@ -364,6 +364,12 @@ function showPaymentModal() {
         return;
     }
     
+    // Проверяем, есть ли уже премиум
+    if (currentUserData && currentUserData.hasPremiumAccess === true) {
+        alert('💎 У вас уже есть премиум-доступ!');
+        return;
+    }
+    
     const PREMIUM_PRICE = 500;
     const CONTACTS = {
         telegram: "@SEO_2020",
@@ -529,7 +535,7 @@ window.showLoginModal = function() {
                 const result = await login(email, password);
                 if (result.success) {
                     modal.remove();
-                    location.reload();
+                    // Убираем location.reload() - UI обновится через onAuthStateChanged
                 } else {
                     alert('Ошибка входа: ' + result.error);
                 }
@@ -538,7 +544,7 @@ window.showLoginModal = function() {
                 if (result.success) {
                     alert('Регистрация успешна! Добро пожаловать, ' + email + '!');
                     modal.remove();
-                    location.reload();
+                    // Убираем location.reload() - UI обновится через onAuthStateChanged
                 } else {
                     alert('Ошибка регистрации: ' + result.error);
                 }

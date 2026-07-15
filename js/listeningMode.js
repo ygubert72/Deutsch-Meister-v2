@@ -241,12 +241,12 @@ function renderDialog(container) {
     html += `
         <div style="display: flex; gap: 10px; flex-wrap: wrap; justify-content: space-between; align-items: center;">
             <div style="display: flex; gap: 10px; flex-wrap: wrap;">
-                <button onclick="window.prevListeningDialog()" ${currentDialogIndex === 0 ? 'disabled style="opacity: 0.5; cursor: not-allowed;"' : ''} 
-                        style="padding: 8px 20px; background: #E8F0FE; border: 2px solid #D0D0D0; border-radius: 8px; cursor: pointer; font-weight: bold;">
+                <button onclick="window.prevListeningDialog()" ${currentDialogIndex === 0 ? 'disabled' : ''} 
+                        style="padding: 8px 20px; background: ${currentDialogIndex === 0 ? '#E8E8E8' : '#E8F0FE'}; border: 2px solid ${currentDialogIndex === 0 ? '#C0C0C0' : '#D0D0D0'}; border-radius: 8px; cursor: ${currentDialogIndex === 0 ? 'not-allowed' : 'pointer'}; font-weight: bold; opacity: ${currentDialogIndex === 0 ? '0.5' : '1'}; min-width: 100px; box-sizing: border-box;">
                     ◀ НАЗАД
                 </button>
-                <button onclick="window.nextListeningDialog()" ${currentDialogIndex === total - 1 ? 'disabled style="opacity: 0.5; cursor: not-allowed;"' : ''}
-                        style="padding: 8px 20px; background: #E8F0FE; border: 2px solid #D0D0D0; border-radius: 8px; cursor: pointer; font-weight: bold;">
+                <button onclick="window.nextListeningDialog()" ${currentDialogIndex === total - 1 ? 'disabled' : ''}
+                        style="padding: 8px 20px; background: ${currentDialogIndex === total - 1 ? '#E8E8E8' : '#E8F0FE'}; border: 2px solid ${currentDialogIndex === total - 1 ? '#C0C0C0' : '#D0D0D0'}; border-radius: 8px; cursor: ${currentDialogIndex === total - 1 ? 'not-allowed' : 'pointer'}; font-weight: bold; opacity: ${currentDialogIndex === total - 1 ? '0.5' : '1'}; min-width: 100px; box-sizing: border-box;">
                     ВПЕРЕД ▶
                 </button>
                 <button onclick="window.checkListeningAnswers()" style="padding: 8px 20px; background: #3B6FE0; color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: bold;">

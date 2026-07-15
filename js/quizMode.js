@@ -186,12 +186,14 @@ function buildQuizHTML(container) {
                     <div>Нет слов для этого режима</div>
                 </div>
             ` : `
-                <div style="display: flex; justify-content: flex-end; align-items: center; margin-bottom: 10px;">
-                    <div id="modeHeaderControls">
-                        <button id="quizDirBtn" class="dir-btn" style="background: #3B6FE0; color: white; padding: 6px 14px; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; font-size: 13px; box-shadow: 0 2px 4px rgba(0,0,0,0.2);">
-                            ${quizDirection === 'de_to_ru' ? 'De → Ru' : 'Ru → De'}
-                        </button>
-                    </div>
+                <!-- ===== СТРОКА С КНОПКОЙ НАЗАД И КНОПКОЙ НАПРАВЛЕНИЯ ===== -->
+                <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; margin-bottom: 15px;">
+                    <button class="back-btn" onclick="window.renderLevel()" style="padding: 10px 20px; background: #3B6FE0; color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; transition: all 0.08s ease;">
+                        ← К СПИСКУ УРОКОВ
+                    </button>
+                    <button id="quizDirBtn" class="dir-btn" style="background: #3B6FE0; color: white; padding: 10px 20px; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; font-size: 13px; box-shadow: 0 2px 4px rgba(0,0,0,0.2); transition: all 0.08s ease;">
+                        ${quizDirection === 'de_to_ru' ? 'De → Ru' : 'Ru → De'}
+                    </button>
                 </div>
                 
                 ${isAllWordsMode ? `

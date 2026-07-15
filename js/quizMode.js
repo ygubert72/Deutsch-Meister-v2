@@ -186,18 +186,23 @@ function buildQuizHTML(container) {
                     <div>Нет слов для этого режима</div>
                 </div>
             ` : `
-                <!-- УБРАЛИ ДУБЛЬ КНОПКИ "← К СПИСКУ УРОКОВ" И КНОПКУ НАПРАВЛЕНИЯ -->
-                <!-- Кнопка направления теперь в заголовке (modeHeaderControlsTitle) -->
-                
-                ${isAllWordsMode ? `
-                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
-                        <h2 style="margin: 0;">🌍 Все слова уровня ${window.currentLevel}</h2>
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                    ${isAllWordsMode ? `
+                        <button class="back-btn" onclick="window.renderLevel()" style="transition: all 0.08s ease;">← К УРОКАМ</button>
+                    ` : `
+                        <button class="back-btn" onclick="window.renderLevel()" style="transition: all 0.08s ease;">← К СПИСКУ УРОКОВ</button>
+                    `}
+                    <div id="modeHeaderControls">
                         <button id="quizDirBtn" class="dir-btn" style="background: #3B6FE0; color: white; padding: 6px 14px; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; font-size: 13px; box-shadow: 0 2px 4px rgba(0,0,0,0.2);">
                             ${quizDirection === 'de_to_ru' ? 'De → Ru' : 'Ru → De'}
                         </button>
                     </div>
+                </div>
+                
+                ${isAllWordsMode ? `
+                    <h2>🌍 Все слова уровня ${window.currentLevel}</h2>
                 ` : `
-                    <!-- Для обычных уроков кнопка направления переносится в заголовок через renderMode -->
+                    <h2>🎯 Тест: Урок ${currentLessonId}</h2>
                 `}
                 
                 <div style="background: #FFFFFF; border-radius: 20px; box-shadow: 0 8px 24px rgba(0,0,0,0.1); max-width: 550px; margin: 15px auto; min-height: 150px; display: flex; align-items: center; justify-content: center; text-align: center; padding: 20px;">
@@ -228,69 +233,92 @@ function buildQuizHTML(container) {
     // Если нет слов — выходим
     if (!hasWords) return;
 
-    // Обработчик направления (для режима "Все слова")
+    // ===== ОБРАБОТЧИК ДЛЯ КНОПКИ НАПРАВЛЕНИЯ (ИСПРАВЛЕНО) =====
     const dirBtn = document.getElementById('quizDirBtn');
     if (dirBtn) {
-        dirBtn.addEventListener('click', function() {
+        // Удаляем старые обработчики
+        dirBtn.replaceWith(dirBtn.cloneNode(true));
+        const newDirBtn = document.getElementById('quizDirBtn');
+        newDirBtn.addEventListener('click', function() {
             quizDirection = quizDirection === 'de_to_ru' ? 'ru_to_de' : 'de_to_ru';
             this.textContent = quizDirection === 'de_to_ru' ? 'De → Ru' : 'Ru → De';
             showQuizQuestion();
         });
     }
 
-    // Обработчики кнопок
-    document.getElementById('quizStudyBtn').addEventListener('click', function() {
-        if (quizCurrentWord) {
-            quizStudiedWords[quizCurrentWord.de] = true;
-            saveStudiedWords(window.currentLevel);
-            
-            quizWords = (isAllWordsMode ? allQuizWords : allQuizWords).filter(w => !quizStudiedWords[w.de]);
-            
-            if (quizWords.length === 0 && allQuizWords.length > 0) {
-                quizWords = [...allQuizWords];
+    // ===== ОСТАЛЬНЫЕ ОБРАБОТЧИКИ =====
+    const studyBtn = document.getElementById('quizStudyBtn');
+    if (studyBtn) {
+        studyBtn.replaceWith(studyBtn.cloneNode(true));
+        document.getElementById('quizStudyBtn').addEventListener('click', function() {
+            if (quizCurrentWord) {
+                quizStudiedWords[quizCurrentWord.de] = true;
+                saveStudiedWords(window.currentLevel);
+                
+                quizWords = (isAllWordsMode ? allQuizWords : allQuizWords).filter(w => !quizStudiedWords[w.de]);
+                
+                if (quizWords.length === 0 && allQuizWords.length > 0) {
+                    quizWords = [...allQuizWords];
+                }
+                
+                if (quizIndex >= quizWords.length && quizWords.length > 0) {
+                    quizIndex = 0;
+                }
+                
+                if (isAllWordsMode) {
+                    updateProgressDisplay();
+                }
+                
+                showQuizQuestion();
             }
-            
-            if (quizIndex >= quizWords.length && quizWords.length > 0) {
+        });
+    }
+
+    const containerBtn = document.getElementById('quizContainerBtn');
+    if (containerBtn) {
+        containerBtn.replaceWith(containerBtn.cloneNode(true));
+        document.getElementById('quizContainerBtn').addEventListener('click', function() {
+            const studied = getStudiedWordsList();
+            if (!studied || studied.length === 0) {
+                alert('📦 Контейнер пуст\n\nВыучите слова, чтобы они появились здесь.');
+                return;
+            }
+            showQuizContainer();
+        });
+    }
+
+    const prevBtn = document.getElementById('quizPrevBtn');
+    if (prevBtn) {
+        prevBtn.replaceWith(prevBtn.cloneNode(true));
+        document.getElementById('quizPrevBtn').addEventListener('click', function() {
+            if (quizWords.length > 0 && quizIndex > 0) {
+                quizIndex--;
+                showQuizQuestion();
+            }
+        });
+    }
+
+    const nextBtn = document.getElementById('quizNextBtn');
+    if (nextBtn) {
+        nextBtn.replaceWith(nextBtn.cloneNode(true));
+        document.getElementById('quizNextBtn').addEventListener('click', function() {
+            if (quizWords.length > 0) {
+                quizIndex = (quizIndex + 1) % quizWords.length;
+                showQuizQuestion();
+            }
+        });
+    }
+
+    const resetBtn = document.getElementById('quizResetStartBtn');
+    if (resetBtn) {
+        resetBtn.replaceWith(resetBtn.cloneNode(true));
+        document.getElementById('quizResetStartBtn').addEventListener('click', function() {
+            if (quizWords.length > 0) {
                 quizIndex = 0;
+                showQuizQuestion();
             }
-            
-            if (isAllWordsMode) {
-                updateProgressDisplay();
-            }
-            
-            showQuizQuestion();
-        }
-    });
-
-    document.getElementById('quizContainerBtn').addEventListener('click', function() {
-        const studied = getStudiedWordsList();
-        if (!studied || studied.length === 0) {
-            alert('📦 Контейнер пуст\n\nВыучите слова, чтобы они появились здесь.');
-            return;
-        }
-        showQuizContainer();
-    });
-
-    document.getElementById('quizPrevBtn').addEventListener('click', function() {
-        if (quizWords.length > 0 && quizIndex > 0) {
-            quizIndex--;
-            showQuizQuestion();
-        }
-    });
-
-    document.getElementById('quizNextBtn').addEventListener('click', function() {
-        if (quizWords.length > 0) {
-            quizIndex = (quizIndex + 1) % quizWords.length;
-            showQuizQuestion();
-        }
-    });
-
-    document.getElementById('quizResetStartBtn').addEventListener('click', function() {
-        if (quizWords.length > 0) {
-            quizIndex = 0;
-            showQuizQuestion();
-        }
-    });
+        });
+    }
 
     showQuizQuestion();
 }
@@ -499,4 +527,3 @@ function showQuizQuestion() {
 // ===== ЭКСПОРТ =====
 window.renderQuiz = renderQuiz;
 window.loadAllWordsMode = loadAllWordsMode;
-window.showQuizQuestion = showQuizQuestion;  // ДОБАВЛЕНО!

@@ -204,6 +204,7 @@ function buildQuizHTML(container) {
                 <div class="btn-group" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin: 10px 0 5px 0;">
                     <button class="ctrl-btn" id="quizStudyBtn" style="padding: 6px 14px; background: #4CAF50; color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; font-size: 12px;">✅ ИЗУЧЕНО</button>
                     <button class="ctrl-btn" id="quizContainerBtn" style="padding: 6px 14px; background: #FF9800; color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; font-size: 12px;">📦 КОНТЕЙНЕР</button>
+                    ${isAllWordsMode ? `<button class="ctrl-btn" id="shuffleWordsBtn" onclick="window.shuffleAllWords()" style="padding: 6px 14px; background: #9C27B0; color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; font-size: 12px;">🔄 ПЕРЕМЕШАТЬ</button>` : ''}
                 </div>
                 
                 <div class="btn-group" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin: 5px 0 10px 0;">
@@ -486,6 +487,35 @@ function showQuizQuestion() {
         gridEl.appendChild(btn);
     });
 }
+
+// ===== ПЕРЕМЕШИВАНИЕ СЛОВ (ТОЛЬКО ДЛЯ "ВСЕ СЛОВА УРОВНЯ") =====
+window.shuffleAllWords = function() {
+    if (!isAllWordsMode) {
+        return;
+    }
+    
+    if (!allQuizWords || allQuizWords.length === 0) {
+        return;
+    }
+    
+    // Перемешиваем массив
+    for (let i = allQuizWords.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [allQuizWords[i], allQuizWords[j]] = [allQuizWords[j], allQuizWords[i]];
+    }
+    
+    // Обновляем quizWords (убираем изученные слова)
+    quizWords = allQuizWords.filter(word => !quizStudiedWords[word.de]);
+    
+    if (quizWords.length === 0 && allQuizWords.length > 0) {
+        quizWords = [...allQuizWords];
+    }
+    
+    quizIndex = 0;
+    showQuizQuestion();
+    
+    console.log('🔄 Слова перемешаны');
+};
 
 // ===== ЭКСПОРТ =====
 window.renderQuiz = renderQuiz;

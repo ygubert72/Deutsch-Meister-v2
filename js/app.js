@@ -599,7 +599,7 @@ function buildLessonHTML(lesson, hasListening) {
 
     let html = `
         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
-            <button class="back-btn" onclick="renderLevel()" style="transition: all 0.08s ease;">← К СПИСКУ УРОКОВ</button>
+            <button class="back-btn" onclick="renderLevel()" style="transition: all 0.08s ease;">← НАЗАД</button>
             <div id="modeHeaderControls"></div>
         </div>
         <h2>📖 Урок ${lesson.id}: ${lesson.title}</h2>

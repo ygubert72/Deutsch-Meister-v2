@@ -499,3 +499,4 @@ function showQuizQuestion() {
 // ===== ЭКСПОРТ =====
 window.renderQuiz = renderQuiz;
 window.loadAllWordsMode = loadAllWordsMode;
+window.showQuizQuestion = showQuizQuestion;  // ДОБАВЛЕНО!

@@ -168,6 +168,16 @@ function buildQuizHTML(container) {
     const studiedCount = Object.keys(quizStudiedWords).filter(key => quizStudiedWords[key] === true).length;
     const progress = totalWords > 0 ? Math.round((studiedCount / totalWords) * 100) : 0;
 
+    // ===== ПОМЕЩАЕМ КНОПКУ НАПРАВЛЕНИЯ В HEADER (рядом со старой кнопкой) =====
+    const headerControls = document.getElementById('modeHeaderControls');
+    if (headerControls) {
+        headerControls.innerHTML = `
+            <button id="quizDirBtn" class="dir-btn" style="background: #3B6FE0; color: white; padding: 10px 20px; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; font-size: 13px; box-shadow: 0 2px 4px rgba(0,0,0,0.2); transition: all 0.08s ease;">
+                ${quizDirection === 'de_to_ru' ? 'De → Ru' : 'Ru → De'}
+            </button>
+        `;
+    }
+
     let html = `
         <div style="text-align: center;">
             ${isAllWordsMode && hasWords ? `
@@ -185,16 +195,6 @@ function buildQuizHTML(container) {
                     <div>Нет слов для этого режима</div>
                 </div>
             ` : `
-                <!-- ===== ОДНА СТРОКА: СТАРАЯ КНОПКА "К СПИСКУ УРОКОВ" + КНОПКА НАПРАВЛЕНИЯ ===== -->
-                <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; margin-bottom: 15px;">
-                    <button class="back-btn" onclick="window.renderLevel()" style="padding: 10px 20px; background: #3B6FE0; color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; transition: all 0.08s ease;">
-                        ← К СПИСКУ УРОКОВ
-                    </button>
-                    <button id="quizDirBtn" class="dir-btn" style="background: #3B6FE0; color: white; padding: 10px 20px; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; font-size: 13px; box-shadow: 0 2px 4px rgba(0,0,0,0.2); transition: all 0.08s ease;">
-                        ${quizDirection === 'de_to_ru' ? 'De → Ru' : 'Ru → De'}
-                    </button>
-                </div>
-                
                 ${isAllWordsMode ? `
                     <h2>🌍 Все слова уровня ${window.currentLevel}</h2>
                 ` : `
@@ -226,11 +226,15 @@ function buildQuizHTML(container) {
 
     if (!hasWords) return;
 
-    document.getElementById('quizDirBtn').addEventListener('click', function() {
-        quizDirection = quizDirection === 'de_to_ru' ? 'ru_to_de' : 'de_to_ru';
-        this.textContent = quizDirection === 'de_to_ru' ? 'De → Ru' : 'Ru → De';
-        showQuizQuestion();
-    });
+    // ===== ОБРАБОТЧИК КНОПКИ НАПРАВЛЕНИЯ =====
+    const dirBtn = document.getElementById('quizDirBtn');
+    if (dirBtn) {
+        dirBtn.addEventListener('click', function() {
+            quizDirection = quizDirection === 'de_to_ru' ? 'ru_to_de' : 'de_to_ru';
+            this.textContent = quizDirection === 'de_to_ru' ? 'De → Ru' : 'Ru → De';
+            showQuizQuestion();
+        });
+    }
 
     document.getElementById('quizStudyBtn').addEventListener('click', function() {
         if (quizCurrentWord) {

@@ -602,7 +602,7 @@ function buildLessonHTML(lesson, hasListening) {
             <button class="back-btn" onclick="renderLevel()" style="transition: all 0.08s ease;">← К СПИСКУ УРОКОВ</button>
             <div id="modeHeaderControls"></div>
         </div>
-        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+        <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 10px;">
             <h2 style="margin: 0;">📖 Урок ${lesson.id}: ${lesson.title}</h2>
             <div id="modeHeaderControlsTitle"></div>
         </div>
@@ -679,14 +679,27 @@ function renderMode(mode, lesson) {
                 container.innerHTML = '<div>Режим "Грамматика" загружается...</div>';
             }
             break;
+            
         case 'quiz':
-            // Добавляем кнопку переключения направления в заголовок для раздела "Тест"
+            // Кнопка переключения направления рядом с заголовком
             if (headerControlsTitle) {
                 headerControlsTitle.innerHTML = `
-                    <button id="quizDirBtn" class="dir-btn" style="background: #3B6FE0; color: white; padding: 6px 14px; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; font-size: 13px; box-shadow: 0 2px 4px rgba(0,0,0,0.2);">
+                    <button id="quizDirBtn" class="dir-btn" style="background: #3B6FE0; color: white; padding: 4px 12px; border: none; border-radius: 6px; cursor: pointer; font-weight: bold; font-size: 12px; box-shadow: 0 2px 4px rgba(0,0,0,0.2);">
                         ${typeof quizDirection !== 'undefined' && quizDirection === 'de_to_ru' ? 'De → Ru' : 'Ru → De'}
                     </button>
                 `;
+                // Обработчик для кнопки
+                const quizBtn = document.getElementById('quizDirBtn');
+                if (quizBtn) {
+                    quizBtn.addEventListener('click', function() {
+                        quizDirection = quizDirection === 'de_to_ru' ? 'ru_to_de' : 'de_to_ru';
+                        this.textContent = quizDirection === 'de_to_ru' ? 'De → Ru' : 'Ru → De';
+                        // Обновляем вопрос
+                        if (typeof showQuizQuestion === 'function') {
+                            showQuizQuestion();
+                        }
+                    });
+                }
             }
             
             if (typeof renderQuiz === 'function') {
@@ -695,14 +708,27 @@ function renderMode(mode, lesson) {
                 container.innerHTML = '<div>Режим "Тест" загружается...</div>';
             }
             break;
+            
         case 'trainer':
-            // Добавляем кнопку переключения направления в заголовок для раздела "Тренажёр"
+            // Кнопка переключения направления рядом с заголовком
             if (headerControlsTitle) {
                 headerControlsTitle.innerHTML = `
-                    <button id="trainerDirBtn" class="dir-btn" style="background: #3B6FE0; color: white; padding: 6px 14px; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; font-size: 13px; box-shadow: 0 2px 4px rgba(0,0,0,0.2);">
+                    <button id="trainerDirBtn" class="dir-btn" style="background: #3B6FE0; color: white; padding: 4px 12px; border: none; border-radius: 6px; cursor: pointer; font-weight: bold; font-size: 12px; box-shadow: 0 2px 4px rgba(0,0,0,0.2);">
                         ${typeof trainerDirection !== 'undefined' && trainerDirection === 'ru_to_de' ? 'Ru → De' : 'De → Ru'}
                     </button>
                 `;
+                // Обработчик для кнопки
+                const trainerBtn = document.getElementById('trainerDirBtn');
+                if (trainerBtn) {
+                    trainerBtn.addEventListener('click', function() {
+                        trainerDirection = trainerDirection === 'ru_to_de' ? 'de_to_ru' : 'ru_to_de';
+                        this.textContent = trainerDirection === 'ru_to_de' ? 'Ru → De' : 'De → Ru';
+                        // Перерисовываем тренажёр
+                        if (typeof renderTrainer === 'function') {
+                            renderTrainer(container, lesson);
+                        }
+                    });
+                }
             }
             
             if (typeof renderTrainer === 'function') {
@@ -711,6 +737,7 @@ function renderMode(mode, lesson) {
                 container.innerHTML = '<div>Режим "Тренажёр" загружается...</div>';
             }
             break;
+            
         case 'dictation':
             if (typeof renderDictation === 'function') {
                 renderDictation(container, lesson);
@@ -718,6 +745,7 @@ function renderMode(mode, lesson) {
                 container.innerHTML = '<div>Режим "Диктант" загружается...</div>';
             }
             break;
+            
         case 'listening':
             if (typeof renderListening === 'function') {
                 renderListening(container, lesson);
@@ -725,6 +753,7 @@ function renderMode(mode, lesson) {
                 container.innerHTML = '<div>Режим "Аудирование" загружается...</div>';
             }
             break;
+            
         default:
             container.innerHTML = '<div>Режим не найден</div>';
     }

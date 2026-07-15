@@ -688,5 +688,5 @@ function updateTrainerDisplay(container) {
     }
 }
 
-// ===== ЭКСПОРТ =====
-window.renderTrainer = renderTrainer;  // ДОБАВЛЕНО!
+// ===== ЭКСПОРТ В ГЛОБАЛЬНУЮ ОБЛАСТЬ =====
+window.renderTrainer = renderTrainer;

@@ -67,8 +67,8 @@ export default defineConfig({
     emptyOutDir: true,
     rollupOptions: {
       input: {
-        main: 'index.html',
-        admin: 'admin.html'
+        main: 'index.html'
+        // admin.html УДАЛЕН — больше не нужен
       }
     }
   }

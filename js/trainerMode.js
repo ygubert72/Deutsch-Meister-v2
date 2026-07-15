@@ -425,19 +425,7 @@ function showTrainerSentence(container) {
     const textColor = hasWords ? '#1A1A1A' : '#CCCCCC';
     const fontWeight = hasWords ? 'bold' : 'normal';
 
-    const headerControls = document.getElementById('modeHeaderControls');
-    if (headerControls) {
-        headerControls.innerHTML = `
-            <button id="trainerDirBtn" class="dir-btn" style="background: #3B6FE0; color: white; padding: 6px 14px; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; font-size: 13px; box-shadow: 0 2px 4px rgba(0,0,0,0.2);">
-                ${trainerDirection === 'ru_to_de' ? 'Ru → De' : 'De → Ru'}
-            </button>
-        `;
-        document.getElementById('trainerDirBtn').addEventListener('click', function() {
-            trainerDirection = trainerDirection === 'ru_to_de' ? 'de_to_ru' : 'ru_to_de';
-            this.textContent = trainerDirection === 'ru_to_de' ? 'Ru → De' : 'De → Ru';
-            showTrainerSentence(container);
-        });
-    }
+    // УДАЛЕНА КНОПКА НАПРАВЛЕНИЯ ИЗ modeHeaderControls - ТЕПЕРЬ ОНА В ЗАГОЛОВКЕ (modeHeaderControlsTitle)
 
     let html = `
         <div style="text-align: center;">

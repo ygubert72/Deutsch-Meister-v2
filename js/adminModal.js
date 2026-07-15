@@ -346,7 +346,7 @@ async function adminLogAction(uid, action, details = {}) {
     } catch(e) { console.error('Ошибка логирования:', e); }
 }
 
-// ========== ЛОГИ ==========
+// ========== ЛОГИ — С ВОЗМОЖНОСТЬЮ КОПИРОВАТЬ ==========
 async function adminShowLogs(uid) {
     try {
         const logsSnapshot = await window.db.collection('admin_logs')
@@ -363,7 +363,43 @@ async function adminShowLogs(uid) {
             return;
         }
         
-        let text = '📋 Логи пользователя:\n\n';
+        // Создаём модалку с логами
+        const oldModal = document.getElementById('adminLogsModal');
+        if (oldModal) oldModal.remove();
+        
+        const modal = document.createElement('div');
+        modal.id = 'adminLogsModal';
+        modal.style.cssText = `
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.7);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 10000001;
+            overflow: auto;
+            padding: 20px;
+        `;
+        
+        const modalContent = document.createElement('div');
+        modalContent.style.cssText = `
+            background: white;
+            border-radius: 20px;
+            max-width: 600px;
+            width: 100%;
+            max-height: 80vh;
+            padding: 25px;
+            overflow-y: auto;
+            position: relative;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+            user-select: text !important;
+            -webkit-user-select: text !important;
+        `;
+        
+        let logsHtml = '';
         logs.forEach(log => {
             const time = new Date(log.timestamp).toLocaleString();
             let flagText = '';
@@ -375,10 +411,64 @@ async function adminShowLogs(uid) {
                     flagText = ' 🚩 ' + activeFlags.join(', ');
                 }
             }
-            text += `${time} — ${log.event || 'flags_increased'}${flagText}\n`;
+            logsHtml += `
+                <div style="
+                    background: #f8f9fa;
+                    border-radius: 6px;
+                    padding: 8px 12px;
+                    margin: 4px 0;
+                    font-size: 13px;
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    user-select: text !important;
+                    -webkit-user-select: text !important;
+                    cursor: text;
+                ">
+                    <span style="user-select: text !important; -webkit-user-select: text !important;">${log.event || 'flags_increased'}${flagText}</span>
+                    <span style="color: #666; font-family: monospace; font-size: 12px; user-select: text !important; -webkit-user-select: text !important;">${time}</span>
+                </div>
+            `;
         });
         
-        alert(text);
+        modalContent.innerHTML = `
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; user-select: text !important;">
+                <h3 style="margin: 0; user-select: text !important;">📋 Логи пользователя</h3>
+                <button onclick="document.getElementById('adminLogsModal').remove()" style="
+                    background: none;
+                    border: none;
+                    font-size: 28px;
+                    cursor: pointer;
+                    color: #666;
+                    padding: 0 10px;
+                ">✕</button>
+            </div>
+            <div style="user-select: text !important; -webkit-user-select: text !important;">
+                ${logsHtml}
+            </div>
+            <div style="margin-top: 15px; text-align: center; font-size: 12px; color: #999; user-select: text !important; -webkit-user-select: text !important; border-top: 1px solid #eee; padding-top: 12px;">
+                💡 Вы можете выделить и скопировать текст логов
+            </div>
+            <button onclick="document.getElementById('adminLogsModal').remove()" style="
+                width: 100%;
+                margin-top: 12px;
+                padding: 10px;
+                background: #3B6FE0;
+                color: white;
+                border: none;
+                border-radius: 10px;
+                cursor: pointer;
+                font-size: 14px;
+                font-weight: bold;
+            ">Закрыть</button>
+        `;
+        
+        modal.appendChild(modalContent);
+        document.body.appendChild(modal);
+        
+        modal.onclick = function(e) {
+            if (e.target === modal) modal.remove();
+        };
         
     } catch(e) {
         console.error('Ошибка загрузки логов:', e);

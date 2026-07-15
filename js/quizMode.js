@@ -104,7 +104,6 @@ window.loadAllWordsMode = async function(level) {
     quizIndex = 0;
     quizDirection = 'de_to_ru';
     
-    // Показываем тест прямо в #content (не ищем modeContent)
     showQuizInterfaceDirect();
 };
 
@@ -186,7 +185,7 @@ function buildQuizHTML(container) {
                     <div>Нет слов для этого режима</div>
                 </div>
             ` : `
-                <!-- ===== СТРОКА С КНОПКОЙ НАЗАД И КНОПКОЙ НАПРАВЛЕНИЯ ===== -->
+                <!-- ===== ОДНА СТРОКА: СТАРАЯ КНОПКА "К СПИСКУ УРОКОВ" + КНОПКА НАПРАВЛЕНИЯ ===== -->
                 <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; margin-bottom: 15px;">
                     <button class="back-btn" onclick="window.renderLevel()" style="padding: 10px 20px; background: #3B6FE0; color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; transition: all 0.08s ease;">
                         ← К СПИСКУ УРОКОВ
@@ -208,13 +207,11 @@ function buildQuizHTML(container) {
                 <div class="quiz-grid" id="quizGrid" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; max-width: 700px; margin: 20px auto;"></div>
                 <div style="font-size: 14px; color: #888; margin-top: 10px;" id="quizProgress">0 / 0</div>
                 
-                <!-- РЯД 1: ИЗУЧЕНО + В КОНТЕЙНЕР -->
                 <div class="btn-group" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin: 10px 0 5px 0;">
                     <button class="ctrl-btn" id="quizStudyBtn" style="padding: 6px 14px; background: #4CAF50; color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; font-size: 12px;">✅ ИЗУЧЕНО</button>
                     <button class="ctrl-btn" id="quizContainerBtn" style="padding: 6px 14px; background: #FF9800; color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; font-size: 12px;">📦 КОНТЕЙНЕР</button>
                 </div>
                 
-                <!-- РЯД 2: НАЗАД + ВПЕРЕД + В НАЧАЛО -->
                 <div class="btn-group" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin: 5px 0 10px 0;">
                     <button class="ctrl-btn" id="quizPrevBtn" style="padding: 6px 14px; background: #E8F0FE; border: 2px solid #D0D0D0; border-radius: 8px; cursor: pointer; font-weight: bold; font-size: 12px;">◀ НАЗАД</button>
                     <button class="ctrl-btn" id="quizNextBtn" style="padding: 6px 14px; background: #E8F0FE; border: 2px solid #D0D0D0; border-radius: 8px; cursor: pointer; font-weight: bold; font-size: 12px;">ВПЕРЕД ▶</button>
@@ -227,17 +224,14 @@ function buildQuizHTML(container) {
     container.innerHTML = html;
     console.log('✅ buildQuizHTML: контент вставлен');
 
-    // Если нет слов — выходим
     if (!hasWords) return;
 
-    // Обработчик направления
     document.getElementById('quizDirBtn').addEventListener('click', function() {
         quizDirection = quizDirection === 'de_to_ru' ? 'ru_to_de' : 'de_to_ru';
         this.textContent = quizDirection === 'de_to_ru' ? 'De → Ru' : 'Ru → De';
         showQuizQuestion();
     });
 
-    // Обработчики кнопок
     document.getElementById('quizStudyBtn').addEventListener('click', function() {
         if (quizCurrentWord) {
             quizStudiedWords[quizCurrentWord.de] = true;

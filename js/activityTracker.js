@@ -1,15 +1,59 @@
 // activityTracker.js — логирование активности пользователя и анализ флагов
 
-// ========== ПОЛУЧЕНИЕ IP И ГОРОДА (ЗАГЛУШКА, ЧТОБЫ ИЗБЕЖАТЬ CORS) ==========
+// ========== ПОЛУЧЕНИЕ IP И ГОРОДА ==========
 async function getUserLocation() {
-    // Возвращаем заглушку, чтобы избежать CORS-ошибки с ipapi.co
-    // Если нужно реальное определение — можно заменить на другой сервис
-    return {
-        ip: 'unknown',
-        city: 'unknown',
-        country: 'unknown',
-        region: 'unknown'
-    };
+    try {
+        // 1. Сначала получаем IP через ipify (бесплатно, без лимитов)
+        const ipResponse = await fetch('https://api.ipify.org?format=json');
+        const ipData = await ipResponse.json();
+        const ip = ipData.ip || 'unknown';
+        
+        // Если IP не определён - возвращаем заглушку
+        if (ip === 'unknown') {
+            return { ip: 'unknown', city: 'unknown', country: 'unknown', region: 'unknown' };
+        }
+        
+        // 2. Пробуем получить город по IP через ipapi.co
+        try {
+            const locationResponse = await fetch(`https://ipapi.co/${ip}/json/`);
+            if (locationResponse.ok) {
+                const locationData = await locationResponse.json();
+                return {
+                    ip: ip,
+                    city: locationData.city || 'unknown',
+                    country: locationData.country_name || 'unknown',
+                    region: locationData.region || 'unknown'
+                };
+            }
+        } catch (e) {
+            console.log('⚠️ Не удалось получить город через ipapi.co, пробуем другой сервис...');
+        }
+        
+        // 3. Запасной вариант: ip-api.com (бесплатно, без ключа)
+        try {
+            const backupResponse = await fetch(`http://ip-api.com/json/${ip}?fields=status,message,country,city,regionName`);
+            if (backupResponse.ok) {
+                const backupData = await backupResponse.json();
+                if (backupData.status === 'success') {
+                    return {
+                        ip: ip,
+                        city: backupData.city || 'unknown',
+                        country: backupData.country || 'unknown',
+                        region: backupData.regionName || 'unknown'
+                    };
+                }
+            }
+        } catch (e) {
+            console.log('⚠️ Не удалось получить город через ip-api.com');
+        }
+        
+        // 4. Если всё失败了 - возвращаем только IP
+        return { ip: ip, city: 'unknown', country: 'unknown', region: 'unknown' };
+        
+    } catch(e) {
+        console.error('❌ Ошибка определения геолокации:', e);
+        return { ip: 'unknown', city: 'unknown', country: 'unknown', region: 'unknown' };
+    }
 }
 
 // ========== ID УСТРОЙСТВА ==========

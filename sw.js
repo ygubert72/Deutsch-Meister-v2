@@ -1,44 +1,43 @@
 // sw.js — Service Worker для PWA с автоматическим версионированием
 
 // Версия приложения (меняется автоматически при сборке)
-// ВНИМАНИЕ: При каждом обновлении меняйте номер версии!
 const APP_VERSION = '2.0.0';
 const CACHE_NAME = `deutsch-meister-${APP_VERSION}`;
 const STATIC_CACHE = `static-${APP_VERSION}`;
 
 // Файлы, которые кешируем при установке
+// ВНИМАНИЕ: admin.html НЕ кешируется по соображениям безопасности!
 const STATIC_ASSETS = [
-  '/Deutsch-Meister/',
-  '/Deutsch-Meister/index.html',
-  '/Deutsch-Meister/admin.html',
-  '/Deutsch-Meister/manifest.json',
-  '/Deutsch-Meister/sw.js',
-  '/Deutsch-Meister/css/style.css',
-  '/Deutsch-Meister/js/config.js',
-  '/Deutsch-Meister/js/utils.js',
-  '/Deutsch-Meister/js/logger.js',
-  '/Deutsch-Meister/js/containerManager.js',
-  '/Deutsch-Meister/js/grammarMode.js',
-  '/Deutsch-Meister/js/app.js',
-  '/Deutsch-Meister/js/auth.js',
-  '/Deutsch-Meister/js/userService.js',
-  '/Deutsch-Meister/js/activityTracker.js',
-  '/Deutsch-Meister/js/adminModal.js',
-  '/Deutsch-Meister/js/dictationMode.js',
-  '/Deutsch-Meister/js/donateModal.js',
-  '/Deutsch-Meister/js/instruction.js',
-  '/Deutsch-Meister/js/listeningMode.js',
-  '/Deutsch-Meister/js/practiceMode.js',
-  '/Deutsch-Meister/js/quizMode.js',
-  '/Deutsch-Meister/js/shareModal.js',
-  '/Deutsch-Meister/js/speak.js',
-  '/Deutsch-Meister/js/trainerMode.js',
-  '/Deutsch-Meister/js/vocabularyMode.js',
-  '/Deutsch-Meister/js/voiceSelector.js',
-  '/Deutsch-Meister/js/welcome.js',
-  '/Deutsch-Meister/icons/icon.svg',
-  '/Deutsch-Meister/icons/icon-192x192.png',
-  '/Deutsch-Meister/icons/icon-512x512.png'
+  '/Deutsch-Meister-v2/',
+  '/Deutsch-Meister-v2/index.html',
+  '/Deutsch-Meister-v2/manifest.json',
+  '/Deutsch-Meister-v2/sw.js',
+  '/Deutsch-Meister-v2/css/style.css',
+  '/Deutsch-Meister-v2/js/config.js',
+  '/Deutsch-Meister-v2/js/utils.js',
+  '/Deutsch-Meister-v2/js/logger.js',
+  '/Deutsch-Meister-v2/js/containerManager.js',
+  '/Deutsch-Meister-v2/js/grammarMode.js',
+  '/Deutsch-Meister-v2/js/app.js',
+  '/Deutsch-Meister-v2/js/auth.js',
+  '/Deutsch-Meister-v2/js/userService.js',
+  '/Deutsch-Meister-v2/js/activityTracker.js',
+  '/Deutsch-Meister-v2/js/adminModal.js',
+  '/Deutsch-Meister-v2/js/dictationMode.js',
+  '/Deutsch-Meister-v2/js/donateModal.js',
+  '/Deutsch-Meister-v2/js/instruction.js',
+  '/Deutsch-Meister-v2/js/listeningMode.js',
+  '/Deutsch-Meister-v2/js/practiceMode.js',
+  '/Deutsch-Meister-v2/js/quizMode.js',
+  '/Deutsch-Meister-v2/js/shareModal.js',
+  '/Deutsch-Meister-v2/js/speak.js',
+  '/Deutsch-Meister-v2/js/trainerMode.js',
+  '/Deutsch-Meister-v2/js/vocabularyMode.js',
+  '/Deutsch-Meister-v2/js/voiceSelector.js',
+  '/Deutsch-Meister-v2/js/welcome.js',
+  '/Deutsch-Meister-v2/icons/icon.svg',
+  '/Deutsch-Meister-v2/icons/icon-192x192.png',
+  '/Deutsch-Meister-v2/icons/icon-512x512.png'
 ];
 
 // ========== УСТАНОВКА ==========
@@ -71,7 +70,6 @@ self.addEventListener('activate', function(event) {
         return Promise.all(
           cacheNames
             .filter(function(name) {
-              // Удаляем все старые кеши, которые не соответствуют текущей версии
               return name !== STATIC_CACHE && name !== CACHE_NAME;
             })
             .map(function(name) {
@@ -129,12 +127,10 @@ self.addEventListener('fetch', function(event) {
   }
   
   // Стратегия: сначала сеть, потом кеш (для HTML)
-  // Это гарантирует, что пользователь всегда видит свежую версию
   if (request.headers.get('accept') && request.headers.get('accept').includes('text/html')) {
     event.respondWith(
       fetch(request)
         .then(function(networkResponse) {
-          // Кешируем свежий HTML
           if (networkResponse && networkResponse.status === 200) {
             var responseClone = networkResponse.clone();
             caches.open(STATIC_CACHE)
@@ -145,7 +141,6 @@ self.addEventListener('fetch', function(event) {
           return networkResponse;
         })
         .catch(function() {
-          // Если сеть недоступна — показываем кеш
           return caches.match(request);
         })
     );
@@ -222,7 +217,7 @@ self.addEventListener('fetch', function(event) {
                     <p>Проверьте подключение к интернету<br>и попробуйте снова.</p>
                     <button class="btn retry-btn" onclick="location.reload()">🔄 Попробовать снова</button>
                     <br><br>
-                    <a href="/Deutsch-Meister/" class="btn" style="background:#666;">🏠 На главную</a>
+                    <a href="/Deutsch-Meister-v2/" class="btn" style="background:#666;">🏠 На главную</a>
                   </div>
                 </body>
                 </html>

@@ -98,7 +98,8 @@ window.hasAccessToLevel = function(level) {
         return level === 'A1';
     }
     
-    if (auth.currentUser && auth.currentUser.email === 'ygubert72@gmail.com') {
+    // ИСПРАВЛЕНО: используем ADMIN_EMAIL
+    if (auth.currentUser && auth.currentUser.email === ADMIN_EMAIL) {
         return true;
     }
     
@@ -288,7 +289,8 @@ function updateUI(user) {
         if (userInfoMobile) userInfoMobile.style.display = 'block';
         
         const hasPremium = currentUserData && currentUserData.hasPremiumAccess === true;
-        const isAdmin = user.email === 'ygubert72@gmail.com';
+        // ИСПРАВЛЕНО: используем ADMIN_EMAIL
+        const isAdmin = user.email === ADMIN_EMAIL;
         
         if (adminBtn) {
             adminBtn.style.display = isAdmin ? 'block' : 'none';
@@ -535,7 +537,6 @@ window.showLoginModal = function() {
                 const result = await login(email, password);
                 if (result.success) {
                     modal.remove();
-                    // Убираем location.reload() - UI обновится через onAuthStateChanged
                 } else {
                     alert('Ошибка входа: ' + result.error);
                 }
@@ -544,7 +545,6 @@ window.showLoginModal = function() {
                 if (result.success) {
                     alert('Регистрация успешна! Добро пожаловать, ' + email + '!');
                     modal.remove();
-                    // Убираем location.reload() - UI обновится через onAuthStateChanged
                 } else {
                     alert('Ошибка регистрации: ' + result.error);
                 }
@@ -585,7 +585,8 @@ function togglePasswordVisibility(inputId, eyeIconId) {
 
 // ========== ПРОВЕРКА АДМИНА ==========
 window.isAdmin = function() {
-    if (auth && auth.currentUser && auth.currentUser.email === 'ygubert72@gmail.com') {
+    // ИСПРАВЛЕНО: используем ADMIN_EMAIL
+    if (auth && auth.currentUser && auth.currentUser.email === ADMIN_EMAIL) {
         return true;
     }
     return false;

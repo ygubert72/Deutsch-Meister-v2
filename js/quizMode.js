@@ -186,6 +186,7 @@ function buildQuizHTML(container) {
                     <div>Нет слов для этого режима</div>
                 </div>
             ` : `
+                <!-- УБРАЛИ ДУБЛЬ КНОПКИ "← К СПИСКУ УРОКОВ" - ОНА ТЕПЕРЬ В ОБЩЕЙ ШАПКЕ -->
                 <div style="display: flex; justify-content: flex-end; align-items: center; margin-bottom: 10px;">
                     <div id="modeHeaderControls">
                         <button id="quizDirBtn" class="dir-btn" style="background: #3B6FE0; color: white; padding: 6px 14px; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; font-size: 13px; box-shadow: 0 2px 4px rgba(0,0,0,0.2);">
@@ -194,11 +195,10 @@ function buildQuizHTML(container) {
                     </div>
                 </div>
                 
+                <!-- УБРАЛИ НАДПИСЬ "🎯 Тест: Урок X" ДЛЯ ОБЫЧНЫХ УРОКОВ -->
                 ${isAllWordsMode ? `
                     <h2>🌍 Все слова уровня ${window.currentLevel}</h2>
-                ` : `
-                    <h2>🎯 Тест: Урок ${currentLessonId}</h2>
-                `}
+                ` : ``}
                 
                 <div style="background: #FFFFFF; border-radius: 20px; box-shadow: 0 8px 24px rgba(0,0,0,0.1); max-width: 550px; margin: 15px auto; min-height: 150px; display: flex; align-items: center; justify-content: center; text-align: center; padding: 20px;">
                     <div style="font-size: 32px; font-weight: bold; color: #1A1A1A;" id="quizQuestion">Загрузка...</div>

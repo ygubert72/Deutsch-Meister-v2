@@ -425,7 +425,26 @@ function showTrainerSentence(container) {
     const textColor = hasWords ? '#1A1A1A' : '#CCCCCC';
     const fontWeight = hasWords ? 'bold' : 'normal';
 
-    // УДАЛЕНА КНОПКА НАПРАВЛЕНИЯ ИЗ modeHeaderControls - ТЕПЕРЬ ОНА В ЗАГОЛОВКЕ (modeHeaderControlsTitle)
+    // ===== ОБНОВЛЯЕМ КНОПКУ НАПРАВЛЕНИЯ В HEADER =====
+    const headerControls = document.getElementById('modeHeaderControls');
+    if (headerControls) {
+        headerControls.innerHTML = `
+            <button id="trainerDirBtn" class="dir-btn" style="background: #3B6FE0; color: white; padding: 6px 14px; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; font-size: 13px; box-shadow: 0 2px 4px rgba(0,0,0,0.2);">
+                ${trainerDirection === 'ru_to_de' ? 'Ru → De' : 'De → Ru'}
+            </button>
+        `;
+        // ===== ОБРАБОТЧИК ДЛЯ КНОПКИ НАПРАВЛЕНИЯ (ИСПРАВЛЕНО) =====
+        const dirBtn = document.getElementById('trainerDirBtn');
+        if (dirBtn) {
+            dirBtn.replaceWith(dirBtn.cloneNode(true));
+            const newDirBtn = document.getElementById('trainerDirBtn');
+            newDirBtn.addEventListener('click', function() {
+                trainerDirection = trainerDirection === 'ru_to_de' ? 'de_to_ru' : 'ru_to_de';
+                this.textContent = trainerDirection === 'ru_to_de' ? 'Ru → De' : 'De → Ru';
+                showTrainerSentence(container);
+            });
+        }
+    }
 
     let html = `
         <div style="text-align: center;">
@@ -481,7 +500,9 @@ function showTrainerSentence(container) {
 
     container.innerHTML = html;
 
-    // Привязка обработчиков
+    // ===== ПРИВЯЗКА ОБРАБОТЧИКОВ (С ПЕРЕСОЗДАНИЕМ КНОПОК) =====
+    
+    // Слова в контейнере
     document.querySelectorAll('#trainerWordsContainer .word-btn').forEach(btn => {
         btn.addEventListener('click', function() {
             const word = this.getAttribute('data-word');
@@ -496,155 +517,197 @@ function showTrainerSentence(container) {
         });
     });
 
-    document.getElementById('trainerUndoBtn').addEventListener('click', function() {
-        if (trainerSelectedWords.length > 0) {
-            const lastWord = trainerSelectedWords.pop();
-            const display = getWordDisplay(lastWord);
-            trainerActiveWords[display] = true;
-            updateTrainerDisplay(container);
-        }
-    });
-
-    document.getElementById('trainerResetBtn').addEventListener('click', function() {
-        trainerSelectedWords = [];
-        trainerAvailableWords.forEach(w => { 
-            const display = getWordDisplay(w);
-            trainerActiveWords[display] = true; 
-        });
-        updateTrainerDisplay(container);
-        document.getElementById('trainerHintLabel').textContent = '';
-        trainerHintIndex = 0;
-    });
-
-    document.getElementById('trainerCheckBtn').addEventListener('click', function() {
-        if (trainerSelectedWords.length === 0) {
-            const result = document.getElementById('trainerResult');
-            result.style.backgroundColor = '#FFCDD2';
-            setTimeout(() => result.style.backgroundColor = '#FFFFFF', 500);
-            return;
-        }
-
-        const userAnswer = trainerSelectedWords.map(w => getWordDisplay(w)).join(' ');
-        const result = document.getElementById('trainerResult');
-        const correctAnswerForCheck = isRuToDe ? trainerCurrentSentence.de : trainerCurrentSentence.ru;
-
-        const normalizedUser = userAnswer.replace(/[.,!?;:]/g, '').trim().toLowerCase();
-        const normalizedCorrect = correctAnswerForCheck.replace(/[.,!?;:]/g, '').trim().toLowerCase();
-
-        if (normalizedUser === normalizedCorrect) {
-            result.style.backgroundColor = '#C8E6C9';
-            result.textContent = '✅ ПРАВИЛЬНО!';
-            
-            setTimeout(() => {
-                result.style.backgroundColor = '#FFFFFF';
-                trainerIndex++;
-                showTrainerSentence(container);
-            }, 500);
-        } else {
-            result.style.backgroundColor = '#FFCDD2';
-            result.textContent = '❌ Неправильно. Попробуйте снова.';
-            
-            setTimeout(() => {
-                result.style.backgroundColor = '#FFFFFF';
-                trainerSelectedWords.forEach(w => { 
-                    const display = getWordDisplay(w);
-                    trainerActiveWords[display] = true; 
-                });
-                trainerSelectedWords = [];
+    // Undo
+    const undoBtn = document.getElementById('trainerUndoBtn');
+    if (undoBtn) {
+        undoBtn.replaceWith(undoBtn.cloneNode(true));
+        document.getElementById('trainerUndoBtn').addEventListener('click', function() {
+            if (trainerSelectedWords.length > 0) {
+                const lastWord = trainerSelectedWords.pop();
+                const display = getWordDisplay(lastWord);
+                trainerActiveWords[display] = true;
                 updateTrainerDisplay(container);
-                const hasWords = trainerSelectedWords.length > 0;
-                const displayText = trainerSelectedWords.map(w => getWordDisplay(w)).join(' ') || 'Нажмите на слова, чтобы собрать предложение';
-                result.textContent = displayText;
-                result.style.color = hasWords ? '#1A1A1A' : '#CCCCCC';
-                result.style.fontWeight = hasWords ? 'bold' : 'normal';
-            }, 800);
-        }
-    });
-
-    document.getElementById('trainerSpeakBtn').addEventListener('click', function() {
-        speak(trainerCurrentSentence.de);
-    });
-
-    document.getElementById('trainerHintBtn').addEventListener('click', function() {
-        const hintLabel = document.getElementById('trainerHintLabel');
-        if (trainerHintIndex < trainerHintWords.length) {
-            const currentHint = trainerHintWords.slice(0, trainerHintIndex + 1).join(' ');
-            hintLabel.textContent = '💡 ' + currentHint;
-            trainerHintIndex++;
-        } else {
-            hintLabel.textContent = '💡 Полное предложение: ' + trainerHintWords.join(' ');
-        }
-    });
-
-    document.getElementById('trainerStudyBtn').addEventListener('click', function() {
-        if (trainerCurrentSentence) {
-            const key = trainerCurrentSentence.de + '|' + trainerCurrentSentence.ru;
-            trainerStudiedSentences[key] = true;
-            saveTrainerState();
-            
-            const lesson = trainerCurrentLessonData || window.currentLesson;
-            if (lesson) {
-                const templates = lesson.trainer || [];
-                trainerSentences = templates.filter(t => {
-                    const k = t.de + '|' + t.ru;
-                    return !trainerStudiedSentences[k];
-                });
             }
-            
-            if (trainerSentences.length === 0) {
-                document.getElementById('trainerResult').textContent = '🎉 Все фразы изучены!';
-                document.getElementById('trainerWordsContainer').innerHTML = '';
-                document.getElementById('trainerPrevBtn').disabled = true;
-                document.getElementById('trainerNextBtn').disabled = true;
-                document.getElementById('trainerStudyBtn').disabled = true;
-                document.getElementById('trainerContainerBtn').disabled = true;
+        });
+    }
+
+    // Reset
+    const resetBtn = document.getElementById('trainerResetBtn');
+    if (resetBtn) {
+        resetBtn.replaceWith(resetBtn.cloneNode(true));
+        document.getElementById('trainerResetBtn').addEventListener('click', function() {
+            trainerSelectedWords = [];
+            trainerAvailableWords.forEach(w => { 
+                const display = getWordDisplay(w);
+                trainerActiveWords[display] = true; 
+            });
+            updateTrainerDisplay(container);
+            document.getElementById('trainerHintLabel').textContent = '';
+            trainerHintIndex = 0;
+        });
+    }
+
+    // Check
+    const checkBtn = document.getElementById('trainerCheckBtn');
+    if (checkBtn) {
+        checkBtn.replaceWith(checkBtn.cloneNode(true));
+        document.getElementById('trainerCheckBtn').addEventListener('click', function() {
+            if (trainerSelectedWords.length === 0) {
+                const result = document.getElementById('trainerResult');
+                result.style.backgroundColor = '#FFCDD2';
+                setTimeout(() => result.style.backgroundColor = '#FFFFFF', 500);
                 return;
             }
-            
-            if (trainerIndex >= trainerSentences.length) {
-                trainerIndex = 0;
-            }
-            showTrainerSentence(container);
-        }
-    });
 
+            const userAnswer = trainerSelectedWords.map(w => getWordDisplay(w)).join(' ');
+            const result = document.getElementById('trainerResult');
+            const correctAnswerForCheck = isRuToDe ? trainerCurrentSentence.de : trainerCurrentSentence.ru;
+
+            const normalizedUser = userAnswer.replace(/[.,!?;:]/g, '').trim().toLowerCase();
+            const normalizedCorrect = correctAnswerForCheck.replace(/[.,!?;:]/g, '').trim().toLowerCase();
+
+            if (normalizedUser === normalizedCorrect) {
+                result.style.backgroundColor = '#C8E6C9';
+                result.textContent = '✅ ПРАВИЛЬНО!';
+                
+                setTimeout(() => {
+                    result.style.backgroundColor = '#FFFFFF';
+                    trainerIndex++;
+                    showTrainerSentence(container);
+                }, 500);
+            } else {
+                result.style.backgroundColor = '#FFCDD2';
+                result.textContent = '❌ Неправильно. Попробуйте снова.';
+                
+                setTimeout(() => {
+                    result.style.backgroundColor = '#FFFFFF';
+                    trainerSelectedWords.forEach(w => { 
+                        const display = getWordDisplay(w);
+                        trainerActiveWords[display] = true; 
+                    });
+                    trainerSelectedWords = [];
+                    updateTrainerDisplay(container);
+                    const hasWords = trainerSelectedWords.length > 0;
+                    const displayText = trainerSelectedWords.map(w => getWordDisplay(w)).join(' ') || 'Нажмите на слова, чтобы собрать предложение';
+                    result.textContent = displayText;
+                    result.style.color = hasWords ? '#1A1A1A' : '#CCCCCC';
+                    result.style.fontWeight = hasWords ? 'bold' : 'normal';
+                }, 800);
+            }
+        });
+    }
+
+    // Speak
+    const speakBtn = document.getElementById('trainerSpeakBtn');
+    if (speakBtn) {
+        speakBtn.replaceWith(speakBtn.cloneNode(true));
+        document.getElementById('trainerSpeakBtn').addEventListener('click', function() {
+            speak(trainerCurrentSentence.de);
+        });
+    }
+
+    // Hint
+    const hintBtn = document.getElementById('trainerHintBtn');
+    if (hintBtn) {
+        hintBtn.replaceWith(hintBtn.cloneNode(true));
+        document.getElementById('trainerHintBtn').addEventListener('click', function() {
+            const hintLabel = document.getElementById('trainerHintLabel');
+            if (trainerHintIndex < trainerHintWords.length) {
+                const currentHint = trainerHintWords.slice(0, trainerHintIndex + 1).join(' ');
+                hintLabel.textContent = '💡 ' + currentHint;
+                trainerHintIndex++;
+            } else {
+                hintLabel.textContent = '💡 Полное предложение: ' + trainerHintWords.join(' ');
+            }
+        });
+    }
+
+    // Study
+    const studyBtn = document.getElementById('trainerStudyBtn');
+    if (studyBtn) {
+        studyBtn.replaceWith(studyBtn.cloneNode(true));
+        document.getElementById('trainerStudyBtn').addEventListener('click', function() {
+            if (trainerCurrentSentence) {
+                const key = trainerCurrentSentence.de + '|' + trainerCurrentSentence.ru;
+                trainerStudiedSentences[key] = true;
+                saveTrainerState();
+                
+                const lesson = trainerCurrentLessonData || window.currentLesson;
+                if (lesson) {
+                    const templates = lesson.trainer || [];
+                    trainerSentences = templates.filter(t => {
+                        const k = t.de + '|' + t.ru;
+                        return !trainerStudiedSentences[k];
+                    });
+                }
+                
+                if (trainerSentences.length === 0) {
+                    document.getElementById('trainerResult').textContent = '🎉 Все фразы изучены!';
+                    document.getElementById('trainerWordsContainer').innerHTML = '';
+                    document.getElementById('trainerPrevBtn').disabled = true;
+                    document.getElementById('trainerNextBtn').disabled = true;
+                    document.getElementById('trainerStudyBtn').disabled = true;
+                    document.getElementById('trainerContainerBtn').disabled = true;
+                    return;
+                }
+                
+                if (trainerIndex >= trainerSentences.length) {
+                    trainerIndex = 0;
+                }
+                showTrainerSentence(container);
+            }
+        });
+    }
+
+    // Container
     const containerBtn = document.getElementById('trainerContainerBtn');
     if (containerBtn) {
-        containerBtn.onclick = null;
-        containerBtn.removeEventListener('click', containerBtn._handler);
-        
-        containerBtn._handler = function() {
+        containerBtn.replaceWith(containerBtn.cloneNode(true));
+        document.getElementById('trainerContainerBtn').addEventListener('click', function() {
             const studied = getStudiedSentencesList();
             if (!studied || studied.length === 0) {
                 alert('📦 Контейнер пуст\n\nВыучите фразы, чтобы они появились здесь.');
                 return;
             }
             showTrainerContainer();
-        };
-        
-        containerBtn.addEventListener('click', containerBtn._handler);
+        });
     }
 
-    document.getElementById('trainerPrevBtn').addEventListener('click', function() {
-        if (trainerIndex > 0) {
-            trainerIndex--;
-            showTrainerSentence(container);
-        }
-    });
+    // Prev
+    const prevBtn = document.getElementById('trainerPrevBtn');
+    if (prevBtn) {
+        prevBtn.replaceWith(prevBtn.cloneNode(true));
+        document.getElementById('trainerPrevBtn').addEventListener('click', function() {
+            if (trainerIndex > 0) {
+                trainerIndex--;
+                showTrainerSentence(container);
+            }
+        });
+    }
 
-    document.getElementById('trainerNextBtn').addEventListener('click', function() {
-        if (trainerIndex + 1 < trainerSentences.length) {
-            trainerIndex++;
-            showTrainerSentence(container);
-        }
-    });
+    // Next
+    const nextBtn = document.getElementById('trainerNextBtn');
+    if (nextBtn) {
+        nextBtn.replaceWith(nextBtn.cloneNode(true));
+        document.getElementById('trainerNextBtn').addEventListener('click', function() {
+            if (trainerIndex + 1 < trainerSentences.length) {
+                trainerIndex++;
+                showTrainerSentence(container);
+            }
+        });
+    }
 
-    document.getElementById('trainerResetStartBtn').addEventListener('click', function() {
-        if (trainerSentences.length > 0) {
-            trainerIndex = 0;
-            showTrainerSentence(container);
-        }
-    });
+    // Reset start
+    const resetStartBtn = document.getElementById('trainerResetStartBtn');
+    if (resetStartBtn) {
+        resetStartBtn.replaceWith(resetStartBtn.cloneNode(true));
+        document.getElementById('trainerResetStartBtn').addEventListener('click', function() {
+            if (trainerSentences.length > 0) {
+                trainerIndex = 0;
+                showTrainerSentence(container);
+            }
+        });
+    }
 }
 
 function updateTrainerDisplay(container) {
@@ -687,6 +750,3 @@ function updateTrainerDisplay(container) {
         });
     }
 }
-
-// ===== ЭКСПОРТ В ГЛОБАЛЬНУЮ ОБЛАСТЬ =====
-window.renderTrainer = renderTrainer;

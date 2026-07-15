@@ -23,7 +23,7 @@ function renderDictation(container, lesson) {
     const allCompleted = completedCount === total;
 
     let html = `
-        <p>Напишите перевод на немецком языке:</p>
+        <p>Напишите фразу на немецком языке:</p>
     `;
     
     const hintStates = {};

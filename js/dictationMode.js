@@ -23,15 +23,6 @@ function renderDictation(container, lesson) {
     const allCompleted = completedCount === total;
 
     let html = `
-        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; margin-bottom: 15px;">
-            <div>
-                <h3 style="margin: 0;">✏️ Правописание</h3>
-                <div style="font-size: 14px; color: #666; margin-top: 4px;">
-                    📊 Прогресс: ${completedCount} из ${total} предложений выполнено
-                    ${allCompleted ? ' 🎉 Все выполнено!' : ''}
-                </div>
-            </div>
-        </div>
         <p>Напишите перевод на немецком языке:</p>
     `;
     

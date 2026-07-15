@@ -180,15 +180,6 @@ function buildQuizHTML(container) {
 
     let html = `
         <div style="text-align: center;">
-            ${isAllWordsMode && hasWords ? `
-                <div style="background: #E8F5E9; border-radius: 12px; padding: 10px 15px; margin-bottom: 15px; border: 2px solid #4CAF50;">
-                    <div style="font-weight: bold; color: #2E7D32;">📊 Прогресс уровня: ${studiedCount} из ${totalWords} слов изучено (${progress}%)</div>
-                    <div style="background: #E0E0E0; border-radius: 10px; height: 8px; margin-top: 6px; overflow: hidden;">
-                        <div style="background: #4CAF50; height: 100%; width: ${progress}%; border-radius: 10px; transition: width 0.3s ease;"></div>
-                    </div>
-                </div>
-            ` : ''}
-        
             ${!hasWords ? `
                 <div style="padding: 40px; color: #999;">
                     <div style="font-size: 48px; margin-bottom: 15px;">📭</div>
@@ -196,6 +187,11 @@ function buildQuizHTML(container) {
                 </div>
             ` : `
                 ${isAllWordsMode ? `
+                    <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; margin-bottom: 15px;">
+                        <button class="back-btn" onclick="window.renderLevel()" style="padding: 10px 20px; background: #3B6FE0; color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; transition: all 0.08s ease;">
+                            ← НАЗАД
+                        </button>
+                    </div>
                     <h2>🌍 Все слова уровня ${window.currentLevel}</h2>
                 ` : ``}
                 

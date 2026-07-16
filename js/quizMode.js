@@ -204,6 +204,7 @@ function buildQuizHTML(container) {
                 <div class="btn-group" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin: 10px 0 5px 0;">
                     <button class="ctrl-btn" id="quizStudyBtn" style="padding: 6px 14px; background: #4CAF50; color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; font-size: 12px;">✅ ИЗУЧЕНО</button>
                     <button class="ctrl-btn" id="quizContainerBtn" style="padding: 6px 14px; background: #FF9800; color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; font-size: 12px;">📦 КОНТЕЙНЕР</button>
+                    <button class="ctrl-btn" id="quizSpeakBtn" style="padding: 6px 14px; background: #E8F0FE; border: 2px solid #D0D0D0; border-radius: 8px; cursor: pointer; font-weight: bold; font-size: 12px;">🔊 ОЗВУЧИТЬ</button>
                     ${isAllWordsMode ? `<button class="ctrl-btn" id="shuffleWordsBtn" onclick="window.shuffleAllWords()" style="padding: 6px 14px; background: #9C27B0; color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; font-size: 12px;">🔄 ПЕРЕМЕШАТЬ</button>` : ''}
                 </div>
                 
@@ -261,6 +262,17 @@ function buildQuizHTML(container) {
             return;
         }
         showQuizContainer();
+    });
+
+    // ===== ОБРАБОТЧИК НОВОЙ КНОПКИ "ОЗВУЧИТЬ" =====
+    document.getElementById('quizSpeakBtn').addEventListener('click', function() {
+        if (quizCurrentWord && quizCurrentWord.de) {
+            if (typeof window.speak === 'function') {
+                window.speak(quizCurrentWord.de);
+            } else {
+                console.warn('⚠️ Функция speak не найдена');
+            }
+        }
     });
 
     document.getElementById('quizPrevBtn').addEventListener('click', function() {

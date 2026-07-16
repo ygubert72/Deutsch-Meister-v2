@@ -530,7 +530,7 @@ function renderLevel() {
             transition: all 0.08s ease;
             border: 2px solid #D0D0D0;
         ">
-            🔄 ВСЕ СЛОВА УРОВНЯ <span id="wordCountPlaceholder">(загрузка...)</span>
+            📚 ВСЕ СЛОВА УРОВНЯ <span id="wordCountPlaceholder">(загрузка...)</span>
         </button>
     `;
     html += `</div>`;

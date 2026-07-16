@@ -2,7 +2,7 @@
   "quiz": [
     {"de": "Auto", "ru": "машина"},
     {"de": "Berlin", "ru": "Берлин"},
-    {"de": "Volkswagen", "ru": "Фольксваген"},
+    {"de": "Vogel", "ru": "Птица"},
     {"de": "Deutschland", "ru": "Германия"},
     {"de": "Mutter", "ru": "мать"},
     {"de": "Vater", "ru": "отец"}

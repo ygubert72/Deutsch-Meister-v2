@@ -522,7 +522,7 @@ function renderLevel() {
     });
     
     html += `
-        <button id="allWordsLevelBtn" class="lesson-btn all-words-btn" style="
+        <button id="allWordsLevelBtn" class="lesson-btn" style="
             border-color: #D0D0D0; 
             background: #E8F0FE;
             margin-top: 20px;

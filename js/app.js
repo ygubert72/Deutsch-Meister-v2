@@ -523,12 +523,12 @@ function renderLevel() {
     
     html += `
         <button id="allWordsLevelBtn" class="lesson-btn all-words-btn" style="
-            border-color: #4CAF50; 
-            background: #E8F5E9;
+            border-color: #D0D0D0; 
+            background: #E8F0FE;
             margin-top: 20px;
             font-weight: bold;
             transition: all 0.08s ease;
-            border: 3px solid #4CAF50;
+            border: 2px solid #D0D0D0;
         ">
             🔄 ВСЕ СЛОВА УРОВНЯ <span id="wordCountPlaceholder">(загрузка...)</span>
         </button>

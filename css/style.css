@@ -127,23 +127,6 @@ body { font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-
 .close-menu-btn { background: none; border: none; font-size: 28px; cursor: pointer; color: #666; padding: 0 10px; }
 
 /* ============================================================ */
-/* ========== КНОПКА "ВСЕ СЛОВА УРОВНЯ" ========== */
-/* ============================================================ */
-
-.all-words-btn {
-    border-color: #4CAF50 !important;
-    background: #E8F5E9 !important;
-    margin-top: 20px !important;
-    font-weight: bold !important;
-    border-width: 3px !important;
-}
-
-.all-words-btn:hover {
-    background: #d0e2fc !important;
-    border-color: #4CAF50 !important;
-}
-
-/* ============================================================ */
 /* ========== ПРОГРЕСС-БАР В РЕЖИМЕ "ВСЕ СЛОВА" ========== */
 /* ============================================================ */
 

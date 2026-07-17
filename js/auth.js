@@ -459,16 +459,16 @@ window.showLoginModal = function() {
                     <button id="registerTab" style="flex:1; padding:10px; background:#E0E0E0; border:none; border-radius:10px; cursor:pointer;">Регистрация</button>
                 </div>
                 
-                <input type="email" id="authEmail" placeholder="Email" style="width:100%; padding:10px; font-size:14px; margin:8px 0; border:2px solid #E0E0E0; border-radius:10px; box-sizing:border-box;">
+                <input type="email" id="authEmail" placeholder="Email" style="width:100%; padding:8px; font-size:13px; margin:6px 0; border:2px solid #E0E0E0; border-radius:10px; box-sizing:border-box;">
                 
-                <div style="position: relative; margin:8px 0;">
-                    <input type="password" id="authPassword" placeholder="Пароль (мин. 6 символов)" style="width:100%; padding:10px; font-size:14px; border:2px solid #E0E0E0; border-radius:10px; box-sizing:border-box; padding-right: 36px;">
-                    <span id="togglePasswordEye" onclick="togglePasswordVisibility('authPassword', 'togglePasswordEye')" style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); cursor: pointer; font-size: 16px; line-height: 1; user-select: none;">👁️</span>
+                <div style="position: relative; margin:6px 0;">
+                    <input type="password" id="authPassword" placeholder="Пароль (мин. 6 симв.)" style="width:100%; padding:8px; font-size:13px; border:2px solid #E0E0E0; border-radius:10px; box-sizing:border-box; padding-right: 30px;">
+                    <span id="togglePasswordEye" onclick="togglePasswordVisibility('authPassword', 'togglePasswordEye')" style="position: absolute; right: 8px; top: 50%; transform: translateY(-50%); cursor: pointer; font-size: 13px; line-height: 1; user-select: none;">👁️</span>
                 </div>
                 
-                <div id="confirmPasswordContainer" style="position: relative; margin:8px 0; display: none;">
-                    <input type="password" id="authConfirmPassword" placeholder="Повторите пароль" style="width:100%; padding:10px; font-size:14px; border:2px solid #E0E0E0; border-radius:10px; box-sizing:border-box; padding-right: 36px;">
-                    <span id="toggleConfirmEye" onclick="togglePasswordVisibility('authConfirmPassword', 'toggleConfirmEye')" style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); cursor: pointer; font-size: 16px; line-height: 1; user-select: none;">👁️</span>
+                <div id="confirmPasswordContainer" style="position: relative; margin:6px 0; display: none;">
+                    <input type="password" id="authConfirmPassword" placeholder="Повторите пароль" style="width:100%; padding:8px; font-size:13px; border:2px solid #E0E0E0; border-radius:10px; box-sizing:border-box; padding-right: 30px;">
+                    <span id="toggleConfirmEye" onclick="togglePasswordVisibility('authConfirmPassword', 'toggleConfirmEye')" style="position: absolute; right: 8px; top: 50%; transform: translateY(-50%); cursor: pointer; font-size: 13px; line-height: 1; user-select: none;">👁️</span>
                 </div>
                 
                 <button id="actionBtn" style="width:100%; padding:12px; background:#3B6FE0; color:white; border:none; border-radius:10px; cursor:pointer; font-size:16px; font-weight:bold;">Войти</button>

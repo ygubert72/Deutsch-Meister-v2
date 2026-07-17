@@ -459,7 +459,7 @@ window.showLoginModal = function() {
                     <button id="registerTab" style="flex:1; padding:10px; background:#E0E0E0; border:none; border-radius:10px; cursor:pointer;">Регистрация</button>
                 </div>
                 
-                <input type="email" id="authEmail" placeholder="Email" style="width:100%; padding:12px; margin:10px 0; border:2px solid #E0E0E0; border-radius:10px; box-sizing:border-box;">
+                <input type="email" id="authEmail" placeholder="Email" style="width:100%; padding:10px; font-size:14px; margin:8px 0; border:2px solid #E0E0E0; border-radius:10px; box-sizing:border-box;">
                 
                 <div style="position: relative; margin:10px 0;">
                     <input type="password" id="authPassword" placeholder="Пароль (мин. 6 символов)" style="width:100%; padding:12px; border:2px solid #E0E0E0; border-radius:10px; box-sizing:border-box; padding-right: 40px;">

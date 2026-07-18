@@ -635,14 +635,12 @@ function renderLesson(lesson) {
     const level = lesson.level || 'A1';
     const hoerenPath = `docs/${level}/hoeren/${String(lessonId).padStart(2, '0')}_hoeren.json`;
     
-    fetch(hoerenPath, { method: 'HEAD' })
+    fetch(hoerenPath)
         .then(response => {
             if (response.ok) {
                 const listeningBtn = document.querySelector('.mode-btn[data-mode="listening"]');
                 if (listeningBtn) {
                     listeningBtn.style.display = 'inline-block';
-                } else {
-                    buildLessonHTML(lesson, true);
                 }
             }
         })

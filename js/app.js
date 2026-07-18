@@ -493,24 +493,20 @@ function renderLevel() {
     let totalPhrases = 0;
     
     const countWordsInLevel = async function() {
-        let count = 0;
-        for (const lesson of courseData.lessons) {
-            const lessonId = lesson.id;
-            const lessonFile = `docs/${currentLevel}/lessons/lesson_${String(lessonId).padStart(2, '0')}.json`;
-            try {
-                const response = await fetch(lessonFile);
-                if (response.ok) {
-                    const data = await response.json();
-                    if (data.quiz && Array.isArray(data.quiz)) {
-                        count += data.quiz.length;
-                    }
-                }
-            } catch(e) {
-                console.log('⚠️ Не удалось загрузить урок', lessonId);
+    try {
+        const response = await fetch(`docs/${currentLevel}.json`);
+        if (response.ok) {
+            const data = await response.json();
+            if (Array.isArray(data)) {
+                return data.length;
             }
         }
-        return count;
-    };
+        return 0;
+    } catch(e) {
+        console.log('⚠️ Не удалось загрузить слова уровня');
+        return 0;
+    }
+};
 
     const countPhrasesInLevel = async function() {
         let count = 0;

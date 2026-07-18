@@ -190,9 +190,6 @@ function buildLevelQuizHTML(container) {
     }
     
     const hasWords = levelAllWords.length > 0;
-    const totalWords = levelAllWords.length;
-    const studiedCount = Object.keys(levelStudiedWords).filter(key => levelStudiedWords[key] === true).length;
-    const progress = totalWords > 0 ? Math.round((studiedCount / totalWords) * 100) : 0;
 
     let html = `
         <div style="text-align: center;">
@@ -214,7 +211,6 @@ function buildLevelQuizHTML(container) {
                 </div>
                 <h2>📚 Все слова уровня ${currentLevelForAllWords}</h2>
                 
-                             
                 <div style="background: #FFFFFF; border-radius: 20px; box-shadow: 0 8px 24px rgba(0,0,0,0.1); max-width: 550px; margin: 15px auto; min-height: 150px; display: flex; align-items: center; justify-content: center; text-align: center; padding: 20px;">
                     <div style="font-size: 32px; font-weight: bold; color: #1A1A1A;" id="levelQuizQuestion">Загрузка...</div>
                 </div>
@@ -270,7 +266,6 @@ function buildLevelQuizHTML(container) {
                 levelQuizIndex = 0;
             }
             
-            updateLevelProgressDisplay();
             showLevelQuizQuestion();
         }
     });
@@ -342,23 +337,6 @@ function buildLevelQuizHTML(container) {
     });
 
     showLevelQuizQuestion();
-}
-
-// ===== ОБНОВЛЕНИЕ ПРОГРЕССА ДЛЯ "ВСЕХ СЛОВ УРОВНЯ" =====
-function updateLevelProgressDisplay() {
-    const total = levelAllWords.length;
-    const studiedCount = Object.keys(levelStudiedWords).filter(key => levelStudiedWords[key] === true).length;
-    const progress = total > 0 ? Math.round((studiedCount / total) * 100) : 0;
-    
-    const progressBar = document.querySelector('.progress-bar-inner');
-    const progressText = document.querySelector('.progress-text');
-    
-    if (progressBar) {
-        progressBar.style.width = progress + '%';
-    }
-    if (progressText) {
-        progressText.textContent = `📊 ${studiedCount} из ${total} слов изучено (${progress}%)`;
-    }
 }
 
 // ===== ПОЛУЧЕНИЕ СПИСКА ИЗУЧЕННЫХ СЛОВ ДЛЯ УРОВНЯ =====
@@ -442,7 +420,6 @@ function showLevelContainer() {
                 modal.remove();
                 showLevelContainer();
                 showLevelQuizQuestion();
-                updateLevelProgressDisplay();
             });
             
             itemsContainer.appendChild(item);
@@ -469,7 +446,6 @@ function showLevelContainer() {
         levelQuizIndex = 0;
         modal.remove();
         showLevelQuizQuestion();
-        updateLevelProgressDisplay();
     });
 
     document.getElementById('levelCloseContainerBtn').addEventListener('click', function() {
@@ -599,8 +575,6 @@ function buildQuizHTML(container) {
     }
     
     const hasWords = allQuizWords.length > 0;
-    const totalWords = allQuizWords.length;
-    const studiedCount = Object.keys(quizStudiedWords).filter(key => quizStudiedWords[key] === true).length;
 
     // ===== ПОМЕЩАЕМ КНОПКУ НАПРАВЛЕНИЯ В HEADER =====
     const headerControls = document.getElementById('modeHeaderControls');
@@ -620,12 +594,6 @@ function buildQuizHTML(container) {
                     <div>Нет слов для этого режима</div>
                 </div>
             ` : `
-                <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; margin-bottom: 15px;">
-                    <div style="font-size: 14px; color: #666;">
-                        📊 ${studiedCount} из ${totalWords} слов изучено
-                    </div>
-                </div>
-                
                 <div style="background: #FFFFFF; border-radius: 20px; box-shadow: 0 8px 24px rgba(0,0,0,0.1); max-width: 550px; margin: 15px auto; min-height: 150px; display: flex; align-items: center; justify-content: center; text-align: center; padding: 20px;">
                     <div style="font-size: 32px; font-weight: bold; color: #1A1A1A;" id="quizQuestion">Загрузка...</div>
                 </div>

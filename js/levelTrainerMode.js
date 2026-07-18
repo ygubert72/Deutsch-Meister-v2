@@ -215,6 +215,8 @@ function showLevelTrainerEmpty() {
             <button class="back-btn" onclick="renderLevel()" style="margin-top: 20px;">← НАЗАД</button>
         </div>
     `;
+    document.getElementById('modeIndicator').textContent = `🧩 Все фразы уровня ${levelTrainerCurrentLevel}`;
+    updateCounter();
 }
 
 // ========== ПОКАЗАТЬ, ЧТО ВСЕ ФРАЗЫ ИЗУЧЕНЫ ==========
@@ -433,7 +435,6 @@ function showLevelTrainerInterface() {
             <div style="display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; margin: 10px 0 5px 0;">
                 <button class="ctrl-btn" id="levelTrainerStudyBtn" style="padding: 6px 14px; background: #4CAF50; color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; font-size: 12px;">✅ ИЗУЧЕНО</button>
                 <button class="ctrl-btn" id="levelTrainerContainerBtn" style="padding: 6px 14px; background: #FF9800; color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; font-size: 12px;">📦 КОНТЕЙНЕР</button>
-                <button class="ctrl-btn" id="levelTrainerResetAllBtn" style="padding: 6px 14px; background: #F44336; color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; font-size: 12px;">🔄 СБРОСИТЬ ВСЁ</button>
             </div>
             
             <!-- РЯД 4: НАЗАД + ВПЕРЕД + В НАЧАЛО + счетчик -->
@@ -628,27 +629,6 @@ function attachLevelTrainerEvents() {
                 return;
             }
             showLevelTrainerContainer();
-        });
-    }
-    
-    // Reset All (сброс всего контейнера)
-    const resetAllBtn = document.getElementById('levelTrainerResetAllBtn');
-    if (resetAllBtn) {
-        resetAllBtn.addEventListener('click', function() {
-            if (!confirm('Сбросить все фразы из контейнера? Они снова появятся в тренажёре.')) return;
-            levelTrainerAllPhrases.forEach(phrase => {
-                const key = phrase.de + '|' + phrase.ru;
-                delete levelTrainerStudied[key];
-            });
-            saveLevelTrainerStudied(levelTrainerCurrentLevel);
-            
-            levelTrainerSentences = [...levelTrainerAllPhrases];
-            for (let i = levelTrainerSentences.length - 1; i > 0; i--) {
-                const j = Math.floor(Math.random() * (i + 1));
-                [levelTrainerSentences[i], levelTrainerSentences[j]] = [levelTrainerSentences[j], levelTrainerSentences[i]];
-            }
-            levelTrainerIndex = 0;
-            showLevelTrainerInterface();
         });
     }
     

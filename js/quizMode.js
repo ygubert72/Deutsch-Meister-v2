@@ -2,6 +2,10 @@
 // quizMode.js — Тест (выбор перевода из 6 вариантов)
 // ====================================================================
 
+// ====================================================================
+// СТАРАЯ ЛОГИКА ДЛЯ ТЕСТА В УРОКАХ (НЕ ТРОГАЕМ)
+// ====================================================================
+
 let quizWords = [];
 let quizIndex = 0;
 let quizCurrentWord = null;
@@ -15,12 +19,90 @@ let allQuizWords = [];
 let isAllWordsMode = false;
 let allLevelWords = [];
 
-// ===== КЛЮЧ ДЛЯ ОБЩЕГО КОНТЕЙНЕРА =====
+// ===== НОВЫЕ ПЕРЕМЕННЫЕ ДЛЯ "ВСЕХ СЛОВ УРОВНЯ" (НЕЗАВИСИМЫЙ КОНТЕЙНЕР) =====
+let levelAllWords = [];           // Все слова уровня из файла docs/{level}.json
+let levelStudiedWords = {};       // Изученные слова для "Всех слов уровня"
+let levelQuizWords = [];          // Слова для показа (не изученные)
+let levelQuizIndex = 0;
+let levelCurrentWord = null;
+let levelDirection = 'de_to_ru';
+let currentLevelForAllWords = 'A1';
+
+// ===== КЛЮЧИ ДЛЯ ХРАНЕНИЯ =====
+function getLessonContainerKey(level, lessonId) {
+    return 'dm_lesson_studied_' + level + '_' + lessonId;
+}
+
 function getLevelContainerKey(level) {
     return 'dm_level_studied_' + level;
 }
 
-// ===== ЗАГРУЗКА ВСЕХ СЛОВ УРОВНЯ =====
+// ===== ЗАГРУЗКА ПРОГРЕССА ДЛЯ УРОКА =====
+function loadLessonStudiedWords(level, lessonId) {
+    const key = getLessonContainerKey(level, lessonId);
+    try {
+        const saved = localStorage.getItem(key);
+        if (saved) {
+            quizStudiedWords = JSON.parse(saved);
+        } else {
+            quizStudiedWords = {};
+        }
+    } catch(e) {
+        quizStudiedWords = {};
+    }
+}
+
+// ===== СОХРАНЕНИЕ ПРОГРЕССА ДЛЯ УРОКА =====
+function saveLessonStudiedWords(level, lessonId) {
+    const key = getLessonContainerKey(level, lessonId);
+    try {
+        localStorage.setItem(key, JSON.stringify(quizStudiedWords));
+    } catch(e) {
+        console.warn('Ошибка сохранения контейнера урока:', e);
+    }
+}
+
+// ===== ЗАГРУЗКА ПРОГРЕССА ДЛЯ УРОВНЯ (НОВЫЙ КОНТЕЙНЕР) =====
+function loadLevelStudiedWords(level) {
+    const key = getLevelContainerKey(level);
+    try {
+        const saved = localStorage.getItem(key);
+        if (saved) {
+            levelStudiedWords = JSON.parse(saved);
+        } else {
+            levelStudiedWords = {};
+        }
+    } catch(e) {
+        levelStudiedWords = {};
+    }
+}
+
+// ===== СОХРАНЕНИЕ ПРОГРЕССА ДЛЯ УРОВНЯ (НОВЫЙ КОНТЕЙНЕР) =====
+function saveLevelStudiedWords(level) {
+    const key = getLevelContainerKey(level);
+    try {
+        localStorage.setItem(key, JSON.stringify(levelStudiedWords));
+    } catch(e) {
+        console.warn('Ошибка сохранения контейнера уровня:', e);
+    }
+}
+
+// ===== ЗАГРУЗКА ВСЕХ СЛОВ УРОВНЯ ИЗ ФАЙЛА docs/{level}.json =====
+async function loadLevelWordsFromFile(level) {
+    try {
+        const response = await fetch(`docs/${level}.json`);
+        if (!response.ok) {
+            throw new Error(`Файл docs/${level}.json не найден`);
+        }
+        const words = await response.json();
+        return words;
+    } catch(e) {
+        console.error('Ошибка загрузки слов уровня:', e);
+        return [];
+    }
+}
+
+// ===== ЗАГРУЗКА ВСЕХ СЛОВ УРОВНЯ ИЗ УРОКОВ (СТАРАЯ ЛОГИКА - ОСТАВЛЯЕМ ДЛЯ СОВМЕСТИМОСТИ) =====
 async function loadAllWordsForLevel(level) {
     try {
         const indexResponse = await fetch(`docs/${level}/index.json`);
@@ -58,54 +140,424 @@ async function loadAllWordsForLevel(level) {
     }
 }
 
-// ===== ЗАГРУЗКА ПРОГРЕССА =====
-function loadStudiedWords(level) {
-    const key = getLevelContainerKey(level);
-    try {
-        const saved = localStorage.getItem(key);
-        if (saved) {
-            quizStudiedWords = JSON.parse(saved);
-        } else {
-            quizStudiedWords = {};
-        }
-    } catch(e) {
-        quizStudiedWords = {};
-    }
-}
-
-// ===== СОХРАНЕНИЕ ПРОГРЕССА =====
-function saveStudiedWords(level) {
-    const key = getLevelContainerKey(level);
-    try {
-        localStorage.setItem(key, JSON.stringify(quizStudiedWords));
-    } catch(e) {
-        console.warn('Ошибка сохранения контейнера:', e);
-    }
-}
+// ================================================================
+// НОВАЯ ЛОГИКА ДЛЯ "ВСЕХ СЛОВ УРОВНЯ" (НЕЗАВИСИМЫЙ КОНТЕЙНЕР)
+// ================================================================
 
 // ===== ВНЕШНИЙ ВЫЗОВ ДЛЯ РЕЖИМА "ВСЕ СЛОВА" =====
 window.loadAllWordsMode = async function(level) {
     console.log('🔄 loadAllWordsMode вызван для уровня:', level);
     isAllWordsMode = true;
+    currentLevelForAllWords = level;
     window.currentLevel = level;
     
-    allLevelWords = await loadAllWordsForLevel(level);
-    console.log('📚 Загружено слов:', allLevelWords.length);
+    // Загружаем слова из файла docs/{level}.json
+    levelAllWords = await loadLevelWordsFromFile(level);
+    console.log('📚 Загружено слов из файла уровня:', levelAllWords.length);
     
-    loadStudiedWords(level);
+    // Загружаем прогресс для уровня (НОВЫЙ КОНТЕЙНЕР)
+    loadLevelStudiedWords(level);
     
-    allQuizWords = [...allLevelWords];
-    quizWords = allLevelWords.filter(word => !quizStudiedWords[word.de]);
+    // Формируем список слов для показа
+    levelQuizWords = levelAllWords.filter(word => !levelStudiedWords[word.de]);
     
-    if (quizWords.length === 0 && allLevelWords.length > 0) {
-        quizWords = [...allLevelWords];
+    if (levelQuizWords.length === 0 && levelAllWords.length > 0) {
+        levelQuizWords = [...levelAllWords];
     }
     
-    quizIndex = 0;
-    quizDirection = 'de_to_ru';
+    levelQuizIndex = 0;
+    levelDirection = 'de_to_ru';
     
-    showQuizInterfaceDirect();
+    showLevelQuizInterfaceDirect();
 };
+
+// ===== ПОКАЗ ТЕСТА ДЛЯ "ВСЕХ СЛОВ УРОВНЯ" =====
+function showLevelQuizInterfaceDirect() {
+    const content = document.getElementById('content');
+    if (!content) {
+        console.error('❌ content не найден!');
+        return;
+    }
+    console.log('✅ showLevelQuizInterfaceDirect: показываем тест для всех слов уровня');
+    buildLevelQuizHTML(content);
+}
+
+// ===== ПОСТРОЕНИЕ HTML ДЛЯ "ВСЕХ СЛОВ УРОВНЯ" =====
+function buildLevelQuizHTML(container) {
+    if (!container) {
+        console.error('❌ buildLevelQuizHTML: container не передан');
+        return;
+    }
+    
+    const hasWords = levelAllWords.length > 0;
+    const totalWords = levelAllWords.length;
+    const studiedCount = Object.keys(levelStudiedWords).filter(key => levelStudiedWords[key] === true).length;
+    const progress = totalWords > 0 ? Math.round((studiedCount / totalWords) * 100) : 0;
+
+    let html = `
+        <div style="text-align: center;">
+            ${!hasWords ? `
+                <div style="padding: 40px; color: #999;">
+                    <div style="font-size: 48px; margin-bottom: 15px;">📭</div>
+                    <div>Нет слов для этого уровня</div>
+                </div>
+            ` : `
+                <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; margin-bottom: 15px;">
+                    <button class="back-btn" onclick="window.renderLevel()" style="padding: 10px 20px; background: #3B6FE0; color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; transition: all 0.08s ease;">
+                        ← НАЗАД
+                    </button>
+                    <div id="levelHeaderControls">
+                        <button id="levelDirBtn" class="dir-btn" style="background: #3B6FE0; color: white; padding: 10px 20px; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; font-size: 13px; box-shadow: 0 2px 4px rgba(0,0,0,0.2); transition: all 0.08s ease;">
+                            ${levelDirection === 'de_to_ru' ? 'De → Ru' : 'Ru → De'}
+                        </button>
+                    </div>
+                </div>
+                <h2>📚 Все слова уровня ${currentLevelForAllWords}</h2>
+                
+                <!-- ПРОГРЕСС-БАР -->
+                <div class="progress-container" style="background: #E8F5E9; border-radius: 12px; padding: 10px 15px; margin-bottom: 15px; border: 2px solid #4CAF50;">
+                    <div class="progress-text" style="font-weight: bold; color: #2E7D32;">📊 ${studiedCount} из ${totalWords} слов изучено (${progress}%)</div>
+                    <div class="progress-bar-bg" style="background: #E0E0E0; border-radius: 10px; height: 8px; margin-top: 6px; overflow: hidden;">
+                        <div class="progress-bar-inner" style="background: #4CAF50; height: 100%; border-radius: 10px; width: ${progress}%; transition: width 0.3s ease;"></div>
+                    </div>
+                </div>
+                
+                <div style="background: #FFFFFF; border-radius: 20px; box-shadow: 0 8px 24px rgba(0,0,0,0.1); max-width: 550px; margin: 15px auto; min-height: 150px; display: flex; align-items: center; justify-content: center; text-align: center; padding: 20px;">
+                    <div style="font-size: 32px; font-weight: bold; color: #1A1A1A;" id="levelQuizQuestion">Загрузка...</div>
+                </div>
+                <div class="quiz-grid" id="levelQuizGrid" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; max-width: 700px; margin: 20px auto;"></div>
+                <div style="font-size: 14px; color: #888; margin-top: 10px;" id="levelQuizProgress">0 / 0</div>
+                
+                <div class="btn-group" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin: 10px 0 5px 0;">
+                    <button class="ctrl-btn" id="levelStudyBtn" style="padding: 6px 14px; background: #4CAF50; color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; font-size: 12px;">✅ ИЗУЧЕНО</button>
+                    <button class="ctrl-btn" id="levelContainerBtn" style="padding: 6px 14px; background: #FF9800; color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; font-size: 12px;">📦 КОНТЕЙНЕР</button>
+                    <button class="ctrl-btn" id="levelSpeakBtn" style="padding: 6px 14px; background: #E8F0FE; border: 2px solid #D0D0D0; border-radius: 8px; cursor: pointer; font-weight: bold; font-size: 12px;">🔊 ОЗВУЧИТЬ</button>
+                    <button class="ctrl-btn" id="levelShuffleBtn" style="padding: 6px 14px; background: #9C27B0; color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; font-size: 12px;">🔄 ПЕРЕМЕШАТЬ</button>
+                </div>
+                
+                <div class="btn-group" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin: 5px 0 10px 0;">
+                    <button class="ctrl-btn" id="levelPrevBtn" style="padding: 6px 14px; background: #E8F0FE; border: 2px solid #D0D0D0; border-radius: 8px; cursor: pointer; font-weight: bold; font-size: 12px;">◀ НАЗАД</button>
+                    <button class="ctrl-btn" id="levelNextBtn" style="padding: 6px 14px; background: #E8F0FE; border: 2px solid #D0D0D0; border-radius: 8px; cursor: pointer; font-weight: bold; font-size: 12px;">ВПЕРЕД ▶</button>
+                    <button class="ctrl-btn" id="levelResetStartBtn" style="padding: 6px 14px; background: #E8F0FE; border: 2px solid #D0D0D0; border-radius: 8px; cursor: pointer; font-weight: bold; font-size: 12px;">⏮ В НАЧАЛО</button>
+                </div>
+            `}
+        </div>
+    `;
+
+    container.innerHTML = html;
+    console.log('✅ buildLevelQuizHTML: контент вставлен');
+
+    if (!hasWords) return;
+
+    // ===== ОБРАБОТЧИКИ ДЛЯ "ВСЕХ СЛОВ УРОВНЯ" =====
+    
+    // Кнопка направления
+    const dirBtn = document.getElementById('levelDirBtn');
+    if (dirBtn) {
+        dirBtn.addEventListener('click', function() {
+            levelDirection = levelDirection === 'de_to_ru' ? 'ru_to_de' : 'de_to_ru';
+            this.textContent = levelDirection === 'de_to_ru' ? 'De → Ru' : 'Ru → De';
+            showLevelQuizQuestion();
+        });
+    }
+
+    // Изучено
+    document.getElementById('levelStudyBtn').addEventListener('click', function() {
+        if (levelCurrentWord) {
+            levelStudiedWords[levelCurrentWord.de] = true;
+            saveLevelStudiedWords(currentLevelForAllWords);
+            
+            levelQuizWords = levelAllWords.filter(w => !levelStudiedWords[w.de]);
+            
+            if (levelQuizWords.length === 0 && levelAllWords.length > 0) {
+                levelQuizWords = [...levelAllWords];
+            }
+            
+            if (levelQuizIndex >= levelQuizWords.length && levelQuizWords.length > 0) {
+                levelQuizIndex = 0;
+            }
+            
+            updateLevelProgressDisplay();
+            showLevelQuizQuestion();
+        }
+    });
+
+    // Контейнер
+    document.getElementById('levelContainerBtn').addEventListener('click', function() {
+        const studied = getLevelStudiedWordsList();
+        if (!studied || studied.length === 0) {
+            alert('📦 Контейнер пуст\n\nВыучите слова, чтобы они появились здесь.');
+            return;
+        }
+        showLevelContainer();
+    });
+
+    // Озвучить
+    document.getElementById('levelSpeakBtn').addEventListener('click', function() {
+        if (levelCurrentWord && levelCurrentWord.de) {
+            if (typeof window.speak === 'function') {
+                window.speak(levelCurrentWord.de);
+            } else {
+                console.warn('⚠️ Функция speak не найдена');
+            }
+        }
+    });
+
+    // Перемешать
+    document.getElementById('levelShuffleBtn').addEventListener('click', function() {
+        if (!levelAllWords || levelAllWords.length === 0) return;
+        
+        for (let i = levelAllWords.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [levelAllWords[i], levelAllWords[j]] = [levelAllWords[j], levelAllWords[i]];
+        }
+        
+        levelQuizWords = levelAllWords.filter(word => !levelStudiedWords[word.de]);
+        
+        if (levelQuizWords.length === 0 && levelAllWords.length > 0) {
+            levelQuizWords = [...levelAllWords];
+        }
+        
+        levelQuizIndex = 0;
+        showLevelQuizQuestion();
+        
+        console.log('🔄 Слова уровня перемешаны');
+    });
+
+    // Назад
+    document.getElementById('levelPrevBtn').addEventListener('click', function() {
+        if (levelQuizWords.length > 0 && levelQuizIndex > 0) {
+            levelQuizIndex--;
+            showLevelQuizQuestion();
+        }
+    });
+
+    // Вперед
+    document.getElementById('levelNextBtn').addEventListener('click', function() {
+        if (levelQuizWords.length > 0) {
+            levelQuizIndex = (levelQuizIndex + 1) % levelQuizWords.length;
+            showLevelQuizQuestion();
+        }
+    });
+
+    // В начало
+    document.getElementById('levelResetStartBtn').addEventListener('click', function() {
+        if (levelQuizWords.length > 0) {
+            levelQuizIndex = 0;
+            showLevelQuizQuestion();
+        }
+    });
+
+    showLevelQuizQuestion();
+}
+
+// ===== ОБНОВЛЕНИЕ ПРОГРЕССА ДЛЯ "ВСЕХ СЛОВ УРОВНЯ" =====
+function updateLevelProgressDisplay() {
+    const total = levelAllWords.length;
+    const studiedCount = Object.keys(levelStudiedWords).filter(key => levelStudiedWords[key] === true).length;
+    const progress = total > 0 ? Math.round((studiedCount / total) * 100) : 0;
+    
+    const progressBar = document.querySelector('.progress-bar-inner');
+    const progressText = document.querySelector('.progress-text');
+    
+    if (progressBar) {
+        progressBar.style.width = progress + '%';
+    }
+    if (progressText) {
+        progressText.textContent = `📊 ${studiedCount} из ${total} слов изучено (${progress}%)`;
+    }
+}
+
+// ===== ПОЛУЧЕНИЕ СПИСКА ИЗУЧЕННЫХ СЛОВ ДЛЯ УРОВНЯ =====
+function getLevelStudiedWordsList() {
+    if (!levelAllWords) return [];
+    return levelAllWords.filter(word => levelStudiedWords[word.de]);
+}
+
+// ===== КОНТЕЙНЕР ДЛЯ "ВСЕХ СЛОВ УРОВНЯ" =====
+function showLevelContainer() {
+    const oldModal = document.getElementById('levelContainerModal');
+    if (oldModal) oldModal.remove();
+
+    const modal = document.createElement('div');
+    modal.id = 'levelContainerModal';
+    modal.style.cssText = `
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0,0,0,0.7);
+        display: flex !important;
+        justify-content: center;
+        align-items: center;
+        z-index: 9999999 !important;
+        overflow: auto;
+    `;
+
+    const modalContent = document.createElement('div');
+    modalContent.style.cssText = `
+        background: white;
+        border-radius: 20px;
+        max-width: 500px;
+        width: 90%;
+        max-height: 80vh;
+        display: flex;
+        flex-direction: column;
+        margin: 20px;
+        padding: 0;
+        overflow: hidden;
+        box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+    `;
+
+    const currentStudied = getLevelStudiedWordsList();
+    const title = `📦 КОНТЕЙНЕР УРОВНЯ ${currentLevelForAllWords} (${currentStudied.length} слов)`;
+
+    const header = document.createElement('div');
+    header.style.cssText = 'padding: 15px 20px; border-bottom: 1px solid #ddd; text-align: center; flex-shrink: 0;';
+    header.innerHTML = `<h3 style="margin: 0;">${title}</h3>`;
+    modalContent.appendChild(header);
+
+    const itemsContainer = document.createElement('div');
+    itemsContainer.style.cssText = 'overflow-y: auto; flex: 1; padding: 5px 0;';
+    
+    if (currentStudied.length === 0) {
+        itemsContainer.innerHTML = `<div style="text-align:center; padding:40px; color:#999;">📭 Контейнер пуст</div>`;
+    } else {
+        currentStudied.forEach((word) => {
+            const item = document.createElement('div');
+            item.style.cssText = 'display: flex; justify-content: space-between; align-items: center; padding: 10px 20px; border-bottom: 1px solid #f0f0f0;';
+            item.innerHTML = `
+                <span><strong>${word.de}</strong> — ${word.ru}</span>
+                <button class="unstudy-level-btn" data-word="${word.de}" style="padding: 4px 14px; background: #F44336; color: white; border: none; border-radius: 8px; cursor: pointer; font-size: 12px; font-weight: bold;">✕ ВЕРНУТЬ</button>
+            `;
+            
+            const btn = item.querySelector('.unstudy-level-btn');
+            btn.addEventListener('click', function() {
+                const wordDe = this.getAttribute('data-word');
+                delete levelStudiedWords[wordDe];
+                saveLevelStudiedWords(currentLevelForAllWords);
+                
+                levelQuizWords = levelAllWords.filter(w => !levelStudiedWords[w.de]);
+                if (levelQuizWords.length === 0 && levelAllWords.length > 0) {
+                    levelQuizWords = [...levelAllWords];
+                }
+                if (levelQuizWords.length > 0 && levelQuizIndex >= levelQuizWords.length) {
+                    levelQuizIndex = 0;
+                }
+                
+                modal.remove();
+                showLevelContainer();
+                showLevelQuizQuestion();
+                updateLevelProgressDisplay();
+            });
+            
+            itemsContainer.appendChild(item);
+        });
+    }
+    modalContent.appendChild(itemsContainer);
+
+    const footer = document.createElement('div');
+    footer.style.cssText = 'padding: 15px 20px; border-top: 1px solid #ddd; display: flex; gap: 10px; flex-shrink: 0;';
+    footer.innerHTML = `
+        <button id="levelReturnAllBtn" style="flex: 1; padding: 10px; background: #FF9800; color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: bold;">🔄 ВЕРНУТЬ ВСЁ</button>
+        <button id="levelCloseContainerBtn" style="flex: 1; padding: 10px; background: #ddd; border: none; border-radius: 8px; cursor: pointer; font-weight: bold;">ЗАКРЫТЬ</button>
+    `;
+    modalContent.appendChild(footer);
+
+    modal.appendChild(modalContent);
+    document.body.appendChild(modal);
+
+    document.getElementById('levelReturnAllBtn').addEventListener('click', function() {
+        if (!confirm('Вернуть все слова из контейнера?')) return;
+        levelAllWords.forEach(word => { delete levelStudiedWords[word.de]; });
+        saveLevelStudiedWords(currentLevelForAllWords);
+        levelQuizWords = [...levelAllWords];
+        levelQuizIndex = 0;
+        modal.remove();
+        showLevelQuizQuestion();
+        updateLevelProgressDisplay();
+    });
+
+    document.getElementById('levelCloseContainerBtn').addEventListener('click', function() {
+        modal.remove();
+    });
+
+    modal.addEventListener('click', function(e) {
+        if (e.target === modal) modal.remove();
+    });
+}
+
+// ===== ПОКАЗ ВОПРОСА ДЛЯ "ВСЕХ СЛОВ УРОВНЯ" =====
+function showLevelQuizQuestion() {
+    const questionEl = document.getElementById('levelQuizQuestion');
+    const gridEl = document.getElementById('levelQuizGrid');
+    const progressEl = document.getElementById('levelQuizProgress');
+    
+    if (!questionEl || !gridEl) return;
+
+    if (levelQuizWords.length === 0) {
+        questionEl.textContent = '🎉 Все слова изучены!';
+        gridEl.innerHTML = '';
+        if (progressEl) progressEl.textContent = '0 / 0';
+        return;
+    }
+
+    levelCurrentWord = levelQuizWords[levelQuizIndex];
+    const isDeToRu = levelDirection === 'de_to_ru';
+    const question = isDeToRu ? levelCurrentWord.de : levelCurrentWord.ru;
+    const correctAnswer = isDeToRu ? levelCurrentWord.ru : levelCurrentWord.de;
+
+    questionEl.textContent = question;
+    if (progressEl) progressEl.textContent = `${levelQuizIndex + 1} / ${levelQuizWords.length}`;
+
+    const allWords = [...levelAllWords];
+    const otherWords = allWords.filter(w => w !== levelCurrentWord);
+    
+    const shuffled = [...otherWords];
+    for (let i = shuffled.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+    }
+    
+    const options = [levelCurrentWord, ...shuffled.slice(0, 5)];
+    for (let i = options.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [options[i], options[j]] = [options[j], options[i]];
+    }
+
+    gridEl.innerHTML = '';
+    options.forEach((opt) => {
+        const btn = document.createElement('button');
+        btn.className = 'quiz-opt';
+        btn.textContent = isDeToRu ? opt.ru : opt.de;
+        btn.style.cssText = 'padding: 16px; background: #FFFFFF; border: 2px solid #D0D0D0; border-radius: 16px; cursor: pointer; font-size: 16px; transition: all 0.05s linear; text-align: center; box-shadow: 0 3px 4px rgba(0,0,0,0.1);';
+        btn.addEventListener('click', function() {
+            const isCorrect = isDeToRu ? (opt.ru === correctAnswer) : (opt.de === correctAnswer);
+            if (isCorrect) {
+                this.style.background = '#C8E6C9';
+                this.style.borderColor = '#4CAF50';
+                setTimeout(() => {
+                    levelQuizIndex = (levelQuizIndex + 1) % levelQuizWords.length;
+                    showLevelQuizQuestion();
+                }, 400);
+            } else {
+                this.style.background = '#FFCDD2';
+                this.style.borderColor = '#F44336';
+                setTimeout(() => {
+                    this.style.background = '#FFFFFF';
+                    this.style.borderColor = '#D0D0D0';
+                }, 500);
+            }
+        });
+        gridEl.appendChild(btn);
+    });
+}
+
+
+// ====================================================================
+// СТАРАЯ ЛОГИКА ДЛЯ ТЕСТА В УРОКАХ (НЕ ТРОГАЕМ)
+// ====================================================================
 
 // ===== ОСНОВНАЯ ФУНКЦИЯ ДЛЯ УРОКОВ =====
 function renderQuiz(container, lesson) {
@@ -114,7 +566,8 @@ function renderQuiz(container, lesson) {
     currentLessonId = lesson.id || 1;
     window.currentLevel = lesson.level || 'A1';
     
-    loadStudiedWords(window.currentLevel);
+    // Загружаем прогресс для УРОКА (старый контейнер)
+    loadLessonStudiedWords(window.currentLevel, currentLessonId);
     
     let quizData = lesson.quiz || [];
     
@@ -145,18 +598,7 @@ function showQuizInterface(container) {
     buildQuizHTML(container);
 }
 
-// ===== ПОКАЗ ТЕСТА НАПРЯМУЮ В #content (для "Все слова") =====
-function showQuizInterfaceDirect() {
-    const content = document.getElementById('content');
-    if (!content) {
-        console.error('❌ content не найден!');
-        return;
-    }
-    console.log('✅ showQuizInterfaceDirect: показываем тест в #content');
-    buildQuizHTML(content);
-}
-
-// ===== ПОСТРОЕНИЕ HTML ТЕСТА =====
+// ===== ПОСТРОЕНИЕ HTML ДЛЯ ТЕСТА В УРОКЕ =====
 function buildQuizHTML(container) {
     if (!container) {
         console.error('❌ buildQuizHTML: container не передан');
@@ -166,9 +608,8 @@ function buildQuizHTML(container) {
     const hasWords = allQuizWords.length > 0;
     const totalWords = allQuizWords.length;
     const studiedCount = Object.keys(quizStudiedWords).filter(key => quizStudiedWords[key] === true).length;
-    const progress = totalWords > 0 ? Math.round((studiedCount / totalWords) * 100) : 0;
 
-    // ===== ПОМЕЩАЕМ КНОПКУ НАПРАВЛЕНИЯ В HEADER (рядом со старой кнопкой) =====
+    // ===== ПОМЕЩАЕМ КНОПКУ НАПРАВЛЕНИЯ В HEADER =====
     const headerControls = document.getElementById('modeHeaderControls');
     if (headerControls) {
         headerControls.innerHTML = `
@@ -186,14 +627,11 @@ function buildQuizHTML(container) {
                     <div>Нет слов для этого режима</div>
                 </div>
             ` : `
-                ${isAllWordsMode ? `
-                    <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; margin-bottom: 15px;">
-                        <button class="back-btn" onclick="window.renderLevel()" style="padding: 10px 20px; background: #3B6FE0; color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; transition: all 0.08s ease;">
-                            ← НАЗАД
-                        </button>
+                <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; margin-bottom: 15px;">
+                    <div style="font-size: 14px; color: #666;">
+                        📊 ${studiedCount} из ${totalWords} слов изучено
                     </div>
-                    <h2>📚 Все слова уровня ${window.currentLevel}</h2>
-                ` : ``}
+                </div>
                 
                 <div style="background: #FFFFFF; border-radius: 20px; box-shadow: 0 8px 24px rgba(0,0,0,0.1); max-width: 550px; margin: 15px auto; min-height: 150px; display: flex; align-items: center; justify-content: center; text-align: center; padding: 20px;">
                     <div style="font-size: 32px; font-weight: bold; color: #1A1A1A;" id="quizQuestion">Загрузка...</div>
@@ -205,7 +643,6 @@ function buildQuizHTML(container) {
                     <button class="ctrl-btn" id="quizStudyBtn" style="padding: 6px 14px; background: #4CAF50; color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; font-size: 12px;">✅ ИЗУЧЕНО</button>
                     <button class="ctrl-btn" id="quizContainerBtn" style="padding: 6px 14px; background: #FF9800; color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; font-size: 12px;">📦 КОНТЕЙНЕР</button>
                     <button class="ctrl-btn" id="quizSpeakBtn" style="padding: 6px 14px; background: #E8F0FE; border: 2px solid #D0D0D0; border-radius: 8px; cursor: pointer; font-weight: bold; font-size: 12px;">🔊 ОЗВУЧИТЬ</button>
-                    ${isAllWordsMode ? `<button class="ctrl-btn" id="shuffleWordsBtn" onclick="window.shuffleAllWords()" style="padding: 6px 14px; background: #9C27B0; color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; font-size: 12px;">🔄 ПЕРЕМЕШАТЬ</button>` : ''}
                 </div>
                 
                 <div class="btn-group" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin: 5px 0 10px 0;">
@@ -222,7 +659,9 @@ function buildQuizHTML(container) {
 
     if (!hasWords) return;
 
-    // ===== ОБРАБОТЧИК КНОПКИ НАПРАВЛЕНИЯ =====
+    // ===== ОБРАБОТЧИКИ ДЛЯ ТЕСТА В УРОКЕ =====
+    
+    // Кнопка направления
     const dirBtn = document.getElementById('quizDirBtn');
     if (dirBtn) {
         dirBtn.addEventListener('click', function() {
@@ -232,12 +671,13 @@ function buildQuizHTML(container) {
         });
     }
 
+    // Изучено
     document.getElementById('quizStudyBtn').addEventListener('click', function() {
         if (quizCurrentWord) {
             quizStudiedWords[quizCurrentWord.de] = true;
-            saveStudiedWords(window.currentLevel);
+            saveLessonStudiedWords(window.currentLevel, currentLessonId);
             
-            quizWords = (isAllWordsMode ? allQuizWords : allQuizWords).filter(w => !quizStudiedWords[w.de]);
+            quizWords = allQuizWords.filter(w => !quizStudiedWords[w.de]);
             
             if (quizWords.length === 0 && allQuizWords.length > 0) {
                 quizWords = [...allQuizWords];
@@ -247,24 +687,21 @@ function buildQuizHTML(container) {
                 quizIndex = 0;
             }
             
-            if (isAllWordsMode) {
-                updateProgressDisplay();
-            }
-            
             showQuizQuestion();
         }
     });
 
+    // Контейнер
     document.getElementById('quizContainerBtn').addEventListener('click', function() {
-        const studied = getStudiedWordsList();
+        const studied = getLessonStudiedWordsList();
         if (!studied || studied.length === 0) {
             alert('📦 Контейнер пуст\n\nВыучите слова, чтобы они появились здесь.');
             return;
         }
-        showQuizContainer();
+        showLessonContainer();
     });
 
-    // ===== ОБРАБОТЧИК НОВОЙ КНОПКИ "ОЗВУЧИТЬ" =====
+    // Озвучить
     document.getElementById('quizSpeakBtn').addEventListener('click', function() {
         if (quizCurrentWord && quizCurrentWord.de) {
             if (typeof window.speak === 'function') {
@@ -275,6 +712,7 @@ function buildQuizHTML(container) {
         }
     });
 
+    // Назад
     document.getElementById('quizPrevBtn').addEventListener('click', function() {
         if (quizWords.length > 0 && quizIndex > 0) {
             quizIndex--;
@@ -282,6 +720,7 @@ function buildQuizHTML(container) {
         }
     });
 
+    // Вперед
     document.getElementById('quizNextBtn').addEventListener('click', function() {
         if (quizWords.length > 0) {
             quizIndex = (quizIndex + 1) % quizWords.length;
@@ -289,6 +728,7 @@ function buildQuizHTML(container) {
         }
     });
 
+    // В начало
     document.getElementById('quizResetStartBtn').addEventListener('click', function() {
         if (quizWords.length > 0) {
             quizIndex = 0;
@@ -299,29 +739,14 @@ function buildQuizHTML(container) {
     showQuizQuestion();
 }
 
-function updateProgressDisplay() {
-    const total = allQuizWords.length;
-    const studiedCount = Object.keys(quizStudiedWords).filter(key => quizStudiedWords[key] === true).length;
-    const progress = total > 0 ? Math.round((studiedCount / total) * 100) : 0;
-    
-    const progressBar = document.querySelector('#modeContent .progress-bar-inner');
-    const progressText = document.querySelector('#modeContent .progress-text');
-    
-    if (progressBar) {
-        progressBar.style.width = progress + '%';
-    }
-    if (progressText) {
-        progressText.textContent = `${studiedCount} из ${total} слов изучено (${progress}%)`;
-    }
-}
-
-function getStudiedWordsList() {
+// ===== ПОЛУЧЕНИЕ СПИСКА ИЗУЧЕННЫХ СЛОВ ДЛЯ УРОКА =====
+function getLessonStudiedWordsList() {
     if (!allQuizWords) return [];
     return allQuizWords.filter(word => quizStudiedWords[word.de]);
 }
 
-// ===== КОНТЕЙНЕР =====
-function showQuizContainer() {
+// ===== КОНТЕЙНЕР ДЛЯ УРОКА =====
+function showLessonContainer() {
     const oldModal = document.getElementById('containerModal');
     if (oldModal) oldModal.remove();
 
@@ -356,10 +781,8 @@ function showQuizContainer() {
         box-shadow: 0 20px 60px rgba(0,0,0,0.5);
     `;
 
-    const currentStudied = getStudiedWordsList();
-    const title = isAllWordsMode ? 
-        '📦 КОНТЕЙНЕР УРОВНЯ ' + window.currentLevel + ' (' + currentStudied.length + ' слов)' :
-        '📦 КОНТЕЙНЕР УРОКА ' + currentLessonId + ' (' + currentStudied.length + ' слов)';
+    const currentStudied = getLessonStudiedWordsList();
+    const title = `📦 КОНТЕЙНЕР УРОКА ${currentLessonId} (${currentStudied.length} слов)`;
 
     const header = document.createElement('div');
     header.style.cssText = 'padding: 15px 20px; border-bottom: 1px solid #ddd; text-align: center; flex-shrink: 0;';
@@ -384,9 +807,9 @@ function showQuizContainer() {
             btn.addEventListener('click', function() {
                 const wordDe = this.getAttribute('data-word');
                 delete quizStudiedWords[wordDe];
-                saveStudiedWords(window.currentLevel);
+                saveLessonStudiedWords(window.currentLevel, currentLessonId);
                 
-                quizWords = (isAllWordsMode ? allQuizWords : allQuizWords).filter(w => !quizStudiedWords[w.de]);
+                quizWords = allQuizWords.filter(w => !quizStudiedWords[w.de]);
                 if (quizWords.length === 0 && allQuizWords.length > 0) {
                     quizWords = [...allQuizWords];
                 }
@@ -395,7 +818,7 @@ function showQuizContainer() {
                 }
                 
                 modal.remove();
-                showQuizContainer();
+                showLessonContainer();
                 showQuizQuestion();
             });
             
@@ -418,7 +841,7 @@ function showQuizContainer() {
     document.getElementById('returnAllBtn').addEventListener('click', function() {
         if (!confirm('Вернуть все слова из контейнера?')) return;
         allQuizWords.forEach(word => { delete quizStudiedWords[word.de]; });
-        saveStudiedWords(window.currentLevel);
+        saveLessonStudiedWords(window.currentLevel, currentLessonId);
         quizWords = [...allQuizWords];
         quizIndex = 0;
         modal.remove();
@@ -434,7 +857,7 @@ function showQuizContainer() {
     });
 }
 
-// ===== ПОКАЗ ВОПРОСА =====
+// ===== ПОКАЗ ВОПРОСА ДЛЯ ТЕСТА В УРОКЕ =====
 function showQuizQuestion() {
     const questionEl = document.getElementById('quizQuestion');
     const gridEl = document.getElementById('quizGrid');
@@ -499,35 +922,6 @@ function showQuizQuestion() {
         gridEl.appendChild(btn);
     });
 }
-
-// ===== ПЕРЕМЕШИВАНИЕ СЛОВ (ТОЛЬКО ДЛЯ "ВСЕ СЛОВА УРОВНЯ") =====
-window.shuffleAllWords = function() {
-    if (!isAllWordsMode) {
-        return;
-    }
-    
-    if (!allQuizWords || allQuizWords.length === 0) {
-        return;
-    }
-    
-    // Перемешиваем массив
-    for (let i = allQuizWords.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [allQuizWords[i], allQuizWords[j]] = [allQuizWords[j], allQuizWords[i]];
-    }
-    
-    // Обновляем quizWords (убираем изученные слова)
-    quizWords = allQuizWords.filter(word => !quizStudiedWords[word.de]);
-    
-    if (quizWords.length === 0 && allQuizWords.length > 0) {
-        quizWords = [...allQuizWords];
-    }
-    
-    quizIndex = 0;
-    showQuizQuestion();
-    
-    console.log('🔄 Слова перемешаны');
-};
 
 // ===== ЭКСПОРТ =====
 window.renderQuiz = renderQuiz;

@@ -214,14 +214,7 @@ function buildLevelQuizHTML(container) {
                 </div>
                 <h2>📚 Все слова уровня ${currentLevelForAllWords}</h2>
                 
-                <!-- ПРОГРЕСС-БАР -->
-                <div class="progress-container" style="background: #E8F5E9; border-radius: 12px; padding: 10px 15px; margin-bottom: 15px; border: 2px solid #4CAF50;">
-                    <div class="progress-text" style="font-weight: bold; color: #2E7D32;">📊 ${studiedCount} из ${totalWords} слов изучено (${progress}%)</div>
-                    <div class="progress-bar-bg" style="background: #E0E0E0; border-radius: 10px; height: 8px; margin-top: 6px; overflow: hidden;">
-                        <div class="progress-bar-inner" style="background: #4CAF50; height: 100%; border-radius: 10px; width: ${progress}%; transition: width 0.3s ease;"></div>
-                    </div>
-                </div>
-                
+                             
                 <div style="background: #FFFFFF; border-radius: 20px; box-shadow: 0 8px 24px rgba(0,0,0,0.1); max-width: 550px; margin: 15px auto; min-height: 150px; display: flex; align-items: center; justify-content: center; text-align: center; padding: 20px;">
                     <div style="font-size: 32px; font-weight: bold; color: #1A1A1A;" id="levelQuizQuestion">Загрузка...</div>
                 </div>

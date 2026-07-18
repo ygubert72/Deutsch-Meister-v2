@@ -376,18 +376,13 @@ function showLevelTrainerInterface() {
     const textColor = hasWords ? '#1A1A1A' : '#CCCCCC';
     const fontWeight = hasWords ? 'bold' : 'normal';
     
-    // Общее количество фраз
-    const totalPhrases = levelTrainerAllPhrases.length;
-    const studiedCount = Object.keys(levelTrainerStudied).filter(key => levelTrainerStudied[key] === true).length;
-    
     let html = `
         <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; margin-bottom: 15px;">
             <button class="back-btn" onclick="renderLevel()" style="padding: 8px 16px; background: #3B6FE0; color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: bold;">
                 ← НАЗАД
             </button>
-            <div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
-                <span style="font-size: 14px; color: #666;">📊 ${studiedCount}/${totalPhrases} изучено</span>
-                <button id="levelTrainerDirBtn" style="background: #3B6FE0; color: white; padding: 6px 14px; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; font-size: 13px; box-shadow: 0 2px 4px rgba(0,0,0,0.2);">
+            <div id="levelTrainerHeaderControls">
+                <button id="levelTrainerDirBtn" class="dir-btn" style="background: #3B6FE0; color: white; padding: 10px 20px; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; font-size: 13px; box-shadow: 0 2px 4px rgba(0,0,0,0.2); transition: all 0.08s ease;">
                     ${levelTrainerDirection === 'ru_to_de' ? 'Ru → De' : 'De → Ru'}
                 </button>
             </div>

@@ -548,163 +548,36 @@ function renderLevel() {
 
     const allWordsBtn = document.getElementById('allWordsLevelBtn');
     if (allWordsBtn) {
-        countWordsInLevel().then(count => {
-            totalWords = count;
-            const placeholder = document.getElementById('wordCountPlaceholder');
-            if (placeholder) {
-                placeholder.textContent = `(${totalWords} слов)`;
-            }
-        });
+        // Загружаем количество слов из файла docs/{level}.json
+        fetch(`docs/${currentLevel}.json`)
+            .then(response => {
+                if (response.ok) {
+                    return response.json();
+                }
+                return null;
+            })
+            .then(data => {
+                const placeholder = document.getElementById('wordCountPlaceholder');
+                if (placeholder) {
+                    if (data && Array.isArray(data)) {
+                        placeholder.textContent = `(${data.length} слов)`;
+                    } else {
+                        placeholder.textContent = '(слова загружаются...)';
+                    }
+                }
+            })
+            .catch(() => {
+                const placeholder = document.getElementById('wordCountPlaceholder');
+                if (placeholder) {
+                    placeholder.textContent = '(слова загружаются...)';
+                }
+            });
 
         allWordsBtn.onclick = function() {
             if (typeof window.loadAllWordsMode === 'function') {
                 window.loadAllWordsMode(currentLevel);
             } else {
                 alert('⚠️ Режим "Все слова" временно недоступен. Пожалуйста, обновите страницу.');
-            }
-        };
-    }
-}
-
-function renderLevel() {
-    if (!courseData) {
-        loadLevel(currentLevel);
-        return;
-    }
-
-    let totalWords = 0;
-    let totalPhrases = 0;
-    
-    const countWordsInLevel = async function() {
-        let count = 0;
-        for (const lesson of courseData.lessons) {
-            const lessonId = lesson.id;
-            const lessonFile = `docs/${currentLevel}/lessons/lesson_${String(lessonId).padStart(2, '0')}.json`;
-            try {
-                const response = await fetch(lessonFile);
-                if (response.ok) {
-                    const data = await response.json();
-                    if (data.quiz && Array.isArray(data.quiz)) {
-                        count += data.quiz.length;
-                    }
-                }
-            } catch(e) {
-                console.log('⚠️ Не удалось загрузить урок', lessonId);
-            }
-        }
-        return count;
-    };
-
-    const countPhrasesInLevel = async function() {
-        let count = 0;
-        const seen = new Set();
-        for (const lesson of courseData.lessons) {
-            const lessonId = lesson.id;
-            const lessonFile = `docs/${currentLevel}/lessons/lesson_${String(lessonId).padStart(2, '0')}.json`;
-            try {
-                const response = await fetch(lessonFile);
-                if (response.ok) {
-                    const data = await response.json();
-                    if (data.trainer && Array.isArray(data.trainer)) {
-                        for (const phrase of data.trainer) {
-                            const key = phrase.de + '|' + phrase.ru;
-                            if (!seen.has(key)) {
-                                seen.add(key);
-                                count++;
-                            }
-                        }
-                    }
-                }
-            } catch(e) {
-                console.log('⚠️ Не удалось загрузить урок', lessonId);
-            }
-        }
-        return count;
-    };
-
-    let html = `<h2>📚 ${courseData.title}</h2><div style="margin-top: 20px;">`;
-    courseData.lessons.forEach(lesson => {
-        html += `
-            <button class="lesson-btn" data-lesson-id="${lesson.id}" style="transition: all 0.08s ease;">
-                📘 Урок ${lesson.id}: ${lesson.title}
-            </button>
-        `;
-    });
-    
-    html += `
-        <button id="allWordsLevelBtn" class="lesson-btn all-words-btn" style="
-            border-color: #D0D0D0; 
-            background: #E8F5E9;
-            margin-top: 20px;
-            font-weight: normal;
-            transition: all 0.08s ease;
-            border: 2px solid #D0D0D0;
-        ">
-            📚 ВСЕ СЛОВА УРОВНЯ <span id="wordCountPlaceholder">(загрузка...)</span>
-        </button>
-        
-        <!-- НОВАЯ КНОПКА: ВСЕ ФРАЗЫ УРОВНЯ -->
-        <button id="allPhrasesLevelBtn" class="lesson-btn all-words-btn" style="
-            border-color: #D0D0D0; 
-            background: #FFF8E1;
-            margin-top: 10px;
-            font-weight: normal;
-            transition: all 0.08s ease;
-            border: 2px solid #D0D0D0;
-        ">
-            🧩 ВСЕ ФРАЗЫ УРОВНЯ <span id="phraseCountPlaceholder">(загрузка...)</span>
-        </button>
-    `;
-    html += `</div>`;
-    document.getElementById('content').innerHTML = html;
-    document.getElementById('modeIndicator').textContent = `Курс ${currentLevel}`;
-    updateCounter();
-    saveState();
-
-    // Обработчики для уроков
-    document.querySelectorAll('.lesson-btn[data-lesson-id]').forEach(btn => {
-        btn.onclick = function() {
-            const id = parseInt(this.getAttribute('data-lesson-id'));
-            loadLesson(id);
-        };
-    });
-
-    // Кнопка "Все слова уровня"
-    const allWordsBtn = document.getElementById('allWordsLevelBtn');
-    if (allWordsBtn) {
-        countWordsInLevel().then(count => {
-            totalWords = count;
-            const placeholder = document.getElementById('wordCountPlaceholder');
-            if (placeholder) {
-                placeholder.textContent = `(${totalWords} слов)`;
-            }
-        });
-
-        allWordsBtn.onclick = function() {
-            if (typeof window.loadAllWordsMode === 'function') {
-                window.loadAllWordsMode(currentLevel);
-            } else {
-                alert('⚠️ Режим "Все слова" временно недоступен. Пожалуйста, обновите страницу.');
-            }
-        };
-    }
-
-    // НОВАЯ КНОПКА: "Все фразы уровня"
-    const allPhrasesBtn = document.getElementById('allPhrasesLevelBtn');
-    if (allPhrasesBtn) {
-        countPhrasesInLevel().then(count => {
-            totalPhrases = count;
-            const placeholder = document.getElementById('phraseCountPlaceholder');
-            if (placeholder) {
-                placeholder.textContent = `(${totalPhrases} фраз)`;
-            }
-        });
-
-        allPhrasesBtn.onclick = function() {
-            if (typeof window.loadAllPhrasesMode === 'function') {
-                window.loadAllPhrasesMode(currentLevel);
-            } else {
-                alert('⚠️ Режим "Все фразы" временно недоступен. Пожалуйста, обновите страницу.');
             }
         };
     }

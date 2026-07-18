@@ -490,9 +490,10 @@ function renderLevel() {
     }
 
     let totalWords = 0;
+    let totalPhrases = 0;
+    
     const countWordsInLevel = async function() {
         let count = 0;
-        // Используем только те уроки, которые есть в courseData
         for (const lesson of courseData.lessons) {
             const lessonId = lesson.id;
             const lessonFile = `docs/${currentLevel}/lessons/lesson_${String(lessonId).padStart(2, '0')}.json`;
@@ -505,7 +506,33 @@ function renderLevel() {
                     }
                 }
             } catch(e) {
-                // Просто игнорируем ошибки загрузки
+                console.log('⚠️ Не удалось загрузить урок', lessonId);
+            }
+        }
+        return count;
+    };
+
+    const countPhrasesInLevel = async function() {
+        let count = 0;
+        const seen = new Set();
+        for (const lesson of courseData.lessons) {
+            const lessonId = lesson.id;
+            const lessonFile = `docs/${currentLevel}/lessons/lesson_${String(lessonId).padStart(2, '0')}.json`;
+            try {
+                const response = await fetch(lessonFile);
+                if (response.ok) {
+                    const data = await response.json();
+                    if (data.trainer && Array.isArray(data.trainer)) {
+                        for (const phrase of data.trainer) {
+                            const key = phrase.de + '|' + phrase.ru;
+                            if (!seen.has(key)) {
+                                seen.add(key);
+                                count++;
+                            }
+                        }
+                    }
+                }
+            } catch(e) {
                 console.log('⚠️ Не удалось загрузить урок', lessonId);
             }
         }
@@ -532,6 +559,17 @@ function renderLevel() {
         ">
             📚 ВСЕ СЛОВА УРОВНЯ <span id="wordCountPlaceholder">(загрузка...)</span>
         </button>
+        
+        <button id="allPhrasesLevelBtn" class="lesson-btn all-words-btn" style="
+            border-color: #D0D0D0; 
+            background: #FFF8E1;
+            margin-top: 10px;
+            font-weight: normal;
+            transition: all 0.08s ease;
+            border: 2px solid #D0D0D0;
+        ">
+            🧩 ВСЕ ФРАЗЫ УРОВНЯ <span id="phraseCountPlaceholder">(загрузка...)</span>
+        </button>
     `;
     html += `</div>`;
     document.getElementById('content').innerHTML = html;
@@ -548,36 +586,38 @@ function renderLevel() {
 
     const allWordsBtn = document.getElementById('allWordsLevelBtn');
     if (allWordsBtn) {
-        // Загружаем количество слов из файла docs/{level}.json
-        fetch(`docs/${currentLevel}.json`)
-            .then(response => {
-                if (response.ok) {
-                    return response.json();
-                }
-                return null;
-            })
-            .then(data => {
-                const placeholder = document.getElementById('wordCountPlaceholder');
-                if (placeholder) {
-                    if (data && Array.isArray(data)) {
-                        placeholder.textContent = `(${data.length} слов)`;
-                    } else {
-                        placeholder.textContent = '(слова загружаются...)';
-                    }
-                }
-            })
-            .catch(() => {
-                const placeholder = document.getElementById('wordCountPlaceholder');
-                if (placeholder) {
-                    placeholder.textContent = '(слова загружаются...)';
-                }
-            });
+        countWordsInLevel().then(count => {
+            totalWords = count;
+            const placeholder = document.getElementById('wordCountPlaceholder');
+            if (placeholder) {
+                placeholder.textContent = `(${totalWords} слов)`;
+            }
+        });
 
         allWordsBtn.onclick = function() {
             if (typeof window.loadAllWordsMode === 'function') {
                 window.loadAllWordsMode(currentLevel);
             } else {
                 alert('⚠️ Режим "Все слова" временно недоступен. Пожалуйста, обновите страницу.');
+            }
+        };
+    }
+
+    const allPhrasesBtn = document.getElementById('allPhrasesLevelBtn');
+    if (allPhrasesBtn) {
+        countPhrasesInLevel().then(count => {
+            totalPhrases = count;
+            const placeholder = document.getElementById('phraseCountPlaceholder');
+            if (placeholder) {
+                placeholder.textContent = `(${totalPhrases} фраз)`;
+            }
+        });
+
+        allPhrasesBtn.onclick = function() {
+            if (typeof window.loadAllPhrasesMode === 'function') {
+                window.loadAllPhrasesMode(currentLevel);
+            } else {
+                alert('⚠️ Режим "Все фразы" временно недоступен. Пожалуйста, обновите страницу.');
             }
         };
     }

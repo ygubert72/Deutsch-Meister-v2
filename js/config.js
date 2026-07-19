@@ -31,11 +31,35 @@ let wordsProgress = {};
 let sentencesProgress = {};
 let grammarProgress = { A1: [], A2: [], B1: [], B2: [], C1: [] };
 
+// ===== НОВОЕ: Ключи для хранения в localStorage =====
+const STORAGE_KEYS = {
+    WORDS: 'dm_words_progress',
+    SENTENCES: 'dm_sentences_progress',
+    GRAMMAR: 'dm_grammar_progress',
+    CONFIG: 'dm_config',
+    CONTAINER_PREFIX: 'dm_container_' // для контейнеров уроков
+};
+
+// ===== НОВОЕ: Получить путь к подколлекции прогресса урока =====
+function getProgressPath(userId, level, lessonId) {
+    return `users/${userId}/progress/${level}_lesson_${lessonId}`;
+}
+
+// ===== НОВОЕ: Получить путь к подколлекции статистики =====
+function getStatsPath(userId, date) {
+    return `users/${userId}/stats/${date}`;
+}
+
+// ===== НОВОЕ: Получить ключ контейнера для урока =====
+function getContainerKey(level, lessonId) {
+    return `${STORAGE_KEYS.CONTAINER_PREFIX}${level}_lesson_${lessonId}`;
+}
+
 function saveProgress() {
-    localStorage.setItem('dm_words_progress', JSON.stringify(wordsProgress));
-    localStorage.setItem('dm_sentences_progress', JSON.stringify(sentencesProgress));
-    localStorage.setItem('dm_grammar_progress', JSON.stringify(grammarProgress));
-    localStorage.setItem('dm_config', JSON.stringify({
+    localStorage.setItem(STORAGE_KEYS.WORDS, JSON.stringify(wordsProgress));
+    localStorage.setItem(STORAGE_KEYS.SENTENCES, JSON.stringify(sentencesProgress));
+    localStorage.setItem(STORAGE_KEYS.GRAMMAR, JSON.stringify(grammarProgress));
+    localStorage.setItem(STORAGE_KEYS.CONFIG, JSON.stringify({
         last_level: AppConfig.currentLevel,
         show_language: AppConfig.show_language,
         quiz_direction: AppConfig.quiz_direction,
@@ -43,6 +67,7 @@ function saveProgress() {
         last_mode: currentMode
     }));
     
+    // Сохраняем в облако (новая структура)
     if (window.saveUserProgressToFirebase) {
         window.saveUserProgressToFirebase();
     }
@@ -50,13 +75,13 @@ function saveProgress() {
 
 function loadProgress() {
     try {
-        const wp = localStorage.getItem('dm_words_progress');
+        const wp = localStorage.getItem(STORAGE_KEYS.WORDS);
         if (wp) wordsProgress = JSON.parse(wp);
-        const sp = localStorage.getItem('dm_sentences_progress');
+        const sp = localStorage.getItem(STORAGE_KEYS.SENTENCES);
         if (sp) sentencesProgress = JSON.parse(sp);
-        const gp = localStorage.getItem('dm_grammar_progress');
+        const gp = localStorage.getItem(STORAGE_KEYS.GRAMMAR);
         if (gp) grammarProgress = JSON.parse(gp);
-        const cfg = localStorage.getItem('dm_config');
+        const cfg = localStorage.getItem(STORAGE_KEYS.CONFIG);
         if (cfg) {
             const parsed = JSON.parse(cfg);
             AppConfig.currentLevel = parsed.last_level || 'A1';
@@ -85,3 +110,11 @@ window.sentencesProgress = sentencesProgress;
 window.grammarProgress = grammarProgress;
 window.saveProgress = saveProgress;
 window.loadProgress = loadProgress;
+
+// ===== НОВОЕ: Экспорт новых функций =====
+window.getProgressPath = getProgressPath;
+window.getStatsPath = getStatsPath;
+window.getContainerKey = getContainerKey;
+window.STORAGE_KEYS = STORAGE_KEYS;
+
+console.log('✅ config.js загружен (с новой структурой)');

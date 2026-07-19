@@ -2,7 +2,7 @@
 // app.js — ГЛАВНЫЙ ФАЙЛ (навигация, загрузка, сохранение состояния)
 // ====================================================================
 
-// ========== СОСТОЯНИЕ (объявлено ОДИН раз) ==========
+// ========== СОСТОЯНИЕ ==========
 let currentLevel = 'A1';
 let currentLesson = null;
 let courseData = null;
@@ -493,20 +493,20 @@ function renderLevel() {
     let totalPhrases = 0;
     
     const countWordsInLevel = async function() {
-    try {
-        const response = await fetch(`docs/${currentLevel}.json`);
-        if (response.ok) {
-            const data = await response.json();
-            if (Array.isArray(data)) {
-                return data.length;
+        try {
+            const response = await fetch(`docs/${currentLevel}.json`);
+            if (response.ok) {
+                const data = await response.json();
+                if (Array.isArray(data)) {
+                    return data.length;
+                }
             }
+            return 0;
+        } catch(e) {
+            console.log('⚠️ Не удалось загрузить слова уровня');
+            return 0;
         }
-        return 0;
-    } catch(e) {
-        console.log('⚠️ Не удалось загрузить слова уровня');
-        return 0;
-    }
-};
+    };
 
     const countPhrasesInLevel = async function() {
         let count = 0;
@@ -971,4 +971,4 @@ document.addEventListener('DOMContentLoaded', function() {
     initApp();
 });
 
-console.log('🚀 app.js загружен');
+console.log('🚀 app.js загружен (с новой структурой)');

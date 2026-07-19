@@ -39,7 +39,6 @@ function initFirebase() {
     if (window.Logger) Logger.info('Firebase готов');
     
     auth.onAuthStateChanged(async (user) => {
-        // Устанавливаем флаг инициализации СРАЗУ
         authInitialized = true;
         console.log('🔐 authInitialized = true');
         
@@ -51,7 +50,12 @@ function initFirebase() {
             }
             
             await loadUserData(user.uid);
-            await window.loadUserProgressFromFirebase();
+            
+            // Загружаем прогресс из новой структуры
+            if (window.loadUserProgressFromFirebase) {
+                await window.loadUserProgressFromFirebase();
+            }
+            
             await addUserToFirestore(user);
             await checkIfBlocked(user);
         } else {
@@ -64,7 +68,6 @@ function initFirebase() {
         updateUI(user);
         updateLevelButtons();
         
-        // ===== ВЫЗОВ onAuthReady =====
         if (typeof window.onAuthReady === 'function') {
             console.log('🔄 Вызов onAuthReady из auth.js');
             window.onAuthReady();
@@ -98,7 +101,6 @@ window.hasAccessToLevel = function(level) {
         return level === 'A1';
     }
     
-    // ИСПРАВЛЕНО: используем ADMIN_EMAIL
     if (auth.currentUser && auth.currentUser.email === ADMIN_EMAIL) {
         return true;
     }
@@ -196,6 +198,7 @@ async function addUserToFirestore(user) {
     try {
         const userDoc = await db.collection('users').doc(user.uid).get();
         if (!userDoc.exists) {
+            // Создаём основной документ (только базовая информация)
             await db.collection('users').doc(user.uid).set({
                 email: user.email,
                 createdAt: new Date().toISOString(),
@@ -204,11 +207,18 @@ async function addUserToFirestore(user) {
                 blocked: false,
                 status: 'ok',
                 devices: [],
-                dailyStats: {},
                 flags: { totalFlags: 0 },
                 _previousFlags: { totalFlags: 0 }
+                // dailyStats больше не храним в основном документе
             });
-            if (window.Logger) Logger.info('Пользователь добавлен в Firestore:', user.email);
+            
+            // Создаём пустой документ в подколлекции progress для конфига
+            await db.collection('users').doc(user.uid)
+                .collection('progress').doc('config').set({
+                    created: new Date().toISOString()
+                });
+            
+            if (window.Logger) Logger.info('Пользователь добавлен в Firestore (новая структура):', user.email);
         }
     } catch(e) {
         if (window.Logger) Logger.error('Ошибка добавления пользователя:', e);
@@ -219,7 +229,9 @@ async function addUserToFirestore(user) {
 async function login(email, password) {
     try {
         await auth.signInWithEmailAndPassword(email, password);
-        await window.loadUserProgressFromFirebase();
+        if (window.loadUserProgressFromFirebase) {
+            await window.loadUserProgressFromFirebase();
+        }
         if (window.Logger) Logger.info('Вход выполнен:', email);
         return { success: true };
     } catch(error) {
@@ -241,10 +253,14 @@ async function register(email, password) {
                 blocked: false,
                 status: 'ok',
                 devices: [],
-                dailyStats: {},
                 flags: { totalFlags: 0 },
                 _previousFlags: { totalFlags: 0 }
             });
+            
+            await db.collection('users').doc(userCredential.user.uid)
+                .collection('progress').doc('config').set({
+                    created: new Date().toISOString()
+                });
         }
         if (window.Logger) Logger.info('Регистрация выполнена:', email);
         return { success: true };
@@ -289,7 +305,6 @@ function updateUI(user) {
         if (userInfoMobile) userInfoMobile.style.display = 'block';
         
         const hasPremium = currentUserData && currentUserData.hasPremiumAccess === true;
-        // ИСПРАВЛЕНО: используем ADMIN_EMAIL
         const isAdmin = user.email === ADMIN_EMAIL;
         
         if (adminBtn) {
@@ -366,7 +381,6 @@ function showPaymentModal() {
         return;
     }
     
-    // Проверяем, есть ли уже премиум
     if (currentUserData && currentUserData.hasPremiumAccess === true) {
         alert('💎 У вас уже есть премиум-доступ!');
         return;
@@ -585,88 +599,9 @@ function togglePasswordVisibility(inputId, eyeIconId) {
 
 // ========== ПРОВЕРКА АДМИНА ==========
 window.isAdmin = function() {
-    // ИСПРАВЛЕНО: используем ADMIN_EMAIL
     if (auth && auth.currentUser && auth.currentUser.email === ADMIN_EMAIL) {
         return true;
     }
-    return false;
-};
-
-// ========== СОХРАНЕНИЕ ПРОГРЕССА В ОБЛАКО ==========
-window.saveUserProgressToFirebase = async function() {
-    if (!auth || !auth.currentUser) return;
-    const userId = auth.currentUser.uid;
-    if (!db) return;
-    try {
-        const progressData = {
-            wordsProgress: wordsProgress,
-            sentencesProgress: sentencesProgress,
-            grammarProgress: grammarProgress,
-            config: {
-                last_level: AppConfig.currentLevel,
-                show_language: AppConfig.show_language,
-                quiz_direction: AppConfig.quiz_direction,
-                sentence_lang_from: AppConfig.sentence_lang_from,
-                last_mode: currentMode
-            },
-            lastUpdated: new Date().toISOString()
-        };
-        await db.collection('users').doc(userId).set({
-            progress: progressData
-        }, { merge: true });
-        if (window.Logger) Logger.debug('Прогресс сохранён в облаке');
-    } catch(e) {
-        if (window.Logger) Logger.error('Ошибка сохранения прогресса:', e);
-    }
-};
-
-// ========== ЗАГРУЗКА ПРОГРЕССА ИЗ ОБЛАКА ==========
-window.loadUserProgressFromFirebase = async function() {
-    if (!auth || !auth.currentUser) {
-        return false;
-    }
-    
-    const userId = auth.currentUser.uid;
-    if (!db) return false;
-    
-    try {
-        const userDoc = await db.collection('users').doc(userId).get();
-        if (userDoc.exists && userDoc.data().progress) {
-            const progress = userDoc.data().progress;
-            
-            if (progress.wordsProgress) {
-                Object.assign(wordsProgress, progress.wordsProgress);
-                localStorage.setItem('dm_words_progress', JSON.stringify(wordsProgress));
-            }
-            
-            if (progress.sentencesProgress) {
-                Object.assign(sentencesProgress, progress.sentencesProgress);
-                localStorage.setItem('dm_sentences_progress', JSON.stringify(sentencesProgress));
-            }
-            
-            if (progress.grammarProgress) {
-                Object.assign(grammarProgress, progress.grammarProgress);
-                localStorage.setItem('dm_grammar_progress', JSON.stringify(grammarProgress));
-            }
-            
-            if (progress.config) {
-                const config = progress.config;
-                localStorage.setItem('dm_config', JSON.stringify(config));
-                AppConfig.show_language = config.show_language || 'de';
-                AppConfig.quiz_direction = config.quiz_direction || 'de_to_ru';
-                AppConfig.sentence_lang_from = config.sentence_lang_from || 'ru';
-            }
-            
-            if (window.Logger) {
-                Logger.info('Прогресс загружен из облака');
-            }
-            
-            return true;
-        }
-    } catch(e) {
-        if (window.Logger) Logger.error('Ошибка загрузки прогресса:', e);
-    }
-    
     return false;
 };
 
@@ -709,3 +644,24 @@ window.auth = auth;
 window.db = db;
 window.currentUserData = currentUserData;
 window.authInitialized = authInitialized;
+
+// ===== ЭКСПОРТ ФУНКЦИЙ ДЛЯ СОВМЕСТИМОСТИ =====
+// Они уже объявлены в activityTracker.js, но на всякий случай дублируем
+if (!window.saveUserProgressToFirebase) {
+    window.saveUserProgressToFirebase = async function() {
+        if (window.ActivityTracker && window.ActivityTracker.saveProgressToFirebase) {
+            await window.ActivityTracker.saveProgressToFirebase();
+        }
+    };
+}
+
+if (!window.loadUserProgressFromFirebase) {
+    window.loadUserProgressFromFirebase = async function() {
+        if (window.ActivityTracker && window.ActivityTracker.loadProgressFromFirebase) {
+            return await window.ActivityTracker.loadProgressFromFirebase();
+        }
+        return false;
+    };
+}
+
+console.log('✅ auth.js загружен (с новой структурой)');

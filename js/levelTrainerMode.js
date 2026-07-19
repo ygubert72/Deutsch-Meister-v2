@@ -827,6 +827,5 @@ function showLevelTrainerContainer() {
 // ===== ЭКСПОРТ =====
 window.loadAllPhrasesMode = loadAllPhrasesMode;
 window.showLevelTrainerContainer = showLevelTrainerContainer;
-window.resetLevelTrainerAll = resetLevelTrainerAll;
 
 console.log('🧩 levelTrainerMode.js загружен');

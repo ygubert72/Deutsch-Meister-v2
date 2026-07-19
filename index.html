@@ -147,21 +147,40 @@ console.log('✅ Firebase инициализирован');
 
 <script>
 // ===== МОБИЛЬНОЕ МЕНЮ =====
+function closeMobileMenu() {
+    const menu = document.getElementById('mobileMenu');
+    const overlay = document.getElementById('menuOverlay');
+    if (menu) menu.classList.remove('open');
+    if (overlay) overlay.classList.remove('show');
+    document.body.style.overflow = '';
+}
+
+// Открытие меню
 document.getElementById('hamburgerBtn').onclick = function() {
     document.getElementById('mobileMenu').classList.add('open');
     document.getElementById('menuOverlay').classList.add('show');
     document.body.style.overflow = 'hidden';
 };
-document.getElementById('closeMenuBtn').onclick = function() {
-    document.getElementById('mobileMenu').classList.remove('open');
-    document.getElementById('menuOverlay').classList.remove('show');
-    document.body.style.overflow = '';
-};
-document.getElementById('menuOverlay').onclick = function() {
-    document.getElementById('mobileMenu').classList.remove('open');
-    document.getElementById('menuOverlay').classList.remove('show');
-    document.body.style.overflow = '';
-};
+
+// Закрытие через крестик
+document.getElementById('closeMenuBtn').onclick = closeMobileMenu;
+
+// Закрытие через оверлей
+document.getElementById('menuOverlay').onclick = closeMobileMenu;
+
+// ===== Закрытие меню при клике на любую кнопку внутри =====
+document.querySelectorAll('#mobileMenu .btn, #mobileMenu .btn-level, #mobileMenu .btn-login, #mobileMenu .share-btn').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+        setTimeout(closeMobileMenu, 150);
+    });
+});
+
+// Также закрываем при клике на кнопки в userInfoMobile (Выйти, Оплатить премиум)
+document.addEventListener('click', function(e) {
+    if (e.target.closest('#userInfoMobile button')) {
+        setTimeout(closeMobileMenu, 150);
+    }
+});
 
 console.log('✅ Страница загружена');
 </script>

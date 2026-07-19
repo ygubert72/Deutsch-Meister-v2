@@ -110,7 +110,6 @@ window.loadAllWordsMode = async function(level) {
     currentLevelForCards = level;
     window.currentLevel = level;
     
-    // Загружаем слова из файла docs/{level}.json
     levelAllWords = await loadLevelWordsFromFile(level);
     console.log('📚 Загружено слов из файла уровня:', levelAllWords.length);
     
@@ -119,17 +118,11 @@ window.loadAllWordsMode = async function(level) {
         return;
     }
     
-    // Загружаем прогресс для уровня
     loadLevelStudiedWords(level);
-    
-    // Формируем список слов для показа (без изученных)
     updateLevelCardWords();
     
     if (levelCardWords.length === 0 && levelAllWords.length > 0) {
-        // Все слова изучены → показываем все (зацикливание)
         levelCardWords = [...levelAllWords];
-        // Очищаем контейнер? Нет, просто показываем все слова.
-        // Пользователь может сам решить, что делать с контейнером.
     }
     
     levelCardIndex = 0;
@@ -141,15 +134,10 @@ window.loadAllWordsMode = async function(level) {
 
 // ===== ОБНОВЛЕНИЕ СПИСКА СЛОВ ДЛЯ ПОКАЗА =====
 function updateLevelCardWords() {
-    // Слова для показа = все слова, кроме тех, что в контейнере
     levelCardWords = levelAllWords.filter(word => !levelStudiedWords[word.de]);
-    
-    // Если все слова изучены → показываем все (зацикливание)
     if (levelCardWords.length === 0 && levelAllWords.length > 0) {
         levelCardWords = [...levelAllWords];
     }
-    
-    // Если индекс вышел за пределы
     if (levelCardIndex >= levelCardWords.length && levelCardWords.length > 0) {
         levelCardIndex = 0;
     }
@@ -217,37 +205,11 @@ function buildLevelCardsHTML(container) {
                 <!-- Заголовок -->
                 <h2 style="margin: 5px 0 15px 0; flex-shrink: 0;">📚 Все слова уровня ${currentLevelForCards}</h2>
                 
-                <!-- Карточка -->
+                <!-- Контейнер для карточек (относительное позиционирование для наложения) -->
                 <div id="levelCardsCardWrapper" style="flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 200px; position: relative; overflow: hidden; touch-action: none;">
-                    <div id="levelCardsCard" 
-                         style="
-                            background: #FFFFFF; 
-                            border-radius: 20px; 
-                            box-shadow: 0 8px 24px rgba(0,0,0,0.12); 
-                            max-width: 500px; 
-                            width: 100%;
-                            min-height: 200px;
-                            display: flex; 
-                            align-items: center; 
-                            justify-content: center; 
-                            text-align: center; 
-                            padding: 30px 20px;
-                            cursor: pointer;
-                            transition: transform 0.15s ease;
-                            touch-action: none;
-                            user-select: none;
-                            -webkit-user-select: none;
-                            position: relative;
-                            z-index: 2;
-                         "
-                         onclick="window._flipLevelCard()">
-                        <div id="levelCardsCardText" style="font-size: 32px; font-weight: bold; color: #1A1A1A; word-break: break-word;">
-                            Загрузка...
-                        </div>
-                    </div>
                     
-                    <!-- Анимированная карточка для свайпа (скрыта) -->
-                    <div id="levelCardsCardAnimated" 
+                    <!-- Следующая карточка (для анимации при свайпе) -->
+                    <div id="levelCardsCardNext" 
                          style="
                             position: absolute;
                             top: 0;
@@ -261,18 +223,50 @@ function buildLevelCardsHTML(container) {
                             width: 100%;
                             margin: 0 auto;
                             min-height: 200px;
-                            display: none; 
+                            display: flex; 
                             align-items: center; 
                             justify-content: center; 
                             text-align: center; 
                             padding: 30px 20px;
                             z-index: 1;
-                            transition: transform 0.3s ease, opacity 0.3s ease;
+                            opacity: 0;
+                            transform: translateX(0%) scale(0.95);
+                            transition: none;
                             touch-action: none;
                             user-select: none;
                             -webkit-user-select: none;
+                            pointer-events: none;
                          ">
-                        <div id="levelCardsCardAnimatedText" style="font-size: 32px; font-weight: bold; color: #1A1A1A; word-break: break-word;"></div>
+                        <div id="levelCardsCardNextText" style="font-size: 32px; font-weight: bold; color: #1A1A1A; word-break: break-word;"></div>
+                    </div>
+                    
+                    <!-- Текущая карточка -->
+                    <div id="levelCardsCard" 
+                         style="
+                            position: relative;
+                            background: #FFFFFF; 
+                            border-radius: 20px; 
+                            box-shadow: 0 8px 24px rgba(0,0,0,0.12); 
+                            max-width: 500px; 
+                            width: 100%;
+                            min-height: 200px;
+                            display: flex; 
+                            align-items: center; 
+                            justify-content: center; 
+                            text-align: center; 
+                            padding: 30px 20px;
+                            cursor: pointer;
+                            transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94), opacity 0.3s ease;
+                            touch-action: none;
+                            user-select: none;
+                            -webkit-user-select: none;
+                            z-index: 2;
+                            will-change: transform, opacity;
+                         "
+                         onclick="window._flipLevelCard()">
+                        <div id="levelCardsCardText" style="font-size: 32px; font-weight: bold; color: #1A1A1A; word-break: break-word;">
+                            Загрузка...
+                        </div>
                     </div>
                 </div>
                 
@@ -306,7 +300,6 @@ function buildLevelCardsHTML(container) {
 
     // ===== ПРИВЯЗКА ОБРАБОТЧИКОВ =====
     
-    // Кнопка направления
     const dirBtn = document.getElementById('levelCardsDirBtn');
     if (dirBtn) {
         dirBtn.addEventListener('click', function() {
@@ -316,82 +309,35 @@ function buildLevelCardsHTML(container) {
         });
     }
 
-    // Изучено
-    const studyBtn = document.getElementById('levelCardsStudyBtn');
-    if (studyBtn) {
-        studyBtn.addEventListener('click', function() {
-            levelStudyWord();
-        });
-    }
-
-    // Контейнер
-    const containerBtn = document.getElementById('levelCardsContainerBtn');
-    if (containerBtn) {
-        containerBtn.addEventListener('click', function() {
-            const studied = getLevelStudiedWordsList();
-            if (!studied || studied.length === 0) {
-                alert('📦 Контейнер пуст\n\nВыучите слова, чтобы они появились здесь.');
-                return;
-            }
-            showLevelContainer();
-        });
-    }
-
-    // Озвучить
-    const speakBtn = document.getElementById('levelCardsSpeakBtn');
-    if (speakBtn) {
-        speakBtn.addEventListener('click', function() {
-            levelSpeakWord();
-        });
-    }
-
-    // Перемешать
-    const shuffleBtn = document.getElementById('levelCardsShuffleBtn');
-    if (shuffleBtn) {
-        shuffleBtn.addEventListener('click', function() {
-            levelShuffleWords();
-        });
-    }
-
-    // Назад
-    const prevBtn = document.getElementById('levelCardsPrevBtn');
-    if (prevBtn) {
-        prevBtn.addEventListener('click', function() {
-            levelPrevCard();
-        });
-    }
-
-    // Вперед
-    const nextBtn = document.getElementById('levelCardsNextBtn');
-    if (nextBtn) {
-        nextBtn.addEventListener('click', function() {
-            levelNextCard();
-        });
-    }
-
-    // В начало
-    const resetStartBtn = document.getElementById('levelCardsResetStartBtn');
-    if (resetStartBtn) {
-        resetStartBtn.addEventListener('click', function() {
-            levelResetStart();
-        });
-    }
+    document.getElementById('levelCardsStudyBtn').addEventListener('click', levelStudyWord);
+    document.getElementById('levelCardsContainerBtn').addEventListener('click', function() {
+        const studied = getLevelStudiedWordsList();
+        if (!studied || studied.length === 0) {
+            alert('📦 Контейнер пуст\n\nВыучите слова, чтобы они появились здесь.');
+            return;
+        }
+        showLevelContainer();
+    });
+    document.getElementById('levelCardsSpeakBtn').addEventListener('click', levelSpeakWord);
+    document.getElementById('levelCardsShuffleBtn').addEventListener('click', levelShuffleWords);
+    document.getElementById('levelCardsPrevBtn').addEventListener('click', levelPrevCard);
+    document.getElementById('levelCardsNextBtn').addEventListener('click', levelNextCard);
+    document.getElementById('levelCardsResetStartBtn').addEventListener('click', levelResetStart);
 
     // ===== СВАЙП (только мобильные устройства) =====
     setupLevelCardsSwipe();
 
-    // Показываем первую карточку
     showLevelCard();
 }
 
-// ===== НАСТРОЙКА СВАЙПА =====
+// ===== НАСТРОЙКА СВАЙПА (ИСПРАВЛЕННАЯ ВЕРСИЯ) =====
 function setupLevelCardsSwipe() {
     const card = document.getElementById('levelCardsCard');
-    const animatedCard = document.getElementById('levelCardsCardAnimated');
+    const nextCard = document.getElementById('levelCardsCardNext');
+    const nextText = document.getElementById('levelCardsCardNextText');
     
     if (!card) return;
     
-    // Проверяем, мобильное ли устройство
     const isMobile = window.innerWidth <= 768;
     if (!isMobile) {
         console.log('🖥️ Десктопный режим — свайп отключён');
@@ -404,166 +350,221 @@ function setupLevelCardsSwipe() {
     let startY = 0;
     let isDragging = false;
     let isSwiping = false;
+    let currentTranslate = 0;
+    let isAnimating = false;
+    
+    // Получаем следующее слово для предпросмотра
+    function updateNextCard(direction) {
+        if (levelCardWords.length === 0) return;
+        let nextIndex;
+        if (direction === 'next') {
+            nextIndex = (levelCardIndex + 1) % levelCardWords.length;
+        } else {
+            nextIndex = (levelCardIndex - 1 + levelCardWords.length) % levelCardWords.length;
+        }
+        const nextWord = levelCardWords[nextIndex];
+        if (nextWord && nextText) {
+            const isDeToRu = levelDirection === 'de_to_ru';
+            nextText.textContent = isDeToRu ? nextWord.de : nextWord.ru;
+        }
+    }
     
     // touchstart
     card.addEventListener('touchstart', function(e) {
+        if (isAnimating) return;
         const touch = e.touches[0];
         startX = touch.clientX;
         startY = touch.clientY;
         isDragging = true;
         isSwiping = false;
-        // Отключаем клик во время свайпа
-        this.style.transition = 'none';
-        animatedCard.style.display = 'none';
+        currentTranslate = 0;
+        
+        // Показываем следующую карточку с небольшим отступом
+        nextCard.style.display = 'flex';
+        nextCard.style.opacity = '0.3';
+        nextCard.style.transform = 'scale(0.92)';
+        nextCard.style.transition = 'none';
+        
+        // Определяем направление и показываем соответствующую карточку
+        // Пока не знаем направление, показываем следующую
+        updateNextCard('next');
     }, { passive: true });
     
     // touchmove
     card.addEventListener('touchmove', function(e) {
-        if (!isDragging) return;
+        if (!isDragging || isAnimating) return;
         
         const touch = e.touches[0];
         const deltaX = touch.clientX - startX;
         const deltaY = touch.clientY - startY;
         
-        // Проверяем, что это горизонтальный свайп (не вертикальный скролл)
-        if (Math.abs(deltaX) > Math.abs(deltaY) && Math.abs(deltaX) > 10) {
+        if (Math.abs(deltaX) > Math.abs(deltaY) && Math.abs(deltaX) > 5) {
             isSwiping = true;
             e.preventDefault();
             
-            // Двигаем карточку
-            const progress = deltaX / 200; // 200px = 100%
-            const translateX = Math.max(-100, Math.min(100, progress * 100));
-            this.style.transform = `translateX(${translateX}%)`;
-            this.style.opacity = 1 - Math.abs(progress) * 0.3;
+            // Ограничиваем перемещение
+            const maxDrag = 150;
+            let progress = deltaX / maxDrag;
+            progress = Math.max(-1, Math.min(1, progress));
+            currentTranslate = progress * maxDrag;
+            
+            // Двигаем текущую карточку
+            const translateX = progress * 100;
+            const opacity = 1 - Math.abs(progress) * 0.3;
+            const scale = 1 - Math.abs(progress) * 0.05;
+            
+            card.style.transition = 'none';
+            card.style.transform = `translateX(${translateX}%) scale(${scale})`;
+            card.style.opacity = opacity;
+            
+            // Показываем следующую карточку с отступом
+            const nextTranslate = -30 + (Math.abs(progress) * 30);
+            const nextOpacity = 0.3 + Math.abs(progress) * 0.7;
+            const nextScale = 0.92 + Math.abs(progress) * 0.08;
+            
+            // Определяем направление
+            if (progress > 0) {
+                // Свайп вправо → предыдущая карточка
+                updateNextCard('prev');
+                nextCard.style.transform = `translateX(${-50 + (Math.abs(progress) * 50)}%) scale(${nextScale})`;
+            } else {
+                // Свайп влево → следующая карточка
+                updateNextCard('next');
+                nextCard.style.transform = `translateX(${50 - (Math.abs(progress) * 50)}%) scale(${nextScale})`;
+            }
+            nextCard.style.opacity = nextOpacity;
+            nextCard.style.transition = 'none';
         }
     }, { passive: false });
     
     // touchend
     card.addEventListener('touchend', function(e) {
-        if (!isDragging) return;
+        if (!isDragging || isAnimating) {
+            isDragging = false;
+            return;
+        }
         isDragging = false;
         
         const touch = e.changedTouches[0];
         const deltaX = touch.clientX - startX;
         
-        // Сбрасываем трансформацию
-        this.style.transition = 'transform 0.3s ease, opacity 0.3s ease';
-        
-        if (isSwiping && Math.abs(deltaX) > 50) {
-            // Свайп влево → следующее слово
+        if (isSwiping && Math.abs(deltaX) > 30) {
+            isAnimating = true;
+            
+            // Свайп влево → следующее
             if (deltaX < 0) {
-                // Анимируем уход влево
-                this.style.transform = 'translateX(-100%)';
-                this.style.opacity = '0';
+                card.style.transition = 'transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94), opacity 0.3s ease';
+                card.style.transform = 'translateX(-110%) scale(0.9)';
+                card.style.opacity = '0';
                 
-                // Показываем анимированную карточку (приезжает справа)
-                const animatedText = document.getElementById('levelCardsCardAnimatedText');
-                const nextWord = getLevelCardWord(levelCardIndex + 1);
-                if (nextWord && animatedText) {
-                    animatedText.textContent = getLevelCardDisplay(nextWord, false);
-                }
-                animatedCard.style.display = 'flex';
-                animatedCard.style.transform = 'translateX(100%)';
-                animatedCard.style.opacity = '0';
+                // Анимируем появление следующей карточки
+                nextCard.style.transition = 'transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94), opacity 0.3s ease';
+                nextCard.style.transform = 'translateX(0%) scale(1)';
+                nextCard.style.opacity = '1';
                 
-                // Запускаем анимацию приезда
-                setTimeout(() => {
-                    animatedCard.style.transition = 'transform 0.3s ease, opacity 0.3s ease';
-                    animatedCard.style.transform = 'translateX(0)';
-                    animatedCard.style.opacity = '1';
-                }, 20);
-                
-                // После анимации меняем карточку
                 setTimeout(() => {
                     levelCardIndex = (levelCardIndex + 1) % levelCardWords.length;
                     levelCardFlipped = false;
                     showLevelCard();
-                    // Скрываем анимированную карточку
-                    animatedCard.style.display = 'none';
-                    animatedCard.style.transform = 'translateX(100%)';
-                    animatedCard.style.opacity = '0';
-                    // Возвращаем основную карточку
-                    const mainCard = document.getElementById('levelCardsCard');
-                    mainCard.style.transition = 'none';
-                    mainCard.style.transform = 'translateX(0)';
-                    mainCard.style.opacity = '1';
+                    
+                    // Сбрасываем анимационную карточку
+                    nextCard.style.transition = 'none';
+                    nextCard.style.transform = 'scale(0.92)';
+                    nextCard.style.opacity = '0';
+                    nextCard.style.display = 'none';
+                    
+                    card.style.transition = 'none';
+                    card.style.transform = 'translateX(0%) scale(1)';
+                    card.style.opacity = '1';
+                    
+                    isAnimating = false;
                     setTimeout(() => {
-                        mainCard.style.transition = 'transform 0.15s ease';
+                        card.style.transition = 'transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94), opacity 0.3s ease';
                     }, 50);
-                }, 350);
+                }, 320);
             }
-            // Свайп вправо → предыдущее слово
-            else if (deltaX > 50) {
-                // Анимируем уход вправо
-                this.style.transform = 'translateX(100%)';
-                this.style.opacity = '0';
+            // Свайп вправо → предыдущее
+            else if (deltaX > 30) {
+                card.style.transition = 'transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94), opacity 0.3s ease';
+                card.style.transform = 'translateX(110%) scale(0.9)';
+                card.style.opacity = '0';
                 
-                // Показываем анимированную карточку (приезжает слева)
-                const animatedText = document.getElementById('levelCardsCardAnimatedText');
-                const prevWord = getLevelCardWord(levelCardIndex - 1);
-                if (prevWord && animatedText) {
-                    animatedText.textContent = getLevelCardDisplay(prevWord, false);
-                }
-                animatedCard.style.display = 'flex';
-                animatedCard.style.transform = 'translateX(-100%)';
-                animatedCard.style.opacity = '0';
+                nextCard.style.transition = 'transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94), opacity 0.3s ease';
+                nextCard.style.transform = 'translateX(0%) scale(1)';
+                nextCard.style.opacity = '1';
                 
                 setTimeout(() => {
-                    animatedCard.style.transition = 'transform 0.3s ease, opacity 0.3s ease';
-                    animatedCard.style.transform = 'translateX(0)';
-                    animatedCard.style.opacity = '1';
-                }, 20);
-                
-                setTimeout(() => {
-                    // Индекс с зацикливанием
                     levelCardIndex = (levelCardIndex - 1 + levelCardWords.length) % levelCardWords.length;
                     levelCardFlipped = false;
                     showLevelCard();
-                    animatedCard.style.display = 'none';
-                    animatedCard.style.transform = 'translateX(-100%)';
-                    animatedCard.style.opacity = '0';
-                    const mainCard = document.getElementById('levelCardsCard');
-                    mainCard.style.transition = 'none';
-                    mainCard.style.transform = 'translateX(0)';
-                    mainCard.style.opacity = '1';
+                    
+                    nextCard.style.transition = 'none';
+                    nextCard.style.transform = 'scale(0.92)';
+                    nextCard.style.opacity = '0';
+                    nextCard.style.display = 'none';
+                    
+                    card.style.transition = 'none';
+                    card.style.transform = 'translateX(0%) scale(1)';
+                    card.style.opacity = '1';
+                    
+                    isAnimating = false;
                     setTimeout(() => {
-                        mainCard.style.transition = 'transform 0.15s ease';
+                        card.style.transition = 'transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94), opacity 0.3s ease';
                     }, 50);
-                }, 350);
+                }, 320);
             } else {
                 // Свайп слишком короткий — возвращаем карточку
-                this.style.transform = 'translateX(0)';
-                this.style.opacity = '1';
-                animatedCard.style.display = 'none';
+                card.style.transition = 'transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94), opacity 0.3s ease';
+                card.style.transform = 'translateX(0%) scale(1)';
+                card.style.opacity = '1';
+                
+                nextCard.style.transition = 'opacity 0.2s ease';
+                nextCard.style.opacity = '0';
+                setTimeout(() => {
+                    nextCard.style.display = 'none';
+                    nextCard.style.transform = 'scale(0.92)';
+                }, 250);
+                
+                isAnimating = false;
             }
         } else {
             // Не свайп — возвращаем карточку
-            this.style.transform = 'translateX(0)';
-            this.style.opacity = '1';
-            animatedCard.style.display = 'none';
+            card.style.transition = 'transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94), opacity 0.3s ease';
+            card.style.transform = 'translateX(0%) scale(1)';
+            card.style.opacity = '1';
+            
+            nextCard.style.transition = 'opacity 0.2s ease';
+            nextCard.style.opacity = '0';
+            setTimeout(() => {
+                nextCard.style.display = 'none';
+                nextCard.style.transform = 'scale(0.92)';
+            }, 250);
+            
+            isAnimating = false;
         }
         
         isSwiping = false;
     }, { passive: true });
     
-    // Отмена при touchcancel
     card.addEventListener('touchcancel', function() {
         isDragging = false;
         isSwiping = false;
-        this.style.transition = 'transform 0.3s ease, opacity 0.3s ease';
-        this.style.transform = 'translateX(0)';
-        this.style.opacity = '1';
-        const animatedCard = document.getElementById('levelCardsCardAnimated');
-        if (animatedCard) {
-            animatedCard.style.display = 'none';
-        }
+        isAnimating = false;
+        card.style.transition = 'transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94), opacity 0.3s ease';
+        card.style.transform = 'translateX(0%) scale(1)';
+        card.style.opacity = '1';
+        nextCard.style.transition = 'opacity 0.2s ease';
+        nextCard.style.opacity = '0';
+        setTimeout(() => {
+            nextCard.style.display = 'none';
+            nextCard.style.transform = 'scale(0.92)';
+        }, 250);
     }, { passive: true });
 }
 
 // ===== ПОЛУЧИТЬ СЛОВО ПО ИНДЕКСУ (С ЗАЦИКЛИВАНИЕМ) =====
 function getLevelCardWord(index) {
     if (levelCardWords.length === 0) return null;
-    // Зацикливание
     const safeIndex = ((index % levelCardWords.length) + levelCardWords.length) % levelCardWords.length;
     return levelCardWords[safeIndex];
 }
@@ -574,10 +575,8 @@ function getLevelCardDisplay(word, flipped) {
     const isDeToRu = levelDirection === 'de_to_ru';
     
     if (!flipped) {
-        // Лицевая сторона: показываем слово на языке выбранного направления
         return isDeToRu ? word.de : word.ru;
     } else {
-        // Оборотная сторона: ТОЛЬКО перевод
         return isDeToRu ? word.ru : word.de;
     }
 }
@@ -597,18 +596,15 @@ function showLevelCard() {
         return;
     }
 
-    // Получаем текущее слово (с зацикливанием)
     const currentWord = getLevelCardWord(levelCardIndex);
     if (!currentWord) {
         cardText.textContent = 'Ошибка загрузки';
         return;
     }
 
-    // Показываем текст на карточке
     const displayText = getLevelCardDisplay(currentWord, levelCardFlipped);
     cardText.textContent = displayText;
     
-    // Обновляем подсказку
     if (hint) {
         if (levelCardFlipped) {
             hint.textContent = '👆 Нажмите на карточку, чтобы скрыть перевод';
@@ -619,7 +615,6 @@ function showLevelCard() {
         }
     }
     
-    // Обновляем счётчик (1-based, с зацикливанием)
     if (counter) {
         const currentPos = (levelCardIndex % levelCardWords.length) + 1;
         counter.textContent = `${currentPos} / ${levelCardWords.length}`;
@@ -640,20 +635,15 @@ function levelStudyWord() {
     const currentWord = getLevelCardWord(levelCardIndex);
     if (!currentWord) return;
     
-    // Добавляем в контейнер
     levelStudiedWords[currentWord.de] = true;
     saveLevelStudiedWords(currentLevelForCards);
     
-    // Обновляем список для показа
     updateLevelCardWords();
     
-    // Если после обновления список пуст → показываем все слова (зацикливание)
     if (levelCardWords.length === 0 && levelAllWords.length > 0) {
         levelCardWords = [...levelAllWords];
-        // Сбрасываем контейнер? Нет, оставляем как есть.
     }
     
-    // Переход к следующему слову (с зацикливанием)
     if (levelCardWords.length > 0) {
         levelCardIndex = (levelCardIndex + 1) % levelCardWords.length;
     } else {
@@ -670,8 +660,6 @@ function levelSpeakWord() {
     if (currentWord && currentWord.de) {
         if (typeof window.speak === 'function') {
             window.speak(currentWord.de);
-        } else {
-            console.warn('⚠️ Функция speak не найдена');
         }
     }
 }
@@ -680,18 +668,14 @@ function levelSpeakWord() {
 function levelShuffleWords() {
     if (levelCardWords.length === 0) return;
     
-    // Перемешиваем список
     for (let i = levelCardWords.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
         [levelCardWords[i], levelCardWords[j]] = [levelCardWords[j], levelCardWords[i]];
     }
     
-    // Сбрасываем индекс на 0, карточка закрыта
     levelCardIndex = 0;
     levelCardFlipped = false;
     showLevelCard();
-    
-    console.log('🔄 Слова уровня перемешаны');
 }
 
 // ===== КНОПКА: НАЗАД =====
@@ -844,14 +828,12 @@ function showLevelContainer() {
 // СТАРАЯ ЛОГИКА ДЛЯ ТЕСТА В УРОКАХ (НЕ ТРОГАЕМ)
 // ====================================================================
 
-// ===== ОСНОВНАЯ ФУНКЦИЯ ДЛЯ УРОКОВ =====
 function renderQuiz(container, lesson) {
     isAllWordsMode = false;
     currentLessonData = lesson;
     currentLessonId = lesson.id || 1;
     window.currentLevel = lesson.level || 'A1';
     
-    // Загружаем прогресс для УРОКА (старый контейнер)
     loadLessonStudiedWords(window.currentLevel, currentLessonId);
     
     let quizData = lesson.quiz || [];
@@ -874,7 +856,6 @@ function renderQuiz(container, lesson) {
     showQuizInterface(container);
 }
 
-// ===== ПОКАЗ ТЕСТА ВНУТРИ КОНТЕЙНЕРА (для уроков) =====
 function showQuizInterface(container) {
     if (!container) {
         console.error('❌ container не передан в showQuizInterface');
@@ -883,7 +864,6 @@ function showQuizInterface(container) {
     buildQuizHTML(container);
 }
 
-// ===== ПОСТРОЕНИЕ HTML ДЛЯ ТЕСТА В УРОКЕ =====
 function buildQuizHTML(container) {
     if (!container) {
         console.error('❌ buildQuizHTML: container не передан');
@@ -892,7 +872,6 @@ function buildQuizHTML(container) {
     
     const hasWords = allQuizWords.length > 0;
 
-    // ===== ПОМЕЩАЕМ КНОПКУ НАПРАВЛЕНИЯ В HEADER =====
     const headerControls = document.getElementById('modeHeaderControls');
     if (headerControls) {
         headerControls.innerHTML = `
@@ -935,10 +914,7 @@ function buildQuizHTML(container) {
     console.log('✅ buildQuizHTML: контент вставлен');
 
     if (!hasWords) return;
-
-    // ===== ОБРАБОТЧИКИ ДЛЯ ТЕСТА В УРОКЕ =====
     
-    // Кнопка направления
     const dirBtn = document.getElementById('quizDirBtn');
     if (dirBtn) {
         dirBtn.addEventListener('click', function() {
@@ -948,7 +924,6 @@ function buildQuizHTML(container) {
         });
     }
 
-    // Изучено
     document.getElementById('quizStudyBtn').addEventListener('click', function() {
         if (quizCurrentWord) {
             quizStudiedWords[quizCurrentWord.de] = true;
@@ -968,7 +943,6 @@ function buildQuizHTML(container) {
         }
     });
 
-    // Контейнер
     document.getElementById('quizContainerBtn').addEventListener('click', function() {
         const studied = getLessonStudiedWordsList();
         if (!studied || studied.length === 0) {
@@ -978,18 +952,14 @@ function buildQuizHTML(container) {
         showLessonContainer();
     });
 
-    // Озвучить
     document.getElementById('quizSpeakBtn').addEventListener('click', function() {
         if (quizCurrentWord && quizCurrentWord.de) {
             if (typeof window.speak === 'function') {
                 window.speak(quizCurrentWord.de);
-            } else {
-                console.warn('⚠️ Функция speak не найдена');
             }
         }
     });
 
-    // Назад
     document.getElementById('quizPrevBtn').addEventListener('click', function() {
         if (quizWords.length > 0 && quizIndex > 0) {
             quizIndex--;
@@ -997,7 +967,6 @@ function buildQuizHTML(container) {
         }
     });
 
-    // Вперед
     document.getElementById('quizNextBtn').addEventListener('click', function() {
         if (quizWords.length > 0) {
             quizIndex = (quizIndex + 1) % quizWords.length;
@@ -1005,7 +974,6 @@ function buildQuizHTML(container) {
         }
     });
 
-    // В начало
     document.getElementById('quizResetStartBtn').addEventListener('click', function() {
         if (quizWords.length > 0) {
             quizIndex = 0;
@@ -1016,13 +984,11 @@ function buildQuizHTML(container) {
     showQuizQuestion();
 }
 
-// ===== ПОЛУЧЕНИЕ СПИСКА ИЗУЧЕННЫХ СЛОВ ДЛЯ УРОКА =====
 function getLessonStudiedWordsList() {
     if (!allQuizWords) return [];
     return allQuizWords.filter(word => quizStudiedWords[word.de]);
 }
 
-// ===== КОНТЕЙНЕР ДЛЯ УРОКА =====
 function showLessonContainer() {
     const oldModal = document.getElementById('containerModal');
     if (oldModal) oldModal.remove();
@@ -1134,7 +1100,6 @@ function showLessonContainer() {
     });
 }
 
-// ===== ПОКАЗ ВОПРОСА ДЛЯ ТЕСТА В УРОКЕ =====
 function showQuizQuestion() {
     const questionEl = document.getElementById('quizQuestion');
     const gridEl = document.getElementById('quizGrid');

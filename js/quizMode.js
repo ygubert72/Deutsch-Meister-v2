@@ -206,7 +206,7 @@ function buildLevelCardsHTML(container) {
                 <h2 style="margin: 5px 0 15px 0; flex-shrink: 0;">📚 Все слова уровня ${currentLevelForCards}</h2>
                 
                 <!-- Контейнер для карточек (относительное позиционирование для наложения) -->
-                <div id="levelCardsCardWrapper" style="flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 200px; position: relative; overflow: hidden; touch-action: none;">
+                <div id="levelCardsCardWrapper" style="flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 280px; position: relative; overflow: hidden; touch-action: none;">
                     
                     <!-- Следующая карточка (для анимации при свайпе) -->
                     <div id="levelCardsCardNext" 
@@ -222,7 +222,8 @@ function buildLevelCardsHTML(container) {
                             max-width: 500px; 
                             width: 100%;
                             margin: 0 auto;
-                            min-height: 200px;
+                            min-height: 280px;
+                            height: 280px;
                             display: flex; 
                             align-items: center; 
                             justify-content: center; 
@@ -249,7 +250,8 @@ function buildLevelCardsHTML(container) {
                             box-shadow: 0 8px 24px rgba(0,0,0,0.12); 
                             max-width: 500px; 
                             width: 100%;
-                            min-height: 200px;
+                            min-height: 280px;
+                            height: 280px;
                             display: flex; 
                             align-items: center; 
                             justify-content: center; 
@@ -353,7 +355,6 @@ function setupLevelCardsSwipe() {
     let currentTranslate = 0;
     let isAnimating = false;
     
-    // Получаем следующее слово для предпросмотра
     function updateNextCard(direction) {
         if (levelCardWords.length === 0) return;
         let nextIndex;
@@ -369,7 +370,6 @@ function setupLevelCardsSwipe() {
         }
     }
     
-    // touchstart
     card.addEventListener('touchstart', function(e) {
         if (isAnimating) return;
         const touch = e.touches[0];
@@ -379,18 +379,14 @@ function setupLevelCardsSwipe() {
         isSwiping = false;
         currentTranslate = 0;
         
-        // Показываем следующую карточку с небольшим отступом
         nextCard.style.display = 'flex';
         nextCard.style.opacity = '0.3';
         nextCard.style.transform = 'scale(0.92)';
         nextCard.style.transition = 'none';
         
-        // Определяем направление и показываем соответствующую карточку
-        // Пока не знаем направление, показываем следующую
         updateNextCard('next');
     }, { passive: true });
     
-    // touchmove
     card.addEventListener('touchmove', function(e) {
         if (!isDragging || isAnimating) return;
         
@@ -402,13 +398,11 @@ function setupLevelCardsSwipe() {
             isSwiping = true;
             e.preventDefault();
             
-            // Ограничиваем перемещение
             const maxDrag = 150;
             let progress = deltaX / maxDrag;
             progress = Math.max(-1, Math.min(1, progress));
             currentTranslate = progress * maxDrag;
             
-            // Двигаем текущую карточку
             const translateX = progress * 100;
             const opacity = 1 - Math.abs(progress) * 0.3;
             const scale = 1 - Math.abs(progress) * 0.05;
@@ -417,27 +411,22 @@ function setupLevelCardsSwipe() {
             card.style.transform = `translateX(${translateX}%) scale(${scale})`;
             card.style.opacity = opacity;
             
-            // Показываем следующую карточку с отступом
-            const nextTranslate = -30 + (Math.abs(progress) * 30);
+            // ===== БОЛЬШЕ ИНТЕРВАЛ МЕЖДУ КАРТОЧКАМИ =====
             const nextOpacity = 0.3 + Math.abs(progress) * 0.7;
             const nextScale = 0.92 + Math.abs(progress) * 0.08;
             
-            // Определяем направление
             if (progress > 0) {
-                // Свайп вправо → предыдущая карточка
                 updateNextCard('prev');
-                nextCard.style.transform = `translateX(${-50 + (Math.abs(progress) * 50)}%) scale(${nextScale})`;
+                nextCard.style.transform = `translateX(${-80 + (Math.abs(progress) * 80)}%) scale(${nextScale})`;
             } else {
-                // Свайп влево → следующая карточка
                 updateNextCard('next');
-                nextCard.style.transform = `translateX(${50 - (Math.abs(progress) * 50)}%) scale(${nextScale})`;
+                nextCard.style.transform = `translateX(${80 - (Math.abs(progress) * 80)}%) scale(${nextScale})`;
             }
             nextCard.style.opacity = nextOpacity;
             nextCard.style.transition = 'none';
         }
     }, { passive: false });
     
-    // touchend
     card.addEventListener('touchend', function(e) {
         if (!isDragging || isAnimating) {
             isDragging = false;
@@ -451,13 +440,11 @@ function setupLevelCardsSwipe() {
         if (isSwiping && Math.abs(deltaX) > 30) {
             isAnimating = true;
             
-            // Свайп влево → следующее
             if (deltaX < 0) {
                 card.style.transition = 'transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94), opacity 0.3s ease';
                 card.style.transform = 'translateX(-110%) scale(0.9)';
                 card.style.opacity = '0';
                 
-                // Анимируем появление следующей карточки
                 nextCard.style.transition = 'transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94), opacity 0.3s ease';
                 nextCard.style.transform = 'translateX(0%) scale(1)';
                 nextCard.style.opacity = '1';
@@ -467,7 +454,6 @@ function setupLevelCardsSwipe() {
                     levelCardFlipped = false;
                     showLevelCard();
                     
-                    // Сбрасываем анимационную карточку
                     nextCard.style.transition = 'none';
                     nextCard.style.transform = 'scale(0.92)';
                     nextCard.style.opacity = '0';
@@ -482,9 +468,7 @@ function setupLevelCardsSwipe() {
                         card.style.transition = 'transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94), opacity 0.3s ease';
                     }, 50);
                 }, 320);
-            }
-            // Свайп вправо → предыдущее
-            else if (deltaX > 30) {
+            } else if (deltaX > 30) {
                 card.style.transition = 'transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94), opacity 0.3s ease';
                 card.style.transform = 'translateX(110%) scale(0.9)';
                 card.style.opacity = '0';
@@ -513,7 +497,6 @@ function setupLevelCardsSwipe() {
                     }, 50);
                 }, 320);
             } else {
-                // Свайп слишком короткий — возвращаем карточку
                 card.style.transition = 'transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94), opacity 0.3s ease';
                 card.style.transform = 'translateX(0%) scale(1)';
                 card.style.opacity = '1';
@@ -528,7 +511,6 @@ function setupLevelCardsSwipe() {
                 isAnimating = false;
             }
         } else {
-            // Не свайп — возвращаем карточку
             card.style.transition = 'transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94), opacity 0.3s ease';
             card.style.transform = 'translateX(0%) scale(1)';
             card.style.opacity = '1';
@@ -1168,3 +1150,5 @@ function showQuizQuestion() {
 // ===== ЭКСПОРТ =====
 window.renderQuiz = renderQuiz;
 window.loadAllWordsMode = loadAllWordsMode;
+
+console.log('✅ quizMode.js загружен');

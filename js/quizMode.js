@@ -1,5 +1,5 @@
 // ====================================================================
-// quizMode.js — Тест (выбор перевода из 6 вариантов)
+// quizMode.js — Тест (выбор перевода из 6 вариантов) + Карточки (все слова уровня)
 // ====================================================================
 
 // ====================================================================
@@ -15,18 +15,15 @@ let currentLessonId = null;
 let currentLessonData = null;
 let allQuizWords = [];
 
-// ===== ДЛЯ РЕЖИМА "ВСЕ СЛОВА УРОВНЯ" =====
+// ===== ДЛЯ РЕЖИМА "ВСЕ СЛОВА УРОВНЯ" (КАРТОЧКИ) =====
 let isAllWordsMode = false;
-let allLevelWords = [];
-
-// ===== НОВЫЕ ПЕРЕМЕННЫЕ ДЛЯ "ВСЕХ СЛОВ УРОВНЯ" (НЕЗАВИСИМЫЙ КОНТЕЙНЕР) =====
 let levelAllWords = [];           // Все слова уровня из файла docs/{level}.json
 let levelStudiedWords = {};       // Изученные слова для "Всех слов уровня"
-let levelQuizWords = [];          // Слова для показа (не изученные)
-let levelQuizIndex = 0;
-let levelCurrentWord = null;
+let levelCardWords = [];          // Слова для показа (не изученные)
+let levelCardIndex = 0;           // Текущий индекс
+let levelCardFlipped = false;     // Перевёрнута ли карточка
 let levelDirection = 'de_to_ru';
-let currentLevelForAllWords = 'A1';
+let currentLevelForCards = 'A1';
 
 // ===== КЛЮЧИ ДЛЯ ХРАНЕНИЯ =====
 function getLessonContainerKey(level, lessonId) {
@@ -102,241 +99,623 @@ async function loadLevelWordsFromFile(level) {
     }
 }
 
-// ===== ЗАГРУЗКА ВСЕХ СЛОВ УРОВНЯ ИЗ УРОКОВ (СТАРАЯ ЛОГИКА - ОСТАВЛЯЕМ ДЛЯ СОВМЕСТИМОСТИ) =====
-async function loadAllWordsForLevel(level) {
-    try {
-        const indexResponse = await fetch(`docs/${level}/index.json`);
-        if (!indexResponse.ok) throw new Error('Не удалось загрузить индекс уровня');
-        const indexData = await indexResponse.json();
-        
-        let allWords = [];
-        const seen = new Set();
-        
-        for (const lesson of indexData.lessons) {
-            const lessonId = lesson.id;
-            const lessonFile = `docs/${level}/lessons/lesson_${String(lessonId).padStart(2, '0')}.json`;
-            
-            try {
-                const response = await fetch(lessonFile);
-                if (response.ok) {
-                    const data = await response.json();
-                    if (data.quiz && Array.isArray(data.quiz)) {
-                        for (const word of data.quiz) {
-                            if (!seen.has(word.de)) {
-                                seen.add(word.de);
-                                allWords.push(word);
-                            }
-                        }
-                    }
-                }
-            } catch(e) {}
-        }
-        
-        return allWords;
-        
-    } catch(e) {
-        console.error('Ошибка загрузки слов уровня:', e);
-        return [];
-    }
-}
-
 // ================================================================
-// НОВАЯ ЛОГИКА ДЛЯ "ВСЕХ СЛОВ УРОВНЯ" (НЕЗАВИСИМЫЙ КОНТЕЙНЕР)
+// НОВАЯ ЛОГИКА ДЛЯ "ВСЕХ СЛОВ УРОВНЯ" (КАРТОЧКИ)
 // ================================================================
 
 // ===== ВНЕШНИЙ ВЫЗОВ ДЛЯ РЕЖИМА "ВСЕ СЛОВА" =====
 window.loadAllWordsMode = async function(level) {
-    console.log('🔄 loadAllWordsMode вызван для уровня:', level);
+    console.log('🔄 loadAllWordsMode (КАРТОЧКИ) вызван для уровня:', level);
     isAllWordsMode = true;
-    currentLevelForAllWords = level;
+    currentLevelForCards = level;
     window.currentLevel = level;
     
     // Загружаем слова из файла docs/{level}.json
     levelAllWords = await loadLevelWordsFromFile(level);
     console.log('📚 Загружено слов из файла уровня:', levelAllWords.length);
     
-    // Загружаем прогресс для уровня (НОВЫЙ КОНТЕЙНЕР)
-    loadLevelStudiedWords(level);
-    
-    // Формируем список слов для показа
-    levelQuizWords = levelAllWords.filter(word => !levelStudiedWords[word.de]);
-    
-    if (levelQuizWords.length === 0 && levelAllWords.length > 0) {
-        levelQuizWords = [...levelAllWords];
+    if (levelAllWords.length === 0) {
+        showLevelCardsEmpty();
+        return;
     }
     
-    levelQuizIndex = 0;
+    // Загружаем прогресс для уровня
+    loadLevelStudiedWords(level);
+    
+    // Формируем список слов для показа (без изученных)
+    updateLevelCardWords();
+    
+    if (levelCardWords.length === 0 && levelAllWords.length > 0) {
+        // Все слова изучены → показываем все (зацикливание)
+        levelCardWords = [...levelAllWords];
+        // Очищаем контейнер? Нет, просто показываем все слова.
+        // Пользователь может сам решить, что делать с контейнером.
+    }
+    
+    levelCardIndex = 0;
+    levelCardFlipped = false;
     levelDirection = 'de_to_ru';
     
-    showLevelQuizInterfaceDirect();
+    showLevelCardsInterface();
 };
 
-// ===== ПОКАЗ ТЕСТА ДЛЯ "ВСЕХ СЛОВ УРОВНЯ" =====
-function showLevelQuizInterfaceDirect() {
+// ===== ОБНОВЛЕНИЕ СПИСКА СЛОВ ДЛЯ ПОКАЗА =====
+function updateLevelCardWords() {
+    // Слова для показа = все слова, кроме тех, что в контейнере
+    levelCardWords = levelAllWords.filter(word => !levelStudiedWords[word.de]);
+    
+    // Если все слова изучены → показываем все (зацикливание)
+    if (levelCardWords.length === 0 && levelAllWords.length > 0) {
+        levelCardWords = [...levelAllWords];
+    }
+    
+    // Если индекс вышел за пределы
+    if (levelCardIndex >= levelCardWords.length && levelCardWords.length > 0) {
+        levelCardIndex = 0;
+    }
+}
+
+// ===== ПОКАЗАТЬ, ЧТО СЛОВ НЕТ =====
+function showLevelCardsEmpty() {
+    const content = document.getElementById('content');
+    if (!content) return;
+    
+    content.innerHTML = `
+        <div style="text-align: center; padding: 40px; color: #999;">
+            <div style="font-size: 48px; margin-bottom: 15px;">📭</div>
+            <div>Нет слов для уровня ${currentLevelForCards}</div>
+            <div style="font-size: 14px; margin-top: 10px;">Файл docs/${currentLevelForCards}.json не найден или пуст.</div>
+            <button class="back-btn" onclick="window.renderLevel()" style="margin-top: 20px;">← НАЗАД</button>
+        </div>
+    `;
+    document.getElementById('modeIndicator').textContent = `📚 Все слова уровня ${currentLevelForCards}`;
+    updateCounter();
+}
+
+// ===== ПОСТРОЕНИЕ ИНТЕРФЕЙСА КАРТОЧЕК =====
+function showLevelCardsInterface() {
     const content = document.getElementById('content');
     if (!content) {
         console.error('❌ content не найден!');
         return;
     }
-    console.log('✅ showLevelQuizInterfaceDirect: показываем тест для всех слов уровня');
-    buildLevelQuizHTML(content);
+    console.log('✅ showLevelCardsInterface: показываем карточки для всех слов уровня');
+    buildLevelCardsHTML(content);
 }
 
-// ===== ПОСТРОЕНИЕ HTML ДЛЯ "ВСЕХ СЛОВ УРОВНЯ" =====
-function buildLevelQuizHTML(container) {
+// ===== ПОСТРОЕНИЕ HTML ДЛЯ КАРТОЧЕК =====
+function buildLevelCardsHTML(container) {
     if (!container) {
-        console.error('❌ buildLevelQuizHTML: container не передан');
+        console.error('❌ buildLevelCardsHTML: container не передан');
         return;
     }
     
-    const hasWords = levelAllWords.length > 0;
+    const hasWords = levelCardWords.length > 0;
 
     let html = `
-        <div style="text-align: center;">
+        <div style="text-align: center; display: flex; flex-direction: column; height: 100%;">
             ${!hasWords ? `
                 <div style="padding: 40px; color: #999;">
                     <div style="font-size: 48px; margin-bottom: 15px;">📭</div>
                     <div>Нет слов для этого уровня</div>
+                    <button class="back-btn" onclick="window.renderLevel()" style="margin-top: 20px;">← НАЗАД</button>
                 </div>
             ` : `
-                <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; margin-bottom: 15px;">
-                    <button class="back-btn" onclick="window.renderLevel()" style="padding: 10px 20px; background: #3B6FE0; color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; transition: all 0.08s ease;">
+                <!-- Верхняя панель -->
+                <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; margin-bottom: 10px; flex-shrink: 0;">
+                    <button class="back-btn" onclick="window.renderLevel()" style="padding: 8px 16px; background: #3B6FE0; color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; font-size: 13px;">
                         ← НАЗАД
                     </button>
-                    <div id="levelHeaderControls">
-                        <button id="levelDirBtn" class="dir-btn" style="background: #3B6FE0; color: white; padding: 10px 20px; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; font-size: 13px; box-shadow: 0 2px 4px rgba(0,0,0,0.2); transition: all 0.08s ease;">
+                    <div id="levelCardsHeaderControls" style="display: flex; align-items: center; gap: 10px;">
+                        <button id="levelCardsDirBtn" class="dir-btn" style="background: #3B6FE0; color: white; padding: 8px 16px; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; font-size: 13px; box-shadow: 0 2px 4px rgba(0,0,0,0.2);">
                             ${levelDirection === 'de_to_ru' ? 'De → Ru' : 'Ru → De'}
                         </button>
+                        <span id="levelCardsCounter" style="font-size: 14px; color: #888; font-weight: bold; min-width: 60px;">0 / 0</span>
                     </div>
                 </div>
-                <h2>📚 Все слова уровня ${currentLevelForAllWords}</h2>
                 
-                <div style="background: #FFFFFF; border-radius: 20px; box-shadow: 0 8px 24px rgba(0,0,0,0.1); max-width: 550px; margin: 15px auto; min-height: 150px; display: flex; align-items: center; justify-content: center; text-align: center; padding: 20px;">
-                    <div style="font-size: 32px; font-weight: bold; color: #1A1A1A;" id="levelQuizQuestion">Загрузка...</div>
+                <!-- Заголовок -->
+                <h2 style="margin: 5px 0 15px 0; flex-shrink: 0;">📚 Все слова уровня ${currentLevelForCards}</h2>
+                
+                <!-- Карточка -->
+                <div id="levelCardsCardWrapper" style="flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 200px; position: relative; overflow: hidden; touch-action: none;">
+                    <div id="levelCardsCard" 
+                         style="
+                            background: #FFFFFF; 
+                            border-radius: 20px; 
+                            box-shadow: 0 8px 24px rgba(0,0,0,0.12); 
+                            max-width: 500px; 
+                            width: 100%;
+                            min-height: 200px;
+                            display: flex; 
+                            align-items: center; 
+                            justify-content: center; 
+                            text-align: center; 
+                            padding: 30px 20px;
+                            cursor: pointer;
+                            transition: transform 0.15s ease;
+                            touch-action: none;
+                            user-select: none;
+                            -webkit-user-select: none;
+                            position: relative;
+                            z-index: 2;
+                         "
+                         onclick="window._flipLevelCard()">
+                        <div id="levelCardsCardText" style="font-size: 32px; font-weight: bold; color: #1A1A1A; word-break: break-word;">
+                            Загрузка...
+                        </div>
+                    </div>
+                    
+                    <!-- Анимированная карточка для свайпа (скрыта) -->
+                    <div id="levelCardsCardAnimated" 
+                         style="
+                            position: absolute;
+                            top: 0;
+                            left: 0;
+                            right: 0;
+                            bottom: 0;
+                            background: #FFFFFF; 
+                            border-radius: 20px; 
+                            box-shadow: 0 8px 24px rgba(0,0,0,0.12); 
+                            max-width: 500px; 
+                            width: 100%;
+                            margin: 0 auto;
+                            min-height: 200px;
+                            display: none; 
+                            align-items: center; 
+                            justify-content: center; 
+                            text-align: center; 
+                            padding: 30px 20px;
+                            z-index: 1;
+                            transition: transform 0.3s ease, opacity 0.3s ease;
+                            touch-action: none;
+                            user-select: none;
+                            -webkit-user-select: none;
+                         ">
+                        <div id="levelCardsCardAnimatedText" style="font-size: 32px; font-weight: bold; color: #1A1A1A; word-break: break-word;"></div>
+                    </div>
                 </div>
-                <div class="quiz-grid" id="levelQuizGrid" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; max-width: 700px; margin: 20px auto;"></div>
-                <div style="font-size: 14px; color: #888; margin-top: 10px;" id="levelQuizProgress">0 / 0</div>
                 
-                <div class="btn-group" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin: 10px 0 5px 0;">
-                    <button class="ctrl-btn" id="levelStudyBtn" style="padding: 6px 14px; background: #4CAF50; color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; font-size: 12px;">✅ ИЗУЧЕНО</button>
-                    <button class="ctrl-btn" id="levelContainerBtn" style="padding: 6px 14px; background: #FF9800; color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; font-size: 12px;">📦 КОНТЕЙНЕР</button>
-                    <button class="ctrl-btn" id="levelSpeakBtn" style="padding: 6px 14px; background: #E8F0FE; border: 2px solid #D0D0D0; border-radius: 8px; cursor: pointer; font-weight: bold; font-size: 12px;">🔊 ОЗВУЧИТЬ</button>
-                    <button class="ctrl-btn" id="levelShuffleBtn" style="padding: 6px 14px; background: #9C27B0; color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; font-size: 12px;">🔄 ПЕРЕМЕШАТЬ</button>
+                <!-- Подсказка под карточкой -->
+                <div id="levelCardsHint" style="font-size: 14px; color: #999; margin: 8px 0 12px 0; flex-shrink: 0;">
+                    👆 Нажмите на карточку, чтобы увидеть перевод
                 </div>
                 
-                <div class="btn-group" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin: 5px 0 10px 0;">
-                    <button class="ctrl-btn" id="levelPrevBtn" style="padding: 6px 14px; background: #E8F0FE; border: 2px solid #D0D0D0; border-radius: 8px; cursor: pointer; font-weight: bold; font-size: 12px;">◀ НАЗАД</button>
-                    <button class="ctrl-btn" id="levelNextBtn" style="padding: 6px 14px; background: #E8F0FE; border: 2px solid #D0D0D0; border-radius: 8px; cursor: pointer; font-weight: bold; font-size: 12px;">ВПЕРЕД ▶</button>
-                    <button class="ctrl-btn" id="levelResetStartBtn" style="padding: 6px 14px; background: #E8F0FE; border: 2px solid #D0D0D0; border-radius: 8px; cursor: pointer; font-weight: bold; font-size: 12px;">⏮ В НАЧАЛО</button>
+                <!-- Ряд 1: ИЗУЧЕНО, КОНТЕЙНЕР, ОЗВУЧИТЬ, ПЕРЕМЕШАТЬ -->
+                <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin: 4px 0; flex-shrink: 0;">
+                    <button class="ctrl-btn" id="levelCardsStudyBtn" style="padding: 6px 14px; background: #4CAF50; color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; font-size: 12px;">✅ ИЗУЧЕНО</button>
+                    <button class="ctrl-btn" id="levelCardsContainerBtn" style="padding: 6px 14px; background: #FF9800; color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; font-size: 12px;">📦 КОНТЕЙНЕР</button>
+                    <button class="ctrl-btn" id="levelCardsSpeakBtn" style="padding: 6px 14px; background: #E8F0FE; border: 2px solid #D0D0D0; border-radius: 8px; cursor: pointer; font-weight: bold; font-size: 12px;">🔊 ОЗВУЧИТЬ</button>
+                    <button class="ctrl-btn" id="levelCardsShuffleBtn" style="padding: 6px 14px; background: #9C27B0; color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; font-size: 12px;">🔄 ПЕРЕМЕШАТЬ</button>
+                </div>
+                
+                <!-- Ряд 2: ◀ НАЗАД, ВПЕРЕД ▶, ⏮ В НАЧАЛО -->
+                <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin: 4px 0 10px 0; flex-shrink: 0;">
+                    <button class="ctrl-btn" id="levelCardsPrevBtn" style="padding: 6px 14px; background: #E8F0FE; border: 2px solid #D0D0D0; border-radius: 8px; cursor: pointer; font-weight: bold; font-size: 12px;">◀ НАЗАД</button>
+                    <button class="ctrl-btn" id="levelCardsNextBtn" style="padding: 6px 14px; background: #E8F0FE; border: 2px solid #D0D0D0; border-radius: 8px; cursor: pointer; font-weight: bold; font-size: 12px;">ВПЕРЕД ▶</button>
+                    <button class="ctrl-btn" id="levelCardsResetStartBtn" style="padding: 6px 14px; background: #E8F0FE; border: 2px solid #D0D0D0; border-radius: 8px; cursor: pointer; font-weight: bold; font-size: 12px;">⏮ В НАЧАЛО</button>
                 </div>
             `}
         </div>
     `;
 
     container.innerHTML = html;
-    console.log('✅ buildLevelQuizHTML: контент вставлен');
+    console.log('✅ buildLevelCardsHTML: контент вставлен');
 
     if (!hasWords) return;
 
-    // ===== ОБРАБОТЧИКИ ДЛЯ "ВСЕХ СЛОВ УРОВНЯ" =====
+    // ===== ПРИВЯЗКА ОБРАБОТЧИКОВ =====
     
     // Кнопка направления
-    const dirBtn = document.getElementById('levelDirBtn');
+    const dirBtn = document.getElementById('levelCardsDirBtn');
     if (dirBtn) {
         dirBtn.addEventListener('click', function() {
             levelDirection = levelDirection === 'de_to_ru' ? 'ru_to_de' : 'de_to_ru';
             this.textContent = levelDirection === 'de_to_ru' ? 'De → Ru' : 'Ru → De';
-            showLevelQuizQuestion();
+            showLevelCard();
         });
     }
 
     // Изучено
-    document.getElementById('levelStudyBtn').addEventListener('click', function() {
-        if (levelCurrentWord) {
-            levelStudiedWords[levelCurrentWord.de] = true;
-            saveLevelStudiedWords(currentLevelForAllWords);
-            
-            levelQuizWords = levelAllWords.filter(w => !levelStudiedWords[w.de]);
-            
-            if (levelQuizWords.length === 0 && levelAllWords.length > 0) {
-                levelQuizWords = [...levelAllWords];
-            }
-            
-            if (levelQuizIndex >= levelQuizWords.length && levelQuizWords.length > 0) {
-                levelQuizIndex = 0;
-            }
-            
-            showLevelQuizQuestion();
-        }
-    });
+    const studyBtn = document.getElementById('levelCardsStudyBtn');
+    if (studyBtn) {
+        studyBtn.addEventListener('click', function() {
+            levelStudyWord();
+        });
+    }
 
     // Контейнер
-    document.getElementById('levelContainerBtn').addEventListener('click', function() {
-        const studied = getLevelStudiedWordsList();
-        if (!studied || studied.length === 0) {
-            alert('📦 Контейнер пуст\n\nВыучите слова, чтобы они появились здесь.');
-            return;
-        }
-        showLevelContainer();
-    });
+    const containerBtn = document.getElementById('levelCardsContainerBtn');
+    if (containerBtn) {
+        containerBtn.addEventListener('click', function() {
+            const studied = getLevelStudiedWordsList();
+            if (!studied || studied.length === 0) {
+                alert('📦 Контейнер пуст\n\nВыучите слова, чтобы они появились здесь.');
+                return;
+            }
+            showLevelContainer();
+        });
+    }
 
     // Озвучить
-    document.getElementById('levelSpeakBtn').addEventListener('click', function() {
-        if (levelCurrentWord && levelCurrentWord.de) {
-            if (typeof window.speak === 'function') {
-                window.speak(levelCurrentWord.de);
-            } else {
-                console.warn('⚠️ Функция speak не найдена');
-            }
-        }
-    });
+    const speakBtn = document.getElementById('levelCardsSpeakBtn');
+    if (speakBtn) {
+        speakBtn.addEventListener('click', function() {
+            levelSpeakWord();
+        });
+    }
 
     // Перемешать
-    document.getElementById('levelShuffleBtn').addEventListener('click', function() {
-        if (!levelAllWords || levelAllWords.length === 0) return;
-        
-        for (let i = levelAllWords.length - 1; i > 0; i--) {
-            const j = Math.floor(Math.random() * (i + 1));
-            [levelAllWords[i], levelAllWords[j]] = [levelAllWords[j], levelAllWords[i]];
-        }
-        
-        levelQuizWords = levelAllWords.filter(word => !levelStudiedWords[word.de]);
-        
-        if (levelQuizWords.length === 0 && levelAllWords.length > 0) {
-            levelQuizWords = [...levelAllWords];
-        }
-        
-        levelQuizIndex = 0;
-        showLevelQuizQuestion();
-        
-        console.log('🔄 Слова уровня перемешаны');
-    });
+    const shuffleBtn = document.getElementById('levelCardsShuffleBtn');
+    if (shuffleBtn) {
+        shuffleBtn.addEventListener('click', function() {
+            levelShuffleWords();
+        });
+    }
 
     // Назад
-    document.getElementById('levelPrevBtn').addEventListener('click', function() {
-        if (levelQuizWords.length > 0 && levelQuizIndex > 0) {
-            levelQuizIndex--;
-            showLevelQuizQuestion();
-        }
-    });
+    const prevBtn = document.getElementById('levelCardsPrevBtn');
+    if (prevBtn) {
+        prevBtn.addEventListener('click', function() {
+            levelPrevCard();
+        });
+    }
 
     // Вперед
-    document.getElementById('levelNextBtn').addEventListener('click', function() {
-        if (levelQuizWords.length > 0) {
-            levelQuizIndex = (levelQuizIndex + 1) % levelQuizWords.length;
-            showLevelQuizQuestion();
-        }
-    });
+    const nextBtn = document.getElementById('levelCardsNextBtn');
+    if (nextBtn) {
+        nextBtn.addEventListener('click', function() {
+            levelNextCard();
+        });
+    }
 
     // В начало
-    document.getElementById('levelResetStartBtn').addEventListener('click', function() {
-        if (levelQuizWords.length > 0) {
-            levelQuizIndex = 0;
-            showLevelQuizQuestion();
-        }
-    });
+    const resetStartBtn = document.getElementById('levelCardsResetStartBtn');
+    if (resetStartBtn) {
+        resetStartBtn.addEventListener('click', function() {
+            levelResetStart();
+        });
+    }
 
-    showLevelQuizQuestion();
+    // ===== СВАЙП (только мобильные устройства) =====
+    setupLevelCardsSwipe();
+
+    // Показываем первую карточку
+    showLevelCard();
+}
+
+// ===== НАСТРОЙКА СВАЙПА =====
+function setupLevelCardsSwipe() {
+    const card = document.getElementById('levelCardsCard');
+    const animatedCard = document.getElementById('levelCardsCardAnimated');
+    
+    if (!card) return;
+    
+    // Проверяем, мобильное ли устройство
+    const isMobile = window.innerWidth <= 768;
+    if (!isMobile) {
+        console.log('🖥️ Десктопный режим — свайп отключён');
+        return;
+    }
+    
+    console.log('📱 Мобильный режим — свайп включён');
+    
+    let startX = 0;
+    let startY = 0;
+    let isDragging = false;
+    let isSwiping = false;
+    
+    // touchstart
+    card.addEventListener('touchstart', function(e) {
+        const touch = e.touches[0];
+        startX = touch.clientX;
+        startY = touch.clientY;
+        isDragging = true;
+        isSwiping = false;
+        // Отключаем клик во время свайпа
+        this.style.transition = 'none';
+        animatedCard.style.display = 'none';
+    }, { passive: true });
+    
+    // touchmove
+    card.addEventListener('touchmove', function(e) {
+        if (!isDragging) return;
+        
+        const touch = e.touches[0];
+        const deltaX = touch.clientX - startX;
+        const deltaY = touch.clientY - startY;
+        
+        // Проверяем, что это горизонтальный свайп (не вертикальный скролл)
+        if (Math.abs(deltaX) > Math.abs(deltaY) && Math.abs(deltaX) > 10) {
+            isSwiping = true;
+            e.preventDefault();
+            
+            // Двигаем карточку
+            const progress = deltaX / 200; // 200px = 100%
+            const translateX = Math.max(-100, Math.min(100, progress * 100));
+            this.style.transform = `translateX(${translateX}%)`;
+            this.style.opacity = 1 - Math.abs(progress) * 0.3;
+        }
+    }, { passive: false });
+    
+    // touchend
+    card.addEventListener('touchend', function(e) {
+        if (!isDragging) return;
+        isDragging = false;
+        
+        const touch = e.changedTouches[0];
+        const deltaX = touch.clientX - startX;
+        
+        // Сбрасываем трансформацию
+        this.style.transition = 'transform 0.3s ease, opacity 0.3s ease';
+        
+        if (isSwiping && Math.abs(deltaX) > 50) {
+            // Свайп влево → следующее слово
+            if (deltaX < 0) {
+                // Анимируем уход влево
+                this.style.transform = 'translateX(-100%)';
+                this.style.opacity = '0';
+                
+                // Показываем анимированную карточку (приезжает справа)
+                const animatedText = document.getElementById('levelCardsCardAnimatedText');
+                const nextWord = getLevelCardWord(levelCardIndex + 1);
+                if (nextWord && animatedText) {
+                    animatedText.textContent = getLevelCardDisplay(nextWord, false);
+                }
+                animatedCard.style.display = 'flex';
+                animatedCard.style.transform = 'translateX(100%)';
+                animatedCard.style.opacity = '0';
+                
+                // Запускаем анимацию приезда
+                setTimeout(() => {
+                    animatedCard.style.transition = 'transform 0.3s ease, opacity 0.3s ease';
+                    animatedCard.style.transform = 'translateX(0)';
+                    animatedCard.style.opacity = '1';
+                }, 20);
+                
+                // После анимации меняем карточку
+                setTimeout(() => {
+                    levelCardIndex = (levelCardIndex + 1) % levelCardWords.length;
+                    levelCardFlipped = false;
+                    showLevelCard();
+                    // Скрываем анимированную карточку
+                    animatedCard.style.display = 'none';
+                    animatedCard.style.transform = 'translateX(100%)';
+                    animatedCard.style.opacity = '0';
+                    // Возвращаем основную карточку
+                    const mainCard = document.getElementById('levelCardsCard');
+                    mainCard.style.transition = 'none';
+                    mainCard.style.transform = 'translateX(0)';
+                    mainCard.style.opacity = '1';
+                    setTimeout(() => {
+                        mainCard.style.transition = 'transform 0.15s ease';
+                    }, 50);
+                }, 350);
+            }
+            // Свайп вправо → предыдущее слово
+            else if (deltaX > 50) {
+                // Анимируем уход вправо
+                this.style.transform = 'translateX(100%)';
+                this.style.opacity = '0';
+                
+                // Показываем анимированную карточку (приезжает слева)
+                const animatedText = document.getElementById('levelCardsCardAnimatedText');
+                const prevWord = getLevelCardWord(levelCardIndex - 1);
+                if (prevWord && animatedText) {
+                    animatedText.textContent = getLevelCardDisplay(prevWord, false);
+                }
+                animatedCard.style.display = 'flex';
+                animatedCard.style.transform = 'translateX(-100%)';
+                animatedCard.style.opacity = '0';
+                
+                setTimeout(() => {
+                    animatedCard.style.transition = 'transform 0.3s ease, opacity 0.3s ease';
+                    animatedCard.style.transform = 'translateX(0)';
+                    animatedCard.style.opacity = '1';
+                }, 20);
+                
+                setTimeout(() => {
+                    // Индекс с зацикливанием
+                    levelCardIndex = (levelCardIndex - 1 + levelCardWords.length) % levelCardWords.length;
+                    levelCardFlipped = false;
+                    showLevelCard();
+                    animatedCard.style.display = 'none';
+                    animatedCard.style.transform = 'translateX(-100%)';
+                    animatedCard.style.opacity = '0';
+                    const mainCard = document.getElementById('levelCardsCard');
+                    mainCard.style.transition = 'none';
+                    mainCard.style.transform = 'translateX(0)';
+                    mainCard.style.opacity = '1';
+                    setTimeout(() => {
+                        mainCard.style.transition = 'transform 0.15s ease';
+                    }, 50);
+                }, 350);
+            } else {
+                // Свайп слишком короткий — возвращаем карточку
+                this.style.transform = 'translateX(0)';
+                this.style.opacity = '1';
+                animatedCard.style.display = 'none';
+            }
+        } else {
+            // Не свайп — возвращаем карточку
+            this.style.transform = 'translateX(0)';
+            this.style.opacity = '1';
+            animatedCard.style.display = 'none';
+        }
+        
+        isSwiping = false;
+    }, { passive: true });
+    
+    // Отмена при touchcancel
+    card.addEventListener('touchcancel', function() {
+        isDragging = false;
+        isSwiping = false;
+        this.style.transition = 'transform 0.3s ease, opacity 0.3s ease';
+        this.style.transform = 'translateX(0)';
+        this.style.opacity = '1';
+        const animatedCard = document.getElementById('levelCardsCardAnimated');
+        if (animatedCard) {
+            animatedCard.style.display = 'none';
+        }
+    }, { passive: true });
+}
+
+// ===== ПОЛУЧИТЬ СЛОВО ПО ИНДЕКСУ (С ЗАЦИКЛИВАНИЕМ) =====
+function getLevelCardWord(index) {
+    if (levelCardWords.length === 0) return null;
+    // Зацикливание
+    const safeIndex = ((index % levelCardWords.length) + levelCardWords.length) % levelCardWords.length;
+    return levelCardWords[safeIndex];
+}
+
+// ===== ПОЛУЧИТЬ ТЕКСТ ДЛЯ КАРТОЧКИ =====
+function getLevelCardDisplay(word, flipped) {
+    if (!word) return '';
+    const isDeToRu = levelDirection === 'de_to_ru';
+    
+    if (!flipped) {
+        // Лицевая сторона: показываем слово на языке выбранного направления
+        return isDeToRu ? word.de : word.ru;
+    } else {
+        // Оборотная сторона: ТОЛЬКО перевод
+        return isDeToRu ? word.ru : word.de;
+    }
+}
+
+// ===== ПОКАЗ КАРТОЧКИ =====
+function showLevelCard() {
+    const cardText = document.getElementById('levelCardsCardText');
+    const counter = document.getElementById('levelCardsCounter');
+    const hint = document.getElementById('levelCardsHint');
+    const card = document.getElementById('levelCardsCard');
+    
+    if (!cardText || !card) return;
+
+    if (levelCardWords.length === 0) {
+        cardText.textContent = '📭 Нет слов';
+        if (counter) counter.textContent = '0 / 0';
+        return;
+    }
+
+    // Получаем текущее слово (с зацикливанием)
+    const currentWord = getLevelCardWord(levelCardIndex);
+    if (!currentWord) {
+        cardText.textContent = 'Ошибка загрузки';
+        return;
+    }
+
+    // Показываем текст на карточке
+    const displayText = getLevelCardDisplay(currentWord, levelCardFlipped);
+    cardText.textContent = displayText;
+    
+    // Обновляем подсказку
+    if (hint) {
+        if (levelCardFlipped) {
+            hint.textContent = '👆 Нажмите на карточку, чтобы скрыть перевод';
+            hint.style.color = '#FF9800';
+        } else {
+            hint.textContent = '👆 Нажмите на карточку, чтобы увидеть перевод';
+            hint.style.color = '#999';
+        }
+    }
+    
+    // Обновляем счётчик (1-based, с зацикливанием)
+    if (counter) {
+        const currentPos = (levelCardIndex % levelCardWords.length) + 1;
+        counter.textContent = `${currentPos} / ${levelCardWords.length}`;
+    }
+}
+
+// ===== ПЕРЕВОРОТ КАРТОЧКИ =====
+window._flipLevelCard = function() {
+    if (levelCardWords.length === 0) return;
+    levelCardFlipped = !levelCardFlipped;
+    showLevelCard();
+};
+
+// ===== КНОПКА: ИЗУЧЕНО =====
+function levelStudyWord() {
+    if (levelCardWords.length === 0) return;
+    
+    const currentWord = getLevelCardWord(levelCardIndex);
+    if (!currentWord) return;
+    
+    // Добавляем в контейнер
+    levelStudiedWords[currentWord.de] = true;
+    saveLevelStudiedWords(currentLevelForCards);
+    
+    // Обновляем список для показа
+    updateLevelCardWords();
+    
+    // Если после обновления список пуст → показываем все слова (зацикливание)
+    if (levelCardWords.length === 0 && levelAllWords.length > 0) {
+        levelCardWords = [...levelAllWords];
+        // Сбрасываем контейнер? Нет, оставляем как есть.
+    }
+    
+    // Переход к следующему слову (с зацикливанием)
+    if (levelCardWords.length > 0) {
+        levelCardIndex = (levelCardIndex + 1) % levelCardWords.length;
+    } else {
+        levelCardIndex = 0;
+    }
+    levelCardFlipped = false;
+    showLevelCard();
+}
+
+// ===== КНОПКА: ОЗВУЧИТЬ =====
+function levelSpeakWord() {
+    if (levelCardWords.length === 0) return;
+    const currentWord = getLevelCardWord(levelCardIndex);
+    if (currentWord && currentWord.de) {
+        if (typeof window.speak === 'function') {
+            window.speak(currentWord.de);
+        } else {
+            console.warn('⚠️ Функция speak не найдена');
+        }
+    }
+}
+
+// ===== КНОПКА: ПЕРЕМЕШАТЬ =====
+function levelShuffleWords() {
+    if (levelCardWords.length === 0) return;
+    
+    // Перемешиваем список
+    for (let i = levelCardWords.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [levelCardWords[i], levelCardWords[j]] = [levelCardWords[j], levelCardWords[i]];
+    }
+    
+    // Сбрасываем индекс на 0, карточка закрыта
+    levelCardIndex = 0;
+    levelCardFlipped = false;
+    showLevelCard();
+    
+    console.log('🔄 Слова уровня перемешаны');
+}
+
+// ===== КНОПКА: НАЗАД =====
+function levelPrevCard() {
+    if (levelCardWords.length === 0) return;
+    levelCardIndex = (levelCardIndex - 1 + levelCardWords.length) % levelCardWords.length;
+    levelCardFlipped = false;
+    showLevelCard();
+}
+
+// ===== КНОПКА: ВПЕРЕД =====
+function levelNextCard() {
+    if (levelCardWords.length === 0) return;
+    levelCardIndex = (levelCardIndex + 1) % levelCardWords.length;
+    levelCardFlipped = false;
+    showLevelCard();
+}
+
+// ===== КНОПКА: В НАЧАЛО =====
+function levelResetStart() {
+    if (levelCardWords.length === 0) return;
+    levelCardIndex = 0;
+    levelCardFlipped = false;
+    showLevelCard();
 }
 
 // ===== ПОЛУЧЕНИЕ СПИСКА ИЗУЧЕННЫХ СЛОВ ДЛЯ УРОВНЯ =====
@@ -382,7 +761,7 @@ function showLevelContainer() {
     `;
 
     const currentStudied = getLevelStudiedWordsList();
-    const title = `📦 КОНТЕЙНЕР УРОВНЯ ${currentLevelForAllWords} (${currentStudied.length} слов)`;
+    const title = `📦 КОНТЕЙНЕР УРОВНЯ ${currentLevelForCards} (${currentStudied.length} слов)`;
 
     const header = document.createElement('div');
     header.style.cssText = 'padding: 15px 20px; border-bottom: 1px solid #ddd; text-align: center; flex-shrink: 0;';
@@ -407,19 +786,19 @@ function showLevelContainer() {
             btn.addEventListener('click', function() {
                 const wordDe = this.getAttribute('data-word');
                 delete levelStudiedWords[wordDe];
-                saveLevelStudiedWords(currentLevelForAllWords);
+                saveLevelStudiedWords(currentLevelForCards);
                 
-                levelQuizWords = levelAllWords.filter(w => !levelStudiedWords[w.de]);
-                if (levelQuizWords.length === 0 && levelAllWords.length > 0) {
-                    levelQuizWords = [...levelAllWords];
+                updateLevelCardWords();
+                if (levelCardWords.length === 0 && levelAllWords.length > 0) {
+                    levelCardWords = [...levelAllWords];
                 }
-                if (levelQuizWords.length > 0 && levelQuizIndex >= levelQuizWords.length) {
-                    levelQuizIndex = 0;
+                if (levelCardWords.length > 0 && levelCardIndex >= levelCardWords.length) {
+                    levelCardIndex = 0;
                 }
                 
                 modal.remove();
                 showLevelContainer();
-                showLevelQuizQuestion();
+                showLevelCard();
             });
             
             itemsContainer.appendChild(item);
@@ -441,11 +820,15 @@ function showLevelContainer() {
     document.getElementById('levelReturnAllBtn').addEventListener('click', function() {
         if (!confirm('Вернуть все слова из контейнера?')) return;
         levelAllWords.forEach(word => { delete levelStudiedWords[word.de]; });
-        saveLevelStudiedWords(currentLevelForAllWords);
-        levelQuizWords = [...levelAllWords];
-        levelQuizIndex = 0;
+        saveLevelStudiedWords(currentLevelForCards);
+        updateLevelCardWords();
+        if (levelCardWords.length === 0 && levelAllWords.length > 0) {
+            levelCardWords = [...levelAllWords];
+        }
+        levelCardIndex = 0;
+        levelCardFlipped = false;
         modal.remove();
-        showLevelQuizQuestion();
+        showLevelCard();
     });
 
     document.getElementById('levelCloseContainerBtn').addEventListener('click', function() {
@@ -456,73 +839,6 @@ function showLevelContainer() {
         if (e.target === modal) modal.remove();
     });
 }
-
-// ===== ПОКАЗ ВОПРОСА ДЛЯ "ВСЕХ СЛОВ УРОВНЯ" =====
-function showLevelQuizQuestion() {
-    const questionEl = document.getElementById('levelQuizQuestion');
-    const gridEl = document.getElementById('levelQuizGrid');
-    const progressEl = document.getElementById('levelQuizProgress');
-    
-    if (!questionEl || !gridEl) return;
-
-    if (levelQuizWords.length === 0) {
-        questionEl.textContent = '🎉 Все слова изучены!';
-        gridEl.innerHTML = '';
-        if (progressEl) progressEl.textContent = '0 / 0';
-        return;
-    }
-
-    levelCurrentWord = levelQuizWords[levelQuizIndex];
-    const isDeToRu = levelDirection === 'de_to_ru';
-    const question = isDeToRu ? levelCurrentWord.de : levelCurrentWord.ru;
-    const correctAnswer = isDeToRu ? levelCurrentWord.ru : levelCurrentWord.de;
-
-    questionEl.textContent = question;
-    if (progressEl) progressEl.textContent = `${levelQuizIndex + 1} / ${levelQuizWords.length}`;
-
-    const allWords = [...levelAllWords];
-    const otherWords = allWords.filter(w => w !== levelCurrentWord);
-    
-    const shuffled = [...otherWords];
-    for (let i = shuffled.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
-    }
-    
-    const options = [levelCurrentWord, ...shuffled.slice(0, 5)];
-    for (let i = options.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [options[i], options[j]] = [options[j], options[i]];
-    }
-
-    gridEl.innerHTML = '';
-    options.forEach((opt) => {
-        const btn = document.createElement('button');
-        btn.className = 'quiz-opt';
-        btn.textContent = isDeToRu ? opt.ru : opt.de;
-        btn.style.cssText = 'padding: 16px; background: #FFFFFF; border: 2px solid #D0D0D0; border-radius: 16px; cursor: pointer; font-size: 16px; transition: all 0.05s linear; text-align: center; box-shadow: 0 3px 4px rgba(0,0,0,0.1);';
-        btn.addEventListener('click', function() {
-            const isCorrect = isDeToRu ? (opt.ru === correctAnswer) : (opt.de === correctAnswer);
-            if (isCorrect) {
-                this.style.background = '#C8E6C9';
-                this.style.borderColor = '#4CAF50';
-                setTimeout(() => {
-                    levelQuizIndex = (levelQuizIndex + 1) % levelQuizWords.length;
-                    showLevelQuizQuestion();
-                }, 400);
-            } else {
-                this.style.background = '#FFCDD2';
-                this.style.borderColor = '#F44336';
-                setTimeout(() => {
-                    this.style.background = '#FFFFFF';
-                    this.style.borderColor = '#D0D0D0';
-                }, 500);
-            }
-        });
-        gridEl.appendChild(btn);
-    });
-}
-
 
 // ====================================================================
 // СТАРАЯ ЛОГИКА ДЛЯ ТЕСТА В УРОКАХ (НЕ ТРОГАЕМ)

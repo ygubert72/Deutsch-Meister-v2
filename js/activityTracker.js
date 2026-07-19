@@ -3,17 +3,14 @@
 // ========== ПОЛУЧЕНИЕ IP И ГОРОДА ==========
 async function getUserLocation() {
     try {
-        // 1. Сначала получаем IP через ipify (бесплатно, без лимитов)
         const ipResponse = await fetch('https://api.ipify.org?format=json');
         const ipData = await ipResponse.json();
         const ip = ipData.ip || 'unknown';
         
-        // Если IP не определён - возвращаем заглушку
         if (ip === 'unknown') {
             return { ip: 'unknown', city: 'unknown', country: 'unknown', region: 'unknown' };
         }
         
-        // 2. Пробуем получить город по IP через ipapi.co
         try {
             const locationResponse = await fetch(`https://ipapi.co/${ip}/json/`);
             if (locationResponse.ok) {
@@ -26,10 +23,9 @@ async function getUserLocation() {
                 };
             }
         } catch (e) {
-            console.log('⚠️ Не удалось получить город через ipapi.co, пробуем другой сервис...');
+            console.log('⚠️ Не удалось получить город через ipapi.co');
         }
         
-        // 3. Запасной вариант: ip-api.com (бесплатно, без ключа)
         try {
             const backupResponse = await fetch(`http://ip-api.com/json/${ip}?fields=status,message,country,city,regionName`);
             if (backupResponse.ok) {
@@ -47,7 +43,6 @@ async function getUserLocation() {
             console.log('⚠️ Не удалось получить город через ip-api.com');
         }
         
-        // 4. Если всё失败了 - возвращаем только IP
         return { ip: ip, city: 'unknown', country: 'unknown', region: 'unknown' };
         
     } catch(e) {
@@ -89,7 +84,15 @@ function analyzeFlags(userData, today) {
         flags.totalFlags++;
     }
     
-    const stats = userData.dailyStats?.[today];
+    // Статистика теперь хранится в подколлекции, но флаги анализируем из основного документа
+    // Для обратной совместимости проверяем оба места
+    let stats = userData.dailyStats?.[today];
+    if (!stats) {
+        // Пробуем найти в подколлекции (если данные уже есть)
+        // Эта часть будет работать после первого сохранения в новой структуре
+        stats = userData._stats?.[today];
+    }
+    
     if (stats && stats.uniqueCities && stats.uniqueCities.length > 2) {
         flags.differentCities = true;
         flags.totalFlags++;
@@ -125,8 +128,6 @@ function analyzeFlags(userData, today) {
 async function logUserActivity(user) {
     if (!user || !db) return;
     
-    // Админ не отслеживается
-    // ИСПРАВЛЕНО: используем ADMIN_EMAIL из глобальной переменной
     if (user.email === ADMIN_EMAIL) {
         Logger.debug('Админ не отслеживается');
         return;
@@ -140,10 +141,11 @@ async function logUserActivity(user) {
         const deviceId = getDeviceId();
         const deviceType = isMobileDevice() ? 'mobile' : 'desktop';
         
+        // ===== ИЗМЕНЕНО: Получаем основной документ пользователя =====
         const userDoc = await db.collection('users').doc(uid).get();
         let data = userDoc.exists ? userDoc.data() : {};
         
-        // Обновляем устройства
+        // ===== ИЗМЕНЕНО: Обновляем устройства в основном документе =====
         if (!data.devices) data.devices = [];
         const existingDevice = data.devices.find(d => d.id === deviceId);
         
@@ -165,21 +167,20 @@ async function logUserActivity(user) {
             existingDevice.country = location.country;
         }
         
-        // Обновляем дневную статистику
-        if (!data.dailyStats) data.dailyStats = {};
-        if (!data.dailyStats[today]) {
-            data.dailyStats[today] = {
-                sessions: 0,
-                totalMinutes: 0,
-                uniqueIPs: [],
-                uniqueCities: [],
-                wordsLearned: 0,
-                firstActivity: null,
-                lastActivity: null
-            };
-        }
+        // ===== НОВОЕ: Сохраняем статистику в подколлекцию stats =====
+        const statsRef = db.collection('users').doc(uid).collection('stats').doc(today);
+        const statsDoc = await statsRef.get();
         
-        const stats = data.dailyStats[today];
+        let stats = statsDoc.exists ? statsDoc.data() : {
+            sessions: 0,
+            totalMinutes: 0,
+            uniqueIPs: [],
+            uniqueCities: [],
+            wordsLearned: 0,
+            firstActivity: null,
+            lastActivity: null
+        };
+        
         stats.sessions += 1;
         
         if (!stats.uniqueIPs.includes(location.ip) && location.ip !== 'unknown') {
@@ -193,11 +194,38 @@ async function logUserActivity(user) {
         }
         stats.lastActivity = new Date().toISOString();
         
-        // Анализ флагов
+        // Сохраняем статистику в подколлекцию
+        await statsRef.set(stats, { merge: true });
+        
+        // ===== НОВОЕ: Добавляем ссылку на сегодняшнюю статистику в основной документ =====
+        // Это нужно для быстрого доступа при анализе флагов
+        if (!data._stats) data._stats = {};
+        data._stats[today] = {
+            sessions: stats.sessions,
+            totalMinutes: stats.totalMinutes,
+            uniqueIPs: stats.uniqueIPs,
+            uniqueCities: stats.uniqueCities,
+            firstActivity: stats.firstActivity,
+            lastActivity: stats.lastActivity
+        };
+        
+        // ===== Анализ флагов (из основного документа) =====
+        // Для обратной совместимости сохраняем dailyStats в основном документе
+        // но в будущем можно убрать
+        if (!data.dailyStats) data.dailyStats = {};
+        data.dailyStats[today] = {
+            sessions: stats.sessions,
+            totalMinutes: stats.totalMinutes,
+            uniqueIPs: stats.uniqueIPs,
+            uniqueCities: stats.uniqueCities,
+            wordsLearned: stats.wordsLearned || 0,
+            firstActivity: stats.firstActivity,
+            lastActivity: stats.lastActivity
+        };
+        
         const flags = analyzeFlags(data, today);
         data.flags = flags;
         
-        // Логирование увеличения флагов
         const oldFlags = data._previousFlags || { totalFlags: 0 };
         if (flags.totalFlags > oldFlags.totalFlags) {
             await db.collection('admin_logs').add({
@@ -219,7 +247,6 @@ async function logUserActivity(user) {
         }
         data._previousFlags = flags;
         
-        // Обновление статуса
         if (flags.totalFlags >= 3) {
             data.status = 'warning';
         } else if (flags.totalFlags >= 2) {
@@ -228,8 +255,12 @@ async function logUserActivity(user) {
             data.status = 'ok';
         }
         
+        // ===== ИЗМЕНЕНО: Сохраняем основной документ (без огромной статистики) =====
+        // Теперь в основном документе только: email, devices, flags, status, _stats (ссылки)
         await db.collection('users').doc(uid).set(data, { merge: true });
+        
         Logger.debug('Активность пользователя залогирована, флагов:', flags.totalFlags);
+        Logger.debug('Статистика сохранена в подколлекцию stats');
         
     } catch (e) {
         Logger.error('Ошибка логирования активности:', e);
@@ -263,43 +294,150 @@ async function logUserAction(action, details = {}) {
     }
 }
 
-// ========== СОХРАНЕНИЕ ПРОГРЕССА В ОБЛАКО ==========
+// ========== СОХРАНЕНИЕ ПРОГРЕССА В ОБЛАКО (НОВАЯ ВЕРСИЯ) ==========
 async function saveProgressToFirebase() {
     if (!auth || !auth.currentUser) return;
     const userId = auth.currentUser.uid;
     if (!db) return;
+    
     try {
-        const progressData = {
-            wordsProgress: wordsProgress,
-            sentencesProgress: sentencesProgress,
-            grammarProgress: grammarProgress,
-            config: {
-                last_level: AppConfig.currentLevel,
-                show_language: AppConfig.show_language,
-                quiz_direction: AppConfig.quiz_direction,
-                sentence_lang_from: AppConfig.sentence_lang_from,
-                last_mode: currentMode
-            },
+        // Сохраняем прогресс по каждому уроку отдельно
+        // Для слов
+        for (const [level, words] of Object.entries(wordsProgress)) {
+            if (words && words.length > 0) {
+                // Сохраняем в подколлекцию progress
+                const progressRef = db.collection('users').doc(userId)
+                    .collection('progress').doc(`${level}_all_words`);
+                await progressRef.set({
+                    words: words,
+                    lastUpdated: new Date().toISOString()
+                }, { merge: true });
+            }
+        }
+        
+        // Для предложений
+        for (const [level, sentences] of Object.entries(sentencesProgress)) {
+            if (sentences && sentences.length > 0) {
+                const progressRef = db.collection('users').doc(userId)
+                    .collection('progress').doc(`${level}_all_sentences`);
+                await progressRef.set({
+                    sentences: sentences,
+                    lastUpdated: new Date().toISOString()
+                }, { merge: true });
+            }
+        }
+        
+        // Для грамматики
+        for (const [level, grammar] of Object.entries(grammarProgress)) {
+            if (grammar && grammar.length > 0) {
+                const progressRef = db.collection('users').doc(userId)
+                    .collection('progress').doc(`${level}_grammar`);
+                await progressRef.set({
+                    lessons: grammar,
+                    lastUpdated: new Date().toISOString()
+                }, { merge: true });
+            }
+        }
+        
+        // Сохраняем конфиг
+        const configRef = db.collection('users').doc(userId)
+            .collection('progress').doc('config');
+        await configRef.set({
+            last_level: AppConfig.currentLevel,
+            show_language: AppConfig.show_language,
+            quiz_direction: AppConfig.quiz_direction,
+            sentence_lang_from: AppConfig.sentence_lang_from,
+            last_mode: currentMode,
             lastUpdated: new Date().toISOString()
-        };
-        await db.collection('users').doc(userId).set({
-            progress: progressData
         }, { merge: true });
-        Logger.debug('Прогресс сохранён в облаке');
+        
+        Logger.debug('Прогресс сохранён в облаке (новая структура)');
     } catch(e) {
         Logger.error('Ошибка сохранения прогресса:', e);
     }
 }
 
-// ========== ЗАГРУЗКА ПРОГРЕССА ИЗ ОБЛАКА ==========
+// ========== ЗАГРУЗКА ПРОГРЕССА ИЗ ОБЛАКА (НОВАЯ ВЕРСИЯ) ==========
 async function loadProgressFromFirebase() {
     if (!auth || !auth.currentUser) return false;
     const userId = auth.currentUser.uid;
     if (!db) return false;
+    
+    try {
+        // Загружаем все документы из подколлекции progress
+        const progressSnapshot = await db.collection('users').doc(userId)
+            .collection('progress').get();
+        
+        let loaded = false;
+        
+        progressSnapshot.forEach(doc => {
+            const data = doc.data();
+            const docId = doc.id;
+            
+            if (docId === 'config') {
+                // Загружаем конфиг
+                if (data) {
+                    AppConfig.currentLevel = data.last_level || 'A1';
+                    AppConfig.show_language = data.show_language || 'de';
+                    AppConfig.quiz_direction = data.quiz_direction || 'de_to_ru';
+                    AppConfig.sentence_lang_from = data.sentence_lang_from || 'ru';
+                    currentMode = data.last_mode || 'grammar';
+                    localStorage.setItem('dm_config', JSON.stringify(data));
+                }
+                loaded = true;
+            } else if (docId.endsWith('_all_words')) {
+                // Загружаем слова
+                const level = docId.replace('_all_words', '');
+                if (data.words) {
+                    wordsProgress[level] = data.words;
+                    localStorage.setItem('dm_words_progress', JSON.stringify(wordsProgress));
+                }
+                loaded = true;
+            } else if (docId.endsWith('_all_sentences')) {
+                // Загружаем предложения
+                const level = docId.replace('_all_sentences', '');
+                if (data.sentences) {
+                    sentencesProgress[level] = data.sentences;
+                    localStorage.setItem('dm_sentences_progress', JSON.stringify(sentencesProgress));
+                }
+                loaded = true;
+            } else if (docId.endsWith('_grammar')) {
+                // Загружаем грамматику
+                const level = docId.replace('_grammar', '');
+                if (data.lessons) {
+                    grammarProgress[level] = data.lessons;
+                    localStorage.setItem('dm_grammar_progress', JSON.stringify(grammarProgress));
+                }
+                loaded = true;
+            }
+        });
+        
+        if (loaded) {
+            Logger.info('Прогресс загружен из облака (новая структура)');
+            return true;
+        }
+        
+        // Если в новой структуре ничего нет, пробуем загрузить из старой (для обратной совместимости)
+        return await loadProgressFromFirebaseOld();
+        
+    } catch(e) {
+        Logger.error('Ошибка загрузки прогресса:', e);
+        // Пробуем загрузить из старой структуры
+        return await loadProgressFromFirebaseOld();
+    }
+}
+
+// ===== ОБРАТНАЯ СОВМЕСТИМОСТЬ: Загрузка из старой структуры =====
+async function loadProgressFromFirebaseOld() {
+    if (!auth || !auth.currentUser) return false;
+    const userId = auth.currentUser.uid;
+    if (!db) return false;
+    
     try {
         const userDoc = await db.collection('users').doc(userId).get();
         if (userDoc.exists && userDoc.data().progress) {
             const progress = userDoc.data().progress;
+            
             if (progress.wordsProgress) {
                 Object.assign(wordsProgress, progress.wordsProgress);
                 localStorage.setItem('dm_words_progress', JSON.stringify(wordsProgress));
@@ -313,18 +451,19 @@ async function loadProgressFromFirebase() {
                 localStorage.setItem('dm_grammar_progress', JSON.stringify(grammarProgress));
             }
             if (progress.config) {
-                AppConfig.currentLevel = progress.config.last_level || 'A1';
-                AppConfig.show_language = progress.config.show_language || 'de';
-                AppConfig.quiz_direction = progress.config.quiz_direction || 'de_to_ru';
-                AppConfig.sentence_lang_from = progress.config.sentence_lang_from || 'ru';
-                currentMode = progress.config.last_mode || 'grammar';
-                localStorage.setItem('dm_config', JSON.stringify(progress.config));
+                const config = progress.config;
+                localStorage.setItem('dm_config', JSON.stringify(config));
+                AppConfig.show_language = config.show_language || 'de';
+                AppConfig.quiz_direction = config.quiz_direction || 'de_to_ru';
+                AppConfig.sentence_lang_from = config.sentence_lang_from || 'ru';
+                currentMode = config.last_mode || 'grammar';
             }
-            Logger.info('Прогресс загружен из облака');
+            
+            Logger.info('Прогресс загружен из старой структуры (обратная совместимость)');
             return true;
         }
     } catch(e) {
-        Logger.error('Ошибка загрузки прогресса:', e);
+        Logger.error('Ошибка загрузки из старой структуры:', e);
     }
     return false;
 }
@@ -339,3 +478,9 @@ window.ActivityTracker = {
     getDeviceId,
     analyzeFlags
 };
+
+// Сохраняем старые имена для обратной совместимости
+window.saveUserProgressToFirebase = saveProgressToFirebase;
+window.loadUserProgressFromFirebase = loadProgressFromFirebase;
+
+console.log('✅ activityTracker.js загружен (с новой структурой)');

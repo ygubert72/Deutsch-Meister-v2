@@ -271,3 +271,95 @@ body { font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-
 @media (hover: none) {
     .btn:hover, .ctrl-btn:hover, .word-btn:hover, .quiz-opt:hover { transform: none; }
 }
+
+/* ============================================================ */
+/* ===== ПЛАВНОЕ МОБИЛЬНОЕ МЕНЮ ===== */
+/* ============================================================ */
+
+.menu-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 998;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+.menu-overlay.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+.mobile-menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 280px;
+    height: 100%;
+    background: white;
+    z-index: 999;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease, visibility 0.3s ease;
+    overflow-y: auto;
+    visibility: hidden;
+}
+.mobile-menu.open {
+    transform: translateX(0);
+    visibility: visible;
+}
+
+/* ============================================================ */
+/* ===== КАРТОЧКИ — ФИКСИРОВАННАЯ ВЫСОТА ===== */
+/* ============================================================ */
+
+#levelCardsCard,
+#levelCardsCardNext {
+    height: 280px !important;
+    min-height: 280px !important;
+    max-height: 280px !important;
+}
+
+#levelCardsCardText,
+#levelCardsCardNextText {
+    font-size: 28px !important;
+    max-height: 220px !important;
+    overflow: hidden !important;
+    line-height: 1.3 !important;
+}
+
+#levelCardsCardWrapper {
+    min-height: 300px !important;
+}
+
+/* ============================================================ */
+/* ===== ПОДСТРОЙКА ПОД ТЕЛЕФОНЫ ===== */
+/* ============================================================ */
+
+@media (max-width: 480px) {
+    #levelCardsCard,
+    #levelCardsCardNext {
+        height: 200px !important;
+        min-height: 200px !important;
+        max-height: 200px !important;
+        padding: 15px 20px !important;
+    }
+    
+    #levelCardsCardText,
+    #levelCardsCardNextText {
+        font-size: 20px !important;
+        max-height: 150px !important;
+    }
+    
+    #levelCardsCardWrapper {
+        min-height: 220px !important;
+    }
+    
+    .word-btn {
+        font-size: 11px !important;
+        padding: 8px 6px !important;
+        min-height: 34px !important;
+    }
+}

@@ -1,9 +1,14 @@
-// auth.js — ТОЛЬКО вход, выход, регистрация и состояние пользователя
+// auth.js — Аутентификация с безопасной проверкой администратора (без Cloud Functions)
 
 let auth = null;
 let db = null;
 let currentUserData = null;
 let authInitialized = false;
+
+// ========== EMAIL АДМИНИСТРАТОРА ==========
+// ВАЖНО: Это НЕ используется для безопасности, только для UI!
+// Реальная защита — в Firebase Rules
+const ADMIN_EMAIL = "ygubert72@gmail.com";
 
 // ========== ИНИЦИАЛИЗАЦИЯ FIREBASE ==========
 function initFirebase() {
@@ -51,7 +56,6 @@ function initFirebase() {
             
             await loadUserData(user.uid);
             
-            // Загружаем прогресс из новой структуры
             if (window.loadUserProgressFromFirebase) {
                 await window.loadUserProgressFromFirebase();
             }
@@ -101,6 +105,8 @@ window.hasAccessToLevel = function(level) {
         return level === 'A1';
     }
     
+    // ===== БЕЗОПАСНАЯ ПРОВЕРКА =====
+    // Администратор имеет доступ ко всем уровням
     if (auth.currentUser && auth.currentUser.email === ADMIN_EMAIL) {
         return true;
     }
@@ -177,6 +183,21 @@ window.getCurrentUser = function() {
     return auth ? auth.currentUser : null;
 };
 
+// ========== БЕЗОПАСНАЯ ПРОВЕРКА АДМИНА ==========
+// ВАЖНО: Реальная защита — в Firebase Rules!
+// Эта функция используется ТОЛЬКО для UI (показать/скрыть кнопки)
+window.isAdmin = function() {
+    if (auth && auth.currentUser && auth.currentUser.email === ADMIN_EMAIL) {
+        return true;
+    }
+    return false;
+};
+
+// ========== ПОЛУЧИТЬ ТЕКУЩИЕ ДАННЫЕ ПОЛЬЗОВАТЕЛЯ ==========
+window.getCurrentUserData = function() {
+    return currentUserData;
+};
+
 // ========== ПРОВЕРКА БЛОКИРОВКИ ==========
 async function checkIfBlocked(user) {
     if (!db || !user) return;
@@ -198,7 +219,6 @@ async function addUserToFirestore(user) {
     try {
         const userDoc = await db.collection('users').doc(user.uid).get();
         if (!userDoc.exists) {
-            // Создаём основной документ (только базовая информация)
             await db.collection('users').doc(user.uid).set({
                 email: user.email,
                 createdAt: new Date().toISOString(),
@@ -209,16 +229,14 @@ async function addUserToFirestore(user) {
                 devices: [],
                 flags: { totalFlags: 0 },
                 _previousFlags: { totalFlags: 0 }
-                // dailyStats больше не храним в основном документе
             });
             
-            // Создаём пустой документ в подколлекции progress для конфига
             await db.collection('users').doc(user.uid)
                 .collection('progress').doc('config').set({
                     created: new Date().toISOString()
                 });
             
-            if (window.Logger) Logger.info('Пользователь добавлен в Firestore (новая структура):', user.email);
+            if (window.Logger) Logger.info('Пользователь добавлен в Firestore:', user.email);
         }
     } catch(e) {
         if (window.Logger) Logger.error('Ошибка добавления пользователя:', e);
@@ -328,6 +346,7 @@ function updateUI(user) {
                 <div style="display:flex; align-items:center; justify-content:center; gap:8px; margin-bottom:5px; flex-wrap:wrap;">
                     <span style="font-size:20px;">🎓</span>
                     <span style="word-break:break-all;">${user.email}</span>
+                    ${isAdmin ? '<span style="background:#FF9800; border-radius:12px; padding:2px 10px; font-size:10px; color:white; font-weight:bold;">👑 АДМИН</span>' : ''}
                 </div>
                 <button onclick="window.logout()" style="margin-top:5px; padding:8px 12px; background:#4CAF50; color:white; border:none; border-radius:16px; cursor:pointer; width:100%; font-size:12px; font-weight:bold;">🚪 Выйти</button>
                 ${premiumButtonHtml}
@@ -597,14 +616,6 @@ function togglePasswordVisibility(inputId, eyeIconId) {
     }
 }
 
-// ========== ПРОВЕРКА АДМИНА ==========
-window.isAdmin = function() {
-    if (auth && auth.currentUser && auth.currentUser.email === ADMIN_EMAIL) {
-        return true;
-    }
-    return false;
-};
-
 // ========== ПОЛУЧИТЬ ТЕКУЩИЕ ДАННЫЕ ПОЛЬЗОВАТЕЛЯ ==========
 window.getCurrentUserData = function() {
     return currentUserData;
@@ -646,7 +657,6 @@ window.currentUserData = currentUserData;
 window.authInitialized = authInitialized;
 
 // ===== ЭКСПОРТ ФУНКЦИЙ ДЛЯ СОВМЕСТИМОСТИ =====
-// Они уже объявлены в activityTracker.js, но на всякий случай дублируем
 if (!window.saveUserProgressToFirebase) {
     window.saveUserProgressToFirebase = async function() {
         if (window.ActivityTracker && window.ActivityTracker.saveProgressToFirebase) {
@@ -664,4 +674,4 @@ if (!window.loadUserProgressFromFirebase) {
     };
 }
 
-console.log('✅ auth.js загружен (с новой структурой)');
+console.log('✅ auth.js загружен (безопасная версия)');

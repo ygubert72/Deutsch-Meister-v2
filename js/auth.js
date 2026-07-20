@@ -1,4 +1,4 @@
-// auth.js — Аутентификация с безопасной проверкой администратора (без Cloud Functions)
+// auth.js — Аутентификация с безопасной проверкой администратора
 
 let auth = null;
 let db = null;
@@ -6,9 +6,10 @@ let currentUserData = null;
 let authInitialized = false;
 
 // ========== EMAIL АДМИНИСТРАТОРА ==========
-// ВАЖНО: Это НЕ используется для безопасности, только для UI!
-// Реальная защита — в Firebase Rules
-const ADMIN_EMAIL = "ygubert72@gmail.com";
+// Проверяем, не объявлена ли уже переменная
+if (typeof ADMIN_EMAIL === 'undefined') {
+    var ADMIN_EMAIL = "ygubert72@gmail.com";
+}
 
 // ========== ИНИЦИАЛИЗАЦИЯ FIREBASE ==========
 function initFirebase() {
@@ -105,8 +106,6 @@ window.hasAccessToLevel = function(level) {
         return level === 'A1';
     }
     
-    // ===== БЕЗОПАСНАЯ ПРОВЕРКА =====
-    // Администратор имеет доступ ко всем уровням
     if (auth.currentUser && auth.currentUser.email === ADMIN_EMAIL) {
         return true;
     }
@@ -183,9 +182,7 @@ window.getCurrentUser = function() {
     return auth ? auth.currentUser : null;
 };
 
-// ========== БЕЗОПАСНАЯ ПРОВЕРКА АДМИНА ==========
-// ВАЖНО: Реальная защита — в Firebase Rules!
-// Эта функция используется ТОЛЬКО для UI (показать/скрыть кнопки)
+// ========== ПРОВЕРКА АДМИНА ==========
 window.isAdmin = function() {
     if (auth && auth.currentUser && auth.currentUser.email === ADMIN_EMAIL) {
         return true;

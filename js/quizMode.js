@@ -17,11 +17,11 @@ let allQuizWords = [];
 
 // ===== ДЛЯ РЕЖИМА "ВСЕ СЛОВА УРОВНЯ" (КАРТОЧКИ) =====
 let isAllWordsMode = false;
-let levelAllWords = [];           // Все слова уровня из файла docs/{level}.json
-let levelStudiedWords = {};       // Изученные слова для "Всех слов уровня"
-let levelCardWords = [];          // Слова для показа (не изученные)
-let levelCardIndex = 0;           // Текущий индекс
-let levelCardFlipped = false;     // Перевёрнута ли карточка
+let levelAllWords = [];
+let levelStudiedWords = {};
+let levelCardWords = [];
+let levelCardIndex = 0;
+let levelCardFlipped = false;
 let levelDirection = 'de_to_ru';
 let currentLevelForCards = 'A1';
 
@@ -34,7 +34,6 @@ function getLevelContainerKey(level) {
     return 'dm_level_studied_' + level;
 }
 
-// ===== ЗАГРУЗКА ПРОГРЕССА ДЛЯ УРОКА =====
 function loadLessonStudiedWords(level, lessonId) {
     const key = getLessonContainerKey(level, lessonId);
     try {
@@ -49,7 +48,6 @@ function loadLessonStudiedWords(level, lessonId) {
     }
 }
 
-// ===== СОХРАНЕНИЕ ПРОГРЕССА ДЛЯ УРОКА =====
 function saveLessonStudiedWords(level, lessonId) {
     const key = getLessonContainerKey(level, lessonId);
     try {
@@ -59,7 +57,6 @@ function saveLessonStudiedWords(level, lessonId) {
     }
 }
 
-// ===== ЗАГРУЗКА ПРОГРЕССА ДЛЯ УРОВНЯ (НОВЫЙ КОНТЕЙНЕР) =====
 function loadLevelStudiedWords(level) {
     const key = getLevelContainerKey(level);
     try {
@@ -74,7 +71,6 @@ function loadLevelStudiedWords(level) {
     }
 }
 
-// ===== СОХРАНЕНИЕ ПРОГРЕССА ДЛЯ УРОВНЯ (НОВЫЙ КОНТЕЙНЕР) =====
 function saveLevelStudiedWords(level) {
     const key = getLevelContainerKey(level);
     try {
@@ -84,7 +80,6 @@ function saveLevelStudiedWords(level) {
     }
 }
 
-// ===== ЗАГРУЗКА ВСЕХ СЛОВ УРОВНЯ ИЗ ФАЙЛА docs/{level}.json =====
 async function loadLevelWordsFromFile(level) {
     try {
         const response = await fetch(`docs/${level}.json`);
@@ -103,7 +98,6 @@ async function loadLevelWordsFromFile(level) {
 // НОВАЯ ЛОГИКА ДЛЯ "ВСЕХ СЛОВ УРОВНЯ" (КАРТОЧКИ)
 // ================================================================
 
-// ===== ВНЕШНИЙ ВЫЗОВ ДЛЯ РЕЖИМА "ВСЕ СЛОВА" =====
 window.loadAllWordsMode = async function(level) {
     console.log('🔄 loadAllWordsMode (КАРТОЧКИ) вызван для уровня:', level);
     isAllWordsMode = true;
@@ -132,7 +126,6 @@ window.loadAllWordsMode = async function(level) {
     showLevelCardsInterface();
 };
 
-// ===== ОБНОВЛЕНИЕ СПИСКА СЛОВ ДЛЯ ПОКАЗА =====
 function updateLevelCardWords() {
     levelCardWords = levelAllWords.filter(word => !levelStudiedWords[word.de]);
     if (levelCardWords.length === 0 && levelAllWords.length > 0) {
@@ -143,7 +136,6 @@ function updateLevelCardWords() {
     }
 }
 
-// ===== ПОКАЗАТЬ, ЧТО СЛОВ НЕТ =====
 function showLevelCardsEmpty() {
     const content = document.getElementById('content');
     if (!content) return;
@@ -160,7 +152,6 @@ function showLevelCardsEmpty() {
     updateCounter();
 }
 
-// ===== ПОСТРОЕНИЕ ИНТЕРФЕЙСА КАРТОЧЕК =====
 function showLevelCardsInterface() {
     const content = document.getElementById('content');
     if (!content) {
@@ -171,7 +162,6 @@ function showLevelCardsInterface() {
     buildLevelCardsHTML(content);
 }
 
-// ===== ПОСТРОЕНИЕ HTML ДЛЯ КАРТОЧЕК =====
 function buildLevelCardsHTML(container) {
     if (!container) {
         console.error('❌ buildLevelCardsHTML: container не передан');
@@ -189,7 +179,6 @@ function buildLevelCardsHTML(container) {
                     <button class="back-btn" onclick="window.renderLevel()" style="margin-top: 20px;">← НАЗАД</button>
                 </div>
             ` : `
-                <!-- Верхняя панель -->
                 <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; margin-bottom: 10px; flex-shrink: 0;">
                     <button class="back-btn" onclick="window.renderLevel()" style="padding: 8px 16px; background: #3B6FE0; color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; font-size: 13px;">
                         ← НАЗАД
@@ -202,91 +191,83 @@ function buildLevelCardsHTML(container) {
                     </div>
                 </div>
                 
-                <!-- Заголовок -->
                 <h2 style="margin: 5px 0 15px 0; flex-shrink: 0;">📚 Все слова уровня ${currentLevelForCards}</h2>
                 
-                <!-- Контейнер для карточек (относительное позиционирование для наложения) -->
-                <div id="levelCardsCardWrapper" style="flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 280px; position: relative; overflow: hidden; touch-action: none;">
+                <div id="levelCardsCardWrapper" style="flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 300px; position: relative; overflow: hidden; touch-action: none; padding: 5px 0;">
                     
-                    <!-- Следующая карточка (для анимации при свайпе) -->
                     <div id="levelCardsCardNext" 
                          style="
                             position: absolute;
-                            top: 0;
+                            top: 50%;
                             left: 0;
                             right: 0;
-                            bottom: 0;
+                            transform: translateY(-50%);
                             background: #FFFFFF; 
                             border-radius: 20px; 
                             box-shadow: 0 8px 24px rgba(0,0,0,0.12); 
                             max-width: 500px; 
                             width: 100%;
                             margin: 0 auto;
-                            min-height: 280px;
                             height: 280px;
                             display: flex; 
                             align-items: center; 
                             justify-content: center; 
                             text-align: center; 
-                            padding: 30px 20px;
+                            padding: 20px 30px;
                             z-index: 1;
                             opacity: 0;
-                            transform: translateX(0%) scale(0.95);
+                            transform: translateY(-50%) translateX(0%) scale(0.85);
                             transition: none;
                             touch-action: none;
                             user-select: none;
                             -webkit-user-select: none;
                             pointer-events: none;
+                            will-change: transform, opacity;
                          ">
-                        <div id="levelCardsCardNextText" style="font-size: 32px; font-weight: bold; color: #1A1A1A; word-break: break-word;"></div>
+                        <div id="levelCardsCardNextText" style="font-size: 28px; font-weight: bold; color: #1A1A1A; word-break: break-word; max-height: 220px; overflow: hidden;"></div>
                     </div>
                     
-                    <!-- Текущая карточка -->
                     <div id="levelCardsCard" 
                          style="
                             position: relative;
+                            z-index: 2;
                             background: #FFFFFF; 
                             border-radius: 20px; 
                             box-shadow: 0 8px 24px rgba(0,0,0,0.12); 
                             max-width: 500px; 
                             width: 100%;
-                            min-height: 280px;
                             height: 280px;
                             display: flex; 
                             align-items: center; 
                             justify-content: center; 
                             text-align: center; 
-                            padding: 30px 20px;
+                            padding: 20px 30px;
                             cursor: pointer;
-                            transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94), opacity 0.3s ease;
+                            transition: transform 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94), opacity 0.35s ease;
                             touch-action: none;
                             user-select: none;
                             -webkit-user-select: none;
-                            z-index: 2;
                             will-change: transform, opacity;
                          "
                          onclick="window._flipLevelCard()">
-                        <div id="levelCardsCardText" style="font-size: 32px; font-weight: bold; color: #1A1A1A; word-break: break-word;">
+                        <div id="levelCardsCardText" style="font-size: 28px; font-weight: bold; color: #1A1A1A; word-break: break-word; max-height: 220px; overflow: hidden;">
                             Загрузка...
                         </div>
                     </div>
                 </div>
                 
-                <!-- Подсказка под карточкой -->
-                <div id="levelCardsHint" style="font-size: 14px; color: #999; margin: 8px 0 12px 0; flex-shrink: 0;">
+                <div id="levelCardsHint" style="font-size: 14px; color: #999; margin: 6px 0 10px 0; flex-shrink: 0;">
                     👆 Нажмите на карточку, чтобы увидеть перевод
                 </div>
                 
-                <!-- Ряд 1: ИЗУЧЕНО, КОНТЕЙНЕР, ОЗВУЧИТЬ, ПЕРЕМЕШАТЬ -->
-                <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin: 4px 0; flex-shrink: 0;">
+                <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin: 2px 0; flex-shrink: 0;">
                     <button class="ctrl-btn" id="levelCardsStudyBtn" style="padding: 6px 14px; background: #4CAF50; color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; font-size: 12px;">✅ ИЗУЧЕНО</button>
                     <button class="ctrl-btn" id="levelCardsContainerBtn" style="padding: 6px 14px; background: #FF9800; color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; font-size: 12px;">📦 КОНТЕЙНЕР</button>
                     <button class="ctrl-btn" id="levelCardsSpeakBtn" style="padding: 6px 14px; background: #E8F0FE; border: 2px solid #D0D0D0; border-radius: 8px; cursor: pointer; font-weight: bold; font-size: 12px;">🔊 ОЗВУЧИТЬ</button>
                     <button class="ctrl-btn" id="levelCardsShuffleBtn" style="padding: 6px 14px; background: #9C27B0; color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; font-size: 12px;">🔄 ПЕРЕМЕШАТЬ</button>
                 </div>
                 
-                <!-- Ряд 2: ◀ НАЗАД, ВПЕРЕД ▶, ⏮ В НАЧАЛО -->
-                <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin: 4px 0 10px 0; flex-shrink: 0;">
+                <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin: 2px 0 10px 0; flex-shrink: 0;">
                     <button class="ctrl-btn" id="levelCardsPrevBtn" style="padding: 6px 14px; background: #E8F0FE; border: 2px solid #D0D0D0; border-radius: 8px; cursor: pointer; font-weight: bold; font-size: 12px;">◀ НАЗАД</button>
                     <button class="ctrl-btn" id="levelCardsNextBtn" style="padding: 6px 14px; background: #E8F0FE; border: 2px solid #D0D0D0; border-radius: 8px; cursor: pointer; font-weight: bold; font-size: 12px;">ВПЕРЕД ▶</button>
                     <button class="ctrl-btn" id="levelCardsResetStartBtn" style="padding: 6px 14px; background: #E8F0FE; border: 2px solid #D0D0D0; border-radius: 8px; cursor: pointer; font-weight: bold; font-size: 12px;">⏮ В НАЧАЛО</button>
@@ -300,8 +281,6 @@ function buildLevelCardsHTML(container) {
 
     if (!hasWords) return;
 
-    // ===== ПРИВЯЗКА ОБРАБОТЧИКОВ =====
-    
     const dirBtn = document.getElementById('levelCardsDirBtn');
     if (dirBtn) {
         dirBtn.addEventListener('click', function() {
@@ -326,13 +305,10 @@ function buildLevelCardsHTML(container) {
     document.getElementById('levelCardsNextBtn').addEventListener('click', levelNextCard);
     document.getElementById('levelCardsResetStartBtn').addEventListener('click', levelResetStart);
 
-    // ===== СВАЙП (только мобильные устройства) =====
     setupLevelCardsSwipe();
-
     showLevelCard();
 }
 
-// ===== НАСТРОЙКА СВАЙПА (ИСПРАВЛЕННАЯ ВЕРСИЯ) =====
 function setupLevelCardsSwipe() {
     const card = document.getElementById('levelCardsCard');
     const nextCard = document.getElementById('levelCardsCardNext');
@@ -352,7 +328,6 @@ function setupLevelCardsSwipe() {
     let startY = 0;
     let isDragging = false;
     let isSwiping = false;
-    let currentTranslate = 0;
     let isAnimating = false;
     
     function updateNextCard(direction) {
@@ -377,11 +352,10 @@ function setupLevelCardsSwipe() {
         startY = touch.clientY;
         isDragging = true;
         isSwiping = false;
-        currentTranslate = 0;
         
         nextCard.style.display = 'flex';
-        nextCard.style.opacity = '0.3';
-        nextCard.style.transform = 'scale(0.92)';
+        nextCard.style.opacity = '0';
+        nextCard.style.transform = 'translateY(-50%) translateX(0%) scale(0.85)';
         nextCard.style.transition = 'none';
         
         updateNextCard('next');
@@ -401,26 +375,24 @@ function setupLevelCardsSwipe() {
             const maxDrag = 150;
             let progress = deltaX / maxDrag;
             progress = Math.max(-1, Math.min(1, progress));
-            currentTranslate = progress * maxDrag;
             
-            const translateX = progress * 100;
-            const opacity = 1 - Math.abs(progress) * 0.3;
-            const scale = 1 - Math.abs(progress) * 0.05;
+            const translateX = progress * 120;
+            const opacity = 1 - Math.abs(progress) * 0.4;
+            const scale = 1 - Math.abs(progress) * 0.06;
             
             card.style.transition = 'none';
             card.style.transform = `translateX(${translateX}%) scale(${scale})`;
             card.style.opacity = opacity;
             
-            // ===== БОЛЬШЕ ИНТЕРВАЛ МЕЖДУ КАРТОЧКАМИ =====
-            const nextOpacity = 0.3 + Math.abs(progress) * 0.7;
-            const nextScale = 0.92 + Math.abs(progress) * 0.08;
+            const nextOpacity = Math.abs(progress) * 0.9;
+            const nextScale = 0.85 + Math.abs(progress) * 0.15;
             
             if (progress > 0) {
                 updateNextCard('prev');
-                nextCard.style.transform = `translateX(${-80 + (Math.abs(progress) * 80)}%) scale(${nextScale})`;
+                nextCard.style.transform = `translateY(-50%) translateX(${-90 + (Math.abs(progress) * 90)}%) scale(${nextScale})`;
             } else {
                 updateNextCard('next');
-                nextCard.style.transform = `translateX(${80 - (Math.abs(progress) * 80)}%) scale(${nextScale})`;
+                nextCard.style.transform = `translateY(-50%) translateX(${90 - (Math.abs(progress) * 90)}%) scale(${nextScale})`;
             }
             nextCard.style.opacity = nextOpacity;
             nextCard.style.transition = 'none';
@@ -441,12 +413,12 @@ function setupLevelCardsSwipe() {
             isAnimating = true;
             
             if (deltaX < 0) {
-                card.style.transition = 'transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94), opacity 0.3s ease';
-                card.style.transform = 'translateX(-110%) scale(0.9)';
+                card.style.transition = 'transform 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94), opacity 0.35s ease';
+                card.style.transform = 'translateX(-120%) scale(0.85)';
                 card.style.opacity = '0';
                 
-                nextCard.style.transition = 'transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94), opacity 0.3s ease';
-                nextCard.style.transform = 'translateX(0%) scale(1)';
+                nextCard.style.transition = 'transform 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94), opacity 0.35s ease';
+                nextCard.style.transform = 'translateY(-50%) translateX(0%) scale(1)';
                 nextCard.style.opacity = '1';
                 
                 setTimeout(() => {
@@ -455,7 +427,7 @@ function setupLevelCardsSwipe() {
                     showLevelCard();
                     
                     nextCard.style.transition = 'none';
-                    nextCard.style.transform = 'scale(0.92)';
+                    nextCard.style.transform = 'translateY(-50%) translateX(0%) scale(0.85)';
                     nextCard.style.opacity = '0';
                     nextCard.style.display = 'none';
                     
@@ -464,17 +436,14 @@ function setupLevelCardsSwipe() {
                     card.style.opacity = '1';
                     
                     isAnimating = false;
-                    setTimeout(() => {
-                        card.style.transition = 'transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94), opacity 0.3s ease';
-                    }, 50);
-                }, 320);
+                }, 380);
             } else if (deltaX > 30) {
-                card.style.transition = 'transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94), opacity 0.3s ease';
-                card.style.transform = 'translateX(110%) scale(0.9)';
+                card.style.transition = 'transform 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94), opacity 0.35s ease';
+                card.style.transform = 'translateX(120%) scale(0.85)';
                 card.style.opacity = '0';
                 
-                nextCard.style.transition = 'transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94), opacity 0.3s ease';
-                nextCard.style.transform = 'translateX(0%) scale(1)';
+                nextCard.style.transition = 'transform 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94), opacity 0.35s ease';
+                nextCard.style.transform = 'translateY(-50%) translateX(0%) scale(1)';
                 nextCard.style.opacity = '1';
                 
                 setTimeout(() => {
@@ -483,7 +452,7 @@ function setupLevelCardsSwipe() {
                     showLevelCard();
                     
                     nextCard.style.transition = 'none';
-                    nextCard.style.transform = 'scale(0.92)';
+                    nextCard.style.transform = 'translateY(-50%) translateX(0%) scale(0.85)';
                     nextCard.style.opacity = '0';
                     nextCard.style.display = 'none';
                     
@@ -492,10 +461,7 @@ function setupLevelCardsSwipe() {
                     card.style.opacity = '1';
                     
                     isAnimating = false;
-                    setTimeout(() => {
-                        card.style.transition = 'transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94), opacity 0.3s ease';
-                    }, 50);
-                }, 320);
+                }, 380);
             } else {
                 card.style.transition = 'transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94), opacity 0.3s ease';
                 card.style.transform = 'translateX(0%) scale(1)';
@@ -505,7 +471,7 @@ function setupLevelCardsSwipe() {
                 nextCard.style.opacity = '0';
                 setTimeout(() => {
                     nextCard.style.display = 'none';
-                    nextCard.style.transform = 'scale(0.92)';
+                    nextCard.style.transform = 'translateY(-50%) translateX(0%) scale(0.85)';
                 }, 250);
                 
                 isAnimating = false;
@@ -519,7 +485,7 @@ function setupLevelCardsSwipe() {
             nextCard.style.opacity = '0';
             setTimeout(() => {
                 nextCard.style.display = 'none';
-                nextCard.style.transform = 'scale(0.92)';
+                nextCard.style.transform = 'translateY(-50%) translateX(0%) scale(0.85)';
             }, 250);
             
             isAnimating = false;
@@ -539,19 +505,17 @@ function setupLevelCardsSwipe() {
         nextCard.style.opacity = '0';
         setTimeout(() => {
             nextCard.style.display = 'none';
-            nextCard.style.transform = 'scale(0.92)';
+            nextCard.style.transform = 'translateY(-50%) translateX(0%) scale(0.85)';
         }, 250);
     }, { passive: true });
 }
 
-// ===== ПОЛУЧИТЬ СЛОВО ПО ИНДЕКСУ (С ЗАЦИКЛИВАНИЕМ) =====
 function getLevelCardWord(index) {
     if (levelCardWords.length === 0) return null;
     const safeIndex = ((index % levelCardWords.length) + levelCardWords.length) % levelCardWords.length;
     return levelCardWords[safeIndex];
 }
 
-// ===== ПОЛУЧИТЬ ТЕКСТ ДЛЯ КАРТОЧКИ =====
 function getLevelCardDisplay(word, flipped) {
     if (!word) return '';
     const isDeToRu = levelDirection === 'de_to_ru';
@@ -563,7 +527,6 @@ function getLevelCardDisplay(word, flipped) {
     }
 }
 
-// ===== ПОКАЗ КАРТОЧКИ =====
 function showLevelCard() {
     const cardText = document.getElementById('levelCardsCardText');
     const counter = document.getElementById('levelCardsCounter');
@@ -603,14 +566,12 @@ function showLevelCard() {
     }
 }
 
-// ===== ПЕРЕВОРОТ КАРТОЧКИ =====
 window._flipLevelCard = function() {
     if (levelCardWords.length === 0) return;
     levelCardFlipped = !levelCardFlipped;
     showLevelCard();
 };
 
-// ===== КНОПКА: ИЗУЧЕНО =====
 function levelStudyWord() {
     if (levelCardWords.length === 0) return;
     
@@ -635,7 +596,6 @@ function levelStudyWord() {
     showLevelCard();
 }
 
-// ===== КНОПКА: ОЗВУЧИТЬ =====
 function levelSpeakWord() {
     if (levelCardWords.length === 0) return;
     const currentWord = getLevelCardWord(levelCardIndex);
@@ -646,7 +606,6 @@ function levelSpeakWord() {
     }
 }
 
-// ===== КНОПКА: ПЕРЕМЕШАТЬ =====
 function levelShuffleWords() {
     if (levelCardWords.length === 0) return;
     
@@ -660,7 +619,6 @@ function levelShuffleWords() {
     showLevelCard();
 }
 
-// ===== КНОПКА: НАЗАД =====
 function levelPrevCard() {
     if (levelCardWords.length === 0) return;
     levelCardIndex = (levelCardIndex - 1 + levelCardWords.length) % levelCardWords.length;
@@ -668,7 +626,6 @@ function levelPrevCard() {
     showLevelCard();
 }
 
-// ===== КНОПКА: ВПЕРЕД =====
 function levelNextCard() {
     if (levelCardWords.length === 0) return;
     levelCardIndex = (levelCardIndex + 1) % levelCardWords.length;
@@ -676,7 +633,6 @@ function levelNextCard() {
     showLevelCard();
 }
 
-// ===== КНОПКА: В НАЧАЛО =====
 function levelResetStart() {
     if (levelCardWords.length === 0) return;
     levelCardIndex = 0;
@@ -684,13 +640,11 @@ function levelResetStart() {
     showLevelCard();
 }
 
-// ===== ПОЛУЧЕНИЕ СПИСКА ИЗУЧЕННЫХ СЛОВ ДЛЯ УРОВНЯ =====
 function getLevelStudiedWordsList() {
     if (!levelAllWords) return [];
     return levelAllWords.filter(word => levelStudiedWords[word.de]);
 }
 
-// ===== КОНТЕЙНЕР ДЛЯ "ВСЕХ СЛОВ УРОВНЯ" =====
 function showLevelContainer() {
     const oldModal = document.getElementById('levelContainerModal');
     if (oldModal) oldModal.remove();

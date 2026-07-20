@@ -1,15 +1,9 @@
-// auth.js — Аутентификация с безопасной проверкой администратора
+// auth.js — Аутентификация (использует глобальную ADMIN_EMAIL из adminModal.js)
 
 let auth = null;
 let db = null;
 let currentUserData = null;
 let authInitialized = false;
-
-// ========== EMAIL АДМИНИСТРАТОРА ==========
-// Проверяем, не объявлена ли уже переменная
-if (typeof ADMIN_EMAIL === 'undefined') {
-    var ADMIN_EMAIL = "ygubert72@gmail.com";
-}
 
 // ========== ИНИЦИАЛИЗАЦИЯ FIREBASE ==========
 function initFirebase() {
@@ -106,6 +100,7 @@ window.hasAccessToLevel = function(level) {
         return level === 'A1';
     }
     
+    // Администратор имеет доступ ко всем уровням
     if (auth.currentUser && auth.currentUser.email === ADMIN_EMAIL) {
         return true;
     }

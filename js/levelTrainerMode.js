@@ -31,7 +31,7 @@ async function loadAllPhrasesForLevel(level) {
         return allPhrases;
         
     } catch(e) {
-        console.error('Ошибка загрузки фраз уровня:', e);
+        console.error('❌ Ошибка загрузки all_phrases.json:', e);
         // Если файл all_phrases.json не найден, пробуем загрузить по-старому (для обратной совместимости)
         console.log('🔄 Пробуем загрузить фразы по-старому (из отдельных уроков)...');
         return await loadAllPhrasesLegacy(level);
@@ -74,7 +74,7 @@ async function loadAllPhrasesLegacy(level) {
         console.log(`📚 Загружено ${allPhrases.length} фраз для уровня ${level} (по-старому)`);
         return allPhrases;
     } catch(e) {
-        console.error('Ошибка загрузки фраз уровня (legacy):', e);
+        console.error('❌ Ошибка загрузки фраз уровня (legacy):', e);
         return [];
     }
 }
@@ -136,7 +136,7 @@ async function loadAllVocabularyForLevelTrainer(level) {
         return allWords;
         
     } catch(e) {
-        console.error('Ошибка загрузки словаря уровня:', e);
+        console.error('❌ Ошибка загрузки словаря уровня:', e);
         return [];
     }
 }
@@ -162,7 +162,7 @@ function saveLevelTrainerStudied(level) {
     try {
         localStorage.setItem(key, JSON.stringify(levelTrainerStudied));
     } catch(e) {
-        console.warn('Ошибка сохранения контейнера фраз уровня:', e);
+        console.warn('⚠️ Ошибка сохранения контейнера фраз уровня:', e);
     }
 }
 
@@ -801,4 +801,4 @@ function showLevelTrainerContainer() {
 window.loadAllPhrasesMode = loadAllPhrasesMode;
 window.showLevelTrainerContainer = showLevelTrainerContainer;
 
-console.log('🧩 levelTrainerMode.js загружен (оптимизированная версия)');
+console.log('🧩 levelTrainerMode.js загружен (ОПТИМИЗИРОВАННАЯ ВЕРСИЯ)');

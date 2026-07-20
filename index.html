@@ -150,23 +150,49 @@ console.log('✅ Firebase инициализирован');
 function closeMobileMenu() {
     const menu = document.getElementById('mobileMenu');
     const overlay = document.getElementById('menuOverlay');
-    if (menu) menu.classList.remove('open');
-    if (overlay) overlay.classList.remove('show');
+    if (menu) {
+        menu.classList.remove('open');
+        menu.style.transform = 'translateX(-100%)';
+        menu.style.visibility = 'hidden';
+    }
+    if (overlay) {
+        overlay.classList.remove('show');
+        overlay.style.opacity = '0';
+        overlay.style.visibility = 'hidden';
+    }
     document.body.style.overflow = '';
+}
+
+function openMobileMenu() {
+    const menu = document.getElementById('mobileMenu');
+    const overlay = document.getElementById('menuOverlay');
+    if (menu) {
+        menu.classList.add('open');
+        menu.style.transform = 'translateX(0)';
+        menu.style.visibility = 'visible';
+    }
+    if (overlay) {
+        overlay.classList.add('show');
+        overlay.style.opacity = '1';
+        overlay.style.visibility = 'visible';
+    }
+    document.body.style.overflow = 'hidden';
 }
 
 // Открытие меню
 document.getElementById('hamburgerBtn').onclick = function() {
-    document.getElementById('mobileMenu').classList.add('open');
-    document.getElementById('menuOverlay').classList.add('show');
-    document.body.style.overflow = 'hidden';
+    openMobileMenu();
 };
 
 // Закрытие через крестик
-document.getElementById('closeMenuBtn').onclick = closeMobileMenu;
+document.getElementById('closeMenuBtn').onclick = function() {
+    closeMobileMenu();
+};
 
 // Закрытие через оверлей
-document.getElementById('menuOverlay').onclick = closeMobileMenu;
+document.getElementById('menuOverlay').onclick = function() {
+    closeMobileMenu();
+};
 
 // ===== Закрытие меню при клике на любую кнопку внутри =====
 document.querySelectorAll('#mobileMenu .btn, #mobileMenu .btn-level, #mobileMenu .btn-login, #mobileMenu .share-btn').forEach(function(btn) {
@@ -175,7 +201,7 @@ document.querySelectorAll('#mobileMenu .btn, #mobileMenu .btn-level, #mobileMenu
     });
 });
 
-// Также закрываем при клике на кнопки в userInfoMobile (Выйти, Оплатить премиум)
+// Также закрываем при клике на кнопки в userInfoMobile
 document.addEventListener('click', function(e) {
     if (e.target.closest('#userInfoMobile button')) {
         setTimeout(closeMobileMenu, 150);

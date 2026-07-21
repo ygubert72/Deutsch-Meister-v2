@@ -24,6 +24,17 @@ function copyAssetsPlugin() {
         copyDir(srcDir, destDir);
         console.log(`✅ Папка ${folder} скопирована в dist`);
       }
+      
+      // ===== НОВОЕ: Копируем корневые файлы =====
+      const rootFiles = ['sw.js', 'manifest.json', '.nojekyll'];
+      for (const file of rootFiles) {
+        if (existsSync(file)) {
+          copyFileSync(file, `dist/${file}`);
+          console.log(`✅ ${file} скопирован в dist`);
+        } else {
+          console.log(`⚠️ ${file} не найден, пропускаем`);
+        }
+      }
     }
   };
 }

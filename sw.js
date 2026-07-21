@@ -6,7 +6,6 @@ const CACHE_NAME = `deutsch-meister-${APP_VERSION}`;
 const STATIC_CACHE = `static-${APP_VERSION}`;
 
 // Файлы, которые кешируем при установке
-// ВНИМАНИЕ: admin.html НЕ кешируется по соображениям безопасности!
 const STATIC_ASSETS = [
   '/Deutsch-Meister-v2/',
   '/Deutsch-Meister-v2/index.html',
@@ -20,7 +19,6 @@ const STATIC_ASSETS = [
   '/Deutsch-Meister-v2/js/grammarMode.js',
   '/Deutsch-Meister-v2/js/app.js',
   '/Deutsch-Meister-v2/js/auth.js',
-  '/Deutsch-Meister-v2/js/userService.js',
   '/Deutsch-Meister-v2/js/activityTracker.js',
   '/Deutsch-Meister-v2/js/adminModal.js',
   '/Deutsch-Meister-v2/js/dictationMode.js',
@@ -32,9 +30,8 @@ const STATIC_ASSETS = [
   '/Deutsch-Meister-v2/js/shareModal.js',
   '/Deutsch-Meister-v2/js/speak.js',
   '/Deutsch-Meister-v2/js/trainerMode.js',
-  '/Deutsch-Meister-v2/js/vocabularyMode.js',
-  '/Deutsch-Meister-v2/js/voiceSelector.js',
   '/Deutsch-Meister-v2/js/welcome.js',
+  '/Deutsch-Meister-v2/js/levelTrainerMode.js',
   '/Deutsch-Meister-v2/icons/icon.svg',
   '/Deutsch-Meister-v2/icons/icon-192x192.png',
   '/Deutsch-Meister-v2/icons/icon-512x512.png'

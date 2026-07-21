@@ -235,6 +235,7 @@ function showLevelTrainerInterface() {
     const deWords = levelTrainerCurrentSentence.de.replace(/[.,!?;:]/g, '').split(/\s+/);
     const ruWords = levelTrainerCurrentSentence.ru.replace(/[.,!?;:]/g, '').split(/\s+/);
     
+    // ===== ИСПРАВЛЕНО: правильные слова с уникальными ID =====
     const correctWords = deWords.map((w, i) => ({
         display: isRuToDe ? w : (ruWords[i] || w),
         de: w,
@@ -243,30 +244,50 @@ function showLevelTrainerInterface() {
         originalIndex: i,
         id: ++_wordIdCounter
     }));
+
+    // ===== ИСПРАВЛЕНО: для дистракторов используем слова на нужном языке =====
+    const allVocabWords = levelTrainerVocabCache[levelTrainerCurrentLevel] || [];
+    let allDistractorWords = [];
     
-    const allWords = levelTrainerVocabCache[levelTrainerCurrentLevel] || [];
-    const shuffledAll = [...allWords];
-    for (let i = shuffledAll.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [shuffledAll[i], shuffledAll[j]] = [shuffledAll[j], shuffledAll[i]];
+    if (isRuToDe) {
+        // Режим Ru → De: дистракторы — немецкие слова
+        allDistractorWords = allVocabWords.map(w => ({
+            display: w.de,
+            de: w.de,
+            ru: w.ru || w.de,
+            isCorrect: false
+        }));
+    } else {
+        // Режим De → Ru: дистракторы — русские слова
+        allDistractorWords = allVocabWords.map(w => ({
+            display: w.ru || w.de,
+            de: w.de,
+            ru: w.ru || w.de,
+            isCorrect: false
+        }));
     }
-    const correctSet = new Set(deWords.map(w => w.toLowerCase()));
-    const distractors = shuffledAll
+
+    // Перемешиваем дистракторы
+    const shuffledDistractors = [...allDistractorWords];
+    for (let i = shuffledDistractors.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [shuffledDistractors[i], shuffledDistractors[j]] = [shuffledDistractors[j], shuffledDistractors[i]];
+    }
+
+    // Множество правильных слов (для исключения)
+    const correctSet = new Set(
+        correctWords.map(w => w.display.toLowerCase().replace(/[.,!?;:]/g, ''))
+    );
+
+    // Фильтруем дистракторы: убираем те, что совпадают с правильными словами
+    const filteredDistractors = shuffledDistractors
         .filter(w => {
-            const key = w.de.toLowerCase().replace(/[.,!?;:]/g, '');
+            const key = w.display.toLowerCase().replace(/[.,!?;:]/g, '');
             return !correctSet.has(key) && key.length > 0;
         })
         .slice(0, 12 - deWords.length);
-    let finalDistractors = [...distractors];
-    if (finalDistractors.length < 12 - deWords.length && allWords.length > deWords.length * 2) {
-        const remaining = shuffledAll
-            .filter(w => {
-                const key = w.de.toLowerCase().replace(/[.,!?;:]/g, '');
-                return !correctSet.has(key) && !finalDistractors.some(d => d.de === w.de);
-            });
-        finalDistractors = finalDistractors.concat(remaining.slice(0, 12 - deWords.length - finalDistractors.length));
-    }
-    
+
+    // ===== ИСПРАВЛЕНО: формируем список слов для выбора с уникальными ID =====
     let finalAll = [];
     correctWords.forEach(w => {
         finalAll.push({
@@ -274,12 +295,14 @@ function showLevelTrainerInterface() {
             id: ++_wordIdCounter
         });
     });
+
     const maxTotal = 12;
     const needed = Math.max(0, maxTotal - correctWords.length);
-    const selectedDistractors = finalDistractors.slice(0, needed);
+    const selectedDistractors = filteredDistractors.slice(0, needed);
+
     selectedDistractors.forEach(d => {
         finalAll.push({
-            display: isRuToDe ? d.de : d.ru,
+            display: d.display,
             de: d.de,
             ru: d.ru,
             isCorrect: false,
@@ -287,11 +310,15 @@ function showLevelTrainerInterface() {
             id: ++_wordIdCounter
         });
     });
-    while (finalAll.length < maxTotal && allWords.length > 0) {
-        const extraWord = allWords.find(w => !finalAll.some(f => f.de === w.de));
+
+    // Если всё ещё не хватает слов, добавляем случайные из оставшихся
+    while (finalAll.length < maxTotal && allDistractorWords.length > 0) {
+        const extraWord = allDistractorWords.find(w => 
+            !finalAll.some(f => f.display === w.display)
+        );
         if (extraWord) {
             finalAll.push({
-                display: isRuToDe ? extraWord.de : extraWord.ru,
+                display: extraWord.display,
                 de: extraWord.de,
                 ru: extraWord.ru,
                 isCorrect: false,
@@ -302,13 +329,13 @@ function showLevelTrainerInterface() {
             break;
         }
     }
-    
+
     levelTrainerAvailableWords = finalAll;
     for (let i = levelTrainerAvailableWords.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
         [levelTrainerAvailableWords[i], levelTrainerAvailableWords[j]] = [levelTrainerAvailableWords[j], levelTrainerAvailableWords[i]];
     }
-    
+
     levelTrainerSelectedWords = [];
     levelTrainerActiveWords = {};
     levelTrainerAvailableWords.forEach(w => {
@@ -316,13 +343,13 @@ function showLevelTrainerInterface() {
     });
     levelTrainerHintIndex = 0;
     levelTrainerHintWords = deWords;
-    
+
     const questionText = isRuToDe ? levelTrainerCurrentSentence.ru : levelTrainerCurrentSentence.de;
     const hasWords = levelTrainerSelectedWords.length > 0;
     const displayText = levelTrainerSelectedWords.map(w => w.display).join(' ') || 'Нажмите на слова, чтобы собрать предложение';
     const textColor = hasWords ? '#1A1A1A' : '#CCCCCC';
     const fontWeight = hasWords ? 'bold' : 'normal';
-    
+
     let html = `
         <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; margin-bottom: 15px;">
             <button class="back-btn" onclick="renderLevel()" style="padding: 8px 16px; background: #3B6FE0; color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: bold;">
@@ -414,7 +441,7 @@ function attachLevelTrainerEvents() {
             showLevelTrainerInterface();
         });
     }
-    
+
     // Контейнер со словами — используем делегирование
     const wordsContainer = document.getElementById('levelTrainerWordsContainer');
     if (wordsContainer) {
@@ -431,7 +458,7 @@ function attachLevelTrainerEvents() {
             updateLevelTrainerDisplay();
         });
     }
-    
+
     const undoBtn = document.getElementById('levelTrainerUndoBtn');
     if (undoBtn) {
         undoBtn.addEventListener('click', function() {
@@ -442,7 +469,7 @@ function attachLevelTrainerEvents() {
             }
         });
     }
-    
+
     const resetBtn = document.getElementById('levelTrainerResetBtn');
     if (resetBtn) {
         resetBtn.addEventListener('click', function() {
@@ -455,7 +482,7 @@ function attachLevelTrainerEvents() {
             levelTrainerHintIndex = 0;
         });
     }
-    
+
     const checkBtn = document.getElementById('levelTrainerCheckBtn');
     if (checkBtn) {
         checkBtn.addEventListener('click', function() {
@@ -505,7 +532,7 @@ function attachLevelTrainerEvents() {
             }
         });
     }
-    
+
     const speakBtn = document.getElementById('levelTrainerSpeakBtn');
     if (speakBtn) {
         speakBtn.addEventListener('click', function() {
@@ -514,7 +541,7 @@ function attachLevelTrainerEvents() {
             }
         });
     }
-    
+
     const shuffleBtn = document.getElementById('levelTrainerShuffleBtn');
     if (shuffleBtn) {
         shuffleBtn.addEventListener('click', function() {
@@ -529,7 +556,7 @@ function attachLevelTrainerEvents() {
             console.log('🔄 Фразы уровня перемешаны');
         });
     }
-    
+
     const hintBtn = document.getElementById('levelTrainerHintBtn');
     if (hintBtn) {
         hintBtn.addEventListener('click', function() {
@@ -543,7 +570,7 @@ function attachLevelTrainerEvents() {
             }
         });
     }
-    
+
     const studyBtn = document.getElementById('levelTrainerStudyBtn');
     if (studyBtn) {
         studyBtn.addEventListener('click', function() {
@@ -565,7 +592,7 @@ function attachLevelTrainerEvents() {
             }
         });
     }
-    
+
     const containerBtn = document.getElementById('levelTrainerContainerBtn');
     if (containerBtn) {
         containerBtn.addEventListener('click', function() {
@@ -577,7 +604,7 @@ function attachLevelTrainerEvents() {
             showLevelTrainerContainer();
         });
     }
-    
+
     const prevBtn = document.getElementById('levelTrainerPrevBtn');
     if (prevBtn) {
         prevBtn.addEventListener('click', function() {
@@ -588,7 +615,7 @@ function attachLevelTrainerEvents() {
             }
         });
     }
-    
+
     const nextBtn = document.getElementById('levelTrainerNextBtn');
     if (nextBtn) {
         nextBtn.addEventListener('click', function() {
@@ -599,7 +626,7 @@ function attachLevelTrainerEvents() {
             }
         });
     }
-    
+
     const resetStartBtn = document.getElementById('levelTrainerResetStartBtn');
     if (resetStartBtn) {
         resetStartBtn.addEventListener('click', function() {
@@ -686,7 +713,7 @@ function showLevelTrainerContainer() {
 
     const itemsContainer = document.createElement('div');
     itemsContainer.style.cssText = 'overflow-y: auto; flex: 1; padding: 5px 0;';
-    
+
     if (studied.length === 0) {
         itemsContainer.innerHTML = `<div style="text-align:center; padding:40px; color:#999;">📭 Контейнер пуст</div>`;
     } else {

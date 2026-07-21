@@ -1,279 +1,1106 @@
 [
-  {"de":"Wenn ich Zeit habe, lerne ich Deutsch.","ru":"Когда у меня есть время, я учу немецкий."},
-  {"de":"Als ich jung war, ging ich zur Schule.","ru":"Когда я был молодым, я ходил в школу."},
-  {"de":"Wenn ich müde bin, trinke ich Kaffee.","ru":"Когда я устаю, я пью кофе."},
-  {"de":"Als ich in Berlin war, besuchte ich das Museum.","ru":"Когда я был в Берлине, я посетил музей."},
-  {"de":"Die Grundschule ist für Kinder von 6 bis 10 Jahren.","ru":"Начальная школа для детей от 6 до 10 лет."},
-  {"de":"Ich habe die Prüfung bestanden.","ru":"Я сдал экзамен."},
-  {"de":"Ich habe mein Abitur gemacht.","ru":"Я сдал аттестат зрелости."},
-  {"de":"Meine Noten sind gut.","ru":"Мои оценки хорошие."},
-  {"de":"Ich besuche die Vorlesung.","ru":"Я посещаю лекцию."},
-  {"de":"Ich habe viele Hausaufgaben.","ru":"У меня много домашних заданий."},
-  {"de":"Der Dozent erklärt das Thema.","ru":"Преподаватель объясняет тему."},
-  {"de":"Wir haben heute ein Seminar.","ru":"У нас сегодня семинар."},
-  {"de":"Ich studiere an der Universität.","ru":"Я учусь в университете."},
-  {"de":"Das Fach Deutsch ist interessant.","ru":"Предмет немецкий интересный."},
-  {"de":"Die Berufsausbildung ist wichtig.","ru":"Профессиональное обучение важно."},
-  {"de":"Nachdem ich mein Studium abgeschlossen hatte, suchte ich einen Job.","ru":"После того как я закончил учёбу, я искал работу."},
-  {"de":"Ich hatte vorher in einer Firma gearbeitet.","ru":"Я раньше работал в фирме."},
-  {"de":"Nachdem sie die Fortbildung gemacht hatte, bekam sie eine neue Stelle.","ru":"После того как она прошла повышение квалификации, она получила новую должность."},
-  {"de":"Ich habe mich bei einer großen Firma beworben.","ru":"Я подал заявку в большую фирму."},
-  {"de":"Mein Bruder hat den Job gewechselt.","ru":"Мой брат сменил работу."},
-  {"de":"Ich hatte schon viele Bewerbungen geschrieben.","ru":"Я уже написал много заявок."},
-  {"de":"Ich habe mit einem kleinen Unternehmen zusammengearbeitet.","ru":"Я сотрудничал с маленьким предприятием."},
-  {"de":"Die Stelle ist bei einer großen Firma.","ru":"Должность в большой фирме."},
-  {"de":"Ich habe ein Vorstellungsgespräch.","ru":"У меня собеседование."},
-  {"de":"Mein Gehalt ist gut.","ru":"Моя зарплата хорошая."},
-  {"de":"Ich habe einen Arbeitsvertrag unterschrieben.","ru":"Я подписал трудовой договор."},
-  {"de":"Meine Arbeitszeit ist flexibel.","ru":"Моё рабочее время гибкое."},
-  {"de":"Ich arbeite in einem Team.","ru":"Я работаю в команде."},
-  {"de":"Wir haben ein neues Projekt.","ru":"У нас новый проект."},
-  {"de":"Mein Chef ist sehr nett.","ru":"Мой начальник очень милый."},
-  {"de":"Sehr geehrte Damen und Herren,","ru":"Уважаемые дамы и господа,"},
-  {"de":"Hiermit bewerbe ich mich auf die Stelle als Ingenieur.","ru":"Настоящим я подаю заявку на должность инженера."},
-  {"de":"Ich habe Berufserfahrung als Lehrer.","ru":"У меня есть профессиональный опыт учителя."},
-  {"de":"Ich wohne in Berlin.","ru":"Я живу в Берлине."},
-  {"de":"Ich verfüge über gute Deutschkenntnisse.","ru":"Я обладаю хорошими знаниями немецкого языка."},
-  {"de":"Mit freundlichen Grüßen","ru":"С уважением"},
-  {"de":"Ich habe meinen Lebenslauf beigefügt.","ru":"Я приложил своё резюме."},
-  {"de":"Ich habe die Bewerbung unterschrieben.","ru":"Я подписал заявку."},
-  {"de":"Meine Fähigkeiten sind gut.","ru":"Мои навыки хорошие."},
-  {"de":"Ich habe gestern Fußball gespielt.","ru":"Я вчера играл в футбол."},
-  {"de":"Sehr geehrte Frau Müller,","ru":"Уважаемая госпожа Мюллер,"},
-  {"de":"Ich bewerbe mich auf die Stelle als Verkäufer.","ru":"Я подаю заявку на должность продавца."},
-  {"de":"Ich habe viel Berufserfahrung.","ru":"У меня большой профессиональный опыт."},
-  {"de":"Ich habe den Film gesehen.","ru":"Я видел фильм."},
-  {"de":"Ich verfüge über gute Englischkenntnisse.","ru":"Я обладаю хорошими знаниями английского языка."},
-  {"de":"Die Anlage enthält meinen Lebenslauf.","ru":"Приложение содержит моё резюме."},
-  {"de":"Ich habe das Buch gelesen.","ru":"Я прочитал книгу."},
-  {"de":"Sehr geehrter Herr Schmidt,","ru":"Уважаемый господин Шмидт,"},
-  {"de":"Ich habe mich bei einer großen Firma beworben.","ru":"Я подал заявку в большую фирму."},
-  {"de":"Meine Kenntnisse sind sehr gut.","ru":"Мои знания очень хорошие."},
-  {"de":"Nachdem ich das Studium abgeschlossen hatte, reiste ich durch Europa.","ru":"После того как я закончил учёбу, я путешествовал по Европе."},
-  {"de":"Ich habe die Hausaufgaben gemacht.","ru":"Я сделал домашние задания."},
-  {"de":"Ich habe meine Interessen im Lebenslauf erwähnt.","ru":"Я упомянул свои интересы в резюме."},
-  {"de":"Ich habe das Anschreiben geschrieben.","ru":"Я написал сопроводительное письмо."},
-  {"de":"Mein Bruder hat sich auf die Stelle beworben.","ru":"Мой брат подал заявку на должность."},
-  {"de":"Ich habe die Zeitung gelesen.","ru":"Я прочитал газету."},
-  {"de":"Ich verfüge über gute Computerkenntnisse.","ru":"Я обладаю хорошими знаниями компьютера."},
-  {"de":"Nachdem ich die Bewerbung geschrieben hatte, schickte ich sie ab.","ru":"После того как я написал заявку, я отправил её."},
-  {"de":"Als ich jung war, machte ich ein Praktikum.","ru":"Когда я был молодым, я проходил стажировку."},
-  {"de":"Meine Eltern wohnen in München.","ru":"Мои родители живут в Мюнхене."},
-  {"de":"Ich habe den Lebenslauf beigefügt.","ru":"Я приложил резюме."},
-  {"de":"Wenn ich Urlaub habe, reise ich gern.","ru":"Когда у меня отпуск, я люблю путешествовать."},
-  {"de":"Ich habe die Prüfung bestanden, deshalb bin ich glücklich.","ru":"Я сдал экзамен, поэтому я счастлив."},
-  {"de":"Ich habe mich für eine Fortbildung angemeldet.","ru":"Я записался на повышение квалификации."},
-  {"de":"Sehr geehrte Damen und Herren, hiermit bewerbe ich mich.","ru":"Уважаемые дамы и господа, настоящим я подаю заявку."},
-  {"de":"Ich werde nächstes Jahr nach Deutschland reisen.","ru":"Я поеду в Германию в следующем году."},
-  {"de":"Ich habe meine Bewerbung per E-Mail geschickt.","ru":"Я отправил свою заявку по электронной почте."},
-  {"de":"Meine Fähigkeiten umfassen Teamarbeit und Kommunikation.","ru":"Мои навыки включают работу в команде и общение."},
-  {"de":"Als ich jung war, wollte ich Arzt werden.","ru":"Когда я был молодым, я хотел стать врачом."},
-  {"de":"Ich habe im Restaurant gegessen.","ru":"Я ел в ресторане."},
-  {"de":"Ich habe die Stelle gefunden, die ich wollte.","ru":"Я нашёл должность, которую хотел."},
-  {"de":"Mit freundlichen Grüßen aus Berlin!","ru":"С уважением из Берлина!"},
-  {"de":"Mein Vater hat mir bei der Bewerbung geholfen.","ru":"Мой отец помог мне с заявкой."},
-  {"de":"Ich habe die Bewerbung per Post geschickt.","ru":"Я отправил заявку по почте."},
-  {"de":"Wenn ich Zeit habe, lese ich gern Bücher.","ru":"Когда у меня есть время, я люблю читать книги."},
-  {"de":"Ich habe meine Unterschrift auf das Dokument gesetzt.","ru":"Я поставил свою подпись на документе."},
-  {"de":"Nachdem ich die Bewerbung abgeschickt hatte, wartete ich auf eine Antwort.","ru":"После того как я отправил заявку, я ждал ответа."},
-  {"de":"Das Auto wird repariert.","ru":"Машину ремонтируют."},
-  {"de":"Die Tür wird um 8 Uhr geöffnet.","ru":"Дверь открывают в 8 часов."},
-  {"de":"Hier wird Brot verkauft.","ru":"Здесь продают хлеб."},
-  {"de":"Das Produkt wird in Deutschland hergestellt.","ru":"Продукт производится в Германии."},
-  {"de":"Die Wohnung wird gereinigt.","ru":"Квартиру убирают."},
-  {"de":"Die Lieferung wird morgen geliefert.","ru":"Доставка будет завтра."},
-  {"de":"Diese Schuhe werden in Italien produziert.","ru":"Эти туфли производятся в Италии."},
-  {"de":"Das Haus wird gebaut.","ru":"Дом строится."},
-  {"de":"Die Zeitung wird jeden Tag gelesen.","ru":"Газету читают каждый день."},
-  {"de":"Der Service wird verbessert.","ru":"Обслуживание улучшается."},
-  {"de":"Das Fenster wird geschlossen.","ru":"Окно закрывают."},
-  {"de":"Hier werden Autos produziert.","ru":"Здесь производят машины."},
-  {"de":"Die Produktion wird kontrolliert.","ru":"Производство контролируется."},
-  {"de":"Die Wohnung wird geputzt.","ru":"Квартиру убирают."},
-  {"de":"Die Ware wird geliefert.","ru":"Товар доставляется."},
-  {"de":"Das Problem wird gelöst.","ru":"Проблема решается."},
-  {"de":"Die Brücke wird gebaut.","ru":"Мост строится."},
-  {"de":"Hier wird Kaffee verkauft.","ru":"Здесь продают кофе."},
-  {"de":"Die Maschine wird repariert.","ru":"Машину ремонтируют."},
-  {"de":"Die Straße wird gereinigt.","ru":"Улицу чистят."},
-  {"de":"Der Brief wird geschrieben.","ru":"Письмо пишется."},
-  {"de":"Das Essen wird gekocht.","ru":"Еду готовят."},
-  {"de":"Die Produkte werden verkauft.","ru":"Продукты продаются."},
-  {"de":"Das Auto wird gewaschen.","ru":"Машину моют."},
-  {"de":"Hier wird Englisch gesprochen.","ru":"Здесь говорят по-английски."},
-  {"de":"Die Lieferung wird bearbeitet.","ru":"Доставка обрабатывается."},
-  {"de":"Die Wohnung wird vermietet.","ru":"Квартира сдаётся."},
-  {"de":"Wenn ich nach Hause komme, esse ich zu Abend.","ru":"Когда я прихожу домой, я ужинаю."},
-  {"de":"Das Fenster wird geputzt.","ru":"Окно моют."},
-  {"de":"Mein Vater hat mir geholfen.","ru":"Мой отец помог мне."},
-  {"de":"Die Arbeit wird gemacht.","ru":"Работа делается."},
-  {"de":"Hier werden Bücher verkauft.","ru":"Здесь продают книги."},
-  {"de":"Das Haus wird renoviert.","ru":"Дом ремонтируется."},
-  {"de":"Der Müll muss getrennt werden.","ru":"Мусор должен быть разделён."},
-  {"de":"Die Umwelt kann geschützt werden.","ru":"Окружающая среда может быть защищена."},
-  {"de":"Die Energie soll gespart werden.","ru":"Энергию следует экономить."},
-  {"de":"Das Problem will gelöst werden.","ru":"Проблему хотят решить."},
-  {"de":"Plastik sollte vermieden werden.","ru":"Пластика следует избегать."},
-  {"de":"Mehr Recycling muss gemacht werden.","ru":"Должно быть больше переработки."},
-  {"de":"Die Umweltverschmutzung muss reduziert werden.","ru":"Загрязнение окружающей среды должно быть сокращено."},
-  {"de":"Der Klimawandel kann nicht ignoriert werden.","ru":"Изменение климата не может быть проигнорировано."},
-  {"de":"Die Abfälle sollen recycelt werden.","ru":"Отходы должны быть переработаны."},
-  {"de":"Erneuerbare Energien sollten gefördert werden.","ru":"Возобновляемая энергия должна поддерживаться."},
-  {"de":"Das Auto muss repariert werden.","ru":"Машина должна быть отремонтирована."},
-  {"de":"Die Produktion kann verbessert werden.","ru":"Производство может быть улучшено."},
-  {"de":"Der Müll soll getrennt werden.","ru":"Мусор должен быть разделён."},
-  {"de":"Die Energie kann gespart werden.","ru":"Энергия может быть сэкономлена."},
-  {"de":"Die Umwelt muss geschützt werden.","ru":"Окружающая среда должна быть защищена."},
-  {"de":"Mehr Bäume sollten gepflanzt werden.","ru":"Больше деревьев должно быть посажено."},
-  {"de":"Die Verschmutzung kann reduziert werden.","ru":"Загрязнение может быть сокращено."},
-  {"de":"Plastiktüten sollten vermieden werden.","ru":"Пластиковых пакетов следует избегать."},
-  {"de":"Das Recycling muss verbessert werden.","ru":"Переработка должна быть улучшена."},
-  {"de":"Die Emissionen sollen reduziert werden.","ru":"Выбросы должны быть сокращены."},
-  {"de":"Die Lebensmittel können nicht verschwendet werden.","ru":"Продукты не должны быть выброшены."},
-  {"de":"Die Umweltverschmutzung muss bekämpft werden.","ru":"Загрязнение окружающей среды должно быть преодолено."},
-  {"de":"Mehr Produkte sollten lokal hergestellt werden.","ru":"Больше продуктов должно производиться локально."},
-  {"de":"Der Müll kann recycelt werden.","ru":"Мусор может быть переработан."},
-  {"de":"Die Energie soll nicht verschwendet werden.","ru":"Энергия не должна быть растрачена."},
-  {"de":"Die Natur muss geschützt werden.","ru":"Природа должна быть защищена."},
-  {"de":"Die Abfälle können recycelt werden.","ru":"Отходы могут быть переработаны."},
-  {"de":"Der Klimawandel sollte ernst genommen werden.","ru":"Изменение климата следует воспринимать серьёзно."},
-  {"de":"Die Produktion kann automatisiert werden.","ru":"Производство может быть автоматизировано."},
-  {"de":"Hier werden Elektroautos produziert.","ru":"Здесь производят электромобили."},
-  {"de":"Die Umweltverschmutzung muss gestoppt werden.","ru":"Загрязнение окружающей среды должно быть остановлено."},
-  {"de":"Ich gehe ins Kino, obwohl ich müde bin.","ru":"Я иду в кино, хотя я устал."},
-  {"de":"Obwohl es regnet, gehe ich spazieren.","ru":"Хотя идёт дождь, я иду гулять."},
-  {"de":"Ich helfe im Verein, obwohl ich wenig Zeit habe.","ru":"Я помогаю в обществе, хотя у меня мало времени."},
-  {"de":"Sie engagiert sich für die Umwelt, weil es ihr wichtig ist.","ru":"Она участвует в защите окружающей среды, потому что это ей важно."},
-  {"de":"Obwohl er müde war, half er bei dem Projekt.","ru":"Хотя он устал, он помогал с проектом."},
-  {"de":"Ich spende Geld, obwohl ich nicht viel verdiene.","ru":"Я жертвую деньги, хотя я мало зарабатываю."},
-  {"de":"Die Freiwilligenarbeit macht mir Spaß, obwohl sie anstrengend ist.","ru":"Волонтёрская работа доставляет мне удовольствие, хотя она утомительна."},
-  {"de":"Ich unterstütze die Organisation, weil ich helfen möchte.","ru":"Я поддерживаю организацию, потому что хочу помочь."},
-  {"de":"Obwohl ich wenig Zeit habe, engagiere ich mich im Verein.","ru":"Хотя у меня мало времени, я участвую в обществе."},
-  {"de":"Sie macht Freiwilligenarbeit, obwohl sie einen Job hat.","ru":"Она занимается волонтёрской работой, хотя у неё есть работа."},
-  {"de":"Das Projekt wird unterstützt, weil es wichtig ist.","ru":"Проект поддерживается, потому что он важен."},
-  {"de":"Obwohl ich müde war, habe ich die Arbeit gemacht.","ru":"Хотя я устал, я сделал работу."},
-  {"de":"Die Spende hilft den Kindern.","ru":"Пожертвование помогает детям."},
-  {"de":"Ich engagiere mich für die Umwelt, obwohl es anstrengend ist.","ru":"Я участвую в защите окружающей среды, хотя это утомительно."},
-  {"de":"Der Verein hilft den Obdachlosen, weil es wichtig ist.","ru":"Общество помогает бездомным, потому что это важно."},
-  {"de":"Obwohl er krank war, kam er zur Arbeit.","ru":"Хотя он был болен, он пришёл на работу."},
-  {"de":"Die Organisation braucht Hilfe, weil sie klein ist.","ru":"Организация нуждается в помощи, потому что она маленькая."},
-  {"de":"Ich spende regelmäßig, obwohl ich nicht reich bin.","ru":"Я регулярно жертвую, хотя я не богат."},
-  {"de":"Obwohl es teuer ist, kaufe ich das Auto.","ru":"Хотя это дорого, я покупаю машину."},
-  {"de":"Die Sozialarbeit ist wichtig, weil sie den Menschen hilft.","ru":"Социальная работа важна, потому что она помогает людям."},
-  {"de":"Obwohl er wenig Geld hat, spendet er.","ru":"Хотя у него мало денег, он жертвует."},
-  {"de":"Die Hilfe wird angeboten, obwohl sie nicht immer genutzt wird.","ru":"Помощь предлагается, хотя её не всегда используют."},
-  {"de":"Ich engagiere mich, weil ich etwas verändern möchte.","ru":"Я участвую, потому что хочу что-то изменить."},
-  {"de":"Obwohl die Arbeit schwer ist, macht sie Spaß.","ru":"Хотя работа тяжёлая, она доставляет удовольствие."},
-  {"de":"Die Organisation wird von vielen unterstützt, weil sie gute Arbeit macht.","ru":"Организация поддерживается многими, потому что она делает хорошую работу."},
-  {"de":"Obwohl ich keine Zeit hatte, half ich meinem Freund.","ru":"Хотя у меня не было времени, я помог своему другу."},
-  {"de":"Der Müll muss getrennt werden, weil die Umwelt geschützt werden muss.","ru":"Мусор должен быть разделён, потому что окружающая среда должна быть защищена."},
-  {"de":"Obwohl es kalt ist, gehe ich spazieren.","ru":"Хотя холодно, я иду гулять."},
-  {"de":"Ich habe einen Termin beim Arzt, obwohl ich keine Schmerzen habe.","ru":"У меня встреча с врачом, хотя у меня нет боли."},
-  {"de":"Sie hat das Buch gelesen, obwohl sie keine Zeit hatte.","ru":"Она прочитала книгу, хотя у неё не было времени."},
-  {"de":"Das Projekt wird erfolgreich sein, weil alle mithelfen.","ru":"Проект будет успешным, потому что все помогают."},
-  {"de":"Das ist der Mann, der Deutsch lehrt.","ru":"Это мужчина, который преподаёт немецкий."},
-  {"de":"Das ist die Frau, die in Berlin wohnt.","ru":"Это женщина, которая живёт в Берлине."},
-  {"de":"Das ist das Buch, das ich gelesen habe.","ru":"Это книга, которую я прочитал."},
-  {"de":"Weihnachten wird in Deutschland groß gefeiert.","ru":"Рождество широко празднуется в Германии."},
-  {"de":"Oktoberfest ist das größte Volksfest der Welt.","ru":"Октоберфест — самый большой народный праздник в мире."},
-  {"de":"Der Nikolaustag ist ein wichtiger Brauch in Deutschland.","ru":"День Святого Николая — важный обычай в Германии."},
-  {"de":"Ich liebe den Weihnachtsmarkt.","ru":"Я люблю рождественский рынок."},
-  {"de":"Wir schmücken den Weihnachtsbaum.","ru":"Мы украшаем ёлку."},
-  {"de":"Die Ausstellung ist sehr interessant.","ru":"Выставка очень интересная."},
-  {"de":"Ich war im Theater.","ru":"Я был в театре."},
-  {"de":"Die Oper ist wunderschön.","ru":"Опера прекрасна."},
-  {"de":"Das Orchester spielt gut.","ru":"Оркестр играет хорошо."},
-  {"de":"Der Künstler ist bekannt.","ru":"Художник известен."},
-  {"de":"Ich habe ein Geschenk bekommen.","ru":"Я получил подарок."},
-  {"de":"Das Volksfest war großartig.","ru":"Народный праздник был великолепен."},
-  {"de":"Der Journalist berichtet, die Situation habe sich verbessert.","ru":"Журналист сообщает, что ситуация улучшилась."},
-  {"de":"Er sagt, er habe keine Zeit.","ru":"Он говорит, что у него нет времени."},
-  {"de":"Die Quelle ist nicht glaubwürdig.","ru":"Источник недостоверен."},
-  {"de":"Man sollte nicht alles glauben, was in den Nachrichten steht.","ru":"Не следует всему верить, что написано в новостях."},
-  {"de":"Der Journalist hat ein Interview geführt.","ru":"Журналист провёл интервью."},
-  {"de":"Fake News sind ein großes Problem.","ru":"Фейковые новости — большая проблема."},
-  {"de":"Die Medien berichten über die Krise.","ru":"СМИ сообщают о кризисе."},
-  {"de":"Der Artikel analysiert die politische Situation.","ru":"Статья анализирует политическую ситуацию."},
-  {"de":"Die Glaubwürdigkeit der Quelle ist wichtig.","ru":"Достоверность источника важна."},
-  {"de":"Der Journalist recherchiert die Informationen.","ru":"Журналист ищет информацию."},
-  {"de":"Sie behauptet, sie habe die Wahrheit gesagt.","ru":"Она утверждает, что сказала правду."},
-  {"de":"Fake News werden oft im Internet verbreitet.","ru":"Фейковые новости часто распространяются в интернете."},
-  {"de":"Die Informationen müssen überprüft werden.","ru":"Информация должна быть проверена."},
-  {"de":"Der Bericht ist sehr detailliert.","ru":"Репортаж очень детальный."},
-  {"de":"Manche Nachrichten sind nicht wahr.","ru":"Некоторые новости не соответствуют действительности."},
-  {"de":"Die Medien haben eine große Verantwortung.","ru":"СМИ несут большую ответственность."},
-  {"de":"Er zitiert eine Quelle, die nicht verifiziert ist.","ru":"Он цитирует источник, который не проверен."},
-  {"de":"Obwohl die Quelle fragwürdig ist, verbreitet er die Nachricht.","ru":"Хотя источник сомнительный, он распространяет новость."},
-  {"de":"Der Journalist hat den Politiker interviewt.","ru":"Журналист взял интервью у политика."},
-  {"de":"Die Glaubwürdigkeit der Medien ist ein wichtiges Thema.","ru":"Достоверность СМИ — важная тема."},
-  {"de":"Er sagt, er habe die Nachricht nicht gelesen.","ru":"Он говорит, что не читал новость."},
-  {"de":"Ich habe die Informationen aus dem Internet.","ru":"Я получаю информацию из интернета."},
-  {"de":"Der Artikel ist in der Zeitung erschienen.","ru":"Статья появилась в газете."},
-  {"de":"Fake News können gefährlich sein.","ru":"Фейковые новости могут быть опасны."},
-  {"de":"Die Nachrichten werden jeden Tag aktualisiert.","ru":"Новости обновляются каждый день."},
-  {"de":"Ich habe den Bericht gelesen, obwohl er sehr lang war.","ru":"Я прочитал репортаж, хотя он был очень длинным."},
-  {"de":"Der Journalist ist eine wichtige Person in der Gesellschaft.","ru":"Журналист — важная личность в обществе."},
-  {"de":"Ich hätte gern eine Tasse Kaffee.","ru":"Я бы хотел чашку кофе."},
-  {"de":"Könntest du mir helfen?","ru":"Не мог бы ты мне помочь?"},
-  {"de":"Ich würde gern mit dir sprechen.","ru":"Я бы хотел с тобой поговорить."},
-  {"de":"Ich freue mich über das Geschenk.","ru":"Я радуюсь подарку."},
-  {"de":"Sie hat sich über die Nachricht geärgert.","ru":"Она разозлилась на новость."},
-  {"de":"Ich bin traurig, weil mein Freund weggezogen ist.","ru":"Мне грустно, потому что мой друг уехал."},
-  {"de":"Wir haben uns nach dem Streit versöhnt.","ru":"Мы помирились после ссоры."},
-  {"de":"Ich habe mich bei ihr entschuldigt.","ru":"Я извинился перед ней."},
-  {"de":"Die Freundschaft zwischen uns ist gut.","ru":"Дружба между нами хорошая."},
-  {"de":"Ich habe Respekt für dich.","ru":"Я уважаю тебя."},
-  {"de":"Ich brauche deine Unterstützung.","ru":"Мне нужна твоя поддержка."},
-  {"de":"Er ist mein bester Freund.","ru":"Он мой лучший друг."},
-  {"de":"Die Beziehung ist sehr wichtig.","ru":"Отношения очень важны."},
-  {"de":"Wir haben uns gestritten.","ru":"Мы поссорились."},
-  {"de":"Ich habe ihm verziehen.","ru":"Я простил его."},
-  {"de":"Wenn ich genug Geld habe, werde ich reisen.","ru":"Если у меня будет достаточно денег, я поеду путешествовать."},
-  {"de":"Wenn du heute kommst, gehen wir ins Kino.","ru":"Если ты сегодня придёшь, мы пойдём в кино."},
-  {"de":"Wenn ich Zeit habe, helfe ich dir.","ru":"Если у меня будет время, я помогу тебе."},
-  {"de":"Wenn ich die Prüfung bestehe, werde ich feiern.","ru":"Если я сдам экзамен, я буду праздновать."},
-  {"de":"Wenn du fleißig lernst, wirst du Erfolg haben.","ru":"Если ты будешь усердно учиться, у тебя будет успех."},
-  {"de":"Wenn ich nächstes Jahr nach Deutschland fahre, besuche ich Berlin.","ru":"Если я поеду в Германию в следующем году, я посещу Берлин."},
-  {"de":"Wenn ich genug Geld spare, kaufe ich ein Haus.","ru":"Если я накоплю достаточно денег, я куплю дом."},
-  {"de":"Wenn du Zeit hast, kannst du mir helfen.","ru":"Если у тебя будет время, ты сможешь мне помочь."},
-  {"de":"Wenn ich nächstes Jahr heirate, werde ich eine große Feier machen.","ru":"Если я женюсь в следующем году, я устрою большой праздник."},
-  {"de":"Wenn ich einen guten Job finde, ziehe ich um.","ru":"Если я найду хорошую работу, я перееду."},
-  {"de":"Wenn du mich besuchst, koche ich für dich.","ru":"Если ты меня навестишь, я приготовлю для тебя."},
-  {"de":"Wenn es morgen regnet, bleibe ich zu Hause.","ru":"Если завтра будет дождь, я останусь дома."},
-  {"de":"Wenn ich mehr Zeit hätte, würde ich mehr reisen.","ru":"Если бы у меня было больше времени, я бы больше путешествовал."},
-  {"de":"Wenn du fleißig arbeitest, wirst du viel verdienen.","ru":"Если ты будешь усердно работать, ты будешь много зарабатывать."},
-  {"de":"Wenn ich alt bin, werde ich auf dem Land wohnen.","ru":"Когда я буду старым, я буду жить в деревне."},
-  {"de":"Wenn du heute Abend frei hast, können wir ins Kino gehen.","ru":"Если у тебя сегодня вечером будет свободное время, мы можем пойти в кино."},
-  {"de":"Wenn ich genug Geld habe, kaufe ich mir ein neues Auto.","ru":"Если у меня будет достаточно денег, я куплю себе новую машину."},
-  {"de":"Wenn du Deutsch lernen willst, musst du üben.","ru":"Если ты хочешь выучить немецкий, ты должен практиковаться."},
-  {"de":"Wenn ich die Stelle bekomme, werde ich umziehen.","ru":"Если я получу эту должность, я перееду."},
-  {"de":"Wenn ich meinen Traumjob finde, werde ich glücklich sein.","ru":"Если я найду работу мечты, я буду счастлив."},
-  {"de":"Wenn du mich fragst, helfe ich dir.","ru":"Если ты меня попросишь, я помогу тебе."},
-  {"de":"Wenn ich in Deutschland studiere, lerne ich perfekt Deutsch.","ru":"Если я буду учиться в Германии, я выучу немецкий идеально."},
-  {"de":"Wenn du morgen Zeit hast, können wir uns treffen.","ru":"Если у тебя будет время завтра, мы можем встретиться."},
-  {"de":"Die Zukunft gehört denen, die an ihre Träume glauben.","ru":"Будущее принадлежит тем, кто верит в свои мечты."},
-  {"de":"Wenn ich die Prüfung nicht bestehe, werde ich sie wiederholen.","ru":"Если я не сдам экзамен, я буду его пересдавать."},
-  {"de":"Ich treibe Sport, um fit zu bleiben.","ru":"Я занимаюсь спортом, чтобы оставаться в форме."},
-  {"de":"Er geht, ohne etwas zu sagen.","ru":"Он уходит, ничего не сказав."},
-  {"de":"Statt zu rauchen, sollte man Sport treiben.","ru":"Вместо того чтобы курить, следует заниматься спортом."},
-  {"de":"Ich laufe jeden Morgen, um gesund zu bleiben.","ru":"Я бегаю каждое утро, чтобы оставаться здоровым."},
-  {"de":"Sie hat gegessen, ohne zu bezahlen.","ru":"Она поела, не заплатив."},
-  {"de":"Statt zu Hause zu bleiben, bin ich ins Kino gegangen.","ru":"Вместо того чтобы остаться дома, я пошёл в кино."},
-  {"de":"Ich trinke viel Wasser, um gesund zu bleiben.","ru":"Я пью много воды, чтобы оставаться здоровым."},
-  {"de":"Er ist gegangen, ohne sich zu verabschieden.","ru":"Он ушёл, не попрощавшись."},
-  {"de":"Statt zu schlafen, hat er die ganze Nacht gelernt.","ru":"Вместо того чтобы спать, он учился всю ночь."},
-  {"de":"Ich gehe ins Fitnessstudio, um Muskeln aufzubauen.","ru":"Я хожу в спортзал, чтобы нарастить мышцы."},
-  {"de":"Sie ist gegangen, ohne etwas zu sagen.","ru":"Она ушла, ничего не сказав."},
-  {"de":"Statt zu faulenzen, sollte man aktiv sein.","ru":"Вместо того чтобы бездельничать, следует быть активным."},
-  {"de":"Ich esse gesund, um abzunehmen.","ru":"Я питаюсь правильно, чтобы похудеть."},
-  {"de":"Er hat die Prüfung bestanden, ohne viel zu lernen.","ru":"Он сдал экзамен, не учившись много."},
-  {"de":"Statt zu Hause zu essen, gehen wir ins Restaurant.","ru":"Вместо того чтобы есть дома, мы идём в ресторан."},
-  {"de":"Ich gehe spazieren, um mich zu entspannen.","ru":"Я иду гулять, чтобы расслабиться."},
-  {"de":"Statt zu rauchen, hat er mit dem Sport angefangen.","ru":"Вместо того чтобы курить, он начал заниматься спортом."},
-  {"de":"Ich habe heute Morgen trainiert, um fit zu bleiben.","ru":"Я тренировался сегодня утром, чтобы оставаться в форме."},
-  {"de":"Statt zu zweifeln, sollte man handeln.","ru":"Вместо того чтобы сомневаться, следует действовать."},
-  {"de":"Ich lese viel, um mein Deutsch zu verbessern.","ru":"Я много читаю, чтобы улучшить свой немецкий."},
-  {"de":"Statt zu klagen, sollte man Lösungen suchen.","ru":"Вместо того чтобы жаловаться, следует искать решения."},
-  {"de":"Ich treibe regelmäßig Sport, um Stress abzubauen.","ru":"Я регулярно занимаюсь спортом, чтобы снять стресс."},
-  {"de":"Die Gesundheit ist das wichtigste Gut.","ru":"Здоровье — самое важное достояние."}
+  {
+    "de": "Wenn ich Zeit habe, lerne ich Deutsch.",
+    "ru": "Когда у меня есть время, я учу немецкий."
+  },
+  {
+    "de": "Als ich jung war, ging ich zur Schule.",
+    "ru": "Когда я был молодым, я ходил в школу."
+  },
+  {
+    "de": "Wenn ich müde bin, trinke ich Kaffee.",
+    "ru": "Когда я устаю, я пью кофе."
+  },
+  {
+    "de": "Als ich in Berlin war, besuchte ich das Museum.",
+    "ru": "Когда я был в Берлине, я посетил музей."
+  },
+  {
+    "de": "Die Grundschule ist für Kinder von 6 bis 10 Jahren.",
+    "ru": "Начальная школа для детей от 6 до 10 лет."
+  },
+  {
+    "de": "Ich habe die Prüfung bestanden.",
+    "ru": "Я сдал экзамен."
+  },
+  {
+    "de": "Ich habe mein Abitur gemacht.",
+    "ru": "Я сдал аттестат зрелости."
+  },
+  {
+    "de": "Meine Noten sind gut.",
+    "ru": "Мои оценки хорошие."
+  },
+  {
+    "de": "Ich besuche die Vorlesung.",
+    "ru": "Я посещаю лекцию."
+  },
+  {
+    "de": "Ich habe viele Hausaufgaben.",
+    "ru": "У меня много домашних заданий."
+  },
+  {
+    "de": "Der Dozent erklärt das Thema.",
+    "ru": "Преподаватель объясняет тему."
+  },
+  {
+    "de": "Wir haben heute ein Seminar.",
+    "ru": "У нас сегодня семинар."
+  },
+  {
+    "de": "Ich studiere an der Universität.",
+    "ru": "Я учусь в университете."
+  },
+  {
+    "de": "Das Fach Deutsch ist interessant.",
+    "ru": "Предмет немецкий интересный."
+  },
+  {
+    "de": "Die Berufsausbildung ist wichtig.",
+    "ru": "Профессиональное обучение важно."
+  },
+  {
+    "de": "Nachdem ich mein Studium abgeschlossen hatte, suchte ich einen Job.",
+    "ru": "После того как я закончил учёбу, я искал работу."
+  },
+  {
+    "de": "Ich hatte vorher in einer Firma gearbeitet.",
+    "ru": "Я раньше работал в фирме."
+  },
+  {
+    "de": "Nachdem sie die Fortbildung gemacht hatte, bekam sie eine neue Stelle.",
+    "ru": "После того как она прошла повышение квалификации, она получила новую должность."
+  },
+  {
+    "de": "Ich habe mich bei einer großen Firma beworben.",
+    "ru": "Я подал заявку в большую фирму."
+  },
+  {
+    "de": "Mein Bruder hat den Job gewechselt.",
+    "ru": "Мой брат сменил работу."
+  },
+  {
+    "de": "Ich hatte schon viele Bewerbungen geschrieben.",
+    "ru": "Я уже написал много заявок."
+  },
+  {
+    "de": "Ich habe mit einem kleinen Unternehmen zusammengearbeitet.",
+    "ru": "Я сотрудничал с маленьким предприятием."
+  },
+  {
+    "de": "Die Stelle ist bei einer großen Firma.",
+    "ru": "Должность в большой фирме."
+  },
+  {
+    "de": "Ich habe ein Vorstellungsgespräch.",
+    "ru": "У меня собеседование."
+  },
+  {
+    "de": "Mein Gehalt ist gut.",
+    "ru": "Моя зарплата хорошая."
+  },
+  {
+    "de": "Ich habe einen Arbeitsvertrag unterschrieben.",
+    "ru": "Я подписал трудовой договор."
+  },
+  {
+    "de": "Meine Arbeitszeit ist flexibel.",
+    "ru": "Моё рабочее время гибкое."
+  },
+  {
+    "de": "Ich arbeite in einem Team.",
+    "ru": "Я работаю в команде."
+  },
+  {
+    "de": "Wir haben ein neues Projekt.",
+    "ru": "У нас новый проект."
+  },
+  {
+    "de": "Mein Chef ist sehr nett.",
+    "ru": "Мой начальник очень милый."
+  },
+  {
+    "de": "Sehr geehrte Damen und Herren,",
+    "ru": "Уважаемые дамы и господа,"
+  },
+  {
+    "de": "Hiermit bewerbe ich mich auf die Stelle als Ingenieur.",
+    "ru": "Настоящим я подаю заявку на должность инженера."
+  },
+  {
+    "de": "Ich habe Berufserfahrung als Lehrer.",
+    "ru": "У меня есть профессиональный опыт учителя."
+  },
+  {
+    "de": "Ich wohne in Berlin.",
+    "ru": "Я живу в Берлине."
+  },
+  {
+    "de": "Ich verfüge über gute Deutschkenntnisse.",
+    "ru": "Я обладаю хорошими знаниями немецкого языка."
+  },
+  {
+    "de": "Mit freundlichen Grüßen",
+    "ru": "С уважением"
+  },
+  {
+    "de": "Ich habe meinen Lebenslauf beigefügt.",
+    "ru": "Я приложил своё резюме."
+  },
+  {
+    "de": "Ich habe die Bewerbung unterschrieben.",
+    "ru": "Я подписал заявку."
+  },
+  {
+    "de": "Meine Fähigkeiten sind gut.",
+    "ru": "Мои навыки хорошие."
+  },
+  {
+    "de": "Ich habe gestern Fußball gespielt.",
+    "ru": "Я вчера играл в футбол."
+  },
+  {
+    "de": "Sehr geehrte Frau Müller,",
+    "ru": "Уважаемая госпожа Мюллер,"
+  },
+  {
+    "de": "Ich bewerbe mich auf die Stelle als Verkäufer.",
+    "ru": "Я подаю заявку на должность продавца."
+  },
+  {
+    "de": "Ich habe viel Berufserfahrung.",
+    "ru": "У меня большой профессиональный опыт."
+  },
+  {
+    "de": "Ich habe den Film gesehen.",
+    "ru": "Я видел фильм."
+  },
+  {
+    "de": "Ich verfüge über gute Englischkenntnisse.",
+    "ru": "Я обладаю хорошими знаниями английского языка."
+  },
+  {
+    "de": "Die Anlage enthält meinen Lebenslauf.",
+    "ru": "Приложение содержит моё резюме."
+  },
+  {
+    "de": "Ich habe das Buch gelesen.",
+    "ru": "Я прочитал книгу."
+  },
+  {
+    "de": "Sehr geehrter Herr Schmidt,",
+    "ru": "Уважаемый господин Шмидт,"
+  },
+  {
+    "de": "Meine Kenntnisse sind sehr gut.",
+    "ru": "Мои знания очень хорошие."
+  },
+  {
+    "de": "Nachdem ich das Studium abgeschlossen hatte, reiste ich durch Europa.",
+    "ru": "После того как я закончил учёбу, я путешествовал по Европе."
+  },
+  {
+    "de": "Ich habe die Hausaufgaben gemacht.",
+    "ru": "Я сделал домашние задания."
+  },
+  {
+    "de": "Ich habe meine Interessen im Lebenslauf erwähnt.",
+    "ru": "Я упомянул свои интересы в резюме."
+  },
+  {
+    "de": "Ich habe das Anschreiben geschrieben.",
+    "ru": "Я написал сопроводительное письмо."
+  },
+  {
+    "de": "Mein Bruder hat sich auf die Stelle beworben.",
+    "ru": "Мой брат подал заявку на должность."
+  },
+  {
+    "de": "Ich habe die Zeitung gelesen.",
+    "ru": "Я прочитал газету."
+  },
+  {
+    "de": "Ich verfüge über gute Computerkenntnisse.",
+    "ru": "Я обладаю хорошими знаниями компьютера."
+  },
+  {
+    "de": "Nachdem ich die Bewerbung geschrieben hatte, schickte ich sie ab.",
+    "ru": "После того как я написал заявку, я отправил её."
+  },
+  {
+    "de": "Als ich jung war, machte ich ein Praktikum.",
+    "ru": "Когда я был молодым, я проходил стажировку."
+  },
+  {
+    "de": "Meine Eltern wohnen in München.",
+    "ru": "Мои родители живут в Мюнхене."
+  },
+  {
+    "de": "Ich habe den Lebenslauf beigefügt.",
+    "ru": "Я приложил резюме."
+  },
+  {
+    "de": "Wenn ich Urlaub habe, reise ich gern.",
+    "ru": "Когда у меня отпуск, я люблю путешествовать."
+  },
+  {
+    "de": "Ich habe die Prüfung bestanden, deshalb bin ich glücklich.",
+    "ru": "Я сдал экзамен, поэтому я счастлив."
+  },
+  {
+    "de": "Ich habe mich für eine Fortbildung angemeldet.",
+    "ru": "Я записался на повышение квалификации."
+  },
+  {
+    "de": "Sehr geehrte Damen und Herren, hiermit bewerbe ich mich.",
+    "ru": "Уважаемые дамы и господа, настоящим я подаю заявку."
+  },
+  {
+    "de": "Ich werde nächstes Jahr nach Deutschland reisen.",
+    "ru": "Я поеду в Германию в следующем году."
+  },
+  {
+    "de": "Ich habe meine Bewerbung per E-Mail geschickt.",
+    "ru": "Я отправил свою заявку по электронной почте."
+  },
+  {
+    "de": "Meine Fähigkeiten umfassen Teamarbeit und Kommunikation.",
+    "ru": "Мои навыки включают работу в команде и общение."
+  },
+  {
+    "de": "Als ich jung war, wollte ich Arzt werden.",
+    "ru": "Когда я был молодым, я хотел стать врачом."
+  },
+  {
+    "de": "Ich habe im Restaurant gegessen.",
+    "ru": "Я ел в ресторане."
+  },
+  {
+    "de": "Ich habe die Stelle gefunden, die ich wollte.",
+    "ru": "Я нашёл должность, которую хотел."
+  },
+  {
+    "de": "Mit freundlichen Grüßen aus Berlin!",
+    "ru": "С уважением из Берлина!"
+  },
+  {
+    "de": "Mein Vater hat mir bei der Bewerbung geholfen.",
+    "ru": "Мой отец помог мне с заявкой."
+  },
+  {
+    "de": "Ich habe die Bewerbung per Post geschickt.",
+    "ru": "Я отправил заявку по почте."
+  },
+  {
+    "de": "Wenn ich Zeit habe, lese ich gern Bücher.",
+    "ru": "Когда у меня есть время, я люблю читать книги."
+  },
+  {
+    "de": "Ich habe meine Unterschrift auf das Dokument gesetzt.",
+    "ru": "Я поставил свою подпись на документе."
+  },
+  {
+    "de": "Nachdem ich die Bewerbung abgeschickt hatte, wartete ich auf eine Antwort.",
+    "ru": "После того как я отправил заявку, я ждал ответа."
+  },
+  {
+    "de": "Das Auto wird repariert.",
+    "ru": "Машину ремонтируют."
+  },
+  {
+    "de": "Die Tür wird um 8 Uhr geöffnet.",
+    "ru": "Дверь открывают в 8 часов."
+  },
+  {
+    "de": "Hier wird Brot verkauft.",
+    "ru": "Здесь продают хлеб."
+  },
+  {
+    "de": "Das Produkt wird in Deutschland hergestellt.",
+    "ru": "Продукт производится в Германии."
+  },
+  {
+    "de": "Die Wohnung wird gereinigt.",
+    "ru": "Квартиру убирают."
+  },
+  {
+    "de": "Die Lieferung wird morgen geliefert.",
+    "ru": "Доставка будет завтра."
+  },
+  {
+    "de": "Diese Schuhe werden in Italien produziert.",
+    "ru": "Эти туфли производятся в Италии."
+  },
+  {
+    "de": "Das Haus wird gebaut.",
+    "ru": "Дом строится."
+  },
+  {
+    "de": "Die Zeitung wird jeden Tag gelesen.",
+    "ru": "Газету читают каждый день."
+  },
+  {
+    "de": "Der Service wird verbessert.",
+    "ru": "Обслуживание улучшается."
+  },
+  {
+    "de": "Das Fenster wird geschlossen.",
+    "ru": "Окно закрывают."
+  },
+  {
+    "de": "Hier werden Autos produziert.",
+    "ru": "Здесь производят машины."
+  },
+  {
+    "de": "Die Produktion wird kontrolliert.",
+    "ru": "Производство контролируется."
+  },
+  {
+    "de": "Die Wohnung wird geputzt.",
+    "ru": "Квартиру убирают."
+  },
+  {
+    "de": "Die Ware wird geliefert.",
+    "ru": "Товар доставляется."
+  },
+  {
+    "de": "Das Problem wird gelöst.",
+    "ru": "Проблема решается."
+  },
+  {
+    "de": "Die Brücke wird gebaut.",
+    "ru": "Мост строится."
+  },
+  {
+    "de": "Hier wird Kaffee verkauft.",
+    "ru": "Здесь продают кофе."
+  },
+  {
+    "de": "Die Maschine wird repariert.",
+    "ru": "Машину ремонтируют."
+  },
+  {
+    "de": "Die Straße wird gereinigt.",
+    "ru": "Улицу чистят."
+  },
+  {
+    "de": "Der Brief wird geschrieben.",
+    "ru": "Письмо пишется."
+  },
+  {
+    "de": "Das Essen wird gekocht.",
+    "ru": "Еду готовят."
+  },
+  {
+    "de": "Die Produkte werden verkauft.",
+    "ru": "Продукты продаются."
+  },
+  {
+    "de": "Das Auto wird gewaschen.",
+    "ru": "Машину моют."
+  },
+  {
+    "de": "Hier wird Englisch gesprochen.",
+    "ru": "Здесь говорят по-английски."
+  },
+  {
+    "de": "Die Lieferung wird bearbeitet.",
+    "ru": "Доставка обрабатывается."
+  },
+  {
+    "de": "Die Wohnung wird vermietet.",
+    "ru": "Квартира сдаётся."
+  },
+  {
+    "de": "Wenn ich nach Hause komme, esse ich zu Abend.",
+    "ru": "Когда я прихожу домой, я ужинаю."
+  },
+  {
+    "de": "Das Fenster wird geputzt.",
+    "ru": "Окно моют."
+  },
+  {
+    "de": "Mein Vater hat mir geholfen.",
+    "ru": "Мой отец помог мне."
+  },
+  {
+    "de": "Die Arbeit wird gemacht.",
+    "ru": "Работа делается."
+  },
+  {
+    "de": "Hier werden Bücher verkauft.",
+    "ru": "Здесь продают книги."
+  },
+  {
+    "de": "Das Haus wird renoviert.",
+    "ru": "Дом ремонтируется."
+  },
+  {
+    "de": "Der Müll muss getrennt werden.",
+    "ru": "Мусор должен быть разделён."
+  },
+  {
+    "de": "Die Umwelt kann geschützt werden.",
+    "ru": "Окружающая среда может быть защищена."
+  },
+  {
+    "de": "Die Energie soll gespart werden.",
+    "ru": "Энергию следует экономить."
+  },
+  {
+    "de": "Das Problem will gelöst werden.",
+    "ru": "Проблему хотят решить."
+  },
+  {
+    "de": "Plastik sollte vermieden werden.",
+    "ru": "Пластика следует избегать."
+  },
+  {
+    "de": "Mehr Recycling muss gemacht werden.",
+    "ru": "Должно быть больше переработки."
+  },
+  {
+    "de": "Die Umweltverschmutzung muss reduziert werden.",
+    "ru": "Загрязнение окружающей среды должно быть сокращено."
+  },
+  {
+    "de": "Der Klimawandel kann nicht ignoriert werden.",
+    "ru": "Изменение климата не может быть проигнорировано."
+  },
+  {
+    "de": "Die Abfälle sollen recycelt werden.",
+    "ru": "Отходы должны быть переработаны."
+  },
+  {
+    "de": "Erneuerbare Energien sollten gefördert werden.",
+    "ru": "Возобновляемая энергия должна поддерживаться."
+  },
+  {
+    "de": "Das Auto muss repariert werden.",
+    "ru": "Машина должна быть отремонтирована."
+  },
+  {
+    "de": "Die Produktion kann verbessert werden.",
+    "ru": "Производство может быть улучшено."
+  },
+  {
+    "de": "Der Müll soll getrennt werden.",
+    "ru": "Мусор должен быть разделён."
+  },
+  {
+    "de": "Die Energie kann gespart werden.",
+    "ru": "Энергия может быть сэкономлена."
+  },
+  {
+    "de": "Die Umwelt muss geschützt werden.",
+    "ru": "Окружающая среда должна быть защищена."
+  },
+  {
+    "de": "Mehr Bäume sollten gepflanzt werden.",
+    "ru": "Больше деревьев должно быть посажено."
+  },
+  {
+    "de": "Die Verschmutzung kann reduziert werden.",
+    "ru": "Загрязнение может быть сокращено."
+  },
+  {
+    "de": "Plastiktüten sollten vermieden werden.",
+    "ru": "Пластиковых пакетов следует избегать."
+  },
+  {
+    "de": "Das Recycling muss verbessert werden.",
+    "ru": "Переработка должна быть улучшена."
+  },
+  {
+    "de": "Die Emissionen sollen reduziert werden.",
+    "ru": "Выбросы должны быть сокращены."
+  },
+  {
+    "de": "Die Lebensmittel können nicht verschwendet werden.",
+    "ru": "Продукты не должны быть выброшены."
+  },
+  {
+    "de": "Die Umweltverschmutzung muss bekämpft werden.",
+    "ru": "Загрязнение окружающей среды должно быть преодолено."
+  },
+  {
+    "de": "Mehr Produkte sollten lokal hergestellt werden.",
+    "ru": "Больше продуктов должно производиться локально."
+  },
+  {
+    "de": "Der Müll kann recycelt werden.",
+    "ru": "Мусор может быть переработан."
+  },
+  {
+    "de": "Die Energie soll nicht verschwendet werden.",
+    "ru": "Энергия не должна быть растрачена."
+  },
+  {
+    "de": "Die Natur muss geschützt werden.",
+    "ru": "Природа должна быть защищена."
+  },
+  {
+    "de": "Die Abfälle können recycelt werden.",
+    "ru": "Отходы могут быть переработаны."
+  },
+  {
+    "de": "Der Klimawandel sollte ernst genommen werden.",
+    "ru": "Изменение климата следует воспринимать серьёзно."
+  },
+  {
+    "de": "Die Produktion kann automatisiert werden.",
+    "ru": "Производство может быть автоматизировано."
+  },
+  {
+    "de": "Hier werden Elektroautos produziert.",
+    "ru": "Здесь производят электромобили."
+  },
+  {
+    "de": "Die Umweltverschmutzung muss gestoppt werden.",
+    "ru": "Загрязнение окружающей среды должно быть остановлено."
+  },
+  {
+    "de": "Ich gehe ins Kino, obwohl ich müde bin.",
+    "ru": "Я иду в кино, хотя я устал."
+  },
+  {
+    "de": "Obwohl es regnet, gehe ich spazieren.",
+    "ru": "Хотя идёт дождь, я иду гулять."
+  },
+  {
+    "de": "Ich helfe im Verein, obwohl ich wenig Zeit habe.",
+    "ru": "Я помогаю в обществе, хотя у меня мало времени."
+  },
+  {
+    "de": "Sie engagiert sich für die Umwelt, weil es ihr wichtig ist.",
+    "ru": "Она участвует в защите окружающей среды, потому что это ей важно."
+  },
+  {
+    "de": "Obwohl er müde war, half er bei dem Projekt.",
+    "ru": "Хотя он устал, он помогал с проектом."
+  },
+  {
+    "de": "Ich spende Geld, obwohl ich nicht viel verdiene.",
+    "ru": "Я жертвую деньги, хотя я мало зарабатываю."
+  },
+  {
+    "de": "Die Freiwilligenarbeit macht mir Spaß, obwohl sie anstrengend ist.",
+    "ru": "Волонтёрская работа доставляет мне удовольствие, хотя она утомительна."
+  },
+  {
+    "de": "Ich unterstütze die Organisation, weil ich helfen möchte.",
+    "ru": "Я поддерживаю организацию, потому что хочу помочь."
+  },
+  {
+    "de": "Obwohl ich wenig Zeit habe, engagiere ich mich im Verein.",
+    "ru": "Хотя у меня мало времени, я участвую в обществе."
+  },
+  {
+    "de": "Sie macht Freiwilligenarbeit, obwohl sie einen Job hat.",
+    "ru": "Она занимается волонтёрской работой, хотя у неё есть работа."
+  },
+  {
+    "de": "Das Projekt wird unterstützt, weil es wichtig ist.",
+    "ru": "Проект поддерживается, потому что он важен."
+  },
+  {
+    "de": "Obwohl ich müde war, habe ich die Arbeit gemacht.",
+    "ru": "Хотя я устал, я сделал работу."
+  },
+  {
+    "de": "Die Spende hilft den Kindern.",
+    "ru": "Пожертвование помогает детям."
+  },
+  {
+    "de": "Ich engagiere mich für die Umwelt, obwohl es anstrengend ist.",
+    "ru": "Я участвую в защите окружающей среды, хотя это утомительно."
+  },
+  {
+    "de": "Der Verein hilft den Obdachlosen, weil es wichtig ist.",
+    "ru": "Общество помогает бездомным, потому что это важно."
+  },
+  {
+    "de": "Obwohl er krank war, kam er zur Arbeit.",
+    "ru": "Хотя он был болен, он пришёл на работу."
+  },
+  {
+    "de": "Die Organisation braucht Hilfe, weil sie klein ist.",
+    "ru": "Организация нуждается в помощи, потому что она маленькая."
+  },
+  {
+    "de": "Ich spende regelmäßig, obwohl ich nicht reich bin.",
+    "ru": "Я регулярно жертвую, хотя я не богат."
+  },
+  {
+    "de": "Obwohl es teuer ist, kaufe ich das Auto.",
+    "ru": "Хотя это дорого, я покупаю машину."
+  },
+  {
+    "de": "Die Sozialarbeit ist wichtig, weil sie den Menschen hilft.",
+    "ru": "Социальная работа важна, потому что она помогает людям."
+  },
+  {
+    "de": "Obwohl er wenig Geld hat, spendet er.",
+    "ru": "Хотя у него мало денег, он жертвует."
+  },
+  {
+    "de": "Die Hilfe wird angeboten, obwohl sie nicht immer genutzt wird.",
+    "ru": "Помощь предлагается, хотя её не всегда используют."
+  },
+  {
+    "de": "Ich engagiere mich, weil ich etwas verändern möchte.",
+    "ru": "Я участвую, потому что хочу что-то изменить."
+  },
+  {
+    "de": "Obwohl die Arbeit schwer ist, macht sie Spaß.",
+    "ru": "Хотя работа тяжёлая, она доставляет удовольствие."
+  },
+  {
+    "de": "Die Organisation wird von vielen unterstützt, weil sie gute Arbeit macht.",
+    "ru": "Организация поддерживается многими, потому что она делает хорошую работу."
+  },
+  {
+    "de": "Obwohl ich keine Zeit hatte, half ich meinem Freund.",
+    "ru": "Хотя у меня не было времени, я помог своему другу."
+  },
+  {
+    "de": "Der Müll muss getrennt werden, weil die Umwelt geschützt werden muss.",
+    "ru": "Мусор должен быть разделён, потому что окружающая среда должна быть защищена."
+  },
+  {
+    "de": "Obwohl es kalt ist, gehe ich spazieren.",
+    "ru": "Хотя холодно, я иду гулять."
+  },
+  {
+    "de": "Ich habe einen Termin beim Arzt, obwohl ich keine Schmerzen habe.",
+    "ru": "У меня встреча с врачом, хотя у меня нет боли."
+  },
+  {
+    "de": "Sie hat das Buch gelesen, obwohl sie keine Zeit hatte.",
+    "ru": "Она прочитала книгу, хотя у неё не было времени."
+  },
+  {
+    "de": "Das Projekt wird erfolgreich sein, weil alle mithelfen.",
+    "ru": "Проект будет успешным, потому что все помогают."
+  },
+  {
+    "de": "Das ist der Mann, der Deutsch lehrt.",
+    "ru": "Это мужчина, который преподаёт немецкий."
+  },
+  {
+    "de": "Das ist die Frau, die in Berlin wohnt.",
+    "ru": "Это женщина, которая живёт в Берлине."
+  },
+  {
+    "de": "Das ist das Buch, das ich gelesen habe.",
+    "ru": "Это книга, которую я прочитал."
+  },
+  {
+    "de": "Weihnachten wird in Deutschland groß gefeiert.",
+    "ru": "Рождество широко празднуется в Германии."
+  },
+  {
+    "de": "Oktoberfest ist das größte Volksfest der Welt.",
+    "ru": "Октоберфест — самый большой народный праздник в мире."
+  },
+  {
+    "de": "Der Nikolaustag ist ein wichtiger Brauch in Deutschland.",
+    "ru": "День Святого Николая — важный обычай в Германии."
+  },
+  {
+    "de": "Ich liebe den Weihnachtsmarkt.",
+    "ru": "Я люблю рождественский рынок."
+  },
+  {
+    "de": "Wir schmücken den Weihnachtsbaum.",
+    "ru": "Мы украшаем ёлку."
+  },
+  {
+    "de": "Die Ausstellung ist sehr interessant.",
+    "ru": "Выставка очень интересная."
+  },
+  {
+    "de": "Ich war im Theater.",
+    "ru": "Я был в театре."
+  },
+  {
+    "de": "Die Oper ist wunderschön.",
+    "ru": "Опера прекрасна."
+  },
+  {
+    "de": "Das Orchester spielt gut.",
+    "ru": "Оркестр играет хорошо."
+  },
+  {
+    "de": "Der Künstler ist bekannt.",
+    "ru": "Художник известен."
+  },
+  {
+    "de": "Ich habe ein Geschenk bekommen.",
+    "ru": "Я получил подарок."
+  },
+  {
+    "de": "Das Volksfest war großartig.",
+    "ru": "Народный праздник был великолепен."
+  },
+  {
+    "de": "Der Journalist berichtet, die Situation habe sich verbessert.",
+    "ru": "Журналист сообщает, что ситуация улучшилась."
+  },
+  {
+    "de": "Er sagt, er habe keine Zeit.",
+    "ru": "Он говорит, что у него нет времени."
+  },
+  {
+    "de": "Die Quelle ist nicht glaubwürdig.",
+    "ru": "Источник недостоверен."
+  },
+  {
+    "de": "Man sollte nicht alles glauben, was in den Nachrichten steht.",
+    "ru": "Не следует всему верить, что написано в новостях."
+  },
+  {
+    "de": "Der Journalist hat ein Interview geführt.",
+    "ru": "Журналист провёл интервью."
+  },
+  {
+    "de": "Fake News sind ein großes Problem.",
+    "ru": "Фейковые новости — большая проблема."
+  },
+  {
+    "de": "Die Medien berichten über die Krise.",
+    "ru": "СМИ сообщают о кризисе."
+  },
+  {
+    "de": "Der Artikel analysiert die politische Situation.",
+    "ru": "Статья анализирует политическую ситуацию."
+  },
+  {
+    "de": "Die Glaubwürdigkeit der Quelle ist wichtig.",
+    "ru": "Достоверность источника важна."
+  },
+  {
+    "de": "Der Journalist recherchiert die Informationen.",
+    "ru": "Журналист ищет информацию."
+  },
+  {
+    "de": "Sie behauptet, sie habe die Wahrheit gesagt.",
+    "ru": "Она утверждает, что сказала правду."
+  },
+  {
+    "de": "Fake News werden oft im Internet verbreitet.",
+    "ru": "Фейковые новости часто распространяются в интернете."
+  },
+  {
+    "de": "Die Informationen müssen überprüft werden.",
+    "ru": "Информация должна быть проверена."
+  },
+  {
+    "de": "Der Bericht ist sehr detailliert.",
+    "ru": "Репортаж очень детальный."
+  },
+  {
+    "de": "Manche Nachrichten sind nicht wahr.",
+    "ru": "Некоторые новости не соответствуют действительности."
+  },
+  {
+    "de": "Die Medien haben eine große Verantwortung.",
+    "ru": "СМИ несут большую ответственность."
+  },
+  {
+    "de": "Er zitiert eine Quelle, die nicht verifiziert ist.",
+    "ru": "Он цитирует источник, который не проверен."
+  },
+  {
+    "de": "Obwohl die Quelle fragwürdig ist, verbreitet er die Nachricht.",
+    "ru": "Хотя источник сомнительный, он распространяет новость."
+  },
+  {
+    "de": "Der Journalist hat den Politiker interviewt.",
+    "ru": "Журналист взял интервью у политика."
+  },
+  {
+    "de": "Die Glaubwürdigkeit der Medien ist ein wichtiges Thema.",
+    "ru": "Достоверность СМИ — важная тема."
+  },
+  {
+    "de": "Er sagt, er habe die Nachricht nicht gelesen.",
+    "ru": "Он говорит, что не читал новость."
+  },
+  {
+    "de": "Ich habe die Informationen aus dem Internet.",
+    "ru": "Я получаю информацию из интернета."
+  },
+  {
+    "de": "Der Artikel ist in der Zeitung erschienen.",
+    "ru": "Статья появилась в газете."
+  },
+  {
+    "de": "Fake News können gefährlich sein.",
+    "ru": "Фейковые новости могут быть опасны."
+  },
+  {
+    "de": "Die Nachrichten werden jeden Tag aktualisiert.",
+    "ru": "Новости обновляются каждый день."
+  },
+  {
+    "de": "Ich habe den Bericht gelesen, obwohl er sehr lang war.",
+    "ru": "Я прочитал репортаж, хотя он был очень длинным."
+  },
+  {
+    "de": "Der Journalist ist eine wichtige Person in der Gesellschaft.",
+    "ru": "Журналист — важная личность в обществе."
+  },
+  {
+    "de": "Ich hätte gern eine Tasse Kaffee.",
+    "ru": "Я бы хотел чашку кофе."
+  },
+  {
+    "de": "Könntest du mir helfen?",
+    "ru": "Не мог бы ты мне помочь?"
+  },
+  {
+    "de": "Ich würde gern mit dir sprechen.",
+    "ru": "Я бы хотел с тобой поговорить."
+  },
+  {
+    "de": "Ich freue mich über das Geschenk.",
+    "ru": "Я радуюсь подарку."
+  },
+  {
+    "de": "Sie hat sich über die Nachricht geärgert.",
+    "ru": "Она разозлилась на новость."
+  },
+  {
+    "de": "Ich bin traurig, weil mein Freund weggezogen ist.",
+    "ru": "Мне грустно, потому что мой друг уехал."
+  },
+  {
+    "de": "Wir haben uns nach dem Streit versöhnt.",
+    "ru": "Мы помирились после ссоры."
+  },
+  {
+    "de": "Ich habe mich bei ihr entschuldigt.",
+    "ru": "Я извинился перед ней."
+  },
+  {
+    "de": "Die Freundschaft zwischen uns ist gut.",
+    "ru": "Дружба между нами хорошая."
+  },
+  {
+    "de": "Ich habe Respekt für dich.",
+    "ru": "Я уважаю тебя."
+  },
+  {
+    "de": "Ich brauche deine Unterstützung.",
+    "ru": "Мне нужна твоя поддержка."
+  },
+  {
+    "de": "Er ist mein bester Freund.",
+    "ru": "Он мой лучший друг."
+  },
+  {
+    "de": "Die Beziehung ist sehr wichtig.",
+    "ru": "Отношения очень важны."
+  },
+  {
+    "de": "Wir haben uns gestritten.",
+    "ru": "Мы поссорились."
+  },
+  {
+    "de": "Ich habe ihm verziehen.",
+    "ru": "Я простил его."
+  },
+  {
+    "de": "Wenn ich genug Geld habe, werde ich reisen.",
+    "ru": "Если у меня будет достаточно денег, я поеду путешествовать."
+  },
+  {
+    "de": "Wenn du heute kommst, gehen wir ins Kino.",
+    "ru": "Если ты сегодня придёшь, мы пойдём в кино."
+  },
+  {
+    "de": "Wenn ich Zeit habe, helfe ich dir.",
+    "ru": "Если у меня будет время, я помогу тебе."
+  },
+  {
+    "de": "Wenn ich die Prüfung bestehe, werde ich feiern.",
+    "ru": "Если я сдам экзамен, я буду праздновать."
+  },
+  {
+    "de": "Wenn du fleißig lernst, wirst du Erfolg haben.",
+    "ru": "Если ты будешь усердно учиться, у тебя будет успех."
+  },
+  {
+    "de": "Wenn ich nächstes Jahr nach Deutschland fahre, besuche ich Berlin.",
+    "ru": "Если я поеду в Германию в следующем году, я посещу Берлин."
+  },
+  {
+    "de": "Wenn ich genug Geld spare, kaufe ich ein Haus.",
+    "ru": "Если я накоплю достаточно денег, я куплю дом."
+  },
+  {
+    "de": "Wenn du Zeit hast, kannst du mir helfen.",
+    "ru": "Если у тебя будет время, ты сможешь мне помочь."
+  },
+  {
+    "de": "Wenn ich nächstes Jahr heirate, werde ich eine große Feier machen.",
+    "ru": "Если я женюсь в следующем году, я устрою большой праздник."
+  },
+  {
+    "de": "Wenn ich einen guten Job finde, ziehe ich um.",
+    "ru": "Если я найду хорошую работу, я перееду."
+  },
+  {
+    "de": "Wenn du mich besuchst, koche ich für dich.",
+    "ru": "Если ты меня навестишь, я приготовлю для тебя."
+  },
+  {
+    "de": "Wenn es morgen regnet, bleibe ich zu Hause.",
+    "ru": "Если завтра будет дождь, я останусь дома."
+  },
+  {
+    "de": "Wenn ich mehr Zeit hätte, würde ich mehr reisen.",
+    "ru": "Если бы у меня было больше времени, я бы больше путешествовал."
+  },
+  {
+    "de": "Wenn du fleißig arbeitest, wirst du viel verdienen.",
+    "ru": "Если ты будешь усердно работать, ты будешь много зарабатывать."
+  },
+  {
+    "de": "Wenn ich alt bin, werde ich auf dem Land wohnen.",
+    "ru": "Когда я буду старым, я буду жить в деревне."
+  },
+  {
+    "de": "Wenn du heute Abend frei hast, können wir ins Kino gehen.",
+    "ru": "Если у тебя сегодня вечером будет свободное время, мы можем пойти в кино."
+  },
+  {
+    "de": "Wenn ich genug Geld habe, kaufe ich mir ein neues Auto.",
+    "ru": "Если у меня будет достаточно денег, я куплю себе новую машину."
+  },
+  {
+    "de": "Wenn du Deutsch lernen willst, musst du üben.",
+    "ru": "Если ты хочешь выучить немецкий, ты должен практиковаться."
+  },
+  {
+    "de": "Wenn ich die Stelle bekomme, werde ich umziehen.",
+    "ru": "Если я получу эту должность, я перееду."
+  },
+  {
+    "de": "Wenn ich meinen Traumjob finde, werde ich glücklich sein.",
+    "ru": "Если я найду работу мечты, я буду счастлив."
+  },
+  {
+    "de": "Wenn du mich fragst, helfe ich dir.",
+    "ru": "Если ты меня попросишь, я помогу тебе."
+  },
+  {
+    "de": "Wenn ich in Deutschland studiere, lerne ich perfekt Deutsch.",
+    "ru": "Если я буду учиться в Германии, я выучу немецкий идеально."
+  },
+  {
+    "de": "Wenn du morgen Zeit hast, können wir uns treffen.",
+    "ru": "Если у тебя будет время завтра, мы можем встретиться."
+  },
+  {
+    "de": "Die Zukunft gehört denen, die an ihre Träume glauben.",
+    "ru": "Будущее принадлежит тем, кто верит в свои мечты."
+  },
+  {
+    "de": "Wenn ich die Prüfung nicht bestehe, werde ich sie wiederholen.",
+    "ru": "Если я не сдам экзамен, я буду его пересдавать."
+  },
+  {
+    "de": "Ich treibe Sport, um fit zu bleiben.",
+    "ru": "Я занимаюсь спортом, чтобы оставаться в форме."
+  },
+  {
+    "de": "Er geht, ohne etwas zu sagen.",
+    "ru": "Он уходит, ничего не сказав."
+  },
+  {
+    "de": "Statt zu rauchen, sollte man Sport treiben.",
+    "ru": "Вместо того чтобы курить, следует заниматься спортом."
+  },
+  {
+    "de": "Ich laufe jeden Morgen, um gesund zu bleiben.",
+    "ru": "Я бегаю каждое утро, чтобы оставаться здоровым."
+  },
+  {
+    "de": "Sie hat gegessen, ohne zu bezahlen.",
+    "ru": "Она поела, не заплатив."
+  },
+  {
+    "de": "Statt zu Hause zu bleiben, bin ich ins Kino gegangen.",
+    "ru": "Вместо того чтобы остаться дома, я пошёл в кино."
+  },
+  {
+    "de": "Ich trinke viel Wasser, um gesund zu bleiben.",
+    "ru": "Я пью много воды, чтобы оставаться здоровым."
+  },
+  {
+    "de": "Er ist gegangen, ohne sich zu verabschieden.",
+    "ru": "Он ушёл, не попрощавшись."
+  },
+  {
+    "de": "Statt zu schlafen, hat er die ganze Nacht gelernt.",
+    "ru": "Вместо того чтобы спать, он учился всю ночь."
+  },
+  {
+    "de": "Ich gehe ins Fitnessstudio, um Muskeln aufzubauen.",
+    "ru": "Я хожу в спортзал, чтобы нарастить мышцы."
+  },
+  {
+    "de": "Sie ist gegangen, ohne etwas zu sagen.",
+    "ru": "Она ушла, ничего не сказав."
+  },
+  {
+    "de": "Statt zu faulenzen, sollte man aktiv sein.",
+    "ru": "Вместо того чтобы бездельничать, следует быть активным."
+  },
+  {
+    "de": "Ich esse gesund, um abzunehmen.",
+    "ru": "Я питаюсь правильно, чтобы похудеть."
+  },
+  {
+    "de": "Er hat die Prüfung bestanden, ohne viel zu lernen.",
+    "ru": "Он сдал экзамен, не учившись много."
+  },
+  {
+    "de": "Statt zu Hause zu essen, gehen wir ins Restaurant.",
+    "ru": "Вместо того чтобы есть дома, мы идём в ресторан."
+  },
+  {
+    "de": "Ich gehe spazieren, um mich zu entspannen.",
+    "ru": "Я иду гулять, чтобы расслабиться."
+  },
+  {
+    "de": "Statt zu rauchen, hat er mit dem Sport angefangen.",
+    "ru": "Вместо того чтобы курить, он начал заниматься спортом."
+  },
+  {
+    "de": "Ich habe heute Morgen trainiert, um fit zu bleiben.",
+    "ru": "Я тренировался сегодня утром, чтобы оставаться в форме."
+  },
+  {
+    "de": "Statt zu zweifeln, sollte man handeln.",
+    "ru": "Вместо того чтобы сомневаться, следует действовать."
+  },
+  {
+    "de": "Ich lese viel, um mein Deutsch zu verbessern.",
+    "ru": "Я много читаю, чтобы улучшить свой немецкий."
+  },
+  {
+    "de": "Statt zu klagen, sollte man Lösungen suchen.",
+    "ru": "Вместо того чтобы жаловаться, следует искать решения."
+  },
+  {
+    "de": "Ich treibe regelmäßig Sport, um Stress abzubauen.",
+    "ru": "Я регулярно занимаюсь спортом, чтобы снять стресс."
+  },
+  {
+    "de": "Die Gesundheit ist das wichtigste Gut.",
+    "ru": "Здоровье — самое важное достояние."
+  }
 ]

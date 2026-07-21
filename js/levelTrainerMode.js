@@ -75,60 +75,18 @@ async function loadAllPhrasesLegacy(level) {
     }
 }
 
-// ========== ЗАГРУЗКА ВСЕХ СЛОВ УРОВНЯ (для дистракторов) ==========
+// ========== ЗАГРУЗКА ВСЕХ СЛОВ УРОВНЯ (ОПТИМИЗИРОВАННО) ==========
 async function loadAllVocabularyForLevelTrainer(level) {
     if (levelTrainerVocabCache[level]) {
         return levelTrainerVocabCache[level];
     }
-    try {
-        const indexResponse = await fetch(`docs/${level}/index.json`);
-        if (!indexResponse.ok) throw new Error('Не удалось загрузить индекс уровня');
-        const indexData = await indexResponse.json();
-        let allWords = [];
-        const seen = new Set();
-        for (const lesson of indexData.lessons) {
-            const lessonId = lesson.id;
-            const grammarFile = `docs/${level}/grammar/${String(lessonId).padStart(2, '0')}_grammar.json`;
-            try {
-                const response = await fetch(grammarFile);
-                if (response.ok) {
-                    const data = await response.json();
-                    if (data.vocabulary && Array.isArray(data.vocabulary)) {
-                        for (const word of data.vocabulary) {
-                            if (word.de && !seen.has(word.de)) {
-                                seen.add(word.de);
-                                allWords.push(word);
-                            }
-                        }
-                    }
-                }
-            } catch(e) {}
-        }
-        for (const lesson of indexData.lessons) {
-            const lessonId = lesson.id;
-            const lessonFile = `docs/${level}/lessons/lesson_${String(lessonId).padStart(2, '0')}.json`;
-            try {
-                const response = await fetch(lessonFile);
-                if (response.ok) {
-                    const data = await response.json();
-                    if (data.quiz && Array.isArray(data.quiz)) {
-                        for (const word of data.quiz) {
-                            if (word.de && !seen.has(word.de)) {
-                                seen.add(word.de);
-                                allWords.push(word);
-                            }
-                        }
-                    }
-                }
-            } catch(e) {}
-        }
-        levelTrainerVocabCache[level] = allWords;
-        console.log(`📚 Загружено ${allWords.length} уникальных слов для уровня ${level}`);
-        return allWords;
-    } catch(e) {
-        console.error('❌ Ошибка загрузки словаря уровня:', e);
-        return [];
-    }
+    
+    const response = await fetch(`docs/${level}.json`);
+    const allWords = await response.json();
+    
+    levelTrainerVocabCache[level] = allWords;
+    console.log(`📚 Загружено ${allWords.length} слов для уровня ${level}`);
+    return allWords;
 }
 
 // ========== ЗАГРУЗКА/СОХРАНЕНИЕ КОНТЕЙНЕРА ==========

@@ -1,6 +1,5 @@
 // ====================================================================
-// levelTrainerMode.js — Тренажёр "Все фразы уровня"
-// Загружает ОДИН файл all_phrases.json вместо 19 отдельных
+// levelTrainerMode.js — Тренажёр "Все фразы уровня" (ОПТИМИЗИРОВАННАЯ ВЕРСИЯ)
 // ====================================================================
 
 let levelTrainerSentences = [];
@@ -17,6 +16,11 @@ let levelTrainerCurrentLevel = 'A1';
 let levelTrainerAllPhrases = [];
 let levelTrainerVocabCache = {};
 
+// ===== КЕШ ДЛЯ ДИСТРАКТОРОВ (СОЗДАЁТСЯ 1 РАЗ ДЛЯ УРОВНЯ) =====
+let _cachedDistractors = null;
+let _cachedLevel = null;
+let _cachedDirection = null;
+
 // Счётчик для генерации уникальных ID
 let _wordIdCounter = 0;
 
@@ -28,16 +32,15 @@ async function loadAllPhrasesForLevel(level) {
             throw new Error(`Файл docs/${level}/all_phrases.json не найден`);
         }
         const allPhrases = await response.json();
-        console.log(`📚 Загружено ${allPhrases.length} фраз для уровня ${level} (из одного файла)`);
+        console.log(`📚 Загружено ${allPhrases.length} фраз для уровня ${level}`);
         return allPhrases;
     } catch(e) {
         console.error('❌ Ошибка загрузки all_phrases.json:', e);
-        console.log('🔄 Пробуем загрузить фразы по-старому (из отдельных уроков)...');
         return await loadAllPhrasesLegacy(level);
     }
 }
 
-// ========== СТАРЫЙ СПОСОБ (запасной, для обратной совместимости) ==========
+// ========== СТАРЫЙ СПОСОБ (запасной) ==========
 async function loadAllPhrasesLegacy(level) {
     try {
         const indexResponse = await fetch(`docs/${level}/index.json`);
@@ -62,14 +65,12 @@ async function loadAllPhrasesLegacy(level) {
                         }
                     }
                 }
-            } catch(e) {
-                console.log('⚠️ Не удалось загрузить урок', lessonId);
-            }
+            } catch(e) {}
         }
         console.log(`📚 Загружено ${allPhrases.length} фраз для уровня ${level} (по-старому)`);
         return allPhrases;
     } catch(e) {
-        console.error('❌ Ошибка загрузки фраз уровня (legacy):', e);
+        console.error('❌ Ошибка загрузки фраз уровня:', e);
         return [];
     }
 }
@@ -122,7 +123,7 @@ async function loadAllVocabularyForLevelTrainer(level) {
             } catch(e) {}
         }
         levelTrainerVocabCache[level] = allWords;
-        console.log(`📚 Загружено ${allWords.length} уникальных слов для уровня ${level} (дистракторы)`);
+        console.log(`📚 Загружено ${allWords.length} уникальных слов для уровня ${level}`);
         return allWords;
     } catch(e) {
         console.error('❌ Ошибка загрузки словаря уровня:', e);
@@ -130,7 +131,7 @@ async function loadAllVocabularyForLevelTrainer(level) {
     }
 }
 
-// ========== ЗАГРУЗКА КОНТЕЙНЕРА ==========
+// ========== ЗАГРУЗКА/СОХРАНЕНИЕ КОНТЕЙНЕРА ==========
 function loadLevelTrainerStudied(level) {
     const key = 'dm_level_trainer_studied_' + level;
     try {
@@ -145,7 +146,6 @@ function loadLevelTrainerStudied(level) {
     }
 }
 
-// ========== СОХРАНЕНИЕ КОНТЕЙНЕРА ==========
 function saveLevelTrainerStudied(level) {
     const key = 'dm_level_trainer_studied_' + level;
     try {
@@ -155,7 +155,6 @@ function saveLevelTrainerStudied(level) {
     }
 }
 
-// ========== ПОЛУЧИТЬ ИЗУЧЕННЫЕ ФРАЗЫ ==========
 function getLevelTrainerStudiedList() {
     if (!levelTrainerAllPhrases) return [];
     return levelTrainerAllPhrases.filter(phrase => {
@@ -164,7 +163,6 @@ function getLevelTrainerStudiedList() {
     });
 }
 
-// ========== ОБНОВЛЕНИЕ СПИСКА ФРАЗ ДЛЯ ПОКАЗА ==========
 function updateLevelTrainerPhrases() {
     let availablePhrases = levelTrainerAllPhrases.filter(phrase => {
         const key = phrase.de + '|' + phrase.ru;
@@ -184,6 +182,10 @@ window.loadAllPhrasesMode = async function(level) {
     console.log('🔄 loadAllPhrasesMode вызван для уровня:', level);
     levelTrainerCurrentLevel = level;
     levelTrainerVocabCache = {};
+    _cachedDistractors = null;
+    _cachedLevel = null;
+    _cachedDirection = null;
+    
     loadLevelTrainerStudied(level);
     levelTrainerAllPhrases = await loadAllPhrasesForLevel(level);
     console.log('📚 Всего фраз в уровне:', levelTrainerAllPhrases.length);
@@ -208,7 +210,6 @@ function showLevelTrainerEmpty() {
         <div style="text-align: center; padding: 40px; color: #999;">
             <div style="font-size: 48px; margin-bottom: 15px;">📭</div>
             <div>Нет фраз для уровня ${levelTrainerCurrentLevel}</div>
-            <div style="font-size: 14px; margin-top: 10px;">В уроках этого уровня нет фраз для тренажёра.</div>
             <button class="back-btn" onclick="renderLevel()" style="margin-top: 20px;">← НАЗАД</button>
         </div>
     `;
@@ -216,7 +217,28 @@ function showLevelTrainerEmpty() {
     updateCounter();
 }
 
-// ========== ПОКАЗАТЬ ИНТЕРФЕЙС ТРЕНАЖЁРА ==========
+// ========== ПОКАЗАТЬ ВСЁ ИЗУЧЕНО ==========
+function showLevelTrainerAllStudied() {
+    const content = document.getElementById('content');
+    if (!content) return;
+    content.innerHTML = `
+        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; margin-bottom: 15px;">
+            <button class="back-btn" onclick="renderLevel()" style="padding: 8px 16px; background: #3B6FE0; color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: bold;">
+                ← НАЗАД
+            </button>
+        </div>
+        <div style="text-align: center; padding: 40px;">
+            <div style="font-size: 64px; margin-bottom: 20px;">🎉</div>
+            <div style="font-size: 24px; margin-bottom: 20px;">Все фразы уровня ${levelTrainerCurrentLevel} изучены!</div>
+            <div style="font-size: 16px; margin-bottom: 20px;">Отличная работа! Вы выучили все фразы этого уровня.</div>
+            <button class="ctrl-btn" onclick="location.reload()" style="padding: 10px 30px; background: #3B6FE0; color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: bold;">🔄 НАЧАТЬ ЗАНОВО</button>
+        </div>
+    `;
+    document.getElementById('modeIndicator').textContent = `🧩 Все фразы уровня ${levelTrainerCurrentLevel}`;
+    updateCounter();
+}
+
+// ========== ПОКАЗАТЬ ИНТЕРФЕЙС ТРЕНАЖЁРА (ОПТИМИЗИРОВАННЫЙ) ==========
 function showLevelTrainerInterface() {
     const content = document.getElementById('content');
     if (!content) return;
@@ -235,7 +257,7 @@ function showLevelTrainerInterface() {
     const deWords = levelTrainerCurrentSentence.de.replace(/[.,!?;:]/g, '').split(/\s+/);
     const ruWords = levelTrainerCurrentSentence.ru.replace(/[.,!?;:]/g, '').split(/\s+/);
     
-    // ===== ИСПРАВЛЕНО: правильные слова с уникальными ID =====
+    // ===== ПРАВИЛЬНЫЕ СЛОВА С УНИКАЛЬНЫМИ ID =====
     const correctWords = deWords.map((w, i) => ({
         display: isRuToDe ? w : (ruWords[i] || w),
         de: w,
@@ -245,41 +267,48 @@ function showLevelTrainerInterface() {
         id: ++_wordIdCounter
     }));
 
-    // ===== ИСПРАВЛЕНО: для дистракторов используем слова на нужном языке =====
-    const allVocabWords = levelTrainerVocabCache[levelTrainerCurrentLevel] || [];
-    let allDistractorWords = [];
-    
-    if (isRuToDe) {
-        // Режим Ru → De: дистракторы — немецкие слова
-        allDistractorWords = allVocabWords.map(w => ({
-            display: w.de,
-            de: w.de,
-            ru: w.ru || w.de,
-            isCorrect: false
-        }));
-    } else {
-        // Режим De → Ru: дистракторы — русские слова
-        allDistractorWords = allVocabWords.map(w => ({
-            display: w.ru || w.de,
-            de: w.de,
-            ru: w.ru || w.de,
-            isCorrect: false
-        }));
+    // ===== ОПТИМИЗАЦИЯ: КЕШИРУЕМ ДИСТРАКТОРЫ ДЛЯ УРОВНЯ =====
+    // Создаём дистракторы только 1 раз для уровня и направления
+    if (_cachedLevel !== levelTrainerCurrentLevel || _cachedDirection !== levelTrainerDirection) {
+        _cachedLevel = levelTrainerCurrentLevel;
+        _cachedDirection = levelTrainerDirection;
+        
+        const allVocabWords = levelTrainerVocabCache[levelTrainerCurrentLevel] || [];
+        
+        if (isRuToDe) {
+            _cachedDistractors = allVocabWords.map(w => ({
+                display: w.de,
+                de: w.de,
+                ru: w.ru || w.de,
+                isCorrect: false
+            }));
+        } else {
+            _cachedDistractors = allVocabWords.map(w => ({
+                display: w.ru || w.de,
+                de: w.de,
+                ru: w.ru || w.de,
+                isCorrect: false
+            }));
+        }
     }
 
-    // Перемешиваем дистракторы
+    // Используем кешированные дистракторы
+    const allDistractorWords = _cachedDistractors || [];
+
+    // Перемешиваем дистракторы (это всё равно нужно делать для каждой фразы,
+    // чтобы порядок слов был разным)
     const shuffledDistractors = [...allDistractorWords];
     for (let i = shuffledDistractors.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
         [shuffledDistractors[i], shuffledDistractors[j]] = [shuffledDistractors[j], shuffledDistractors[i]];
     }
 
-    // Множество правильных слов (для исключения)
+    // Множество правильных слов (для быстрого исключения)
     const correctSet = new Set(
         correctWords.map(w => w.display.toLowerCase().replace(/[.,!?;:]/g, ''))
     );
 
-    // Фильтруем дистракторы: убираем те, что совпадают с правильными словами
+    // Фильтруем дистракторы
     const filteredDistractors = shuffledDistractors
         .filter(w => {
             const key = w.display.toLowerCase().replace(/[.,!?;:]/g, '');
@@ -287,7 +316,7 @@ function showLevelTrainerInterface() {
         })
         .slice(0, 12 - deWords.length);
 
-    // ===== ИСПРАВЛЕНО: формируем список слов для выбора с уникальными ID =====
+    // ===== ФОРМИРУЕМ СПИСОК СЛОВ ДЛЯ ВЫБОРА =====
     let finalAll = [];
     correctWords.forEach(w => {
         finalAll.push({
@@ -311,7 +340,7 @@ function showLevelTrainerInterface() {
         });
     });
 
-    // Если всё ещё не хватает слов, добавляем случайные из оставшихся
+    // Если не хватает слов, добавляем случайные
     while (finalAll.length < maxTotal && allDistractorWords.length > 0) {
         const extraWord = allDistractorWords.find(w => 
             !finalAll.some(f => f.display === w.display)
@@ -350,6 +379,7 @@ function showLevelTrainerInterface() {
     const textColor = hasWords ? '#1A1A1A' : '#CCCCCC';
     const fontWeight = hasWords ? 'bold' : 'normal';
 
+    // ===== HTML =====
     let html = `
         <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; margin-bottom: 15px;">
             <button class="back-btn" onclick="renderLevel()" style="padding: 8px 16px; background: #3B6FE0; color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: bold;">
@@ -409,27 +439,6 @@ function showLevelTrainerInterface() {
     attachLevelTrainerEvents();
 }
 
-// ========== ПОКАЗАТЬ ВСЁ ИЗУЧЕНО ==========
-function showLevelTrainerAllStudied() {
-    const content = document.getElementById('content');
-    if (!content) return;
-    content.innerHTML = `
-        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; margin-bottom: 15px;">
-            <button class="back-btn" onclick="renderLevel()" style="padding: 8px 16px; background: #3B6FE0; color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: bold;">
-                ← НАЗАД
-            </button>
-        </div>
-        <div style="text-align: center; padding: 40px;">
-            <div style="font-size: 64px; margin-bottom: 20px;">🎉</div>
-            <div style="font-size: 24px; margin-bottom: 20px;">Все фразы уровня ${levelTrainerCurrentLevel} изучены!</div>
-            <div style="font-size: 16px; margin-bottom: 20px;">Отличная работа! Вы выучили все фразы этого уровня.</div>
-            <button class="ctrl-btn" onclick="location.reload()" style="padding: 10px 30px; background: #3B6FE0; color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: bold;">🔄 НАЧАТЬ ЗАНОВО</button>
-        </div>
-    `;
-    document.getElementById('modeIndicator').textContent = `🧩 Все фразы уровня ${levelTrainerCurrentLevel}`;
-    updateCounter();
-}
-
 // ========== ПРИВЯЗКА СОБЫТИЙ ==========
 function attachLevelTrainerEvents() {
     const dirBtn = document.getElementById('levelTrainerDirBtn');
@@ -437,12 +446,13 @@ function attachLevelTrainerEvents() {
         dirBtn.addEventListener('click', function() {
             levelTrainerDirection = levelTrainerDirection === 'ru_to_de' ? 'de_to_ru' : 'ru_to_de';
             this.textContent = levelTrainerDirection === 'ru_to_de' ? 'Ru → De' : 'De → Ru';
+            // При смене направления сбрасываем кеш дистракторов
+            _cachedDirection = null;
             _wordIdCounter = 0;
             showLevelTrainerInterface();
         });
     }
 
-    // Контейнер со словами — используем делегирование
     const wordsContainer = document.getElementById('levelTrainerWordsContainer');
     if (wordsContainer) {
         wordsContainer.addEventListener('click', function(e) {
@@ -785,4 +795,4 @@ function showLevelTrainerContainer() {
 window.loadAllPhrasesMode = loadAllPhrasesMode;
 window.showLevelTrainerContainer = showLevelTrainerContainer;
 
-console.log('🧩 levelTrainerMode.js загружен (ИСПРАВЛЕННАЯ ВЕРСИЯ)');
+console.log('🧩 levelTrainerMode.js загружен (ОПТИМИЗИРОВАННАЯ ВЕРСИЯ)');

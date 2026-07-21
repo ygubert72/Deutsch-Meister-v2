@@ -30,6 +30,8 @@ function showInstruction() {
                     <li><strong>Собирайте фразы</strong> <span style="font-size:20px;">🧩</span> — режим «Тренажёр» из слов</li>
                     <li><strong>Пишите диктанты</strong> <span style="font-size:20px;">✏️</span> — проверяйте правописание</li>
                     <li><strong>Слушайте аудирование</strong> <span style="font-size:20px;">🎧</span> — развивайте навыки восприятия на слух</li>
+                    <li><strong>Работайте с карточками</strong> <span style="font-size:20px;">📚</span> — заучивайте все слова уровня</li>
+                    <li><strong>Составляйте предложения</strong> <span style="font-size:20px;">🧩</span> — тренируйте все фразы уровня</li>
                 </ul>
             </div>
             

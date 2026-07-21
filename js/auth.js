@@ -338,7 +338,6 @@ function updateUI(user) {
                 <div style="display:flex; align-items:center; justify-content:center; gap:8px; margin-bottom:5px; flex-wrap:wrap;">
                     <span style="font-size:20px;">🎓</span>
                     <span style="word-break:break-all;">${user.email}</span>
-                    ${isAdmin ? '<span style="background:#FF9800; border-radius:12px; padding:2px 10px; font-size:10px; color:white; font-weight:bold;">👑 АДМИН</span>' : ''}
                 </div>
                 <button onclick="window.logout()" style="margin-top:5px; padding:8px 12px; background:#4CAF50; color:white; border:none; border-radius:16px; cursor:pointer; width:100%; font-size:12px; font-weight:bold;">🚪 Выйти</button>
                 ${premiumButtonHtml}

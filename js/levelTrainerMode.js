@@ -399,7 +399,7 @@ function showLevelTrainerInterface() {
                 <button class="ctrl-btn" id="levelTrainerPrevBtn" style="padding: 6px 14px; background: #E8F0FE; border: 2px solid #D0D0D0; border-radius: 8px; cursor: pointer; font-weight: bold; font-size: 12px;">◀ НАЗАД</button>
                 <button class="ctrl-btn" id="levelTrainerNextBtn" style="padding: 6px 14px; background: #E8F0FE; border: 2px solid #D0D0D0; border-radius: 8px; cursor: pointer; font-weight: bold; font-size: 12px;">ВПЕРЕД ▶</button>
                 <button class="ctrl-btn" id="levelTrainerResetStartBtn" style="padding: 6px 14px; background: #E8F0FE; border: 2px solid #D0D0D0; border-radius: 8px; cursor: pointer; font-weight: bold; font-size: 12px;">⏮ В НАЧАЛО</button>
-                <div style="font-size: 14px; color: #888; display: flex; align-items: center; margin-left: 10px;" id="levelTrainerCounter">${levelTrainerIndex + 1} / ${levelTrainerSentences.length}</div>
+                <div style="font-size: 14px; color: #888; display: flex; align-items: center; margin-left: 10px;" id="levelTrainerCounter">${levelTrainerIndex + 1} / ${levelTrainerAllPhrases.length}</div>
             </div>
         </div>
     `;

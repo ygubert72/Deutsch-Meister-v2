@@ -1,196 +1,798 @@
 [
-  {"de":"Das Haus wird gebaut.","ru":"Дом строится (процесс)."},
-  {"de":"Das Haus wurde gebaut.","ru":"Дом строился (прошлое)."},
-  {"de":"Das Haus ist gebaut worden.","ru":"Дом был построен (Perfekt Passiv)."},
-  {"de":"Das Haus wird gebaut werden.","ru":"Дом будет построен (Futur Passiv)."},
-  {"de":"Das Haus ist gebaut.","ru":"Дом построен (Zustandspassiv)."},
-  {"de":"Die Studie wurde von Forschern durchgeführt.","ru":"Исследование было проведено учёными."},
-  {"de":"Die Ergebnisse sind veröffentlicht worden.","ru":"Результаты были опубликованы."},
-  {"de":"Die Methode ist in der Wissenschaft etabliert.","ru":"Метод утверждён в науке (Zustandspassiv)."},
-  {"de":"Die Hypothese wurde durch das Experiment bestätigt.","ru":"Гипотеза была подтверждена экспериментом."},
-  {"de":"Die Daten werden sorgfältig analysiert.","ru":"Данные тщательно анализируются."},
-  {"de":"Die Messungen sind genau.","ru":"Измерения точны."},
-  {"de":"Der Beweis ist eindeutig.","ru":"Доказательство однозначно."},
-  {"de":"Das Experiment wurde im Labor durchgeführt.","ru":"Эксперимент был проведён в лаборатории."},
-  {"de":"Die Theorie wurde widerlegt.","ru":"Теория была опровергнута."},
-  {"de":"Der lesende Mann","ru":"Читающий мужчина."},
-  {"de":"Das gelesene Buch","ru":"Прочитанная книга."},
-  {"de":"Der im letzten Jahr entwickelte Roboter","ru":"Робот, разработанный в прошлом году."},
-  {"de":"Die von Forschern durchgeführte Studie","ru":"Исследование, проведённое учёными."},
-  {"de":"Ich wohne in Berlin.","ru":"Я живу в Берлине."},
-  {"de":"Die digitalisierte Gesellschaft","ru":"Цифровое общество."},
-  {"de":"Die automatisierte Produktion","ru":"Автоматизированное производство."},
-  {"de":"Ich habe den Film gesehen.","ru":"Я видел фильм."},
-  {"de":"Die sich entwickelnde Technologie","ru":"Развивающаяся технология."},
-  {"de":"Ich habe das Buch gelesen.","ru":"Я прочитал книгу."},
-  {"de":"Die von der Firma entwickelte Software","ru":"Программное обеспечение, разработанное фирмой."},
-  {"de":"Wenn ich Zeit habe, lerne ich Deutsch.","ru":"Когда у меня есть время, я учу немецкий."},
-  {"de":"Die optimierte Anwendung","ru":"Оптимизированное приложение."},
-  {"de":"Ich habe die Hausaufgaben gemacht.","ru":"Я сделал домашние задания."},
-  {"de":"Der programmierende Ingenieur","ru":"Программирующий инженер."},
-  {"de":"Als ich jung war, ging ich zur Schule.","ru":"Когда я был молодым, я ходил в школу."},
-  {"de":"Die in Deutschland entwickelte Technologie","ru":"Технология, разработанная в Германии."},
-  {"de":"Ich habe die Zeitung gelesen.","ru":"Я прочитал газету."},
-  {"de":"Die automatisierte Fabrik","ru":"Автоматизированная фабрика."},
-  {"de":"Meine Eltern wohnen in München.","ru":"Мои родители живут в Мюнхене."},
-  {"de":"Die von Wissenschaftlern durchgeführte Analyse","ru":"Анализ, проведённый учёными."},
-  {"de":"Wenn ich Urlaub habe, reise ich gern.","ru":"Когда у меня отпуск, я люблю путешествовать."},
-  {"de":"Die sich schnell entwickelnde KI","ru":"Быстро развивающийся ИИ."},
-  {"de":"Ich habe die Prüfung bestanden, deshalb bin ich glücklich.","ru":"Я сдал экзамен, поэтому я счастлив."},
-  {"de":"Der im letzten Jahr programmierte Roboter","ru":"Робот, запрограммированный в прошлом году."},
-  {"de":"Ich werde nächstes Jahr nach Deutschland reisen.","ru":"Я поеду в Германию в следующем году."},
-  {"de":"Die digitalisierte Verwaltung","ru":"Цифровое управление."},
-  {"de":"Obwohl er müde war, half er bei dem Projekt.","ru":"Хотя он устал, он помогал с проектом."},
-  {"de":"Die von der Regierung geförderte Innovation","ru":"Инновация, поддерживаемая правительством."},
-  {"de":"Als ich in Berlin war, besuchte ich das Museum.","ru":"Когда я был в Берлине, я посетил музей."},
-  {"de":"Ich habe im Restaurant gegessen.","ru":"Я ел в ресторане."},
-  {"de":"Die steuernde Software","ru":"Управляющее программное обеспечение."},
-  {"de":"Wenn ich nach Hause komme, esse ich zu Abend.","ru":"Когда я прихожу домой, я ужинаю."},
-  {"de":"Mein Vater hat mir geholfen.","ru":"Мой отец помог мне."},
-  {"de":"Die im Bereich der KI forschenden Wissenschaftler","ru":"Учёные, исследующие область ИИ."},
-  {"de":"Wenn ich Zeit habe, lese ich gern Bücher.","ru":"Когда у меня есть время, я люблю читать книги."},
-  {"de":"Der Müll muss getrennt werden, weil die Umwelt geschützt werden muss.","ru":"Мусор должен быть разделён, потому что окружающая среда должна быть защищена."},
-  {"de":"Die von der Firma entwickelte Anwendung","ru":"Приложение, разработанное фирмой."},
-  {"de":"Obwohl ich wenig Zeit habe, engagiere ich mich im Verein.","ru":"Хотя у меня мало времени, я участвую в обществе."},
-  {"de":"Das ist der Mann, der Deutsch lehrt.","ru":"Это мужчина, который преподаёт немецкий."},
-  {"de":"Die sich verändernde Welt","ru":"Меняющийся мир."},
-  {"de":"Ich habe mich bei ihr entschuldigt.","ru":"Я извинился перед ней."},
-  {"de":"Könntest du mir helfen?","ru":"Не мог бы ты мне помочь?"},
-  {"de":"Ich hätte gern eine Tasse Kaffee.","ru":"Я бы хотел чашку кофе."},
-  {"de":"Die optimierte Produktion","ru":"Оптимизированное производство."},
-  {"de":"Wenn ich genug Geld habe, werde ich reisen.","ru":"Если у меня будет достаточно денег, я поеду путешествовать."},
-  {"de":"Ich treibe Sport, um fit zu bleiben.","ru":"Я занимаюсь спортом, чтобы оставаться в форме."},
-  {"de":"Die sich entwickelnde Technologie","ru":"Развивающаяся технология."},
-  {"de":"Die von Experten geprüften Daten","ru":"Данные, проверенные экспертами."},
-  {"de":"Wegen des schlechten Wetters fiel die Veranstaltung aus.","ru":"Из-за плохой погоды мероприятие отменили."},
-  {"de":"Während des Meetings wurden wichtige Entscheidungen getroffen.","ru":"Во время встречи были приняты важные решения."},
-  {"de":"Trotz der Schwierigkeiten wurde das Projekt abgeschlossen.","ru":"Несмотря на трудности, проект был завершён."},
-  {"de":"Aufgrund Ihrer Anfrage sende ich Ihnen die Unterlagen.","ru":"На основании Вашего запроса я высылаю Вам документы."},
-  {"de":"Bezüglich Ihrer E-Mail möchten wir Sie informieren.","ru":"Относительно Вашего письма мы хотели бы Вас проинформировать."},
-  {"de":"Ich bitte um Ihre Stellungnahme zu diesem Thema.","ru":"Я прошу Вашу позицию по этой теме."},
-  {"de":"Wir haben einen Antrag gestellt.","ru":"Мы подали заявку."},
-  {"de":"Vielen Dank für Ihre Bestätigung.","ru":"Благодарим за подтверждение."},
-  {"de":"Außerhalb der Geschäftszeiten ist das Büro geschlossen.","ru":"Вне рабочего времени офис закрыт."},
-  {"de":"Innerhalb einer Woche erhalten Sie eine Antwort.","ru":"В течение недели Вы получите ответ."},
-  {"de":"Anstatt eines Anrufs schickte er eine E-Mail.","ru":"Вместо звонка он отправил письмо."},
-  {"de":"Wir haben Ihre Anfrage erhalten.","ru":"Мы получили Ваш запрос."},
-  {"de":"Bezüglich Ihres Antrags haben wir eine Entscheidung getroffen.","ru":"Относительно Вашей заявки мы приняли решение."},
-  {"de":"Trotz der Verspätung kam der Zug pünktlich an.","ru":"Несмотря на задержку, поезд прибыл вовремя."},
-  {"de":"Wegen der Baustelle müssen wir umfahren.","ru":"Из-за стройки мы должны объехать."},
-  {"de":"Aufgrund Ihrer Erfahrung haben wir Sie ausgewählt.","ru":"На основании Вашего опыта мы выбрали Вас."},
-  {"de":"Die Genehmigung wurde erteilt.","ru":"Разрешение было выдано."},
-  {"de":"Während der Präsentation wurden viele Fragen gestellt.","ru":"Во время презентации было задано много вопросов."},
-  {"de":"Wir bitten um Ihre Stellungnahme bis nächste Woche.","ru":"Мы просим Вашу позицию до следующей недели."},
-  {"de":"Anstatt zu schlafen, arbeitete er die ganze Nacht.","ru":"Вместо того чтобы спать, он работал всю ночь."},
-  {"de":"Wir bestätigen den Empfang Ihrer Anfrage.","ru":"Мы подтверждаем получение Вашего запроса."},
-  {"de":"Wegen des Streiks fielen viele Züge aus.","ru":"Из-за забастовки многие поезда отменили."},
-  {"de":"Trotz der Krise hat die Firma Gewinn gemacht.","ru":"Несмотря на кризис, фирма получила прибыль."},
-  {"de":"Der Kanzler sagte, die Reform sei wichtig.","ru":"Канцлер сказал, что реформа важна."},
-  {"de":"Die Partei erklärte, sie werde die Steuern senken.","ru":"Партия заявила, что снизит налоги."},
-  {"de":"Der Minister betonte, das Gesetz müsse verabschiedet werden.","ru":"Министр подчеркнул, что закон должен быть принят."},
-  {"de":"Die Wahl findet im nächsten Jahr statt.","ru":"Выборы состоятся в следующем году."},
-  {"de":"Die Demokratie ist ein wichtiger Wert.","ru":"Демократия — важная ценность."},
-  {"de":"Das Gesetz wurde vom Parlament verabschiedet.","ru":"Закон был принят парламентом."},
-  {"de":"Die Opposition protestiert gegen die Reform.","ru":"Оппозиция протестует против реформы."},
-  {"de":"Die Gesellschaft ist im Wandel.","ru":"Общество находится в процессе изменения."},
-  {"de":"Wir haben für Freiheit und Gleichheit demonstriert.","ru":"Мы протестовали за свободу и равенство."},
-  {"de":"Die Regierung hat eine Entscheidung getroffen.","ru":"Правительство приняло решение."},
-  {"de":"Der Wahlkampf hat begonnen.","ru":"Избирательная кампания началась."},
-  {"de":"Die Bürger haben ihre Rechte.","ru":"Граждане имеют свои права."},
-  {"de":"Der Protest war erfolgreich.","ru":"Протест был успешным."},
-  {"de":"Die Gerechtigkeit ist wichtig.","ru":"Справедливость важна."},
-  {"de":"Die Abstimmung war knapp.","ru":"Голосование было тесным."},
-  {"de":"Er spricht nicht nur Deutsch, sondern auch Englisch.","ru":"Он говорит не только по-немецки, но и по-английски."},
-  {"de":"Das ist zwar teuer, aber es lohnt sich.","ru":"Это правда дорого, но оно того стоит."},
-  {"de":"Je mehr ich lerne, desto besser werde ich.","ru":"Чем больше я учу, тем лучше я становлюсь."},
-  {"de":"Einerseits ist es praktisch, andererseits ist es teuer.","ru":"С одной стороны, это практично, с другой стороны, это дорого."},
-  {"de":"Ich stimme dir zu, aber ich habe einen anderen Standpunkt.","ru":"Я согласен с тобой, но у меня другая точка зрения."},
-  {"de":"Das Argument ist nicht überzeugend.","ru":"Аргумент не убедителен."},
-  {"de":"Meiner Meinung nach ist die Reform notwendig.","ru":"По моему мнению, реформа необходима."},
-  {"de":"Zusammenfassend kann man sagen, dass die Lage ernst ist.","ru":"Резюмируя, можно сказать, что ситуация серьёзная."},
-  {"de":"Ein starkes Argument für die Reform ist die Effizienz.","ru":"Сильный аргумент за реформу — это эффективность."},
-  {"de":"Je mehr man übt, desto besser wird man.","ru":"Чем больше практикуешься, тем лучше становишься."},
-  {"de":"Ich widerspreche dieser These.","ru":"Я возражаю против этого тезиса."},
-  {"de":"Einerseits ist es gesund, andererseits ist es anstrengend.","ru":"С одной стороны, это полезно, с другой стороны, это утомительно."},
-  {"de":"Das Fazit der Diskussion war klar.","ru":"Итог дискуссии был ясен."},
-  {"de":"Die Argumente sind nicht ausreichend begründet.","ru":"Аргументы недостаточно обоснованы."},
-  {"de":"Je mehr ich darüber nachdenke, desto weniger verstehe ich.","ru":"Чем больше я думаю об этом, тем меньше понимаю."},
-  {"de":"Nicht nur die Wirtschaft, sondern auch die Politik muss sich ändern.","ru":"Не только экономика, но и политика должна измениться."},
-  {"de":"Sein Standpunkt ist klar und verständlich.","ru":"Его точка зрения ясна и понятна."},
-  {"de":"Es gibt viele Argumente für und gegen die Reform.","ru":"Есть много аргументов за и против реформы."},
-  {"de":"Zwar ist die Idee gut, aber die Umsetzung ist schwierig.","ru":"Идея хорошая, но реализация сложна."},
-  {"de":"Ein überzeugendes Argument ist die Kostenersparnis.","ru":"Убедительный аргумент — это экономия средств."},
-  {"de":"Wer möchte nicht in einer besseren Welt leben?","ru":"Кто не хотел бы жить в лучшем мире?"},
-  {"de":"Genau das ist das Problem!","ru":"Именно в этом проблема!"},
-  {"de":"Nie war die Lage so ernst wie heute.","ru":"Никогда ситуация не была такой серьёзной, как сегодня."},
-  {"de":"Ich möchte meine Präsentation mit einer Frage beginnen.","ru":"Я хотел бы начать свою презентацию с вопроса."},
-  {"de":"Abschließend möchte ich ein Fazit ziehen.","ru":"В заключение я хотел бы подвести итог."},
-  {"de":"Die Statistik zeigt deutlich den Anstieg.","ru":"Статистика наглядно показывает рост."},
-  {"de":"Meine Präsentation besteht aus drei Teilen.","ru":"Моя презентация состоит из трёх частей."},
-  {"de":"Zuerst möchte ich die Einleitung vortragen.","ru":"Сначала я хотел бы представить введение."},
-  {"de":"Die Visualisierung hilft, den Punkt zu veranschaulichen.","ru":"Визуализация помогает наглядно показать пункт."},
-  {"de":"Nun komme ich zum Hauptteil meiner Präsentation.","ru":"Теперь я перехожу к основной части моей презентации."},
-  {"de":"Das Publikum war sehr aufmerksam.","ru":"Публика была очень внимательной."},
-  {"de":"Die Folie zeigt ein interessantes Diagramm.","ru":"Слайд показывает интересную диаграмму."},
-  {"de":"Die Überleitung zum nächsten Punkt ist wichtig.","ru":"Переход к следующему пункту важен."},
-  {"de":"Haben Sie schon einmal eine Präsentation gehalten?","ru":"Вы когда-нибудь делали презентацию?"},
-  {"de":"Die Rhetorik ist ein wichtiges Werkzeug.","ru":"Риторика — важный инструмент."},
-  {"de":"Nicht nur die Inhalte, sondern auch die Präsentation zählt.","ru":"Важно не только содержание, но и презентация."},
-  {"de":"Der Redner hat das Publikum überzeugt.","ru":"Докладчик убедил публику."},
-  {"de":"Ich möchte mit einer rhetorischen Frage abschließen.","ru":"Я хотел бы завершить риторическим вопросом."},
-  {"de":"Zusammenfassend möchte ich sagen, dass die Reform notwendig ist.","ru":"Резюмируя, я хотел бы сказать, что реформа необходима."},
-  {"de":"Die Präsentation war sehr professionell.","ru":"Презентация была очень профессиональной."},
-  {"de":"Ein guter Redner weiß, wie man das Publikum begeistert.","ru":"Хороший докладчик знает, как вдохновить публику."},
-  {"de":"Die Statistik spricht eine klare Sprache.","ru":"Статистика говорит сама за себя."},
-  {"de":"Die Rednerin hat den Vortrag souverän gehalten.","ru":"Докладчица уверенно провела доклад."},
-  {"de":"Um Gewinn zu erzielen, muss man investieren.","ru":"Чтобы получить прибыль, нужно инвестировать."},
-  {"de":"Die Nachfrage ist in diesem Jahr gestiegen.","ru":"Спрос вырос в этом году."},
-  {"de":"Das Unternehmen hat einen hohen Umsatz erzielt.","ru":"Предприятие достигло высокого оборота."},
-  {"de":"Trotz der Konkurrenz konnte der Gewinn gesteigert werden.","ru":"Несмотря на конкуренцию, прибыль удалось увеличить."},
-  {"de":"Die Aktie ist um 10 Prozent gefallen.","ru":"Акция упала на 10 процентов."},
-  {"de":"Statt zu sparen, hat er investiert.","ru":"Вместо того чтобы копить, он инвестировал."},
-  {"de":"Der Kunde ist zufrieden mit dem Angebot.","ru":"Клиент доволен предложением."},
-  {"de":"Die Konkurrenz wird immer stärker.","ru":"Конкуренция становится всё сильнее."},
-  {"de":"Die Wirtschaft wächst trotz der Krise.","ru":"Экономика растёт несмотря на кризис."},
-  {"de":"Die Inflation ist gestiegen.","ru":"Инфляция выросла."},
-  {"de":"Die Bank gibt Kredite.","ru":"Банк выдаёт кредиты."},
-  {"de":"Der Investor hat viel Kapital.","ru":"Инвестор имеет много капитала."},
-  {"de":"Die Dividende ist hoch.","ru":"Дивиденды высоки."},
-  {"de":"Der Export ist gestiegen.","ru":"Экспорт вырос."},
-  {"de":"Die Steuern sind hoch.","ru":"Налоги высоки."},
-  {"de":"Wenn ich mehr Zeit hätte, würde ich mehr reisen.","ru":"Если бы у меня было больше времени, я бы больше путешествовал."},
-  {"de":"Wenn ich reich wäre, würde ich ein Haus kaufen.","ru":"Если бы я был богат, я бы купил дом."},
-  {"de":"Wenn ich jünger wäre, würde ich studieren.","ru":"Если бы я был моложе, я бы учился."},
-  {"de":"Wenn ich mehr Zeit gehabt hätte, wäre ich gereist.","ru":"Если бы у меня было больше времени, я бы поехал путешествовать."},
-  {"de":"Wenn ich die Stelle bekommen hätte, hätte ich mehr Geld verdient.","ru":"Если бы я получил эту должность, я бы зарабатывал больше денег."},
-  {"de":"Der Vertrag muss unterschrieben werden.","ru":"Договор должен быть подписан."},
-  {"de":"Der Richter hat das Urteil gesprochen.","ru":"Судья вынес приговор."},
-  {"de":"Die Rechte der Bürger müssen geschützt werden.","ru":"Права граждан должны быть защищены."},
-  {"de":"Das Gericht hat den Angeklagten verurteilt.","ru":"Суд осудил обвиняемого."},
-  {"de":"Der Anwalt hat die Klage eingereicht.","ru":"Адвокат подал иск."},
-  {"de":"Die Verfassung garantiert die Grundrechte.","ru":"Конституция гарантирует основные права."},
-  {"de":"Der Beweis ist eindeutig.","ru":"Доказательство однозначно."},
-  {"de":"Das Verbrechen wurde aufgeklärt.","ru":"Преступление было раскрыто."},
-  {"de":"Die Strafe war gerecht.","ru":"Наказание было справедливым."},
-  {"de":"Der Gefangene wurde freigelassen.","ru":"Заключённый был освобождён."},
-  {"de":"Ich möchte Ihnen unser Angebot vorstellen.","ru":"Я хотел бы представить Вам наше предложение."},
-  {"de":"Wir müssen einen Kompromiss finden.","ru":"Мы должны найти компромисс."},
-  {"de":"Die Verhandlungen waren erfolgreich.","ru":"Переговоры были успешными."},
-  {"de":"Ich schlage vor, dass wir uns nächste Woche treffen.","ru":"Я предлагаю встретиться на следующей неделе."},
-  {"de":"Die Einigung wurde nach langen Gesprächen erzielt.","ru":"Соглашение было достигнуто после долгих переговоров."},
-  {"de":"Die Zusammenarbeit mit Ihnen ist sehr wichtig.","ru":"Сотрудничество с Вами очень важно."},
-  {"de":"Könnten Sie mir Ihr Angebot noch einmal erklären?","ru":"Не могли бы Вы ещё раз объяснить мне Ваше предложение?"},
-  {"de":"Wir können auf keinen Fall alle Forderungen akzeptieren.","ru":"Мы ни в коем случае не можем принять все требования."},
-  {"de":"Ein Kompromiss ist notwendig, um die Verhandlungen abzuschließen.","ru":"Компромисс необходим, чтобы завершить переговоры."},
-  {"de":"Ich bin mit den vorgeschlagenen Bedingungen einverstanden.","ru":"Я согласен с предложенными условиями."},
-  {"de":"Die Konfliktlösung erfordert Geduld.","ru":"Разрешение конфликта требует терпения."},
-  {"de":"Wir müssen unsere Position klar darlegen.","ru":"Мы должны чётко изложить свою позицию."},
-  {"de":"Wenn ich in Ihrer Situation wäre, würde ich das Angebot annehmen.","ru":"Если бы я был на Вашем месте, я бы принял предложение."},
-  {"de":"Die Zusammenarbeit mit unserem Partner ist sehr produktiv.","ru":"Сотрудничество с нашим партнёром очень продуктивно."},
-  {"de":"Ich schlage eine Pause vor, um die Situation zu besprechen.","ru":"Я предлагаю сделать паузу, чтобы обсудить ситуацию."},
-  {"de":"Nicht nur die Forderungen, sondern auch die Zugeständnisse sind wichtig.","ru":"Важны не только требования, но и уступки."},
-  {"de":"Die Verhandlungen wurden erfolgreich abgeschlossen.","ru":"Переговоры были успешно завершены."},
-  {"de":"Wir müssen einen gemeinsamen Nenner finden.","ru":"Мы должны найти общий знаменатель."},
-  {"de":"Trotz der schwierigen Verhandlungen wurde eine Einigung erzielt.","ru":"Несмотря на сложные переговоры, было достигнуто соглашение."},
-  {"de":"Ich akzeptiere Ihre Bedingungen.","ru":"Я принимаю Ваши условия."}
+  {
+    "de": "Das Haus wird gebaut.",
+    "ru": "Дом строится (процесс)."
+  },
+  {
+    "de": "Das Haus wurde gebaut.",
+    "ru": "Дом строился (прошлое)."
+  },
+  {
+    "de": "Das Haus ist gebaut worden.",
+    "ru": "Дом был построен (Perfekt Passiv)."
+  },
+  {
+    "de": "Das Haus wird gebaut werden.",
+    "ru": "Дом будет построен (Futur Passiv)."
+  },
+  {
+    "de": "Das Haus ist gebaut.",
+    "ru": "Дом построен (Zustandspassiv)."
+  },
+  {
+    "de": "Die Studie wurde von Forschern durchgeführt.",
+    "ru": "Исследование было проведено учёными."
+  },
+  {
+    "de": "Die Ergebnisse sind veröffentlicht worden.",
+    "ru": "Результаты были опубликованы."
+  },
+  {
+    "de": "Die Methode ist in der Wissenschaft etabliert.",
+    "ru": "Метод утверждён в науке (Zustandspassiv)."
+  },
+  {
+    "de": "Die Hypothese wurde durch das Experiment bestätigt.",
+    "ru": "Гипотеза была подтверждена экспериментом."
+  },
+  {
+    "de": "Die Daten werden sorgfältig analysiert.",
+    "ru": "Данные тщательно анализируются."
+  },
+  {
+    "de": "Die Messungen sind genau.",
+    "ru": "Измерения точны."
+  },
+  {
+    "de": "Der Beweis ist eindeutig.",
+    "ru": "Доказательство однозначно."
+  },
+  {
+    "de": "Das Experiment wurde im Labor durchgeführt.",
+    "ru": "Эксперимент был проведён в лаборатории."
+  },
+  {
+    "de": "Die Theorie wurde widerlegt.",
+    "ru": "Теория была опровергнута."
+  },
+  {
+    "de": "Der lesende Mann",
+    "ru": "Читающий мужчина."
+  },
+  {
+    "de": "Das gelesene Buch",
+    "ru": "Прочитанная книга."
+  },
+  {
+    "de": "Der im letzten Jahr entwickelte Roboter",
+    "ru": "Робот, разработанный в прошлом году."
+  },
+  {
+    "de": "Die von Forschern durchgeführte Studie",
+    "ru": "Исследование, проведённое учёными."
+  },
+  {
+    "de": "Ich wohne in Berlin.",
+    "ru": "Я живу в Берлине."
+  },
+  {
+    "de": "Die digitalisierte Gesellschaft",
+    "ru": "Цифровое общество."
+  },
+  {
+    "de": "Die automatisierte Produktion",
+    "ru": "Автоматизированное производство."
+  },
+  {
+    "de": "Ich habe den Film gesehen.",
+    "ru": "Я видел фильм."
+  },
+  {
+    "de": "Die sich entwickelnde Technologie",
+    "ru": "Развивающаяся технология."
+  },
+  {
+    "de": "Ich habe das Buch gelesen.",
+    "ru": "Я прочитал книгу."
+  },
+  {
+    "de": "Die von der Firma entwickelte Software",
+    "ru": "Программное обеспечение, разработанное фирмой."
+  },
+  {
+    "de": "Wenn ich Zeit habe, lerne ich Deutsch.",
+    "ru": "Когда у меня есть время, я учу немецкий."
+  },
+  {
+    "de": "Die optimierte Anwendung",
+    "ru": "Оптимизированное приложение."
+  },
+  {
+    "de": "Ich habe die Hausaufgaben gemacht.",
+    "ru": "Я сделал домашние задания."
+  },
+  {
+    "de": "Der programmierende Ingenieur",
+    "ru": "Программирующий инженер."
+  },
+  {
+    "de": "Als ich jung war, ging ich zur Schule.",
+    "ru": "Когда я был молодым, я ходил в школу."
+  },
+  {
+    "de": "Die in Deutschland entwickelte Technologie",
+    "ru": "Технология, разработанная в Германии."
+  },
+  {
+    "de": "Ich habe die Zeitung gelesen.",
+    "ru": "Я прочитал газету."
+  },
+  {
+    "de": "Die automatisierte Fabrik",
+    "ru": "Автоматизированная фабрика."
+  },
+  {
+    "de": "Meine Eltern wohnen in München.",
+    "ru": "Мои родители живут в Мюнхене."
+  },
+  {
+    "de": "Die von Wissenschaftlern durchgeführte Analyse",
+    "ru": "Анализ, проведённый учёными."
+  },
+  {
+    "de": "Wenn ich Urlaub habe, reise ich gern.",
+    "ru": "Когда у меня отпуск, я люблю путешествовать."
+  },
+  {
+    "de": "Die sich schnell entwickelnde KI",
+    "ru": "Быстро развивающийся ИИ."
+  },
+  {
+    "de": "Ich habe die Prüfung bestanden, deshalb bin ich glücklich.",
+    "ru": "Я сдал экзамен, поэтому я счастлив."
+  },
+  {
+    "de": "Der im letzten Jahr programmierte Roboter",
+    "ru": "Робот, запрограммированный в прошлом году."
+  },
+  {
+    "de": "Ich werde nächstes Jahr nach Deutschland reisen.",
+    "ru": "Я поеду в Германию в следующем году."
+  },
+  {
+    "de": "Die digitalisierte Verwaltung",
+    "ru": "Цифровое управление."
+  },
+  {
+    "de": "Obwohl er müde war, half er bei dem Projekt.",
+    "ru": "Хотя он устал, он помогал с проектом."
+  },
+  {
+    "de": "Die von der Regierung geförderte Innovation",
+    "ru": "Инновация, поддерживаемая правительством."
+  },
+  {
+    "de": "Als ich in Berlin war, besuchte ich das Museum.",
+    "ru": "Когда я был в Берлине, я посетил музей."
+  },
+  {
+    "de": "Ich habe im Restaurant gegessen.",
+    "ru": "Я ел в ресторане."
+  },
+  {
+    "de": "Die steuernde Software",
+    "ru": "Управляющее программное обеспечение."
+  },
+  {
+    "de": "Wenn ich nach Hause komme, esse ich zu Abend.",
+    "ru": "Когда я прихожу домой, я ужинаю."
+  },
+  {
+    "de": "Mein Vater hat mir geholfen.",
+    "ru": "Мой отец помог мне."
+  },
+  {
+    "de": "Die im Bereich der KI forschenden Wissenschaftler",
+    "ru": "Учёные, исследующие область ИИ."
+  },
+  {
+    "de": "Wenn ich Zeit habe, lese ich gern Bücher.",
+    "ru": "Когда у меня есть время, я люблю читать книги."
+  },
+  {
+    "de": "Der Müll muss getrennt werden, weil die Umwelt geschützt werden muss.",
+    "ru": "Мусор должен быть разделён, потому что окружающая среда должна быть защищена."
+  },
+  {
+    "de": "Die von der Firma entwickelte Anwendung",
+    "ru": "Приложение, разработанное фирмой."
+  },
+  {
+    "de": "Obwohl ich wenig Zeit habe, engagiere ich mich im Verein.",
+    "ru": "Хотя у меня мало времени, я участвую в обществе."
+  },
+  {
+    "de": "Das ist der Mann, der Deutsch lehrt.",
+    "ru": "Это мужчина, который преподаёт немецкий."
+  },
+  {
+    "de": "Die sich verändernde Welt",
+    "ru": "Меняющийся мир."
+  },
+  {
+    "de": "Ich habe mich bei ihr entschuldigt.",
+    "ru": "Я извинился перед ней."
+  },
+  {
+    "de": "Könntest du mir helfen?",
+    "ru": "Не мог бы ты мне помочь?"
+  },
+  {
+    "de": "Ich hätte gern eine Tasse Kaffee.",
+    "ru": "Я бы хотел чашку кофе."
+  },
+  {
+    "de": "Die optimierte Produktion",
+    "ru": "Оптимизированное производство."
+  },
+  {
+    "de": "Wenn ich genug Geld habe, werde ich reisen.",
+    "ru": "Если у меня будет достаточно денег, я поеду путешествовать."
+  },
+  {
+    "de": "Ich treibe Sport, um fit zu bleiben.",
+    "ru": "Я занимаюсь спортом, чтобы оставаться в форме."
+  },
+  {
+    "de": "Das Haus wurde gebaut.",
+    "ru": "Дом строился."
+  },
+  {
+    "de": "Die von Experten geprüften Daten",
+    "ru": "Данные, проверенные экспертами."
+  },
+  {
+    "de": "Wegen des schlechten Wetters fiel die Veranstaltung aus.",
+    "ru": "Из-за плохой погоды мероприятие отменили."
+  },
+  {
+    "de": "Während des Meetings wurden wichtige Entscheidungen getroffen.",
+    "ru": "Во время встречи были приняты важные решения."
+  },
+  {
+    "de": "Trotz der Schwierigkeiten wurde das Projekt abgeschlossen.",
+    "ru": "Несмотря на трудности, проект был завершён."
+  },
+  {
+    "de": "Aufgrund Ihrer Anfrage sende ich Ihnen die Unterlagen.",
+    "ru": "На основании Вашего запроса я высылаю Вам документы."
+  },
+  {
+    "de": "Bezüglich Ihrer E-Mail möchten wir Sie informieren.",
+    "ru": "Относительно Вашего письма мы хотели бы Вас проинформировать."
+  },
+  {
+    "de": "Ich bitte um Ihre Stellungnahme zu diesem Thema.",
+    "ru": "Я прошу Вашу позицию по этой теме."
+  },
+  {
+    "de": "Wir haben einen Antrag gestellt.",
+    "ru": "Мы подали заявку."
+  },
+  {
+    "de": "Vielen Dank für Ihre Bestätigung.",
+    "ru": "Благодарим за подтверждение."
+  },
+  {
+    "de": "Außerhalb der Geschäftszeiten ist das Büro geschlossen.",
+    "ru": "Вне рабочего времени офис закрыт."
+  },
+  {
+    "de": "Innerhalb einer Woche erhalten Sie eine Antwort.",
+    "ru": "В течение недели Вы получите ответ."
+  },
+  {
+    "de": "Anstatt eines Anrufs schickte er eine E-Mail.",
+    "ru": "Вместо звонка он отправил письмо."
+  },
+  {
+    "de": "Wir haben Ihre Anfrage erhalten.",
+    "ru": "Мы получили Ваш запрос."
+  },
+  {
+    "de": "Bezüglich Ihres Antrags haben wir eine Entscheidung getroffen.",
+    "ru": "Относительно Вашей заявки мы приняли решение."
+  },
+  {
+    "de": "Trotz der Verspätung kam der Zug pünktlich an.",
+    "ru": "Несмотря на задержку, поезд прибыл вовремя."
+  },
+  {
+    "de": "Wegen der Baustelle müssen wir umfahren.",
+    "ru": "Из-за стройки мы должны объехать."
+  },
+  {
+    "de": "Aufgrund Ihrer Erfahrung haben wir Sie ausgewählt.",
+    "ru": "На основании Вашего опыта мы выбрали Вас."
+  },
+  {
+    "de": "Die Genehmigung wurde erteilt.",
+    "ru": "Разрешение было выдано."
+  },
+  {
+    "de": "Während der Präsentation wurden viele Fragen gestellt.",
+    "ru": "Во время презентации было задано много вопросов."
+  },
+  {
+    "de": "Wir bitten um Ihre Stellungnahme bis nächste Woche.",
+    "ru": "Мы просим Вашу позицию до следующей недели."
+  },
+  {
+    "de": "Anstatt zu schlafen, arbeitete er die ganze Nacht.",
+    "ru": "Вместо того чтобы спать, он работал всю ночь."
+  },
+  {
+    "de": "Wir bestätigen den Empfang Ihrer Anfrage.",
+    "ru": "Мы подтверждаем получение Вашего запроса."
+  },
+  {
+    "de": "Wegen des Streiks fielen viele Züge aus.",
+    "ru": "Из-за забастовки многие поезда отменили."
+  },
+  {
+    "de": "Trotz der Krise hat die Firma Gewinn gemacht.",
+    "ru": "Несмотря на кризис, фирма получила прибыль."
+  },
+  {
+    "de": "Der Kanzler sagte, die Reform sei wichtig.",
+    "ru": "Канцлер сказал, что реформа важна."
+  },
+  {
+    "de": "Die Partei erklärte, sie werde die Steuern senken.",
+    "ru": "Партия заявила, что снизит налоги."
+  },
+  {
+    "de": "Der Minister betonte, das Gesetz müsse verabschiedet werden.",
+    "ru": "Министр подчеркнул, что закон должен быть принят."
+  },
+  {
+    "de": "Die Wahl findet im nächsten Jahr statt.",
+    "ru": "Выборы состоятся в следующем году."
+  },
+  {
+    "de": "Die Demokratie ist ein wichtiger Wert.",
+    "ru": "Демократия — важная ценность."
+  },
+  {
+    "de": "Das Gesetz wurde vom Parlament verabschiedet.",
+    "ru": "Закон был принят парламентом."
+  },
+  {
+    "de": "Die Opposition protestiert gegen die Reform.",
+    "ru": "Оппозиция протестует против реформы."
+  },
+  {
+    "de": "Die Gesellschaft ist im Wandel.",
+    "ru": "Общество находится в процессе изменения."
+  },
+  {
+    "de": "Wir haben für Freiheit und Gleichheit demonstriert.",
+    "ru": "Мы протестовали за свободу и равенство."
+  },
+  {
+    "de": "Die Regierung hat eine Entscheidung getroffen.",
+    "ru": "Правительство приняло решение."
+  },
+  {
+    "de": "Der Wahlkampf hat begonnen.",
+    "ru": "Избирательная кампания началась."
+  },
+  {
+    "de": "Die Bürger haben ihre Rechte.",
+    "ru": "Граждане имеют свои права."
+  },
+  {
+    "de": "Der Protest war erfolgreich.",
+    "ru": "Протест был успешным."
+  },
+  {
+    "de": "Die Gerechtigkeit ist wichtig.",
+    "ru": "Справедливость важна."
+  },
+  {
+    "de": "Die Abstimmung war knapp.",
+    "ru": "Голосование было тесным."
+  },
+  {
+    "de": "Er spricht nicht nur Deutsch, sondern auch Englisch.",
+    "ru": "Он говорит не только по-немецки, но и по-английски."
+  },
+  {
+    "de": "Das ist zwar teuer, aber es lohnt sich.",
+    "ru": "Это правда дорого, но оно того стоит."
+  },
+  {
+    "de": "Je mehr ich lerne, desto besser werde ich.",
+    "ru": "Чем больше я учу, тем лучше я становлюсь."
+  },
+  {
+    "de": "Einerseits ist es praktisch, andererseits ist es teuer.",
+    "ru": "С одной стороны, это практично, с другой стороны, это дорого."
+  },
+  {
+    "de": "Ich stimme dir zu, aber ich habe einen anderen Standpunkt.",
+    "ru": "Я согласен с тобой, но у меня другая точка зрения."
+  },
+  {
+    "de": "Das Argument ist nicht überzeugend.",
+    "ru": "Аргумент не убедителен."
+  },
+  {
+    "de": "Meiner Meinung nach ist die Reform notwendig.",
+    "ru": "По моему мнению, реформа необходима."
+  },
+  {
+    "de": "Zusammenfassend kann man sagen, dass die Lage ernst ist.",
+    "ru": "Резюмируя, можно сказать, что ситуация серьёзная."
+  },
+  {
+    "de": "Ein starkes Argument für die Reform ist die Effizienz.",
+    "ru": "Сильный аргумент за реформу — это эффективность."
+  },
+  {
+    "de": "Je mehr man übt, desto besser wird man.",
+    "ru": "Чем больше практикуешься, тем лучше становишься."
+  },
+  {
+    "de": "Ich widerspreche dieser These.",
+    "ru": "Я возражаю против этого тезиса."
+  },
+  {
+    "de": "Einerseits ist es gesund, andererseits ist es anstrengend.",
+    "ru": "С одной стороны, это полезно, с другой стороны, это утомительно."
+  },
+  {
+    "de": "Das Fazit der Diskussion war klar.",
+    "ru": "Итог дискуссии был ясен."
+  },
+  {
+    "de": "Die Argumente sind nicht ausreichend begründet.",
+    "ru": "Аргументы недостаточно обоснованы."
+  },
+  {
+    "de": "Je mehr ich darüber nachdenke, desto weniger verstehe ich.",
+    "ru": "Чем больше я думаю об этом, тем меньше понимаю."
+  },
+  {
+    "de": "Nicht nur die Wirtschaft, sondern auch die Politik muss sich ändern.",
+    "ru": "Не только экономика, но и политика должна измениться."
+  },
+  {
+    "de": "Sein Standpunkt ist klar und verständlich.",
+    "ru": "Его точка зрения ясна и понятна."
+  },
+  {
+    "de": "Es gibt viele Argumente für und gegen die Reform.",
+    "ru": "Есть много аргументов за и против реформы."
+  },
+  {
+    "de": "Zwar ist die Idee gut, aber die Umsetzung ist schwierig.",
+    "ru": "Идея хорошая, но реализация сложна."
+  },
+  {
+    "de": "Ich stimme der Opposition nicht zu.",
+    "ru": "Я не согласен с оппозицией."
+  },
+  {
+    "de": "Ein überzeugendes Argument ist die Kostenersparnis.",
+    "ru": "Убедительный аргумент — это экономия средств."
+  },
+  {
+    "de": "Die Diskussion war sehr konstruktiv.",
+    "ru": "Дискуссия была очень конструктивной."
+  },
+  {
+    "de": "Zum Schluss möchte ich ein Fazit ziehen.",
+    "ru": "В заключение я хотел бы подвести итог."
+  },
+  {
+    "de": "Wer möchte nicht in einer besseren Welt leben?",
+    "ru": "Кто не хотел бы жить в лучшем мире?"
+  },
+  {
+    "de": "Genau das ist das Problem!",
+    "ru": "Именно в этом проблема!"
+  },
+  {
+    "de": "Nie war die Lage so ernst wie heute.",
+    "ru": "Никогда ситуация не была такой серьёзной, как сегодня."
+  },
+  {
+    "de": "Ich möchte meine Präsentation mit einer Frage beginnen.",
+    "ru": "Я хотел бы начать свою презентацию с вопроса."
+  },
+  {
+    "de": "Abschließend möchte ich ein Fazit ziehen.",
+    "ru": "В заключение я хотел бы подвести итог."
+  },
+  {
+    "de": "Die Statistik zeigt deutlich den Anstieg.",
+    "ru": "Статистика наглядно показывает рост."
+  },
+  {
+    "de": "Meine Präsentation besteht aus drei Teilen.",
+    "ru": "Моя презентация состоит из трёх частей."
+  },
+  {
+    "de": "Zuerst möchte ich die Einleitung vortragen.",
+    "ru": "Сначала я хотел бы представить введение."
+  },
+  {
+    "de": "Die Visualisierung hilft, den Punkt zu veranschaulichen.",
+    "ru": "Визуализация помогает наглядно показать пункт."
+  },
+  {
+    "de": "Nun komme ich zum Hauptteil meiner Präsentation.",
+    "ru": "Теперь я перехожу к основной части моей презентации."
+  },
+  {
+    "de": "Das Publikum war sehr aufmerksam.",
+    "ru": "Публика была очень внимательной."
+  },
+  {
+    "de": "Die Folie zeigt ein interessantes Diagramm.",
+    "ru": "Слайд показывает интересную диаграмму."
+  },
+  {
+    "de": "Die Überleitung zum nächsten Punkt ist wichtig.",
+    "ru": "Переход к следующему пункту важен."
+  },
+  {
+    "de": "Haben Sie schon einmal eine Präsentation gehalten?",
+    "ru": "Вы когда-нибудь делали презентацию?"
+  },
+  {
+    "de": "Die Rhetorik ist ein wichtiges Werkzeug.",
+    "ru": "Риторика — важный инструмент."
+  },
+  {
+    "de": "Nicht nur die Inhalte, sondern auch die Präsentation zählt.",
+    "ru": "Важно не только содержание, но и презентация."
+  },
+  {
+    "de": "Der Redner hat das Publikum überzeugt.",
+    "ru": "Докладчик убедил публику."
+  },
+  {
+    "de": "Ich möchte mit einer rhetorischen Frage abschließen.",
+    "ru": "Я хотел бы завершить риторическим вопросом."
+  },
+  {
+    "de": "Zusammenfassend möchte ich sagen, dass die Reform notwendig ist.",
+    "ru": "Резюмируя, я хотел бы сказать, что реформа необходима."
+  },
+  {
+    "de": "Die Präsentation war sehr professionell.",
+    "ru": "Презентация была очень профессиональной."
+  },
+  {
+    "de": "Ein guter Redner weiß, wie man das Publikum begeistert.",
+    "ru": "Хороший докладчик знает, как вдохновить публику."
+  },
+  {
+    "de": "Die Statistik spricht eine klare Sprache.",
+    "ru": "Статистика говорит сама за себя."
+  },
+  {
+    "de": "Die Rednerin hat den Vortrag souverän gehalten.",
+    "ru": "Докладчица уверенно провела доклад."
+  },
+  {
+    "de": "Um Gewinn zu erzielen, muss man investieren.",
+    "ru": "Чтобы получить прибыль, нужно инвестировать."
+  },
+  {
+    "de": "Die Nachfrage ist in diesem Jahr gestiegen.",
+    "ru": "Спрос вырос в этом году."
+  },
+  {
+    "de": "Das Unternehmen hat einen hohen Umsatz erzielt.",
+    "ru": "Предприятие достигло высокого оборота."
+  },
+  {
+    "de": "Trotz der Konkurrenz konnte der Gewinn gesteigert werden.",
+    "ru": "Несмотря на конкуренцию, прибыль удалось увеличить."
+  },
+  {
+    "de": "Die Aktie ist um 10 Prozent gefallen.",
+    "ru": "Акция упала на 10 процентов."
+  },
+  {
+    "de": "Statt zu sparen, hat er investiert.",
+    "ru": "Вместо того чтобы копить, он инвестировал."
+  },
+  {
+    "de": "Der Kunde ist zufrieden mit dem Angebot.",
+    "ru": "Клиент доволен предложением."
+  },
+  {
+    "de": "Die Konkurrenz wird immer stärker.",
+    "ru": "Конкуренция становится всё сильнее."
+  },
+  {
+    "de": "Die Wirtschaft wächst trotz der Krise.",
+    "ru": "Экономика растёт несмотря на кризис."
+  },
+  {
+    "de": "Die Inflation ist gestiegen.",
+    "ru": "Инфляция выросла."
+  },
+  {
+    "de": "Die Bank gibt Kredite.",
+    "ru": "Банк выдаёт кредиты."
+  },
+  {
+    "de": "Der Investor hat viel Kapital.",
+    "ru": "Инвестор имеет много капитала."
+  },
+  {
+    "de": "Die Dividende ist hoch.",
+    "ru": "Дивиденды высоки."
+  },
+  {
+    "de": "Der Export ist gestiegen.",
+    "ru": "Экспорт вырос."
+  },
+  {
+    "de": "Die Steuern sind hoch.",
+    "ru": "Налоги высоки."
+  },
+  {
+    "de": "Wenn ich mehr Zeit hätte, würde ich mehr reisen.",
+    "ru": "Если бы у меня было больше времени, я бы больше путешествовал."
+  },
+  {
+    "de": "Wenn ich reich wäre, würde ich ein Haus kaufen.",
+    "ru": "Если бы я был богат, я бы купил дом."
+  },
+  {
+    "de": "Wenn ich jünger wäre, würde ich studieren.",
+    "ru": "Если бы я был моложе, я бы учился."
+  },
+  {
+    "de": "Wenn ich mehr Zeit gehabt hätte, wäre ich gereist.",
+    "ru": "Если бы у меня было больше времени, я бы поехал путешествовать."
+  },
+  {
+    "de": "Wenn ich die Stelle bekommen hätte, hätte ich mehr Geld verdient.",
+    "ru": "Если бы я получил эту должность, я бы зарабатывал больше денег."
+  },
+  {
+    "de": "Der Vertrag muss unterschrieben werden.",
+    "ru": "Договор должен быть подписан."
+  },
+  {
+    "de": "Der Richter hat das Urteil gesprochen.",
+    "ru": "Судья вынес приговор."
+  },
+  {
+    "de": "Die Rechte der Bürger müssen geschützt werden.",
+    "ru": "Права граждан должны быть защищены."
+  },
+  {
+    "de": "Das Gericht hat den Angeklagten verurteilt.",
+    "ru": "Суд осудил обвиняемого."
+  },
+  {
+    "de": "Der Anwalt hat die Klage eingereicht.",
+    "ru": "Адвокат подал иск."
+  },
+  {
+    "de": "Die Verfassung garantiert die Grundrechte.",
+    "ru": "Конституция гарантирует основные права."
+  },
+  {
+    "de": "Das Verbrechen wurde aufgeklärt.",
+    "ru": "Преступление было раскрыто."
+  },
+  {
+    "de": "Die Strafe war gerecht.",
+    "ru": "Наказание было справедливым."
+  },
+  {
+    "de": "Der Gefangene wurde freigelassen.",
+    "ru": "Заключённый был освобождён."
+  },
+  {
+    "de": "Ich möchte Ihnen unser Angebot vorstellen.",
+    "ru": "Я хотел бы представить Вам наше предложение."
+  },
+  {
+    "de": "Wir müssen einen Kompromiss finden.",
+    "ru": "Мы должны найти компромисс."
+  },
+  {
+    "de": "Die Verhandlungen waren erfolgreich.",
+    "ru": "Переговоры были успешными."
+  },
+  {
+    "de": "Ich schlage vor, dass wir uns nächste Woche treffen.",
+    "ru": "Я предлагаю встретиться на следующей неделе."
+  },
+  {
+    "de": "Die Einigung wurde nach langen Gesprächen erzielt.",
+    "ru": "Соглашение было достигнуто после долгих переговоров."
+  },
+  {
+    "de": "Die Zusammenarbeit mit Ihnen ist sehr wichtig.",
+    "ru": "Сотрудничество с Вами очень важно."
+  },
+  {
+    "de": "Könnten Sie mir Ihr Angebot noch einmal erklären?",
+    "ru": "Не могли бы Вы ещё раз объяснить мне Ваше предложение?"
+  },
+  {
+    "de": "Wir können auf keinen Fall alle Forderungen akzeptieren.",
+    "ru": "Мы ни в коем случае не можем принять все требования."
+  },
+  {
+    "de": "Ein Kompromiss ist notwendig, um die Verhandlungen abzuschließen.",
+    "ru": "Компромисс необходим, чтобы завершить переговоры."
+  },
+  {
+    "de": "Ich bin mit den vorgeschlagenen Bedingungen einverstanden.",
+    "ru": "Я согласен с предложенными условиями."
+  },
+  {
+    "de": "Die Konfliktlösung erfordert Geduld.",
+    "ru": "Разрешение конфликта требует терпения."
+  },
+  {
+    "de": "Wir müssen unsere Position klar darlegen.",
+    "ru": "Мы должны чётко изложить свою позицию."
+  },
+  {
+    "de": "Wenn ich in Ihrer Situation wäre, würde ich das Angebot annehmen.",
+    "ru": "Если бы я был на Вашем месте, я бы принял предложение."
+  },
+  {
+    "de": "Die Zusammenarbeit mit unserem Partner ist sehr produktiv.",
+    "ru": "Сотрудничество с нашим партнёром очень продуктивно."
+  },
+  {
+    "de": "Ich schlage eine Pause vor, um die Situation zu besprechen.",
+    "ru": "Я предлагаю сделать паузу, чтобы обсудить ситуацию."
+  },
+  {
+    "de": "Nicht nur die Forderungen, sondern auch die Zugeständnisse sind wichtig.",
+    "ru": "Важны не только требования, но и уступки."
+  },
+  {
+    "de": "Die Verhandlungen wurden erfolgreich abgeschlossen.",
+    "ru": "Переговоры были успешно завершены."
+  },
+  {
+    "de": "Wir müssen einen gemeinsamen Nenner finden.",
+    "ru": "Мы должны найти общий знаменатель."
+  },
+  {
+    "de": "Trotz der schwierigen Verhandlungen wurde eine Einigung erzielt.",
+    "ru": "Несмотря на сложные переговоры, было достигнуто соглашение."
+  },
+  {
+    "de": "Ich akzeptiere Ihre Bedingungen.",
+    "ru": "Я принимаю Ваши условия."
+  },
+  {
+    "de": "Der Verhandlungspartner hat unser Angebot abgelehnt.",
+    "ru": "Партнёр по переговорам отклонил наше предложение."
+  },
+  {
+    "de": "Die Verhandlungen werden morgen fortgesetzt.",
+    "ru": "Переговоры продолжатся завтра."
+  },
+  {
+    "de": "Wir haben uns auf einen Kompromiss geeinigt.",
+    "ru": "Мы договорились о компромиссе."
+  }
 ]

@@ -1,370 +1,1526 @@
 [
-  {"de": "Ich habe heute gearbeitet.", "ru": "Я сегодня работал."},
-  {"de": "Was hast du gestern gemacht?", "ru": "Что ты делал вчера?"},
-  {"de": "Ich habe Fußball gespielt.", "ru": "Я играл в футбол."},
-  {"de": "Hast du Deutsch gelernt?", "ru": "Ты учил немецкий?"},
-  {"de": "Ich wohne in Berlin.", "ru": "Я живу в Берлине."},
-  {"de": "Er hat einen Kaffee gekauft.", "ru": "Он купил кофе."},
-  {"de": "Ich habe im Restaurant gegessen.", "ru": "Я ел в ресторане."},
-  {"de": "Meine Schwester hat die Wohnung geputzt.", "ru": "Моя сестра убрала квартиру."},
-  {"de": "Ich habe meine Oma gefragt.", "ru": "Я спросил свою бабушку."},
-  {"de": "Hast du die Aufgabe gemacht?", "ru": "Ты сделал задание?"},
-  {"de": "Ich habe nicht gearbeitet.", "ru": "Я не работал."},
-  {"de": "Mein Bruder hat gestern gekocht.", "ru": "Мой брат вчера готовил."},
-  {"de": "Ich habe Musik gehört.", "ru": "Я слушал музыку."},
-  {"de": "Wir haben gestern getanzt.", "ru": "Мы вчера танцевали."},
-  {"de": "Ich habe meinen Vater gefragt.", "ru": "Я спросил своего отца."},
-  {"de": "Sie hat etwas gesagt.", "ru": "Она что-то сказала."},
-  {"de": "Ich habe im Supermarkt eingekauft.", "ru": "Я делал покупки в супермаркете."},
-  {"de": "Meine Mutter hat die Blumen gegossen.", "ru": "Моя мама полила цветы."},
-  {"de": "Ich habe einen Brief geschrieben.", "ru": "Я написал письмо."},
-  {"de": "Hast du Fußball gespielt?", "ru": "Ты играл в футбол?"},
-  {"de": "Ich habe gestern bis 22 Uhr gearbeitet.", "ru": "Я вчера работал до 22 часов."},
-  {"de": "Meine Eltern haben ein neues Auto gekauft.", "ru": "Мои родители купили новую машину."},
-  {"de": "Ich habe die Tür geöffnet.", "ru": "Я открыл дверь."},
-  {"de": "Wir haben im Park gespielt.", "ru": "Мы играли в парке."},
-  {"de": "Ich habe auf meinen Freund gewartet.", "ru": "Я ждал своего друга."},
-  {"de": "Hast du gelernt?", "ru": "Ты учился?"},
-  {"de": "Ich habe heute Morgen gefrühstückt.", "ru": "Я сегодня утром позавтракал."},
-  {"de": "Meine Schwester hat Klavier gespielt.", "ru": "Моя сестра играла на пианино."},
-  {"de": "Ich habe den Tisch gedeckt.", "ru": "Я накрыл на стол."},
-  {"de": "Wir haben die ganze Wohnung geputzt.", "ru": "Мы убрали всю квартиру."},
-  {"de": "Ich habe meinen Bruder gefragt.", "ru": "Я спросил своего брата."},
-  {"de": "Ich habe die Zeitung gelesen.", "ru": "Я прочитал газету."},
-  {"de": "Ich habe im Garten gearbeitet.", "ru": "Я работал в саду."},
-  {"de": "Hast du etwas gesagt?", "ru": "Ты что-то сказал?"},
-  {"de": "Ich habe heute Pizza gegessen.", "ru": "Я сегодня ел пиццу."},
-  {"de": "Mein Vater hat die Rechnung bezahlt.", "ru": "Мой отец заплатил счёт."},
-  {"de": "Ich habe drei Stunden gelernt.", "ru": "Я учился три часа."},
-  {"de": "Wir haben bis spät getanzt.", "ru": "Мы танцевали до позднего вечера."},
-  {"de": "Ich habe meine Tante besucht.", "ru": "Я навестил свою тётю."},
-  {"de": "Hast du die Blumen gegossen?", "ru": "Ты полил цветы?"},
-  {"de": "Ich habe das Fenster geöffnet.", "ru": "Я открыл окно."},
-  {"de": "Meine Mutter hat Kuchen gebacken.", "ru": "Моя мама испекла пирог."},
-  {"de": "Ich habe den ganzen Tag gearbeitet.", "ru": "Я работал весь день."},
-  {"de": "Wir haben zusammen gekocht.", "ru": "Мы готовили вместе."},
-  {"de": "Ich habe meine Hausaufgaben gemacht.", "ru": "Я сделал свои домашние задания."},
-  {"de": "Ich habe im Meer gebadet.", "ru": "Я купался в море."},
-  {"de": "Ich habe den Hund gefüttert.", "ru": "Я покормил собаку."},
-  {"de": "Ich habe tief geatmet.", "ru": "Я глубоко дышал."},
-  {"de": "Ich habe gestern viel gelacht.", "ru": "Я вчера много смеялся."},
-  {"de": "Ich habe die Tür geschlossen.", "ru": "Я закрыл дверь."},
-  {"de": "Ich bin nach Berlin gefahren.", "ru": "Я поехал в Берлин."},
-  {"de": "Bist du nach Hause gegangen?", "ru": "Ты пошёл домой?"},
-  {"de": "Er ist um 8 Uhr aufgewacht.", "ru": "Он проснулся в 8 часов."},
-  {"de": "Wir sind nach Italien geflogen.", "ru": "Мы полетели в Италию."},
-  {"de": "Ihr seid schnell gelaufen.", "ru": "Вы быстро побежали."},
-  {"de": "Sie sind gestern angekommen.", "ru": "Они прибыли вчера."},
-  {"de": "Ich bin heute Morgen aufgewacht.", "ru": "Я проснулся сегодня утром."},
-  {"de": "Bist du schon eingeschlafen?", "ru": "Ты уже заснул?"},
-  {"de": "Wir sind im Meer geschwommen.", "ru": "Мы плавали в море."},
-  {"de": "Ich bin nicht nach Hause gegangen.", "ru": "Я не пошёл домой."},
-  {"de": "Mein Bruder ist nach München gefahren.", "ru": "Мой брат поехал в Мюнхен."},
-  {"de": "Ich habe gestern Fußball gespielt.", "ru": "Я вчера играл в футбол."},
-  {"de": "Meine Schwester ist um 6 Uhr aufgewacht.", "ru": "Моя сестра проснулась в 6 часов."},
-  {"de": "Wir sind durch den Park gelaufen.", "ru": "Мы пробежали через парк."},
-  {"de": "Mein Vater ist nach Hamburg geflogen.", "ru": "Мой отец полетел в Гамбург."},
-  {"de": "Bist du mit dem Zug gekommen?", "ru": "Ты приехал на поезде?"},
-  {"de": "Wir sind in den Urlaub gefahren.", "ru": "Мы поехали в отпуск."},
-  {"de": "Meine Mutter hat gestern gekocht.", "ru": "Моя мама вчера готовила."},
-  {"de": "Er ist um 23 Uhr eingeschlafen.", "ru": "Он заснул в 23 часа."},
-  {"de": "Ich bin im See geschwommen.", "ru": "Я плавал в озере."},
-  {"de": "Wir sind nach Österreich gereist.", "ru": "Мы путешествовали по Австрии."},
-  {"de": "Ich bin gestern spät nach Hause gekommen.", "ru": "Я вчера поздно пришёл домой."},
-  {"de": "Meine Eltern sind ins Kino gegangen.", "ru": "Мои родители пошли в кино."},
-  {"de": "Bist du mit dem Auto gefahren?", "ru": "Ты поехал на машине?"},
-  {"de": "Wir sind durch Deutschland gereist.", "ru": "Мы путешествовали по Германии."},
-  {"de": "Mein Bruder ist in die Stadt gegangen.", "ru": "Мой брат пошёл в город."},
-  {"de": "Ich bin um 7 Uhr aufgewacht.", "ru": "Я проснулся в 7 часов."},
-  {"de": "Wir sind nach Spanien geflogen.", "ru": "Мы полетели в Испанию."},
-  {"de": "Bist du schon mal in Berlin gewesen?", "ru": "Ты когда-нибудь был в Берлине?"},
-  {"de": "Meine Mutter ist einkaufen gegangen.", "ru": "Моя мама пошла за покупками."},
-  {"de": "Wir sind ans Meer gefahren.", "ru": "Мы поехали к морю."},
-  {"de": "Ich habe meinen Freund angerufen.", "ru": "Я позвонил своему другу."},
-  {"de": "Sie sind zu Fuß gegangen.", "ru": "Они пошли пешком."},
-  {"de": "Wir sind durch den Wald gelaufen.", "ru": "Мы пробежали через лес."},
-  {"de": "Mein Vater ist nach Berlin geflogen.", "ru": "Мой отец полетел в Берлин."},
-  {"de": "Bist du mit dem Fahrrad gekommen?", "ru": "Ты приехал на велосипеде?"},
-  {"de": "Wir sind gestern angekommen.", "ru": "Мы прибыли вчера."},
-  {"de": "Ich habe gegessen.", "ru": "Я поел."},
-  {"de": "Hast du getrunken?", "ru": "Ты пил?"},
-  {"de": "Ich habe den Film gesehen.", "ru": "Я видел фильм."},
-  {"de": "Hast du den Brief geschrieben?", "ru": "Ты написал письмо?"},
-  {"de": "Ich habe das Buch gelesen.", "ru": "Я прочитал книгу."},
-  {"de": "Er hat mir geholfen.", "ru": "Он помог мне."},
-  {"de": "Ich habe gut geschlafen.", "ru": "Я хорошо спал."},
-  {"de": "Wir haben Deutsch gesprochen.", "ru": "Мы говорили по-немецки."},
-  {"de": "Ich habe den Schlüssel gefunden.", "ru": "Я нашёл ключ."},
-  {"de": "Ich bin zu Hause geblieben.", "ru": "Я остался дома."},
-  {"de": "Meine Schwester hat eine Pizza gegessen.", "ru": "Моя сестра съела пиццу."},
-  {"de": "Ich habe den Kaffee getrunken.", "ru": "Я выпил кофе."},
-  {"de": "Hast du das Buch genommen?", "ru": "Ты взял книгу?"},
-  {"de": "Sie hat mir das Geld gegeben.", "ru": "Она дала мне деньги."},
-  {"de": "Wir haben den Film gesehen.", "ru": "Мы видели фильм."},
-  {"de": "Ich habe heute Morgen gefrühstückt.", "ru": "Я сегодня утром позавтракал."},
-  {"de": "Mein Bruder hat mir geholfen.", "ru": "Мой брат помог мне."},
-  {"de": "Ich habe gestern gearbeitet.", "ru": "Я вчера работал."},
-  {"de": "Wir sind nach Italien geflogen.", "ru": "Мы полетели в Италию."},
-  {"de": "Meine Mutter hat den Kuchen gebacken.", "ru": "Моя мама испекла пирог."},
-  {"de": "Ich habe den Brief gelesen.", "ru": "Я прочитал письмо."},
-  {"de": "Hast du gut geschlafen?", "ru": "Ты хорошо спал?"},
-  {"de": "Sie hat Deutsch gesprochen.", "ru": "Она говорила по-немецки."},
-  {"de": "Ich habe meine Hausaufgaben gemacht.", "ru": "Я сделал свои домашние задания."},
-  {"de": "Mein Vater ist nach Hamburg gefahren.", "ru": "Мой отец поехал в Гамбург."},
-  {"de": "Ich habe den Hund gefüttert.", "ru": "Я покормил собаку."},
-  {"de": "Hast du mich gesehen?", "ru": "Ты видел меня?"},
-  {"de": "Wir sind zu Hause geblieben.", "ru": "Мы остались дома."},
-  {"de": "Ich habe den Tisch gedeckt.", "ru": "Я накрыл на стол."},
-  {"de": "Meine Schwester hat Klavier gespielt.", "ru": "Моя сестра играла на пианино."},
-  {"de": "Ich habe drei Stunden gelernt.", "ru": "Я учился три часа."},
-  {"de": "Wir haben im Restaurant gegessen.", "ru": "Мы ели в ресторане."},
-  {"de": "Ich habe den Schlüssel nicht gefunden.", "ru": "Я не нашёл ключ."},
-  {"de": "Mein Bruder ist nach Berlin geflogen.", "ru": "Мой брат полетел в Берлин."},
-  {"de": "Ich habe Musik gehört.", "ru": "Я слушал музыку."},
-  {"de": "Wir sind in den Urlaub gefahren.", "ru": "Мы поехали в отпуск."},
-  {"de": "Ich habe das Fenster aufgemacht.", "ru": "Я открыл окно."},
-  {"de": "Meine Mutter hat mir geholfen.", "ru": "Моя мама помогла мне."},
-  {"de": "Ich habe den ganzen Tag gearbeitet.", "ru": "Я работал весь день."},
-  {"de": "Bist du schon eingeschlafen?", "ru": "Ты уже заснул?"},
-  {"de": "Wir haben zusammen gekocht.", "ru": "Мы готовили вместе."},
-  {"de": "Ich habe gestern viel gelacht.", "ru": "Я вчера много смеялся."},
-  {"de": "Hast du die Zeitung gelesen?", "ru": "Ты прочитал газету?"},
-  {"de": "Peter ist älter als Tom.", "ru": "Петер старше Тома."},
-  {"de": "Anna ist so groß wie Maria.", "ru": "Анна такая же высокая, как Мария."},
-  {"de": "Mein Bruder ist jünger als ich.", "ru": "Мой брат моложе меня."},
-  {"de": "Das Haus ist größer als die Wohnung.", "ru": "Дом больше квартиры."},
-  {"de": "Im Sommer ist es wärmer als im Winter.", "ru": "Летом теплее, чем зимой."},
-  {"de": "Das Auto ist teurer als das Fahrrad.", "ru": "Машина дороже велосипеда."},
-  {"de": "Deutsch ist schwerer als Englisch.", "ru": "Немецкий сложнее английского."},
-  {"de": "Meine Haare sind länger als deine.", "ru": "Мои волосы длиннее твоих."},
-  {"de": "Heute ist es kälter als gestern.", "ru": "Сегодня холоднее, чем вчера."},
-  {"de": "Das Wetter ist heute besser als gestern.", "ru": "Погода сегодня лучше, чем вчера."},
-  {"de": "Das ist der beste Film.", "ru": "Это лучший фильм."},
-  {"de": "Dieses Buch ist am interessantesten.", "ru": "Эта книга самая интересная."},
-  {"de": "Der große Mann ist mein Vater.", "ru": "Большой мужчина — мой отец."},
-  {"de": "Das ist ein großer Mann.", "ru": "Это большой мужчина."},
-  {"de": "Das ist ein kluger Mann.", "ru": "Это умный мужчина."},
-  {"de": "Meine Schwester ist fleißig.", "ru": "Моя сестра прилежная."},
-  {"de": "Der Hund ist lustig.", "ru": "Собака весёлая."},
-  {"de": "Sie ist sehr freundlich.", "ru": "Она очень дружелюбная."},
-  {"de": "Das ist die fleißigste Studentin.", "ru": "Это самая прилежная студентка."},
-  {"de": "Ich interessiere mich für Technik.", "ru": "Я интересуюсь техникой."},
-  {"de": "Ich arbeite bei einer großen Firma.", "ru": "Я работаю в большой фирме."},
-  {"de": "Ich spreche mit meinem Kollegen.", "ru": "Я говорю с моим коллегой."},
-  {"de": "Ich danke dir für die Hilfe.", "ru": "Я благодарю тебя за помощь."},
-  {"de": "Ich freue mich auf den Urlaub.", "ru": "Я радуюсь отпуску."},
-  {"de": "Ich freue mich über das Geschenk.", "ru": "Я радуюсь подарку."},
-  {"de": "Meine Ausbildung ist abgeschlossen.", "ru": "Моё образование завершено."},
-  {"de": "Ich habe viel Berufserfahrung.", "ru": "У меня большой профессиональный опыт."},
-  {"de": "Teamarbeit ist wichtig.", "ru": "Работа в команде важна."},
-  {"de": "Mein Kollege heißt Thomas.", "ru": "Моего коллегу зовут Томас."},
-  {"de": "Ich habe gute Fähigkeiten.", "ru": "У меня хорошие навыки."},
-  {"de": "Meine Aufgaben sind interessant.", "ru": "Мои задачи интересны."},
-  {"de": "Ich bin flexibel.", "ru": "Я гибкий."},
-  {"de": "Ich bin kommunikativ.", "ru": "Я коммуникабельный."},
-  {"de": "Ich bin zuverlässig.", "ru": "Я надёжный."},
-  {"de": "Ich bin lernfähig.", "ru": "Я обучаемый."},
-  {"de": "Meine Kenntnisse sind gut.", "ru": "Мои знания хорошие."},
-  {"de": "Ich habe viel Verantwortung.", "ru": "У меня большая ответственность."},
-  {"de": "Meine Ziele sind klar.", "ru": "Мои цели ясны."},
-  {"de": "Ich habe Kopfschmerzen.", "ru": "У меня болит голова."},
-  {"de": "Wie geht es dir?", "ru": "Как ты себя чувствуешь?"},
-  {"de": "Mir geht es nicht gut.", "ru": "Я плохо себя чувствую."},
-  {"de": "Ich muss zum Arzt gehen.", "ru": "Я должен пойти к врачу."},
-  {"de": "Geh zum Arzt!", "ru": "Иди к врачу!"},
-  {"de": "Bleib zu Hause!", "ru": "Оставайся дома!"},
-  {"de": "Trink Tee!", "ru": "Пей чай!"},
-  {"de": "Ich habe Bauchschmerzen.", "ru": "У меня болит живот."},
-  {"de": "Ich habe Fieber.", "ru": "У меня температура."},
-  {"de": "Ich habe Husten.", "ru": "У меня кашель."},
-  {"de": "Ich habe eine Erkältung.", "ru": "У меня простуда."},
-  {"de": "Ich bin krank.", "ru": "Я болен."},
-  {"de": "Ich bin gesund.", "ru": "Я здоров."},
-  {"de": "Mir geht es gut.", "ru": "Я чувствую себя хорошо."},
-  {"de": "Mein Bruder hat Kopfschmerzen.", "ru": "У моего брата болит голова."},
-  {"de": "Ruf den Arzt an!", "ru": "Позвони врачу!"},
-  {"de": "Ich habe Schnupfen.", "ru": "У меня насморк."},
-  {"de": "Ich habe Grippe.", "ru": "У меня грипп."},
-  {"de": "Ich muss heute zu Hause bleiben.", "ru": "Я должен сегодня остаться дома."},
-  {"de": "Kannst du mir helfen?", "ru": "Ты можешь мне помочь?"},
-  {"de": "Ich habe starke Kopfschmerzen.", "ru": "У меня сильная головная боль."},
-  {"de": "Geh ins Krankenhaus!", "ru": "Иди в больницу!"},
-  {"de": "Ich muss Medizin nehmen.", "ru": "Я должен принимать лекарство."},
-  {"de": "Was fehlt dir?", "ru": "Что у тебя болит?"},
-  {"de": "Ich habe Rückenschmerzen.", "ru": "У меня болит спина."},
-  {"de": "Bleib im Bett!", "ru": "Оставайся в кровати!"},
-  {"de": "Ich habe Halsschmerzen.", "ru": "У меня болит горло."},
-  {"de": "Mein Vater ist krank.", "ru": "Мой отец болен."},
-  {"de": "Trink viel Wasser!", "ru": "Пей много воды!"},
-  {"de": "Ich habe Fieber und Husten.", "ru": "У меня температура и кашель."},
-  {"de": "Ich kann heute nicht arbeiten.", "ru": "Я не могу сегодня работать."},
-  {"de": "Ruf mich an!", "ru": "Позвони мне!"},
-  {"de": "Ich habe Schmerzen im Arm.", "ru": "У меня болит рука."},
-  {"de": "Nimm eine Tablette!", "ru": "Прими таблетку!"},
-  {"de": "Ich habe Schmerzen im Bein.", "ru": "У меня болит нога."},
-  {"de": "Meine Schwester ist gesund.", "ru": "Моя сестра здорова."},
-  {"de": "Ich habe einen Termin beim Arzt.", "ru": "У меня встреча с врачом."},
-  {"de": "Bleib zu Hause und ruh dich aus!", "ru": "Оставайся дома и отдыхай!"},
-  {"de": "Ich habe Kopfschmerzen und Fieber.", "ru": "У меня болит голова и температура."},
-  {"de": "Ich muss Medizin kaufen.", "ru": "Я должен купить лекарство."},
-  {"de": "Wie geht es deiner Mutter?", "ru": "Как чувствует себя твоя мама?"},
-  {"de": "Seit wann hast du Schmerzen?", "ru": "С каких пор у тебя боли?"},
-  {"de": "Ich werde morgen arbeiten.", "ru": "Я буду работать завтра."},
-  {"de": "Wirst du morgen kommen?", "ru": "Ты придёшь завтра?"},
-  {"de": "Er wird nach Berlin fahren.", "ru": "Он поедет в Берлин."},
-  {"de": "Wir werden nächste Woche reisen.", "ru": "Мы поедем путешествовать на следующей неделе."},
-  {"de": "Ich werde nicht kommen.", "ru": "Я не приду."},
-  {"de": "Was wirst du machen?", "ru": "Что ты будешь делать?"},
-  {"de": "Ich werde Ingenieur werden.", "ru": "Я стану инженером."},
-  {"de": "Nächstes Jahr werde ich nach Deutschland fahren.", "ru": "В следующем году я поеду в Германию."},
-  {"de": "Ich will nach Berlin fahren.", "ru": "Я хочу поехать в Берлин."},
-  {"de": "Morgen wird es sonnig sein.", "ru": "Завтра будет солнечно."},
-  {"de": "Wir werden im Sommer ans Meer fahren.", "ru": "Мы поедем к морю летом."},
-  {"de": "Meine Schwester wird nächstes Jahr studieren.", "ru": "Моя сестра будет учиться в следующем году."},
-  {"de": "Ich werde später anrufen.", "ru": "Я позвоню позже."},
-  {"de": "Wir werden nächsten Monat umziehen.", "ru": "Мы переедем в следующем месяце."},
-  {"de": "Ich werde nicht vergessen.", "ru": "Я не забуду."},
-  {"de": "Mein Bruder wird morgen kommen.", "ru": "Мой брат придёт завтра."},
-  {"de": "Ich werde Arzt werden.", "ru": "Я стану врачом."},
-  {"de": "Am Wochenende werde ich ins Kino gehen.", "ru": "В выходные я пойду в кино."},
-  {"de": "Meine Eltern werden nächste Woche ankommen.", "ru": "Мои родители прибудут на следующей неделе."},
-  {"de": "Wirst du Deutsch lernen?", "ru": "Ты будешь учить немецкий?"},
-  {"de": "Ich werde dir helfen.", "ru": "Я помогу тебе."},
-  {"de": "Wir werden im Winter nach Österreich fahren.", "ru": "Мы поедем в Австрию зимой."},
-  {"de": "Ich werde morgen früh aufstehen.", "ru": "Я встану завтра рано."},
-  {"de": "Wirst du mich anrufen?", "ru": "Ты позвонишь мне?"},
-  {"de": "Ich werde übermorgen kommen.", "ru": "Я приду послезавтра."},
-  {"de": "Wir werden die Wohnung putzen.", "ru": "Мы уберём квартиру."},
-  {"de": "Nächste Woche werde ich mit dem Zug fahren.", "ru": "На следующей неделе я поеду на поезде."},
-  {"de": "Ich werde die Reise buchen.", "ru": "Я забронирую путешествие."},
-  {"de": "Wirst du morgen arbeiten?", "ru": "Ты будешь работать завтра?"},
-  {"de": "Ich werde im nächsten Jahr einen neuen Job suchen.", "ru": "В следующем году я буду искать новую работу."},
-  {"de": "Ich werde nicht lange bleiben.", "ru": "Я не останусь надолго."},
-  {"de": "Mein Bruder wird nächstes Jahr heiraten.", "ru": "Мой брат женится в следующем году."},
-  {"de": "Ich werde dir schreiben.", "ru": "Я напишу тебе."},
-  {"de": "Wir werden ins Kino gehen.", "ru": "Мы пойдём в кино."},
-  {"de": "Wirst du deine Hausaufgaben machen?", "ru": "Ты сделаешь свои домашние задания?"},
-  {"de": "Wir werden im Hotel übernachten.", "ru": "Мы переночуем в отеле."},
-  {"de": "Nächstes Jahr werde ich nach Italien fliegen.", "ru": "В следующем году я полечу в Италию."},
-  {"de": "Ich werde dich nicht vergessen.", "ru": "Я тебя не забуду."},
-  {"de": "Wirst du morgen früh aufstehen?", "ru": "Ты встанешь завтра рано?"},
-  {"de": "Ich werde in der Zukunft viel reisen.", "ru": "В будущем я буду много путешествовать."},
-  {"de": "Ich fahre mit dem Zug nach Berlin.", "ru": "Я еду на поезде в Берлин."},
-  {"de": "Wann fährt der Zug ab?", "ru": "Когда отправляется поезд?"},
-  {"de": "Der Zug kommt um 10 Uhr an.", "ru": "Поезд прибывает в 10 часов."},
-  {"de": "Wie komme ich zum Bahnhof?", "ru": "Как мне добраться до вокзала?"},
-  {"de": "Ich möchte ein Zimmer reservieren.", "ru": "Я хочу забронировать номер."},
-  {"de": "Haben Sie ein Zimmer frei?", "ru": "У вас есть свободный номер?"},
-  {"de": "Das Zimmer kostet 50 Euro pro Nacht.", "ru": "Номер стоит 50 евро за ночь."},
-  {"de": "Wir haben im Hotel übernachtet.", "ru": "Мы ночевали в отеле."},
-  {"de": "Ich bin gestern angekommen.", "ru": "Я прибыл вчера."},
-  {"de": "Wir sind um 8 Uhr abgefahren.", "ru": "Мы отправились в 8 часов."},
-  {"de": "Ich habe ein Zimmer gebucht.", "ru": "Я забронировал номер."},
-  {"de": "Der Zug hat 10 Minuten Verspätung.", "ru": "У поезда задержка 10 минут."},
-  {"de": "Wo ist der Gate für den Flug nach Berlin?", "ru": "Где выход на рейс в Берлин?"},
-  {"de": "Ich habe mein Gepäck am Flughafen abgegeben.", "ru": "Я сдал багаж в аэропорту."},
-  {"de": "Wir haben die Reise gebucht.", "ru": "Мы забронировали путешествие."},
-  {"de": "Ich habe meinen Koffer gepackt.", "ru": "Я упаковал чемодан."},
-  {"de": "Der Fahrplan hat sich geändert.", "ru": "Расписание изменилось."},
-  {"de": "Die Annullierung war eine Überraschung.", "ru": "Отмена была неожиданностью."},
-  {"de": "Ich bin auf Dienstreise.", "ru": "Я в командировке."},
-  {"de": "Ich habe die Buchung bestätigt.", "ru": "Я подтвердил бронирование."},
-  {"de": "Wir checken um 14 Uhr ein.", "ru": "Мы регистрируемся в 14 часов."},
-  {"de": "Wir checken um 12 Uhr aus.", "ru": "Мы выписываемся в 12 часов."},
-  {"de": "Heute ist es sonnig.", "ru": "Сегодня солнечно."},
-  {"de": "Es regnet.", "ru": "Идёт дождь."},
-  {"de": "Es schneit.", "ru": "Идёт снег."},
-  {"de": "Im Sommer ist es oft heiß.", "ru": "Летом часто жарко."},
-  {"de": "Im Winter ist es kalt.", "ru": "Зимой холодно."},
-  {"de": "Wie ist das Wetter heute?", "ru": "Какая сегодня погода?"},
-  {"de": "Morgen wird es regnen.", "ru": "Завтра будет дождь."},
-  {"de": "Die Sonne scheint.", "ru": "Солнце светит."},
-  {"de": "Es gibt Wolken am Himmel.", "ru": "На небе есть облака."},
-  {"de": "Im Frühling blühen die Blumen.", "ru": "Весной цветут цветы."},
-  {"de": "Die Temperatur liegt bei 25 Grad.", "ru": "Температура составляет 25 градусов."},
-  {"de": "Es gibt Hagel heute.", "ru": "Сегодня град."},
-  {"de": "Im Winter gibt es oft Frost.", "ru": "Зимой часто бывает мороз."},
-  {"de": "Das Thermometer zeigt 30 Grad.", "ru": "Термометр показывает 30 градусов."},
-  {"de": "Im Sommer ist es sehr heiß.", "ru": "Летом очень жарко."},
-  {"de": "Die Kälte ist unangenehm.", "ru": "Холод неприятен."},
-  {"de": "Der Regenbogen ist schön.", "ru": "Радуга красивая."},
-  {"de": "Im Herbst ist es windig.", "ru": "Осенью ветрено."},
-  {"de": "Ich finde, dass der Film gut ist.", "ru": "Я считаю, что фильм хороший."},
-  {"de": "Ich denke, dass das Konzert morgen ist.", "ru": "Я думаю, что концерт завтра."},
-  {"de": "Ich möchte ins Kino gehen.", "ru": "Я хочу пойти в кино."},
-  {"de": "Wir haben das Museum besucht.", "ru": "Мы посетили музей."},
-  {"de": "Die Ausstellung war interessant.", "ru": "Выставка была интересной."},
-  {"de": "Ich finde, dass die Musik schön ist.", "ru": "Я считаю, что музыка красивая."},
-  {"de": "Ich werde nächstes Wochenende ins Theater gehen.", "ru": "Я пойду в театр в следующие выходные."},
-  {"de": "Hast du die Karten für das Konzert?", "ru": "У тебя есть билеты на концерт?"},
-  {"de": "Meine Schwester findet, dass der Film langweilig ist.", "ru": "Моя сестра считает, что фильм скучный."},
-  {"de": "Wir werden am Samstag ins Kino gehen.", "ru": "Мы пойдём в кино в субботу."},
-  {"de": "Ich denke, dass die Oper sehr schön ist.", "ru": "Я думаю, что опера очень красивая."},
-  {"de": "Ich habe den Film gesehen.", "ru": "Я видел фильм."},
-  {"de": "Das Museum ist sehr interessant.", "ru": "Музей очень интересный."},
-  {"de": "Ich möchte ins Theater gehen.", "ru": "Я хочу пойти в театр."},
-  {"de": "Mein Bruder findet, dass die Ausstellung toll ist.", "ru": "Мой брат считает, что выставка отличная."},
-  {"de": "Ich habe das Buch gelesen.", "ru": "Я прочитал книгу."},
-  {"de": "Wir werden nächste Woche ein Konzert besuchen.", "ru": "Мы посетим концерт на следующей неделе."},
-  {"de": "Die Musik ist sehr schön.", "ru": "Музыка очень красивая."},
-  {"de": "Ich denke, dass der Film zu lang ist.", "ru": "Я думаю, что фильм слишком длинный."},
-  {"de": "Meine Eltern haben die Ausstellung besucht.", "ru": "Мои родители посетили выставку."},
-  {"de": "Ich finde, dass das Theater interessant ist.", "ru": "Я считаю, что театр интересный."},
-  {"de": "Hast du die Karten für den Film?", "ru": "У тебя есть билеты на фильм?"},
-  {"de": "Ich bin nach Berlin gefahren.", "ru": "Я поехал в Берлин."},
-  {"de": "Wir werden am Wochenende ins Museum gehen.", "ru": "Мы пойдём в музей в выходные."},
-  {"de": "Ich finde, dass die Vorstellung gut war.", "ru": "Я считаю, что представление было хорошим."},
-  {"de": "Ich möchte das Konzert besuchen.", "ru": "Я хочу посетить концерт."},
-  {"de": "Die Ausstellung ist bis zum 15. Mai.", "ru": "Выставка до 15 мая."},
-  {"de": "Ich denke, dass die Musik zu laut ist.", "ru": "Я думаю, что музыка слишком громкая."},
-  {"de": "Ich werde nächsten Monat ins Theater gehen.", "ru": "Я пойду в театр в следующем месяце."},
-  {"de": "Ich finde, dass der Film spannend ist.", "ru": "Я считаю, что фильм захватывающий."},
-  {"de": "Wir haben das Konzert besucht.", "ru": "Мы посетили концерт."},
-  {"de": "Die Oper ist in der Stadt.", "ru": "Опера в городе."},
-  {"de": "Ich denke, dass die Ausstellung morgen öffnet.", "ru": "Я думаю, что выставка открывается завтра."},
-  {"de": "Ich möchte die Karten online kaufen.", "ru": "Я хочу купить билеты онлайн."},
-  {"de": "Die Vorstellung beginnt um 20 Uhr.", "ru": "Представление начинается в 20 часов."},
-  {"de": "Ich finde, dass das Museum sehr groß ist.", "ru": "Я считаю, что музей очень большой."},
-  {"de": "Wir werden am Sonntag ins Konzert gehen.", "ru": "Мы пойдём на концерт в воскресенье."},
-  {"de": "Ich denke, dass der Film um 18 Uhr beginnt.", "ru": "Я думаю, что фильм начинается в 18 часов."},
-  {"de": "Ich habe die Karten schon gekauft.", "ru": "Я уже купил билеты."},
-  {"de": "Die Ausstellung war sehr interessant.", "ru": "Выставка была очень интересной."},
-  {"de": "Ich werde nächstes Jahr nach Deutschland reisen.", "ru": "Я поеду в Германию в следующем году."},
-  {"de": "Ich finde, dass die Musik entspannend ist.", "ru": "Я считаю, что музыка расслабляющая."},
-  {"de": "Ich lese Zeitung, weil ich mich informieren will.", "ru": "Я читаю газету, потому что хочу узнать новости."},
-  {"de": "Da ich Zeit habe, lese ich die Zeitung.", "ru": "Так как у меня есть время, я читаю газету."},
-  {"de": "Ich höre Radio, weil ich Musik mag.", "ru": "Я слушаю радио, потому что люблю музыку."},
-  {"de": "Ich surfe im Internet, weil ich Informationen suche.", "ru": "Я сижу в интернете, потому что ищу информацию."},
-  {"de": "Die Nachrichten sind wichtig.", "ru": "Новости важны."},
-  {"de": "Der Journalist schreibt einen Artikel.", "ru": "Журналист пишет статью."},
-  {"de": "Woher bekommst du die Informationen?", "ru": "Откуда ты получаешь информацию?"},
-  {"de": "Der Reporter hat ein Interview geführt.", "ru": "Репортёр провёл интервью."},
-  {"de": "Ich lese die Online-Zeitung.", "ru": "Я читаю онлайн-газету."},
-  {"de": "Die Schlagzeile ist interessant.", "ru": "Заголовок интересный."},
-  {"de": "Ich höre gern Podcasts.", "ru": "Я люблю слушать подкасты."},
-  {"de": "Ich habe einen Blog.", "ru": "У меня есть блог."},
-  {"de": "Die sozialen Netzwerke sind sehr beliebt.", "ru": "Социальные сети очень популярны."},
-  {"de": "Ich lese die Kommentare.", "ru": "Я читаю комментарии."},
-  {"de": "Ich habe ein Abonnement für die Zeitung.", "ru": "У меня есть подписка на газету."},
-  {"de": "Das Nachrichtenportal ist aktuell.", "ru": "Новостной портал актуальный."},
-  {"de": "Ich finde, dass der Film gut ist.", "ru": "Я считаю, что фильм хороший."},
-  {"de": "Meiner Meinung nach ist das wichtig.", "ru": "По моему мнению, это важно."},
-  {"de": "Ich habe viel gelernt, deshalb habe ich die Prüfung bestanden.", "ru": "Я много учился, поэтому я сдал экзамен."},
-  {"de": "Ich lerne Deutsch, um in Deutschland zu arbeiten.", "ru": "Я учу немецкий, чтобы работать в Германии."},
-  {"de": "Ich finde, dass Sport gesund ist.", "ru": "Я считаю, что спорт полезен."},
-  {"de": "Einerseits ist es teuer, andererseits ist es gut.", "ru": "С одной стороны, это дорого, с другой стороны, это хорошо."},
-  {"de": "Ich denke, dass du Recht hast.", "ru": "Я думаю, что ты прав."},
-  {"de": "Ich finde, dass das Wetter heute schön ist.", "ru": "Я считаю, что погода сегодня красивая."},
-  {"de": "Meiner Meinung nach ist Deutsch schwer.", "ru": "По моему мнению, немецкий сложный."},
-  {"de": "Ich lerne Deutsch, um in Deutschland zu studieren.", "ru": "Я учу немецкий, чтобы учиться в Германии."},
-  {"de": "Ich denke, dass wir morgen ins Kino gehen sollten.", "ru": "Я думаю, что нам стоит пойти в кино завтра."},
-  {"de": "Meine Schwester findet, dass der Film langweilig ist.", "ru": "Моя сестра считает, что фильм скучный."},
-  {"de": "Ich habe viel gearbeitet, deshalb bin ich müde.", "ru": "Я много работал, поэтому я устал."},
-  {"de": "Ich finde, dass Bücher interessant sind.", "ru": "Я считаю, что книги интересные."},
-  {"de": "Meiner Meinung nach ist das eine gute Idee.", "ru": "По моему мнению, это хорошая идея."},
-  {"de": "Ich gehe ins Kino, um den Film zu sehen.", "ru": "Я иду в кино, чтобы посмотреть фильм."},
-  {"de": "Einerseits ist es gesund, andererseits ist es teuer.", "ru": "С одной стороны, это полезно, с другой стороны, это дорого."},
-  {"de": "Ich finde, dass Reisen sehr schön ist.", "ru": "Я считаю, что путешествия очень прекрасны."},
-  {"de": "Meiner Meinung nach ist das zu teuer.", "ru": "По моему мнению, это слишком дорого."},
-  {"de": "Ich finde, dass das eine gute Entscheidung ist.", "ru": "Я считаю, что это хорошее решение."}
+  {
+    "de": "Ich habe heute gearbeitet.",
+    "ru": "Я сегодня работал."
+  },
+  {
+    "de": "Was hast du gestern gemacht?",
+    "ru": "Что ты делал вчера?"
+  },
+  {
+    "de": "Ich habe Fußball gespielt.",
+    "ru": "Я играл в футбол."
+  },
+  {
+    "de": "Hast du Deutsch gelernt?",
+    "ru": "Ты учил немецкий?"
+  },
+  {
+    "de": "Ich wohne in Berlin.",
+    "ru": "Я живу в Берлине."
+  },
+  {
+    "de": "Er hat einen Kaffee gekauft.",
+    "ru": "Он купил кофе."
+  },
+  {
+    "de": "Ich habe im Restaurant gegessen.",
+    "ru": "Я ел в ресторане."
+  },
+  {
+    "de": "Meine Schwester hat die Wohnung geputzt.",
+    "ru": "Моя сестра убрала квартиру."
+  },
+  {
+    "de": "Ich habe meine Oma gefragt.",
+    "ru": "Я спросил свою бабушку."
+  },
+  {
+    "de": "Hast du die Aufgabe gemacht?",
+    "ru": "Ты сделал задание?"
+  },
+  {
+    "de": "Ich habe nicht gearbeitet.",
+    "ru": "Я не работал."
+  },
+  {
+    "de": "Mein Bruder hat gestern gekocht.",
+    "ru": "Мой брат вчера готовил."
+  },
+  {
+    "de": "Ich habe Musik gehört.",
+    "ru": "Я слушал музыку."
+  },
+  {
+    "de": "Wir haben gestern getanzt.",
+    "ru": "Мы вчера танцевали."
+  },
+  {
+    "de": "Ich habe meinen Vater gefragt.",
+    "ru": "Я спросил своего отца."
+  },
+  {
+    "de": "Sie hat etwas gesagt.",
+    "ru": "Она что-то сказала."
+  },
+  {
+    "de": "Ich habe im Supermarkt eingekauft.",
+    "ru": "Я делал покупки в супермаркете."
+  },
+  {
+    "de": "Meine Mutter hat die Blumen gegossen.",
+    "ru": "Моя мама полила цветы."
+  },
+  {
+    "de": "Ich habe einen Brief geschrieben.",
+    "ru": "Я написал письмо."
+  },
+  {
+    "de": "Hast du Fußball gespielt?",
+    "ru": "Ты играл в футбол?"
+  },
+  {
+    "de": "Ich habe gestern bis 22 Uhr gearbeitet.",
+    "ru": "Я вчера работал до 22 часов."
+  },
+  {
+    "de": "Meine Eltern haben ein neues Auto gekauft.",
+    "ru": "Мои родители купили новую машину."
+  },
+  {
+    "de": "Ich habe die Tür geöffnet.",
+    "ru": "Я открыл дверь."
+  },
+  {
+    "de": "Wir haben im Park gespielt.",
+    "ru": "Мы играли в парке."
+  },
+  {
+    "de": "Ich habe auf meinen Freund gewartet.",
+    "ru": "Я ждал своего друга."
+  },
+  {
+    "de": "Hast du gelernt?",
+    "ru": "Ты учился?"
+  },
+  {
+    "de": "Ich habe heute Morgen gefrühstückt.",
+    "ru": "Я сегодня утром позавтракал."
+  },
+  {
+    "de": "Meine Schwester hat Klavier gespielt.",
+    "ru": "Моя сестра играла на пианино."
+  },
+  {
+    "de": "Ich habe den Tisch gedeckt.",
+    "ru": "Я накрыл на стол."
+  },
+  {
+    "de": "Wir haben die ganze Wohnung geputzt.",
+    "ru": "Мы убрали всю квартиру."
+  },
+  {
+    "de": "Ich habe meinen Bruder gefragt.",
+    "ru": "Я спросил своего брата."
+  },
+  {
+    "de": "Ich habe die Zeitung gelesen.",
+    "ru": "Я прочитал газету."
+  },
+  {
+    "de": "Ich habe im Garten gearbeitet.",
+    "ru": "Я работал в саду."
+  },
+  {
+    "de": "Hast du etwas gesagt?",
+    "ru": "Ты что-то сказал?"
+  },
+  {
+    "de": "Ich habe heute Pizza gegessen.",
+    "ru": "Я сегодня ел пиццу."
+  },
+  {
+    "de": "Mein Vater hat die Rechnung bezahlt.",
+    "ru": "Мой отец заплатил счёт."
+  },
+  {
+    "de": "Ich habe drei Stunden gelernt.",
+    "ru": "Я учился три часа."
+  },
+  {
+    "de": "Wir haben bis spät getanzt.",
+    "ru": "Мы танцевали до позднего вечера."
+  },
+  {
+    "de": "Ich habe meine Tante besucht.",
+    "ru": "Я навестил свою тётю."
+  },
+  {
+    "de": "Hast du die Blumen gegossen?",
+    "ru": "Ты полил цветы?"
+  },
+  {
+    "de": "Ich habe das Fenster geöffnet.",
+    "ru": "Я открыл окно."
+  },
+  {
+    "de": "Meine Mutter hat Kuchen gebacken.",
+    "ru": "Я испекла пирог."
+  },
+  {
+    "de": "Ich habe den ganzen Tag gearbeitet.",
+    "ru": "Я работал весь день."
+  },
+  {
+    "de": "Wir haben zusammen gekocht.",
+    "ru": "Мы готовили вместе."
+  },
+  {
+    "de": "Ich habe meine Hausaufgaben gemacht.",
+    "ru": "Я сделал свои домашние задания."
+  },
+  {
+    "de": "Ich habe im Meer gebadet.",
+    "ru": "Я купался в море."
+  },
+  {
+    "de": "Ich habe den Hund gefüttert.",
+    "ru": "Я покормил собаку."
+  },
+  {
+    "de": "Ich habe tief geatmet.",
+    "ru": "Я глубоко дышал."
+  },
+  {
+    "de": "Ich habe gestern viel gelacht.",
+    "ru": "Я вчера много смеялся."
+  },
+  {
+    "de": "Ich habe die Tür geschlossen.",
+    "ru": "Я закрыл дверь."
+  },
+  {
+    "de": "Ich bin nach Berlin gefahren.",
+    "ru": "Я поехал в Берлин."
+  },
+  {
+    "de": "Bist du nach Hause gegangen?",
+    "ru": "Ты пошёл домой?"
+  },
+  {
+    "de": "Er ist um 8 Uhr aufgewacht.",
+    "ru": "Он проснулся в 8 часов."
+  },
+  {
+    "de": "Wir sind nach Italien geflogen.",
+    "ru": "Мы полетели в Италию."
+  },
+  {
+    "de": "Ihr seid schnell gelaufen.",
+    "ru": "Вы быстро побежали."
+  },
+  {
+    "de": "Sie sind gestern angekommen.",
+    "ru": "Они прибыли вчера."
+  },
+  {
+    "de": "Ich bin heute Morgen aufgewacht.",
+    "ru": "Я проснулся сегодня утром."
+  },
+  {
+    "de": "Bist du schon eingeschlafen?",
+    "ru": "Ты уже заснул?"
+  },
+  {
+    "de": "Wir sind im Meer geschwommen.",
+    "ru": "Мы плавали в море."
+  },
+  {
+    "de": "Ich bin nicht nach Hause gegangen.",
+    "ru": "Я не пошёл домой."
+  },
+  {
+    "de": "Mein Bruder ist nach München gefahren.",
+    "ru": "Мой брат поехал в Мюнхен."
+  },
+  {
+    "de": "Ich habe gestern Fußball gespielt.",
+    "ru": "Я вчера играл в футбол."
+  },
+  {
+    "de": "Meine Schwester ist um 6 Uhr aufgewacht.",
+    "ru": "Моя сестра проснулась в 6 часов."
+  },
+  {
+    "de": "Wir sind durch den Park gelaufen.",
+    "ru": "Мы пробежали через парк."
+  },
+  {
+    "de": "Mein Vater ist nach Hamburg geflogen.",
+    "ru": "Мой отец полетел в Гамбург."
+  },
+  {
+    "de": "Bist du mit dem Zug gekommen?",
+    "ru": "Ты приехал на поезде?"
+  },
+  {
+    "de": "Wir sind in den Urlaub gefahren.",
+    "ru": "Мы поехали в отпуск."
+  },
+  {
+    "de": "Meine Mutter hat gestern gekocht.",
+    "ru": "Моя мама вчера готовила."
+  },
+  {
+    "de": "Er ist um 23 Uhr eingeschlafen.",
+    "ru": "Он заснул в 23 часа."
+  },
+  {
+    "de": "Ich bin im See geschwommen.",
+    "ru": "Я плавал в озере."
+  },
+  {
+    "de": "Wir sind nach Österreich gereist.",
+    "ru": "Мы путешествовали по Австрии."
+  },
+  {
+    "de": "Ich bin gestern spät nach Hause gekommen.",
+    "ru": "Я вчера поздно пришёл домой."
+  },
+  {
+    "de": "Meine Eltern sind ins Kino gegangen.",
+    "ru": "Мои родители пошли в кино."
+  },
+  {
+    "de": "Bist du mit dem Auto gefahren?",
+    "ru": "Ты поехал на машине?"
+  },
+  {
+    "de": "Wir sind durch Deutschland gereist.",
+    "ru": "Мы путешествовали по Германии."
+  },
+  {
+    "de": "Mein Bruder ist in die Stadt gegangen.",
+    "ru": "Мой брат пошёл в город."
+  },
+  {
+    "de": "Ich bin um 7 Uhr aufgewacht.",
+    "ru": "Я проснулся в 7 часов."
+  },
+  {
+    "de": "Wir sind nach Spanien geflogen.",
+    "ru": "Мы полетели в Испанию."
+  },
+  {
+    "de": "Bist du schon mal in Berlin gewesen?",
+    "ru": "Ты когда-нибудь был в Берлине?"
+  },
+  {
+    "de": "Meine Mutter ist einkaufen gegangen.",
+    "ru": "Моя мама пошла за покупками."
+  },
+  {
+    "de": "Wir sind ans Meer gefahren.",
+    "ru": "Мы поехали к морю."
+  },
+  {
+    "de": "Ich habe meinen Freund angerufen.",
+    "ru": "Я позвонил своему другу."
+  },
+  {
+    "de": "Sie sind zu Fuß gegangen.",
+    "ru": "Они пошли пешком."
+  },
+  {
+    "de": "Wir sind durch den Wald gelaufen.",
+    "ru": "Мы пробежали через лес."
+  },
+  {
+    "de": "Mein Vater ist nach Berlin geflogen.",
+    "ru": "Мой отец полетел в Берлин."
+  },
+  {
+    "de": "Bist du mit dem Fahrrad gekommen?",
+    "ru": "Ты приехал на велосипеде?"
+  },
+  {
+    "de": "Wir sind gestern angekommen.",
+    "ru": "Мы прибыли вчера."
+  },
+  {
+    "de": "Ich habe gegessen.",
+    "ru": "Я поел."
+  },
+  {
+    "de": "Hast du getrunken?",
+    "ru": "Ты пил?"
+  },
+  {
+    "de": "Ich habe den Film gesehen.",
+    "ru": "Я видел фильм."
+  },
+  {
+    "de": "Hast du den Brief geschrieben?",
+    "ru": "Ты написал письмо?"
+  },
+  {
+    "de": "Ich habe das Buch gelesen.",
+    "ru": "Я прочитал книгу."
+  },
+  {
+    "de": "Er hat mir geholfen.",
+    "ru": "Он помог мне."
+  },
+  {
+    "de": "Ich habe gut geschlafen.",
+    "ru": "Я хорошо спал."
+  },
+  {
+    "de": "Wir haben Deutsch gesprochen.",
+    "ru": "Мы говорили по-немецки."
+  },
+  {
+    "de": "Ich habe den Schlüssel gefunden.",
+    "ru": "Я нашёл ключ."
+  },
+  {
+    "de": "Ich bin zu Hause geblieben.",
+    "ru": "Я остался дома."
+  },
+  {
+    "de": "Wir sind ins Kino gegangen.",
+    "ru": "Мы пошли в кино."
+  },
+  {
+    "de": "Meine Schwester hat eine Pizza gegessen.",
+    "ru": "Моя сестра съела пиццу."
+  },
+  {
+    "de": "Ich habe den Kaffee getrunken.",
+    "ru": "Я выпил кофе."
+  },
+  {
+    "de": "Hast du das Buch genommen?",
+    "ru": "Ты взял книгу?"
+  },
+  {
+    "de": "Sie hat mir das Geld gegeben.",
+    "ru": "Она дала мне деньги."
+  },
+  {
+    "de": "Wir haben den Film gesehen.",
+    "ru": "Мы видели фильм."
+  },
+  {
+    "de": "Mein Bruder hat mir geholfen.",
+    "ru": "Мой брат помог мне."
+  },
+  {
+    "de": "Ich habe gestern gearbeitet.",
+    "ru": "Я вчера работал."
+  },
+  {
+    "de": "Meine Mutter hat den Kuchen gebacken.",
+    "ru": "Моя мама испекла пирог."
+  },
+  {
+    "de": "Ich habe den Brief gelesen.",
+    "ru": "Я прочитал письмо."
+  },
+  {
+    "de": "Hast du gut geschlafen?",
+    "ru": "Ты хорошо спал?"
+  },
+  {
+    "de": "Sie hat Deutsch gesprochen.",
+    "ru": "Она говорила по-немецки."
+  },
+  {
+    "de": "Mein Vater ist nach Hamburg gefahren.",
+    "ru": "Мой отец поехал в Гамбург."
+  },
+  {
+    "de": "Hast du mich gesehen?",
+    "ru": "Ты видел меня?"
+  },
+  {
+    "de": "Wir sind zu Hause geblieben.",
+    "ru": "Мы остались дома."
+  },
+  {
+    "de": "Wir haben im Restaurant gegessen.",
+    "ru": "Мы ели в ресторане."
+  },
+  {
+    "de": "Ich habe den Schlüssel nicht gefunden.",
+    "ru": "Я не нашёл ключ."
+  },
+  {
+    "de": "Mein Bruder ist nach Berlin geflogen.",
+    "ru": "Мой брат полетел в Берлин."
+  },
+  {
+    "de": "Ich habe das Fenster aufgemacht.",
+    "ru": "Я открыл окно."
+  },
+  {
+    "de": "Meine Mutter hat mir geholfen.",
+    "ru": "Моя мама помогла мне."
+  },
+  {
+    "de": "Hast du die Zeitung gelesen?",
+    "ru": "Ты прочитал газету?"
+  },
+  {
+    "de": "Ich fahre mit dem Zug nach Berlin.",
+    "ru": "Я еду на поезде в Берлин."
+  },
+  {
+    "de": "Wann fährt der Zug ab?",
+    "ru": "Когда отправляется поезд?"
+  },
+  {
+    "de": "Der Zug kommt um 10 Uhr an.",
+    "ru": "Поезд прибывает в 10 часов."
+  },
+  {
+    "de": "Wie komme ich zum Bahnhof?",
+    "ru": "Как мне добраться до вокзала?"
+  },
+  {
+    "de": "Ich möchte ein Zimmer reservieren.",
+    "ru": "Я хочу забронировать номер."
+  },
+  {
+    "de": "Haben Sie ein Zimmer frei?",
+    "ru": "У вас есть свободный номер?"
+  },
+  {
+    "de": "Das Zimmer kostet 50 Euro pro Nacht.",
+    "ru": "Номер стоит 50 евро за ночь."
+  },
+  {
+    "de": "Wir haben im Hotel übernachtet.",
+    "ru": "Мы ночевали в отеле."
+  },
+  {
+    "de": "Ich bin gestern angekommen.",
+    "ru": "Я прибыл вчера."
+  },
+  {
+    "de": "Wir sind um 8 Uhr abgefahren.",
+    "ru": "Мы отправились в 8 часов."
+  },
+  {
+    "de": "Ich habe ein Zimmer gebucht.",
+    "ru": "Я забронировал номер."
+  },
+  {
+    "de": "Der Zug hat 10 Minuten Verspätung.",
+    "ru": "У поезда задержка 10 минут."
+  },
+  {
+    "de": "Wo ist der Gate für den Flug nach Berlin?",
+    "ru": "Где выход на рейс в Берлин?"
+  },
+  {
+    "de": "Ich habe mein Gepäck am Flughafen abgegeben.",
+    "ru": "Я сдал багаж в аэропорту."
+  },
+  {
+    "de": "Wir haben die Reise gebucht.",
+    "ru": "Мы забронировали путешествие."
+  },
+  {
+    "de": "Ich habe meinen Koffer gepackt.",
+    "ru": "Я упаковал чемодан."
+  },
+  {
+    "de": "Der Fahrplan hat sich geändert.",
+    "ru": "Расписание изменилось."
+  },
+  {
+    "de": "Die Annullierung war eine Überraschung.",
+    "ru": "Отмена была неожиданностью."
+  },
+  {
+    "de": "Ich bin auf Dienstreise.",
+    "ru": "Я в командировке."
+  },
+  {
+    "de": "Ich habe die Buchung bestätigt.",
+    "ru": "Я подтвердил бронирование."
+  },
+  {
+    "de": "Wir checken um 14 Uhr ein.",
+    "ru": "Мы регистрируемся в 14 часов."
+  },
+  {
+    "de": "Wir checken um 12 Uhr aus.",
+    "ru": "Мы выписываемся в 12 часов."
+  },
+  {
+    "de": "Heute ist es sonnig.",
+    "ru": "Сегодня солнечно."
+  },
+  {
+    "de": "Es regnet.",
+    "ru": "Идёт дождь."
+  },
+  {
+    "de": "Es schneit.",
+    "ru": "Идёт снег."
+  },
+  {
+    "de": "Im Sommer ist es oft heiß.",
+    "ru": "Летом часто жарко."
+  },
+  {
+    "de": "Im Winter ist es kalt.",
+    "ru": "Зимой холодно."
+  },
+  {
+    "de": "Wie ist das Wetter heute?",
+    "ru": "Какая сегодня погода?"
+  },
+  {
+    "de": "Morgen wird es regnen.",
+    "ru": "Завтра будет дождь."
+  },
+  {
+    "de": "Die Sonne scheint.",
+    "ru": "Солнце светит."
+  },
+  {
+    "de": "Es gibt Wolken am Himmel.",
+    "ru": "На небе есть облака."
+  },
+  {
+    "de": "Im Frühling blühen die Blumen.",
+    "ru": "Весной цветут цветы."
+  },
+  {
+    "de": "Die Temperatur liegt bei 25 Grad.",
+    "ru": "Температура составляет 25 градусов."
+  },
+  {
+    "de": "Es gibt Hagel heute.",
+    "ru": "Сегодня град."
+  },
+  {
+    "de": "Im Winter gibt es oft Frost.",
+    "ru": "Зимой часто бывает мороз."
+  },
+  {
+    "de": "Das Thermometer zeigt 30 Grad.",
+    "ru": "Термометр показывает 30 градусов."
+  },
+  {
+    "de": "Im Sommer ist es sehr heiß.",
+    "ru": "Летом очень жарко."
+  },
+  {
+    "de": "Die Kälte ist unangenehm.",
+    "ru": "Холод неприятен."
+  },
+  {
+    "de": "Der Regenbogen ist schön.",
+    "ru": "Радуга красивая."
+  },
+  {
+    "de": "Im Herbst ist es windig.",
+    "ru": "Осенью ветрено."
+  },
+  {
+    "de": "Peter ist älter als Tom.",
+    "ru": "Петер старше Тома."
+  },
+  {
+    "de": "Anna ist so groß wie Maria.",
+    "ru": "Анна такая же высокая, как Мария."
+  },
+  {
+    "de": "Mein Bruder ist jünger als ich.",
+    "ru": "Мой брат моложе меня."
+  },
+  {
+    "de": "Das Haus ist größer als die Wohnung.",
+    "ru": "Дом больше квартиры."
+  },
+  {
+    "de": "Im Sommer ist es wärmer als im Winter.",
+    "ru": "Летом теплее, чем зимой."
+  },
+  {
+    "de": "Das Auto ist teurer als das Fahrrad.",
+    "ru": "Машина дороже велосипеда."
+  },
+  {
+    "de": "Deutsch ist schwerer als Englisch.",
+    "ru": "Немецкий сложнее английского."
+  },
+  {
+    "de": "Meine Haare sind länger als deine.",
+    "ru": "Мои волосы длиннее твоих."
+  },
+  {
+    "de": "Heute ist es kälter als gestern.",
+    "ru": "Сегодня холоднее, чем вчера."
+  },
+  {
+    "de": "Das Wetter ist heute besser als gestern.",
+    "ru": "Погода сегодня лучше, чем вчера."
+  },
+  {
+    "de": "Das ist der beste Film.",
+    "ru": "Это лучший фильм."
+  },
+  {
+    "de": "Dieses Buch ist am interessantesten.",
+    "ru": "Эта книга самая интересная."
+  },
+  {
+    "de": "Der große Mann ist mein Vater.",
+    "ru": "Большой мужчина — мой отец."
+  },
+  {
+    "de": "Ich sehe den großen Mann.",
+    "ru": "Я вижу большого мужчину."
+  },
+  {
+    "de": "Das ist ein großer Mann.",
+    "ru": "Это большой мужчина."
+  },
+  {
+    "de": "Ich sehe einen großen Mann.",
+    "ru": "Я вижу большого мужчину."
+  },
+  {
+    "de": "Das ist ein kluger Mann.",
+    "ru": "Это умный мужчина."
+  },
+  {
+    "de": "Meine Schwester ist fleißig.",
+    "ru": "Моя сестра прилежная."
+  },
+  {
+    "de": "Der Hund ist lustig.",
+    "ru": "Собака весёлая."
+  },
+  {
+    "de": "Sie ist sehr freundlich.",
+    "ru": "Она очень дружелюбная."
+  },
+  {
+    "de": "Das ist die fleißigste Studentin.",
+    "ru": "Это самая прилежная студентка."
+  },
+  {
+    "de": "Ich interessiere mich für Technik.",
+    "ru": "Я интересуюсь техникой."
+  },
+  {
+    "de": "Ich arbeite bei einer großen Firma.",
+    "ru": "Я работаю в большой фирме."
+  },
+  {
+    "de": "Ich spreche mit meinem Kollegen.",
+    "ru": "Я говорю с моим коллегой."
+  },
+  {
+    "de": "Ich danke dir für die Hilfe.",
+    "ru": "Я благодарю тебя за помощь."
+  },
+  {
+    "de": "Ich freue mich auf den Urlaub.",
+    "ru": "Я радуюсь отпуску."
+  },
+  {
+    "de": "Ich freue mich über das Geschenk.",
+    "ru": "Я радуюсь подарку."
+  },
+  {
+    "de": "Meine Ausbildung ist abgeschlossen.",
+    "ru": "Моё образование завершено."
+  },
+  {
+    "de": "Ich habe viel Berufserfahrung.",
+    "ru": "У меня большой профессиональный опыт."
+  },
+  {
+    "de": "Teamarbeit ist wichtig.",
+    "ru": "Работа в команде важна."
+  },
+  {
+    "de": "Mein Kollege heißt Thomas.",
+    "ru": "Моего коллегу зовут Томас."
+  },
+  {
+    "de": "Ich habe gute Fähigkeiten.",
+    "ru": "У меня хорошие навыки."
+  },
+  {
+    "de": "Meine Aufgaben sind interessant.",
+    "ru": "Мои задачи интересны."
+  },
+  {
+    "de": "Ich bin flexibel.",
+    "ru": "Я гибкий."
+  },
+  {
+    "de": "Ich bin kommunikativ.",
+    "ru": "Я коммуникабельный."
+  },
+  {
+    "de": "Ich bin zuverlässig.",
+    "ru": "Я надёжный."
+  },
+  {
+    "de": "Ich bin lernfähig.",
+    "ru": "Я обучаемый."
+  },
+  {
+    "de": "Meine Kenntnisse sind gut.",
+    "ru": "Мои знания хорошие."
+  },
+  {
+    "de": "Ich habe viel Verantwortung.",
+    "ru": "У меня большая ответственность."
+  },
+  {
+    "de": "Meine Ziele sind klar.",
+    "ru": "Мои цели ясны."
+  },
+  {
+    "de": "Ich habe Kopfschmerzen.",
+    "ru": "У меня болит голова."
+  },
+  {
+    "de": "Wie geht es dir?",
+    "ru": "Как ты себя чувствуешь?"
+  },
+  {
+    "de": "Mir geht es nicht gut.",
+    "ru": "Я плохо себя чувствую."
+  },
+  {
+    "de": "Ich muss zum Arzt gehen.",
+    "ru": "Я должен пойти к врачу."
+  },
+  {
+    "de": "Geh zum Arzt!",
+    "ru": "Иди к врачу!"
+  },
+  {
+    "de": "Bleib zu Hause!",
+    "ru": "Оставайся дома!"
+  },
+  {
+    "de": "Trink Tee!",
+    "ru": "Пей чай!"
+  },
+  {
+    "de": "Ich habe Bauchschmerzen.",
+    "ru": "У меня болит живот."
+  },
+  {
+    "de": "Ich habe Fieber.",
+    "ru": "У меня температура."
+  },
+  {
+    "de": "Ich habe Husten.",
+    "ru": "У меня кашель."
+  },
+  {
+    "de": "Ich habe eine Erkältung.",
+    "ru": "У меня простуда."
+  },
+  {
+    "de": "Ich bin krank.",
+    "ru": "Я болен."
+  },
+  {
+    "de": "Ich bin gesund.",
+    "ru": "Я здоров."
+  },
+  {
+    "de": "Mir geht es gut.",
+    "ru": "Я чувствую себя хорошо."
+  },
+  {
+    "de": "Mein Bruder hat Kopfschmerzen.",
+    "ru": "У моего брата болит голова."
+  },
+  {
+    "de": "Ruf den Arzt an!",
+    "ru": "Позвони врачу!"
+  },
+  {
+    "de": "Ich habe Schnupfen.",
+    "ru": "У меня насморк."
+  },
+  {
+    "de": "Ich habe Grippe.",
+    "ru": "У меня грипп."
+  },
+  {
+    "de": "Ich muss heute zu Hause bleiben.",
+    "ru": "Я должен сегодня остаться дома."
+  },
+  {
+    "de": "Meine Schwester hat blaue Augen.",
+    "ru": "У моей сестры синие глаза."
+  },
+  {
+    "de": "Kannst du mir helfen?",
+    "ru": "Ты можешь мне помочь?"
+  },
+  {
+    "de": "Ich habe starke Kopfschmerzen.",
+    "ru": "У меня сильная головная боль."
+  },
+  {
+    "de": "Geh ins Krankenhaus!",
+    "ru": "Иди в больницу!"
+  },
+  {
+    "de": "Ich muss Medizin nehmen.",
+    "ru": "Я должен принимать лекарство."
+  },
+  {
+    "de": "Meine Mutter arbeitet als Ärztin.",
+    "ru": "Моя мама работает врачом."
+  },
+  {
+    "de": "Was fehlt dir?",
+    "ru": "Что у тебя болит?"
+  },
+  {
+    "de": "Ich habe Rückenschmerzen.",
+    "ru": "У меня болит спина."
+  },
+  {
+    "de": "Ich stehe um 7 Uhr auf.",
+    "ru": "Я встаю в 7 часов."
+  },
+  {
+    "de": "Bleib im Bett!",
+    "ru": "Оставайся в кровати!"
+  },
+  {
+    "de": "Ich habe Halsschmerzen.",
+    "ru": "У меня болит горло."
+  },
+  {
+    "de": "Mein Vater ist krank.",
+    "ru": "Мой отец болен."
+  },
+  {
+    "de": "Trink viel Wasser!",
+    "ru": "Пей много воды!"
+  },
+  {
+    "de": "Ich habe Fieber und Husten.",
+    "ru": "У меня температура и кашель."
+  },
+  {
+    "de": "Meine Eltern wohnen in München.",
+    "ru": "Мои родители живут в Мюнхене."
+  },
+  {
+    "de": "Ich kann heute nicht arbeiten.",
+    "ru": "Я не могу сегодня работать."
+  },
+  {
+    "de": "Ruf mich an!",
+    "ru": "Позвони мне!"
+  },
+  {
+    "de": "Ich habe Schmerzen im Arm.",
+    "ru": "У меня болит рука."
+  },
+  {
+    "de": "Am Wochenende gehe ich ins Kino.",
+    "ru": "В выходные я иду в кино."
+  },
+  {
+    "de": "Nimm eine Tablette!",
+    "ru": "Прими таблетку!"
+  },
+  {
+    "de": "Ich habe Schmerzen im Bein.",
+    "ru": "У меня болит нога."
+  },
+  {
+    "de": "Meine Schwester ist gesund.",
+    "ru": "Моя сестра здорова."
+  },
+  {
+    "de": "Ich habe einen Termin beim Arzt.",
+    "ru": "У меня встреча с врачом."
+  },
+  {
+    "de": "Bleib zu Hause und ruh dich aus!",
+    "ru": "Оставайся дома и отдыхай!"
+  },
+  {
+    "de": "Ich habe Kopfschmerzen und Fieber.",
+    "ru": "У меня болит голова и температура."
+  },
+  {
+    "de": "Mein Bruder ist Ingenieur.",
+    "ru": "Мой брат инженер."
+  },
+  {
+    "de": "Ich muss Medizin kaufen.",
+    "ru": "Я должен купить лекарство."
+  },
+  {
+    "de": "Wie geht es deiner Mutter?",
+    "ru": "Как чувствует себя твоя мама?"
+  },
+  {
+    "de": "Seit wann hast du Schmerzen?",
+    "ru": "С каких пор у тебя боли?"
+  },
+  {
+    "de": "Ich werde morgen arbeiten.",
+    "ru": "Я буду работать завтра."
+  },
+  {
+    "de": "Wirst du morgen kommen?",
+    "ru": "Ты придёшь завтра?"
+  },
+  {
+    "de": "Er wird nach Berlin fahren.",
+    "ru": "Он поедет в Берлин."
+  },
+  {
+    "de": "Wir werden nächste Woche reisen.",
+    "ru": "Мы поедем путешествовать на следующей неделе."
+  },
+  {
+    "de": "Ich werde nicht kommen.",
+    "ru": "Я не приду."
+  },
+  {
+    "de": "Was wirst du machen?",
+    "ru": "Что ты будешь делать?"
+  },
+  {
+    "de": "Ich werde Ingenieur werden.",
+    "ru": "Я стану инженером."
+  },
+  {
+    "de": "Nächstes Jahr werde ich nach Deutschland fahren.",
+    "ru": "В следующем году я поеду в Германию."
+  },
+  {
+    "de": "Ich will nach Berlin fahren.",
+    "ru": "Я хочу поехать в Берлин."
+  },
+  {
+    "de": "Morgen wird es sonnig sein.",
+    "ru": "Завтра будет солнечно."
+  },
+  {
+    "de": "Wir werden im Sommer ans Meer fahren.",
+    "ru": "Мы поедем к морю летом."
+  },
+  {
+    "de": "Meine Schwester wird nächstes Jahr studieren.",
+    "ru": "Моя сестра будет учиться в следующем году."
+  },
+  {
+    "de": "Ich werde später anrufen.",
+    "ru": "Я позвоню позже."
+  },
+  {
+    "de": "Wir werden nächsten Monat umziehen.",
+    "ru": "Мы переедем в следующем месяце."
+  },
+  {
+    "de": "Ich werde nicht vergessen.",
+    "ru": "Я не забуду."
+  },
+  {
+    "de": "Mein Bruder wird morgen kommen.",
+    "ru": "Мой брат придёт завтра."
+  },
+  {
+    "de": "Ich werde Arzt werden.",
+    "ru": "Я стану врачом."
+  },
+  {
+    "de": "Am Wochenende werde ich ins Kino gehen.",
+    "ru": "В выходные я пойду в кино."
+  },
+  {
+    "de": "Meine Eltern werden nächste Woche ankommen.",
+    "ru": "Мои родители прибудут на следующей неделе."
+  },
+  {
+    "de": "Wirst du Deutsch lernen?",
+    "ru": "Ты будешь учить немецкий?"
+  },
+  {
+    "de": "Ich werde dir helfen.",
+    "ru": "Я помогу тебе."
+  },
+  {
+    "de": "Wir werden im Winter nach Österreich fahren.",
+    "ru": "Мы поедем в Австрию зимой."
+  },
+  {
+    "de": "Ich werde morgen früh aufstehen.",
+    "ru": "Я встану завтра рано."
+  },
+  {
+    "de": "Meine Schwester hat das Buch gelesen.",
+    "ru": "Моя сестра прочитала книгу."
+  },
+  {
+    "de": "Wirst du mich anrufen?",
+    "ru": "Ты позвонишь мне?"
+  },
+  {
+    "de": "Ich werde übermorgen kommen.",
+    "ru": "Я приду послезавтра."
+  },
+  {
+    "de": "Wir werden die Wohnung putzen.",
+    "ru": "Мы уберём квартиру."
+  },
+  {
+    "de": "Mein Vater hat mir geholfen.",
+    "ru": "Мой отец помог мне."
+  },
+  {
+    "de": "Nächste Woche werde ich mit dem Zug fahren.",
+    "ru": "На следующей неделе я поеду на поезде."
+  },
+  {
+    "de": "Ich werde die Reise buchen.",
+    "ru": "Я забронирую путешествие."
+  },
+  {
+    "de": "Wirst du morgen arbeiten?",
+    "ru": "Ты будешь работать завтра?"
+  },
+  {
+    "de": "Ich werde im nächsten Jahr einen neuen Job suchen.",
+    "ru": "В следующем году я буду искать новую работу."
+  },
+  {
+    "de": "Ich werde nicht lange bleiben.",
+    "ru": "Я не останусь надолго."
+  },
+  {
+    "de": "Mein Bruder wird nächstes Jahr heiraten.",
+    "ru": "Мой брат женится в следующем году."
+  },
+  {
+    "de": "Ich werde dir schreiben.",
+    "ru": "Я напишу тебе."
+  },
+  {
+    "de": "Wir werden ins Kino gehen.",
+    "ru": "Мы пойдём в кино."
+  },
+  {
+    "de": "Wirst du deine Hausaufgaben machen?",
+    "ru": "Ты сделаешь свои домашние задания?"
+  },
+  {
+    "de": "Wir werden im Hotel übernachten.",
+    "ru": "Мы переночуем в отеле."
+  },
+  {
+    "de": "Nächstes Jahr werde ich nach Italien fliegen.",
+    "ru": "В следующем году я полечу в Италию."
+  },
+  {
+    "de": "Ich werde dich nicht vergessen.",
+    "ru": "Я тебя не забуду."
+  },
+  {
+    "de": "Wirst du morgen früh aufstehen?",
+    "ru": "Ты встанешь завтра рано?"
+  },
+  {
+    "de": "Ich werde in der Zukunft viel reisen.",
+    "ru": "В будущем я буду много путешествовать."
+  },
+  {
+    "de": "Ich finde, dass der Film gut ist.",
+    "ru": "Я считаю, что фильм хороший."
+  },
+  {
+    "de": "Ich denke, dass das Konzert morgen ist.",
+    "ru": "Я думаю, что концерт завтра."
+  },
+  {
+    "de": "Ich möchte ins Kino gehen.",
+    "ru": "Я хочу пойти в кино."
+  },
+  {
+    "de": "Wir haben das Museum besucht.",
+    "ru": "Мы посетили музей."
+  },
+  {
+    "de": "Die Ausstellung war interessant.",
+    "ru": "Выставка была интересной."
+  },
+  {
+    "de": "Ich finde, dass die Musik schön ist.",
+    "ru": "Я считаю, что музыка красивая."
+  },
+  {
+    "de": "Ich werde nächstes Wochenende ins Theater gehen.",
+    "ru": "Я пойду в театр в следующие выходные."
+  },
+  {
+    "de": "Hast du die Karten für das Konzert?",
+    "ru": "У тебя есть билеты на концерт?"
+  },
+  {
+    "de": "Meine Schwester findet, dass der Film langweilig ist.",
+    "ru": "Моя сестра считает, что фильм скучный."
+  },
+  {
+    "de": "Wir werden am Samstag ins Kino gehen.",
+    "ru": "Мы пойдём в кино в субботу."
+  },
+  {
+    "de": "Ich denke, dass die Oper sehr schön ist.",
+    "ru": "Я думаю, что опера очень красивая."
+  },
+  {
+    "de": "Das Museum ist sehr interessant.",
+    "ru": "Музей очень интересный."
+  },
+  {
+    "de": "Ich möchte ins Theater gehen.",
+    "ru": "Я хочу пойти в театр."
+  },
+  {
+    "de": "Mein Bruder findet, dass die Ausstellung toll ist.",
+    "ru": "Мой брат считает, что выставка отличная."
+  },
+  {
+    "de": "Wir werden nächste Woche ein Konzert besuchen.",
+    "ru": "Мы посетим концерт на следующей неделе."
+  },
+  {
+    "de": "Die Musik ist sehr schön.",
+    "ru": "Музыка очень красивая."
+  },
+  {
+    "de": "Ich denke, dass der Film zu lang ist.",
+    "ru": "Я думаю, что фильм слишком длинный."
+  },
+  {
+    "de": "Meine Eltern haben die Ausstellung besucht.",
+    "ru": "Мои родители посетили выставку."
+  },
+  {
+    "de": "Ich finde, dass das Theater interessant ist.",
+    "ru": "Я считаю, что театр интересный."
+  },
+  {
+    "de": "Hast du die Karten für den Film?",
+    "ru": "У тебя есть билеты на фильм?"
+  },
+  {
+    "de": "Wir werden am Wochenende ins Museum gehen.",
+    "ru": "Мы пойдём в музей в выходные."
+  },
+  {
+    "de": "Ich finde, dass die Vorstellung gut war.",
+    "ru": "Я считаю, что представление было хорошим."
+  },
+  {
+    "de": "Ich möchte das Konzert besuchen.",
+    "ru": "Я хочу посетить концерт."
+  },
+  {
+    "de": "Die Ausstellung ist bis zum 15. Mai.",
+    "ru": "Выставка до 15 мая."
+  },
+  {
+    "de": "Ich denke, dass die Musik zu laut ist.",
+    "ru": "Я думаю, что музыка слишком громкая."
+  },
+  {
+    "de": "Ich werde nächsten Monat ins Theater gehen.",
+    "ru": "Я пойду в театр в следующем месяце."
+  },
+  {
+    "de": "Ich finde, dass der Film spannend ist.",
+    "ru": "Я считаю, что фильм захватывающий."
+  },
+  {
+    "de": "Wir haben das Konzert besucht.",
+    "ru": "Мы посетили концерт."
+  },
+  {
+    "de": "Die Oper ist in der Stadt.",
+    "ru": "Опера в городе."
+  },
+  {
+    "de": "Ich denke, dass die Ausstellung morgen öffnet.",
+    "ru": "Я думаю, что выставка открывается завтра."
+  },
+  {
+    "de": "Ich möchte die Karten online kaufen.",
+    "ru": "Я хочу купить билеты онлайн."
+  },
+  {
+    "de": "Die Vorstellung beginnt um 20 Uhr.",
+    "ru": "Представление начинается в 20 часов."
+  },
+  {
+    "de": "Ich finde, dass das Museum sehr groß ist.",
+    "ru": "Я считаю, что музей очень большой."
+  },
+  {
+    "de": "Wir werden am Sonntag ins Konzert gehen.",
+    "ru": "Мы пойдём на концерт в воскресенье."
+  },
+  {
+    "de": "Ich denke, dass der Film um 18 Uhr beginnt.",
+    "ru": "Я думаю, что фильм начинается в 18 часов."
+  },
+  {
+    "de": "Ich habe die Karten schon gekauft.",
+    "ru": "Я уже купил билеты."
+  },
+  {
+    "de": "Die Ausstellung war sehr interessant.",
+    "ru": "Выставка была очень интересной."
+  },
+  {
+    "de": "Ich werde nächstes Jahr nach Deutschland reisen.",
+    "ru": "Я поеду в Германию в следующем году."
+  },
+  {
+    "de": "Ich finde, dass die Musik entspannend ist.",
+    "ru": "Я считаю, что музыка расслабляющая."
+  },
+  {
+    "de": "Ich lese Zeitung, weil ich mich informieren will.",
+    "ru": "Я читаю газету, потому что хочу узнать новости."
+  },
+  {
+    "de": "Da ich Zeit habe, lese ich die Zeitung.",
+    "ru": "Так как у меня есть время, я читаю газету."
+  },
+  {
+    "de": "Ich höre Radio, weil ich Musik mag.",
+    "ru": "Я слушаю радио, потому что люблю музыку."
+  },
+  {
+    "de": "Ich surfe im Internet, weil ich Informationen suche.",
+    "ru": "Я сижу в интернете, потому что ищу информацию."
+  },
+  {
+    "de": "Die Nachrichten sind wichtig.",
+    "ru": "Новости важны."
+  },
+  {
+    "de": "Der Journalist schreibt einen Artikel.",
+    "ru": "Журналист пишет статью."
+  },
+  {
+    "de": "Woher bekommst du die Informationen?",
+    "ru": "Откуда ты получаешь информацию?"
+  },
+  {
+    "de": "Der Reporter hat ein Interview geführt.",
+    "ru": "Репортёр провёл интервью."
+  },
+  {
+    "de": "Ich lese die Online-Zeitung.",
+    "ru": "Я читаю онлайн-газету."
+  },
+  {
+    "de": "Die Schlagzeile ist interessant.",
+    "ru": "Заголовок интересный."
+  },
+  {
+    "de": "Ich höre gern Podcasts.",
+    "ru": "Я люблю слушать подкасты."
+  },
+  {
+    "de": "Ich habe einen Blog.",
+    "ru": "У меня есть блог."
+  },
+  {
+    "de": "Die sozialen Netzwerke sind sehr beliebt.",
+    "ru": "Социальные сети очень популярны."
+  },
+  {
+    "de": "Ich lese die Kommentare.",
+    "ru": "Я читаю комментарии."
+  },
+  {
+    "de": "Ich habe ein Abonnement für die Zeitung.",
+    "ru": "У меня есть подписка на газету."
+  },
+  {
+    "de": "Das Nachrichtenportal ist aktuell.",
+    "ru": "Новостной портал актуальный."
+  },
+  {
+    "de": "Meiner Meinung nach ist das wichtig.",
+    "ru": "По моему мнению, это важно."
+  },
+  {
+    "de": "Ich habe viel gelernt, deshalb habe ich die Prüfung bestanden.",
+    "ru": "Я много учился, поэтому я сдал экзамен."
+  },
+  {
+    "de": "Ich lerne Deutsch, um in Deutschland zu arbeiten.",
+    "ru": "Я учу немецкий, чтобы работать в Германии."
+  },
+  {
+    "de": "Ich finde, dass Sport gesund ist.",
+    "ru": "Я считаю, что спорт полезен."
+  },
+  {
+    "de": "Einerseits ist es teuer, andererseits ist es gut.",
+    "ru": "С одной стороны, это дорого, с другой стороны, это хорошо."
+  },
+  {
+    "de": "Ich denke, dass du Recht hast.",
+    "ru": "Я думаю, что ты прав."
+  },
+  {
+    "de": "Ich finde, dass das Wetter heute schön ist.",
+    "ru": "Я считаю, что погода сегодня красивая."
+  },
+  {
+    "de": "Meiner Meinung nach ist Deutsch schwer.",
+    "ru": "По моему мнению, немецкий сложный."
+  },
+  {
+    "de": "Ich lerne Deutsch, um in Deutschland zu studieren.",
+    "ru": "Я учу немецкий, чтобы учиться в Германии."
+  },
+  {
+    "de": "Ich denke, dass wir morgen ins Kino gehen sollten.",
+    "ru": "Я думаю, что нам стоит пойти в кино завтра."
+  },
+  {
+    "de": "Ich habe viel gearbeitet, deshalb bin ich müde.",
+    "ru": "Я много работал, поэтому я устал."
+  },
+  {
+    "de": "Ich finde, dass Bücher interessant sind.",
+    "ru": "Я считаю, что книги интересные."
+  },
+  {
+    "de": "Meiner Meinung nach ist das eine gute Idee.",
+    "ru": "По моему мнению, это хорошая идея."
+  },
+  {
+    "de": "Ich gehe ins Kino, um den Film zu sehen.",
+    "ru": "Я иду в кино, чтобы посмотреть фильм."
+  },
+  {
+    "de": "Einerseits ist es gesund, andererseits ist es teuer.",
+    "ru": "С одной стороны, это полезно, с другой стороны, это дорого."
+  },
+  {
+    "de": "Ich habe die Zeitung gelesen, deshalb weiß ich Bescheid.",
+    "ru": "Я прочитал газету, поэтому я в курсе."
+  },
+  {
+    "de": "Ich finde, dass Reisen sehr schön ist.",
+    "ru": "Я считаю, что путешествия очень прекрасны."
+  },
+  {
+    "de": "Meiner Meinung nach ist das zu teuer.",
+    "ru": "По моему мнению, это слишком дорого."
+  },
+  {
+    "de": "Ich lerne Deutsch, um mit Deutschen zu sprechen.",
+    "ru": "Я учу немецкий, чтобы говорить с немцами."
+  },
+  {
+    "de": "Ich denke, dass wir uns besser vorbereiten sollten.",
+    "ru": "Я думаю, что нам стоит лучше подготовиться."
+  },
+  {
+    "de": "Ich finde, dass das Fernsehen zu viel Werbung zeigt.",
+    "ru": "Я считаю, что телевидение показывает слишком много рекламы."
+  },
+  {
+    "de": "Ich habe die Prüfung bestanden, deshalb bin ich glücklich.",
+    "ru": "Я сдал экзамен, поэтому я счастлив."
+  },
+  {
+    "de": "Ich gehe ins Museum, um die Ausstellung zu sehen.",
+    "ru": "Я иду в музей, чтобы посмотреть выставку."
+  },
+  {
+    "de": "Ich finde, dass Sport wichtig für die Gesundheit ist.",
+    "ru": "Я считаю, что спорт важен для здоровья."
+  },
+  {
+    "de": "Meiner Meinung nach ist das die beste Lösung.",
+    "ru": "По моему мнению, это лучшее решение."
+  },
+  {
+    "de": "Ich habe die Hausaufgaben gemacht, deshalb habe ich jetzt Zeit.",
+    "ru": "Я сделал домашние задания, поэтому у меня сейчас есть время."
+  },
+  {
+    "de": "Ich lerne Deutsch, um meine Kenntnisse zu verbessern.",
+    "ru": "Я учу немецкий, чтобы улучшить свои знания."
+  },
+  {
+    "de": "Ich denke, dass wir heute Abend ins Konzert gehen sollten.",
+    "ru": "Я думаю, что нам стоит пойти на концерт сегодня вечером."
+  },
+  {
+    "de": "Einerseits ist es interessant, andererseits ist es schwierig.",
+    "ru": "С одной стороны, это интересно, с другой стороны, это сложно."
+  },
+  {
+    "de": "Ich finde, dass die Musik sehr schön ist.",
+    "ru": "Я считаю, что музыка очень красивая."
+  },
+  {
+    "de": "Ich habe die Reise gebucht, deshalb freue ich mich.",
+    "ru": "Я забронировал путешествие, поэтому я радуюсь."
+  },
+  {
+    "de": "Ich gehe ins Theater, um das Stück zu sehen.",
+    "ru": "Я иду в театр, чтобы посмотреть пьесу."
+  },
+  {
+    "de": "Ich finde, dass das Leben in Berlin interessant ist.",
+    "ru": "Я считаю, что жизнь в Берлине интересная."
+  },
+  {
+    "de": "Meiner Meinung nach ist das Wetter heute schlecht.",
+    "ru": "По моему мнению, погода сегодня плохая."
+  },
+  {
+    "de": "Ich habe den Artikel gelesen, deshalb weiß ich darüber Bescheid.",
+    "ru": "Я прочитал статью, поэтому я в курсе об этом."
+  },
+  {
+    "de": "Ich denke, dass wir mehr Zeit brauchen.",
+    "ru": "Я думаю, что нам нужно больше времени."
+  },
+  {
+    "de": "Einerseits ist es kalt, andererseits ist es schön.",
+    "ru": "С одной стороны, холодно, с другой стороны, красиво."
+  },
+  {
+    "de": "Ich finde, dass das eine gute Entscheidung ist.",
+    "ru": "Я считаю, что это хорошее решение."
+  }
 ]

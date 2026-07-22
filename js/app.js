@@ -56,7 +56,7 @@ function clearAppState() {
     localStorage.removeItem(APP_STATE_KEY);
 }
 
-// ========== КЕШИРОВАНИЕ УРОКОВ ==========
+// ========== КЕШИРОВАНИЕ УРОКОВ (С ВЕРСИОНИРОВАНИЕМ) ==========
 function cacheLesson(level, lessonId, lessonData) {
     try {
         const cache = JSON.parse(localStorage.getItem(CACHE_KEY) || '{}');
@@ -64,7 +64,8 @@ function cacheLesson(level, lessonId, lessonData) {
         cache[level][lessonId] = {
             data: lessonData,
             timestamp: Date.now(),
-            version: '1.0'
+            version: '1.0',
+            contentVersion: window.getContentVersion ? window.getContentVersion() : '1.0'
         };
         localStorage.setItem(CACHE_KEY, JSON.stringify(cache));
     } catch(e) {}
@@ -75,10 +76,22 @@ function getCachedLesson(level, lessonId) {
         const cache = JSON.parse(localStorage.getItem(CACHE_KEY) || '{}');
         if (cache[level] && cache[level][lessonId]) {
             const cached = cache[level][lessonId];
+            // Проверяем версию контента
+            const currentVersion = window.getContentVersion ? window.getContentVersion() : '1.0';
+            // Если версия не совпадает — удаляем устаревший кеш
+            if (cached.contentVersion !== currentVersion) {
+                delete cache[level][lessonId];
+                localStorage.setItem(CACHE_KEY, JSON.stringify(cache));
+                return null;
+            }
+            // Проверяем срок годности (7 дней)
             const isExpired = (Date.now() - cached.timestamp) > 7 * 24 * 60 * 60 * 1000;
             if (!isExpired) {
                 return cached.data;
             }
+            // Если просрочен — удаляем
+            delete cache[level][lessonId];
+            localStorage.setItem(CACHE_KEY, JSON.stringify(cache));
         }
     } catch(e) {}
     return null;
@@ -180,6 +193,8 @@ function showInstruction() {
                     <li><strong>Собирайте фразы</strong> <span style="font-size:20px;">🧩</span> — режим «Тренажёр» из слов</li>
                     <li><strong>Пишите диктанты</strong> <span style="font-size:20px;">✏️</span> — проверяйте правописание</li>
                     <li><strong>Слушайте аудирование</strong> <span style="font-size:20px;">🎧</span> — развивайте навыки восприятия на слух</li>
+                    <li><strong>Работайте с карточками</strong> <span style="font-size:20px;">📚</span> — заучивайте все слова уровня</li>
+                    <li><strong>Составляйте предложения</strong> <span style="font-size:20px;">🧩</span> — тренируйте все фразы уровня</li>
                 </ul>
             </div>
             

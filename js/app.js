@@ -784,12 +784,26 @@ window.updateWelcomePage = function() {
 // ========== ВОССТАНОВЛЕНИЕ СОСТОЯНИЯ ==========
 function restoreState() {
     const savedState = loadState();
+    
+    // ===== ИЗМЕНЕНО: сначала восстанавливаем режим из сохранённого состояния =====
+    // Используем savedState.mode (из dm_app_state) с приоритетом
+    if (savedState && savedState.mode) {
+        window.currentMode = savedState.mode;
+    } else if (window._savedMode) {
+        // Если в dm_app_state нет mode, используем сохранённый из dm_config
+        window.currentMode = window._savedMode;
+    }
+    // ===== КОНЕЦ ИЗМЕНЕНИЙ =====
+    
     if (savedState && savedState.level) {
         currentLevel = savedState.level;
         isWelcomePageVisible = false;
-        if (savedState.mode && typeof currentMode !== 'undefined') {
-            window.currentMode = savedState.mode;
-        }
+        
+        // ===== УДАЛЕНО: дублирующая установка currentMode (убрали старые строки) =====
+        // if (savedState.mode && typeof currentMode !== 'undefined') {
+        //     window.currentMode = savedState.mode;
+        // }
+        // ===== КОНЕЦ УДАЛЕНИЯ =====
         
         document.querySelectorAll('#levelsContainer .btn-level, #levelsContainerMobile .btn-level').forEach(btn => {
             if (btn.getAttribute('data-level') === savedState.level) {

@@ -635,27 +635,59 @@ function renderLevel() {
 }
 
 // ========== ОТОБРАЖЕНИЕ УРОКА ==========
+// ========== ОТОБРАЖЕНИЕ УРОКА ==========
 function renderLesson(lesson) {
     currentLesson = lesson;
     isWelcomePageVisible = false;
     saveState();
 
+    // Сначала рисуем урок без кнопки аудирования
     buildLessonHTML(lesson, false);
     
     const lessonId = lesson.id || 1;
     const level = lesson.level || 'A1';
     const hoerenPath = `docs/${level}/hoeren/${String(lessonId).padStart(2, '0')}_hoeren.json`;
     
-    fetch(hoerenPath)
+    // Проверяем существование файла аудирования через HEAD запрос
+    fetch(hoerenPath, { method: 'HEAD' })
         .then(response => {
             if (response.ok) {
+                // Файл существует — добавляем кнопку "Аудирование"
                 const listeningBtn = document.querySelector('.mode-btn[data-mode="listening"]');
-                if (listeningBtn) {
+                if (!listeningBtn) {
+                    // Если кнопки нет — создаём её
+                    const modeButtons = document.querySelector('.mode-buttons');
+                    if (modeButtons) {
+                        const btn = document.createElement('button');
+                        btn.className = 'mode-btn';
+                        btn.setAttribute('data-mode', 'listening');
+                        btn.textContent = '🎧 Аудирование';
+                        btn.style.transition = 'all 0.08s ease';
+                        
+                        // Добавляем обработчик клика
+                        btn.onclick = function() {
+                            document.querySelectorAll('.mode-btn').forEach(b => b.classList.remove('active'));
+                            this.classList.add('active');
+                            const mode = this.getAttribute('data-mode');
+                            window.currentMode = mode;
+                            currentMode = mode;
+                            saveState();
+                            renderMode(mode, lesson);
+                            setTimeout(updateCounter, 50);
+                        };
+                        
+                        modeButtons.appendChild(btn);
+                        console.log('✅ Кнопка "Аудирование" добавлена!');
+                    }
+                } else {
+                    // Если кнопка уже есть — просто показываем её
                     listeningBtn.style.display = 'inline-block';
                 }
             }
         })
-        .catch(() => {});
+        .catch(() => {
+            // Ошибка (нет интернета и т.д.) — игнорируем
+        });
 }
 
 function buildLessonHTML(lesson, hasListening) {

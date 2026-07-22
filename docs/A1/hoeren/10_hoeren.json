@@ -1,12 +1,12 @@
 {
-  "lesson": 9,
+  "lesson": 10,
   "level": "A1",
-  "title": "Комнаты и мебель",
+  "title": "Предлоги места (Wo? — Dativ)",
   "dialogs": [
     {
       "id": "monolog_1",
-      "title": "Meine Wohnung",
-      "text": "Guten Tag! Ich bin Anna. Ich wohne in einer Wohnung in Berlin. Meine Wohnung hat drei Zimmer: ein Wohnzimmer, ein Schlafzimmer und eine Küche. Die Küche ist klein, aber schön.",
+      "title": "Mein Zimmer",
+      "text": "Guten Tag! Ich bin Anna. Mein Zimmer ist nicht groß. Das Bett steht an der Wand. Der Tisch steht vor dem Fenster. Der Stuhl steht neben dem Tisch. Das Bild hängt über dem Bett.",
       "questions": [
         {
           "question": "Wie heißt die Frau?",
@@ -14,26 +14,26 @@
           "answer": 0
         },
         {
-          "question": "Wo wohnt Anna?",
-          "options": ["In einer Wohnung", "In einem Haus", "In einem Hotel"],
+          "question": "Wo steht das Bett?",
+          "options": ["An der Wand", "Vor dem Fenster", "Neben dem Tisch"],
           "answer": 0
         },
         {
-          "question": "Wie viele Zimmer hat Annas Wohnung?",
-          "options": ["Zwei Zimmer", "Drei Zimmer", "Vier Zimmer"],
-          "answer": 1
+          "question": "Wo steht der Tisch?",
+          "options": ["Vor dem Fenster", "An der Wand", "Neben dem Bett"],
+          "answer": 0
         },
         {
-          "question": "Wie ist Annas Küche?",
-          "options": ["Groß und schön", "Klein, aber schön", "Groß, aber alt"],
-          "answer": 1
+          "question": "Wo hängt das Bild?",
+          "options": ["Über dem Bett", "An der Wand", "Vor dem Fenster"],
+          "answer": 0
         }
       ]
     },
     {
       "id": "monolog_2",
-      "title": "Im Wohnzimmer",
-      "text": "Hallo! Ich bin Maria. Im Wohnzimmer gibt es ein Sofa, einen Tisch und einen Fernseher. Das Sofa ist bequem. Der Tisch ist aus Holz. Das Wohnzimmer ist mein Lieblingszimmer.",
+      "title": "Meine Wohnung",
+      "text": "Hallo! Ich bin Maria. Meine Wohnung ist gemütlich. Im Wohnzimmer steht ein Sofa. Der Tisch steht in der Mitte. Der Teppich liegt auf dem Boden. Die Lampe hängt über dem Tisch.",
       "questions": [
         {
           "question": "Wie heißt die Frau?",
@@ -41,26 +41,26 @@
           "answer": 1
         },
         {
-          "question": "Was gibt es im Wohnzimmer von Maria?",
-          "options": ["Ein Sofa, einen Tisch und einen Fernseher", "Ein Bett und einen Schrank", "Nur einen Fernseher"],
+          "question": "Wo steht das Sofa?",
+          "options": ["Im Wohnzimmer", "In der Küche", "Im Schlafzimmer"],
           "answer": 0
         },
         {
-          "question": "Wie ist das Sofa?",
-          "options": ["Es ist bequem", "Es ist hart", "Es ist alt"],
+          "question": "Wo liegt der Teppich?",
+          "options": ["Auf dem Boden", "Auf dem Sofa", "An der Wand"],
           "answer": 0
         },
         {
-          "question": "Was ist Marias Lieblingszimmer?",
-          "options": ["Das Wohnzimmer", "Das Schlafzimmer", "Die Küche"],
+          "question": "Wo hängt die Lampe?",
+          "options": ["Über dem Tisch", "An der Wand", "Über dem Sofa"],
           "answer": 0
         }
       ]
     },
     {
       "id": "monolog_3",
-      "title": "Mein Schlafzimmer",
-      "text": "Guten Morgen! Ich bin Julia. Mein Schlafzimmer ist nicht groß. Es gibt ein Bett, einen Schrank und einen Spiegel. Das Bett ist neu. Ich schlafe gern in meinem Schlafzimmer.",
+      "title": "Wo ist der Hund?",
+      "text": "Guten Morgen! Ich bin Julia. Mein Hund heißt Max. Er ist sehr aktiv. Jetzt schläft er unter dem Tisch. Manchmal sitzt er auf dem Sofa. Oder er liegt neben der Tür.",
       "questions": [
         {
           "question": "Wie heißt die Frau?",
@@ -68,18 +68,72 @@
           "answer": 2
         },
         {
-          "question": "Wie ist Julias Schlafzimmer?",
-          "options": ["Es ist groß", "Es ist nicht groß", "Es ist sehr klein"],
-          "answer": 1
-        },
-        {
-          "question": "Was gibt es in Julias Schlafzimmer?",
-          "options": ["Ein Bett, einen Schrank und einen Spiegel", "Nur ein Bett", "Ein Bett und ein Sofa"],
+          "question": "Wie heißt der Hund?",
+          "options": ["Max", "Paul", "Tom"],
           "answer": 0
         },
         {
-          "question": "Wie ist Julias Bett?",
-          "options": ["Es ist neu", "Es ist alt", "Es ist kaputt"],
+          "question": "Wo schläft der Hund jetzt?",
+          "options": ["Unter dem Tisch", "Auf dem Sofa", "Neben der Tür"],
+          "answer": 0
+        },
+        {
+          "question": "Wo sitzt der Hund manchmal?",
+          "options": ["Auf dem Sofa", "Unter dem Tisch", "Neben der Tür"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_4",
+      "title": "In der Küche",
+      "text": "Guten Tag! Ich bin Sophie. Ich bin in der Küche. Der Kühlschrank steht links. Der Herd steht rechts. Die Tassen stehen im Schrank. Das Geschirr liegt neben der Spüle.",
+      "questions": [
+        {
+          "question": "Wie heißt die Frau?",
+          "options": ["Anna", "Maria", "Sophie"],
+          "answer": 2
+        },
+        {
+          "question": "Wo steht der Kühlschrank?",
+          "options": ["Links", "Rechts", "In der Mitte"],
+          "answer": 0
+        },
+        {
+          "question": "Wo stehen die Tassen?",
+          "options": ["Im Schrank", "Auf dem Tisch", "Neben der Spüle"],
+          "answer": 0
+        },
+        {
+          "question": "Wo liegt das Geschirr?",
+          "options": ["Neben der Spüle", "Im Schrank", "Auf dem Herd"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "monolog_5",
+      "title": "Mein Arbeitsplatz",
+      "text": "Hallo! Ich bin Tom. Ich arbeite in einem Büro. Mein Schreibtisch steht zwischen dem Fenster und der Tür. Der Computer steht auf dem Schreibtisch. Die Akten liegen hinter dem Computer.",
+      "questions": [
+        {
+          "question": "Wie heißt der Mann?",
+          "options": ["Tom", "Max", "Paul"],
+          "answer": 0
+        },
+        {
+          "question": "Wo steht der Schreibtisch?",
+          "options": ["Zwischen dem Fenster und der Tür", "Vor dem Fenster", "Neben der Tür"],
+          "answer": 0
+        },
+        {
+          "question": "Wo steht der Computer?",
+          "options": ["Auf dem Schreibtisch", "Unter dem Schreibtisch", "Neben dem Schreibtisch"],
+          "answer": 0
+        },
+        {
+          "question": "Wo liegen die Akten?",
+          "options": ["Hinter dem Computer", "Auf dem Schreibtisch", "Unter dem Schreibtisch"],
           "answer": 0
         }
       ]

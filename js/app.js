@@ -840,6 +840,12 @@ function restoreState() {
 
 // ========== ИНИЦИАЛИЗАЦИЯ ==========
 function initApp() {
+    // ===== ДОБАВЛЯЕМ ЭТУ СТРОКУ =====
+    if (typeof loadProgress === 'function') {
+        loadProgress();
+    }
+    // ===== КОНЕЦ ДОБАВЛЕНИЯ =====
+    
     document.querySelectorAll('#levelsContainer .btn-level, #levelsContainerMobile .btn-level').forEach(btn => {
         btn.classList.remove('active');
     });

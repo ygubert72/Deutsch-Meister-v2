@@ -683,18 +683,19 @@ function buildLessonHTML(lesson, hasListening) {
     updateCounter();
 
     document.querySelectorAll('.mode-btn').forEach(btn => {
-        btn.onclick = function() {
-            document.querySelectorAll('.mode-btn').forEach(b => b.classList.remove('active'));
-            this.classList.add('active');
-            const mode = this.getAttribute('data-mode');
-            if (typeof currentMode !== 'undefined') {
-                window.currentMode = mode;
-            }
-            saveState();
-            renderMode(mode, lesson);
-            setTimeout(updateCounter, 50);
-        };
-    });
+    btn.onclick = function() {
+        document.querySelectorAll('.mode-btn').forEach(b => b.classList.remove('active'));
+        this.classList.add('active');
+        const mode = this.getAttribute('data-mode');
+        // ===== СИНХРОНИЗИРУЕМ ОБЕ ПЕРЕМЕННЫЕ =====
+        window.currentMode = mode;
+        currentMode = mode;  // ← ДОБАВЛЯЕМ ЭТУ СТРОКУ!
+        // ===== КОНЕЦ ИЗМЕНЕНИЙ =====
+        saveState();
+        renderMode(mode, lesson);
+        setTimeout(updateCounter, 50);
+    };
+});
 
     if (!isRestoring) {
         const savedState = loadState();

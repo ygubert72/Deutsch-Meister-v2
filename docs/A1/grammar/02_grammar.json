@@ -57,9 +57,6 @@
     {"type": "question", "question": "Как сказать 'да' по-немецки?", "sentence": "___!", "answer": "ja", "hint": "Согласие."},
     {"type": "question", "question": "Как сказать 'нет' по-немецки?", "sentence": "___!", "answer": "nein", "hint": "Отрицание."},
     {"type": "question", "question": "Как сказать 'Да, пожалуйста' по-немецки?", "sentence": "___!", "answer": "Ja, bitte", "hint": "Согласие с просьбой."},
-    {"type": "question", "question": "Как сказать 'Нет, спасибо' по-немецки?", "sentence": "___!", "answer": "Nein, danke", "hint": "Вежливый отказ."},
-    {"type": "transform", "question": "Переделайте формальное приветствие в неформальное:", "sentence": "Guten Tag!", "answer": "Hallo!", "hint": "Неформальное приветствие — Hallo!"},
-    {"type": "transform", "question": "Переделайте неформальное прощание в формальное:", "sentence": "Tschüss!", "answer": "Auf Wiedersehen!", "hint": "Формальное прощание — Auf Wiedersehen!"},
-    {"type": "transform", "question": "Замените 'Bitte' на 'Bitte schön' в ответе на благодарность:", "sentence": "Danke! — Bitte!", "answer": "Danke! — Bitte schön!", "hint": "Вежливый ответ на благодарность."}
+    {"type": "question", "question": "Как сказать 'Нет, спасибо' по-немецки?", "sentence": "___!", "answer": "Nein, danke", "hint": "Вежливый отказ."}
   ]
 }

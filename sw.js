@@ -1,7 +1,7 @@
 // sw.js — Service Worker для PWA с автоматическим версионированием
 
 // Версия приложения (меняется автоматически при сборке)
-const APP_VERSION = '2.0.1';
+const APP_VERSION = '2.0.2';
 const CACHE_NAME = `deutsch-meister-${APP_VERSION}`;
 const STATIC_CACHE = `static-${APP_VERSION}`;
 
@@ -31,7 +31,7 @@ const STATIC_ASSETS = [
   '/Deutsch-Meister-v2/js/speak.js',
   '/Deutsch-Meister-v2/js/trainerMode.js',
   '/Deutsch-Meister-v2/js/welcome.js',
-  '/Deutsch-Meister-v2/js/levelTrainerMode.js',
+  '/Deutsch-Meister-v2/js/levelTrainerMode.js',   // <--- ДОБАВЛЕНО
   '/Deutsch-Meister-v2/icons/icon.svg',
   '/Deutsch-Meister-v2/icons/icon-192x192.png',
   '/Deutsch-Meister-v2/icons/icon-512x512.png'

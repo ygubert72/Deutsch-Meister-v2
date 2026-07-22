@@ -71,10 +71,9 @@ function saveProgress() {
         show_language: AppConfig.show_language,
         quiz_direction: AppConfig.quiz_direction,
         sentence_lang_from: AppConfig.sentence_lang_from,
-        last_mode: currentMode
+        last_mode: window.currentMode || 'grammar'   // ← ИСПОЛЬЗУЕМ ГЛОБАЛЬНУЮ ПЕРЕМЕННУЮ!
     }));
     
-    // Сохраняем в облако (новая структура)
     if (window.saveUserProgressToFirebase) {
         window.saveUserProgressToFirebase();
     }

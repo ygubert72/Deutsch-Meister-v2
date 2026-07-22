@@ -80,6 +80,7 @@ function saveProgress() {
     }
 }
 
+// ===== В config.js найти и заменить функцию loadProgress() =====
 function loadProgress() {
     try {
         const wp = localStorage.getItem(STORAGE_KEYS.WORDS);
@@ -95,7 +96,11 @@ function loadProgress() {
             AppConfig.show_language = parsed.show_language || 'de';
             AppConfig.quiz_direction = parsed.quiz_direction || 'de_to_ru';
             AppConfig.sentence_lang_from = parsed.sentence_lang_from || 'ru';
-            currentMode = parsed.last_mode || 'grammar';
+            // ===== ИЗМЕНЕНО: НЕ перезаписываем currentMode! =====
+            // Сохраняем last_mode в специальную переменную для app.js
+            window._savedMode = parsed.last_mode || 'grammar';
+            // Убираем эту строку (она была причиной проблемы):
+            // currentMode = parsed.last_mode || 'grammar';
         }
     } catch(e) {}
     

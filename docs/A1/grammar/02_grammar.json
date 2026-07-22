@@ -56,8 +56,6 @@
     {"type": "question", "question": "Как ответить на 'Danke'?", "sentence": "___!", "answer": "Bitte schön", "hint": "Вежливый ответ на благодарность."},
     {"type": "question", "question": "Как сказать 'да' по-немецки?", "sentence": "___!", "answer": "ja", "hint": "Согласие."},
     {"type": "question", "question": "Как сказать 'нет' по-немецки?", "sentence": "___!", "answer": "nein", "hint": "Отрицание."},
-    {"type": "question", "question": "В слове 'Hallo' ударение падает на какой слог?", "sentence": "На ___ слог", "answer": "первый", "hint": "HAllo"},
-    {"type": "question", "question": "В слове 'Auf Wiedersehen' ударение падает на какой слог?", "sentence": "На ___ слог", "answer": "второй", "hint": "auf WieDERsehen"},
     {"type": "question", "question": "Как сказать 'Да, пожалуйста' по-немецки?", "sentence": "___!", "answer": "Ja, bitte", "hint": "Согласие с просьбой."},
     {"type": "question", "question": "Как сказать 'Нет, спасибо' по-немецки?", "sentence": "___!", "answer": "Nein, danke", "hint": "Вежливый отказ."},
     {"type": "transform", "question": "Переделайте формальное приветствие в неформальное:", "sentence": "Guten Tag!", "answer": "Hallo!", "hint": "Неформальное приветствие — Hallo!"},

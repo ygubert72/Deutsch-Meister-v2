@@ -687,11 +687,10 @@ function buildLessonHTML(lesson, hasListening) {
         document.querySelectorAll('.mode-btn').forEach(b => b.classList.remove('active'));
         this.classList.add('active');
         const mode = this.getAttribute('data-mode');
-        // ===== СИНХРОНИЗИРУЕМ ОБЕ ПЕРЕМЕННЫЕ =====
         window.currentMode = mode;
-        currentMode = mode;  // ← ДОБАВЛЯЕМ ЭТУ СТРОКУ!
-        // ===== КОНЕЦ ИЗМЕНЕНИЙ =====
+        currentMode = mode;
         saveState();
+        saveProgress();  // ← ДОБАВЛЯЕМ ЭТУ СТРОКУ!
         renderMode(mode, lesson);
         setTimeout(updateCounter, 50);
     };

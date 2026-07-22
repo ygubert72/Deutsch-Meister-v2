@@ -642,7 +642,7 @@ function renderLesson(lesson) {
     saveState();
 
     // Сначала рисуем урок без кнопки аудирования
-    buildLessonHTML(lesson, false);
+    buildLessonHTML(lesson, true);
     
     const lessonId = lesson.id || 1;
     const level = lesson.level || 'A1';

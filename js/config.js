@@ -2,6 +2,9 @@
 // config.js — Глобальные настройки приложения
 // ============================================================
 
+// ===== НОВОЕ: ВЕРСИЯ КОНТЕНТА (менять при обновлении уроков/инструкции) =====
+const CONTENT_VERSION = '2.0.2';
+
 // Глобальные настройки
 const AppConfig = {
     currentLevel: 'A1',
@@ -39,6 +42,10 @@ const STORAGE_KEYS = {
     CONFIG: 'dm_config',
     CONTAINER_PREFIX: 'dm_container_' // для контейнеров уроков
 };
+
+// ===== НОВОЕ: Ключи для кеша фраз и слов =====
+const PHRASES_CACHE_KEY = 'dm_phrases_cache';
+const WORDS_CACHE_KEY = 'dm_words_cache';
 
 // ===== НОВОЕ: Получить путь к подколлекции прогресса урока =====
 function getProgressPath(userId, level, lessonId) {
@@ -99,6 +106,11 @@ function loadProgress() {
     });
 }
 
+// ===== НОВОЕ: Функция для получения версии контента =====
+function getContentVersion() {
+    return CONTENT_VERSION;
+}
+
 // Экспорт в window
 window.AppConfig = AppConfig;
 window.currentMode = currentMode;
@@ -111,10 +123,14 @@ window.grammarProgress = grammarProgress;
 window.saveProgress = saveProgress;
 window.loadProgress = loadProgress;
 
-// ===== НОВОЕ: Экспорт новых функций =====
+// ===== НОВОЕ: Экспорт новых функций и констант =====
 window.getProgressPath = getProgressPath;
 window.getStatsPath = getStatsPath;
 window.getContainerKey = getContainerKey;
 window.STORAGE_KEYS = STORAGE_KEYS;
+window.PHRASES_CACHE_KEY = PHRASES_CACHE_KEY;
+window.WORDS_CACHE_KEY = WORDS_CACHE_KEY;
+window.getContentVersion = getContentVersion;
+window.CONTENT_VERSION = CONTENT_VERSION;
 
-console.log('✅ config.js загружен (с новой структурой)');
+console.log('✅ config.js загружен (версия контента:', CONTENT_VERSION + ')');

@@ -24,8 +24,47 @@ let _cachedDirection = null;
 // Счётчик для генерации уникальных ID
 let _wordIdCounter = 0;
 
-// ========== ЗАГРУЗКА ВСЕХ ФРАЗ УРОВНЯ (ИЗ ОДНОГО ФАЙЛА) ==========
+// ===== НОВОЕ: КЕШ ДЛЯ ВСЕХ ФРАЗ УРОВНЯ =====
+function getCachedPhrases(level) {
+    try {
+        const cache = JSON.parse(localStorage.getItem('dm_phrases_cache') || '{}');
+        if (cache[level] && cache[level].version) {
+            const currentVersion = window.getContentVersion ? window.getContentVersion() : '1.0';
+            if (cache[level].version === currentVersion) {
+                return cache[level].data;
+            }
+            // Если версия не совпадает — удаляем устаревший кеш
+            delete cache[level];
+            localStorage.setItem('dm_phrases_cache', JSON.stringify(cache));
+        }
+    } catch(e) {}
+    return null;
+}
+
+function cachePhrases(level, data) {
+    try {
+        const cache = JSON.parse(localStorage.getItem('dm_phrases_cache') || '{}');
+        cache[level] = {
+            data: data,
+            version: window.getContentVersion ? window.getContentVersion() : '1.0',
+            timestamp: Date.now()
+        };
+        localStorage.setItem('dm_phrases_cache', JSON.stringify(cache));
+    } catch(e) {
+        console.warn('⚠️ Ошибка сохранения кеша фраз:', e);
+    }
+}
+
+// ========== ЗАГРУЗКА ВСЕХ ФРАЗ УРОВНЯ (С КЕШИРОВАНИЕМ) ==========
 async function loadAllPhrasesForLevel(level) {
+    // Сначала проверяем кеш
+    const cached = getCachedPhrases(level);
+    if (cached) {
+        console.log(`📚 Используем кеш для фраз уровня ${level}`);
+        return cached;
+    }
+    
+    // Если кеша нет или он устарел — загружаем с сервера
     try {
         const response = await fetch(`docs/${level}/all_phrases.json`);
         if (!response.ok) {
@@ -33,6 +72,9 @@ async function loadAllPhrasesForLevel(level) {
         }
         const allPhrases = await response.json();
         console.log(`📚 Загружено ${allPhrases.length} фраз для уровня ${level}`);
+        
+        // Сохраняем в кеш
+        cachePhrases(level, allPhrases);
         return allPhrases;
     } catch(e) {
         console.error('❌ Ошибка загрузки all_phrases.json:', e);
@@ -68,6 +110,9 @@ async function loadAllPhrasesLegacy(level) {
             } catch(e) {}
         }
         console.log(`📚 Загружено ${allPhrases.length} фраз для уровня ${level} (по-старому)`);
+        
+        // Сохраняем в кеш
+        cachePhrases(level, allPhrases);
         return allPhrases;
     } catch(e) {
         console.error('❌ Ошибка загрузки фраз уровня:', e);

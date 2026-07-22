@@ -25,6 +25,37 @@ let levelCardFlipped = false;
 let levelDirection = 'de_to_ru';
 let currentLevelForCards = 'A1';
 
+// ===== НОВОЕ: КЕШ ДЛЯ ВСЕХ СЛОВ УРОВНЯ =====
+function getCachedWords(level) {
+    try {
+        const cache = JSON.parse(localStorage.getItem('dm_words_cache') || '{}');
+        if (cache[level] && cache[level].version) {
+            const currentVersion = window.getContentVersion ? window.getContentVersion() : '1.0';
+            if (cache[level].version === currentVersion) {
+                return cache[level].data;
+            }
+            // Если версия не совпадает — удаляем устаревший кеш
+            delete cache[level];
+            localStorage.setItem('dm_words_cache', JSON.stringify(cache));
+        }
+    } catch(e) {}
+    return null;
+}
+
+function cacheWords(level, data) {
+    try {
+        const cache = JSON.parse(localStorage.getItem('dm_words_cache') || '{}');
+        cache[level] = {
+            data: data,
+            version: window.getContentVersion ? window.getContentVersion() : '1.0',
+            timestamp: Date.now()
+        };
+        localStorage.setItem('dm_words_cache', JSON.stringify(cache));
+    } catch(e) {
+        console.warn('⚠️ Ошибка сохранения кеша слов:', e);
+    }
+}
+
 // ===== КЛЮЧИ ДЛЯ ХРАНЕНИЯ =====
 function getLessonContainerKey(level, lessonId) {
     return 'dm_lesson_studied_' + level + '_' + lessonId;
@@ -80,16 +111,29 @@ function saveLevelStudiedWords(level) {
     }
 }
 
+// ===== ЗАГРУЗКА ВСЕХ СЛОВ УРОВНЯ (С КЕШИРОВАНИЕМ) =====
 async function loadLevelWordsFromFile(level) {
+    // Сначала проверяем кеш
+    const cached = getCachedWords(level);
+    if (cached) {
+        console.log(`📚 Используем кеш для слов уровня ${level}`);
+        return cached;
+    }
+    
+    // Если кеша нет или он устарел — загружаем с сервера
     try {
         const response = await fetch(`docs/${level}.json`);
         if (!response.ok) {
             throw new Error(`Файл docs/${level}.json не найден`);
         }
         const words = await response.json();
+        console.log(`📚 Загружено ${words.length} слов для уровня ${level}`);
+        
+        // Сохраняем в кеш
+        cacheWords(level, words);
         return words;
     } catch(e) {
-        console.error('Ошибка загрузки слов уровня:', e);
+        console.error('❌ Ошибка загрузки слов уровня:', e);
         return [];
     }
 }

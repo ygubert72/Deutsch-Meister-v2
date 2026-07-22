@@ -1003,8 +1003,19 @@ window.getCachedLesson = getCachedLesson;
 window.clearLessonCache = clearLessonCache;
 window.clearLevelCache = clearLevelCache;
 
-document.addEventListener('DOMContentLoaded', function() {
+// ===== ПРИНУДИТЕЛЬНЫЙ ВЫЗОВ initApp =====
+// Проверяем, загружен ли DOM
+if (document.readyState === 'loading') {
+    // Если DOM ещё загружается, ждём события
+    document.addEventListener('DOMContentLoaded', function() {
+        console.log('🔥 DOMContentLoaded: вызываем initApp');
+        initApp();
+    });
+} else {
+    // Если DOM уже загружен, вызываем сразу
+    console.log('🔥 DOM уже загружен, вызываем initApp');
     initApp();
-});
+}
+// ===== КОНЕЦ ПРИНУДИТЕЛЬНОГО ВЫЗОВА =====
 
 console.log('🚀 app.js загружен (с новой структурой)');

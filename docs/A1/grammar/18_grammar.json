@@ -61,7 +61,7 @@
     {"type": "fill", "question": "Вставьте правильный предлог (mit/nach):", "sentence": "Ich fahre ___ dem Auto.", "answer": "mit", "hint": "Я еду на машине."},
     {"type": "fill", "question": "Вставьте правильное слово:", "sentence": "Wie komme ich zum ___? (вокзал)", "answer": "Bahnhof", "hint": "Как мне добраться до вокзала?"},
     {"type": "fill", "question": "Вставьте правильное слово:", "sentence": "Der ___ ist groß. (аэропорт)", "answer": "Flughafen", "hint": "Аэропорт большой."},
-    {"type": "fill", "question": "Вставьте правильную форму глагола fahren:", "sentence": "Ich ___ nach Berlin.", "answer": "fahre", "hint": "Я еду в Берлин."},
+    {"type": "transform", "question": "Добавьте в предложение способ передвижения 'mit dem Zug' (на поезде).", "sentence": "Ich fahre nach Berlin.", "answer": "Ich fahre mit dem Zug nach Berlin.", "hint": "Я еду на поезде в Берлин."},
     {"type": "fill", "question": "Вставьте правильное слово (ориентация):", "sentence": "Gehen Sie ___! (прямо)", "answer": "geradeaus", "hint": "Идите прямо!"},
     {"type": "fill", "question": "Вставьте правильное слово (ориентация):", "sentence": "Biegen Sie ___ ab! (налево)", "answer": "links", "hint": "Поверните налево!"},
     {"type": "fill", "question": "Вставьте правильное слово (ориентация):", "sentence": "Biegen Sie ___ ab! (направо)", "answer": "rechts", "hint": "Поверните направо!"},

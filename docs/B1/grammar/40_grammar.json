@@ -45,7 +45,7 @@
     {"type": "fill", "question": "Вставьте правильную форму Konjunktiv II:", "sentence": "Ich ___ gern eine Tasse Kaffee. (haben)", "answer": "hätte", "hint": "Я бы хотел чашку кофе."},
     {"type": "fill", "question": "Вставьте правильную форму Konjunktiv II:", "sentence": "___ du mir helfen? (können)", "answer": "Könntest", "hint": "Не мог бы ты мне помочь?"},
     {"type": "fill", "question": "Вставьте правильную форму Konjunktiv II:", "sentence": "Ich ___ gern mit dir sprechen. (würden)", "answer": "würde", "hint": "Я бы хотел с тобой поговорить."},
-    {"type": "fill", "question": "Вставьте правильное слово (sich freuen/sich ärgern):", "sentence": "Ich ___ über das Geschenk. (радуюсь)", "answer": "freue mich", "hint": "Я радуюсь подарку."},
+    {"type": "fill", "question": "Вставьте правильную форму глагола 'sich freuen' (радоваться):", "sentence": "Ich ___ mich über das Geschenk.", "answer": "freue", "hint": "Я радуюсь подарку."},
     {"type": "fill", "question": "Вставьте правильное слово (sich freuen/sich ärgern):", "sentence": "Sie hat sich über die Nachricht ___. (разозлилась)", "answer": "geärgert", "hint": "Она разозлилась на новость."},
     {"type": "fill", "question": "Вставьте правильное слово:", "sentence": "Ich bin ___, weil mein Freund weggezogen ist. (грустный)", "answer": "traurig", "hint": "Мне грустно, потому что мой друг уехал."},
     {"type": "fill", "question": "Вставьте правильное слово:", "sentence": "Wir haben uns nach dem Streit ___. (versöhnen)", "answer": "versöhnt", "hint": "Мы помирились после ссоры."},

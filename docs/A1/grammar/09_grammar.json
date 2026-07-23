@@ -46,8 +46,8 @@
     {"de": "Die Wand ist weiß.", "ru": "Стена белая."}
   ],
   "practice": [
-    {"type": "fill", "question": "Вставьте правильное слово (gibt es):", "sentence": "In meinem Zimmer ___ einen Tisch.", "answer": "gibt es", "hint": "В моей комнате есть стол."},
-    {"type": "fill", "question": "Вставьте правильное слово (gibt es):", "sentence": "Im Wohnzimmer ___ ein Sofa.", "answer": "gibt es", "hint": "В гостиной есть диван."},
+    {"type": "fill", "question": "Вставьте правильные слова: глагол 'geben' и местоимение 'es'.", "sentence": "In meinem Zimmer ___ ___ einen Tisch.", "answer": "gibt es", "hint": "В моей комнате есть стол. (глагол + es)"},
+    {"type": "fill", "question": "Вставьте правильные слова: глагол 'geben' и местоимение 'es'.", "sentence": "Im Wohnzimmer ___ ___ ein Sofa.", "answer": "gibt es", "hint": "В гостиной есть диван. (глагол + es)"},
     {"type": "fill", "question": "Вставьте правильное слово (gibt es):", "sentence": "In der Küche ___ einen Tisch.", "answer": "gibt es", "hint": "На кухне есть стол."},
     {"type": "fill", "question": "Вставьте правильный артикль или слово:", "sentence": "In meinem Zimmer gibt es ___ Tisch.", "answer": "einen", "hint": "В моей комнате есть стол (Akkusativ)."},
     {"type": "fill", "question": "Вставьте правильный артикль или слово:", "sentence": "Im Wohnzimmer gibt es ___ Sofa.", "answer": "ein", "hint": "В гостиной есть диван (Akkusativ)."},

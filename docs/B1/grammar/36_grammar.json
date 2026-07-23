@@ -27,11 +27,11 @@
     {"de": "Mehr Recycling muss gemacht werden.", "ru": "Должно быть больше переработки."}
   ],
   "practice": [
-    {"type": "fill", "question": "Вставьте правильную форму пассива с модальным глаголом:", "sentence": "Der Müll ___ getrennt ___. (müssen)", "answer": "muss werden", "hint": "Мусор должен быть разделён."},
-    {"type": "fill", "question": "Вставьте правильную форму пассива с модальным глаголом:", "sentence": "Die Umwelt ___ geschützt ___. (können)", "answer": "kann werden", "hint": "Окружающая среда может быть защищена."},
-    {"type": "fill", "question": "Вставьте правильную форму пассива с модальным глаголом:", "sentence": "Die Energie ___ gespart ___. (sollen)", "answer": "soll werden", "hint": "Энергию следует экономить."},
-    {"type": "fill", "question": "Вставьте правильную форму пассива с модальным глаголом:", "sentence": "Das Problem ___ gelöst ___. (wollen)", "answer": "will werden", "hint": "Проблему хотят решить."},
-    {"type": "fill", "question": "Вставьте правильную форму пассива с модальным глаголом:", "sentence": "Plastik ___ vermieden ___. (sollen)", "answer": "sollte werden", "hint": "Пластика следует избегать."},
+    {"type": "fill", "question": "Вставьте правильную форму пассива с модальным глаголом (модальный глагол + werden):", "sentence": "Der Müll ___ getrennt ___. (müssen)", "answer": "muss werden", "hint": "Мусор должен быть разделён. (müssen + werden)"},
+    {"type": "fill", "question": "Вставьте правильную форму пассива с модальным глаголом (модальный глагол + werden):", "sentence": "Die Umwelt ___ geschützt ___. (können)", "answer": "kann werden", "hint": "Окружающая среда может быть защищена. (können + werden)"},
+    {"type": "fill", "question": "Вставьте правильную форму пассива с модальным глаголом (модальный глагол + werden):", "sentence": "Die Energie ___ gespart ___. (sollen)", "answer": "soll werden", "hint": "Энергию следует экономить. (sollen + werden)"},
+    {"type": "fill", "question": "Вставьте правильную форму пассива с модальным глаголом (модальный глагол + werden):", "sentence": "Das Problem ___ gelöst ___. (wollen)", "answer": "will werden", "hint": "Проблему хотят решить. (wollen + werden)"},
+    {"type": "fill", "question": "Вставьте правильную форму пассива с модальным глаголом (модальный глагол + werden):", "sentence": "Plastik ___ vermieden ___. (sollen, Präteritum)", "answer": "sollte werden", "hint": "Пластика следует избегать. (sollte + werden)"},
     {"type": "fill", "question": "Вставьте правильное слово:", "sentence": "Der ___ muss getrennt werden. (мусор)", "answer": "Müll", "hint": "Мусор должен быть разделён."},
     {"type": "fill", "question": "Вставьте правильное слово:", "sentence": "Die ___ kann geschützt werden. (окружающая среда)", "answer": "Umwelt", "hint": "Окружающая среда может быть защищена."},
     {"type": "fill", "question": "Вставьте правильное слово:", "sentence": "Die ___ soll gespart werden. (энергия)", "answer": "Energie", "hint": "Энергию следует экономить."},

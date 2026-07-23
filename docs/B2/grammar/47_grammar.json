@@ -33,11 +33,11 @@
     {"de": "Das Argument ist nicht überzeugend.", "ru": "Аргумент не убедителен."}
   ],
   "practice": [
-    {"type": "fill", "question": "Вставьте правильный союз (nicht nur...sondern auch):", "sentence": "Er spricht ___ Deutsch, ___ Englisch.", "answer": "nicht nur, sondern auch", "hint": "Он говорит не только по-немецки, но и по-английски."},
-    {"type": "fill", "question": "Вставьте правильный союз (zwar...aber):", "sentence": "Das ist ___ teuer, ___ es lohnt sich.", "answer": "zwar, aber", "hint": "Это правда дорого, но оно того стоит."},
-    {"type": "fill", "question": "Вставьте правильный союз (je...desto):", "sentence": "___ mehr ich lerne, ___ besser werde ich.", "answer": "Je, desto", "hint": "Чем больше я учу, тем лучше я становлюсь."},
-    {"type": "fill", "question": "Вставьте правильный союз (einerseits...andererseits):", "sentence": "___ ist es praktisch, ___ ist es teuer.", "answer": "Einerseits, andererseits", "hint": "С одной стороны, это практично, с другой стороны, это дорого."},
-    {"type": "fill", "question": "Вставьте правильное слово:", "sentence": "Ich stimme dir ___. (соглашаться)", "answer": "zu", "hint": "Я согласен с тобой."},
+    {"type": "transform", "question": "Соедините два предложения с помощью 'nicht nur...sondern auch':", "sentence": "Er spricht Deutsch. Er spricht Englisch.", "answer": "Er spricht nicht nur Deutsch, sondern auch Englisch.", "hint": "Он говорит не только по-немецки, но и по-английски."},
+    {"type": "transform", "question": "Соедините два предложения с помощью 'zwar...aber':", "sentence": "Das ist teuer. Es lohnt sich.", "answer": "Das ist zwar teuer, aber es lohnt sich.", "hint": "Это правда дорого, но оно того стоит."},
+    {"type": "fill", "question": "Вставьте правильные слова 'je' и 'desto' в предложение:", "sentence": "___ mehr ich lerne, ___ besser werde ich.", "answer": "Je, desto", "hint": "Чем больше я учу, тем лучше я становлюсь."},
+    {"type": "fill", "question": "Вставьте правильные слова 'einerseits' и 'andererseits' в предложение:", "sentence": "___ ist es praktisch, ___ ist es teuer.", "answer": "Einerseits, andererseits", "hint": "С одной стороны, это практично, с другой стороны, это дорого."},
+    {"type": "fill", "question": "Вставьте отделяемую приставку глагола 'zustimmen' (соглашаться):", "sentence": "Ich stimme dir ___.", "answer": "zu", "hint": "Я согласен с тобой."},
     {"type": "fill", "question": "Вставьте правильное слово:", "sentence": "Das Argument ist nicht ___. (убедительный)", "answer": "überzeugend", "hint": "Аргумент не убедителен."},
     {"type": "fill", "question": "Вставьте правильное слово:", "sentence": "Ich habe einen anderen ___. (точка зрения)", "answer": "Standpunkt", "hint": "У меня другая точка зрения."},
     {"type": "transform", "question": "Переделайте предложение с 'nicht nur...sondern auch':", "sentence": "Er spricht Deutsch. Er spricht Englisch.", "answer": "Er spricht nicht nur Deutsch, sondern auch Englisch.", "hint": "Он говорит не только по-немецки, но и по-английски."},

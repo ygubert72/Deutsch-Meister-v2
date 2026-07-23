@@ -59,7 +59,7 @@
     {"type": "fill", "question": "Вставьте правильный артикль в Akkusativ:", "sentence": "Ich lege das Buch auf ___ Tisch.", "answer": "den", "hint": "Я кладу книгу на стол (м.р.)."},
     {"type": "fill", "question": "Вставьте правильный артикль в Akkusativ:", "sentence": "Ich gehe in ___ Küche.", "answer": "die", "hint": "Я иду на кухню (ж.р.)."},
     {"type": "fill", "question": "Вставьте правильный артикль в Akkusativ:", "sentence": "Ich stelle das Buch in ___ Regal.", "answer": "das", "hint": "Я ставлю книгу на полку (ср.р.)."},
-    {"type": "transform", "question": "Переделайте предложение с Wo? на Wohin?:", "sentence": "Das Buch liegt auf dem Tisch.", "answer": "Ich lege das Buch auf den Tisch.", "hint": "Я кладу книгу на стол."},
+    {"type": "transform", "question": "Переделайте предложение с Wo? (место) на Wohin? (направление). Используйте глагол 'legen' (класть) и подлежащее 'ich'.", "sentence": "Das Buch liegt auf dem Tisch.", "answer": "Ich lege das Buch auf den Tisch.", "hint": "Я кладу книгу на стол."},
     {"type": "transform", "question": "Переделайте предложение с Wo? на Wohin?:", "sentence": "Die Lampe steht auf dem Tisch.", "answer": "Ich stelle die Lampe auf den Tisch.", "hint": "Я ставлю лампу на стол."},
     {"type": "transform", "question": "Переделайте в вопрос с Wohin:", "sentence": "Ich lege das Buch auf den Tisch.", "answer": "Wohin legst du das Buch?", "hint": "Куда ты кладёшь книгу?"},
     {"type": "transform", "question": "Переделайте в отрицание (nicht):", "sentence": "Ich lege das Buch auf den Tisch.", "answer": "Ich lege das Buch nicht auf den Tisch.", "hint": "Я не кладу книгу на стол."},

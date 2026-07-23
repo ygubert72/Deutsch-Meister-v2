@@ -397,6 +397,7 @@ function showPaymentModal() {
     }
     
     const PREMIUM_PRICE = 500;
+    const BOOSTY_LINK = "https://boosty.to/deutsch.meister/posts/b5529ca4-b9e2-4536-80bf-aaaff51dfda7";
     const CONTACTS = {
         telegram: "@SEO_2020",
         email: "ygubert72@gmail.com"
@@ -439,22 +440,34 @@ function showPaymentModal() {
             <div style="font-size:13px;">✅ Сохранение прогресса в облаке</div>
         </div>
         
-        <div style="background:#FFF3E0; border-radius:12px; padding:15px; margin-bottom:15px; text-align:center;">
-            <div style="font-weight:bold; margin-bottom:12px; font-size:14px;">📱 Свяжитесь с нами любым удобным способом:</div>
-            <div style="margin:8px 0;">
-                <div style="background:#0088cc; color:white; padding:10px; border-radius:10px; margin:5px 0; font-size:14px;">
-                    📲 Telegram: <strong>${CONTACTS.telegram}</strong>
-                </div>
-                <div style="background:#EA4335; color:white; padding:10px; border-radius:10px; margin:5px 0; font-size:14px;">
-                    📧 Email: <strong>${CONTACTS.email}</strong>
-                </div>
+        <!-- БЛОК С BOOSTY -->
+        <div style="background:#FFF3E0; border-radius:12px; padding:15px; margin-bottom:12px; text-align:center;">
+            <div style="font-weight:bold; margin-bottom:8px; font-size:14px;">💳 Оплата через Boosty</div>
+            <div style="font-size:13px; color:#555; margin-bottom:10px;">
+                Нажмите на кнопку ниже, чтобы оплатить
             </div>
-            <div style="font-size:14px; color:#333; margin-top:12px; padding:8px; background:#fff; border-radius:8px; font-weight:bold;">
+            <a href="${BOOSTY_LINK}" target="_blank" style="display:block; width:100%; padding:12px; background:linear-gradient(135deg, #FF6B6B, #FF4757); color:white; border:none; border-radius:10px; cursor:pointer; font-size:15px; font-weight:bold; text-decoration:none; text-align:center; box-shadow:0 3px 12px rgba(255,107,107,0.3); transition:all 0.2s;">
+                💳 ОПЛАТИТЬ НА BOOSTY
+            </a>
+            <div style="font-size:12px; color:#666; margin-top:8px;">
                 📧 В сообщении укажите ваш email: <strong style="color:#3B6FE0;">${auth.currentUser.email}</strong>
             </div>
         </div>
         
-        <button id="paymentCloseBtn" style="width:100%; padding:12px; background:#3B6FE0; color:white; border:none; border-radius:12px; cursor:pointer; font-size:14px; font-weight:bold;">Закрыть</button>
+        <!-- КОНТАКТЫ (СОХРАНЕНЫ) -->
+        <div style="background:#f0f4ff; border-radius:12px; padding:12px; margin-bottom:12px; text-align:center;">
+            <div style="font-weight:bold; margin-bottom:8px; font-size:13px;">📱 Свяжитесь с нами при необходимости:</div>
+            <div style="margin:4px 0;">
+                <div style="background:#0088cc; color:white; padding:6px; border-radius:8px; margin:3px 0; font-size:13px;">
+                    📲 Telegram: <strong>${CONTACTS.telegram}</strong>
+                </div>
+                <div style="background:#EA4335; color:white; padding:6px; border-radius:8px; margin:3px 0; font-size:13px;">
+                    📧 Email: <strong>${CONTACTS.email}</strong>
+                </div>
+            </div>
+        </div>
+        
+        <button id="paymentCloseBtn" style="width:100%; padding:12px; background:#E8E8E8; color:#333; border:none; border-radius:12px; cursor:pointer; font-size:14px; font-weight:bold;">Закрыть</button>
     `;
     
     modal.appendChild(modalContent);

@@ -38,7 +38,7 @@
     {"type": "fill", "question": "Вставьте правильное слово:", "sentence": "Redundanzen sollten ___ werden. (vermeiden)", "answer": "vermieden", "hint": "Избыточности следует избегать."},
     {"type": "fill", "question": "Вставьте правильное слово:", "sentence": "Der ___ des Textes ist zu informell. (стиль)", "answer": "Stil", "hint": "Стиль текста слишком неформальный."},
     {"type": "fill", "question": "Вставьте правильное слово:", "sentence": "Die ___ des Arguments ist nicht gegeben. (логическая связность)", "answer": "Kohärenz", "hint": "Логическая связность аргумента отсутствует."},
-    {"type": "transform", "question": "Переделайте предложение, используя Nominalisierung:", "sentence": "Die Analyse wurde durchgeführt.", "answer": "Die Durchführung der Analyse.", "hint": "Анализ был проведён → проведение анализа."},
+    {"type": "transform", "question": "Переделайте предложение, используя Nominalisierung (существительное вместо глагола):", "sentence": "Die Analyse wurde durchgeführt.", "answer": "Die Durchführung der Analyse war erfolgreich.", "hint": "Анализ был проведён → проведение анализа было успешным."},
     {"type": "transform", "question": "Переделайте предложение, используя Verbalisierung:", "sentence": "Die Diskussion war sehr intensiv.", "answer": "Die Teilnehmer diskutierten intensiv.", "hint": "Дискуссия была интенсивной → участники интенсивно обсуждали."},
     {"type": "transform", "question": "Переделайте предложение в Passiv:", "sentence": "Man sollte Redundanzen vermeiden.", "answer": "Redundanzen sollten vermieden werden.", "hint": "Избыточности следует избегать."}
   ]

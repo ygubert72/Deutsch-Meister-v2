@@ -62,7 +62,7 @@
     {"type": "fill", "question": "Вставьте правильный вид транспорта:", "sentence": "Ich fahre mit dem ___ nach Berlin. (поезд)", "answer": "Zug", "hint": "Я еду на поезде в Берлин."},
     {"type": "fill", "question": "Вставьте правильное место:", "sentence": "Wie komme ich zum ___? (вокзал)", "answer": "Bahnhof", "hint": "Как мне добраться до вокзала?"},
     {"type": "fill", "question": "Вставьте правильную форму глагола:", "sentence": "Ich möchte ein Zimmer ___. (reservieren)", "answer": "reservieren", "hint": "Я хочу забронировать номер."},
-    {"type": "fill", "question": "Вставьте правильную форму глагола:", "sentence": "Haben Sie ein Zimmer ___? (frei)", "answer": "frei", "hint": "У вас есть свободный номер?"},
+    {"type": "fill", "question": "Вставьте правильное прилагательное:", "sentence": "Haben Sie ein Zimmer ___? (свободный)", "answer": "frei", "hint": "У вас есть свободный номер?"},
     {"type": "fill", "question": "Вставьте правильное слово:", "sentence": "Das Zimmer kostet 50 Euro pro ___. (ночь)", "answer": "Nacht", "hint": "Номер стоит 50 евро за ночь."},
     {"type": "fill", "question": "Вставьте правильную форму глагола (Perfekt):", "sentence": "Ich bin gestern ___. (ankommen)", "answer": "angekommen", "hint": "Я прибыл вчера."},
     {"type": "fill", "question": "Вставьте правильную форму глагола (Perfekt):", "sentence": "Wir sind um 8 Uhr ___. (abfahren)", "answer": "abgefahren", "hint": "Мы отправились в 8 часов."},

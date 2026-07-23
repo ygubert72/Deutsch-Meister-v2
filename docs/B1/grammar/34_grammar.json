@@ -38,7 +38,7 @@
     {"type": "fill", "question": "Вставьте правильное прощание:", "sentence": "___ freundlichen Grüßen", "answer": "Mit", "hint": "С уважением"},
     {"type": "fill", "question": "Вставьте правильное слово:", "sentence": "Ich habe meinen Lebenslauf ___. (anfügen)", "answer": "beigefügt", "hint": "Я приложил своё резюме."},
     {"type": "fill", "question": "Вставьте правильное слово:", "sentence": "Ich habe die Bewerbung ___. (unterschreiben)", "answer": "unterschrieben", "hint": "Я подписал заявку."},
-    {"type": "transform", "question": "Переделайте предложение в официальное приветствие:", "sentence": "Hallo!", "answer": "Sehr geehrte Damen und Herren,", "hint": "Уважаемые дамы и господа,"},
+    {"type": "transform", "question": "Замените неформальное приветствие 'Hallo!' на официальное приветствие для делового письма:", "sentence": "Hallo!", "answer": "Sehr geehrte Damen und Herren,", "hint": "Уважаемые дамы и господа,"},
     {"type": "transform", "question": "Переделайте предложение с 'hiermit':", "sentence": "Ich bewerbe mich auf die Stelle.", "answer": "Hiermit bewerbe ich mich auf die Stelle.", "hint": "Настоящим я подаю заявку на должность."}
   ]
 }

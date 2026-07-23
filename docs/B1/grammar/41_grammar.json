@@ -37,7 +37,7 @@
     {"type": "fill", "question": "Вставьте правильное слово:", "sentence": "Wenn ich nächstes Jahr nach Deutschland fahre, ___ ich Berlin. (besuchen)", "answer": "besuche", "hint": "Если я поеду в Германию в следующем году, я посещу Берлин."},
     {"type": "fill", "question": "Вставьте правильное слово (wenn/wann):", "sentence": "___ ich genug Geld habe, werde ich reisen. (если)", "answer": "Wenn", "hint": "Если у меня будет достаточно денег, я поеду путешествовать."},
     {"type": "fill", "question": "Вставьте правильное слово (wenn/wann):", "sentence": "___ ich Zeit habe, lese ich ein Buch. (когда, всегда)", "answer": "Wenn", "hint": "Когда у меня есть время, я читаю книгу."},
-    {"type": "fill", "question": "Вставьте правильное слово:", "sentence": "Wenn ich genug Geld habe, ___ werde ich reisen. (тогда)", "answer": "dann", "hint": "Если у меня будет достаточно денег, тогда я поеду путешествовать."},
+    {"type": "fill", "question": "Вставьте наречие 'dann' (тогда), чтобы подчеркнуть следствие (необязательно):", "sentence": "Wenn ich genug Geld habe, ___ werde ich reisen.", "answer": "dann", "hint": "Если у меня будет достаточно денег, тогда я поеду путешествовать."},
     {"type": "transform", "question": "Переделайте предложение с wenn (условие):", "sentence": "Ich habe genug Geld. Ich werde reisen.", "answer": "Wenn ich genug Geld habe, werde ich reisen.", "hint": "Если у меня будет достаточно денег, я поеду путешествовать."},
     {"type": "transform", "question": "Переделайте предложение с wenn (условие):", "sentence": "Du kommst heute. Wir gehen ins Kino.", "answer": "Wenn du heute kommst, gehen wir ins Kino.", "hint": "Если ты сегодня придёшь, мы пойдём в кино."}
   ]

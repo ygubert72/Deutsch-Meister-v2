@@ -40,7 +40,7 @@
   ],
   "practice": [
     {"type": "fill", "question": "Вставьте правильную форму Vorgangspassiv (Präteritum):", "sentence": "Das Haus ___ gebaut. (werden)", "answer": "wurde", "hint": "Дом строился (Präteritum Passiv)."},
-    {"type": "fill", "question": "Вставьте правильную форму Vorgangspassiv (Futur I):", "sentence": "Das Haus ___ gebaut ___. (werden)", "answer": "wird werden", "hint": "Дом будет построен (Futur Passiv)."},
+    {"type": "fill", "question": "Вставьте правильную форму Vorgangspassiv (Futur I — инфинитив 'werden' в конце):", "sentence": "Das Haus wird gebaut ___. (werden)", "answer": "werden", "hint": "Дом будет построен (в конце предложения стоит инфинитив werden)."},
     {"type": "fill", "question": "Вставьте правильную форму Vorgangspassiv (Perfekt):", "sentence": "Das Haus ist gebaut ___. (werden)", "answer": "worden", "hint": "Дом был построен (Perfekt Passiv)."},
     {"type": "fill", "question": "Вставьте правильную форму Zustandspassiv (Präsens):", "sentence": "Das Haus ___ gebaut. (sein)", "answer": "ist", "hint": "Дом построен (Zustandspassiv)."},
     {"type": "fill", "question": "Вставьте правильную форму Zustandspassiv (Präteritum):", "sentence": "Das Haus ___ gebaut. (sein)", "answer": "war", "hint": "Дом был построен (Zustandspassiv Präteritum)."},

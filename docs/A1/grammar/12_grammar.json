@@ -91,8 +91,8 @@
     {"type": "fill", "question": "Вставьте правильное слово (магазин):", "sentence": "Wie viel ___ der Käse? (стоит)", "answer": "kostet", "hint": "Сколько стоит сыр?"},
     {"type": "fill", "question": "Вставьте правильное слово (магазин):", "sentence": "Der Käse kostet 3 ___. (евро)", "answer": "Euro", "hint": "Сыр стоит 3 евро."},
     {"type": "transform", "question": "Переделайте в вопрос с Möchtest du:", "sentence": "Ich möchte einen Kaffee.", "answer": "Möchtest du einen Kaffee?", "hint": "Ты хочешь кофе?"},
-    {"type": "transform", "question": "Переделайте в отрицание (kein/keine):", "sentence": "Ich esse gern Fleisch.", "answer": "Ich esse kein Fleisch.", "hint": "Я не ем мясо."},
-    {"type": "transform", "question": "Переделайте в отрицание (kein/keine):", "sentence": "Ich trinke gern Bier.", "answer": "Ich trinke kein Bier.", "hint": "Я не пью пиво."},
+    {"type": "transform", "question": "Переделайте в отрицание с 'nicht' (отрицаем слово 'gern' — любовь к действию):", "sentence": "Ich esse gern Fleisch.", "answer": "Ich esse nicht gern Fleisch.", "hint": "Я не люблю есть мясо."},
+    {"type": "transform", "question": "Переделайте в отрицание с 'nicht' (отрицаем слово 'gern' — любовь к действию):", "sentence": "Ich trinke gern Bier.", "answer": "Ich trinke nicht gern Bier.", "hint": "Я не люблю пить пиво."},
     {"type": "transform", "question": "Замените местоимение ich на er:", "sentence": "Ich esse gern Brot.", "answer": "Er isst gern Brot.", "hint": "Он любит есть хлеб."},
     {"type": "transform", "question": "Замените местоимение ich на wir:", "sentence": "Ich trinke gern Kaffee.", "answer": "Wir trinken gern Kaffee.", "hint": "Мы любим пить кофе."}
   ]

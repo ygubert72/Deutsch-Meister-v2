@@ -36,7 +36,7 @@
     {"de": "Nein, danke!", "ru": "Нет, спасибо!"},
     {"de": "Guten Tag! Ich heiße Tom.", "ru": "Добрый день! Меня зовут Том."},
     {"de": "Hallo! Das ist mein Vater.", "ru": "Привет! Это мой отец."},
-    {"de": "Auf Wiedersehen! Das ist mein Auto.", "ru": "Это моя машина."},
+    {"de": "Das ist mein Auto.", "ru": "Это моя машина."},
     {"de": "Guten Morgen! Das ist Berlin.", "ru": "Доброе утро! Это Берлин."}
   ],
   "dictation": [

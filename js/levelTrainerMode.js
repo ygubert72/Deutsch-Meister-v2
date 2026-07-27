@@ -2,12 +2,11 @@
 // levelTrainerMode.js — Тренажёр "Все фразы уровня" (6 КНОПОК С ПОДГРУЗКОЙ)
 // ====================================================================
 
+(function() {
+
 let levelTrainerSentences = [];
 let levelTrainerIndex = 0;
 let levelTrainerCurrentSentence = null;
-let levelTrainerSelectedWords = [];
-let levelTrainerAvailableWords = [];
-let levelTrainerActiveWords = {};
 let levelTrainerHintIndex = 0;
 let levelTrainerHintWords = [];
 let levelTrainerDirection = 'ru_to_de';
@@ -294,7 +293,6 @@ function initializePhraseState() {
 
 // ========== ГАРАНТИРУЕМ 6 КНОПОК ==========
 function ensureSixButtons() {
-    // Удаляем дубликаты на кнопках (оставляем только уникальные слова)
     const uniqueWords = [];
     const seenTexts = new Set();
     for (const w of _visibleWords) {
@@ -302,14 +300,10 @@ function ensureSixButtons() {
         if (!seenTexts.has(key) || w.isDistractor === false) {
             uniqueWords.push(w);
             seenTexts.add(key);
-        } else {
-            // Если это дистрактор-дубликат — удаляем и возвращаем в пул
-            console.log('🗑️ Удалён дубликат-дистрактор:', w.text);
         }
     }
     _visibleWords = uniqueWords;
     
-    // Удаляем лишние дистракторы, если кнопок больше 6
     while (_visibleWords.length > 6) {
         const distractorIndex = _visibleWords.findIndex(w => w.isDistractor === true);
         if (distractorIndex !== -1) {
@@ -319,7 +313,6 @@ function ensureSixButtons() {
         }
     }
     
-    // Добавляем дистракторы, если кнопок меньше 6
     while (_visibleWords.length < 6) {
         const newDistractor = getNextDistractor();
         if (newDistractor) {
@@ -529,7 +522,6 @@ function showLevelTrainerInterface() {
         levelTrainerIndex = 0;
     }
     
-    // ===== ВАЖНО: ОБНОВЛЯЕМ currentSentence ИЗ sentenses ПО ИНДЕКСУ =====
     if (levelTrainerSentences.length > 0) {
         levelTrainerCurrentSentence = levelTrainerSentences[levelTrainerIndex];
         console.log('🔄 Установлена фраза:', levelTrainerCurrentSentence.de);
@@ -607,7 +599,6 @@ function attachLevelTrainerEvents() {
             levelTrainerDirection = levelTrainerDirection === 'ru_to_de' ? 'de_to_ru' : 'ru_to_de';
             this.textContent = levelTrainerDirection === 'ru_to_de' ? 'Ru → De' : 'De → Ru';
             _cachedDirection = null;
-            // Обновляем текущую фразу
             if (levelTrainerSentences.length > 0) {
                 levelTrainerCurrentSentence = levelTrainerSentences[levelTrainerIndex];
             }
@@ -620,21 +611,15 @@ function attachLevelTrainerEvents() {
         undoBtn.addEventListener('click', function() {
             if (_selectedWords.length === 0) return;
             
-            // 1. Забираем последнее выбранное слово
             const lastWord = _selectedWords.pop();
-            
-            // 2. Проверяем, есть ли уже такое слово на кнопках (по тексту, но с другим ID)
             const exists = _visibleWords.some(w => w.text === lastWord.text && w.id !== lastWord.id);
             
-            // 3. Если такого слова нет на кнопках — возвращаем
             if (!exists) {
                 _visibleWords.push({
                     ...lastWord,
                     isUsed: false
                 });
             } else {
-                // Если слово уже есть на кнопках — возвращаем его в ОЧЕРЕДЬ
-                // (восстанавливаем порядок по ID)
                 let inserted = false;
                 for (let i = 0; i < _wordQueue.length; i++) {
                     if (_wordQueue[i].id > lastWord.id) {
@@ -659,9 +644,7 @@ function attachLevelTrainerEvents() {
                 console.log('↩️ Слово "' + lastWord.text + '" возвращено в очередь (уже есть на кнопках)');
             }
             
-            // 4. Убеждаемся, что на кнопках нет дубликатов
             ensureSixButtons();
-            
             shuffleArray(_visibleWords);
             updateLevelTrainerDisplay();
         });
@@ -706,7 +689,6 @@ function attachLevelTrainerEvents() {
                     if (levelTrainerIndex >= levelTrainerSentences.length) {
                         levelTrainerIndex = 0;
                     }
-                    // Обновляем текущую фразу
                     if (levelTrainerSentences.length > 0) {
                         levelTrainerCurrentSentence = levelTrainerSentences[levelTrainerIndex];
                         console.log('🔄 Переход к фразе:', levelTrainerCurrentSentence.de);
@@ -959,26 +941,4 @@ window.showLevelTrainerContainer = showLevelTrainerContainer;
 
 console.log('🧩 levelTrainerMode.js загружен (6 КНОПОК + ПОДГРУЗКА)');
 
-// ===== ЭКСПОРТ В ГЛОБАЛЬНУЮ ОБЛАСТЬ =====
-window._visibleWords = _visibleWords;
-window._selectedWords = _selectedWords;
-window._wordQueue = _wordQueue;
-window._currentPhraseWords = _currentPhraseWords;
-window.selectWord = selectWord;
-window.initializePhraseState = initializePhraseState;
-window.updateLevelTrainerDisplay = updateLevelTrainerDisplay;
-window.showLevelTrainerInterface = showLevelTrainerInterface;
-window.ensureSixButtons = ensureSixButtons;
-
-// ===== АВТОМАТИЧЕСКАЯ ИНИЦИАЛИЗАЦИЯ =====
-document.addEventListener('DOMContentLoaded', function() {
-    const modeIndicator = document.getElementById('modeIndicator');
-    if (modeIndicator && modeIndicator.textContent.includes('Все фразы уровня')) {
-        const level = window.currentLevel || 'A1';
-        if (typeof window.loadAllPhrasesMode === 'function') {
-            setTimeout(function() {
-                window.loadAllPhrasesMode(level);
-            }, 300);
-        }
-    }
-});
+})();

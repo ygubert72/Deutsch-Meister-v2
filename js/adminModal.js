@@ -1,26 +1,808 @@
-// ============================================================
-// adminModal.js — Админ-панель в модальном окне
-// ============================================================
+// ====================================================================
+// levelTrainerMode.js — Тренажёр "Все фразы уровня" (ВЕРСИЯ 6 КНОПОК С ПОДГРУЗКОЙ)
+// ====================================================================
 
-let adminAllUsers = [];
-let adminFilteredUsers = [];
+let levelTrainerSentences = [];
+let levelTrainerIndex = 0;
+let levelTrainerCurrentSentence = null;
+let levelTrainerSelectedWords = [];
+let levelTrainerAvailableWords = [];
+let levelTrainerActiveWords = {};
+let levelTrainerHintIndex = 0;
+let levelTrainerHintWords = [];
+let levelTrainerDirection = 'ru_to_de';
+let levelTrainerStudied = {};
+let levelTrainerCurrentLevel = 'A1';
+let levelTrainerAllPhrases = [];
+let levelTrainerVocabCache = {};
 
-// ========== ОТКРЫТЬ АДМИН-ПАНЕЛЬ ==========
-function openAdminPanel() {
-    // Проверяем, что пользователь — админ
-    // ИСПРАВЛЕНО: используем ADMIN_EMAIL
-    if (!window.auth || !window.auth.currentUser || window.auth.currentUser.email !== ADMIN_EMAIL) {
-        alert('Доступ запрещён. Только для администратора.');
+// ===== НОВОЕ: СОСТОЯНИЕ ДЛЯ 6 КНОПОК =====
+let _visibleWords = [];          // слова на кнопках (максимум 6)
+let _wordQueue = [];             // очередь правильных слов
+let _distractorPool = [];        // пул дистракторов
+let _selectedWords = [];         // выбранные пользователем слова (в порядке выбора)
+let _currentPhraseWords = [];    // все правильные слова фразы (с ID)
+let _isShortPhrase = false;      // фраза <= 3 слов
+
+// ===== КЕШ ДЛЯ ДИСТРАКТОРОВ =====
+let _cachedDistractors = null;
+let _cachedLevel = null;
+let _cachedDirection = null;
+
+// ===== НОВОЕ: КЕШ ДЛЯ ВСЕХ ФРАЗ УРОВНЯ =====
+function getCachedPhrases(level) {
+    try {
+        const cache = JSON.parse(localStorage.getItem('dm_phrases_cache') || '{}');
+        if (cache[level] && cache[level].version) {
+            const currentVersion = window.getContentVersion ? window.getContentVersion() : '1.0';
+            if (cache[level].version === currentVersion) {
+                return cache[level].data;
+            }
+            delete cache[level];
+            localStorage.setItem('dm_phrases_cache', JSON.stringify(cache));
+        }
+    } catch(e) {}
+    return null;
+}
+
+function cachePhrases(level, data) {
+    try {
+        const cache = JSON.parse(localStorage.getItem('dm_phrases_cache') || '{}');
+        cache[level] = {
+            data: data,
+            version: window.getContentVersion ? window.getContentVersion() : '1.0',
+            timestamp: Date.now()
+        };
+        localStorage.setItem('dm_phrases_cache', JSON.stringify(cache));
+    } catch(e) {
+        console.warn('⚠️ Ошибка сохранения кеша фраз:', e);
+    }
+}
+
+// ========== ЗАГРУЗКА ВСЕХ ФРАЗ УРОВНЯ ==========
+async function loadAllPhrasesForLevel(level) {
+    const cached = getCachedPhrases(level);
+    if (cached) {
+        console.log(`📚 Используем кеш для фраз уровня ${level}`);
+        return cached;
+    }
+    
+    try {
+        const response = await fetch(`docs/${level}/all_phrases.json`);
+        if (!response.ok) {
+            throw new Error(`Файл docs/${level}/all_phrases.json не найден`);
+        }
+        const allPhrases = await response.json();
+        console.log(`📚 Загружено ${allPhrases.length} фраз для уровня ${level}`);
+        cachePhrases(level, allPhrases);
+        return allPhrases;
+    } catch(e) {
+        console.error('❌ Ошибка загрузки all_phrases.json:', e);
+        return await loadAllPhrasesLegacy(level);
+    }
+}
+
+// ========== СТАРЫЙ СПОСОБ (запасной) ==========
+async function loadAllPhrasesLegacy(level) {
+    try {
+        const indexResponse = await fetch(`docs/${level}/index.json`);
+        if (!indexResponse.ok) throw new Error('Не удалось загрузить индекс уровня');
+        const indexData = await indexResponse.json();
+        let allPhrases = [];
+        const seen = new Set();
+        for (const lesson of indexData.lessons) {
+            const lessonId = lesson.id;
+            const lessonFile = `docs/${level}/lessons/lesson_${String(lessonId).padStart(2, '0')}.json`;
+            try {
+                const response = await fetch(lessonFile);
+                if (response.ok) {
+                    const data = await response.json();
+                    if (data.trainer && Array.isArray(data.trainer)) {
+                        for (const phrase of data.trainer) {
+                            const key = phrase.de + '|' + phrase.ru;
+                            if (!seen.has(key)) {
+                                seen.add(key);
+                                allPhrases.push(phrase);
+                            }
+                        }
+                    }
+                }
+            } catch(e) {}
+        }
+        console.log(`📚 Загружено ${allPhrases.length} фраз для уровня ${level} (по-старому)`);
+        cachePhrases(level, allPhrases);
+        return allPhrases;
+    } catch(e) {
+        console.error('❌ Ошибка загрузки фраз уровня:', e);
+        return [];
+    }
+}
+
+// ========== ЗАГРУЗКА ВСЕХ СЛОВ УРОВНЯ ==========
+async function loadAllVocabularyForLevelTrainer(level) {
+    if (levelTrainerVocabCache[level]) {
+        return levelTrainerVocabCache[level];
+    }
+    
+    try {
+        const response = await fetch(`docs/${level}.json`);
+        if (!response.ok) {
+            throw new Error(`Файл docs/${level}.json не найден`);
+        }
+        const allWords = await response.json();
+        levelTrainerVocabCache[level] = allWords;
+        console.log(`📚 Загружено ${allWords.length} слов для уровня ${level}`);
+        return allWords;
+    } catch(e) {
+        console.error('❌ Ошибка загрузки слов уровня:', e);
+        return [];
+    }
+}
+
+// ========== ЗАГРУЗКА/СОХРАНЕНИЕ КОНТЕЙНЕРА ==========
+function loadLevelTrainerStudied(level) {
+    const key = 'dm_level_trainer_studied_' + level;
+    try {
+        const saved = localStorage.getItem(key);
+        if (saved) {
+            levelTrainerStudied = JSON.parse(saved);
+        } else {
+            levelTrainerStudied = {};
+        }
+    } catch(e) {
+        levelTrainerStudied = {};
+    }
+}
+
+function saveLevelTrainerStudied(level) {
+    const key = 'dm_level_trainer_studied_' + level;
+    try {
+        localStorage.setItem(key, JSON.stringify(levelTrainerStudied));
+    } catch(e) {
+        console.warn('⚠️ Ошибка сохранения контейнера фраз уровня:', e);
+    }
+}
+
+function getLevelTrainerStudiedList() {
+    if (!levelTrainerAllPhrases) return [];
+    return levelTrainerAllPhrases.filter(phrase => {
+        const key = phrase.de + '|' + phrase.ru;
+        return levelTrainerStudied[key] === true;
+    });
+}
+
+function updateLevelTrainerPhrases() {
+    let availablePhrases = levelTrainerAllPhrases.filter(phrase => {
+        const key = phrase.de + '|' + phrase.ru;
+        return !levelTrainerStudied[key];
+    });
+    if (availablePhrases.length === 0 && levelTrainerAllPhrases.length > 0) {
+        availablePhrases = [...levelTrainerAllPhrases];
+    }
+    levelTrainerSentences = availablePhrases;
+    if (levelTrainerIndex >= levelTrainerSentences.length && levelTrainerSentences.length > 0) {
+        levelTrainerIndex = 0;
+    }
+}
+
+// ========== ОСНОВНАЯ ФУНКЦИЯ ==========
+window.loadAllPhrasesMode = async function(level) {
+    console.log('🔄 loadAllPhrasesMode (6 кнопок) вызван для уровня:', level);
+    levelTrainerCurrentLevel = level;
+    levelTrainerVocabCache = {};
+    _cachedDistractors = null;
+    _cachedLevel = null;
+    _cachedDirection = null;
+    
+    loadLevelTrainerStudied(level);
+    levelTrainerAllPhrases = await loadAllPhrasesForLevel(level);
+    console.log('📚 Всего фраз в уровне:', levelTrainerAllPhrases.length);
+    if (levelTrainerAllPhrases.length === 0) {
+        showLevelTrainerEmpty();
+        return;
+    }
+    const vocab = await loadAllVocabularyForLevelTrainer(level);
+    levelTrainerVocabCache[level] = vocab;
+    updateLevelTrainerPhrases();
+    levelTrainerIndex = 0;
+    levelTrainerDirection = 'ru_to_de';
+    showLevelTrainerInterface();
+};
+
+// ========== ПОКАЗАТЬ, ЧТО ФРАЗ НЕТ ==========
+function showLevelTrainerEmpty() {
+    const content = document.getElementById('content');
+    if (!content) return;
+    content.innerHTML = `
+        <div style="text-align: center; padding: 40px; color: #999;">
+            <div style="font-size: 48px; margin-bottom: 15px;">📭</div>
+            <div>Нет фраз для уровня ${levelTrainerCurrentLevel}</div>
+            <button class="back-btn" onclick="renderLevel()" style="margin-top: 20px;">← НАЗАД</button>
+        </div>
+    `;
+    document.getElementById('modeIndicator').textContent = `🧩 Все фразы уровня ${levelTrainerCurrentLevel}`;
+    updateCounter();
+}
+
+// ========== ПОКАЗАТЬ ВСЁ ИЗУЧЕНО ==========
+function showLevelTrainerAllStudied() {
+    const content = document.getElementById('content');
+    if (!content) return;
+    content.innerHTML = `
+        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; margin-bottom: 15px;">
+            <button class="back-btn" onclick="renderLevel()" style="padding: 8px 16px; background: #3B6FE0; color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: bold;">
+                ← НАЗАД
+            </button>
+        </div>
+        <div style="text-align: center; padding: 40px;">
+            <div style="font-size: 64px; margin-bottom: 20px;">🎉</div>
+            <div style="font-size: 24px; margin-bottom: 20px;">Все фразы уровня ${levelTrainerCurrentLevel} изучены!</div>
+            <div style="font-size: 16px; margin-bottom: 20px;">Отличная работа! Вы выучили все фразы этого уровня.</div>
+            <button class="ctrl-btn" onclick="location.reload()" style="padding: 10px 30px; background: #3B6FE0; color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: bold;">🔄 НАЧАТЬ ЗАНОВО</button>
+        </div>
+    `;
+    document.getElementById('modeIndicator').textContent = `🧩 Все фразы уровня ${levelTrainerCurrentLevel}`;
+    updateCounter();
+}
+
+// ========== ИНИЦИАЛИЗАЦИЯ СОСТОЯНИЯ ФРАЗЫ ==========
+function initializePhraseState() {
+    const isRuToDe = levelTrainerDirection === 'ru_to_de';
+    const targetText = isRuToDe ? levelTrainerCurrentSentence.de : levelTrainerCurrentSentence.ru;
+    
+    // Разбиваем на слова
+    const words = targetText.replace(/[.,!?;:]/g, '').split(/\s+/).filter(w => w.length > 0);
+    
+    // Создаем объекты с уникальными ID
+    _currentPhraseWords = words.map((text, index) => ({
+        id: index,
+        text: text,
+        isUsed: false
+    }));
+    
+    // Определяем, короткая ли фраза
+    _isShortPhrase = words.length <= 3;
+    
+    // Сбрасываем выбранные слова
+    _selectedWords = [];
+    
+    // Создаем очередь (все слова)
+    _wordQueue = _currentPhraseWords.map(w => ({ ...w }));
+    
+    // Инициализируем пул дистракторов
+    initDistractorPool();
+    
+    // Формируем видимые слова
+    _visibleWords = [];
+    
+    if (_isShortPhrase) {
+        // Короткая фраза: показываем ВСЕ слова сразу
+        const allWords = _wordQueue.map(w => ({ ...w }));
+        _wordQueue = [];
+        addDistractorsToVisible(allWords);
+    } else {
+        // Длинная фраза: показываем первые 3 слова
+        const firstThree = [];
+        for (let i = 0; i < 3 && _wordQueue.length > 0; i++) {
+            firstThree.push(_wordQueue.shift());
+        }
+        addDistractorsToVisible(firstThree);
+    }
+    
+    // Перемешиваем видимые слова
+    shuffleArray(_visibleWords);
+    
+    // Сбрасываем подсказку
+    levelTrainerHintIndex = 0;
+    const isRuToDeHint = levelTrainerDirection === 'ru_to_de';
+    levelTrainerHintWords = isRuToDeHint 
+        ? levelTrainerCurrentSentence.de.replace(/[.,!?;:]/g, '').split(/\s+/)
+        : levelTrainerCurrentSentence.ru.replace(/[.,!?;:]/g, '').split(/\s+/);
+}
+
+// ========== ИНИЦИАЛИЗАЦИЯ ПУЛА ДИСТРАКТОРОВ ==========
+function initDistractorPool() {
+    const allVocabWords = levelTrainerVocabCache[levelTrainerCurrentLevel] || [];
+    const isRuToDe = levelTrainerDirection === 'ru_to_de';
+    
+    // Создаем дистракторы (все слова словаря, кроме тех, что во фразе)
+    const phraseTexts = new Set(_currentPhraseWords.map(w => w.text.toLowerCase()));
+    
+    let candidates = allVocabWords.filter(w => {
+        const wordText = isRuToDe ? (w.de || '').toLowerCase() : (w.ru || '').toLowerCase();
+        return wordText.length > 0 && !phraseTexts.has(wordText);
+    });
+    
+    _distractorPool = candidates.map((w, index) => ({
+        id: -1 - index,  // отрицательные ID, чтобы не пересекались с правильными
+        text: isRuToDe ? (w.de || '') : (w.ru || ''),
+        isDistractor: true
+    }));
+    
+    // Перемешиваем пул
+    shuffleArray(_distractorPool);
+}
+
+// ========== ДОБАВЛЕНИЕ ДИСТРАКТОРОВ К ВИДИМЫМ СЛОВАМ ==========
+function addDistractorsToVisible(words) {
+    // Сначала добавляем правильные слова
+    _visibleWords = words.map(w => ({
+        ...w,
+        isDistractor: false,
+        isUsed: false
+    }));
+    
+    // Добавляем дистракторы до 6 кнопок
+    const needed = Math.max(0, 6 - _visibleWords.length);
+    let added = 0;
+    
+    // Берем дистракторы из пула
+    for (let i = 0; i < _distractorPool.length && added < needed; i++) {
+        const d = _distractorPool[i];
+        // Проверяем, что такого слова нет уже на кнопках
+        const exists = _visibleWords.some(v => v.text.toLowerCase() === d.text.toLowerCase());
+        if (!exists) {
+            _visibleWords.push({
+                id: d.id,
+                text: d.text,
+                isDistractor: true,
+                isUsed: false
+            });
+            added++;
+        }
+    }
+    
+    // Если не хватило дистракторов, добиваем случайными из словаря
+    if (added < needed) {
+        const allVocab = levelTrainerVocabCache[levelTrainerCurrentLevel] || [];
+        const isRuToDe = levelTrainerDirection === 'ru_to_de';
+        const existingTexts = new Set(_visibleWords.map(v => v.text.toLowerCase()));
+        
+        for (const w of allVocab) {
+            if (added >= needed) break;
+            const text = isRuToDe ? (w.de || '') : (w.ru || '');
+            if (text.length > 0 && !existingTexts.has(text.toLowerCase())) {
+                _visibleWords.push({
+                    id: -1000 - added,
+                    text: text,
+                    isDistractor: true,
+                    isUsed: false
+                });
+                added++;
+                existingTexts.add(text.toLowerCase());
+            }
+        }
+    }
+    
+    // Перемешиваем
+    shuffleArray(_visibleWords);
+}
+
+// ========== ВЫБОР СЛОВА ==========
+function selectWord(wordId) {
+    console.log('🔍 selectWord вызван с ID:', wordId);
+    
+    // Находим слово по ID
+    const wordIndex = _visibleWords.findIndex(w => w.id === wordId);
+    if (wordIndex === -1) {
+        console.log('❌ Слово с ID', wordId, 'не найдено в _visibleWords');
         return;
     }
     
-    // Удаляем старую модалку
-    const oldModal = document.getElementById('adminModal');
-    if (oldModal) oldModal.remove();
+    const word = _visibleWords[wordIndex];
+    if (word.isUsed) {
+        console.log('⚠️ Слово уже использовано:', word.text);
+        return;
+    }
     
-    // Создаём модалку
+    console.log('✅ Выбрано слово:', word.text, 'ID:', word.id, 'Дистрактор:', word.isDistractor);
+    
+    // Добавляем в выбранные
+    word.isUsed = true;
+    _selectedWords.push(word);
+    
+    // Удаляем из видимых
+    _visibleWords.splice(wordIndex, 1);
+    
+    // Если это правильное слово и есть очередь
+    if (!word.isDistractor && _wordQueue.length > 0) {
+        // Добавляем следующее правильное слово из очереди
+        const nextWord = _wordQueue.shift();
+        console.log('📥 Добавляем из очереди:', nextWord.text);
+        _visibleWords.push({
+            ...nextWord,
+            isDistractor: false,
+            isUsed: false
+        });
+    }
+    
+    // Добавляем новый дистрактор, если нужно (всегда держим 6 кнопок, если есть из чего)
+    if (_visibleWords.length < 6) {
+        const newDistractor = getNextDistractor();
+        if (newDistractor) {
+            console.log('🎲 Добавляем дистрактор:', newDistractor.text);
+            _visibleWords.push(newDistractor);
+        }
+    }
+    
+    // Перемешиваем
+    shuffleArray(_visibleWords);
+    
+    // Обновляем отображение
+    updateLevelTrainerDisplay();
+    
+    // Проверяем, все ли слова собраны
+    const allWordsCollected = _currentPhraseWords.every(w => {
+        const found = _selectedWords.find(s => s.id === w.id);
+        return found !== undefined;
+    });
+    
+    if (allWordsCollected) {
+        console.log('🎉 Все слова собраны! Нажмите "ПРОВЕРИТЬ"');
+    }
+}
+
+// ========== ПОЛУЧИТЬ СЛЕДУЮЩИЙ ДИСТРАКТОР ==========
+function getNextDistractor() {
+    // Ищем в пуле дистрактор, которого нет на кнопках
+    const existingTexts = new Set(_visibleWords.map(v => v.text.toLowerCase()));
+    
+    for (let i = 0; i < _distractorPool.length; i++) {
+        const d = _distractorPool[i];
+        if (!existingTexts.has(d.text.toLowerCase())) {
+            const result = {
+                id: d.id,
+                text: d.text,
+                isDistractor: true,
+                isUsed: false
+            };
+            // Удаляем из пула
+            _distractorPool.splice(i, 1);
+            return result;
+        }
+    }
+    
+    // Если пул пуст, создаем случайный дистрактор из словаря
+    const allVocab = levelTrainerVocabCache[levelTrainerCurrentLevel] || [];
+    const isRuToDe = levelTrainerDirection === 'ru_to_de';
+    const existingTexts2 = new Set(_visibleWords.map(v => v.text.toLowerCase()));
+    
+    for (const w of allVocab) {
+        const text = isRuToDe ? (w.de || '') : (w.ru || '');
+        if (text.length > 0 && !existingTexts2.has(text.toLowerCase())) {
+            return {
+                id: -1000 - Math.floor(Math.random() * 10000),
+                text: text,
+                isDistractor: true,
+                isUsed: false
+            };
+        }
+    }
+    
+    return null;
+}
+
+// ========== ОТРИСОВКА КНОПОК ==========
+function renderWordButtons() {
+    if (_visibleWords.length === 0) {
+        return `<div style="color:#999; text-align:center; padding:20px;">Все слова собраны! ✅</div>`;
+    }
+    
+    return _visibleWords.map(word => `
+        <button class="word-btn" data-word-id="${word.id}" 
+                style="padding: 12px 8px; font-size: 14px; text-align: center; min-height: 48px; display: flex; align-items: center; justify-content: center; background: #E8F0FE; border: 2px solid #D0D0D0; border-radius: 40px; cursor: pointer;">
+            ${word.text}
+        </button>
+    `).join('');
+}
+
+// ========== ОБНОВЛЕНИЕ ОТОБРАЖЕНИЯ ==========
+function updateLevelTrainerDisplay() {
+    const result = document.getElementById('levelTrainerResult');
+    const wordsContainer = document.getElementById('levelTrainerWordsContainer');
+    
+    if (result) {
+        const hasWords = _selectedWords.length > 0;
+        const displayText = _selectedWords.map(w => w.text).join(' ') || 'Нажмите на слова, чтобы собрать предложение';
+        result.textContent = displayText;
+        result.style.color = hasWords ? '#1A1A1A' : '#CCCCCC';
+        result.style.fontWeight = hasWords ? 'bold' : 'normal';
+        result.style.backgroundColor = '#FFFFFF';
+    }
+    
+    if (wordsContainer) {
+        wordsContainer.innerHTML = renderWordButtons();
+        
+        // Привязываем события к кнопкам
+        wordsContainer.querySelectorAll('.word-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const wordId = parseInt(this.dataset.wordId);
+                if (!isNaN(wordId)) {
+                    selectWord(wordId);
+                }
+            });
+        });
+    }
+}
+
+// ========== ПОКАЗАТЬ ИНТЕРФЕЙС ТРЕНАЖЁРА ==========
+function showLevelTrainerInterface() {
+    const content = document.getElementById('content');
+    if (!content) return;
+    if (levelTrainerSentences.length === 0) {
+        updateLevelTrainerPhrases();
+        if (levelTrainerSentences.length === 0) {
+            showLevelTrainerAllStudied();
+            return;
+        }
+    }
+    if (levelTrainerIndex >= levelTrainerSentences.length) {
+        levelTrainerIndex = 0;
+    }
+    levelTrainerCurrentSentence = levelTrainerSentences[levelTrainerIndex];
+    
+    // Инициализируем состояние для фразы
+    initializePhraseState();
+    
+    const questionText = levelTrainerDirection === 'ru_to_de' 
+        ? levelTrainerCurrentSentence.ru 
+        : levelTrainerCurrentSentence.de;
+    
+    // HTML с 6 кнопками
+    let html = `
+        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; margin-bottom: 15px;">
+            <button class="back-btn" onclick="renderLevel()" style="padding: 8px 16px; background: #3B6FE0; color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: bold;">
+                ← НАЗАД
+            </button>
+            <div id="levelTrainerHeaderControls">
+                <button id="levelTrainerDirBtn" class="dir-btn" style="background: #3B6FE0; color: white; padding: 10px 20px; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; font-size: 13px; box-shadow: 0 2px 4px rgba(0,0,0,0.2); transition: all 0.08s ease;">
+                    ${levelTrainerDirection === 'ru_to_de' ? 'Ru → De' : 'De → Ru'}
+                </button>
+            </div>
+        </div>
+        <h2>🧩 Все фразы уровня ${levelTrainerCurrentLevel}</h2>
+        <div style="text-align: center;">
+            <div style="background: #E8F0FE; border-radius: 20px; padding: 20px; margin-bottom: 15px;">
+                <div style="font-size: 14px; color: #666; margin-bottom: 5px;">${levelTrainerDirection === 'ru_to_de' ? 'Составьте предложение на немецком:' : 'Составьте предложение на русском:'}</div>
+                <div style="font-size: 20px; font-weight: bold;">${questionText}</div>
+            </div>
+            <div style="background: #FFFFFF; border: 2px solid #E0E0E0; border-radius: 16px; padding: 15px; margin: 10px 0; text-align: center; font-size: 20px; min-height: 60px; color: #CCCCCC; font-weight: normal;" id="levelTrainerResult">
+                Нажмите на слова, чтобы собрать предложение
+            </div>
+            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; max-width: 500px; margin: 15px auto;" id="levelTrainerWordsContainer">
+                ${renderWordButtons()}
+            </div>
+            <div style="display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; margin: 15px 0 5px 0;">
+                <button class="ctrl-btn" id="levelTrainerUndoBtn">↩️ ВЕРНУТЬ СЛОВО</button>
+                <button class="ctrl-btn" id="levelTrainerResetBtn">🔄 СБРОСИТЬ ВСЁ</button>
+                <button class="ctrl-btn" id="levelTrainerCheckBtn" style="background: #3B6FE0 !important; color: white !important; border-color: #2B5BC7 !important;">✅ ПРОВЕРИТЬ</button>
+                <button class="ctrl-btn" id="levelTrainerSpeakBtn">🔊 ОЗВУЧИТЬ</button>
+            </div>
+            <div style="display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; margin: 5px 0 15px 0;">
+                <button class="ctrl-btn" id="levelTrainerHintBtn">💡 ПОДСКАЗКА</button>
+                <div style="background: #FFFFFF; border: 2px solid #E0E0E0; border-radius: 12px; padding: 10px 16px; flex: 1; min-width: 150px; font-size: 13px; color: #3B6FE0; font-weight: bold; text-align: center; min-height: 42px;" id="levelTrainerHintLabel"></div>
+            </div>
+            <div style="display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; margin: 10px 0 5px 0;">
+                <button class="ctrl-btn" id="levelTrainerStudyBtn" style="padding: 6px 14px; background: #4CAF50; color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; font-size: 12px;">✅ ИЗУЧЕНО</button>
+                <button class="ctrl-btn" id="levelTrainerContainerBtn" style="padding: 6px 14px; background: #FF9800; color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; font-size: 12px;">📦 КОНТЕЙНЕР</button>
+            </div>
+            <div style="display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; margin: 5px 0 10px 0;">
+                <button class="ctrl-btn" id="levelTrainerPrevBtn" style="padding: 6px 14px; background: #E8F0FE; border: 2px solid #D0D0D0; border-radius: 8px; cursor: pointer; font-weight: bold; font-size: 12px;">◀ НАЗАД</button>
+                <button class="ctrl-btn" id="levelTrainerNextBtn" style="padding: 6px 14px; background: #E8F0FE; border: 2px solid #D0D0D0; border-radius: 8px; cursor: pointer; font-weight: bold; font-size: 12px;">ВПЕРЕД ▶</button>
+                <button class="ctrl-btn" id="levelTrainerResetStartBtn" style="padding: 6px 14px; background: #E8F0FE; border: 2px solid #D0D0D0; border-radius: 8px; cursor: pointer; font-weight: bold; font-size: 12px;">⏮ В НАЧАЛО</button>
+                <div style="font-size: 14px; color: #888; display: flex; align-items: center; margin-left: 10px;" id="levelTrainerCounter">${levelTrainerIndex + 1} / ${levelTrainerAllPhrases.length}</div>
+            </div>
+        </div>
+    `;
+    content.innerHTML = html;
+    document.getElementById('modeIndicator').textContent = `🧩 Все фразы уровня ${levelTrainerCurrentLevel}`;
+    updateCounter();
+    
+    // Привязываем события ПОСЛЕ того, как HTML вставлен
+    setTimeout(function() {
+        attachLevelTrainerEvents();
+        // Обновляем кнопки (привязываем клики)
+        updateLevelTrainerDisplay();
+    }, 50);
+}
+
+// ========== ПРИВЯЗКА СОБЫТИЙ ==========
+function attachLevelTrainerEvents() {
+    const dirBtn = document.getElementById('levelTrainerDirBtn');
+    if (dirBtn) {
+        dirBtn.addEventListener('click', function() {
+            levelTrainerDirection = levelTrainerDirection === 'ru_to_de' ? 'de_to_ru' : 'ru_to_de';
+            this.textContent = levelTrainerDirection === 'ru_to_de' ? 'Ru → De' : 'De → Ru';
+            _cachedDirection = null;
+            showLevelTrainerInterface();
+        });
+    }
+
+    const undoBtn = document.getElementById('levelTrainerUndoBtn');
+    if (undoBtn) {
+        undoBtn.addEventListener('click', function() {
+            if (_selectedWords.length > 0) {
+                const lastWord = _selectedWords.pop();
+                // Возвращаем слово на кнопки
+                _visibleWords.push({
+                    ...lastWord,
+                    isUsed: false
+                });
+                shuffleArray(_visibleWords);
+                updateLevelTrainerDisplay();
+            }
+        });
+    }
+
+    const resetBtn = document.getElementById('levelTrainerResetBtn');
+    if (resetBtn) {
+        resetBtn.addEventListener('click', function() {
+            // Полный сброс фразы
+            initializePhraseState();
+            updateLevelTrainerDisplay();
+            document.getElementById('levelTrainerHintLabel').textContent = '';
+            levelTrainerHintIndex = 0;
+        });
+    }
+
+    const checkBtn = document.getElementById('levelTrainerCheckBtn');
+    if (checkBtn) {
+        checkBtn.addEventListener('click', function() {
+            if (_selectedWords.length === 0) {
+                const result = document.getElementById('levelTrainerResult');
+                result.style.backgroundColor = '#FFCDD2';
+                setTimeout(() => result.style.backgroundColor = '#FFFFFF', 500);
+                return;
+            }
+            
+            const userAnswer = _selectedWords.map(w => w.text).join(' ');
+            const result = document.getElementById('levelTrainerResult');
+            const isRuToDe = levelTrainerDirection === 'ru_to_de';
+            const correctAnswerForCheck = isRuToDe ? levelTrainerCurrentSentence.de : levelTrainerCurrentSentence.ru;
+            
+            const normalizedUser = userAnswer.replace(/[.,!?;:]/g, '').trim().toLowerCase();
+            const normalizedCorrect = correctAnswerForCheck.replace(/[.,!?;:]/g, '').trim().toLowerCase();
+            
+            if (normalizedUser === normalizedCorrect) {
+                result.style.backgroundColor = '#C8E6C9';
+                result.textContent = '✅ ПРАВИЛЬНО!';
+                const key = levelTrainerCurrentSentence.de + '|' + levelTrainerCurrentSentence.ru;
+                levelTrainerStudied[key] = true;
+                saveLevelTrainerStudied(levelTrainerCurrentLevel);
+                setTimeout(() => {
+                    result.style.backgroundColor = '#FFFFFF';
+                    levelTrainerIndex++;
+                    if (levelTrainerIndex >= levelTrainerSentences.length) {
+                        levelTrainerIndex = 0;
+                    }
+                    showLevelTrainerInterface();
+                }, 500);
+            } else {
+                result.style.backgroundColor = '#FFCDD2';
+                result.textContent = '❌ Неправильно. Попробуйте снова.';
+                setTimeout(() => {
+                    result.style.backgroundColor = '#FFFFFF';
+                    // Сброс состояния фразы
+                    initializePhraseState();
+                    updateLevelTrainerDisplay();
+                    const hasWords = _selectedWords.length > 0;
+                    const displayText = _selectedWords.map(w => w.text).join(' ') || 'Нажмите на слова, чтобы собрать предложение';
+                    result.textContent = displayText;
+                    result.style.color = hasWords ? '#1A1A1A' : '#CCCCCC';
+                    result.style.fontWeight = hasWords ? 'bold' : 'normal';
+                }, 800);
+            }
+        });
+    }
+
+    const speakBtn = document.getElementById('levelTrainerSpeakBtn');
+    if (speakBtn) {
+        speakBtn.addEventListener('click', function() {
+            if (typeof window.speak === 'function') {
+                window.speak(levelTrainerCurrentSentence.de);
+            }
+        });
+    }
+
+    const hintBtn = document.getElementById('levelTrainerHintBtn');
+    if (hintBtn) {
+        hintBtn.addEventListener('click', function() {
+            const hintLabel = document.getElementById('levelTrainerHintLabel');
+            const hintWords = levelTrainerHintWords || [];
+            
+            if (levelTrainerHintIndex < hintWords.length) {
+                const currentHint = hintWords.slice(0, levelTrainerHintIndex + 1).join(' ');
+                hintLabel.textContent = '💡 ' + currentHint;
+                levelTrainerHintIndex++;
+            } else {
+                hintLabel.textContent = '💡 Полное предложение: ' + hintWords.join(' ');
+            }
+        });
+    }
+
+    const studyBtn = document.getElementById('levelTrainerStudyBtn');
+    if (studyBtn) {
+        studyBtn.addEventListener('click', function() {
+            if (levelTrainerCurrentSentence) {
+                const key = levelTrainerCurrentSentence.de + '|' + levelTrainerCurrentSentence.ru;
+                levelTrainerStudied[key] = true;
+                saveLevelTrainerStudied(levelTrainerCurrentLevel);
+                updateLevelTrainerPhrases();
+                if (levelTrainerSentences.length === 0 && levelTrainerAllPhrases.length > 0) {
+                    levelTrainerSentences = [...levelTrainerAllPhrases];
+                }
+                if (levelTrainerSentences.length > 0) {
+                    levelTrainerIndex = (levelTrainerIndex + 1) % levelTrainerSentences.length;
+                } else {
+                    levelTrainerIndex = 0;
+                }
+                showLevelTrainerInterface();
+            }
+        });
+    }
+
+    const containerBtn = document.getElementById('levelTrainerContainerBtn');
+    if (containerBtn) {
+        containerBtn.addEventListener('click', function() {
+            const studied = getLevelTrainerStudiedList();
+            if (!studied || studied.length === 0) {
+                alert('📦 Контейнер пуст\n\nВыучите фразы, чтобы они появились здесь.');
+                return;
+            }
+            showLevelTrainerContainer();
+        });
+    }
+
+    const prevBtn = document.getElementById('levelTrainerPrevBtn');
+    if (prevBtn) {
+        prevBtn.addEventListener('click', function() {
+            if (levelTrainerSentences.length > 0) {
+                levelTrainerIndex = (levelTrainerIndex - 1 + levelTrainerSentences.length) % levelTrainerSentences.length;
+                levelTrainerHintIndex = 0;
+                showLevelTrainerInterface();
+            }
+        });
+    }
+
+    const nextBtn = document.getElementById('levelTrainerNextBtn');
+    if (nextBtn) {
+        nextBtn.addEventListener('click', function() {
+            if (levelTrainerSentences.length > 0) {
+                levelTrainerIndex = (levelTrainerIndex + 1) % levelTrainerSentences.length;
+                levelTrainerHintIndex = 0;
+                showLevelTrainerInterface();
+            }
+        });
+    }
+
+    const resetStartBtn = document.getElementById('levelTrainerResetStartBtn');
+    if (resetStartBtn) {
+        resetStartBtn.addEventListener('click', function() {
+            if (levelTrainerSentences.length > 0) {
+                levelTrainerIndex = 0;
+                levelTrainerHintIndex = 0;
+                showLevelTrainerInterface();
+            }
+        });
+    }
+}
+
+// ========== ВСПОМОГАТЕЛЬНАЯ ФУНКЦИЯ: ПЕРЕМЕШИВАНИЕ ==========
+function shuffleArray(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+    }
+    return array;
+}
+
+// ========== КОНТЕЙНЕР ==========
+function showLevelTrainerContainer() {
+    const oldModal = document.getElementById('containerModal');
+    if (oldModal) oldModal.remove();
+
     const modal = document.createElement('div');
-    modal.id = 'adminModal';
+    modal.id = 'containerModal';
     modal.style.cssText = `
         position: fixed;
         top: 0;
@@ -28,465 +810,108 @@ function openAdminPanel() {
         width: 100%;
         height: 100%;
         background: rgba(0,0,0,0.7);
-        display: flex;
+        display: flex !important;
         justify-content: center;
         align-items: center;
-        z-index: 10000000;
+        z-index: 9999999 !important;
         overflow: auto;
-        padding: 20px;
     `;
-    
+
     const modalContent = document.createElement('div');
     modalContent.style.cssText = `
         background: white;
         border-radius: 20px;
-        max-width: 1200px;
-        width: 100%;
-        max-height: 90vh;
-        padding: 25px;
-        overflow-y: auto;
-        position: relative;
+        max-width: 500px;
+        width: 90%;
+        max-height: 80vh;
+        display: flex;
+        flex-direction: column;
+        margin: 20px;
+        padding: 0;
+        overflow: hidden;
         box-shadow: 0 20px 60px rgba(0,0,0,0.5);
     `;
-    
-    modalContent.innerHTML = `
-        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
-            <h2 style="margin: 0;">📊 Админ-панель</h2>
-            <button onclick="closeAdminPanel()" style="background: none; border: none; font-size: 28px; cursor: pointer; color: #666; padding: 0 10px;">✕</button>
-        </div>
-        
-        <!-- Статистика -->
-        <div id="adminStats" style="display: flex; gap: 15px; flex-wrap: wrap; margin-bottom: 20px;"></div>
-        
-        <!-- Фильтры -->
-        <div style="display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 20px; background: #f5f5f5; padding: 15px; border-radius: 12px;">
-            <select id="adminFilterStatus" style="padding: 8px 12px; border: 2px solid #E0E0E0; border-radius: 8px; font-size: 14px;">
-                <option value="all">Все статусы</option>
-                <option value="ok">✅ OK</option>
-                <option value="monitor">👀 Наблюдение</option>
-                <option value="warning">⚠️ Подозрение</option>
-                <option value="blocked">🚫 Заблокированы</option>
-            </select>
-            <select id="adminFilterPremium" style="padding: 8px 12px; border: 2px solid #E0E0E0; border-radius: 8px; font-size: 14px;">
-                <option value="all">Все пользователи</option>
-                <option value="premium">💎 Премиум</option>
-                <option value="free">Бесплатные</option>
-            </select>
-            <input type="text" id="adminSearchEmail" placeholder="Поиск по email..." style="flex:1; min-width:150px; padding: 8px 12px; border: 2px solid #E0E0E0; border-radius: 8px; font-size: 14px;">
-            <button onclick="adminApplyFilters()" style="padding: 8px 20px; background: #3B6FE0; color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: bold;">🔍 Применить</button>
-            <button onclick="adminLoadData()" style="padding: 8px 20px; background: #4CAF50; color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: bold;">🔄 Обновить</button>
-        </div>
-        
-        <!-- Список пользователей -->
-        <div id="adminUsersContainer">
-            <div style="text-align: center; padding: 40px; color: #999;">Загрузка данных...</div>
-        </div>
+
+    const studied = getLevelTrainerStudiedList();
+    const title = `📦 КОНТЕЙНЕР ФРАЗ УРОВНЯ ${levelTrainerCurrentLevel} (${studied.length} фраз)`;
+
+    const header = document.createElement('div');
+    header.style.cssText = 'padding: 15px 20px; border-bottom: 1px solid #ddd; text-align: center; flex-shrink: 0;';
+    header.innerHTML = `<h3 style="margin: 0;">${title}</h3>`;
+    modalContent.appendChild(header);
+
+    const itemsContainer = document.createElement('div');
+    itemsContainer.style.cssText = 'overflow-y: auto; flex: 1; padding: 5px 0;';
+
+    if (studied.length === 0) {
+        itemsContainer.innerHTML = `<div style="text-align:center; padding:40px; color:#999;">📭 Контейнер пуст</div>`;
+    } else {
+        studied.forEach((phrase) => {
+            const key = phrase.de + '|' + phrase.ru;
+            const item = document.createElement('div');
+            item.style.cssText = 'display: flex; justify-content: space-between; align-items: center; padding: 10px 20px; border-bottom: 1px solid #f0f0f0;';
+            item.innerHTML = `
+                <span><strong>${phrase.de}</strong> — ${phrase.ru}</span>
+                <button class="unstudy-btn" data-key="${key}" style="padding: 4px 14px; background: #F44336; color: white; border: none; border-radius: 8px; cursor: pointer; font-size: 12px; font-weight: bold;">✕ ВЕРНУТЬ</button>
+            `;
+            const btn = item.querySelector('.unstudy-btn');
+            btn.addEventListener('click', function() {
+                const key = this.getAttribute('data-key');
+                delete levelTrainerStudied[key];
+                saveLevelTrainerStudied(levelTrainerCurrentLevel);
+                updateLevelTrainerPhrases();
+                if (levelTrainerSentences.length === 0 && levelTrainerAllPhrases.length > 0) {
+                    levelTrainerSentences = [...levelTrainerAllPhrases];
+                }
+                if (levelTrainerSentences.length > 0 && levelTrainerIndex >= levelTrainerSentences.length) {
+                    levelTrainerIndex = 0;
+                }
+                modal.remove();
+                showLevelTrainerInterface();
+            });
+            itemsContainer.appendChild(item);
+        });
+    }
+    modalContent.appendChild(itemsContainer);
+
+    const footer = document.createElement('div');
+    footer.style.cssText = 'padding: 15px 20px; border-top: 1px solid #ddd; display: flex; gap: 10px; flex-shrink: 0;';
+    footer.innerHTML = `
+        <button id="returnAllBtn" style="flex: 1; padding: 10px; background: #FF9800; color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: bold;">🔄 ВЕРНУТЬ ВСЁ</button>
+        <button id="closeContainerBtn" style="flex: 1; padding: 10px; background: #ddd; border: none; border-radius: 8px; cursor: pointer; font-weight: bold;">ЗАКРЫТЬ</button>
     `;
-    
+    modalContent.appendChild(footer);
+
     modal.appendChild(modalContent);
     document.body.appendChild(modal);
-    
-    // Загружаем данные
-    adminLoadData();
-}
 
-// ========== ЗАКРЫТЬ АДМИН-ПАНЕЛЬ ==========
-function closeAdminPanel() {
-    const modal = document.getElementById('adminModal');
-    if (modal) modal.remove();
-}
-
-// ========== ЗАГРУЗКА ДАННЫХ ==========
-async function adminLoadData() {
-    const container = document.getElementById('adminUsersContainer');
-    if (!container) return;
-    
-    container.innerHTML = '<div style="text-align: center; padding: 40px; color: #999;">Загрузка данных...</div>';
-    
-    try {
-        const snapshot = await window.db.collection('users').get();
-        adminAllUsers = [];
-        
-        snapshot.forEach(doc => {
-            const data = doc.data();
-            adminAllUsers.push({
-                uid: doc.id,
-                email: data.email || 'No email',
-                createdAt: data.createdAt || 'Unknown',
-                hasPremiumAccess: data.hasPremiumAccess === true,
-                blocked: data.blocked === true,
-                status: data.status || 'ok',
-                devices: data.devices || [],
-                dailyStats: data.dailyStats || {},
-                flags: data.flags || { totalFlags: 0 },
-                lastChecked: data.lastChecked || null
-            });
+    document.getElementById('returnAllBtn').addEventListener('click', function() {
+        if (!confirm('Вернуть все фразы из контейнера?')) return;
+        levelTrainerAllPhrases.forEach(phrase => {
+            const key = phrase.de + '|' + phrase.ru;
+            delete levelTrainerStudied[key];
         });
-        
-        adminAllUsers.sort((a, b) => b.flags.totalFlags - a.flags.totalFlags);
-        
-        adminUpdateStats();
-        adminApplyFilters();
-        
-    } catch(e) {
-        console.error('Ошибка загрузки:', e);
-        container.innerHTML = `
-            <div style="text-align: center; padding: 40px; color: #999;">
-                <div style="font-size: 48px; margin-bottom: 15px;">❌</div>
-                <div>Ошибка загрузки данных</div>
-                <div style="font-size: 14px; color: #666; margin-top: 10px;">${e.message}</div>
-            </div>
-        `;
-    }
-}
-
-// ========== ОБНОВЛЕНИЕ СТАТИСТИКИ ==========
-function adminUpdateStats() {
-    const stats = { ok: 0, monitor: 0, warning: 0, blocked: 0, premium: 0 };
-    
-    adminAllUsers.forEach(u => {
-        if (u.blocked) stats.blocked++;
-        else if (u.status === 'warning') stats.warning++;
-        else if (u.status === 'monitor') stats.monitor++;
-        else stats.ok++;
-        if (u.hasPremiumAccess) stats.premium++;
-    });
-    
-    const statsHtml = `
-        <div class="stat-item success"><div class="num">${stats.ok}</div><div class="label">✅ OK</div></div>
-        <div class="stat-item warning"><div class="num">${stats.monitor}</div><div class="label">👀 Наблюдение</div></div>
-        <div class="stat-item danger"><div class="num">${stats.warning}</div><div class="label">⚠️ Подозрение</div></div>
-        <div class="stat-item" style="background:#f0f0f0;"><div class="num">${stats.blocked}</div><div class="label">🚫 Заблокированы</div></div>
-        <div class="stat-item" style="background:#FFF8E1;"><div class="num">${stats.premium}</div><div class="label">💎 Премиум</div></div>
-    `;
-    
-    const statsContainer = document.getElementById('adminStats');
-    if (statsContainer) statsContainer.innerHTML = statsHtml;
-}
-
-// ========== ПРИМЕНЕНИЕ ФИЛЬТРОВ ==========
-function adminApplyFilters() {
-    const statusFilter = document.getElementById('adminFilterStatus')?.value || 'all';
-    const premiumFilter = document.getElementById('adminFilterPremium')?.value || 'all';
-    const search = document.getElementById('adminSearchEmail')?.value?.toLowerCase() || '';
-    
-    adminFilteredUsers = adminAllUsers.filter(u => {
-        if (statusFilter !== 'all') {
-            if (u.blocked && statusFilter !== 'blocked') return false;
-            if (!u.blocked && u.status !== statusFilter) return false;
+        saveLevelTrainerStudied(levelTrainerCurrentLevel);
+        updateLevelTrainerPhrases();
+        if (levelTrainerSentences.length === 0 && levelTrainerAllPhrases.length > 0) {
+            levelTrainerSentences = [...levelTrainerAllPhrases];
         }
-        if (premiumFilter === 'premium' && !u.hasPremiumAccess) return false;
-        if (premiumFilter === 'free' && u.hasPremiumAccess) return false;
-        if (search && !u.email.toLowerCase().includes(search)) return false;
-        return true;
+        levelTrainerIndex = 0;
+        modal.remove();
+        showLevelTrainerInterface();
     });
-    
-    adminRenderUsers();
-}
 
-// ========== ОТОБРАЖЕНИЕ ПОЛЬЗОВАТЕЛЕЙ ==========
-function adminRenderUsers() {
-    const container = document.getElementById('adminUsersContainer');
-    if (!container) return;
-    
-    if (adminFilteredUsers.length === 0) {
-        container.innerHTML = '<div style="text-align:center;padding:40px;color:#999;">📭 Пользователи не найдены</div>';
-        return;
-    }
-    
-    let html = '';
-    
-    adminFilteredUsers.forEach(user => {
-        const today = new Date().toISOString().split('T')[0];
-        const stats = user.dailyStats[today] || { sessions: 0, totalMinutes: 0, uniqueIPs: [], uniqueCities: [] };
-        const flags = user.flags || { totalFlags: 0 };
-        
-        const statusClass = user.blocked ? 'blocked' : 
-                           user.status === 'warning' ? 'danger' : 
-                           user.status === 'monitor' ? 'warning' : '';
-        
-        const statusLabel = user.blocked ? '🚫 Заблокирован' :
-                           user.status === 'warning' ? '⚠️ Подозрение' :
-                           user.status === 'monitor' ? '👀 Наблюдение' : '✅ OK';
-        
-        const statusColor = user.blocked ? 'status-blocked' :
-                           user.status === 'warning' ? 'status-warning' :
-                           user.status === 'monitor' ? 'status-monitor' : 'status-ok';
-        
-        const deviceCount = user.devices.length;
-        const ipCount = stats.uniqueIPs?.length || 0;
-        const cityCount = stats.uniqueCities?.length || 0;
-        
-        html += `
-            <div class="user-card ${statusClass}" style="background:white; border-radius:12px; padding:20px; margin-bottom:15px; box-shadow:0 2px 8px rgba(0,0,0,0.1); border-left:4px solid ${user.blocked ? '#9E9E9E' : user.status === 'warning' ? '#F44336' : user.status === 'monitor' ? '#FF9800' : '#4CAF50'}; ${user.blocked ? 'opacity:0.7;' : ''}">
-                <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; margin-bottom:12px;">
-                    <div>
-                        <span style="font-size:18px; font-weight:bold;">${user.email}</span>
-                        ${user.hasPremiumAccess ? ' <span style="background:#FFD700; padding:2px 8px; border-radius:10px; font-size:11px; font-weight:bold;">💎 ПРЕМИУМ</span>' : ''}
-                        <span class="user-status ${statusColor}" style="padding:4px 12px; border-radius:20px; font-size:12px; font-weight:bold;">${statusLabel}</span>
-                    </div>
-                    <div style="font-size:12px; color:#999;">Регистрация: ${new Date(user.createdAt).toLocaleDateString()}</div>
-                </div>
-                
-                <div style="display:grid; grid-template-columns:1fr 1fr; gap:20px; margin-top:10px;">
-                    <div style="background:#f8f9fa; border-radius:8px; padding:12px;">
-                        <h4 style="font-size:13px; color:#666; margin-bottom:8px; text-transform:uppercase;">📊 Активность сегодня</h4>
-                        <div style="display:flex; justify-content:space-between; padding:4px 0; font-size:14px; border-bottom:1px solid #eee;"><span>Сессии</span><span style="font-weight:500;">${stats.sessions || 0}</span></div>
-                        <div style="display:flex; justify-content:space-between; padding:4px 0; font-size:14px; border-bottom:1px solid #eee;"><span>Время</span><span style="font-weight:500;">${Math.round((stats.totalMinutes || 0) / 60)}ч ${(stats.totalMinutes || 0) % 60}м</span></div>
-                        <div style="display:flex; justify-content:space-between; padding:4px 0; font-size:14px; border-bottom:1px solid #eee;"><span>Устройства</span><span style="font-weight:500;">${deviceCount}</span></div>
-                        <div style="display:flex; justify-content:space-between; padding:4px 0; font-size:14px; border-bottom:1px solid #eee;"><span>Уникальные IP</span><span style="font-weight:500;">${ipCount}</span></div>
-                        <div style="display:flex; justify-content:space-between; padding:4px 0; font-size:14px;"><span>Города</span><span style="font-weight:500;">${cityCount}</span></div>
-                    </div>
-                    
-                    <div style="background:#f8f9fa; border-radius:8px; padding:12px;">
-                        <h4 style="font-size:13px; color:#666; margin-bottom:8px; text-transform:uppercase;">🚩 Флаги (${flags.totalFlags})</h4>
-                        <div style="display:flex; justify-content:space-between; padding:4px 0; font-size:14px; border-bottom:1px solid #eee;"><span>Много устройств (>2)</span><span style="padding:2px 8px; border-radius:12px; font-size:11px; background:${flags.multipleDevices ? '#FFCDD2' : '#E8F5E9'}; color:${flags.multipleDevices ? '#F44336' : '#4CAF50'};">${flags.multipleDevices ? '⚠️ Да' : '✅ Нет'}</span></div>
-                        <div style="display:flex; justify-content:space-between; padding:4px 0; font-size:14px; border-bottom:1px solid #eee;"><span>Разные города (>2)</span><span style="padding:2px 8px; border-radius:12px; font-size:11px; background:${flags.differentCities ? '#FFCDD2' : '#E8F5E9'}; color:${flags.differentCities ? '#F44336' : '#4CAF50'};">${flags.differentCities ? '⚠️ Да' : '✅ Нет'}</span></div>
-                        <div style="display:flex; justify-content:space-between; padding:4px 0; font-size:14px; border-bottom:1px solid #eee;"><span>Высокая активность (>3ч)</span><span style="padding:2px 8px; border-radius:12px; font-size:11px; background:${flags.highActivity ? '#FFCDD2' : '#E8F5E9'}; color:${flags.highActivity ? '#F44336' : '#4CAF50'};">${flags.highActivity ? '⚠️ Да' : '✅ Нет'}</span></div>
-                        <div style="display:flex; justify-content:space-between; padding:4px 0; font-size:14px; border-bottom:1px solid #eee;"><span>Много IP (>3)</span><span style="padding:2px 8px; border-radius:12px; font-size:11px; background:${flags.manyIPs ? '#FFCDD2' : '#E8F5E9'}; color:${flags.manyIPs ? '#F44336' : '#4CAF50'};">${flags.manyIPs ? '⚠️ Да' : '✅ Нет'}</span></div>
-                        <div style="display:flex; justify-content:space-between; padding:4px 0; font-size:14px;"><span>Неестественное время</span><span style="padding:2px 8px; border-radius:12px; font-size:11px; background:${flags.unnaturalHours ? '#FFCDD2' : '#E8F5E9'}; color:${flags.unnaturalHours ? '#F44336' : '#4CAF50'};">${flags.unnaturalHours ? '⚠️ Да' : '✅ Нет'}</span></div>
-                    </div>
-                </div>
-                
-                <div style="margin-top:12px; display:flex; gap:8px; flex-wrap:wrap;">
-                    ${!user.blocked ? `
-                        <button onclick="adminBlockUser('${user.uid}')" style="padding:6px 14px; background:#F44336; color:white; border:none; border-radius:8px; cursor:pointer; font-size:12px; font-weight:bold;">🚫 Заблокировать</button>
-                        ${user.status === 'warning' ? `<button onclick="adminSetStatus('${user.uid}', 'ok')" style="padding:6px 14px; background:#9E9E9E; color:white; border:none; border-radius:8px; cursor:pointer; font-size:12px; font-weight:bold;">✅ Снять подозрение</button>` : ''}
-                        ${user.status === 'monitor' ? `<button onclick="adminSetStatus('${user.uid}', 'ok')" style="padding:6px 14px; background:#9E9E9E; color:white; border:none; border-radius:8px; cursor:pointer; font-size:12px; font-weight:bold;">✅ Снять наблюдение</button>` : ''}
-                    ` : `
-                        <button onclick="adminUnblockUser('${user.uid}')" style="padding:6px 14px; background:#4CAF50; color:white; border:none; border-radius:8px; cursor:pointer; font-size:12px; font-weight:bold;">🔓 Разблокировать</button>
-                    `}
-                    ${!user.hasPremiumAccess ? `
-                        <button onclick="adminGivePremium('${user.uid}')" style="padding:6px 14px; background:#FFD700; color:#333; border:none; border-radius:8px; cursor:pointer; font-size:12px; font-weight:bold;">💎 Дать премиум</button>
-                    ` : `
-                        <button onclick="adminRemovePremium('${user.uid}')" style="padding:6px 14px; background:#F44336; color:white; border:none; border-radius:8px; cursor:pointer; font-size:12px; font-weight:bold;">🔒 Снять премиум</button>
-                    `}
-                    <button onclick="adminShowLogs('${user.uid}')" style="padding:6px 14px; background:#E0E0E0; color:#333; border:none; border-radius:8px; cursor:pointer; font-size:12px; font-weight:bold;">📋 Логи</button>
-                    <button onclick="adminDeleteUser('${user.uid}')" style="padding:6px 14px; background:#555; color:white; border:none; border-radius:8px; cursor:pointer; font-size:12px; font-weight:bold;">🗑️ Удалить</button>
-                </div>
-            </div>
-        `;
+    document.getElementById('closeContainerBtn').addEventListener('click', function() {
+        modal.remove();
     });
-    
-    container.innerHTML = html;
+
+    modal.addEventListener('click', function(e) {
+        if (e.target === modal) modal.remove();
+    });
 }
 
-// ========== ДЕЙСТВИЯ АДМИНА ==========
-async function adminBlockUser(uid) {
-    if (!confirm('Заблокировать пользователя?')) return;
-    try {
-        await window.db.collection('users').doc(uid).update({ blocked: true, status: 'blocked' });
-        await adminLogAction(uid, 'blocked');
-        adminLoadData();
-    } catch(e) { alert('Ошибка: ' + e.message); }
-}
+// ===== ЭКСПОРТ =====
+window.loadAllPhrasesMode = loadAllPhrasesMode;
+window.showLevelTrainerContainer = showLevelTrainerContainer;
 
-async function adminUnblockUser(uid) {
-    if (!confirm('Разблокировать пользователя?')) return;
-    try {
-        await window.db.collection('users').doc(uid).update({ blocked: false, status: 'ok' });
-        await adminLogAction(uid, 'unblocked');
-        adminLoadData();
-    } catch(e) { alert('Ошибка: ' + e.message); }
-}
-
-async function adminSetStatus(uid, status) {
-    try {
-        await window.db.collection('users').doc(uid).update({ status: status });
-        await adminLogAction(uid, 'status_changed', { newStatus: status });
-        adminLoadData();
-    } catch(e) { alert('Ошибка: ' + e.message); }
-}
-
-async function adminGivePremium(uid) {
-    if (!confirm('Дать премиум-доступ этому пользователю?')) return;
-    try {
-        await window.db.collection('users').doc(uid).update({
-            hasPremiumAccess: true,
-            premiumActivatedAt: new Date().toISOString()
-        });
-        await adminLogAction(uid, 'premium_given');
-        adminLoadData();
-    } catch(e) { alert('Ошибка: ' + e.message); }
-}
-
-async function adminRemovePremium(uid) {
-    if (!confirm('Снять премиум-доступ?')) return;
-    try {
-        await window.db.collection('users').doc(uid).update({
-            hasPremiumAccess: false,
-            premiumActivatedAt: null
-        });
-        await adminLogAction(uid, 'premium_removed');
-        adminLoadData();
-    } catch(e) { alert('Ошибка: ' + e.message); }
-}
-
-async function adminDeleteUser(uid) {
-    if (!confirm('⚠️ УДАЛИТЬ ПОЛЬЗОВАТЕЛЯ? Это действие НЕЛЬЗЯ отменить!')) return;
-    if (!confirm('Вы уверены? Все данные пользователя будут удалены навсегда.')) return;
-    try {
-        await window.db.collection('users').doc(uid).delete();
-        await adminLogAction(uid, 'deleted');
-        alert('✅ Пользователь удалён');
-        adminLoadData();
-    } catch(e) { alert('Ошибка: ' + e.message); }
-}
-
-async function adminLogAction(uid, action, details = {}) {
-    try {
-        const user = window.auth.currentUser;
-        await window.db.collection('admin_actions').add({
-            userId: uid,
-            adminEmail: user.email,
-            action: action,
-            details: details,
-            timestamp: new Date().toISOString()
-        });
-    } catch(e) { console.error('Ошибка логирования:', e); }
-}
-
-// ========== ЛОГИ — С ВОЗМОЖНОСТЬЮ КОПИРОВАТЬ ==========
-async function adminShowLogs(uid) {
-    try {
-        const logsSnapshot = await window.db.collection('admin_logs')
-            .where('userId', '==', uid)
-            .orderBy('timestamp', 'desc')
-            .limit(50)
-            .get();
-        
-        let logs = [];
-        logsSnapshot.forEach(doc => logs.push(doc.data()));
-        
-        if (logs.length === 0) {
-            alert('📭 Логов у этого пользователя пока нет');
-            return;
-        }
-        
-        // Создаём модалку с логами
-        const oldModal = document.getElementById('adminLogsModal');
-        if (oldModal) oldModal.remove();
-        
-        const modal = document.createElement('div');
-        modal.id = 'adminLogsModal';
-        modal.style.cssText = `
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.7);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 10000001;
-            overflow: auto;
-            padding: 20px;
-        `;
-        
-        const modalContent = document.createElement('div');
-        modalContent.style.cssText = `
-            background: white;
-            border-radius: 20px;
-            max-width: 600px;
-            width: 100%;
-            max-height: 80vh;
-            padding: 25px;
-            overflow-y: auto;
-            position: relative;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.5);
-            user-select: text !important;
-            -webkit-user-select: text !important;
-        `;
-        
-        let logsHtml = '';
-        logs.forEach(log => {
-            const time = new Date(log.timestamp).toLocaleString();
-            let flagText = '';
-            if (log.flags) {
-                const activeFlags = Object.entries(log.flags)
-                    .filter(([k,v]) => v === true && k !== 'totalFlags')
-                    .map(([k]) => k);
-                if (activeFlags.length > 0) {
-                    flagText = ' 🚩 ' + activeFlags.join(', ');
-                }
-            }
-            logsHtml += `
-                <div style="
-                    background: #f8f9fa;
-                    border-radius: 6px;
-                    padding: 8px 12px;
-                    margin: 4px 0;
-                    font-size: 13px;
-                    display: flex;
-                    justify-content: space-between;
-                    align-items: center;
-                    user-select: text !important;
-                    -webkit-user-select: text !important;
-                    cursor: text;
-                ">
-                    <span style="user-select: text !important; -webkit-user-select: text !important;">${log.event || 'flags_increased'}${flagText}</span>
-                    <span style="color: #666; font-family: monospace; font-size: 12px; user-select: text !important; -webkit-user-select: text !important;">${time}</span>
-                </div>
-            `;
-        });
-        
-        modalContent.innerHTML = `
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; user-select: text !important;">
-                <h3 style="margin: 0; user-select: text !important;">📋 Логи пользователя</h3>
-                <button onclick="document.getElementById('adminLogsModal').remove()" style="
-                    background: none;
-                    border: none;
-                    font-size: 28px;
-                    cursor: pointer;
-                    color: #666;
-                    padding: 0 10px;
-                ">✕</button>
-            </div>
-            <div style="user-select: text !important; -webkit-user-select: text !important;">
-                ${logsHtml}
-            </div>
-            <div style="margin-top: 15px; text-align: center; font-size: 12px; color: #999; user-select: text !important; -webkit-user-select: text !important; border-top: 1px solid #eee; padding-top: 12px;">
-                💡 Вы можете выделить и скопировать текст логов
-            </div>
-            <button onclick="document.getElementById('adminLogsModal').remove()" style="
-                width: 100%;
-                margin-top: 12px;
-                padding: 10px;
-                background: #3B6FE0;
-                color: white;
-                border: none;
-                border-radius: 10px;
-                cursor: pointer;
-                font-size: 14px;
-                font-weight: bold;
-            ">Закрыть</button>
-        `;
-        
-        modal.appendChild(modalContent);
-        document.body.appendChild(modal);
-        
-        modal.onclick = function(e) {
-            if (e.target === modal) modal.remove();
-        };
-        
-    } catch(e) {
-        console.error('Ошибка загрузки логов:', e);
-        alert('Ошибка загрузки логов');
-    }
-}
-
-// ========== ЭКСПОРТ ==========
-window.openAdminPanel = openAdminPanel;
-window.closeAdminPanel = closeAdminPanel;
-window.adminLoadData = adminLoadData;
-window.adminApplyFilters = adminApplyFilters;
-window.adminBlockUser = adminBlockUser;
-window.adminUnblockUser = adminUnblockUser;
-window.adminSetStatus = adminSetStatus;
-window.adminGivePremium = adminGivePremium;
-window.adminRemovePremium = adminRemovePremium;
-window.adminDeleteUser = adminDeleteUser;
-window.adminShowLogs = adminShowLogs;
-
-console.log('🛡️ adminModal.js загружен');
+console.log('🧩 levelTrainerMode.js загружен (ВЕРСИЯ 6 КНОПОК С ПОДГРУЗКОЙ)');

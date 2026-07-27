@@ -39,10 +39,45 @@ body { font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-
 .quiz-opt.correct { background: #C8E6C9; border-color: #4CAF50; }
 .quiz-opt.wrong { background: #FFCDD2; border-color: #F44336; }
 
-/* ===== ТРЕНАЖЁР ===== */
-.words-container { display: grid; grid-template-columns: repeat(6, auto); gap: 8px; margin: 8px 0 40px 0; justify-content: center; align-items: center; }
-.word-btn { padding: 8px 16px; background: #E8F0FE; border: 2px solid #D0D0D0; border-radius: 40px; cursor: pointer; font-size: 13px; text-align: center; white-space: nowrap; }
-.word-btn:active { transform: scale(0.95); }
+/* ============================================================ */
+/* ===== ТРЕНАЖЁР — КНОПКИ СЛОВ ===== */
+/* ============================================================ */
+
+/* Контейнер для кнопок слов в тренажёрах */
+#levelTrainerWordsContainer,
+#trainerWordsContainer,
+.words-container {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 10px;
+    max-width: 700px;
+    margin: 15px auto;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Базовые стили для кнопок слов */
+.word-btn {
+    padding: 12px 16px;
+    background: #E8F0FE;
+    border: 2px solid #D0D0D0;
+    border-radius: 40px;
+    cursor: pointer;
+    font-size: 14px;
+    text-align: center;
+    min-height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.08s ease;
+    word-break: break-word;
+    white-space: normal;
+    width: 100%;
+}
+
+.word-btn:active {
+    transform: scale(0.95);
+}
 
 /* ===== УРОКИ ===== */
 .lesson-btn { display: block; width: 100%; padding: 15px; margin: 8px 0; background: #E8F0FE; border: 2px solid #D0D0D0; border-radius: 8px; cursor: pointer; text-align: left; font-size: 16px; }
@@ -165,29 +200,17 @@ body { font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-
     .sidebar { width: 220px; }
     .content { padding: 15px; }
     .vocab-grid { grid-template-columns: 1fr 1fr; }
-    .words-container { grid-template-columns: repeat(4, auto); }
+    #levelTrainerWordsContainer,
+    #trainerWordsContainer,
+    .words-container { grid-template-columns: repeat(4, 1fr) !important; gap: 10px !important; }
     .btn, .ctrl-btn, .word-btn, .quiz-opt, .mode-btn { padding: 8px 12px !important; font-size: 13px !important; }
+    .word-btn { font-size: 15px !important; padding: 12px 10px !important; min-height: 48px !important; }
     .card-word { font-size: 26px; }
     .lesson-title { font-size: 20px; }
 }
 
 /* ============================================================ */
-/* ========== МАЛЕНЬКИЕ ПЛАНШЕТЫ (600-768px) ========== */
-/* ============================================================ */
-@media (max-width: 768px) and (min-width: 600px) {
-    .sidebar { display: none; }
-    .hamburger-btn { display: block; }
-    .app { flex-direction: column; }
-    .main { width: 100%; height: 100vh; }
-    .content { padding: 15px; }
-    .vocab-grid { grid-template-columns: 1fr 1fr; }
-    .words-container { grid-template-columns: repeat(3, 1fr); }
-    .top-bar { padding: 10px 16px; }
-    .mobile-menu { width: 300px; }
-}
-
-/* ============================================================ */
-/* ========== ТЕЛЕФОНЫ (до 600px) ========== */
+/* ========== ТЕЛЕФОНЫ (до 768px) ========== */
 /* ============================================================ */
 @media (max-width: 768px) {
     .sidebar { display: none; }
@@ -203,27 +226,32 @@ body { font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-
     .mobile-menu .mode-btn,
     .mobile-menu .btn-level { min-height: 48px; font-size: 16px !important; }
     
-    .btn, .ctrl-btn, .word-btn, .quiz-opt, .mode-btn { padding: 12px 14px !important; font-size: 14px !important; min-height: 44px; }
+    .btn, .ctrl-btn, .quiz-opt, .mode-btn { padding: 12px 14px !important; font-size: 14px !important; min-height: 44px; }
     .btn-level { min-height: 44px; width: 54px; padding: 8px 0 !important; font-size: 13px !important; }
     
     .card-word { font-size: 22px; padding: 20px; }
     .card { min-height: 220px; margin: 10px auto; }
     
+    /* ===== КНОПКИ СЛОВ — 3 КОЛОНКИ НА ТЕЛЕФОНАХ ===== */
+    #levelTrainerWordsContainer,
+    #trainerWordsContainer,
     .words-container { 
         grid-template-columns: repeat(3, 1fr) !important;
-        gap: 6px !important;
+        gap: 8px !important;
         width: 100% !important;
-        margin: 8px 0 16px 0 !important;
+        max-width: 100% !important;
+        margin: 10px auto !important;
     }
+    
     .word-btn { 
-        font-size: 13px !important;
-        padding: 10px 12px !important;
-        min-height: 40px !important;
+        font-size: 16px !important;
+        padding: 14px 12px !important;
+        min-height: 52px !important;
+        border-radius: 12px !important;
         white-space: normal !important;
         word-break: break-word !important;
         text-align: center !important;
         width: 100% !important;
-        border-radius: 12px !important;
     }
     
     .quiz-question { font-size: 20px; margin: 15px 0; }
@@ -251,9 +279,20 @@ body { font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-
 /* ========== МАЛЕНЬКИЕ ТЕЛЕФОНЫ (до 480px) ========== */
 /* ============================================================ */
 @media (max-width: 480px) {
-    .btn, .ctrl-btn, .word-btn, .quiz-opt { padding: 8px 10px !important; font-size: 12px !important; }
+    .btn, .ctrl-btn, .quiz-opt { padding: 8px 10px !important; font-size: 12px !important; }
     .card-word { font-size: 18px; }
-    .word-btn { font-size: 11px !important; padding: 8px 6px !important; min-height: 34px !important; }
+    
+    .word-btn { 
+        font-size: 14px !important;
+        padding: 10px 8px !important;
+        min-height: 44px !important;
+        border-radius: 10px !important;
+    }
+    
+    #levelTrainerWordsContainer,
+    #trainerWordsContainer,
+    .words-container { gap: 6px !important; }
+    
     .lesson-title { font-size: 16px; }
     .mode-btn { padding: 6px 10px !important; font-size: 12px !important; }
     .ctrl-btn { font-size: 10px; padding: 6px 8px !important; }
@@ -355,11 +394,5 @@ body { font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-
     
     #levelCardsCardWrapper {
         min-height: 220px !important;
-    }
-    
-    .word-btn {
-        font-size: 11px !important;
-        padding: 8px 6px !important;
-        min-height: 34px !important;
     }
 }

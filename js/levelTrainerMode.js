@@ -282,9 +282,7 @@ function initializePhraseState() {
         addDistractorsToVisible(firstThree);
     }
     
-    // Убеждаемся, что кнопок ровно 6
     ensureSixButtons();
-    
     shuffleArray(_visibleWords);
     
     levelTrainerHintIndex = 0;
@@ -296,7 +294,6 @@ function initializePhraseState() {
 
 // ========== ГАРАНТИРУЕМ 6 КНОПОК ==========
 function ensureSixButtons() {
-    // Удаляем лишние дистракторы, если кнопок больше 6
     while (_visibleWords.length > 6) {
         const distractorIndex = _visibleWords.findIndex(w => w.isDistractor === true);
         if (distractorIndex !== -1) {
@@ -306,7 +303,6 @@ function ensureSixButtons() {
         }
     }
     
-    // Добавляем дистракторы, если кнопок меньше 6
     while (_visibleWords.length < 6) {
         const newDistractor = getNextDistractor();
         if (newDistractor) {
@@ -406,7 +402,6 @@ function selectWord(wordId) {
         });
     }
     
-    // Добавляем новый дистрактор, если нужно
     if (_visibleWords.length < 6) {
         const newDistractor = getNextDistractor();
         if (newDistractor) {
@@ -414,9 +409,7 @@ function selectWord(wordId) {
         }
     }
     
-    // Убеждаемся, что кнопок ровно 6
     ensureSixButtons();
-    
     shuffleArray(_visibleWords);
     updateLevelTrainerDisplay();
 }
@@ -519,13 +512,13 @@ function showLevelTrainerInterface() {
         levelTrainerIndex = 0;
     }
     
-    if (!levelTrainerCurrentSentence) {
-        if (levelTrainerSentences.length > 0) {
-            levelTrainerCurrentSentence = levelTrainerSentences[0];
-        } else {
-            setTimeout(showLevelTrainerInterface, 200);
-            return;
-        }
+    // ===== ВАЖНО: ОБНОВЛЯЕМ currentSentence ИЗ sentenses ПО ИНДЕКСУ =====
+    if (levelTrainerSentences.length > 0) {
+        levelTrainerCurrentSentence = levelTrainerSentences[levelTrainerIndex];
+        console.log('🔄 Установлена фраза:', levelTrainerCurrentSentence.de);
+    } else {
+        setTimeout(showLevelTrainerInterface, 200);
+        return;
     }
     
     initializePhraseState();
@@ -597,6 +590,10 @@ function attachLevelTrainerEvents() {
             levelTrainerDirection = levelTrainerDirection === 'ru_to_de' ? 'de_to_ru' : 'ru_to_de';
             this.textContent = levelTrainerDirection === 'ru_to_de' ? 'Ru → De' : 'De → Ru';
             _cachedDirection = null;
+            // Обновляем текущую фразу
+            if (levelTrainerSentences.length > 0) {
+                levelTrainerCurrentSentence = levelTrainerSentences[levelTrainerIndex];
+            }
             showLevelTrainerInterface();
         });
     }
@@ -606,18 +603,13 @@ function attachLevelTrainerEvents() {
         undoBtn.addEventListener('click', function() {
             if (_selectedWords.length === 0) return;
             
-            // Забираем последнее выбранное слово
             const lastWord = _selectedWords.pop();
-            
-            // Возвращаем его на кнопки
             _visibleWords.push({
                 ...lastWord,
                 isUsed: false
             });
             
-            // Убеждаемся, что кнопок ровно 6
             ensureSixButtons();
-            
             shuffleArray(_visibleWords);
             updateLevelTrainerDisplay();
         });
@@ -626,9 +618,7 @@ function attachLevelTrainerEvents() {
     const resetBtn = document.getElementById('levelTrainerResetBtn');
     if (resetBtn) {
         resetBtn.addEventListener('click', function() {
-            // Полный сброс фразы
             initializePhraseState();
-            // Убеждаемся, что кнопок ровно 6
             ensureSixButtons();
             updateLevelTrainerDisplay();
             document.getElementById('levelTrainerHintLabel').textContent = '';
@@ -657,12 +647,17 @@ function attachLevelTrainerEvents() {
             if (normalizedUser === normalizedCorrect) {
                 result.style.backgroundColor = '#C8E6C9';
                 result.textContent = '✅ ПРАВИЛЬНО!';
-                // ===== НЕ СОХРАНЯЕМ В КОНТЕЙНЕР АВТОМАТИЧЕСКИ! =====
+                
                 setTimeout(() => {
                     result.style.backgroundColor = '#FFFFFF';
                     levelTrainerIndex++;
                     if (levelTrainerIndex >= levelTrainerSentences.length) {
                         levelTrainerIndex = 0;
+                    }
+                    // Обновляем текущую фразу
+                    if (levelTrainerSentences.length > 0) {
+                        levelTrainerCurrentSentence = levelTrainerSentences[levelTrainerIndex];
+                        console.log('🔄 Переход к фразе:', levelTrainerCurrentSentence.de);
                     }
                     showLevelTrainerInterface();
                 }, 500);
@@ -722,6 +717,7 @@ function attachLevelTrainerEvents() {
                 }
                 if (levelTrainerSentences.length > 0) {
                     levelTrainerIndex = (levelTrainerIndex + 1) % levelTrainerSentences.length;
+                    levelTrainerCurrentSentence = levelTrainerSentences[levelTrainerIndex];
                 } else {
                     levelTrainerIndex = 0;
                 }
@@ -747,7 +743,9 @@ function attachLevelTrainerEvents() {
         prevBtn.addEventListener('click', function() {
             if (levelTrainerSentences.length > 0) {
                 levelTrainerIndex = (levelTrainerIndex - 1 + levelTrainerSentences.length) % levelTrainerSentences.length;
+                levelTrainerCurrentSentence = levelTrainerSentences[levelTrainerIndex];
                 levelTrainerHintIndex = 0;
+                console.log('◀ Назад к фразе:', levelTrainerCurrentSentence.de);
                 showLevelTrainerInterface();
             }
         });
@@ -758,7 +756,9 @@ function attachLevelTrainerEvents() {
         nextBtn.addEventListener('click', function() {
             if (levelTrainerSentences.length > 0) {
                 levelTrainerIndex = (levelTrainerIndex + 1) % levelTrainerSentences.length;
+                levelTrainerCurrentSentence = levelTrainerSentences[levelTrainerIndex];
                 levelTrainerHintIndex = 0;
+                console.log('▶ Вперед к фразе:', levelTrainerCurrentSentence.de);
                 showLevelTrainerInterface();
             }
         });
@@ -769,7 +769,9 @@ function attachLevelTrainerEvents() {
         resetStartBtn.addEventListener('click', function() {
             if (levelTrainerSentences.length > 0) {
                 levelTrainerIndex = 0;
+                levelTrainerCurrentSentence = levelTrainerSentences[0];
                 levelTrainerHintIndex = 0;
+                console.log('⏮ В начало:', levelTrainerCurrentSentence.de);
                 showLevelTrainerInterface();
             }
         });

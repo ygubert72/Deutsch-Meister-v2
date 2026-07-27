@@ -1,5 +1,5 @@
 // ====================================================================
-// trainerMode.js — Тренажёр (сборка фраз из слов) — 6 КНОПОК, БЕЗ ПЕРЕМЕШИВАНИЯ, ВОЛНЫ
+// trainerMode.js — Тренажёр (сборка фраз из слов) — 6 КНОПОК, БЕЗ ПЕРЕМЕШИВАНИЯ
 // ====================================================================
 
 (function() {
@@ -502,7 +502,7 @@ function addDistractorsToVisible(words) {
     }
 }
 
-// ========== ВЫБОР СЛОВА ==========
+// ========== ВЫБОР СЛОВА (ВСЕ СЛОВА ДОБАВЛЯЮТСЯ) ==========
 function selectWord(wordId) {
     const wordIndex = _visibleWords.findIndex(w => w.id === wordId);
     if (wordIndex === -1) return;
@@ -510,24 +510,27 @@ function selectWord(wordId) {
     const word = _visibleWords[wordIndex];
     if (word.isUsed) return;
     
-    // Дистрактор — просто игнорируем
-    if (word.isDistractor) {
-        return;
-    }
-    
+    // ПОМЕЧАЕМ КАК ИСПОЛЬЗОВАННОЕ (любое слово — правильное или дистрактор)
     word.isUsed = true;
     _selectedWords.push(word);
     
+    // Удаляем выбранное слово с его позиции
     _visibleWords.splice(wordIndex, 1);
     
-    const newDistractor = getNextDistractor();
-    if (newDistractor) {
+    // Добавляем новое слово на случайную позицию
+    const newWord = getNextWord();
+    if (newWord) {
         const randomIndex = Math.floor(Math.random() * (_visibleWords.length + 1));
-        _visibleWords.splice(randomIndex, 0, newDistractor);
+        _visibleWords.splice(randomIndex, 0, newWord);
     }
     
+    // Если правильных слов осталось < 2 — подгружаем новые
     refillCorrectWords();
+    
+    // Убеждаемся, что кнопок ровно 6
     ensureSixButtons();
+    
+    // НЕТ ПЕРЕМЕШИВАНИЯ!
     updateTrainerDisplay();
 }
 
@@ -610,7 +613,7 @@ function updateTrainerDisplay() {
 
 // ========== ОСНОВНАЯ ЛОГИКА ОТОБРАЖЕНИЯ ФРАЗЫ ==========
 function showTrainerSentence(container) {
-    // Если достигли конца — просто закольцовываем
+    // Закольцовываем
     if (trainerIndex >= trainerSentences.length) {
         trainerIndex = 0;
     }
@@ -696,14 +699,15 @@ function attachTrainerEvents(container) {
             if (_selectedWords.length === 0) return;
             
             const lastWord = _selectedWords.pop();
+            // Возвращаем слово на кнопки (если оно там ещё не появилось)
             const exists = _visibleWords.some(w => w.text === lastWord.text && w.id !== lastWord.id);
-            
             if (!exists) {
                 _visibleWords.push({
                     ...lastWord,
                     isUsed: false
                 });
             } else {
+                // Если такое слово уже есть — возвращаем в очередь
                 let inserted = false;
                 for (let i = 0; i < _wordQueue.length; i++) {
                     if (_wordQueue[i].id > lastWord.id) {
@@ -765,6 +769,8 @@ function attachTrainerEvents(container) {
             if (normalizedUser === normalizedCorrect) {
                 result.style.backgroundColor = '#C8E6C9';
                 result.textContent = '✅ ПРАВИЛЬНО!';
+                
+                // НЕ СОХРАНЯЕМ В КОНТЕЙНЕР!
                 
                 setTimeout(() => {
                     result.style.backgroundColor = '#FFFFFF';

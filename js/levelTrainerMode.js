@@ -1,5 +1,5 @@
 // ====================================================================
-// levelTrainerMode.js — Тренажёр "Все фразы уровня" (ВЕРСИЯ 6 КНОПОК С ПОДГРУЗКОЙ)
+// levelTrainerMode.js — Тренажёр "Все фразы уровня" (6 КНОПОК)
 // ====================================================================
 
 let levelTrainerSentences = [];
@@ -16,20 +16,20 @@ let levelTrainerCurrentLevel = 'A1';
 let levelTrainerAllPhrases = [];
 let levelTrainerVocabCache = {};
 
-// ===== НОВОЕ: СОСТОЯНИЕ ДЛЯ 6 КНОПОК =====
-let _visibleWords = [];          // слова на кнопках (максимум 6)
-let _wordQueue = [];             // очередь правильных слов
-let _distractorPool = [];        // пул дистракторов
-let _selectedWords = [];         // выбранные пользователем слова (в порядке выбора)
-let _currentPhraseWords = [];    // все правильные слова фразы (с ID)
-let _isShortPhrase = false;      // фраза <= 3 слов
+// ===== СОСТОЯНИЕ ДЛЯ 6 КНОПОК =====
+let _visibleWords = [];
+let _wordQueue = [];
+let _distractorPool = [];
+let _selectedWords = [];
+let _currentPhraseWords = [];
+let _isShortPhrase = false;
 
-// ===== КЕШ ДЛЯ ДИСТРАКТОРОВ =====
+// ===== КЕШ =====
 let _cachedDistractors = null;
 let _cachedLevel = null;
 let _cachedDirection = null;
 
-// ===== НОВОЕ: КЕШ ДЛЯ ВСЕХ ФРАЗ УРОВНЯ =====
+// ===== КЕШ ФРАЗ =====
 function getCachedPhrases(level) {
     try {
         const cache = JSON.parse(localStorage.getItem('dm_phrases_cache') || '{}');
@@ -207,10 +207,8 @@ window.loadAllPhrasesMode = async function(level) {
     levelTrainerIndex = 0;
     levelTrainerDirection = 'ru_to_de';
     
-    // ===== ДОБАВЛЕНО: Убеждаемся, что первая фраза загружена =====
     if (levelTrainerSentences.length > 0) {
         levelTrainerCurrentSentence = levelTrainerSentences[0];
-        console.log('✅ Первая фраза загружена:', levelTrainerCurrentSentence);
     }
     
     showLevelTrainerInterface();
@@ -257,38 +255,26 @@ function initializePhraseState() {
     const isRuToDe = levelTrainerDirection === 'ru_to_de';
     const targetText = isRuToDe ? levelTrainerCurrentSentence.de : levelTrainerCurrentSentence.ru;
     
-    // Разбиваем на слова
     const words = targetText.replace(/[.,!?;:]/g, '').split(/\s+/).filter(w => w.length > 0);
     
-    // Создаем объекты с уникальными ID
     _currentPhraseWords = words.map((text, index) => ({
         id: index,
         text: text,
         isUsed: false
     }));
     
-    // Определяем, короткая ли фраза
     _isShortPhrase = words.length <= 3;
-    
-    // Сбрасываем выбранные слова
     _selectedWords = [];
-    
-    // Создаем очередь (все слова)
     _wordQueue = _currentPhraseWords.map(w => ({ ...w }));
     
-    // Инициализируем пул дистракторов
     initDistractorPool();
-    
-    // Формируем видимые слова
     _visibleWords = [];
     
     if (_isShortPhrase) {
-        // Короткая фраза: показываем ВСЕ слова сразу
         const allWords = _wordQueue.map(w => ({ ...w }));
         _wordQueue = [];
         addDistractorsToVisible(allWords);
     } else {
-        // Длинная фраза: показываем первые 3 слова
         const firstThree = [];
         for (let i = 0; i < 3 && _wordQueue.length > 0; i++) {
             firstThree.push(_wordQueue.shift());
@@ -296,10 +282,8 @@ function initializePhraseState() {
         addDistractorsToVisible(firstThree);
     }
     
-    // Перемешиваем видимые слова
     shuffleArray(_visibleWords);
     
-    // Сбрасываем подсказку
     levelTrainerHintIndex = 0;
     const isRuToDeHint = levelTrainerDirection === 'ru_to_de';
     levelTrainerHintWords = isRuToDeHint 
@@ -312,7 +296,6 @@ function initDistractorPool() {
     const allVocabWords = levelTrainerVocabCache[levelTrainerCurrentLevel] || [];
     const isRuToDe = levelTrainerDirection === 'ru_to_de';
     
-    // Создаем дистракторы (все слова словаря, кроме тех, что во фразе)
     const phraseTexts = new Set(_currentPhraseWords.map(w => w.text.toLowerCase()));
     
     let candidates = allVocabWords.filter(w => {
@@ -321,32 +304,27 @@ function initDistractorPool() {
     });
     
     _distractorPool = candidates.map((w, index) => ({
-        id: -1 - index,  // отрицательные ID, чтобы не пересекались с правильными
+        id: -1 - index,
         text: isRuToDe ? (w.de || '') : (w.ru || ''),
         isDistractor: true
     }));
     
-    // Перемешиваем пул
     shuffleArray(_distractorPool);
 }
 
-// ========== ДОБАВЛЕНИЕ ДИСТРАКТОРОВ К ВИДИМЫМ СЛОВАМ ==========
+// ========== ДОБАВЛЕНИЕ ДИСТРАКТОРОВ ==========
 function addDistractorsToVisible(words) {
-    // Сначала добавляем правильные слова
     _visibleWords = words.map(w => ({
         ...w,
         isDistractor: false,
         isUsed: false
     }));
     
-    // Добавляем дистракторы до 6 кнопок
     const needed = Math.max(0, 6 - _visibleWords.length);
     let added = 0;
     
-    // Берем дистракторы из пула
     for (let i = 0; i < _distractorPool.length && added < needed; i++) {
         const d = _distractorPool[i];
-        // Проверяем, что такого слова нет уже на кнопках
         const exists = _visibleWords.some(v => v.text.toLowerCase() === d.text.toLowerCase());
         if (!exists) {
             _visibleWords.push({
@@ -359,7 +337,6 @@ function addDistractorsToVisible(words) {
         }
     }
     
-    // Если не хватило дистракторов, добиваем случайными из словаря
     if (added < needed) {
         const allVocab = levelTrainerVocabCache[levelTrainerCurrentLevel] || [];
         const isRuToDe = levelTrainerDirection === 'ru_to_de';
@@ -381,41 +358,23 @@ function addDistractorsToVisible(words) {
         }
     }
     
-    // Перемешиваем
     shuffleArray(_visibleWords);
 }
 
 // ========== ВЫБОР СЛОВА ==========
 function selectWord(wordId) {
-    console.log('🔍 selectWord вызван с ID:', wordId);
-    
-    // Находим слово по ID
     const wordIndex = _visibleWords.findIndex(w => w.id === wordId);
-    if (wordIndex === -1) {
-        console.log('❌ Слово с ID', wordId, 'не найдено в _visibleWords');
-        return;
-    }
+    if (wordIndex === -1) return;
     
     const word = _visibleWords[wordIndex];
-    if (word.isUsed) {
-        console.log('⚠️ Слово уже использовано:', word.text);
-        return;
-    }
+    if (word.isUsed) return;
     
-    console.log('✅ Выбрано слово:', word.text, 'ID:', word.id, 'Дистрактор:', word.isDistractor);
-    
-    // Добавляем в выбранные
     word.isUsed = true;
     _selectedWords.push(word);
-    
-    // Удаляем из видимых
     _visibleWords.splice(wordIndex, 1);
     
-    // Если это правильное слово и есть очередь
     if (!word.isDistractor && _wordQueue.length > 0) {
-        // Добавляем следующее правильное слово из очереди
         const nextWord = _wordQueue.shift();
-        console.log('📥 Добавляем из очереди:', nextWord.text);
         _visibleWords.push({
             ...nextWord,
             isDistractor: false,
@@ -423,35 +382,19 @@ function selectWord(wordId) {
         });
     }
     
-    // Добавляем новый дистрактор, если нужно (всегда держим 6 кнопок, если есть из чего)
     if (_visibleWords.length < 6) {
         const newDistractor = getNextDistractor();
         if (newDistractor) {
-            console.log('🎲 Добавляем дистрактор:', newDistractor.text);
             _visibleWords.push(newDistractor);
         }
     }
     
-    // Перемешиваем
     shuffleArray(_visibleWords);
-    
-    // Обновляем отображение
     updateLevelTrainerDisplay();
-    
-    // Проверяем, все ли слова собраны
-    const allWordsCollected = _currentPhraseWords.every(w => {
-        const found = _selectedWords.find(s => s.id === w.id);
-        return found !== undefined;
-    });
-    
-    if (allWordsCollected) {
-        console.log('🎉 Все слова собраны! Нажмите "ПРОВЕРИТЬ"');
-    }
 }
 
 // ========== ПОЛУЧИТЬ СЛЕДУЮЩИЙ ДИСТРАКТОР ==========
 function getNextDistractor() {
-    // Ищем в пуле дистрактор, которого нет на кнопках
     const existingTexts = new Set(_visibleWords.map(v => v.text.toLowerCase()));
     
     for (let i = 0; i < _distractorPool.length; i++) {
@@ -463,13 +406,11 @@ function getNextDistractor() {
                 isDistractor: true,
                 isUsed: false
             };
-            // Удаляем из пула
             _distractorPool.splice(i, 1);
             return result;
         }
     }
     
-    // Если пул пуст, создаем случайный дистрактор из словаря
     const allVocab = levelTrainerVocabCache[levelTrainerCurrentLevel] || [];
     const isRuToDe = levelTrainerDirection === 'ru_to_de';
     const existingTexts2 = new Set(_visibleWords.map(v => v.text.toLowerCase()));
@@ -519,8 +460,6 @@ function updateLevelTrainerDisplay() {
     
     if (wordsContainer) {
         wordsContainer.innerHTML = renderWordButtons();
-        
-        // Привязываем события к кнопкам
         wordsContainer.querySelectorAll('.word-btn').forEach(btn => {
             btn.addEventListener('click', function() {
                 const wordId = parseInt(this.dataset.wordId);
@@ -536,7 +475,6 @@ function updateLevelTrainerDisplay() {
 function showLevelTrainerInterface() {
     const content = document.getElementById('content');
     if (!content) {
-        console.log('⏳ content не найден, ждем...');
         setTimeout(showLevelTrainerInterface, 100);
         return;
     }
@@ -553,21 +491,21 @@ function showLevelTrainerInterface() {
         levelTrainerIndex = 0;
     }
     
-    // ===== ДОБАВЛЕНО: Проверяем, есть ли фраза =====
     if (!levelTrainerCurrentSentence) {
-        console.log('⏳ levelTrainerCurrentSentence не загружен, повторная попытка...');
-        setTimeout(showLevelTrainerInterface, 200);
-        return;
+        if (levelTrainerSentences.length > 0) {
+            levelTrainerCurrentSentence = levelTrainerSentences[0];
+        } else {
+            setTimeout(showLevelTrainerInterface, 200);
+            return;
+        }
     }
     
-    // Инициализируем состояние для фразы
     initializePhraseState();
     
     const questionText = levelTrainerDirection === 'ru_to_de' 
         ? levelTrainerCurrentSentence.ru 
         : levelTrainerCurrentSentence.de;
     
-    // HTML с 6 кнопками
     let html = `
         <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; margin-bottom: 15px;">
             <button class="back-btn" onclick="renderLevel()" style="padding: 8px 16px; background: #3B6FE0; color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: bold;">
@@ -617,10 +555,8 @@ function showLevelTrainerInterface() {
     document.getElementById('modeIndicator').textContent = `🧩 Все фразы уровня ${levelTrainerCurrentLevel}`;
     updateCounter();
     
-    // Привязываем события ПОСЛЕ того, как HTML вставлен
     setTimeout(function() {
         attachLevelTrainerEvents();
-        // Обновляем кнопки (привязываем клики)
         updateLevelTrainerDisplay();
     }, 50);
 }
@@ -642,7 +578,6 @@ function attachLevelTrainerEvents() {
         undoBtn.addEventListener('click', function() {
             if (_selectedWords.length > 0) {
                 const lastWord = _selectedWords.pop();
-                // Возвращаем слово на кнопки
                 _visibleWords.push({
                     ...lastWord,
                     isUsed: false
@@ -656,7 +591,6 @@ function attachLevelTrainerEvents() {
     const resetBtn = document.getElementById('levelTrainerResetBtn');
     if (resetBtn) {
         resetBtn.addEventListener('click', function() {
-            // Полный сброс фразы
             initializePhraseState();
             updateLevelTrainerDisplay();
             document.getElementById('levelTrainerHintLabel').textContent = '';
@@ -685,9 +619,7 @@ function attachLevelTrainerEvents() {
             if (normalizedUser === normalizedCorrect) {
                 result.style.backgroundColor = '#C8E6C9';
                 result.textContent = '✅ ПРАВИЛЬНО!';
-                const key = levelTrainerCurrentSentence.de + '|' + levelTrainerCurrentSentence.ru;
-                levelTrainerStudied[key] = true;
-                saveLevelTrainerStudied(levelTrainerCurrentLevel);
+                // ===== ВАЖНО: НЕ СОХРАНЯЕМ В КОНТЕЙНЕР АВТОМАТИЧЕСКИ! =====
                 setTimeout(() => {
                     result.style.backgroundColor = '#FFFFFF';
                     levelTrainerIndex++;
@@ -701,7 +633,6 @@ function attachLevelTrainerEvents() {
                 result.textContent = '❌ Неправильно. Попробуйте снова.';
                 setTimeout(() => {
                     result.style.backgroundColor = '#FFFFFF';
-                    // Сброс состояния фразы
                     initializePhraseState();
                     updateLevelTrainerDisplay();
                     const hasWords = _selectedWords.length > 0;
@@ -933,9 +864,9 @@ function showLevelTrainerContainer() {
 window.loadAllPhrasesMode = loadAllPhrasesMode;
 window.showLevelTrainerContainer = showLevelTrainerContainer;
 
-console.log('🧩 levelTrainerMode.js загружен (ВЕРСИЯ 6 КНОПОК С ПОДГРУЗКОЙ)');
+console.log('🧩 levelTrainerMode.js загружен (6 КНОПОК + ПОДГРУЗКА)');
 
-// ===== ЭКСПОРТ В ГЛОБАЛЬНУЮ ОБЛАСТЬ (для отладки) =====
+// ===== ЭКСПОРТ В ГЛОБАЛЬНУЮ ОБЛАСТЬ =====
 window._visibleWords = _visibleWords;
 window._selectedWords = _selectedWords;
 window._wordQueue = _wordQueue;
@@ -945,12 +876,10 @@ window.initializePhraseState = initializePhraseState;
 window.updateLevelTrainerDisplay = updateLevelTrainerDisplay;
 window.showLevelTrainerInterface = showLevelTrainerInterface;
 
-// ===== АВТОМАТИЧЕСКАЯ ИНИЦИАЛИЗАЦИЯ ПРИ ЗАГРУЗКЕ =====
+// ===== АВТОМАТИЧЕСКАЯ ИНИЦИАЛИЗАЦИЯ =====
 document.addEventListener('DOMContentLoaded', function() {
-    console.log('🔄 DOM загружен, проверяем тренажёр...');
     const modeIndicator = document.getElementById('modeIndicator');
     if (modeIndicator && modeIndicator.textContent.includes('Все фразы уровня')) {
-        console.log('✅ Обнаружен режим "Все фразы уровня", инициализируем...');
         const level = window.currentLevel || 'A1';
         if (typeof window.loadAllPhrasesMode === 'function') {
             setTimeout(function() {

@@ -2,6 +2,8 @@
 // trainerMode.js — Тренажёр (сборка фраз из слов) — 6 КНОПОК С ПОДГРУЗКОЙ
 // ====================================================================
 
+(function() {
+
 let trainerSentences = [];
 let trainerIndex = 0;
 let trainerCurrentSentence = null;
@@ -367,7 +369,6 @@ function initializePhraseState() {
 
 // ========== ГАРАНТИРУЕМ 6 КНОПОК ==========
 function ensureSixButtons() {
-    // Удаляем дубликаты на кнопках
     const uniqueWords = [];
     const seenTexts = new Set();
     for (const w of _visibleWords) {
@@ -379,7 +380,6 @@ function ensureSixButtons() {
     }
     _visibleWords = uniqueWords;
     
-    // Удаляем лишние дистракторы
     while (_visibleWords.length > 6) {
         const distractorIndex = _visibleWords.findIndex(w => w.isDistractor === true);
         if (distractorIndex !== -1) {
@@ -389,7 +389,6 @@ function ensureSixButtons() {
         }
     }
     
-    // Добавляем дистракторы
     while (_visibleWords.length < 6) {
         const newDistractor = getNextDistractor();
         if (newDistractor) {
@@ -592,13 +591,11 @@ function showTrainerSentence(container) {
 
     trainerCurrentSentence = trainerSentences[trainerIndex];
     
-    // Инициализируем состояние для фразы
     initializePhraseState();
     
     const isRuToDe = trainerDirection === 'ru_to_de';
     const questionText = isRuToDe ? trainerCurrentSentence.ru : trainerCurrentSentence.de;
 
-    // Обновляем кнопку направления в header
     const headerControls = document.getElementById('modeHeaderControls');
     if (headerControls) {
         headerControls.innerHTML = `
@@ -658,7 +655,6 @@ function showTrainerSentence(container) {
 
 // ========== ПРИВЯЗКА СОБЫТИЙ ==========
 function attachTrainerEvents(container) {
-    // Кнопка направления
     const dirBtn = document.getElementById('trainerDirBtn');
     if (dirBtn) {
         dirBtn.addEventListener('click', function() {
@@ -668,7 +664,6 @@ function attachTrainerEvents(container) {
         });
     }
 
-    // Undo
     const undoBtn = document.getElementById('trainerUndoBtn');
     if (undoBtn) {
         undoBtn.addEventListener('click', function() {
@@ -712,7 +707,6 @@ function attachTrainerEvents(container) {
         });
     }
 
-    // Reset
     const resetBtn = document.getElementById('trainerResetBtn');
     if (resetBtn) {
         resetBtn.addEventListener('click', function() {
@@ -724,7 +718,6 @@ function attachTrainerEvents(container) {
         });
     }
 
-    // Check
     const checkBtn = document.getElementById('trainerCheckBtn');
     if (checkBtn) {
         checkBtn.addEventListener('click', function() {
@@ -778,7 +771,6 @@ function attachTrainerEvents(container) {
         });
     }
 
-    // Speak
     const speakBtn = document.getElementById('trainerSpeakBtn');
     if (speakBtn) {
         speakBtn.addEventListener('click', function() {
@@ -788,7 +780,6 @@ function attachTrainerEvents(container) {
         });
     }
 
-    // Hint
     const hintBtn = document.getElementById('trainerHintBtn');
     if (hintBtn) {
         hintBtn.addEventListener('click', function() {
@@ -803,7 +794,6 @@ function attachTrainerEvents(container) {
         });
     }
 
-    // Study
     const studyBtn = document.getElementById('trainerStudyBtn');
     if (studyBtn) {
         studyBtn.addEventListener('click', function() {
@@ -839,7 +829,6 @@ function attachTrainerEvents(container) {
         });
     }
 
-    // Container
     const containerBtn = document.getElementById('trainerContainerBtn');
     if (containerBtn) {
         containerBtn.addEventListener('click', function() {
@@ -852,7 +841,6 @@ function attachTrainerEvents(container) {
         });
     }
 
-    // Prev
     const prevBtn = document.getElementById('trainerPrevBtn');
     if (prevBtn) {
         prevBtn.addEventListener('click', function() {
@@ -863,7 +851,6 @@ function attachTrainerEvents(container) {
         });
     }
 
-    // Next
     const nextBtn = document.getElementById('trainerNextBtn');
     if (nextBtn) {
         nextBtn.addEventListener('click', function() {
@@ -874,7 +861,6 @@ function attachTrainerEvents(container) {
         });
     }
 
-    // Reset start
     const resetStartBtn = document.getElementById('trainerResetStartBtn');
     if (resetStartBtn) {
         resetStartBtn.addEventListener('click', function() {
@@ -899,3 +885,5 @@ function shuffleArray(array) {
 window.renderTrainer = renderTrainer;
 
 console.log('🧩 trainerMode.js загружен (6 КНОПОК + ПОДГРУЗКА)');
+
+})();

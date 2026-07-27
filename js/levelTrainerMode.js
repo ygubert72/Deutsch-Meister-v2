@@ -294,6 +294,22 @@ function initializePhraseState() {
 
 // ========== ГАРАНТИРУЕМ 6 КНОПОК ==========
 function ensureSixButtons() {
+    // Удаляем дубликаты на кнопках (оставляем только уникальные слова)
+    const uniqueWords = [];
+    const seenTexts = new Set();
+    for (const w of _visibleWords) {
+        const key = w.text.toLowerCase();
+        if (!seenTexts.has(key) || w.isDistractor === false) {
+            uniqueWords.push(w);
+            seenTexts.add(key);
+        } else {
+            // Если это дистрактор-дубликат — удаляем и возвращаем в пул
+            console.log('🗑️ Удалён дубликат-дистрактор:', w.text);
+        }
+    }
+    _visibleWords = uniqueWords;
+    
+    // Удаляем лишние дистракторы, если кнопок больше 6
     while (_visibleWords.length > 6) {
         const distractorIndex = _visibleWords.findIndex(w => w.isDistractor === true);
         if (distractorIndex !== -1) {
@@ -303,6 +319,7 @@ function ensureSixButtons() {
         }
     }
     
+    // Добавляем дистракторы, если кнопок меньше 6
     while (_visibleWords.length < 6) {
         const newDistractor = getNextDistractor();
         if (newDistractor) {
@@ -603,13 +620,48 @@ function attachLevelTrainerEvents() {
         undoBtn.addEventListener('click', function() {
             if (_selectedWords.length === 0) return;
             
+            // 1. Забираем последнее выбранное слово
             const lastWord = _selectedWords.pop();
-            _visibleWords.push({
-                ...lastWord,
-                isUsed: false
-            });
             
+            // 2. Проверяем, есть ли уже такое слово на кнопках (по тексту, но с другим ID)
+            const exists = _visibleWords.some(w => w.text === lastWord.text && w.id !== lastWord.id);
+            
+            // 3. Если такого слова нет на кнопках — возвращаем
+            if (!exists) {
+                _visibleWords.push({
+                    ...lastWord,
+                    isUsed: false
+                });
+            } else {
+                // Если слово уже есть на кнопках — возвращаем его в ОЧЕРЕДЬ
+                // (восстанавливаем порядок по ID)
+                let inserted = false;
+                for (let i = 0; i < _wordQueue.length; i++) {
+                    if (_wordQueue[i].id > lastWord.id) {
+                        _wordQueue.splice(i, 0, {
+                            id: lastWord.id,
+                            text: lastWord.text,
+                            isUsed: false,
+                            isDistractor: false
+                        });
+                        inserted = true;
+                        break;
+                    }
+                }
+                if (!inserted) {
+                    _wordQueue.push({
+                        id: lastWord.id,
+                        text: lastWord.text,
+                        isUsed: false,
+                        isDistractor: false
+                    });
+                }
+                console.log('↩️ Слово "' + lastWord.text + '" возвращено в очередь (уже есть на кнопках)');
+            }
+            
+            // 4. Убеждаемся, что на кнопках нет дубликатов
             ensureSixButtons();
+            
             shuffleArray(_visibleWords);
             updateLevelTrainerDisplay();
         });

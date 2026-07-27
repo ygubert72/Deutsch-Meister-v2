@@ -915,3 +915,13 @@ window.loadAllPhrasesMode = loadAllPhrasesMode;
 window.showLevelTrainerContainer = showLevelTrainerContainer;
 
 console.log('🧩 levelTrainerMode.js загружен (ВЕРСИЯ 6 КНОПОК С ПОДГРУЗКОЙ)');
+
+// ===== ЭКСПОРТ В ГЛОБАЛЬНУЮ ОБЛАСТЬ (для отладки) =====
+window._visibleWords = _visibleWords;
+window._selectedWords = _selectedWords;
+window._wordQueue = _wordQueue;
+window._currentPhraseWords = _currentPhraseWords;
+window.selectWord = selectWord;
+window.initializePhraseState = initializePhraseState;
+window.updateLevelTrainerDisplay = updateLevelTrainerDisplay;
+window.showLevelTrainerInterface = showLevelTrainerInterface;

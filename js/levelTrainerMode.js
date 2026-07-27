@@ -1,5 +1,5 @@
 // ====================================================================
-// levelTrainerMode.js — Тренажёр "Все фразы уровня" (6 КНОПОК)
+// levelTrainerMode.js — Тренажёр "Все фразы уровня" (6 КНОПОК С ПОДГРУЗКОЙ)
 // ====================================================================
 
 let levelTrainerSentences = [];
@@ -282,6 +282,9 @@ function initializePhraseState() {
         addDistractorsToVisible(firstThree);
     }
     
+    // Убеждаемся, что кнопок ровно 6
+    ensureSixButtons();
+    
     shuffleArray(_visibleWords);
     
     levelTrainerHintIndex = 0;
@@ -289,6 +292,29 @@ function initializePhraseState() {
     levelTrainerHintWords = isRuToDeHint 
         ? levelTrainerCurrentSentence.de.replace(/[.,!?;:]/g, '').split(/\s+/)
         : levelTrainerCurrentSentence.ru.replace(/[.,!?;:]/g, '').split(/\s+/);
+}
+
+// ========== ГАРАНТИРУЕМ 6 КНОПОК ==========
+function ensureSixButtons() {
+    // Удаляем лишние дистракторы, если кнопок больше 6
+    while (_visibleWords.length > 6) {
+        const distractorIndex = _visibleWords.findIndex(w => w.isDistractor === true);
+        if (distractorIndex !== -1) {
+            _visibleWords.splice(distractorIndex, 1);
+        } else {
+            _visibleWords.pop();
+        }
+    }
+    
+    // Добавляем дистракторы, если кнопок меньше 6
+    while (_visibleWords.length < 6) {
+        const newDistractor = getNextDistractor();
+        if (newDistractor) {
+            _visibleWords.push(newDistractor);
+        } else {
+            break;
+        }
+    }
 }
 
 // ========== ИНИЦИАЛИЗАЦИЯ ПУЛА ДИСТРАКТОРОВ ==========
@@ -357,8 +383,6 @@ function addDistractorsToVisible(words) {
             }
         }
     }
-    
-    shuffleArray(_visibleWords);
 }
 
 // ========== ВЫБОР СЛОВА ==========
@@ -382,12 +406,16 @@ function selectWord(wordId) {
         });
     }
     
+    // Добавляем новый дистрактор, если нужно
     if (_visibleWords.length < 6) {
         const newDistractor = getNextDistractor();
         if (newDistractor) {
             _visibleWords.push(newDistractor);
         }
     }
+    
+    // Убеждаемся, что кнопок ровно 6
+    ensureSixButtons();
     
     shuffleArray(_visibleWords);
     updateLevelTrainerDisplay();
@@ -576,22 +604,32 @@ function attachLevelTrainerEvents() {
     const undoBtn = document.getElementById('levelTrainerUndoBtn');
     if (undoBtn) {
         undoBtn.addEventListener('click', function() {
-            if (_selectedWords.length > 0) {
-                const lastWord = _selectedWords.pop();
-                _visibleWords.push({
-                    ...lastWord,
-                    isUsed: false
-                });
-                shuffleArray(_visibleWords);
-                updateLevelTrainerDisplay();
-            }
+            if (_selectedWords.length === 0) return;
+            
+            // Забираем последнее выбранное слово
+            const lastWord = _selectedWords.pop();
+            
+            // Возвращаем его на кнопки
+            _visibleWords.push({
+                ...lastWord,
+                isUsed: false
+            });
+            
+            // Убеждаемся, что кнопок ровно 6
+            ensureSixButtons();
+            
+            shuffleArray(_visibleWords);
+            updateLevelTrainerDisplay();
         });
     }
 
     const resetBtn = document.getElementById('levelTrainerResetBtn');
     if (resetBtn) {
         resetBtn.addEventListener('click', function() {
+            // Полный сброс фразы
             initializePhraseState();
+            // Убеждаемся, что кнопок ровно 6
+            ensureSixButtons();
             updateLevelTrainerDisplay();
             document.getElementById('levelTrainerHintLabel').textContent = '';
             levelTrainerHintIndex = 0;
@@ -619,7 +657,7 @@ function attachLevelTrainerEvents() {
             if (normalizedUser === normalizedCorrect) {
                 result.style.backgroundColor = '#C8E6C9';
                 result.textContent = '✅ ПРАВИЛЬНО!';
-                // ===== ВАЖНО: НЕ СОХРАНЯЕМ В КОНТЕЙНЕР АВТОМАТИЧЕСКИ! =====
+                // ===== НЕ СОХРАНЯЕМ В КОНТЕЙНЕР АВТОМАТИЧЕСКИ! =====
                 setTimeout(() => {
                     result.style.backgroundColor = '#FFFFFF';
                     levelTrainerIndex++;
@@ -634,6 +672,7 @@ function attachLevelTrainerEvents() {
                 setTimeout(() => {
                     result.style.backgroundColor = '#FFFFFF';
                     initializePhraseState();
+                    ensureSixButtons();
                     updateLevelTrainerDisplay();
                     const hasWords = _selectedWords.length > 0;
                     const displayText = _selectedWords.map(w => w.text).join(' ') || 'Нажмите на слова, чтобы собрать предложение';
@@ -875,6 +914,7 @@ window.selectWord = selectWord;
 window.initializePhraseState = initializePhraseState;
 window.updateLevelTrainerDisplay = updateLevelTrainerDisplay;
 window.showLevelTrainerInterface = showLevelTrainerInterface;
+window.ensureSixButtons = ensureSixButtons;
 
 // ===== АВТОМАТИЧЕСКАЯ ИНИЦИАЛИЗАЦИЯ =====
 document.addEventListener('DOMContentLoaded', function() {

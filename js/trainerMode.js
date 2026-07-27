@@ -1,5 +1,5 @@
 // ====================================================================
-// trainerMode.js — Тренажёр (сборка фраз из слов) — 6 КНОПОК С ПОДГРУЗКОЙ
+// trainerMode.js — Тренажёр (сборка фраз из слов) — 6 КНОПОК, БЕЗ ПЕРЕМЕШИВАНИЯ, ВОЛНЫ
 // ====================================================================
 
 (function() {
@@ -369,6 +369,7 @@ function initializePhraseState() {
 
 // ========== ГАРАНТИРУЕМ 6 КНОПОК ==========
 function ensureSixButtons() {
+    // Удаляем дубликаты
     const uniqueWords = [];
     const seenTexts = new Set();
     for (const w of _visibleWords) {
@@ -380,6 +381,7 @@ function ensureSixButtons() {
     }
     _visibleWords = uniqueWords;
     
+    // Если больше 6 — удаляем лишние дистракторы
     while (_visibleWords.length > 6) {
         const distractorIndex = _visibleWords.findIndex(w => w.isDistractor === true);
         if (distractorIndex !== -1) {
@@ -389,13 +391,59 @@ function ensureSixButtons() {
         }
     }
     
+    // Если меньше 6 — добавляем слова
     while (_visibleWords.length < 6) {
-        const newDistractor = getNextDistractor();
-        if (newDistractor) {
-            _visibleWords.push(newDistractor);
+        const newWord = getNextWord();
+        if (newWord) {
+            _visibleWords.push(newWord);
         } else {
             break;
         }
+    }
+}
+
+// ========== ПОЛУЧИТЬ СЛЕДУЮЩЕЕ СЛОВО ==========
+function getNextWord() {
+    // Сначала пробуем взять правильное слово из очереди
+    if (_wordQueue.length > 0) {
+        const nextWord = _wordQueue.shift();
+        return {
+            ...nextWord,
+            isDistractor: false,
+            isUsed: false
+        };
+    }
+    return getNextDistractor();
+}
+
+// ========== ПОДГРУЗКА ПРАВИЛЬНЫХ СЛОВ (ВОЛНАМИ) ==========
+function refillCorrectWords() {
+    // Считаем, сколько правильных слов на кнопках
+    const correctWordsOnButtons = _visibleWords.filter(w => !w.isDistractor).length;
+    
+    // Если правильных слов < 2 И есть очередь
+    if (correctWordsOnButtons < 2 && _wordQueue.length > 0) {
+        console.log('🔄 Подгружаем правильные слова! Очередь:', _wordQueue.length);
+        
+        // Берем из очереди столько слов, сколько нужно до 3 (но не больше, чем есть в очереди)
+        const needed = 3 - correctWordsOnButtons;
+        const wordsToAdd = [];
+        for (let i = 0; i < needed && _wordQueue.length > 0; i++) {
+            wordsToAdd.push({
+                ..._wordQueue.shift(),
+                isDistractor: false,
+                isUsed: false
+            });
+        }
+        
+        // Вставляем новые слова на случайные позиции
+        for (const w of wordsToAdd) {
+            const randomIndex = Math.floor(Math.random() * (_visibleWords.length + 1));
+            _visibleWords.splice(randomIndex, 0, w);
+        }
+        
+        // Убеждаемся, что кнопок ровно 6
+        ensureSixButtons();
     }
 }
 
@@ -473,28 +521,45 @@ function selectWord(wordId) {
     const word = _visibleWords[wordIndex];
     if (word.isUsed) return;
     
+    // Если это дистрактор — ничего не делаем
+    if (word.isDistractor) {
+        // Визуальная обратная связь
+        const wordsContainer = document.getElementById('trainerWordsContainer');
+        if (wordsContainer) {
+            const btn = wordsContainer.querySelector(`[data-word-id="${wordId}"]`);
+            if (btn) {
+                btn.style.backgroundColor = '#FFCDD2';
+                btn.style.borderColor = '#F44336';
+                setTimeout(() => {
+                    btn.style.backgroundColor = '#E8F0FE';
+                    btn.style.borderColor = '#D0D0D0';
+                }, 300);
+            }
+        }
+        return;
+    }
+    
+    // Это правильное слово — добавляем в результат
     word.isUsed = true;
     _selectedWords.push(word);
+    
+    // Удаляем выбранное слово с его позиции
     _visibleWords.splice(wordIndex, 1);
     
-    if (!word.isDistractor && _wordQueue.length > 0) {
-        const nextWord = _wordQueue.shift();
-        _visibleWords.push({
-            ...nextWord,
-            isDistractor: false,
-            isUsed: false
-        });
+    // Добавляем дистрактор на случайную позицию (чтобы всегда было 6)
+    const newDistractor = getNextDistractor();
+    if (newDistractor) {
+        const randomIndex = Math.floor(Math.random() * (_visibleWords.length + 1));
+        _visibleWords.splice(randomIndex, 0, newDistractor);
     }
     
-    if (_visibleWords.length < 6) {
-        const newDistractor = getNextDistractor();
-        if (newDistractor) {
-            _visibleWords.push(newDistractor);
-        }
-    }
+    // ПРОВЕРКА: если правильных слов осталось < 2 — подгружаем новые
+    refillCorrectWords();
     
+    // Убеждаемся, что кнопок ровно 6
     ensureSixButtons();
-    shuffleArray(_visibleWords);
+    
+    // НЕТ ПЕРЕМЕШИВАНИЯ!
     updateTrainerDisplay();
 }
 
@@ -702,7 +767,6 @@ function attachTrainerEvents(container) {
             }
             
             ensureSixButtons();
-            shuffleArray(_visibleWords);
             updateTrainerDisplay();
         });
     }
@@ -712,6 +776,8 @@ function attachTrainerEvents(container) {
         resetBtn.addEventListener('click', function() {
             initializePhraseState();
             ensureSixButtons();
+            // При сбросе перемешиваем
+            shuffleArray(_visibleWords);
             updateTrainerDisplay();
             document.getElementById('trainerHintLabel').textContent = '';
             trainerHintIndex = 0;
@@ -740,8 +806,7 @@ function attachTrainerEvents(container) {
                 result.style.backgroundColor = '#C8E6C9';
                 result.textContent = '✅ ПРАВИЛЬНО!';
                 
-                // ===== ИСПРАВЛЕНО: НЕ СОХРАНЯЕМ В КОНТЕЙНЕР АВТОМАТИЧЕСКИ! =====
-                // Фраза попадает в контейнер ТОЛЬКО при нажатии "ИЗУЧЕНО"
+                // НЕ СОХРАНЯЕМ В КОНТЕЙНЕР!
                 
                 setTimeout(() => {
                     result.style.backgroundColor = '#FFFFFF';
@@ -759,6 +824,8 @@ function attachTrainerEvents(container) {
                     result.style.backgroundColor = '#FFFFFF';
                     initializePhraseState();
                     ensureSixButtons();
+                    // При ошибке перемешиваем
+                    shuffleArray(_visibleWords);
                     updateTrainerDisplay();
                     const hasWords = _selectedWords.length > 0;
                     const displayText = _selectedWords.map(w => w.text).join(' ') || 'Нажмите на слова, чтобы собрать предложение';
@@ -883,6 +950,6 @@ function shuffleArray(array) {
 // ===== ЭКСПОРТ =====
 window.renderTrainer = renderTrainer;
 
-console.log('🧩 trainerMode.js загружен (6 КНОПОК + ПОДГРУЗКА)');
+console.log('🧩 trainerMode.js загружен (6 КНОПОК, ВОЛНЫ, БЕЗ ПЕРЕМЕШИВАНИЯ ПРИ ВЫБОРЕ)');
 
 })();

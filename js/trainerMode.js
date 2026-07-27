@@ -740,9 +740,8 @@ function attachTrainerEvents(container) {
                 result.style.backgroundColor = '#C8E6C9';
                 result.textContent = '✅ ПРАВИЛЬНО!';
                 
-                const key = trainerCurrentSentence.de + '|' + trainerCurrentSentence.ru;
-                trainerStudiedSentences[key] = true;
-                saveTrainerState();
+                // ===== ИСПРАВЛЕНО: НЕ СОХРАНЯЕМ В КОНТЕЙНЕР АВТОМАТИЧЕСКИ! =====
+                // Фраза попадает в контейнер ТОЛЬКО при нажатии "ИЗУЧЕНО"
                 
                 setTimeout(() => {
                     result.style.backgroundColor = '#FFFFFF';

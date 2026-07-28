@@ -1,5 +1,5 @@
 // ====================================================================
-// trainerMode.js — Тренажёр (сборка фраз из слов) — ВОЛНОВОЙ ПРИНЦИП
+// trainerMode.js — Тренажёр (сборка фраз из слов) — ИСПРАВЛЕННЫЙ
 // ====================================================================
 
 (function() {
@@ -340,38 +340,32 @@ function insertWordAtRandomPosition(words, word) {
 
 // ========== ВОССТАНОВЛЕНИЕ ОЧЕРЕДИ (ИСПРАВЛЕНО) ==========
 function restoreTrainerQueue() {
-    // ВСЕГДА берём слова из текущего предложения
+    // Если нет текущего предложения — выходим
     if (!trainerCurrentSentence) {
-        console.warn('⚠️ restoreTrainerQueue: нет текущего предложения');
         return;
     }
     
+    // Берём правильные слова из текущего предложения
     const hintWords = trainerCurrentSentence.de.replace(/[.,!?;:]/g, '').split(/\s+/);
     
-    const allCorrectWords = hintWords.map(w => ({
-        display: w,
-        de: w,
-        ru: w,
-        isCorrect: true,
-        originalIndex: -1
-    }));
-    
+    // Смотрим, какие правильные слова уже есть на кнопках
     const usedDisplaySet = new Set(trainerAvailableWords.map(w => w.display));
-    const missingCorrectWords = allCorrectWords.filter(w => !usedDisplaySet.has(w.display));
     
+    // Находим недостающие правильные слова
+    const missingCorrectWords = hintWords.filter(w => !usedDisplaySet.has(w));
+    
+    // Добавляем их в очередь
     _trainerWordQueue = [];
     missingCorrectWords.forEach(w => {
         _trainerWordQueue.push({
             id: ++_trainerWordIdCounter,
-            display: w.display,
-            de: w.de,
-            ru: w.ru,
+            display: w,
+            de: w,
+            ru: w,
             isCorrect: true,
             originalIndex: -1
         });
     });
-    
-    console.log('🔄 Очередь восстановлена:', _trainerWordQueue.map(w => w.display));
 }
 
 // ========== ГАРАНТИЯ ПРАВИЛЬНЫХ СЛОВ НА КНОПКАХ ==========
@@ -657,8 +651,7 @@ function attachTrainerEvents(container) {
                     }));
                 
                 if (availableDistractors.length > 0) {
-                    const randomDistractor = availableDistractors[Math.floor(Math.random() * availableDistractors.length)];
-                    replacementWord = randomDistractor;
+                    replacementWord = availableDistractors[Math.floor(Math.random() * availableDistractors.length)];
                 } else {
                     replacementWord = {
                         display: '___',
@@ -940,6 +933,6 @@ window._debugTrainer = {
 };
 console.log('🐛 Отладка trainerMode включена. Используйте window._debugTrainer');
 
-console.log('🧩 trainerMode.js загружен (ВОЛНОВОЙ ПРИНЦИП)');
+console.log('🧩 trainerMode.js загружен');
 
 })();

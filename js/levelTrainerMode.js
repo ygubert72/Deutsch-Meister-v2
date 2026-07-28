@@ -193,6 +193,7 @@ window.loadAllPhrasesMode = async function(level) {
     _cachedLevel = null;
     _cachedDirection = null;
     _wordQueue = [];
+    _wordIdCounter = 0;
     
     loadLevelTrainerStudied(level);
     levelTrainerAllPhrases = await loadAllPhrasesForLevel(level);
@@ -333,9 +334,9 @@ function showLevelTrainerInterface() {
         remainingCorrectWords = correctWords.slice(3);
     }
 
-    // Сохраняем в очередь для подгрузки
+    // ===== ИСПРАВЛЕНО: СОЗДАЁМ НОВЫЕ УНИКАЛЬНЫЕ ID ДЛЯ ОЧЕРЕДИ =====
     _wordQueue = remainingCorrectWords.map(w => ({
-        id: w.id,
+        id: ++_wordIdCounter,  // ← НОВЫЙ УНИКАЛЬНЫЙ ID
         display: w.display,
         de: w.de,
         ru: w.ru,
@@ -418,7 +419,7 @@ function showLevelTrainerInterface() {
             <div style="background: #FFFFFF; border: 2px solid #E0E0E0; border-radius: 16px; padding: 15px; margin: 10px 0; text-align: center; font-size: 20px; min-height: 60px; color: #CCCCCC; font-weight: normal;" id="levelTrainerResult">
                 Нажмите на слова, чтобы собрать предложение
             </div>
-            <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; max-width: 700px; margin: 15px auto;" id="levelTrainerWordsContainer">
+            <div class="words-container" id="levelTrainerWordsContainer">
                 ${levelTrainerAvailableWords.map(word => `
                     <button class="word-btn" data-word-id="${word.id}" style="padding: 12px 18px; font-size: 14px; text-align: center; min-height: 48px; display: flex; align-items: center; justify-content: center; background: #E8F0FE; border: 2px solid #D0D0D0; border-radius: 40px; cursor: pointer; white-space: nowrap;">
                         ${word.display}
@@ -498,13 +499,14 @@ function attachLevelTrainerEvents() {
             // Сначала проверяем очередь правильных слов
             if (_wordQueue.length > 0) {
                 const queued = _wordQueue.shift();
+                // ===== ИСПРАВЛЕНО: СОЗДАЁМ НОВЫЙ ID =====
                 replacementWord = {
                     display: queued.display,
                     de: queued.de,
                     ru: queued.ru,
                     isCorrect: true,
                     originalIndex: queued.originalIndex,
-                    id: queued.id
+                    id: ++_wordIdCounter  // ← НОВЫЙ УНИКАЛЬНЫЙ ID
                 };
             } else {
                 // Если очередь пуста — берём дистрактор
@@ -554,7 +556,12 @@ function attachLevelTrainerEvents() {
         undoBtn.addEventListener('click', function() {
             if (levelTrainerSelectedWords.length > 0) {
                 const lastWord = levelTrainerSelectedWords.pop();
-                insertWordAtRandomPosition(levelTrainerAvailableWords, lastWord);
+                // ===== ИСПРАВЛЕНО: СОЗДАЁМ НОВЫЙ ID ДЛЯ ВОЗВРАЩАЕМОГО СЛОВА =====
+                const wordWithNewId = {
+                    ...lastWord,
+                    id: ++_wordIdCounter
+                };
+                insertWordAtRandomPosition(levelTrainerAvailableWords, wordWithNewId);
                 updateLevelTrainerResultDisplay();
                 renderLevelTrainerWords();
             }
@@ -566,7 +573,11 @@ function attachLevelTrainerEvents() {
         resetBtn.addEventListener('click', function() {
             while (levelTrainerSelectedWords.length > 0) {
                 const word = levelTrainerSelectedWords.pop();
-                insertWordAtRandomPosition(levelTrainerAvailableWords, word);
+                const wordWithNewId = {
+                    ...word,
+                    id: ++_wordIdCounter
+                };
+                insertWordAtRandomPosition(levelTrainerAvailableWords, wordWithNewId);
             }
             updateLevelTrainerResultDisplay();
             renderLevelTrainerWords();
@@ -613,7 +624,11 @@ function attachLevelTrainerEvents() {
                     result.style.backgroundColor = '#FFFFFF';
                     while (levelTrainerSelectedWords.length > 0) {
                         const word = levelTrainerSelectedWords.pop();
-                        insertWordAtRandomPosition(levelTrainerAvailableWords, word);
+                        const wordWithNewId = {
+                            ...word,
+                            id: ++_wordIdCounter
+                        };
+                        insertWordAtRandomPosition(levelTrainerAvailableWords, wordWithNewId);
                     }
                     updateLevelTrainerResultDisplay();
                     renderLevelTrainerWords();

@@ -413,9 +413,9 @@ function showTrainerSentence(container) {
         remainingCorrectWords = correctWords.slice(3);
     }
 
-    // Сохраняем в очередь для подгрузки
+    // ===== ИСПРАВЛЕНО: СОЗДАЁМ НОВЫЕ УНИКАЛЬНЫЕ ID ДЛЯ ОЧЕРЕДИ =====
     _trainerWordQueue = remainingCorrectWords.map(w => ({
-        id: w.id,
+        id: ++_trainerWordIdCounter,  // ← НОВЫЙ УНИКАЛЬНЫЙ ID
         display: w.display,
         de: w.de,
         ru: w.ru,
@@ -500,7 +500,7 @@ function showTrainerSentence(container) {
                 Нажмите на слова, чтобы собрать предложение
             </div>
             
-            <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; max-width: 700px; margin: 15px auto;" id="trainerWordsContainer">
+            <div class="words-container" id="trainerWordsContainer">
                 ${trainerAvailableWords.map(word => `
                     <button class="word-btn" data-word-id="${word.id}" style="padding: 12px 18px; font-size: 14px; text-align: center; min-height: 48px; display: flex; align-items: center; justify-content: center; background: #E8F0FE; border: 2px solid #D0D0D0; border-radius: 40px; cursor: pointer; white-space: nowrap;">
                         ${word.display}
@@ -580,13 +580,14 @@ function showTrainerSentence(container) {
             // Сначала проверяем очередь правильных слов
             if (_trainerWordQueue.length > 0) {
                 const queued = _trainerWordQueue.shift();
+                // ===== ИСПРАВЛЕНО: СОЗДАЁМ НОВЫЙ ID =====
                 replacementWord = {
                     display: queued.display,
                     de: queued.de,
                     ru: queued.ru,
                     isCorrect: true,
                     originalIndex: queued.originalIndex,
-                    id: queued.id
+                    id: ++_trainerWordIdCounter  // ← НОВЫЙ УНИКАЛЬНЫЙ ID
                 };
             } else {
                 // Если очередь пуста — берём дистрактор
@@ -637,7 +638,12 @@ function showTrainerSentence(container) {
         undoBtn.addEventListener('click', function() {
             if (trainerSelectedWords.length > 0) {
                 const lastWord = trainerSelectedWords.pop();
-                insertWordAtRandomPosition(trainerAvailableWords, lastWord);
+                // ===== ИСПРАВЛЕНО: СОЗДАЁМ НОВЫЙ ID ДЛЯ ВОЗВРАЩАЕМОГО СЛОВА =====
+                const wordWithNewId = {
+                    ...lastWord,
+                    id: ++_trainerWordIdCounter
+                };
+                insertWordAtRandomPosition(trainerAvailableWords, wordWithNewId);
                 updateTrainerResultDisplay();
                 renderTrainerWords();
             }
@@ -650,7 +656,11 @@ function showTrainerSentence(container) {
         resetBtn.addEventListener('click', function() {
             while (trainerSelectedWords.length > 0) {
                 const word = trainerSelectedWords.pop();
-                insertWordAtRandomPosition(trainerAvailableWords, word);
+                const wordWithNewId = {
+                    ...word,
+                    id: ++_trainerWordIdCounter
+                };
+                insertWordAtRandomPosition(trainerAvailableWords, wordWithNewId);
             }
             updateTrainerResultDisplay();
             renderTrainerWords();
@@ -702,7 +712,11 @@ function showTrainerSentence(container) {
                     result.style.backgroundColor = '#FFFFFF';
                     while (trainerSelectedWords.length > 0) {
                         const word = trainerSelectedWords.pop();
-                        insertWordAtRandomPosition(trainerAvailableWords, word);
+                        const wordWithNewId = {
+                            ...word,
+                            id: ++_trainerWordIdCounter
+                        };
+                        insertWordAtRandomPosition(trainerAvailableWords, wordWithNewId);
                     }
                     updateTrainerResultDisplay();
                     renderTrainerWords();

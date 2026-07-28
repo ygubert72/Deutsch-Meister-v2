@@ -1,382 +1,17 @@
-// ====================================================================
-// trainerMode.js — Тренажёр (сборка фраз из слов) — ВОЛНОВОЙ ПРИНЦИП
-// ====================================================================
-
-(function() {
-
-let trainerSentences = [];
-let trainerIndex = 0;
-let trainerCurrentSentence = null;
-let trainerSelectedWords = [];
-let trainerAvailableWords = [];
-let trainerHintIndex = 0;
-let trainerHintWords = [];
-let trainerDirection = 'ru_to_de';
-let allVocabWords = [];
-let trainerStudiedSentences = {};
-let trainerCurrentLessonId = null;
-let trainerCurrentLessonData = null;
-let allTrainerTemplates = [];
-let globalVocabularyCache = {};
-
-// ===== ОЧЕРЕДЬ ДЛЯ ПОДГРУЗКИ =====
-let _trainerWordQueue = [];
-
-// Счётчик для генерации уникальных ID
-let _trainerWordIdCounter = 0;
-
-// ========== ЗАГРУЗКА ВСЕХ СЛОВ УРОВНЯ ==========
-async function loadAllVocabularyForLevel(level) {
-    if (globalVocabularyCache[level]) {
-        return globalVocabularyCache[level];
-    }
-    
-    try {
-        const indexResponse = await fetch(`docs/${level}/index.json`);
-        if (!indexResponse.ok) throw new Error('Не удалось загрузить индекс уровня');
-        const indexData = await indexResponse.json();
-        
-        let allWords = [];
-        
-        for (const lesson of indexData.lessons) {
-            const lessonId = lesson.id;
-            const grammarFile = `docs/${level}/grammar/${String(lessonId).padStart(2, '0')}_grammar.json`;
-            try {
-                const response = await fetch(grammarFile);
-                if (response.ok) {
-                    const data = await response.json();
-                    if (data.vocabulary && Array.isArray(data.vocabulary)) {
-                        allWords = allWords.concat(data.vocabulary);
-                    }
-                }
-            } catch(e) {}
-        }
-        
-        for (const lesson of indexData.lessons) {
-            const lessonId = lesson.id;
-            const lessonFile = `docs/${level}/lessons/lesson_${String(lessonId).padStart(2, '0')}.json`;
-            try {
-                const response = await fetch(lessonFile);
-                if (response.ok) {
-                    const data = await response.json();
-                    if (data.quiz && Array.isArray(data.quiz)) {
-                        allWords = allWords.concat(data.quiz);
-                    }
-                }
-            } catch(e) {}
-        }
-        
-        const uniqueWords = [];
-        const seen = new Set();
-        for (const word of allWords) {
-            if (word.de && !seen.has(word.de)) {
-                seen.add(word.de);
-                uniqueWords.push(word);
-            }
-        }
-        
-        globalVocabularyCache[level] = uniqueWords;
-        console.log(`📚 Загружено ${uniqueWords.length} уникальных слов для уровня ${level}`);
-        return uniqueWords;
-        
-    } catch(e) {
-        console.error('Ошибка загрузки словаря уровня:', e);
-        return [];
-    }
-}
-
-function renderTrainer(container, lesson) {
-    trainerCurrentLessonData = lesson;
-    const lessonId = lesson.id || 1;
-    trainerCurrentLessonId = lessonId;
-    const level = lesson.level || 'A1';
-    
-    loadTrainerState(lessonId);
-    
-    let templates = lesson.trainer || [];
-    
-    if (!templates || templates.length === 0) {
-        container.innerHTML = `
-            <div style="text-align: center; padding: 40px; color: #999;">
-                <div style="font-size: 48px; margin-bottom: 15px;">📝</div>
-                <div>Для этого урока нет шаблонов для тренажёра.</div>
-            </div>
-        `;
-        return;
-    }
-
-    allTrainerTemplates = [...templates];
-    
-    if (lesson.vocabulary && lesson.vocabulary.length >= 10) {
-        allVocabWords = [...lesson.vocabulary];
-        proceedWithRender(container);
-    } else {
-        loadAllVocabularyForLevel(level).then(words => {
-            if (words && words.length > 0) {
-                allVocabWords = words;
-            } else {
-                allVocabWords = lesson.vocabulary || [];
-            }
-            proceedWithRender(container);
-        });
-    }
-}
-
-function proceedWithRender(container) {
-    if (allVocabWords.length < 5) {
-        container.innerHTML = `
-            <div style="text-align: center; padding: 40px; color: #999;">
-                <div style="font-size: 48px; margin-bottom: 15px;">📝</div>
-                <div>Недостаточно слов для тренажёра.</div>
-                <div style="font-size: 14px; margin-top: 10px;">Нужно минимум 10 слов в словаре уровня.</div>
-            </div>
-        `;
-        return;
-    }
-    
-    const availableTemplates = allTrainerTemplates.filter(t => {
-        const key = t.de + '|' + t.ru;
-        return !trainerStudiedSentences[key];
-    });
-    
-    let finalTemplates = availableTemplates;
-    if (finalTemplates.length === 0) {
-        finalTemplates = [...allTrainerTemplates];
-        trainerStudiedSentences = {};
-        localStorage.removeItem('dm_trainer_studied_' + trainerCurrentLessonId);
-    }
-    
-    const shuffled = [...finalTemplates];
-    for (let i = shuffled.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
-    }
-    
-    trainerSentences = shuffled;
-    trainerIndex = 0;
-    trainerDirection = 'ru_to_de';
-    _trainerWordIdCounter = 0;
-    _trainerWordQueue = [];
-    showTrainerSentence(container);
-}
-
-function getStudiedSentencesList() {
-    if (!allTrainerTemplates) return [];
-    return allTrainerTemplates.filter(sentence => {
-        const key = sentence.de + '|' + sentence.ru;
-        return trainerStudiedSentences[key] === true;
-    });
-}
-
-function saveTrainerState() {
-    try {
-        localStorage.setItem('dm_trainer_studied_' + trainerCurrentLessonId, JSON.stringify(trainerStudiedSentences));
-    } catch(e) {}
-}
-
-function loadTrainerState(lessonId) {
-    try {
-        const saved = localStorage.getItem('dm_trainer_studied_' + lessonId);
-        if (saved) {
-            trainerStudiedSentences = JSON.parse(saved);
-        } else {
-            trainerStudiedSentences = {};
-        }
-    } catch(e) {
-        trainerStudiedSentences = {};
-    }
-}
-
-function showTrainerContainer() {
-    const oldModal = document.getElementById('containerModal');
-    if (oldModal) oldModal.remove();
-
-    const modal = document.createElement('div');
-    modal.id = 'containerModal';
-    modal.style.cssText = `
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: rgba(0,0,0,0.7);
-        display: flex !important;
-        justify-content: center;
-        align-items: center;
-        z-index: 9999999 !important;
-        overflow: auto;
-    `;
-
-    const modalContent = document.createElement('div');
-    modalContent.style.cssText = `
-        background: white;
-        border-radius: 20px;
-        max-width: 500px;
-        width: 90%;
-        max-height: 80vh;
-        display: flex;
-        flex-direction: column;
-        margin: 20px;
-        padding: 0;
-        overflow: hidden;
-        box-shadow: 0 20px 60px rgba(0,0,0,0.5);
-    `;
-
-    function renderContainerContent() {
-        const studied = getStudiedSentencesList();
-        
-        const header = document.createElement('div');
-        header.style.cssText = 'padding: 15px 20px; border-bottom: 1px solid #ddd; text-align: center; flex-shrink: 0;';
-        header.innerHTML = `<h3 style="margin: 0;">📦 КОНТЕЙНЕР (${studied.length} фраз)</h3>`;
-        modalContent.appendChild(header);
-
-        const itemsContainer = document.createElement('div');
-        itemsContainer.style.cssText = 'overflow-y: auto; flex: 1; padding: 5px 0;';
-        
-        if (studied.length === 0) {
-            itemsContainer.innerHTML = `<div style="text-align:center; padding:40px; color:#999;">📭 Контейнер пуст</div>`;
-        } else {
-            studied.forEach((sentence) => {
-                const key = sentence.de + '|' + sentence.ru;
-                const item = document.createElement('div');
-                item.style.cssText = 'display: flex; justify-content: space-between; align-items: center; padding: 10px 20px; border-bottom: 1px solid #f0f0f0;';
-                item.innerHTML = `
-                    <span><strong>${sentence.de}</strong> — ${sentence.ru}</span>
-                    <button class="unstudy-btn" data-key="${key}" style="padding: 4px 14px; background: #F44336; color: white; border: none; border-radius: 8px; cursor: pointer; font-size: 12px; font-weight: bold;">✕ ВЕРНУТЬ</button>
-                `;
-                
-                const btn = item.querySelector('.unstudy-btn');
-                btn.addEventListener('click', function() {
-                    const key = this.getAttribute('data-key');
-                    delete trainerStudiedSentences[key];
-                    saveTrainerState();
-                    
-                    const lesson = trainerCurrentLessonData || window.currentLesson;
-                    if (lesson) {
-                        const templates = lesson.trainer || [];
-                        trainerSentences = templates.filter(t => {
-                            const k = t.de + '|' + t.ru;
-                            return !trainerStudiedSentences[k];
-                        });
-                    }
-                    
-                    if (trainerSentences.length === 0) {
-                        const lesson2 = trainerCurrentLessonData || window.currentLesson;
-                        if (lesson2) {
-                            trainerSentences = [...lesson2.trainer];
-                            trainerStudiedSentences = {};
-                            localStorage.removeItem('dm_trainer_studied_' + trainerCurrentLessonId);
-                        }
-                    }
-                    
-                    if (trainerIndex >= trainerSentences.length) {
-                        trainerIndex = 0;
-                    }
-                    
-                    modal.remove();
-                    showTrainerContainer();
-                    const container = document.getElementById('modeContent');
-                    if (container) {
-                        showTrainerSentence(container);
-                    }
-                });
-                
-                itemsContainer.appendChild(item);
-            });
-        }
-        modalContent.appendChild(itemsContainer);
-
-        const footer = document.createElement('div');
-        footer.style.cssText = 'padding: 15px 20px; border-top: 1px solid #ddd; display: flex; gap: 10px; flex-shrink: 0;';
-        footer.innerHTML = `
-            <button id="returnAllBtn" style="flex: 1; padding: 10px; background: #FF9800; color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: bold;">🔄 ВЕРНУТЬ ВСЁ</button>
-            <button id="closeContainerBtn" style="flex: 1; padding: 10px; background: #ddd; border: none; border-radius: 8px; cursor: pointer; font-weight: bold;">ЗАКРЫТЬ</button>
-        `;
-        modalContent.appendChild(footer);
-
-        modal.appendChild(modalContent);
-        document.body.appendChild(modal);
-
-        const returnAllBtn = document.getElementById('returnAllBtn');
-        if (returnAllBtn) {
-            returnAllBtn.addEventListener('click', function() {
-                if (!confirm('Вернуть все фразы из контейнера?')) return;
-                allTrainerTemplates.forEach(t => {
-                    const key = t.de + '|' + t.ru;
-                    delete trainerStudiedSentences[key];
-                });
-                saveTrainerState();
-                trainerSentences = [...allTrainerTemplates];
-                trainerIndex = 0;
-                modal.remove();
-                const container = document.getElementById('modeContent');
-                if (container) {
-                    showTrainerSentence(container);
-                }
-            });
-        }
-
-        const closeBtn = document.getElementById('closeContainerBtn');
-        if (closeBtn) {
-            closeBtn.addEventListener('click', function() {
-                modal.remove();
-            });
-        }
-
-        modal.addEventListener('click', function(e) {
-            if (e.target === modal) modal.remove();
-        });
-    }
-
-    renderContainerContent();
-}
-
-// ========== ВСТАВКА СЛОВА В СЛУЧАЙНУЮ ПОЗИЦИЮ ==========
-function insertWordAtRandomPosition(words, word) {
-    const pos = Math.floor(Math.random() * (words.length + 1));
-    words.splice(pos, 0, word);
-    return pos;
-}
-
-// ========== ВОССТАНОВЛЕНИЕ ОЧЕРЕДИ ==========
-function restoreTrainerQueue() {
-    const allCorrectWords = trainerHintWords.map(w => ({
-        display: w,
-        de: w,
-        ru: w,
-        isCorrect: true,
-        originalIndex: -1
-    }));
-    
-    const usedDisplaySet = new Set(trainerAvailableWords.map(w => w.display));
-    const missingCorrectWords = allCorrectWords.filter(w => !usedDisplaySet.has(w.display));
-    
-    _trainerWordQueue = [];
-    missingCorrectWords.forEach(w => {
-        _trainerWordQueue.push({
-            id: ++_trainerWordIdCounter,
-            display: w.display,
-            de: w.de,
-            ru: w.ru,
-            isCorrect: true,
-            originalIndex: -1
-        });
-    });
-}
-
-// ========== ОСНОВНАЯ ЛОГИКА ОТОБРАЖЕНИЯ ФРАЗЫ ==========
 function showTrainerSentence(container) {
+    // ===== ЗАКОЛЬЦОВКА =====
     if (trainerIndex >= trainerSentences.length) {
         trainerIndex = 0;
     }
 
     trainerCurrentSentence = trainerSentences[trainerIndex];
-    
     const isRuToDe = trainerDirection === 'ru_to_de';
     
+    // Разбиваем на слова
     const deWords = trainerCurrentSentence.de.replace(/[.,!?;:]/g, '').split(/\s+/);
     const ruWords = trainerCurrentSentence.ru.replace(/[.,!?;:]/g, '').split(/\s+/);
 
+    // ===== ПРАВИЛЬНЫЕ СЛОВА (ОБЯЗАТЕЛЬНО ДОБАВЛЯЕМ) =====
     const correctWords = deWords.map((w, i) => ({
         display: isRuToDe ? w : (ruWords[i] || w),
         de: w,
@@ -386,6 +21,10 @@ function showTrainerSentence(container) {
         id: ++_trainerWordIdCounter
     }));
 
+    // Сохраняем правильные слова для подсказки и восстановления
+    trainerHintWords = deWords;
+
+    // ===== ДИСТРАКТОРЫ =====
     let allDistractorWords = [];
     
     if (isRuToDe) {
@@ -404,22 +43,27 @@ function showTrainerSentence(container) {
         }));
     }
     
+    // Перемешиваем дистракторы
     const shuffledDistractors = [...allDistractorWords];
     for (let i = shuffledDistractors.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
         [shuffledDistractors[i], shuffledDistractors[j]] = [shuffledDistractors[j], shuffledDistractors[i]];
     }
     
+    // Множество правильных слов (для исключения из дистракторов)
     const correctSet = new Set(
         correctWords.map(w => w.display.toLowerCase().replace(/[.,!?;:]/g, ''))
     );
     
+    // Фильтруем дистракторы (убираем те, что совпадают с правильными)
     const filteredDistractors = shuffledDistractors
         .filter(w => {
             const key = w.display.toLowerCase().replace(/[.,!?;:]/g, '');
             return !correctSet.has(key) && key.length > 0;
         });
 
+    // ===== ФОРМИРУЕМ 6 КНОПОК =====
+    // БЕРЁМ ВСЕ ПРАВИЛЬНЫЕ СЛОВА (не больше 3 на кнопки, остальные в очередь)
     let visibleCorrectWords = [];
     let remainingCorrectWords = [];
     
@@ -431,6 +75,7 @@ function showTrainerSentence(container) {
         remainingCorrectWords = correctWords.slice(3);
     }
 
+    // Очередь для подгрузки
     _trainerWordQueue = remainingCorrectWords.map(w => ({
         id: ++_trainerWordIdCounter,
         display: w.display,
@@ -440,6 +85,7 @@ function showTrainerSentence(container) {
         originalIndex: w.originalIndex
     }));
 
+    // НАЧИНАЕМ С ПРАВИЛЬНЫХ СЛОВ
     let finalAll = [];
     visibleCorrectWords.forEach(w => {
         finalAll.push({
@@ -448,8 +94,9 @@ function showTrainerSentence(container) {
         });
     });
     
+    // ДОБАВЛЯЕМ ДИСТРАКТОРЫ ДО 6
     const maxTotal = 6;
-    const needed = Math.max(0, maxTotal - visibleCorrectWords.length);
+    const needed = Math.max(0, maxTotal - finalAll.length);
     const selectedDistractors = filteredDistractors.slice(0, needed);
     
     selectedDistractors.forEach(d => {
@@ -463,6 +110,7 @@ function showTrainerSentence(container) {
         });
     });
     
+    // Если всё ещё не хватает слов, добавляем случайные
     let distractorIndex = 0;
     while (finalAll.length < maxTotal && distractorIndex < allDistractorWords.length) {
         const d = allDistractorWords[distractorIndex];
@@ -480,18 +128,44 @@ function showTrainerSentence(container) {
         distractorIndex++;
     }
     
+    // ПЕРЕМЕШИВАНИЕ ТОЛЬКО ПРИ ИНИЦИАЛИЗАЦИИ
     for (let i = finalAll.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
         [finalAll[i], finalAll[j]] = [finalAll[j], finalAll[i]];
     }
 
+    // Сохраняем состояние
     trainerSelectedWords = [];
     trainerAvailableWords = finalAll;
     trainerHintIndex = 0;
-    trainerHintWords = deWords;
 
+    // ===== ГАРАНТИЯ: ПРОВЕРЯЕМ, ЧТО ПРАВИЛЬНЫЕ СЛОВА ЕСТЬ =====
+    const correctOnButtons = trainerAvailableWords.filter(w => w.isCorrect).length;
+    if (correctOnButtons < 3 && _trainerWordQueue.length > 0) {
+        // Если правильных слов меньше 3, добавляем из очереди
+        while (correctOnButtons < 3 && _trainerWordQueue.length > 0) {
+            const queued = _trainerWordQueue.shift();
+            const newWord = {
+                display: queued.display,
+                de: queued.de,
+                ru: queued.ru,
+                isCorrect: true,
+                originalIndex: queued.originalIndex,
+                id: ++_trainerWordIdCounter
+            };
+            // Удаляем один дистрактор
+            const distractorIdx = trainerAvailableWords.findIndex(w => !w.isCorrect);
+            if (distractorIdx !== -1) {
+                trainerAvailableWords.splice(distractorIdx, 1);
+            }
+            insertWordAtRandomPosition(trainerAvailableWords, newWord);
+        }
+    }
+
+    // Вопрос
     const questionText = isRuToDe ? trainerCurrentSentence.ru : trainerCurrentSentence.de;
 
+    // Обновляем кнопку направления в header
     const headerControls = document.getElementById('modeHeaderControls');
     if (headerControls) {
         headerControls.innerHTML = `
@@ -547,6 +221,11 @@ function showTrainerSentence(container) {
 
     container.innerHTML = html;
 
+    // ===== ПРИВЯЗКА ОБРАБОТЧИКОВ =====
+    attachTrainerEvents(container);
+}
+
+function attachTrainerEvents(container) {
     const dirBtn = document.getElementById('trainerDirBtn');
     if (dirBtn) {
         dirBtn.addEventListener('click', function() {
@@ -571,10 +250,16 @@ function showTrainerSentence(container) {
             
             const selectedWord = trainerAvailableWords[wordIndex];
             
+            // 1. Удаляем выбранное слово
             trainerAvailableWords.splice(wordIndex, 1);
+            
+            // 2. Добавляем в выбранные
             trainerSelectedWords.push(selectedWord);
+            
+            // 3. Обновляем результат
             updateTrainerResultDisplay();
             
+            // 4. Подбираем слово для замены
             let replacementWord = null;
             
             if (_trainerWordQueue.length > 0) {
@@ -618,14 +303,17 @@ function showTrainerSentence(container) {
                 }
             }
             
+            // 5. Вставляем замену
             if (replacementWord) {
                 insertWordAtRandomPosition(trainerAvailableWords, replacementWord);
             }
             
+            // ===== ЖЁСТКО ОБРЕЗАЕМ ДО 6 =====
             if (trainerAvailableWords.length > 6) {
                 trainerAvailableWords = trainerAvailableWords.slice(0, 6);
             }
             
+            // 6. Перерисовываем
             renderTrainerWords();
         });
     }
@@ -839,38 +527,3 @@ function showTrainerSentence(container) {
         });
     }
 }
-
-// ========== ВСПОМОГАТЕЛЬНЫЕ ФУНКЦИИ ==========
-
-function updateTrainerResultDisplay() {
-    const result = document.getElementById('trainerResult');
-    if (result) {
-        const hasWords = trainerSelectedWords.length > 0;
-        const displayText = trainerSelectedWords.map(w => w.display).join(' ') || 'Нажмите на слова, чтобы собрать предложение';
-        result.textContent = displayText;
-        result.style.color = hasWords ? '#1A1A1A' : '#CCCCCC';
-        result.style.fontWeight = hasWords ? 'bold' : 'normal';
-        result.style.backgroundColor = '#FFFFFF';
-    }
-}
-
-function renderTrainerWords() {
-    const wordsContainer = document.getElementById('trainerWordsContainer');
-    if (!wordsContainer) return;
-    
-    wordsContainer.innerHTML = '';
-    trainerAvailableWords.forEach(word => {
-        const btn = document.createElement('button');
-        btn.className = 'word-btn';
-        btn.textContent = word.display;
-        btn.dataset.wordId = word.id;
-        wordsContainer.appendChild(btn);
-    });
-}
-
-// ===== ЭКСПОРТ =====
-window.renderTrainer = renderTrainer;
-
-console.log('🧩 trainerMode.js загружен (ВОЛНОВОЙ ПРИНЦИП)');
-
-})();

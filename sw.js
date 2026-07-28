@@ -1,7 +1,7 @@
 // sw.js — Service Worker для PWA с автоматическим версионированием
 
 // Версия приложения (меняется автоматически при сборке)
-const APP_VERSION = '2.0.8';
+const APP_VERSION = '2.0.9';
 const CACHE_NAME = `deutsch-meister-${APP_VERSION}`;
 const STATIC_CACHE = `static-${APP_VERSION}`;
 

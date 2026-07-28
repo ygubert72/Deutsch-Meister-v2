@@ -417,9 +417,9 @@ function showLevelTrainerInterface() {
             <div style="background: #FFFFFF; border: 2px solid #E0E0E0; border-radius: 16px; padding: 15px; margin: 10px 0; text-align: center; font-size: 20px; min-height: 60px; color: #CCCCCC; font-weight: normal;" id="levelTrainerResult">
                 Нажмите на слова, чтобы собрать предложение
             </div>
-            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; max-width: 700px; margin: 15px auto;" id="levelTrainerWordsContainer">
+            <div class="words-container" id="levelTrainerWordsContainer">
                 ${levelTrainerAvailableWords.map(word => `
-                    <button class="word-btn" data-word-id="${word.id}" style="padding: 12px 8px; font-size: 14px; text-align: center; min-height: 48px; display: flex; align-items: center; justify-content: center; border-radius: 40px; background: #E8F0FE; border: 2px solid #D0D0D0; cursor: pointer;">
+                    <button class="word-btn" data-word-id="${word.id}">
                         ${word.display}
                     </button>
                 `).join('')}
@@ -749,7 +749,6 @@ function renderLevelTrainerWords() {
         btn.className = 'word-btn';
         btn.textContent = word.display;
         btn.dataset.wordId = word.id;
-        btn.style.cssText = 'padding: 12px 8px; font-size: 14px; text-align: center; min-height: 48px; display: flex; align-items: center; justify-content: center; background: #E8F0FE; border: 2px solid #D0D0D0; border-radius: 40px; cursor: pointer;';
         wordsContainer.appendChild(btn);
     });
 }

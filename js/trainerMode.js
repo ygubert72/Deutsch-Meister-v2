@@ -1,5 +1,5 @@
 // ====================================================================
-// trainerMode.js — Тренажёр (сборка фраз из слов) — ИСПРАВЛЕННЫЙ
+// trainerMode.js — Тренажёр (сборка фраз из слов) — ИСПРАВЛЕННЫЙ V2
 // ====================================================================
 
 (function() {
@@ -19,10 +19,8 @@ let trainerCurrentLessonData = null;
 let allTrainerTemplates = [];
 let globalVocabularyCache = {};
 
-// ===== ОЧЕРЕДЬ ДЛЯ ПОДГРУЗКИ (исправлено) =====
+// ===== ОЧЕРЕДЬ ДЛЯ ПОДГРУЗКИ =====
 let _trainerWordQueue = [];
-
-// Счётчик для генерации уникальных ID (только положительные!)
 let _trainerWordIdCounter = 0;
 
 // ========== ЗАГРУЗКА ВСЕХ СЛОВ УРОВНЯ ==========
@@ -344,20 +342,21 @@ function restoreTrainerQueue() {
         return;
     }
     
-    // 1. Получаем все правильные слова из текущего предложения
-    const hintWords = trainerCurrentSentence.de.replace(/[.,!?;:]/g, '').split(/\s+/);
+    // 1. Получаем все правильные слова из текущего предложения (в порядке появления)
+    const correctWords = trainerCurrentSentence.de.replace(/[.,!?;:]/g, '').split(/\s+/);
     
-    // 2. Получаем список правильных слов, которые уже есть на кнопках
-    const correctWordsOnButtons = trainerAvailableWords
+    // 2. Получаем список правильных слов, которые уже есть на кнопках (только их текст)
+    const correctTextsOnButtons = trainerAvailableWords
         .filter(w => w.isCorrect)
         .map(w => w.display);
     
-    // 3. Создаём Set для быстрого поиска слов на кнопках
-    const correctSet = new Set(correctWordsOnButtons);
+    // 3. Создаём Set для быстрого поиска
+    const correctSet = new Set(correctTextsOnButtons);
     
     // 4. Создаём очередь из правильных слов, которых НЕТ на кнопках
+    //    ВАЖНО: используем СЛОВА ИЗ ПРЕДЛОЖЕНИЯ, а не из кнопок
     const newQueue = [];
-    hintWords.forEach(w => {
+    correctWords.forEach(w => {
         if (!correctSet.has(w)) {
             newQueue.push({
                 id: ++_trainerWordIdCounter,
@@ -370,18 +369,16 @@ function restoreTrainerQueue() {
         }
     });
     
-    // 5. Заменяем существующую очередь (не добавляем, а пересоздаём)
+    // 5. Заменяем существующую очередь (полностью пересоздаём)
     _trainerWordQueue = newQueue;
 }
 
 // ========== ГАРАНТИЯ 6 КНОПОК И ПРАВИЛЬНЫХ СЛОВ ==========
 function ensureSixButtonsWithCorrectWords() {
     // 1. Убеждаемся, что на кнопках есть как минимум 3 правильных слова
-    //    Если правильных слов меньше 3, ищем их в очереди
-    while (_trainerWordQueue.length > 0) {
-        const correctCount = trainerAvailableWords.filter(w => w.isCorrect).length;
-        if (correctCount >= 3) break;
-        
+    let correctCount = trainerAvailableWords.filter(w => w.isCorrect).length;
+    
+    while (correctCount < 3 && _trainerWordQueue.length > 0) {
         // Берём слово из очереди
         const queued = _trainerWordQueue.shift();
         const newWord = {
@@ -396,28 +393,14 @@ function ensureSixButtonsWithCorrectWords() {
         // Ищем дистрактор для замены
         const distractorIndex = trainerAvailableWords.findIndex(w => !w.isCorrect);
         if (distractorIndex !== -1) {
-            // Заменяем дистрактор на правильное слово
             trainerAvailableWords.splice(distractorIndex, 1);
-            trainerAvailableWords.push(newWord);
-        } else {
-            // Если дистракторов нет — просто добавляем
-            trainerAvailableWords.push(newWord);
         }
-        
-        // Если стало больше 6, удаляем случайный дистрактор
-        if (trainerAvailableWords.length > 6) {
-            const distractorIdx = trainerAvailableWords.findIndex(w => !w.isCorrect);
-            if (distractorIdx !== -1) {
-                trainerAvailableWords.splice(distractorIdx, 1);
-            } else {
-                trainerAvailableWords.pop();
-            }
-        }
+        trainerAvailableWords.push(newWord);
+        correctCount++;
     }
     
     // 2. Убеждаемся, что кнопок ровно 6
     while (trainerAvailableWords.length < 6) {
-        // Если мало слов, добавляем дистракторы
         const usedDisplaySet = new Set(trainerAvailableWords.map(w => w.display));
         const availableDistractors = allVocabWords
             .filter(w => {
@@ -449,23 +432,12 @@ function ensureSixButtonsWithCorrectWords() {
     }
 }
 
-// ========== ОСНОВНАЯ ЛОГИКА ОТОБРАЖЕНИЯ ФРАЗЫ ==========
-function showTrainerSentence(container) {
-    if (!trainerSentences || trainerSentences.length === 0) {
-        container.innerHTML = '<div style="text-align:center;padding:40px;color:#999;">Нет предложений для тренажёра</div>';
-        return;
-    }
-    
-    if (trainerIndex >= trainerSentences.length) {
-        trainerIndex = 0;
-    }
-
-    trainerCurrentSentence = trainerSentences[trainerIndex];
+// ========== СОЗДАНИЕ НАЧАЛЬНЫХ КНОПОК ДЛЯ ПРЕДЛОЖЕНИЯ ==========
+function createInitialButtons() {
     const isRuToDe = trainerDirection === 'ru_to_de';
-    
     const deWords = trainerCurrentSentence.de.replace(/[.,!?;:]/g, '').split(/\s+/);
     const ruWords = trainerCurrentSentence.ru.replace(/[.,!?;:]/g, '').split(/\s+/);
-
+    
     // ===== ПРАВИЛЬНЫЕ СЛОВА =====
     const correctWords = deWords.map((w, i) => ({
         id: ++_trainerWordIdCounter,
@@ -534,7 +506,6 @@ function showTrainerSentence(container) {
     let distractorIndex = 0;
     while (trainerAvailableWords.length < 6 && distractorIndex < filteredDistractors.length) {
         const d = filteredDistractors[distractorIndex];
-        // Проверяем, нет ли такого слова уже на кнопках
         const exists = trainerAvailableWords.some(w => w.display === d.display);
         if (!exists) {
             trainerAvailableWords.push({
@@ -575,7 +546,48 @@ function showTrainerSentence(container) {
 
     // Гарантируем, что всё правильно
     ensureSixButtonsWithCorrectWords();
+}
 
+// ========== ВОЗВРАТ ВСЕХ СЛОВ НА КНОПКИ ==========
+function returnAllWordsToButtons() {
+    // Возвращаем все выбранные слова на кнопки
+    while (trainerSelectedWords.length > 0) {
+        const word = trainerSelectedWords.pop();
+        const wordWithNewId = {
+            ...word,
+            id: ++_trainerWordIdCounter
+        };
+        insertWordAtRandomPosition(trainerAvailableWords, wordWithNewId);
+    }
+    
+    // Восстанавливаем очередь (пересоздаём)
+    restoreTrainerQueue();
+    
+    // Гарантируем 6 кнопок и 3 правильных слова
+    ensureSixButtonsWithCorrectWords();
+    
+    // Обновляем отображение
+    updateTrainerResultDisplay();
+    renderTrainerWords();
+}
+
+// ========== ОСНОВНАЯ ЛОГИКА ОТОБРАЖЕНИЯ ФРАЗЫ ==========
+function showTrainerSentence(container) {
+    if (!trainerSentences || trainerSentences.length === 0) {
+        container.innerHTML = '<div style="text-align:center;padding:40px;color:#999;">Нет предложений для тренажёра</div>';
+        return;
+    }
+    
+    if (trainerIndex >= trainerSentences.length) {
+        trainerIndex = 0;
+    }
+
+    trainerCurrentSentence = trainerSentences[trainerIndex];
+    
+    // Создаём начальные кнопки
+    createInitialButtons();
+
+    const isRuToDe = trainerDirection === 'ru_to_de';
     const questionText = isRuToDe ? trainerCurrentSentence.ru : trainerCurrentSentence.de;
 
     const headerControls = document.getElementById('modeHeaderControls');
@@ -686,18 +698,15 @@ function attachTrainerEvents(container) {
                 // Ищем дистрактор для замены
                 const distractorIndex = trainerAvailableWords.findIndex(w => !w.isCorrect);
                 if (distractorIndex !== -1) {
-                    // Заменяем дистрактор на правильное слово
                     trainerAvailableWords.splice(distractorIndex, 1);
                     insertWordAtRandomPosition(trainerAvailableWords, newWord);
                 } else {
-                    // Если дистракторов нет — просто добавляем
                     trainerAvailableWords.push(newWord);
                 }
             }
             
             // ===== ГАРАНТИРУЕМ 6 КНОПОК =====
             while (trainerAvailableWords.length < 6) {
-                // Добавляем дистракторы
                 const usedDisplaySet = new Set(trainerAvailableWords.map(w => w.display));
                 const availableDistractors = allVocabWords
                     .filter(w => {
@@ -756,22 +765,7 @@ function attachTrainerEvents(container) {
     const resetBtn = document.getElementById('trainerResetBtn');
     if (resetBtn) {
         resetBtn.addEventListener('click', function() {
-            // Возвращаем все выбранные слова на кнопки
-            while (trainerSelectedWords.length > 0) {
-                const word = trainerSelectedWords.pop();
-                const wordWithNewId = {
-                    ...word,
-                    id: ++_trainerWordIdCounter
-                };
-                insertWordAtRandomPosition(trainerAvailableWords, wordWithNewId);
-            }
-            
-            // Восстанавливаем очередь
-            restoreTrainerQueue();
-            ensureSixButtonsWithCorrectWords();
-            
-            updateTrainerResultDisplay();
-            renderTrainerWords();
+            returnAllWordsToButtons();
             document.getElementById('trainerHintLabel').textContent = '';
             trainerHintIndex = 0;
         });
@@ -817,23 +811,8 @@ function attachTrainerEvents(container) {
                 
                 setTimeout(() => {
                     result.style.backgroundColor = '#FFFFFF';
-                    
                     // Возвращаем все слова
-                    while (trainerSelectedWords.length > 0) {
-                        const word = trainerSelectedWords.pop();
-                        const wordWithNewId = {
-                            ...word,
-                            id: ++_trainerWordIdCounter
-                        };
-                        insertWordAtRandomPosition(trainerAvailableWords, wordWithNewId);
-                    }
-                    
-                    // Восстанавливаем очередь
-                    restoreTrainerQueue();
-                    ensureSixButtonsWithCorrectWords();
-                    
-                    updateTrainerResultDisplay();
-                    renderTrainerWords();
+                    returnAllWordsToButtons();
                 }, 800);
             }
         });
@@ -995,6 +974,6 @@ window._debugTrainer = {
 };
 console.log('🐛 Отладка trainerMode включена. Используйте window._debugTrainer');
 
-console.log('🧩 trainerMode.js загружен (исправленная версия)');
+console.log('🧩 trainerMode.js загружен (исправленная версия V2)');
 
 })();

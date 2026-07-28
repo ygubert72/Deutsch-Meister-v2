@@ -22,7 +22,7 @@ let globalVocabularyCache = {};
 // ===== ОЧЕРЕДЬ ДЛЯ ПОДГРУЗКИ =====
 let _trainerWordQueue = [];
 
-// Счётчик для генерации уникальных ID (только положительные)
+// Счётчик для генерации уникальных ID
 let _trainerWordIdCounter = 0;
 
 // ========== ЗАГРУЗКА ВСЕХ СЛОВ УРОВНЯ ==========
@@ -338,16 +338,15 @@ function insertWordAtRandomPosition(words, word) {
     return pos;
 }
 
-// ========== ВОССТАНОВЛЕНИЕ ОЧЕРЕДИ ==========
+// ========== ВОССТАНОВЛЕНИЕ ОЧЕРЕДИ (ИСПРАВЛЕНО) ==========
 function restoreTrainerQueue() {
-    let hintWords = trainerHintWords;
-    if (!hintWords || hintWords.length === 0) {
-        if (trainerCurrentSentence) {
-            hintWords = trainerCurrentSentence.de.replace(/[.,!?;:]/g, '').split(/\s+/);
-        } else {
-            return;
-        }
+    // ВСЕГДА берём слова из текущего предложения
+    if (!trainerCurrentSentence) {
+        console.warn('⚠️ restoreTrainerQueue: нет текущего предложения');
+        return;
     }
+    
+    const hintWords = trainerCurrentSentence.de.replace(/[.,!?;:]/g, '').split(/\s+/);
     
     const allCorrectWords = hintWords.map(w => ({
         display: w,
@@ -371,6 +370,8 @@ function restoreTrainerQueue() {
             originalIndex: -1
         });
     });
+    
+    console.log('🔄 Очередь восстановлена:', _trainerWordQueue.map(w => w.display));
 }
 
 // ========== ГАРАНТИЯ ПРАВИЛЬНЫХ СЛОВ НА КНОПКАХ ==========
@@ -476,7 +477,7 @@ function showTrainerSentence(container) {
         remainingCorrectWords = correctWords.slice(3);
     }
 
-    // Очередь для подгрузки (ВСЕ ID ПОЛОЖИТЕЛЬНЫЕ)
+    // Очередь для подгрузки
     _trainerWordQueue = remainingCorrectWords.map(w => ({
         id: ++_trainerWordIdCounter,
         display: w.display,
@@ -498,7 +499,6 @@ function showTrainerSentence(container) {
     const needed = Math.max(0, maxTotal - finalAll.length);
     const selectedDistractors = filteredDistractors.slice(0, needed);
     
-    // ВСЕ ID ПОЛОЖИТЕЛЬНЫЕ
     selectedDistractors.forEach(d => {
         finalAll.push({
             display: d.display,
@@ -923,6 +923,22 @@ function renderTrainerWords() {
 
 // ===== ЭКСПОРТ =====
 window.renderTrainer = renderTrainer;
+
+// ===== ЭКСПОРТ ДЛЯ ОТЛАДКИ =====
+window._debugTrainer = {
+    trainerSentences: trainerSentences,
+    trainerIndex: trainerIndex,
+    trainerCurrentSentence: trainerCurrentSentence,
+    trainerSelectedWords: trainerSelectedWords,
+    trainerAvailableWords: trainerAvailableWords,
+    trainerHintWords: trainerHintWords,
+    trainerDirection: trainerDirection,
+    _trainerWordQueue: _trainerWordQueue,
+    _trainerWordIdCounter: _trainerWordIdCounter,
+    allVocabWords: allVocabWords,
+    trainerStudiedSentences: trainerStudiedSentences
+};
+console.log('🐛 Отладка trainerMode включена. Используйте window._debugTrainer');
 
 console.log('🧩 trainerMode.js загружен (ВОЛНОВОЙ ПРИНЦИП)');
 

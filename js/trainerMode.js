@@ -1,5 +1,5 @@
 // ====================================================================
-// trainerMode.js — Тренажёр (сборка фраз из слов) — 6 КНОПОК + ВОЛНЫ
+// trainerMode.js — Тренажёр (сборка фраз из слов) — ВОЛНОВОЙ ПРИНЦИП
 // ====================================================================
 
 (function() {
@@ -156,6 +156,7 @@ function proceedWithRender(container) {
     trainerIndex = 0;
     trainerDirection = 'ru_to_de';
     _trainerWordIdCounter = 0;
+    _trainerWordQueue = [];
     showTrainerSentence(container);
 }
 
@@ -330,7 +331,7 @@ function showTrainerContainer() {
     renderContainerContent();
 }
 
-// ========== ВСПОМОГАТЕЛЬНАЯ ФУНКЦИЯ: ВСТАВКА СЛОВА В СЛУЧАЙНУЮ ПОЗИЦИЮ ==========
+// ========== ВСТАВКА СЛОВА В СЛУЧАЙНУЮ ПОЗИЦИЮ ==========
 function insertWordAtRandomPosition(words, word) {
     const pos = Math.floor(Math.random() * (words.length + 1));
     words.splice(pos, 0, word);
@@ -499,9 +500,9 @@ function showTrainerSentence(container) {
                 Нажмите на слова, чтобы собрать предложение
             </div>
             
-            <div class="words-container" id="trainerWordsContainer">
+            <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; max-width: 700px; margin: 15px auto;" id="trainerWordsContainer">
                 ${trainerAvailableWords.map(word => `
-                    <button class="word-btn" data-word-id="${word.id}">
+                    <button class="word-btn" data-word-id="${word.id}" style="padding: 12px 18px; font-size: 14px; text-align: center; min-height: 48px; display: flex; align-items: center; justify-content: center; background: #E8F0FE; border: 2px solid #D0D0D0; border-radius: 40px; cursor: pointer; white-space: nowrap;">
                         ${word.display}
                     </button>
                 `).join('')}
@@ -544,11 +545,12 @@ function showTrainerSentence(container) {
             trainerDirection = trainerDirection === 'ru_to_de' ? 'de_to_ru' : 'ru_to_de';
             this.textContent = trainerDirection === 'ru_to_de' ? 'Ru → De' : 'De → Ru';
             _trainerWordIdCounter = 0;
+            _trainerWordQueue = [];
             showTrainerSentence(container);
         });
     }
 
-    // ===== НОВАЯ ЛОГИКА КЛИКА ПО СЛОВАМ (ВОЛНОВОЙ ПРИНЦИП) =====
+    // ===== НОВАЯ ЛОГИКА КЛИКА (ВОЛНОВОЙ ПРИНЦИП) =====
     const wordsContainer = document.getElementById('trainerWordsContainer');
     if (wordsContainer) {
         wordsContainer.addEventListener('click', function(e) {
@@ -563,10 +565,10 @@ function showTrainerSentence(container) {
             
             const selectedWord = trainerAvailableWords[wordIndex];
             
-            // 1. Удаляем слово из массива доступных
+            // 1. Удаляем слово из доступных
             trainerAvailableWords.splice(wordIndex, 1);
             
-            // 2. Добавляем его в выбранные
+            // 2. Добавляем в выбранные
             trainerSelectedWords.push(selectedWord);
             
             // 3. Обновляем отображение результата
@@ -689,6 +691,7 @@ function showTrainerSentence(container) {
                     result.style.backgroundColor = '#FFFFFF';
                     trainerIndex++;
                     _trainerWordIdCounter = 0;
+                    _trainerWordQueue = [];
                     showTrainerSentence(container);
                 }, 500);
             } else {
@@ -765,6 +768,7 @@ function showTrainerSentence(container) {
                     trainerIndex = 0;
                 }
                 _trainerWordIdCounter = 0;
+                _trainerWordQueue = [];
                 showTrainerSentence(container);
             }
         });
@@ -790,6 +794,7 @@ function showTrainerSentence(container) {
             if (trainerIndex > 0) {
                 trainerIndex--;
                 _trainerWordIdCounter = 0;
+                _trainerWordQueue = [];
                 showTrainerSentence(container);
             }
         });
@@ -802,6 +807,7 @@ function showTrainerSentence(container) {
             if (trainerIndex + 1 < trainerSentences.length) {
                 trainerIndex++;
                 _trainerWordIdCounter = 0;
+                _trainerWordQueue = [];
                 showTrainerSentence(container);
             }
         });
@@ -814,13 +820,14 @@ function showTrainerSentence(container) {
             if (trainerSentences.length > 0) {
                 trainerIndex = 0;
                 _trainerWordIdCounter = 0;
+                _trainerWordQueue = [];
                 showTrainerSentence(container);
             }
         });
     }
 }
 
-// ========== ВСПОМОГАТЕЛЬНЫЕ ФУНКЦИИ ДЛЯ ОБНОВЛЕНИЯ ИНТЕРФЕЙСА ==========
+// ========== ВСПОМОГАТЕЛЬНЫЕ ФУНКЦИИ ==========
 
 function updateTrainerResultDisplay() {
     const result = document.getElementById('trainerResult');
@@ -844,6 +851,7 @@ function renderTrainerWords() {
         btn.className = 'word-btn';
         btn.textContent = word.display;
         btn.dataset.wordId = word.id;
+        btn.style.cssText = 'padding: 12px 18px; font-size: 14px; text-align: center; min-height: 48px; display: flex; align-items: center; justify-content: center; background: #E8F0FE; border: 2px solid #D0D0D0; border-radius: 40px; cursor: pointer; white-space: nowrap;';
         wordsContainer.appendChild(btn);
     });
 }

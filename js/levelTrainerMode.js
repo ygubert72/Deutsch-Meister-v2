@@ -1,5 +1,5 @@
 // ====================================================================
-// levelTrainerMode.js — Тренажёр "Все фразы уровня" (ОПТИМИЗИРОВАННАЯ ВЕРСИЯ)
+// levelTrainerMode.js — Тренажёр "Все фразы уровня" (ВОЛНОВОЙ ПРИНЦИП)
 // ====================================================================
 
 (function() {
@@ -9,7 +9,6 @@ let levelTrainerIndex = 0;
 let levelTrainerCurrentSentence = null;
 let levelTrainerSelectedWords = [];
 let levelTrainerAvailableWords = [];
-let levelTrainerActiveWords = {};
 let levelTrainerHintIndex = 0;
 let levelTrainerHintWords = [];
 let levelTrainerDirection = 'ru_to_de';
@@ -18,7 +17,7 @@ let levelTrainerCurrentLevel = 'A1';
 let levelTrainerAllPhrases = [];
 let levelTrainerVocabCache = {};
 
-// ===== КЕШ ДЛЯ ДИСТРАКТОРОВ (СОЗДАЁТСЯ 1 РАЗ ДЛЯ УРОВНЯ) =====
+// ===== КЕШ ДЛЯ ДИСТРАКТОРОВ =====
 let _cachedDistractors = null;
 let _cachedLevel = null;
 let _cachedDirection = null;
@@ -118,7 +117,7 @@ async function loadAllPhrasesLegacy(level) {
     }
 }
 
-// ========== ЗАГРУЗКА ВСЕХ СЛОВ УРОВНЯ (ОПТИМИЗИРОВАННО) ==========
+// ========== ЗАГРУЗКА ВСЕХ СЛОВ УРОВНЯ ==========
 async function loadAllVocabularyForLevelTrainer(level) {
     if (levelTrainerVocabCache[level]) {
         return levelTrainerVocabCache[level];
@@ -176,6 +175,13 @@ function updateLevelTrainerPhrases() {
     if (levelTrainerIndex >= levelTrainerSentences.length && levelTrainerSentences.length > 0) {
         levelTrainerIndex = 0;
     }
+}
+
+// ========== ВСПОМОГАТЕЛЬНАЯ ФУНКЦИЯ: ВСТАВКА СЛОВА В СЛУЧАЙНУЮ ПОЗИЦИЮ ==========
+function insertWordAtRandomPosition(words, word) {
+    const pos = Math.floor(Math.random() * (words.length + 1));
+    words.splice(pos, 0, word);
+    return pos;
 }
 
 // ========== ОСНОВНАЯ ФУНКЦИЯ ==========
@@ -272,7 +278,7 @@ function showLevelTrainerInterface() {
         id: ++_wordIdCounter
     }));
 
-    // ===== ОПТИМИЗАЦИЯ: КЕШИРУЕМ ДИСТРАКТОРЫ ДЛЯ УРОВНЯ =====
+    // ===== КЕШИРУЕМ ДИСТРАКТОРЫ ДЛЯ УРОВНЯ =====
     if (_cachedLevel !== levelTrainerCurrentLevel || _cachedDirection !== levelTrainerDirection) {
         _cachedLevel = levelTrainerCurrentLevel;
         _cachedDirection = levelTrainerDirection;
@@ -314,7 +320,7 @@ function showLevelTrainerInterface() {
             return !correctSet.has(key) && key.length > 0;
         });
 
-    // ===== 6 КНОПОК =====
+    // ===== 6 КНОПОК: берём первые 3 правильных слова, остальные в очередь =====
     let visibleCorrectWords = [];
     let remainingCorrectWords = [];
     
@@ -344,7 +350,7 @@ function showLevelTrainerInterface() {
         });
     });
 
-    const maxTotal = 6; // ← 6 КНОПОК
+    const maxTotal = 6;
     const needed = Math.max(0, maxTotal - visibleCorrectWords.length);
     const selectedDistractors = filteredDistractors.slice(0, needed);
 
@@ -385,18 +391,10 @@ function showLevelTrainerInterface() {
     }
 
     levelTrainerSelectedWords = [];
-    levelTrainerActiveWords = {};
-    levelTrainerAvailableWords.forEach(w => {
-        levelTrainerActiveWords[w.id] = true;
-    });
     levelTrainerHintIndex = 0;
     levelTrainerHintWords = deWords;
 
     const questionText = isRuToDe ? levelTrainerCurrentSentence.ru : levelTrainerCurrentSentence.de;
-    const hasWords = levelTrainerSelectedWords.length > 0;
-    const displayText = levelTrainerSelectedWords.map(w => w.display).join(' ') || 'Нажмите на слова, чтобы собрать предложение';
-    const textColor = hasWords ? '#1A1A1A' : '#CCCCCC';
-    const fontWeight = hasWords ? 'bold' : 'normal';
 
     // ===== HTML =====
     let html = `
@@ -416,18 +414,15 @@ function showLevelTrainerInterface() {
                 <div style="font-size: 14px; color: #666; margin-bottom: 5px;">${isRuToDe ? 'Составьте предложение на немецком:' : 'Составьте предложение на русском:'}</div>
                 <div style="font-size: 20px; font-weight: bold;">${questionText}</div>
             </div>
-            <div style="background: #FFFFFF; border: 2px solid #E0E0E0; border-radius: 16px; padding: 15px; margin: 10px 0; text-align: center; font-size: 20px; min-height: 60px; color: ${textColor}; font-weight: ${fontWeight};" id="levelTrainerResult">
-                ${displayText}
+            <div style="background: #FFFFFF; border: 2px solid #E0E0E0; border-radius: 16px; padding: 15px; margin: 10px 0; text-align: center; font-size: 20px; min-height: 60px; color: #CCCCCC; font-weight: normal;" id="levelTrainerResult">
+                Нажмите на слова, чтобы собрать предложение
             </div>
-            <div style="display: grid; grid-template-columns: repeat(6, 1fr); gap: 10px; max-width: 700px; margin: 15px auto;" id="levelTrainerWordsContainer">
-                ${levelTrainerAvailableWords.map(word => {
-                    const isActive = levelTrainerActiveWords[word.id];
-                    return `
-                        <button class="word-btn" data-word-id="${word.id}" style="padding: 12px 8px; font-size: 14px; text-align: center; min-height: 48px; display: flex; align-items: center; justify-content: center; border-radius: 40px; ${!isActive ? 'opacity: 0.4; pointer-events: none;' : ''}">
-                            ${word.display}
-                        </button>
-                    `;
-                }).join('')}
+            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; max-width: 700px; margin: 15px auto;" id="levelTrainerWordsContainer">
+                ${levelTrainerAvailableWords.map(word => `
+                    <button class="word-btn" data-word-id="${word.id}" style="padding: 12px 8px; font-size: 14px; text-align: center; min-height: 48px; display: flex; align-items: center; justify-content: center; border-radius: 40px; background: #E8F0FE; border: 2px solid #D0D0D0; cursor: pointer;">
+                        ${word.display}
+                    </button>
+                `).join('')}
             </div>
             <div style="display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; margin: 15px 0 5px 0;">
                 <button class="ctrl-btn" id="levelTrainerUndoBtn">↩️ ВЕРНУТЬ СЛОВО</button>
@@ -471,6 +466,7 @@ function attachLevelTrainerEvents() {
         });
     }
 
+    // ===== НОВАЯ ЛОГИКА КЛИКА ПО СЛОВАМ (ВОЛНОВОЙ ПРИНЦИП) =====
     const wordsContainer = document.getElementById('levelTrainerWordsContainer');
     if (wordsContainer) {
         wordsContainer.addEventListener('click', function(e) {
@@ -478,60 +474,76 @@ function attachLevelTrainerEvents() {
             if (!btn) return;
             const wordId = parseInt(btn.dataset.wordId);
             if (isNaN(wordId)) return;
-            if (!levelTrainerActiveWords[wordId]) return;
-            const foundWord = levelTrainerAvailableWords.find(w => w.id === wordId);
-            if (!foundWord) return;
             
-            levelTrainerActiveWords[wordId] = false;
-            levelTrainerSelectedWords.push(foundWord);
+            // Находим выбранное слово в массиве
+            const wordIndex = levelTrainerAvailableWords.findIndex(w => w.id === wordId);
+            if (wordIndex === -1) return;
             
-            // ===== ПОДГРУЗКА: если правильных слов < 2 =====
-            const correctWordsOnButtons = levelTrainerAvailableWords.filter(w => w.isCorrect && levelTrainerActiveWords[w.id]).length;
+            const selectedWord = levelTrainerAvailableWords[wordIndex];
             
-            if (correctWordsOnButtons < 2 && _wordQueue.length > 0) {
-                const needed = 3 - correctWordsOnButtons;
-                const wordsToAdd = [];
-                for (let i = 0; i < needed && _wordQueue.length > 0; i++) {
-                    wordsToAdd.push(_wordQueue.shift());
-                }
-                
-                for (const w of wordsToAdd) {
-                    const newWord = {
+            // 1. Удаляем слово из массива доступных
+            levelTrainerAvailableWords.splice(wordIndex, 1);
+            
+            // 2. Добавляем его в выбранные
+            levelTrainerSelectedWords.push(selectedWord);
+            
+            // 3. Обновляем отображение результата
+            updateLevelTrainerResultDisplay();
+            
+            // 4. Подбираем слово для замены
+            let replacementWord = null;
+            
+            // Сначала проверяем очередь правильных слов
+            if (_wordQueue.length > 0) {
+                const queued = _wordQueue.shift();
+                replacementWord = {
+                    display: queued.display,
+                    de: queued.de,
+                    ru: queued.ru,
+                    isCorrect: true,
+                    originalIndex: queued.originalIndex,
+                    id: queued.id
+                };
+            } else {
+                // Если очередь пуста — берём дистрактор
+                const allDistractorWords = _cachedDistractors || [];
+                const usedDisplaySet = new Set(levelTrainerAvailableWords.map(w => w.display));
+                const availableDistractors = allDistractorWords
+                    .filter(w => {
+                        return !usedDisplaySet.has(w.display) && w.display.length > 0;
+                    })
+                    .map(w => ({
                         display: w.display,
                         de: w.de,
                         ru: w.ru,
-                        isCorrect: true,
-                        originalIndex: w.originalIndex,
-                        id: w.id
+                        isCorrect: false,
+                        originalIndex: -1,
+                        id: --_wordIdCounter
+                    }));
+                
+                if (availableDistractors.length > 0) {
+                    const randomDistractor = availableDistractors[Math.floor(Math.random() * availableDistractors.length)];
+                    replacementWord = randomDistractor;
+                } else {
+                    const fallbackDisplay = levelTrainerDirection === 'ru_to_de' ? '___' : '___';
+                    replacementWord = {
+                        display: fallbackDisplay,
+                        de: '___',
+                        ru: '___',
+                        isCorrect: false,
+                        originalIndex: -1,
+                        id: --_wordIdCounter
                     };
-                    levelTrainerAvailableWords.push(newWord);
-                    levelTrainerActiveWords[newWord.id] = true;
                 }
             }
             
-            // Оставляем только 6 активных кнопок
-            const activeWords = levelTrainerAvailableWords.filter(w => levelTrainerActiveWords[w.id]);
-            if (activeWords.length > 6) {
-                const distractorsToRemove = levelTrainerAvailableWords
-                    .filter(w => !w.isCorrect && levelTrainerActiveWords[w.id])
-                    .slice(0, activeWords.length - 6);
-                for (const d of distractorsToRemove) {
-                    levelTrainerActiveWords[d.id] = false;
-                }
+            // 5. Вставляем замену на случайную позицию
+            if (replacementWord) {
+                insertWordAtRandomPosition(levelTrainerAvailableWords, replacementWord);
             }
             
-            // Если меньше 6 — добавляем дистракторы
-            const activeCount = levelTrainerAvailableWords.filter(w => levelTrainerActiveWords[w.id]).length;
-            if (activeCount < 6) {
-                const needed = 6 - activeCount;
-                const inactiveDistractors = levelTrainerAvailableWords
-                    .filter(w => !w.isCorrect && !levelTrainerActiveWords[w.id]);
-                for (let i = 0; i < needed && i < inactiveDistractors.length; i++) {
-                    levelTrainerActiveWords[inactiveDistractors[i].id] = true;
-                }
-            }
-            
-            updateLevelTrainerDisplay();
+            // 6. Перерисовываем кнопки
+            renderLevelTrainerWords();
         });
     }
 
@@ -540,8 +552,9 @@ function attachLevelTrainerEvents() {
         undoBtn.addEventListener('click', function() {
             if (levelTrainerSelectedWords.length > 0) {
                 const lastWord = levelTrainerSelectedWords.pop();
-                levelTrainerActiveWords[lastWord.id] = true;
-                updateLevelTrainerDisplay();
+                insertWordAtRandomPosition(levelTrainerAvailableWords, lastWord);
+                updateLevelTrainerResultDisplay();
+                renderLevelTrainerWords();
             }
         });
     }
@@ -549,11 +562,12 @@ function attachLevelTrainerEvents() {
     const resetBtn = document.getElementById('levelTrainerResetBtn');
     if (resetBtn) {
         resetBtn.addEventListener('click', function() {
-            levelTrainerSelectedWords = [];
-            levelTrainerAvailableWords.forEach(w => {
-                levelTrainerActiveWords[w.id] = true;
-            });
-            updateLevelTrainerDisplay();
+            while (levelTrainerSelectedWords.length > 0) {
+                const word = levelTrainerSelectedWords.pop();
+                insertWordAtRandomPosition(levelTrainerAvailableWords, word);
+            }
+            updateLevelTrainerResultDisplay();
+            renderLevelTrainerWords();
             document.getElementById('levelTrainerHintLabel').textContent = '';
             levelTrainerHintIndex = 0;
         });
@@ -594,16 +608,12 @@ function attachLevelTrainerEvents() {
                 result.textContent = '❌ Неправильно. Попробуйте снова.';
                 setTimeout(() => {
                     result.style.backgroundColor = '#FFFFFF';
-                    levelTrainerSelectedWords.forEach(w => {
-                        levelTrainerActiveWords[w.id] = true;
-                    });
-                    levelTrainerSelectedWords = [];
-                    updateLevelTrainerDisplay();
-                    const hasWords = levelTrainerSelectedWords.length > 0;
-                    const displayText = levelTrainerSelectedWords.map(w => w.display).join(' ') || 'Нажмите на слова, чтобы собрать предложение';
-                    result.textContent = displayText;
-                    result.style.color = hasWords ? '#1A1A1A' : '#CCCCCC';
-                    result.style.fontWeight = hasWords ? 'bold' : 'normal';
+                    while (levelTrainerSelectedWords.length > 0) {
+                        const word = levelTrainerSelectedWords.pop();
+                        insertWordAtRandomPosition(levelTrainerAvailableWords, word);
+                    }
+                    updateLevelTrainerResultDisplay();
+                    renderLevelTrainerWords();
                 }, 800);
             }
         });
@@ -715,10 +725,10 @@ function attachLevelTrainerEvents() {
     }
 }
 
-// ========== ОБНОВЛЕНИЕ ОТОБРАЖЕНИЯ ==========
-function updateLevelTrainerDisplay() {
+// ========== ВСПОМОГАТЕЛЬНЫЕ ФУНКЦИИ ДЛЯ ОБНОВЛЕНИЯ ИНТЕРФЕЙСА ==========
+
+function updateLevelTrainerResultDisplay() {
     const result = document.getElementById('levelTrainerResult');
-    const wordsContainer = document.getElementById('levelTrainerWordsContainer');
     if (result) {
         const hasWords = levelTrainerSelectedWords.length > 0;
         const displayText = levelTrainerSelectedWords.map(w => w.display).join(' ') || 'Нажмите на слова, чтобы собрать предложение';
@@ -727,20 +737,21 @@ function updateLevelTrainerDisplay() {
         result.style.fontWeight = hasWords ? 'bold' : 'normal';
         result.style.backgroundColor = '#FFFFFF';
     }
-    if (wordsContainer) {
-        wordsContainer.innerHTML = '';
-        levelTrainerAvailableWords.forEach(word => {
-            const isActive = levelTrainerActiveWords[word.id];
-            const btn = document.createElement('button');
-            btn.className = 'word-btn';
-            btn.textContent = word.display;
-            btn.dataset.wordId = word.id;
-            btn.style.cssText = isActive 
-                ? 'padding: 12px 8px; font-size: 14px; text-align: center; min-height: 48px; display: flex; align-items: center; justify-content: center; background: #E8F0FE; border: 2px solid #D0D0D0; border-radius: 40px; cursor: pointer;'
-                : 'padding: 12px 8px; font-size: 14px; text-align: center; min-height: 48px; display: flex; align-items: center; justify-content: center; background: #E8F0FE; border: 2px solid #D0D0D0; border-radius: 40px; cursor: default; opacity: 0.4; pointer-events: none;';
-            wordsContainer.appendChild(btn);
-        });
-    }
+}
+
+function renderLevelTrainerWords() {
+    const wordsContainer = document.getElementById('levelTrainerWordsContainer');
+    if (!wordsContainer) return;
+    
+    wordsContainer.innerHTML = '';
+    levelTrainerAvailableWords.forEach(word => {
+        const btn = document.createElement('button');
+        btn.className = 'word-btn';
+        btn.textContent = word.display;
+        btn.dataset.wordId = word.id;
+        btn.style.cssText = 'padding: 12px 8px; font-size: 14px; text-align: center; min-height: 48px; display: flex; align-items: center; justify-content: center; background: #E8F0FE; border: 2px solid #D0D0D0; border-radius: 40px; cursor: pointer;';
+        wordsContainer.appendChild(btn);
+    });
 }
 
 // ========== КОНТЕЙНЕР ==========
@@ -861,6 +872,6 @@ function showLevelTrainerContainer() {
 window.loadAllPhrasesMode = loadAllPhrasesMode;
 window.showLevelTrainerContainer = showLevelTrainerContainer;
 
-console.log('🧩 levelTrainerMode.js загружен (6 КНОПОК + ПОДГРУЗКА)');
+console.log('🧩 levelTrainerMode.js загружен (ВОЛНОВОЙ ПРИНЦИП)');
 
 })();

@@ -2,6 +2,8 @@
 // trainerMode.js — Тренажёр (сборка фраз из слов) — 6 КНОПОК + ПОДГРУЗКА
 // ====================================================================
 
+(function() {
+
 let trainerSentences = [];
 let trainerIndex = 0;
 let trainerCurrentSentence = null;
@@ -20,8 +22,6 @@ let globalVocabularyCache = {};
 
 // ===== СОСТОЯНИЕ ДЛЯ ПОДГРУЗКИ =====
 let _wordQueue = [];
-
-// Счётчик для генерации уникальных ID
 let _trainerWordIdCounter = 0;
 
 // ========== ЗАГРУЗКА ВСЕХ СЛОВ УРОВНЯ ==========
@@ -331,7 +331,7 @@ function showTrainerContainer() {
 
 // ========== ОСНОВНАЯ ЛОГИКА ОТОБРАЖЕНИЯ ФРАЗЫ ==========
 function showTrainerSentence(container) {
-    // Закольцовка — если дошли до конца, начинаем сначала
+    // Закольцовка
     if (trainerIndex >= trainerSentences.length) {
         trainerIndex = 0;
     }
@@ -340,11 +340,9 @@ function showTrainerSentence(container) {
     
     const isRuToDe = trainerDirection === 'ru_to_de';
     
-    // Разбиваем на слова
     const deWords = trainerCurrentSentence.de.replace(/[.,!?;:]/g, '').split(/\s+/);
     const ruWords = trainerCurrentSentence.ru.replace(/[.,!?;:]/g, '').split(/\s+/);
 
-    // Правильные слова с уникальными ID
     const correctWords = deWords.map((w, i) => ({
         display: isRuToDe ? w : (ruWords[i] || w),
         de: w,
@@ -354,7 +352,6 @@ function showTrainerSentence(container) {
         id: ++_trainerWordIdCounter
     }));
 
-    // Собираем все возможные слова для дистракторов (на нужном языке)
     let allDistractorWords = [];
     
     if (isRuToDe) {
@@ -373,20 +370,17 @@ function showTrainerSentence(container) {
         }));
     }
     
-    // Перемешиваем дистракторы
     const shuffledDistractors = [...allDistractorWords];
     for (let i = shuffledDistractors.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
         [shuffledDistractors[i], shuffledDistractors[j]] = [shuffledDistractors[j], shuffledDistractors[i]];
     }
 
-    // Множество правильных слов (для исключения)
     const correctSet = new Set(
         correctWords.map(w => w.display.toLowerCase().replace(/[.,!?;:]/g, ''))
     );
 
-    // ===== ФОРМИРУЕМ СПИСОК СЛОВ ДЛЯ ВЫБОРА =====
-    // Показываем ТОЛЬКО 3 правильных слова (если их больше 3)
+    // ===== 6 КНОПОК + ПОДГРУЗКА =====
     let visibleCorrectWords = [];
     let remainingCorrectWords = [];
     
@@ -394,13 +388,10 @@ function showTrainerSentence(container) {
         visibleCorrectWords = [...correctWords];
         remainingCorrectWords = [];
     } else {
-        // Берем первые 3 правильных слова
         visibleCorrectWords = correctWords.slice(0, 3);
-        // Остальные правильные слова отправляем в очередь
         remainingCorrectWords = correctWords.slice(3);
     }
 
-    // Формируем _wordQueue для подгрузки
     _wordQueue = remainingCorrectWords.map(w => ({
         id: w.id,
         text: w.display,
@@ -408,14 +399,12 @@ function showTrainerSentence(container) {
         originalIndex: w.originalIndex
     }));
 
-    // Фильтруем дистракторы для 6 кнопок (3 правильных + 3 дистрактора)
     const filteredDistractors = shuffledDistractors
         .filter(w => {
             const key = w.display.toLowerCase().replace(/[.,!?;:]/g, '');
             return !correctSet.has(key) && key.length > 0;
         });
 
-    // Собираем финальный список (3 правильных + 3 дистрактора = 6 кнопок)
     let finalAll = [];
     visibleCorrectWords.forEach(w => {
         finalAll.push({
@@ -439,7 +428,6 @@ function showTrainerSentence(container) {
         });
     });
 
-    // Если не хватает дистракторов, добиваем
     let distractorIndex = 0;
     while (finalAll.length < maxTotal && distractorIndex < allDistractorWords.length) {
         const d = allDistractorWords[distractorIndex];
@@ -457,10 +445,8 @@ function showTrainerSentence(container) {
         distractorIndex++;
     }
 
-    // ===== ИНИЦИАЛИЗАЦИЯ =====
     trainerAvailableWords = finalAll;
     
-    // Перемешиваем ТОЛЬКО ПРИ ИНИЦИАЛИЗАЦИИ
     for (let i = trainerAvailableWords.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
         [trainerAvailableWords[i], trainerAvailableWords[j]] = [trainerAvailableWords[j], trainerAvailableWords[i]];
@@ -474,7 +460,6 @@ function showTrainerSentence(container) {
     trainerHintIndex = 0;
     trainerHintWords = deWords;
 
-    // Вопрос
     const questionText = isRuToDe ? trainerCurrentSentence.ru : trainerCurrentSentence.de;
 
     const hasWords = trainerSelectedWords.length > 0;
@@ -482,7 +467,6 @@ function showTrainerSentence(container) {
     const textColor = hasWords ? '#1A1A1A' : '#CCCCCC';
     const fontWeight = hasWords ? 'bold' : 'normal';
 
-    // Обновляем кнопку направления в header
     const headerControls = document.getElementById('modeHeaderControls');
     if (headerControls) {
         headerControls.innerHTML = `
@@ -543,7 +527,6 @@ function showTrainerSentence(container) {
 
     // ===== ПРИВЯЗКА ОБРАБОТЧИКОВ =====
     
-    // Кнопка направления
     const dirBtn = document.getElementById('trainerDirBtn');
     if (dirBtn) {
         dirBtn.addEventListener('click', function() {
@@ -554,7 +537,6 @@ function showTrainerSentence(container) {
         });
     }
 
-    // Слова в контейнере — используем делегирование
     const wordsContainer = document.getElementById('trainerWordsContainer');
     if (wordsContainer) {
         wordsContainer.addEventListener('click', function(e) {
@@ -569,20 +551,16 @@ function showTrainerSentence(container) {
                 if (foundWord) {
                     trainerSelectedWords.push(foundWord);
                     
-                    // ===== ПОДГРУЗКА НОВЫХ СЛОВ =====
-                    // Проверяем, сколько правильных слов осталось на кнопках
+                    // ===== ПОДГРУЗКА =====
                     const correctWordsOnButtons = trainerAvailableWords.filter(w => w.isCorrect && trainerActiveWords[w.id]).length;
                     
-                    // Если правильных слов на кнопках осталось 0 или 1, и есть очередь
                     if (correctWordsOnButtons < 2 && _wordQueue.length > 0) {
-                        // Загружаем столько слов, чтобы стало 3 правильных (но не больше, чем в очереди)
                         const needed = 3 - correctWordsOnButtons;
                         const wordsToAdd = [];
                         for (let i = 0; i < needed && _wordQueue.length > 0; i++) {
                             wordsToAdd.push(_wordQueue.shift());
                         }
                         
-                        // Добавляем новые правильные слова на кнопки
                         for (const w of wordsToAdd) {
                             const newWord = {
                                 display: w.text,
@@ -597,10 +575,8 @@ function showTrainerSentence(container) {
                         }
                     }
                     
-                    // Убеждаемся, что всего 6 активных кнопок
                     const activeWords = trainerAvailableWords.filter(w => trainerActiveWords[w.id]);
                     if (activeWords.length > 6) {
-                        // Удаляем дистракторы (неправильные слова), пока не останется 6
                         const distractorsToRemove = trainerAvailableWords
                             .filter(w => !w.isCorrect && trainerActiveWords[w.id])
                             .slice(0, activeWords.length - 6);
@@ -609,11 +585,9 @@ function showTrainerSentence(container) {
                         }
                     }
                     
-                    // Если слов меньше 6, добавляем дистракторы
                     const activeCount = trainerAvailableWords.filter(w => trainerActiveWords[w.id]).length;
                     if (activeCount < 6) {
                         const needed = 6 - activeCount;
-                        // Находим неактивные дистракторы
                         const inactiveDistractors = trainerAvailableWords
                             .filter(w => !w.isCorrect && !trainerActiveWords[w.id]);
                         for (let i = 0; i < needed && i < inactiveDistractors.length; i++) {
@@ -627,7 +601,6 @@ function showTrainerSentence(container) {
         });
     }
 
-    // Undo
     const undoBtn = document.getElementById('trainerUndoBtn');
     if (undoBtn) {
         undoBtn.addEventListener('click', function() {
@@ -639,7 +612,6 @@ function showTrainerSentence(container) {
         });
     }
 
-    // Reset
     const resetBtn = document.getElementById('trainerResetBtn');
     if (resetBtn) {
         resetBtn.addEventListener('click', function() {
@@ -653,7 +625,6 @@ function showTrainerSentence(container) {
         });
     }
 
-    // Check
     const checkBtn = document.getElementById('trainerCheckBtn');
     if (checkBtn) {
         checkBtn.addEventListener('click', function() {
@@ -676,7 +647,6 @@ function showTrainerSentence(container) {
                 result.style.backgroundColor = '#C8E6C9';
                 result.textContent = '✅ ПРАВИЛЬНО!';
                 
-                // Сохраняем в контейнер (как было в оригинале)
                 const key = trainerCurrentSentence.de + '|' + trainerCurrentSentence.ru;
                 trainerStudiedSentences[key] = true;
                 saveTrainerState();
@@ -708,7 +678,6 @@ function showTrainerSentence(container) {
         });
     }
 
-    // Speak
     const speakBtn = document.getElementById('trainerSpeakBtn');
     if (speakBtn) {
         speakBtn.addEventListener('click', function() {
@@ -718,7 +687,6 @@ function showTrainerSentence(container) {
         });
     }
 
-    // Hint
     const hintBtn = document.getElementById('trainerHintBtn');
     if (hintBtn) {
         hintBtn.addEventListener('click', function() {
@@ -733,7 +701,6 @@ function showTrainerSentence(container) {
         });
     }
 
-    // Study
     const studyBtn = document.getElementById('trainerStudyBtn');
     if (studyBtn) {
         studyBtn.addEventListener('click', function() {
@@ -770,7 +737,6 @@ function showTrainerSentence(container) {
         });
     }
 
-    // Container
     const containerBtn = document.getElementById('trainerContainerBtn');
     if (containerBtn) {
         containerBtn.addEventListener('click', function() {
@@ -783,7 +749,6 @@ function showTrainerSentence(container) {
         });
     }
 
-    // Prev
     const prevBtn = document.getElementById('trainerPrevBtn');
     if (prevBtn) {
         prevBtn.addEventListener('click', function() {
@@ -795,7 +760,6 @@ function showTrainerSentence(container) {
         });
     }
 
-    // Next
     const nextBtn = document.getElementById('trainerNextBtn');
     if (nextBtn) {
         nextBtn.addEventListener('click', function() {
@@ -807,7 +771,6 @@ function showTrainerSentence(container) {
         });
     }
 
-    // Reset start
     const resetStartBtn = document.getElementById('trainerResetStartBtn');
     if (resetStartBtn) {
         resetStartBtn.addEventListener('click', function() {
@@ -854,3 +817,5 @@ function updateTrainerDisplay(container) {
 window.renderTrainer = renderTrainer;
 
 console.log('🧩 trainerMode.js загружен (6 КНОПОК + ПОДГРУЗКА)');
+
+})();

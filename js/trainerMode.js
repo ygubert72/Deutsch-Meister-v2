@@ -1,5 +1,5 @@
 // ====================================================================
-// trainerMode.js — Тренажёр (сборка фраз из слов) — ИСПРАВЛЕННЫЙ V2
+// trainerMode.js — Тренажёр (сборка фраз из слов) — ИСПРАВЛЕННЫЙ ФИНАЛ
 // ====================================================================
 
 (function() {
@@ -336,16 +336,16 @@ function insertWordAtRandomPosition(words, word) {
     return pos;
 }
 
-// ========== ВОССТАНОВЛЕНИЕ ОЧЕРЕДИ (ИСПРАВЛЕНО) ==========
+// ========== ВОССТАНОВЛЕНИЕ ОЧЕРЕДИ ==========
 function restoreTrainerQueue() {
     if (!trainerCurrentSentence) {
         return;
     }
     
-    // 1. Получаем все правильные слова из текущего предложения (в порядке появления)
+    // 1. Получаем все правильные слова из текущего предложения
     const correctWords = trainerCurrentSentence.de.replace(/[.,!?;:]/g, '').split(/\s+/);
     
-    // 2. Получаем список правильных слов, которые уже есть на кнопках (только их текст)
+    // 2. Получаем список правильных слов, которые уже есть на кнопках
     const correctTextsOnButtons = trainerAvailableWords
         .filter(w => w.isCorrect)
         .map(w => w.display);
@@ -354,7 +354,6 @@ function restoreTrainerQueue() {
     const correctSet = new Set(correctTextsOnButtons);
     
     // 4. Создаём очередь из правильных слов, которых НЕТ на кнопках
-    //    ВАЖНО: используем СЛОВА ИЗ ПРЕДЛОЖЕНИЯ, а не из кнопок
     const newQueue = [];
     correctWords.forEach(w => {
         if (!correctSet.has(w)) {
@@ -369,17 +368,34 @@ function restoreTrainerQueue() {
         }
     });
     
-    // 5. Заменяем существующую очередь (полностью пересоздаём)
+    // 5. Заменяем существующую очередь
     _trainerWordQueue = newQueue;
 }
 
-// ========== ГАРАНТИЯ 6 КНОПОК И ПРАВИЛЬНЫХ СЛОВ ==========
+// ========== ГАРАНТИЯ 6 КНОПОК И РОВНО 3 ПРАВИЛЬНЫХ СЛОВ ==========
 function ensureSixButtonsWithCorrectWords() {
-    // 1. Убеждаемся, что на кнопках есть как минимум 3 правильных слова
+    // 1. Считаем правильные слова на кнопках
     let correctCount = trainerAvailableWords.filter(w => w.isCorrect).length;
     
+    // 2. Если правильных слов больше 3 — удаляем лишние и добавляем в очередь
+    while (correctCount > 3) {
+        const extraCorrectIndex = trainerAvailableWords.findIndex(w => w.isCorrect);
+        if (extraCorrectIndex !== -1) {
+            const removed = trainerAvailableWords.splice(extraCorrectIndex, 1)[0];
+            _trainerWordQueue.push({
+                id: ++_trainerWordIdCounter,
+                display: removed.display,
+                de: removed.de,
+                ru: removed.ru,
+                isCorrect: true,
+                originalIndex: -1
+            });
+            correctCount--;
+        }
+    }
+    
+    // 3. Если правильных слов меньше 3 — добавляем из очереди
     while (correctCount < 3 && _trainerWordQueue.length > 0) {
-        // Берём слово из очереди
         const queued = _trainerWordQueue.shift();
         const newWord = {
             id: ++_trainerWordIdCounter,
@@ -394,12 +410,14 @@ function ensureSixButtonsWithCorrectWords() {
         const distractorIndex = trainerAvailableWords.findIndex(w => !w.isCorrect);
         if (distractorIndex !== -1) {
             trainerAvailableWords.splice(distractorIndex, 1);
+            trainerAvailableWords.push(newWord);
+        } else {
+            trainerAvailableWords.push(newWord);
         }
-        trainerAvailableWords.push(newWord);
         correctCount++;
     }
     
-    // 2. Убеждаемся, что кнопок ровно 6
+    // 4. Убеждаемся, что кнопок ровно 6
     while (trainerAvailableWords.length < 6) {
         const usedDisplaySet = new Set(trainerAvailableWords.map(w => w.display));
         const availableDistractors = allVocabWords
@@ -489,7 +507,7 @@ function createInitialButtons() {
         });
 
     // ===== ФОРМИРУЕМ 6 КНОПОК =====
-    // Берем первые 3 правильных слова
+    // Берем первые 3 правильных слова (НЕ БОЛЬШЕ!)
     let visibleCorrectWords = correctWords.slice(0, 3);
     let remainingCorrectWords = correctWords.slice(3);
 
@@ -499,10 +517,10 @@ function createInitialButtons() {
         id: ++_trainerWordIdCounter
     }));
 
-    // Начинаем с 3 правильных слов
+    // Начинаем с 3 правильных слов (ровно 3!)
     trainerAvailableWords = [...visibleCorrectWords];
     
-    // Добавляем дистракторы до 6 слов
+    // Добавляем дистракторы до 6 слов (ровно 3 дистрактора)
     let distractorIndex = 0;
     while (trainerAvailableWords.length < 6 && distractorIndex < filteredDistractors.length) {
         const d = filteredDistractors[distractorIndex];
@@ -811,7 +829,6 @@ function attachTrainerEvents(container) {
                 
                 setTimeout(() => {
                     result.style.backgroundColor = '#FFFFFF';
-                    // Возвращаем все слова
                     returnAllWordsToButtons();
                 }, 800);
             }
@@ -958,7 +975,6 @@ function renderTrainerWords() {
 // ===== ЭКСПОРТ =====
 window.renderTrainer = renderTrainer;
 
-// ===== ЭКСПОРТ ДЛЯ ОТЛАДКИ =====
 window._debugTrainer = {
     trainerSentences: trainerSentences,
     trainerIndex: trainerIndex,
@@ -972,8 +988,7 @@ window._debugTrainer = {
     allVocabWords: allVocabWords,
     trainerStudiedSentences: trainerStudiedSentences
 };
-console.log('🐛 Отладка trainerMode включена. Используйте window._debugTrainer');
 
-console.log('🧩 trainerMode.js загружен (исправленная версия V2)');
+console.log('🧩 trainerMode.js загружен (финальная исправленная версия)');
 
 })();

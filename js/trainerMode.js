@@ -546,7 +546,7 @@ function createInitialButtons() {
     console.log('   Очередь:', _trainerWordQueue.map(w => w.display).join(', ') || '(пусто)');
 }
 
-// ========== ВОЗВРАТ ВСЕХ СЛОВ НА КНОПКИ (ИСПРАВЛЕННАЯ) ==========
+// ========== ВОЗВРАТ ВСЕХ СЛОВ НА КНОПКИ ==========
 function returnAllWordsToButtons() {
     // 1. Возвращаем все выбранные слова на кнопки
     while (trainerSelectedWords.length > 0) {
@@ -637,7 +637,6 @@ function returnAllWordsToButtons() {
     updateTrainerResultDisplay();
     renderTrainerWords();
     
-    // Отладка
     console.log('🔄 Сброс выполнен для:', trainerCurrentSentence.de);
     console.log('   Кнопки:', trainerAvailableWords.map(w => `${w.display}(${w.isCorrect ? '✓' : '✗'})`).join(', '));
     console.log('   Очередь:', _trainerWordQueue.map(w => w.display).join(', ') || '(пусто)');
@@ -803,16 +802,32 @@ function attachTrainerEvents(container) {
         });
     }
 
+    // ===== ИСПРАВЛЕННЫЙ ОБРАБОТЧИК "ВЕРНУТЬ СЛОВО" =====
     const undoBtn = document.getElementById('trainerUndoBtn');
     if (undoBtn) {
         undoBtn.addEventListener('click', function() {
             if (trainerSelectedWords.length > 0) {
+                // 1. Берём последнее выбранное слово
                 const lastWord = trainerSelectedWords.pop();
                 const wordWithNewId = {
                     ...lastWord,
                     id: ++_trainerWordIdCounter
                 };
+                
+                // 2. Добавляем слово на кнопки
                 insertWordAtRandomPosition(trainerAvailableWords, wordWithNewId);
+                
+                // 3. УБЕЖДАЕМСЯ, ЧТО КНОПОК РОВНО 6!
+                while (trainerAvailableWords.length > 6) {
+                    const distractorIdx = trainerAvailableWords.findIndex(w => !w.isCorrect);
+                    if (distractorIdx !== -1) {
+                        trainerAvailableWords.splice(distractorIdx, 1);
+                    } else {
+                        trainerAvailableWords.pop();
+                    }
+                }
+                
+                // 4. Обновляем отображение
                 renderTrainerWords();
                 updateTrainerResultDisplay();
             }

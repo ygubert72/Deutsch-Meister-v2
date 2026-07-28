@@ -1,5 +1,5 @@
 // ====================================================================
-// levelTrainerMode.js — Тренажёр "Все фразы уровня" (6 КНОПОК + ПОДГРУЗКА)
+// levelTrainerMode.js — Тренажёр "Все фразы уровня" (ОПТИМИЗИРОВАННАЯ ВЕРСИЯ)
 // ====================================================================
 
 (function() {
@@ -18,16 +18,18 @@ let levelTrainerCurrentLevel = 'A1';
 let levelTrainerAllPhrases = [];
 let levelTrainerVocabCache = {};
 
-// ===== КЕШ ДЛЯ ДИСТРАКТОРОВ =====
+// ===== КЕШ ДЛЯ ДИСТРАКТОРОВ (СОЗДАЁТСЯ 1 РАЗ ДЛЯ УРОВНЯ) =====
 let _cachedDistractors = null;
 let _cachedLevel = null;
 let _cachedDirection = null;
 
-// ===== СОСТОЯНИЕ ДЛЯ ПОДГРУЗКИ =====
+// ===== ОЧЕРЕДЬ ДЛЯ ПОДГРУЗКИ =====
 let _wordQueue = [];
+
+// Счётчик для генерации уникальных ID
 let _wordIdCounter = 0;
 
-// ===== КЕШ ДЛЯ ВСЕХ ФРАЗ УРОВНЯ =====
+// ===== НОВОЕ: КЕШ ДЛЯ ВСЕХ ФРАЗ УРОВНЯ =====
 function getCachedPhrases(level) {
     try {
         const cache = JSON.parse(localStorage.getItem('dm_phrases_cache') || '{}');
@@ -57,7 +59,7 @@ function cachePhrases(level, data) {
     }
 }
 
-// ========== ЗАГРУЗКА ВСЕХ ФРАЗ УРОВНЯ ==========
+// ========== ЗАГРУЗКА ВСЕХ ФРАЗ УРОВНЯ (С КЕШИРОВАНИЕМ) ==========
 async function loadAllPhrasesForLevel(level) {
     const cached = getCachedPhrases(level);
     if (cached) {
@@ -116,7 +118,7 @@ async function loadAllPhrasesLegacy(level) {
     }
 }
 
-// ========== ЗАГРУЗКА ВСЕХ СЛОВ УРОВНЯ ==========
+// ========== ЗАГРУЗКА ВСЕХ СЛОВ УРОВНЯ (ОПТИМИЗИРОВАННО) ==========
 async function loadAllVocabularyForLevelTrainer(level) {
     if (levelTrainerVocabCache[level]) {
         return levelTrainerVocabCache[level];
@@ -242,6 +244,7 @@ function showLevelTrainerInterface() {
     const content = document.getElementById('content');
     if (!content) return;
     
+    // ЗАКОЛЬЦОВКА
     if (levelTrainerSentences.length === 0) {
         updateLevelTrainerPhrases();
         if (levelTrainerSentences.length === 0) {
@@ -259,6 +262,7 @@ function showLevelTrainerInterface() {
     const deWords = levelTrainerCurrentSentence.de.replace(/[.,!?;:]/g, '').split(/\s+/);
     const ruWords = levelTrainerCurrentSentence.ru.replace(/[.,!?;:]/g, '').split(/\s+/);
     
+    // ===== ПРАВИЛЬНЫЕ СЛОВА С УНИКАЛЬНЫМИ ID =====
     const correctWords = deWords.map((w, i) => ({
         display: isRuToDe ? w : (ruWords[i] || w),
         de: w,
@@ -268,6 +272,7 @@ function showLevelTrainerInterface() {
         id: ++_wordIdCounter
     }));
 
+    // ===== ОПТИМИЗАЦИЯ: КЕШИРУЕМ ДИСТРАКТОРЫ ДЛЯ УРОВНЯ =====
     if (_cachedLevel !== levelTrainerCurrentLevel || _cachedDirection !== levelTrainerDirection) {
         _cachedLevel = levelTrainerCurrentLevel;
         _cachedDirection = levelTrainerDirection;
@@ -309,7 +314,7 @@ function showLevelTrainerInterface() {
             return !correctSet.has(key) && key.length > 0;
         });
 
-    // ===== ФОРМИРУЕМ СПИСОК СЛОВ (6 КНОПОК) =====
+    // ===== 6 КНОПОК =====
     let visibleCorrectWords = [];
     let remainingCorrectWords = [];
     
@@ -321,9 +326,12 @@ function showLevelTrainerInterface() {
         remainingCorrectWords = correctWords.slice(3);
     }
 
+    // Сохраняем в очередь для подгрузки
     _wordQueue = remainingCorrectWords.map(w => ({
         id: w.id,
-        text: w.display,
+        display: w.display,
+        de: w.de,
+        ru: w.ru,
         isCorrect: true,
         originalIndex: w.originalIndex
     }));
@@ -336,7 +344,7 @@ function showLevelTrainerInterface() {
         });
     });
 
-    const maxTotal = 6;
+    const maxTotal = 6; // ← 6 КНОПОК
     const needed = Math.max(0, maxTotal - visibleCorrectWords.length);
     const selectedDistractors = filteredDistractors.slice(0, needed);
 
@@ -370,6 +378,7 @@ function showLevelTrainerInterface() {
 
     levelTrainerAvailableWords = finalAll;
     
+    // ПЕРЕМЕШИВАНИЕ ТОЛЬКО ПРИ ИНИЦИАЛИЗАЦИИ
     for (let i = levelTrainerAvailableWords.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
         [levelTrainerAvailableWords[i], levelTrainerAvailableWords[j]] = [levelTrainerAvailableWords[j], levelTrainerAvailableWords[i]];
@@ -389,6 +398,7 @@ function showLevelTrainerInterface() {
     const textColor = hasWords ? '#1A1A1A' : '#CCCCCC';
     const fontWeight = hasWords ? 'bold' : 'normal';
 
+    // ===== HTML =====
     let html = `
         <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; margin-bottom: 15px;">
             <button class="back-btn" onclick="renderLevel()" style="padding: 8px 16px; background: #3B6FE0; color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: bold;">
@@ -469,14 +479,13 @@ function attachLevelTrainerEvents() {
             const wordId = parseInt(btn.dataset.wordId);
             if (isNaN(wordId)) return;
             if (!levelTrainerActiveWords[wordId]) return;
-            
             const foundWord = levelTrainerAvailableWords.find(w => w.id === wordId);
             if (!foundWord) return;
             
             levelTrainerActiveWords[wordId] = false;
             levelTrainerSelectedWords.push(foundWord);
             
-            // ===== ПОДГРУЗКА =====
+            // ===== ПОДГРУЗКА: если правильных слов < 2 =====
             const correctWordsOnButtons = levelTrainerAvailableWords.filter(w => w.isCorrect && levelTrainerActiveWords[w.id]).length;
             
             if (correctWordsOnButtons < 2 && _wordQueue.length > 0) {
@@ -488,11 +497,11 @@ function attachLevelTrainerEvents() {
                 
                 for (const w of wordsToAdd) {
                     const newWord = {
-                        display: w.text,
-                        de: w.text,
-                        ru: w.text,
+                        display: w.display,
+                        de: w.de,
+                        ru: w.ru,
                         isCorrect: true,
-                        originalIndex: -1,
+                        originalIndex: w.originalIndex,
                         id: w.id
                     };
                     levelTrainerAvailableWords.push(newWord);
@@ -500,6 +509,7 @@ function attachLevelTrainerEvents() {
                 }
             }
             
+            // Оставляем только 6 активных кнопок
             const activeWords = levelTrainerAvailableWords.filter(w => levelTrainerActiveWords[w.id]);
             if (activeWords.length > 6) {
                 const distractorsToRemove = levelTrainerAvailableWords
@@ -510,6 +520,7 @@ function attachLevelTrainerEvents() {
                 }
             }
             
+            // Если меньше 6 — добавляем дистракторы
             const activeCount = levelTrainerAvailableWords.filter(w => levelTrainerActiveWords[w.id]).length;
             if (activeCount < 6) {
                 const needed = 6 - activeCount;

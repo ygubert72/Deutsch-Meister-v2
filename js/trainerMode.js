@@ -338,6 +338,37 @@ function insertWordAtRandomPosition(words, word) {
     return pos;
 }
 
+// ========== ВОССТАНОВЛЕНИЕ ОЧЕРЕДИ ==========
+function restoreTrainerQueue() {
+    // Находим все правильные слова для текущего предложения
+    const allCorrectWords = trainerHintWords.map(w => ({
+        display: w,
+        de: w,
+        ru: w,
+        isCorrect: true,
+        originalIndex: -1
+    }));
+    
+    // Какие правильные слова уже есть на кнопках?
+    const usedDisplaySet = new Set(trainerAvailableWords.map(w => w.display));
+    
+    // Каких правильных слов нет на кнопках?
+    const missingCorrectWords = allCorrectWords.filter(w => !usedDisplaySet.has(w.display));
+    
+    // Очищаем очередь и добавляем недостающие слова с новыми ID
+    _trainerWordQueue = [];
+    missingCorrectWords.forEach(w => {
+        _trainerWordQueue.push({
+            id: ++_trainerWordIdCounter,
+            display: w.display,
+            de: w.de,
+            ru: w.ru,
+            isCorrect: true,
+            originalIndex: -1
+        });
+    });
+}
+
 // ========== ОСНОВНАЯ ЛОГИКА ОТОБРАЖЕНИЯ ФРАЗЫ ==========
 function showTrainerSentence(container) {
     // ===== ЗАКОЛЬЦОВКА =====
@@ -643,6 +674,7 @@ function showTrainerSentence(container) {
                 if (trainerAvailableWords.length > 6) {
                     trainerAvailableWords = trainerAvailableWords.slice(0, 6);
                 }
+                restoreTrainerQueue();
                 updateTrainerResultDisplay();
                 renderTrainerWords();
             }
@@ -652,6 +684,7 @@ function showTrainerSentence(container) {
     const resetBtn = document.getElementById('trainerResetBtn');
     if (resetBtn) {
         resetBtn.addEventListener('click', function() {
+            // 1. Возвращаем выбранные слова на кнопки
             while (trainerSelectedWords.length > 0) {
                 const word = trainerSelectedWords.pop();
                 const wordWithNewId = {
@@ -660,9 +693,16 @@ function showTrainerSentence(container) {
                 };
                 insertWordAtRandomPosition(trainerAvailableWords, wordWithNewId);
             }
+            
+            // 2. ВОССТАНАВЛИВАЕМ ОЧЕРЕДЬ
+            restoreTrainerQueue();
+            
+            // 3. Обрезаем до 6
             if (trainerAvailableWords.length > 6) {
                 trainerAvailableWords = trainerAvailableWords.slice(0, 6);
             }
+            
+            // 4. Обновляем интерфейс
             updateTrainerResultDisplay();
             renderTrainerWords();
             document.getElementById('trainerHintLabel').textContent = '';
@@ -718,6 +758,7 @@ function showTrainerSentence(container) {
                         };
                         insertWordAtRandomPosition(trainerAvailableWords, wordWithNewId);
                     }
+                    restoreTrainerQueue();
                     if (trainerAvailableWords.length > 6) {
                         trainerAvailableWords = trainerAvailableWords.slice(0, 6);
                     }

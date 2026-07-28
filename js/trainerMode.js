@@ -9,7 +9,6 @@ let trainerIndex = 0;
 let trainerCurrentSentence = null;
 let trainerSelectedWords = [];
 let trainerAvailableWords = [];
-let trainerActiveWords = {};
 let trainerHintIndex = 0;
 let trainerHintWords = [];
 let trainerDirection = 'ru_to_de';
@@ -500,9 +499,9 @@ function showTrainerSentence(container) {
                 Нажмите на слова, чтобы собрать предложение
             </div>
             
-            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; max-width: 700px; margin: 15px auto;" id="trainerWordsContainer">
+            <div class="words-container" id="trainerWordsContainer">
                 ${trainerAvailableWords.map(word => `
-                    <button class="word-btn" data-word-id="${word.id}" style="padding: 12px 8px; font-size: 14px; text-align: center; min-height: 48px; display: flex; align-items: center; justify-content: center; border-radius: 40px; background: #E8F0FE; border: 2px solid #D0D0D0; cursor: pointer;">
+                    <button class="word-btn" data-word-id="${word.id}">
                         ${word.display}
                     </button>
                 `).join('')}
@@ -589,7 +588,6 @@ function showTrainerSentence(container) {
                 };
             } else {
                 // Если очередь пуста — берём дистрактор
-                // Находим все доступные дистракторы (которые ещё не используются)
                 const usedDisplaySet = new Set(trainerAvailableWords.map(w => w.display));
                 const availableDistractors = allVocabWords
                     .filter(w => {
@@ -609,7 +607,6 @@ function showTrainerSentence(container) {
                     const randomDistractor = availableDistractors[Math.floor(Math.random() * availableDistractors.length)];
                     replacementWord = randomDistractor;
                 } else {
-                    // Если дистракторов нет — используем запасной вариант
                     const fallbackDisplay = trainerDirection === 'ru_to_de' ? '___' : '___';
                     replacementWord = {
                         display: fallbackDisplay,
@@ -638,7 +635,6 @@ function showTrainerSentence(container) {
         undoBtn.addEventListener('click', function() {
             if (trainerSelectedWords.length > 0) {
                 const lastWord = trainerSelectedWords.pop();
-                // Возвращаем слово обратно в массив (на случайную позицию)
                 insertWordAtRandomPosition(trainerAvailableWords, lastWord);
                 updateTrainerResultDisplay();
                 renderTrainerWords();
@@ -650,7 +646,6 @@ function showTrainerSentence(container) {
     const resetBtn = document.getElementById('trainerResetBtn');
     if (resetBtn) {
         resetBtn.addEventListener('click', function() {
-            // Возвращаем все выбранные слова обратно
             while (trainerSelectedWords.length > 0) {
                 const word = trainerSelectedWords.pop();
                 insertWordAtRandomPosition(trainerAvailableWords, word);
@@ -702,7 +697,6 @@ function showTrainerSentence(container) {
                 
                 setTimeout(() => {
                     result.style.backgroundColor = '#FFFFFF';
-                    // Возвращаем все выбранные слова обратно
                     while (trainerSelectedWords.length > 0) {
                         const word = trainerSelectedWords.pop();
                         insertWordAtRandomPosition(trainerAvailableWords, word);
@@ -850,7 +844,6 @@ function renderTrainerWords() {
         btn.className = 'word-btn';
         btn.textContent = word.display;
         btn.dataset.wordId = word.id;
-        btn.style.cssText = 'padding: 12px 8px; font-size: 14px; text-align: center; min-height: 48px; display: flex; align-items: center; justify-content: center; background: #E8F0FE; border: 2px solid #D0D0D0; border-radius: 40px; cursor: pointer;';
         wordsContainer.appendChild(btn);
     });
 }

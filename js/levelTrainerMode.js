@@ -28,7 +28,7 @@ let _wordQueue = [];
 // Счётчик для генерации уникальных ID
 let _wordIdCounter = 0;
 
-// ===== НОВОЕ: КЕШ ДЛЯ ВСЕХ ФРАЗ УРОВНЯ =====
+// ===== КЕШ ДЛЯ ВСЕХ ФРАЗ УРОВНЯ =====
 function getCachedPhrases(level) {
     try {
         const cache = JSON.parse(localStorage.getItem('dm_phrases_cache') || '{}');
@@ -58,7 +58,7 @@ function cachePhrases(level, data) {
     }
 }
 
-// ========== ЗАГРУЗКА ВСЕХ ФРАЗ УРОВНЯ (С КЕШИРОВАНИЕМ) ==========
+// ========== ЗАГРУЗКА ВСЕХ ФРАЗ УРОВНЯ ==========
 async function loadAllPhrasesForLevel(level) {
     const cached = getCachedPhrases(level);
     if (cached) {
@@ -177,7 +177,7 @@ function updateLevelTrainerPhrases() {
     }
 }
 
-// ========== ВСПОМОГАТЕЛЬНАЯ ФУНКЦИЯ: ВСТАВКА СЛОВА В СЛУЧАЙНУЮ ПОЗИЦИЮ ==========
+// ========== ВСТАВКА СЛОВА В СЛУЧАЙНУЮ ПОЗИЦИЮ ==========
 function insertWordAtRandomPosition(words, word) {
     const pos = Math.floor(Math.random() * (words.length + 1));
     words.splice(pos, 0, word);
@@ -192,6 +192,7 @@ window.loadAllPhrasesMode = async function(level) {
     _cachedDistractors = null;
     _cachedLevel = null;
     _cachedDirection = null;
+    _wordQueue = [];
     
     loadLevelTrainerStudied(level);
     levelTrainerAllPhrases = await loadAllPhrasesForLevel(level);
@@ -268,7 +269,7 @@ function showLevelTrainerInterface() {
     const deWords = levelTrainerCurrentSentence.de.replace(/[.,!?;:]/g, '').split(/\s+/);
     const ruWords = levelTrainerCurrentSentence.ru.replace(/[.,!?;:]/g, '').split(/\s+/);
     
-    // ===== ПРАВИЛЬНЫЕ СЛОВА С УНИКАЛЬНЫМИ ID =====
+    // ===== ПРАВИЛЬНЫЕ СЛОВА =====
     const correctWords = deWords.map((w, i) => ({
         display: isRuToDe ? w : (ruWords[i] || w),
         de: w,
@@ -278,7 +279,7 @@ function showLevelTrainerInterface() {
         id: ++_wordIdCounter
     }));
 
-    // ===== КЕШИРУЕМ ДИСТРАКТОРЫ ДЛЯ УРОВНЯ =====
+    // ===== КЕШИРУЕМ ДИСТРАКТОРЫ =====
     if (_cachedLevel !== levelTrainerCurrentLevel || _cachedDirection !== levelTrainerDirection) {
         _cachedLevel = levelTrainerCurrentLevel;
         _cachedDirection = levelTrainerDirection;
@@ -417,9 +418,9 @@ function showLevelTrainerInterface() {
             <div style="background: #FFFFFF; border: 2px solid #E0E0E0; border-radius: 16px; padding: 15px; margin: 10px 0; text-align: center; font-size: 20px; min-height: 60px; color: #CCCCCC; font-weight: normal;" id="levelTrainerResult">
                 Нажмите на слова, чтобы собрать предложение
             </div>
-            <div class="words-container" id="levelTrainerWordsContainer">
+            <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; max-width: 700px; margin: 15px auto;" id="levelTrainerWordsContainer">
                 ${levelTrainerAvailableWords.map(word => `
-                    <button class="word-btn" data-word-id="${word.id}">
+                    <button class="word-btn" data-word-id="${word.id}" style="padding: 12px 18px; font-size: 14px; text-align: center; min-height: 48px; display: flex; align-items: center; justify-content: center; background: #E8F0FE; border: 2px solid #D0D0D0; border-radius: 40px; cursor: pointer; white-space: nowrap;">
                         ${word.display}
                     </button>
                 `).join('')}
@@ -462,11 +463,12 @@ function attachLevelTrainerEvents() {
             this.textContent = levelTrainerDirection === 'ru_to_de' ? 'Ru → De' : 'De → Ru';
             _cachedDirection = null;
             _wordIdCounter = 0;
+            _wordQueue = [];
             showLevelTrainerInterface();
         });
     }
 
-    // ===== НОВАЯ ЛОГИКА КЛИКА ПО СЛОВАМ (ВОЛНОВОЙ ПРИНЦИП) =====
+    // ===== НОВАЯ ЛОГИКА КЛИКА (ВОЛНОВОЙ ПРИНЦИП) =====
     const wordsContainer = document.getElementById('levelTrainerWordsContainer');
     if (wordsContainer) {
         wordsContainer.addEventListener('click', function(e) {
@@ -481,10 +483,10 @@ function attachLevelTrainerEvents() {
             
             const selectedWord = levelTrainerAvailableWords[wordIndex];
             
-            // 1. Удаляем слово из массива доступных
+            // 1. Удаляем слово из доступных
             levelTrainerAvailableWords.splice(wordIndex, 1);
             
-            // 2. Добавляем его в выбранные
+            // 2. Добавляем в выбранные
             levelTrainerSelectedWords.push(selectedWord);
             
             // 3. Обновляем отображение результата
@@ -601,6 +603,7 @@ function attachLevelTrainerEvents() {
                         levelTrainerIndex = 0;
                     }
                     _wordIdCounter = 0;
+                    _wordQueue = [];
                     showLevelTrainerInterface();
                 }, 500);
             } else {
@@ -638,6 +641,7 @@ function attachLevelTrainerEvents() {
             }
             levelTrainerIndex = 0;
             _wordIdCounter = 0;
+            _wordQueue = [];
             showLevelTrainerInterface();
             console.log('🔄 Фразы уровня перемешаны');
         });
@@ -674,6 +678,7 @@ function attachLevelTrainerEvents() {
                     levelTrainerIndex = 0;
                 }
                 _wordIdCounter = 0;
+                _wordQueue = [];
                 showLevelTrainerInterface();
             }
         });
@@ -697,6 +702,7 @@ function attachLevelTrainerEvents() {
             if (levelTrainerSentences.length > 0) {
                 levelTrainerIndex = (levelTrainerIndex - 1 + levelTrainerSentences.length) % levelTrainerSentences.length;
                 _wordIdCounter = 0;
+                _wordQueue = [];
                 showLevelTrainerInterface();
             }
         });
@@ -708,6 +714,7 @@ function attachLevelTrainerEvents() {
             if (levelTrainerSentences.length > 0) {
                 levelTrainerIndex = (levelTrainerIndex + 1) % levelTrainerSentences.length;
                 _wordIdCounter = 0;
+                _wordQueue = [];
                 showLevelTrainerInterface();
             }
         });
@@ -719,13 +726,14 @@ function attachLevelTrainerEvents() {
             if (levelTrainerSentences.length > 0) {
                 levelTrainerIndex = 0;
                 _wordIdCounter = 0;
+                _wordQueue = [];
                 showLevelTrainerInterface();
             }
         });
     }
 }
 
-// ========== ВСПОМОГАТЕЛЬНЫЕ ФУНКЦИИ ДЛЯ ОБНОВЛЕНИЯ ИНТЕРФЕЙСА ==========
+// ========== ВСПОМОГАТЕЛЬНЫЕ ФУНКЦИИ ==========
 
 function updateLevelTrainerResultDisplay() {
     const result = document.getElementById('levelTrainerResult');
@@ -749,6 +757,7 @@ function renderLevelTrainerWords() {
         btn.className = 'word-btn';
         btn.textContent = word.display;
         btn.dataset.wordId = word.id;
+        btn.style.cssText = 'padding: 12px 18px; font-size: 14px; text-align: center; min-height: 48px; display: flex; align-items: center; justify-content: center; background: #E8F0FE; border: 2px solid #D0D0D0; border-radius: 40px; cursor: pointer; white-space: nowrap;';
         wordsContainer.appendChild(btn);
     });
 }

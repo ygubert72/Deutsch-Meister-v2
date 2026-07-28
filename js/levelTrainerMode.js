@@ -334,9 +334,9 @@ function showLevelTrainerInterface() {
         remainingCorrectWords = correctWords.slice(3);
     }
 
-    // ===== ИСПРАВЛЕНО: СОЗДАЁМ НОВЫЕ УНИКАЛЬНЫЕ ID ДЛЯ ОЧЕРЕДИ =====
+    // ===== СОЗДАЁМ НОВЫЕ УНИКАЛЬНЫЕ ID ДЛЯ ОЧЕРЕДИ =====
     _wordQueue = remainingCorrectWords.map(w => ({
-        id: ++_wordIdCounter,  // ← НОВЫЙ УНИКАЛЬНЫЙ ID
+        id: ++_wordIdCounter,
         display: w.display,
         de: w.de,
         ru: w.ru,
@@ -421,7 +421,7 @@ function showLevelTrainerInterface() {
             </div>
             <div class="words-container" id="levelTrainerWordsContainer">
                 ${levelTrainerAvailableWords.map(word => `
-                    <button class="word-btn" data-word-id="${word.id}" style="padding: 12px 18px; font-size: 14px; text-align: center; min-height: 48px; display: flex; align-items: center; justify-content: center; background: #E8F0FE; border: 2px solid #D0D0D0; border-radius: 40px; cursor: pointer; white-space: nowrap;">
+                    <button class="word-btn" data-word-id="${word.id}">
                         ${word.display}
                     </button>
                 `).join('')}
@@ -469,7 +469,6 @@ function attachLevelTrainerEvents() {
         });
     }
 
-    // ===== НОВАЯ ЛОГИКА КЛИКА (ВОЛНОВОЙ ПРИНЦИП) =====
     const wordsContainer = document.getElementById('levelTrainerWordsContainer');
     if (wordsContainer) {
         wordsContainer.addEventListener('click', function(e) {
@@ -478,44 +477,38 @@ function attachLevelTrainerEvents() {
             const wordId = parseInt(btn.dataset.wordId);
             if (isNaN(wordId)) return;
             
-            // Находим выбранное слово в массиве
             const wordIndex = levelTrainerAvailableWords.findIndex(w => w.id === wordId);
             if (wordIndex === -1) return;
             
             const selectedWord = levelTrainerAvailableWords[wordIndex];
             
-            // 1. Удаляем слово из доступных
+            // 1. Удаляем выбранное слово
             levelTrainerAvailableWords.splice(wordIndex, 1);
             
             // 2. Добавляем в выбранные
             levelTrainerSelectedWords.push(selectedWord);
             
-            // 3. Обновляем отображение результата
+            // 3. Обновляем результат
             updateLevelTrainerResultDisplay();
             
             // 4. Подбираем слово для замены
             let replacementWord = null;
             
-            // Сначала проверяем очередь правильных слов
             if (_wordQueue.length > 0) {
                 const queued = _wordQueue.shift();
-                // ===== ИСПРАВЛЕНО: СОЗДАЁМ НОВЫЙ ID =====
                 replacementWord = {
                     display: queued.display,
                     de: queued.de,
                     ru: queued.ru,
                     isCorrect: true,
                     originalIndex: queued.originalIndex,
-                    id: ++_wordIdCounter  // ← НОВЫЙ УНИКАЛЬНЫЙ ID
+                    id: ++_wordIdCounter
                 };
             } else {
-                // Если очередь пуста — берём дистрактор
                 const allDistractorWords = _cachedDistractors || [];
                 const usedDisplaySet = new Set(levelTrainerAvailableWords.map(w => w.display));
                 const availableDistractors = allDistractorWords
-                    .filter(w => {
-                        return !usedDisplaySet.has(w.display) && w.display.length > 0;
-                    })
+                    .filter(w => !usedDisplaySet.has(w.display) && w.display.length > 0)
                     .map(w => ({
                         display: w.display,
                         de: w.de,
@@ -529,9 +522,8 @@ function attachLevelTrainerEvents() {
                     const randomDistractor = availableDistractors[Math.floor(Math.random() * availableDistractors.length)];
                     replacementWord = randomDistractor;
                 } else {
-                    const fallbackDisplay = levelTrainerDirection === 'ru_to_de' ? '___' : '___';
                     replacementWord = {
-                        display: fallbackDisplay,
+                        display: '___',
                         de: '___',
                         ru: '___',
                         isCorrect: false,
@@ -541,12 +533,17 @@ function attachLevelTrainerEvents() {
                 }
             }
             
-            // 5. Вставляем замену на случайную позицию
+            // 5. Вставляем замену
             if (replacementWord) {
                 insertWordAtRandomPosition(levelTrainerAvailableWords, replacementWord);
             }
             
-            // 6. Перерисовываем кнопки
+            // ===== ЖЁСТКО ОБРЕЗАЕМ ДО 6 =====
+            if (levelTrainerAvailableWords.length > 6) {
+                levelTrainerAvailableWords = levelTrainerAvailableWords.slice(0, 6);
+            }
+            
+            // 6. Перерисовываем
             renderLevelTrainerWords();
         });
     }
@@ -556,12 +553,14 @@ function attachLevelTrainerEvents() {
         undoBtn.addEventListener('click', function() {
             if (levelTrainerSelectedWords.length > 0) {
                 const lastWord = levelTrainerSelectedWords.pop();
-                // ===== ИСПРАВЛЕНО: СОЗДАЁМ НОВЫЙ ID ДЛЯ ВОЗВРАЩАЕМОГО СЛОВА =====
                 const wordWithNewId = {
                     ...lastWord,
                     id: ++_wordIdCounter
                 };
                 insertWordAtRandomPosition(levelTrainerAvailableWords, wordWithNewId);
+                if (levelTrainerAvailableWords.length > 6) {
+                    levelTrainerAvailableWords = levelTrainerAvailableWords.slice(0, 6);
+                }
                 updateLevelTrainerResultDisplay();
                 renderLevelTrainerWords();
             }
@@ -578,6 +577,9 @@ function attachLevelTrainerEvents() {
                     id: ++_wordIdCounter
                 };
                 insertWordAtRandomPosition(levelTrainerAvailableWords, wordWithNewId);
+            }
+            if (levelTrainerAvailableWords.length > 6) {
+                levelTrainerAvailableWords = levelTrainerAvailableWords.slice(0, 6);
             }
             updateLevelTrainerResultDisplay();
             renderLevelTrainerWords();
@@ -629,6 +631,9 @@ function attachLevelTrainerEvents() {
                             id: ++_wordIdCounter
                         };
                         insertWordAtRandomPosition(levelTrainerAvailableWords, wordWithNewId);
+                    }
+                    if (levelTrainerAvailableWords.length > 6) {
+                        levelTrainerAvailableWords = levelTrainerAvailableWords.slice(0, 6);
                     }
                     updateLevelTrainerResultDisplay();
                     renderLevelTrainerWords();
@@ -772,7 +777,6 @@ function renderLevelTrainerWords() {
         btn.className = 'word-btn';
         btn.textContent = word.display;
         btn.dataset.wordId = word.id;
-        btn.style.cssText = 'padding: 12px 18px; font-size: 14px; text-align: center; min-height: 48px; display: flex; align-items: center; justify-content: center; background: #E8F0FE; border: 2px solid #D0D0D0; border-radius: 40px; cursor: pointer; white-space: nowrap;';
         wordsContainer.appendChild(btn);
     });
 }

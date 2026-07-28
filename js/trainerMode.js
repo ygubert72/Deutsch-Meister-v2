@@ -413,9 +413,9 @@ function showTrainerSentence(container) {
         remainingCorrectWords = correctWords.slice(3);
     }
 
-    // ===== ИСПРАВЛЕНО: СОЗДАЁМ НОВЫЕ УНИКАЛЬНЫЕ ID ДЛЯ ОЧЕРЕДИ =====
+    // ===== СОЗДАЁМ НОВЫЕ УНИКАЛЬНЫЕ ID ДЛЯ ОЧЕРЕДИ =====
     _trainerWordQueue = remainingCorrectWords.map(w => ({
-        id: ++_trainerWordIdCounter,  // ← НОВЫЙ УНИКАЛЬНЫЙ ID
+        id: ++_trainerWordIdCounter,
         display: w.display,
         de: w.de,
         ru: w.ru,
@@ -502,7 +502,7 @@ function showTrainerSentence(container) {
             
             <div class="words-container" id="trainerWordsContainer">
                 ${trainerAvailableWords.map(word => `
-                    <button class="word-btn" data-word-id="${word.id}" style="padding: 12px 18px; font-size: 14px; text-align: center; min-height: 48px; display: flex; align-items: center; justify-content: center; background: #E8F0FE; border: 2px solid #D0D0D0; border-radius: 40px; cursor: pointer; white-space: nowrap;">
+                    <button class="word-btn" data-word-id="${word.id}">
                         ${word.display}
                     </button>
                 `).join('')}
@@ -538,7 +538,6 @@ function showTrainerSentence(container) {
 
     // ===== ПРИВЯЗКА ОБРАБОТЧИКОВ =====
     
-    // Кнопка направления
     const dirBtn = document.getElementById('trainerDirBtn');
     if (dirBtn) {
         dirBtn.addEventListener('click', function() {
@@ -550,7 +549,6 @@ function showTrainerSentence(container) {
         });
     }
 
-    // ===== НОВАЯ ЛОГИКА КЛИКА (ВОЛНОВОЙ ПРИНЦИП) =====
     const wordsContainer = document.getElementById('trainerWordsContainer');
     if (wordsContainer) {
         wordsContainer.addEventListener('click', function(e) {
@@ -559,38 +557,34 @@ function showTrainerSentence(container) {
             const wordId = parseInt(btn.dataset.wordId);
             if (isNaN(wordId)) return;
             
-            // Находим выбранное слово в массиве
             const wordIndex = trainerAvailableWords.findIndex(w => w.id === wordId);
             if (wordIndex === -1) return;
             
             const selectedWord = trainerAvailableWords[wordIndex];
             
-            // 1. Удаляем слово из доступных
+            // 1. Удаляем выбранное слово
             trainerAvailableWords.splice(wordIndex, 1);
             
             // 2. Добавляем в выбранные
             trainerSelectedWords.push(selectedWord);
             
-            // 3. Обновляем отображение результата
+            // 3. Обновляем результат
             updateTrainerResultDisplay();
             
             // 4. Подбираем слово для замены
             let replacementWord = null;
             
-            // Сначала проверяем очередь правильных слов
             if (_trainerWordQueue.length > 0) {
                 const queued = _trainerWordQueue.shift();
-                // ===== ИСПРАВЛЕНО: СОЗДАЁМ НОВЫЙ ID =====
                 replacementWord = {
                     display: queued.display,
                     de: queued.de,
                     ru: queued.ru,
                     isCorrect: true,
                     originalIndex: queued.originalIndex,
-                    id: ++_trainerWordIdCounter  // ← НОВЫЙ УНИКАЛЬНЫЙ ID
+                    id: ++_trainerWordIdCounter
                 };
             } else {
-                // Если очередь пуста — берём дистрактор
                 const usedDisplaySet = new Set(trainerAvailableWords.map(w => w.display));
                 const availableDistractors = allVocabWords
                     .filter(w => {
@@ -610,9 +604,8 @@ function showTrainerSentence(container) {
                     const randomDistractor = availableDistractors[Math.floor(Math.random() * availableDistractors.length)];
                     replacementWord = randomDistractor;
                 } else {
-                    const fallbackDisplay = trainerDirection === 'ru_to_de' ? '___' : '___';
                     replacementWord = {
-                        display: fallbackDisplay,
+                        display: '___',
                         de: '___',
                         ru: '___',
                         isCorrect: false,
@@ -622,35 +615,40 @@ function showTrainerSentence(container) {
                 }
             }
             
-            // 5. Вставляем замену на случайную позицию
+            // 5. Вставляем замену
             if (replacementWord) {
                 insertWordAtRandomPosition(trainerAvailableWords, replacementWord);
             }
             
-            // 6. Перерисовываем кнопки
+            // ===== ЖЁСТКО ОБРЕЗАЕМ ДО 6 =====
+            if (trainerAvailableWords.length > 6) {
+                trainerAvailableWords = trainerAvailableWords.slice(0, 6);
+            }
+            
+            // 6. Перерисовываем
             renderTrainerWords();
         });
     }
 
-    // Undo
     const undoBtn = document.getElementById('trainerUndoBtn');
     if (undoBtn) {
         undoBtn.addEventListener('click', function() {
             if (trainerSelectedWords.length > 0) {
                 const lastWord = trainerSelectedWords.pop();
-                // ===== ИСПРАВЛЕНО: СОЗДАЁМ НОВЫЙ ID ДЛЯ ВОЗВРАЩАЕМОГО СЛОВА =====
                 const wordWithNewId = {
                     ...lastWord,
                     id: ++_trainerWordIdCounter
                 };
                 insertWordAtRandomPosition(trainerAvailableWords, wordWithNewId);
+                if (trainerAvailableWords.length > 6) {
+                    trainerAvailableWords = trainerAvailableWords.slice(0, 6);
+                }
                 updateTrainerResultDisplay();
                 renderTrainerWords();
             }
         });
     }
 
-    // Reset
     const resetBtn = document.getElementById('trainerResetBtn');
     if (resetBtn) {
         resetBtn.addEventListener('click', function() {
@@ -662,6 +660,9 @@ function showTrainerSentence(container) {
                 };
                 insertWordAtRandomPosition(trainerAvailableWords, wordWithNewId);
             }
+            if (trainerAvailableWords.length > 6) {
+                trainerAvailableWords = trainerAvailableWords.slice(0, 6);
+            }
             updateTrainerResultDisplay();
             renderTrainerWords();
             document.getElementById('trainerHintLabel').textContent = '';
@@ -669,7 +670,6 @@ function showTrainerSentence(container) {
         });
     }
 
-    // Check
     const checkBtn = document.getElementById('trainerCheckBtn');
     if (checkBtn) {
         checkBtn.addEventListener('click', function() {
@@ -718,6 +718,9 @@ function showTrainerSentence(container) {
                         };
                         insertWordAtRandomPosition(trainerAvailableWords, wordWithNewId);
                     }
+                    if (trainerAvailableWords.length > 6) {
+                        trainerAvailableWords = trainerAvailableWords.slice(0, 6);
+                    }
                     updateTrainerResultDisplay();
                     renderTrainerWords();
                 }, 800);
@@ -725,7 +728,6 @@ function showTrainerSentence(container) {
         });
     }
 
-    // Speak
     const speakBtn = document.getElementById('trainerSpeakBtn');
     if (speakBtn) {
         speakBtn.addEventListener('click', function() {
@@ -735,7 +737,6 @@ function showTrainerSentence(container) {
         });
     }
 
-    // Hint
     const hintBtn = document.getElementById('trainerHintBtn');
     if (hintBtn) {
         hintBtn.addEventListener('click', function() {
@@ -750,7 +751,6 @@ function showTrainerSentence(container) {
         });
     }
 
-    // Study
     const studyBtn = document.getElementById('trainerStudyBtn');
     if (studyBtn) {
         studyBtn.addEventListener('click', function() {
@@ -788,7 +788,6 @@ function showTrainerSentence(container) {
         });
     }
 
-    // Container
     const containerBtn = document.getElementById('trainerContainerBtn');
     if (containerBtn) {
         containerBtn.addEventListener('click', function() {
@@ -801,7 +800,6 @@ function showTrainerSentence(container) {
         });
     }
 
-    // Prev
     const prevBtn = document.getElementById('trainerPrevBtn');
     if (prevBtn) {
         prevBtn.addEventListener('click', function() {
@@ -814,7 +812,6 @@ function showTrainerSentence(container) {
         });
     }
 
-    // Next
     const nextBtn = document.getElementById('trainerNextBtn');
     if (nextBtn) {
         nextBtn.addEventListener('click', function() {
@@ -827,7 +824,6 @@ function showTrainerSentence(container) {
         });
     }
 
-    // Reset start
     const resetStartBtn = document.getElementById('trainerResetStartBtn');
     if (resetStartBtn) {
         resetStartBtn.addEventListener('click', function() {
@@ -865,7 +861,6 @@ function renderTrainerWords() {
         btn.className = 'word-btn';
         btn.textContent = word.display;
         btn.dataset.wordId = word.id;
-        btn.style.cssText = 'padding: 12px 18px; font-size: 14px; text-align: center; min-height: 48px; display: flex; align-items: center; justify-content: center; background: #E8F0FE; border: 2px solid #D0D0D0; border-radius: 40px; cursor: pointer; white-space: nowrap;';
         wordsContainer.appendChild(btn);
     });
 }

@@ -184,6 +184,37 @@ function insertWordAtRandomPosition(words, word) {
     return pos;
 }
 
+// ========== ВОССТАНОВЛЕНИЕ ОЧЕРЕДИ ==========
+function restoreLevelTrainerQueue() {
+    // Находим все правильные слова для текущего предложения
+    const allCorrectWords = levelTrainerHintWords.map(w => ({
+        display: w,
+        de: w,
+        ru: w,
+        isCorrect: true,
+        originalIndex: -1
+    }));
+    
+    // Какие правильные слова уже есть на кнопках?
+    const usedDisplaySet = new Set(levelTrainerAvailableWords.map(w => w.display));
+    
+    // Каких правильных слов нет на кнопках?
+    const missingCorrectWords = allCorrectWords.filter(w => !usedDisplaySet.has(w.display));
+    
+    // Очищаем очередь и добавляем недостающие слова с новыми ID
+    _wordQueue = [];
+    missingCorrectWords.forEach(w => {
+        _wordQueue.push({
+            id: ++_wordIdCounter,
+            display: w.display,
+            de: w.de,
+            ru: w.ru,
+            isCorrect: true,
+            originalIndex: -1
+        });
+    });
+}
+
 // ========== ОСНОВНАЯ ФУНКЦИЯ ==========
 window.loadAllPhrasesMode = async function(level) {
     console.log('🔄 loadAllPhrasesMode вызван для уровня:', level);
@@ -561,6 +592,7 @@ function attachLevelTrainerEvents() {
                 if (levelTrainerAvailableWords.length > 6) {
                     levelTrainerAvailableWords = levelTrainerAvailableWords.slice(0, 6);
                 }
+                restoreLevelTrainerQueue();
                 updateLevelTrainerResultDisplay();
                 renderLevelTrainerWords();
             }
@@ -570,6 +602,7 @@ function attachLevelTrainerEvents() {
     const resetBtn = document.getElementById('levelTrainerResetBtn');
     if (resetBtn) {
         resetBtn.addEventListener('click', function() {
+            // 1. Возвращаем выбранные слова на кнопки
             while (levelTrainerSelectedWords.length > 0) {
                 const word = levelTrainerSelectedWords.pop();
                 const wordWithNewId = {
@@ -578,9 +611,16 @@ function attachLevelTrainerEvents() {
                 };
                 insertWordAtRandomPosition(levelTrainerAvailableWords, wordWithNewId);
             }
+            
+            // 2. ВОССТАНАВЛИВАЕМ ОЧЕРЕДЬ
+            restoreLevelTrainerQueue();
+            
+            // 3. Обрезаем до 6
             if (levelTrainerAvailableWords.length > 6) {
                 levelTrainerAvailableWords = levelTrainerAvailableWords.slice(0, 6);
             }
+            
+            // 4. Обновляем интерфейс
             updateLevelTrainerResultDisplay();
             renderLevelTrainerWords();
             document.getElementById('levelTrainerHintLabel').textContent = '';
@@ -632,6 +672,7 @@ function attachLevelTrainerEvents() {
                         };
                         insertWordAtRandomPosition(levelTrainerAvailableWords, wordWithNewId);
                     }
+                    restoreLevelTrainerQueue();
                     if (levelTrainerAvailableWords.length > 6) {
                         levelTrainerAvailableWords = levelTrainerAvailableWords.slice(0, 6);
                     }

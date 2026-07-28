@@ -2,6 +2,8 @@
 // levelTrainerMode.js — Тренажёр "Все фразы уровня" (6 КНОПОК + ПОДГРУЗКА)
 // ====================================================================
 
+(function() {
+
 let levelTrainerSentences = [];
 let levelTrainerIndex = 0;
 let levelTrainerCurrentSentence = null;
@@ -16,16 +18,13 @@ let levelTrainerCurrentLevel = 'A1';
 let levelTrainerAllPhrases = [];
 let levelTrainerVocabCache = {};
 
-// ===== КЕШ ДЛЯ ДИСТРАКТОРОВ (СОЗДАЁТСЯ 1 РАЗ ДЛЯ УРОВНЯ) =====
+// ===== КЕШ ДЛЯ ДИСТРАКТОРОВ =====
 let _cachedDistractors = null;
 let _cachedLevel = null;
 let _cachedDirection = null;
 
 // ===== СОСТОЯНИЕ ДЛЯ ПОДГРУЗКИ =====
 let _wordQueue = [];
-let _distractorPool = [];
-
-// Счётчик для генерации уникальных ID
 let _wordIdCounter = 0;
 
 // ===== КЕШ ДЛЯ ВСЕХ ФРАЗ УРОВНЯ =====
@@ -58,7 +57,7 @@ function cachePhrases(level, data) {
     }
 }
 
-// ========== ЗАГРУЗКА ВСЕХ ФРАЗ УРОВНЯ (С КЕШИРОВАНИЕМ) ==========
+// ========== ЗАГРУЗКА ВСЕХ ФРАЗ УРОВНЯ ==========
 async function loadAllPhrasesForLevel(level) {
     const cached = getCachedPhrases(level);
     if (cached) {
@@ -243,7 +242,6 @@ function showLevelTrainerInterface() {
     const content = document.getElementById('content');
     if (!content) return;
     
-    // Закольцовка вместо поздравлений
     if (levelTrainerSentences.length === 0) {
         updateLevelTrainerPhrases();
         if (levelTrainerSentences.length === 0) {
@@ -261,7 +259,6 @@ function showLevelTrainerInterface() {
     const deWords = levelTrainerCurrentSentence.de.replace(/[.,!?;:]/g, '').split(/\s+/);
     const ruWords = levelTrainerCurrentSentence.ru.replace(/[.,!?;:]/g, '').split(/\s+/);
     
-    // ===== ПРАВИЛЬНЫЕ СЛОВА С УНИКАЛЬНЫМИ ID =====
     const correctWords = deWords.map((w, i) => ({
         display: isRuToDe ? w : (ruWords[i] || w),
         de: w,
@@ -271,7 +268,6 @@ function showLevelTrainerInterface() {
         id: ++_wordIdCounter
     }));
 
-    // ===== ОПТИМИЗАЦИЯ: КЕШИРУЕМ ДИСТРАКТОРЫ ДЛЯ УРОВНЯ =====
     if (_cachedLevel !== levelTrainerCurrentLevel || _cachedDirection !== levelTrainerDirection) {
         _cachedLevel = levelTrainerCurrentLevel;
         _cachedDirection = levelTrainerDirection;
@@ -313,8 +309,7 @@ function showLevelTrainerInterface() {
             return !correctSet.has(key) && key.length > 0;
         });
 
-    // ===== ФОРМИРУЕМ СПИСОК СЛОВ ДЛЯ ВЫБОРА =====
-    // Показываем ТОЛЬКО 3 правильных слова (если их больше 3)
+    // ===== ФОРМИРУЕМ СПИСОК СЛОВ (6 КНОПОК) =====
     let visibleCorrectWords = [];
     let remainingCorrectWords = [];
     
@@ -322,21 +317,17 @@ function showLevelTrainerInterface() {
         visibleCorrectWords = [...correctWords];
         remainingCorrectWords = [];
     } else {
-        // Берем первые 3 правильных слова
         visibleCorrectWords = correctWords.slice(0, 3);
-        // Остальные правильные слова отправляем в очередь
         remainingCorrectWords = correctWords.slice(3);
     }
 
-    // Формируем _wordQueue для подгрузки
     _wordQueue = remainingCorrectWords.map(w => ({
         id: w.id,
         text: w.display,
-        isDistractor: false,
-        isUsed: false
+        isCorrect: true,
+        originalIndex: w.originalIndex
     }));
 
-    // Собираем финальный список (3 правильных + 3 дистрактора = 6 кнопок)
     let finalAll = [];
     visibleCorrectWords.forEach(w => {
         finalAll.push({
@@ -360,7 +351,6 @@ function showLevelTrainerInterface() {
         });
     });
 
-    // Если не хватает дистракторов, добиваем
     let distractorIndex = 0;
     while (finalAll.length < maxTotal && distractorIndex < allDistractorWords.length) {
         const d = allDistractorWords[distractorIndex];
@@ -378,10 +368,8 @@ function showLevelTrainerInterface() {
         distractorIndex++;
     }
 
-    // ===== ИНИЦИАЛИЗАЦИЯ =====
     levelTrainerAvailableWords = finalAll;
     
-    // Перемешиваем ТОЛЬКО ПРИ ИНИЦИАЛИЗАЦИИ
     for (let i = levelTrainerAvailableWords.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
         [levelTrainerAvailableWords[i], levelTrainerAvailableWords[j]] = [levelTrainerAvailableWords[j], levelTrainerAvailableWords[i]];
@@ -401,7 +389,6 @@ function showLevelTrainerInterface() {
     const textColor = hasWords ? '#1A1A1A' : '#CCCCCC';
     const fontWeight = hasWords ? 'bold' : 'normal';
 
-    // ===== HTML =====
     let html = `
         <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; margin-bottom: 15px;">
             <button class="back-btn" onclick="renderLevel()" style="padding: 8px 16px; background: #3B6FE0; color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: bold;">
@@ -486,24 +473,19 @@ function attachLevelTrainerEvents() {
             const foundWord = levelTrainerAvailableWords.find(w => w.id === wordId);
             if (!foundWord) return;
             
-            // Помечаем как выбранное
             levelTrainerActiveWords[wordId] = false;
             levelTrainerSelectedWords.push(foundWord);
             
-            // ===== ПОДГРУЗКА НОВЫХ СЛОВ =====
-            // Проверяем, сколько правильных слов осталось на кнопках
+            // ===== ПОДГРУЗКА =====
             const correctWordsOnButtons = levelTrainerAvailableWords.filter(w => w.isCorrect && levelTrainerActiveWords[w.id]).length;
             
-            // Если правильных слов на кнопках осталось 0 или 1, и есть очередь
             if (correctWordsOnButtons < 2 && _wordQueue.length > 0) {
-                // Загружаем столько слов, чтобы стало 3 правильных (но не больше, чем в очереди)
                 const needed = 3 - correctWordsOnButtons;
                 const wordsToAdd = [];
                 for (let i = 0; i < needed && _wordQueue.length > 0; i++) {
                     wordsToAdd.push(_wordQueue.shift());
                 }
                 
-                // Добавляем новые правильные слова на кнопки
                 for (const w of wordsToAdd) {
                     const newWord = {
                         display: w.text,
@@ -518,11 +500,8 @@ function attachLevelTrainerEvents() {
                 }
             }
             
-            // Убеждаемся, что всего 6 активных кнопок
-            // Если слов больше 6, удаляем лишние дистракторы
             const activeWords = levelTrainerAvailableWords.filter(w => levelTrainerActiveWords[w.id]);
             if (activeWords.length > 6) {
-                // Удаляем дистракторы (неправильные слова), пока не останется 6
                 const distractorsToRemove = levelTrainerAvailableWords
                     .filter(w => !w.isCorrect && levelTrainerActiveWords[w.id])
                     .slice(0, activeWords.length - 6);
@@ -531,11 +510,9 @@ function attachLevelTrainerEvents() {
                 }
             }
             
-            // Если слов меньше 6, добавляем дистракторы
             const activeCount = levelTrainerAvailableWords.filter(w => levelTrainerActiveWords[w.id]).length;
             if (activeCount < 6) {
                 const needed = 6 - activeCount;
-                // Находим неактивные дистракторы
                 const inactiveDistractors = levelTrainerAvailableWords
                     .filter(w => !w.isCorrect && !levelTrainerActiveWords[w.id]);
                 for (let i = 0; i < needed && i < inactiveDistractors.length; i++) {
@@ -595,7 +572,6 @@ function attachLevelTrainerEvents() {
                 setTimeout(() => {
                     result.style.backgroundColor = '#FFFFFF';
                     levelTrainerIndex++;
-                    // Закольцовка — если дошли до конца, начинаем сначала
                     if (levelTrainerIndex >= levelTrainerSentences.length) {
                         levelTrainerIndex = 0;
                     }
@@ -758,7 +734,6 @@ function updateLevelTrainerDisplay() {
 
 // ========== КОНТЕЙНЕР ==========
 function showLevelTrainerContainer() {
-    // ... (без изменений, оставляем как было)
     const oldModal = document.getElementById('containerModal');
     if (oldModal) oldModal.remove();
 
@@ -876,3 +851,5 @@ window.loadAllPhrasesMode = loadAllPhrasesMode;
 window.showLevelTrainerContainer = showLevelTrainerContainer;
 
 console.log('🧩 levelTrainerMode.js загружен (6 КНОПОК + ПОДГРУЗКА)');
+
+})();

@@ -186,7 +186,6 @@ function insertWordAtRandomPosition(words, word) {
 
 // ========== ВОССТАНОВЛЕНИЕ ОЧЕРЕДИ ==========
 function restoreLevelTrainerQueue() {
-    // Находим все правильные слова для текущего предложения
     const allCorrectWords = levelTrainerHintWords.map(w => ({
         display: w,
         de: w,
@@ -195,13 +194,9 @@ function restoreLevelTrainerQueue() {
         originalIndex: -1
     }));
     
-    // Какие правильные слова уже есть на кнопках?
     const usedDisplaySet = new Set(levelTrainerAvailableWords.map(w => w.display));
-    
-    // Каких правильных слов нет на кнопках?
     const missingCorrectWords = allCorrectWords.filter(w => !usedDisplaySet.has(w.display));
     
-    // Очищаем очередь и добавляем недостающие слова с новыми ID
     _wordQueue = [];
     missingCorrectWords.forEach(w => {
         _wordQueue.push({
@@ -283,7 +278,6 @@ function showLevelTrainerInterface() {
     const content = document.getElementById('content');
     if (!content) return;
     
-    // ЗАКОЛЬЦОВКА
     if (levelTrainerSentences.length === 0) {
         updateLevelTrainerPhrases();
         if (levelTrainerSentences.length === 0) {
@@ -301,7 +295,6 @@ function showLevelTrainerInterface() {
     const deWords = levelTrainerCurrentSentence.de.replace(/[.,!?;:]/g, '').split(/\s+/);
     const ruWords = levelTrainerCurrentSentence.ru.replace(/[.,!?;:]/g, '').split(/\s+/);
     
-    // ===== ПРАВИЛЬНЫЕ СЛОВА =====
     const correctWords = deWords.map((w, i) => ({
         display: isRuToDe ? w : (ruWords[i] || w),
         de: w,
@@ -311,7 +304,6 @@ function showLevelTrainerInterface() {
         id: ++_wordIdCounter
     }));
 
-    // ===== КЕШИРУЕМ ДИСТРАКТОРЫ =====
     if (_cachedLevel !== levelTrainerCurrentLevel || _cachedDirection !== levelTrainerDirection) {
         _cachedLevel = levelTrainerCurrentLevel;
         _cachedDirection = levelTrainerDirection;
@@ -353,7 +345,6 @@ function showLevelTrainerInterface() {
             return !correctSet.has(key) && key.length > 0;
         });
 
-    // ===== 6 КНОПОК: берём первые 3 правильных слова, остальные в очередь =====
     let visibleCorrectWords = [];
     let remainingCorrectWords = [];
     
@@ -365,7 +356,6 @@ function showLevelTrainerInterface() {
         remainingCorrectWords = correctWords.slice(3);
     }
 
-    // ===== СОЗДАЁМ НОВЫЕ УНИКАЛЬНЫЕ ID ДЛЯ ОЧЕРЕДИ =====
     _wordQueue = remainingCorrectWords.map(w => ({
         id: ++_wordIdCounter,
         display: w.display,
@@ -417,7 +407,6 @@ function showLevelTrainerInterface() {
 
     levelTrainerAvailableWords = finalAll;
     
-    // ПЕРЕМЕШИВАНИЕ ТОЛЬКО ПРИ ИНИЦИАЛИЗАЦИИ
     for (let i = levelTrainerAvailableWords.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
         [levelTrainerAvailableWords[i], levelTrainerAvailableWords[j]] = [levelTrainerAvailableWords[j], levelTrainerAvailableWords[i]];
@@ -429,7 +418,6 @@ function showLevelTrainerInterface() {
 
     const questionText = isRuToDe ? levelTrainerCurrentSentence.ru : levelTrainerCurrentSentence.de;
 
-    // ===== HTML =====
     let html = `
         <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; margin-bottom: 15px;">
             <button class="back-btn" onclick="renderLevel()" style="padding: 8px 16px; background: #3B6FE0; color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: bold;">
@@ -513,16 +501,10 @@ function attachLevelTrainerEvents() {
             
             const selectedWord = levelTrainerAvailableWords[wordIndex];
             
-            // 1. Удаляем выбранное слово
             levelTrainerAvailableWords.splice(wordIndex, 1);
-            
-            // 2. Добавляем в выбранные
             levelTrainerSelectedWords.push(selectedWord);
-            
-            // 3. Обновляем результат
             updateLevelTrainerResultDisplay();
             
-            // 4. Подбираем слово для замены
             let replacementWord = null;
             
             if (_wordQueue.length > 0) {
@@ -564,17 +546,14 @@ function attachLevelTrainerEvents() {
                 }
             }
             
-            // 5. Вставляем замену
             if (replacementWord) {
                 insertWordAtRandomPosition(levelTrainerAvailableWords, replacementWord);
             }
             
-            // ===== ЖЁСТКО ОБРЕЗАЕМ ДО 6 =====
             if (levelTrainerAvailableWords.length > 6) {
                 levelTrainerAvailableWords = levelTrainerAvailableWords.slice(0, 6);
             }
             
-            // 6. Перерисовываем
             renderLevelTrainerWords();
         });
     }
@@ -602,7 +581,6 @@ function attachLevelTrainerEvents() {
     const resetBtn = document.getElementById('levelTrainerResetBtn');
     if (resetBtn) {
         resetBtn.addEventListener('click', function() {
-            // 1. Возвращаем выбранные слова на кнопки
             while (levelTrainerSelectedWords.length > 0) {
                 const word = levelTrainerSelectedWords.pop();
                 const wordWithNewId = {
@@ -611,16 +589,10 @@ function attachLevelTrainerEvents() {
                 };
                 insertWordAtRandomPosition(levelTrainerAvailableWords, wordWithNewId);
             }
-            
-            // 2. ВОССТАНАВЛИВАЕМ ОЧЕРЕДЬ
             restoreLevelTrainerQueue();
-            
-            // 3. Обрезаем до 6
             if (levelTrainerAvailableWords.length > 6) {
                 levelTrainerAvailableWords = levelTrainerAvailableWords.slice(0, 6);
             }
-            
-            // 4. Обновляем интерфейс
             updateLevelTrainerResultDisplay();
             renderLevelTrainerWords();
             document.getElementById('levelTrainerHintLabel').textContent = '';

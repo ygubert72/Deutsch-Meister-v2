@@ -1,5 +1,5 @@
 // ====================================================================
-// trainerMode.js — Тренажёр (сборка фраз из слов) — ИСПРАВЛЕННЫЙ ФИНАЛ
+// trainerMode.js — Тренажёр (сборка фраз из слов) — ИСПРАВЛЕННЫЙ
 // ====================================================================
 
 (function() {
@@ -144,6 +144,7 @@ function proceedWithRender(container) {
         localStorage.removeItem('dm_trainer_studied_' + trainerCurrentLessonId);
     }
     
+    // Перемешиваем предложения
     const shuffled = [...finalTemplates];
     for (let i = shuffled.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
@@ -342,18 +343,12 @@ function restoreTrainerQueue() {
         return;
     }
     
-    // 1. Получаем все правильные слова из текущего предложения
     const correctWords = trainerCurrentSentence.de.replace(/[.,!?;:]/g, '').split(/\s+/);
-    
-    // 2. Получаем список правильных слов, которые уже есть на кнопках
     const correctTextsOnButtons = trainerAvailableWords
         .filter(w => w.isCorrect)
         .map(w => w.display);
     
-    // 3. Создаём Set для быстрого поиска
     const correctSet = new Set(correctTextsOnButtons);
-    
-    // 4. Создаём очередь из правильных слов, которых НЕТ на кнопках
     const newQueue = [];
     correctWords.forEach(w => {
         if (!correctSet.has(w)) {
@@ -368,16 +363,14 @@ function restoreTrainerQueue() {
         }
     });
     
-    // 5. Заменяем существующую очередь
     _trainerWordQueue = newQueue;
 }
 
 // ========== ГАРАНТИЯ 6 КНОПОК И РОВНО 3 ПРАВИЛЬНЫХ СЛОВ ==========
 function ensureSixButtonsWithCorrectWords() {
-    // 1. Считаем правильные слова на кнопках
     let correctCount = trainerAvailableWords.filter(w => w.isCorrect).length;
     
-    // 2. Если правильных слов больше 3 — удаляем лишние и добавляем в очередь
+    // Если правильных слов больше 3 — удаляем лишние
     while (correctCount > 3) {
         const extraCorrectIndex = trainerAvailableWords.findIndex(w => w.isCorrect);
         if (extraCorrectIndex !== -1) {
@@ -394,7 +387,7 @@ function ensureSixButtonsWithCorrectWords() {
         }
     }
     
-    // 3. Если правильных слов меньше 3 — добавляем из очереди
+    // Если правильных слов меньше 3 — добавляем из очереди
     while (correctCount < 3 && _trainerWordQueue.length > 0) {
         const queued = _trainerWordQueue.shift();
         const newWord = {
@@ -406,7 +399,6 @@ function ensureSixButtonsWithCorrectWords() {
             originalIndex: -1
         };
         
-        // Ищем дистрактор для замены
         const distractorIndex = trainerAvailableWords.findIndex(w => !w.isCorrect);
         if (distractorIndex !== -1) {
             trainerAvailableWords.splice(distractorIndex, 1);
@@ -417,7 +409,7 @@ function ensureSixButtonsWithCorrectWords() {
         correctCount++;
     }
     
-    // 4. Убеждаемся, что кнопок ровно 6
+    // Убеждаемся, что кнопок ровно 6
     while (trainerAvailableWords.length < 6) {
         const usedDisplaySet = new Set(trainerAvailableWords.map(w => w.display));
         const availableDistractors = allVocabWords
@@ -507,7 +499,7 @@ function createInitialButtons() {
         });
 
     // ===== ФОРМИРУЕМ 6 КНОПОК =====
-    // Берем первые 3 правильных слова (НЕ БОЛЬШЕ!)
+    // ВАЖНО: Берем первые 3 правильных слова
     let visibleCorrectWords = correctWords.slice(0, 3);
     let remainingCorrectWords = correctWords.slice(3);
 
@@ -517,13 +509,14 @@ function createInitialButtons() {
         id: ++_trainerWordIdCounter
     }));
 
-    // Начинаем с 3 правильных слов (ровно 3!)
+    // НАЧИНАЕМ С ПРАВИЛЬНЫХ СЛОВ (это критично!)
     trainerAvailableWords = [...visibleCorrectWords];
     
-    // Добавляем дистракторы до 6 слов (ровно 3 дистрактора)
+    // Добавляем дистракторы до 6 слов
     let distractorIndex = 0;
     while (trainerAvailableWords.length < 6 && distractorIndex < filteredDistractors.length) {
         const d = filteredDistractors[distractorIndex];
+        // Проверяем, что дистрактор не совпадает с правильным словом
         const exists = trainerAvailableWords.some(w => w.display === d.display);
         if (!exists) {
             trainerAvailableWords.push({
@@ -556,19 +549,25 @@ function createInitialButtons() {
         fallbackIndex++;
     }
     
-    // ПЕРЕМЕШИВАНИЕ ОДИН РАЗ
+    // ПЕРЕМЕШИВАНИЕ (НО СОХРАНЯЕМ ПРАВИЛЬНЫЕ СЛОВА!)
+    // Перемешиваем только позиции, но не теряем правильные слова
     for (let i = trainerAvailableWords.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
         [trainerAvailableWords[i], trainerAvailableWords[j]] = [trainerAvailableWords[j], trainerAvailableWords[i]];
     }
 
-    // Гарантируем, что всё правильно
+    // ФИНАЛЬНАЯ ПРОВЕРКА: убеждаемся, что правильные слова на месте
     ensureSixButtonsWithCorrectWords();
+    
+    // Отладка
+    console.log('✅ Созданы кнопки для:', trainerCurrentSentence.de);
+    console.log('   Правильные слова:', correctWords.map(w => w.display).join(', '));
+    console.log('   На кнопках:', trainerAvailableWords.map(w => `${w.display}(${w.isCorrect ? '✓' : '✗'})`).join(', '));
+    console.log('   В очереди:', _trainerWordQueue.map(w => w.display).join(', ') || '(пусто)');
 }
 
 // ========== ВОЗВРАТ ВСЕХ СЛОВ НА КНОПКИ ==========
 function returnAllWordsToButtons() {
-    // Возвращаем все выбранные слова на кнопки
     while (trainerSelectedWords.length > 0) {
         const word = trainerSelectedWords.pop();
         const wordWithNewId = {
@@ -578,13 +577,8 @@ function returnAllWordsToButtons() {
         insertWordAtRandomPosition(trainerAvailableWords, wordWithNewId);
     }
     
-    // Восстанавливаем очередь (пересоздаём)
     restoreTrainerQueue();
-    
-    // Гарантируем 6 кнопок и 3 правильных слова
     ensureSixButtonsWithCorrectWords();
-    
-    // Обновляем отображение
     updateTrainerResultDisplay();
     renderTrainerWords();
 }
@@ -686,23 +680,18 @@ function attachTrainerEvents(container) {
             const wordId = parseInt(btn.dataset.wordId);
             if (isNaN(wordId)) return;
             
-            // Ищем слово по ID
             const wordIndex = trainerAvailableWords.findIndex(w => w.id === wordId);
             if (wordIndex === -1) return;
             
             const selectedWord = trainerAvailableWords[wordIndex];
             
-            // Удаляем выбранное слово из доступных
             trainerAvailableWords.splice(wordIndex, 1);
             trainerSelectedWords.push(selectedWord);
             updateTrainerResultDisplay();
             
-            // ===== ПОДГРУЗКА НОВОГО СЛОВА =====
-            // Проверяем, сколько правильных слов осталось на кнопках
             const correctOnButtons = trainerAvailableWords.filter(w => w.isCorrect).length;
             
             if (correctOnButtons < 3 && _trainerWordQueue.length > 0) {
-                // Берём одно слово из очереди
                 const queued = _trainerWordQueue.shift();
                 const newWord = {
                     id: ++_trainerWordIdCounter,
@@ -713,7 +702,6 @@ function attachTrainerEvents(container) {
                     originalIndex: -1
                 };
                 
-                // Ищем дистрактор для замены
                 const distractorIndex = trainerAvailableWords.findIndex(w => !w.isCorrect);
                 if (distractorIndex !== -1) {
                     trainerAvailableWords.splice(distractorIndex, 1);
@@ -723,7 +711,6 @@ function attachTrainerEvents(container) {
                 }
             }
             
-            // ===== ГАРАНТИРУЕМ 6 КНОПОК =====
             while (trainerAvailableWords.length < 6) {
                 const usedDisplaySet = new Set(trainerAvailableWords.map(w => w.display));
                 const availableDistractors = allVocabWords
@@ -770,7 +757,6 @@ function attachTrainerEvents(container) {
                 };
                 insertWordAtRandomPosition(trainerAvailableWords, wordWithNewId);
                 
-                // Восстанавливаем очередь
                 restoreTrainerQueue();
                 ensureSixButtonsWithCorrectWords();
                 
@@ -975,6 +961,7 @@ function renderTrainerWords() {
 // ===== ЭКСПОРТ =====
 window.renderTrainer = renderTrainer;
 
+// Обновляем отладчик
 window._debugTrainer = {
     trainerSentences: trainerSentences,
     trainerIndex: trainerIndex,
@@ -989,6 +976,6 @@ window._debugTrainer = {
     trainerStudiedSentences: trainerStudiedSentences
 };
 
-console.log('🧩 trainerMode.js загружен (финальная исправленная версия)');
+console.log('🧩 trainerMode.js загружен (исправленная версия)');
 
 })();

@@ -15,7 +15,7 @@
     {"de": "Das ist meine Mutter.", "ru": "Это моя мать."},
     {"de": "Das ist mein Vater.", "ru": "Это мой отец."},
     {"de": "Das Auto ist in Berlin.", "ru": "Машина в Берлине."},
-    {"de": "Mein Vater kommt aus Deutschland.", "ru": "Мой отец из Германии."},
+    {"de": "Mein Vater kommt aus Deutschland.", "ru": "Мой отец из Германии."}
   ],
   "dictation": [
     {"de": "Das ist ein Auto.", "ru": "Это машина."},
@@ -25,6 +25,6 @@
     {"de": "Das ist meine Mutter.", "ru": "Это моя мать."},
     {"de": "Das ist mein Vater.", "ru": "Это мой отец."},
     {"de": "Das Auto ist in Berlin.", "ru": "Машина в Берлине."},
-    {"de": "Mein Vater kommt aus Deutschland.", "ru": "Мой отец из Германии."},
+    {"de": "Mein Vater kommt aus Deutschland.", "ru": "Мой отец из Германии."}
   ]
 }

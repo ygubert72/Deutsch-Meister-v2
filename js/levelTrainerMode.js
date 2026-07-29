@@ -1,7 +1,7 @@
 // ====================================================================
 // levelTrainerMode.js — Тренажёр "Все фразы уровня" — БЕЗ ПОДСКАЗОК
 // С адаптивной версткой: десктоп - flex, мобильные - grid 3 колонки
-// ИСПРАВЛЕН БАГ С ДИСТРАКТОРАМИ ПРИ СМЕНЕ НАПРАВЛЕНИЯ
+// ИСПРАВЛЕНА ЛОГИКА ДЛЯ De → Ru
 // ====================================================================
 
 (function() {
@@ -194,13 +194,24 @@ function restoreLevelTrainerQueue() {
     const deWords = levelTrainerCurrentSentence.de.replace(/[.,!?;:]/g, '').split(/\s+/);
     const ruWords = levelTrainerCurrentSentence.ru.replace(/[.,!?;:]/g, '').split(/\s+/);
     
-    const correctWords = deWords.map((w, i) => ({
-        display: isRuToDe ? w : (ruWords[i] || w),
-        de: w,
-        ru: ruWords[i] || w,
-        isCorrect: true,
-        originalIndex: i
-    }));
+    let correctWords = [];
+    if (isRuToDe) {
+        correctWords = deWords.map((w, i) => ({
+            display: w,
+            de: w,
+            ru: ruWords[i] || w,
+            isCorrect: true,
+            originalIndex: i
+        }));
+    } else {
+        correctWords = ruWords.map((w, i) => ({
+            display: w,
+            de: deWords[i] || w,
+            ru: w,
+            isCorrect: true,
+            originalIndex: i
+        }));
+    }
     
     const correctTextsOnButtons = levelTrainerAvailableWords
         .filter(w => w.isCorrect)
@@ -296,7 +307,7 @@ function ensureSixButtonsWithCorrectWords() {
     }
 }
 
-// ========== СОЗДАНИЕ НАЧАЛЬНЫХ КНОПОК ==========
+// ========== СОЗДАНИЕ НАЧАЛЬНЫХ КНОПОК (ИСПРАВЛЕНО) ==========
 function createInitialButtons() {
     const isRuToDe = levelTrainerDirection === 'ru_to_de';
     const deWords = levelTrainerCurrentSentence.de.replace(/[.,!?;:]/g, '').split(/\s+/);
@@ -306,19 +317,35 @@ function createInitialButtons() {
     console.log('🔍 deWords:', deWords);
     console.log('🔍 ruWords:', ruWords);
     
-    const correctWords = deWords.map((w, i) => ({
-        id: ++_wordIdCounter,
-        display: isRuToDe ? w : (ruWords[i] || w),
-        de: w,
-        ru: ruWords[i] || w,
-        isCorrect: true,
-        originalIndex: i
-    }));
-
+    let correctWords = [];
+    
+    if (isRuToDe) {
+        // Ru → De: правильные слова — немецкие (из deWords)
+        correctWords = deWords.map((w, i) => ({
+            id: ++_wordIdCounter,
+            display: w,
+            de: w,
+            ru: ruWords[i] || w,
+            isCorrect: true,
+            originalIndex: i
+        }));
+    } else {
+        // De → Ru: правильные слова — русские (из ruWords)
+        correctWords = ruWords.map((w, i) => ({
+            id: ++_wordIdCounter,
+            display: w,
+            de: deWords[i] || w,
+            ru: w,
+            isCorrect: true,
+            originalIndex: i
+        }));
+    }
+    
+    console.log('🔍 correctWords:', correctWords.map(w => w.display).join(', '));
+    
     levelTrainerSelectedWords = [];
 
     // ===== СОЗДАЁМ ДИСТРАКТОРЫ ДЛЯ ТЕКУЩЕГО НАПРАВЛЕНИЯ =====
-    // ВАЖНО: всегда пересоздаём дистракторы для текущего направления
     const allVocabWords = levelTrainerVocabCache[levelTrainerCurrentLevel] || [];
     let allDistractorWords = [];
     
@@ -443,32 +470,36 @@ function returnAllWordsToButtons() {
     const deWords = levelTrainerCurrentSentence.de.replace(/[.,!?;:]/g, '').split(/\s+/);
     const ruWords = levelTrainerCurrentSentence.ru.replace(/[.,!?;:]/g, '').split(/\s+/);
     
-    console.log('   deWords:', deWords);
-    console.log('   ruWords:', ruWords);
+    let firstThreeCorrect = [];
+    let remainingCorrect = [];
+    
+    if (isRuToDe) {
+        // Ru → De: правильные слова — немецкие
+        const allCorrect = deWords.map((w, i) => ({
+            id: ++_wordIdCounter,
+            display: w,
+            de: w,
+            ru: ruWords[i] || w,
+            isCorrect: true,
+            originalIndex: i
+        }));
+        firstThreeCorrect = allCorrect.slice(0, 3);
+        remainingCorrect = allCorrect.slice(3);
+    } else {
+        // De → Ru: правильные слова — русские
+        const allCorrect = ruWords.map((w, i) => ({
+            id: ++_wordIdCounter,
+            display: w,
+            de: deWords[i] || w,
+            ru: w,
+            isCorrect: true,
+            originalIndex: i
+        }));
+        firstThreeCorrect = allCorrect.slice(0, 3);
+        remainingCorrect = allCorrect.slice(3);
+    }
     
     const onlyDistractors = levelTrainerAvailableWords.filter(w => !w.isCorrect);
-    console.log('   Дистракторы сохранены:', onlyDistractors.map(w => w.display).join(', ') || '(нет)');
-    
-    const firstThreeCorrect = deWords.slice(0, 3).map((w, i) => ({
-        id: ++_wordIdCounter,
-        display: isRuToDe ? w : (ruWords[i] || w),
-        de: w,
-        ru: ruWords[i] || w,
-        isCorrect: true,
-        originalIndex: i
-    }));
-    
-    const remainingCorrect = deWords.slice(3).map((w, i) => ({
-        id: ++_wordIdCounter,
-        display: isRuToDe ? w : (ruWords[i + 3] || w),
-        de: w,
-        ru: ruWords[i + 3] || w,
-        isCorrect: true,
-        originalIndex: i + 3
-    }));
-    
-    console.log('   Первые 3 правильных:', firstThreeCorrect.map(w => w.display).join(', '));
-    console.log('   В очередь:', remainingCorrect.map(w => w.display).join(', ') || '(пусто)');
     
     levelTrainerAvailableWords = [...firstThreeCorrect];
     
@@ -503,7 +534,6 @@ function returnAllWordsToButtons() {
         
         const randomDistractor = availableDistractors[Math.floor(Math.random() * availableDistractors.length)];
         levelTrainerAvailableWords.push(randomDistractor);
-        console.log(`   Добавлен новый дистрактор: ${randomDistractor.display}`);
     }
     
     _wordQueue = remainingCorrect;
@@ -513,12 +543,13 @@ function returnAllWordsToButtons() {
         [levelTrainerAvailableWords[i], levelTrainerAvailableWords[j]] = [levelTrainerAvailableWords[j], levelTrainerAvailableWords[i]];
     }
     
+    updateLevelTrainerResultDisplay();
+    renderLevelTrainerWords();
+    
     console.log('🔄 === РЕЗУЛЬТАТ СБРОСА ===');
     console.log('   Кнопки:', levelTrainerAvailableWords.map(w => `${w.display}(${w.isCorrect ? '✓' : '✗'})`).join(', '));
     console.log('   Очередь:', _wordQueue.map(w => w.display).join(', ') || '(пусто)');
     
-    updateLevelTrainerResultDisplay();
-    renderLevelTrainerWords();
     updateDebugLevelTrainer();
 }
 
@@ -682,11 +713,9 @@ function attachLevelTrainerEvents() {
     const dirBtn = document.getElementById('levelTrainerDirBtn');
     if (dirBtn) {
         dirBtn.addEventListener('click', function() {
-            // Меняем направление
             levelTrainerDirection = levelTrainerDirection === 'ru_to_de' ? 'de_to_ru' : 'ru_to_de';
             this.textContent = levelTrainerDirection === 'ru_to_de' ? 'Ru → De' : 'De → Ru';
             
-            // СБРАСЫВАЕМ КЕШ ДИСТРАКТОРОВ, чтобы они пересоздались для нового направления
             _cachedDistractors = null;
             _cachedLevel = null;
             _cachedDirection = null;
@@ -1102,6 +1131,6 @@ function showLevelTrainerContainer() {
 window.loadAllPhrasesMode = loadAllPhrasesMode;
 window.showLevelTrainerContainer = showLevelTrainerContainer;
 
-console.log('🧩 levelTrainerMode.js загружен (без подсказок, исправлены дистракторы)');
+console.log('🧩 levelTrainerMode.js загружен (без подсказок, исправлена логика De→Ru)');
 
 })();

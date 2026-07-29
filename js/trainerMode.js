@@ -1,5 +1,5 @@
 // ====================================================================
-// trainerMode.js — Тренажёр (сборка фраз из слов) — ФИНАЛЬНАЯ ВЕРСИЯ
+// trainerMode.js — Тренажёр (сборка фраз из слов) — БЕЗ ПОДСКАЗОК
 // ====================================================================
 
 (function() {
@@ -9,8 +9,6 @@ let trainerIndex = 0;
 let trainerCurrentSentence = null;
 let trainerSelectedWords = [];
 let trainerAvailableWords = [];
-let trainerHintIndex = 0;
-let trainerHintWords = [];
 let trainerDirection = 'ru_to_de';
 let allVocabWords = [];
 let trainerStudiedSentences = {};
@@ -449,7 +447,6 @@ function createInitialButtons() {
         originalIndex: i
     }));
 
-    trainerHintWords = deWords;
     trainerSelectedWords = [];
 
     let allDistractorWords = [];
@@ -642,7 +639,6 @@ function updateDebugTrainer() {
         trainerCurrentSentence: trainerCurrentSentence,
         trainerSelectedWords: trainerSelectedWords,
         trainerAvailableWords: trainerAvailableWords,
-        trainerHintWords: trainerHintWords,
         trainerDirection: trainerDirection,
         _trainerWordQueue: _trainerWordQueue,
         _trainerWordIdCounter: _trainerWordIdCounter,
@@ -700,11 +696,6 @@ function showTrainerSentence(container) {
                 <button class="ctrl-btn" id="trainerResetBtn">🔄 СБРОСИТЬ ВСЁ</button>
                 <button class="ctrl-btn" id="trainerCheckBtn" style="background: #3B6FE0 !important; color: white !important; border-color: #2B5BC7 !important;">✅ ПРОВЕРИТЬ</button>
                 <button class="ctrl-btn" id="trainerSpeakBtn">🔊 ОЗВУЧИТЬ</button>
-            </div>
-            
-            <div style="display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; margin: 5px 0 15px 0;">
-                <button class="ctrl-btn" id="trainerHintBtn">💡 ПОДСКАЗКА</button>
-                <div style="background: #FFFFFF; border: 2px solid #E0E0E0; border-radius: 12px; padding: 10px 16px; flex: 1; min-width: 150px; font-size: 13px; color: #3B6FE0; font-weight: bold; text-align: center; min-height: 42px;" id="trainerHintLabel"></div>
             </div>
             
             <div style="display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; margin: 10px 0 5px 0;">
@@ -844,8 +835,6 @@ function attachTrainerEvents(container) {
     if (resetBtn) {
         resetBtn.addEventListener('click', function() {
             returnAllWordsToButtons();
-            document.getElementById('trainerHintLabel').textContent = '';
-            trainerHintIndex = 0;
         });
     }
 
@@ -900,20 +889,6 @@ function attachTrainerEvents(container) {
         speakBtn.addEventListener('click', function() {
             if (typeof window.speak === 'function') {
                 window.speak(trainerCurrentSentence.de);
-            }
-        });
-    }
-
-    const hintBtn = document.getElementById('trainerHintBtn');
-    if (hintBtn) {
-        hintBtn.addEventListener('click', function() {
-            const hintLabel = document.getElementById('trainerHintLabel');
-            if (trainerHintIndex < trainerHintWords.length) {
-                const currentHint = trainerHintWords.slice(0, trainerHintIndex + 1).join(' ');
-                hintLabel.textContent = '💡 ' + currentHint;
-                trainerHintIndex++;
-            } else {
-                hintLabel.textContent = '💡 Полное предложение: ' + trainerHintWords.join(' ');
             }
         });
     }
@@ -1035,6 +1010,6 @@ function renderTrainerWords() {
 // ===== ЭКСПОРТ =====
 window.renderTrainer = renderTrainer;
 
-console.log('🧩 trainerMode.js загружен (исправленная версия с отладкой)');
+console.log('🧩 trainerMode.js загружен (без подсказок)');
 
 })();

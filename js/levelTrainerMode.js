@@ -1,5 +1,6 @@
 // ====================================================================
-// levelTrainerMode.js — Тренажёр "Все фразы уровня" (ВОЛНОВОЙ ПРИНЦИП) — БЕЗ ПОДСКАЗОК
+// levelTrainerMode.js — Тренажёр "Все фразы уровня" — БЕЗ ПОДСКАЗОК
+// С адаптивной версткой: десктоп - flex, мобильные - grid 3 колонки
 // ====================================================================
 
 (function() {
@@ -410,12 +411,17 @@ function createInitialButtons() {
     console.log('✅ Созданы кнопки для:', levelTrainerCurrentSentence.de);
     console.log('   Кнопки:', levelTrainerAvailableWords.map(w => `${w.display}(${w.isCorrect ? '✓' : '✗'})`).join(', '));
     console.log('   Очередь:', _wordQueue.map(w => w.display).join(', ') || '(пусто)');
+    console.log('   Выбрано:', levelTrainerSelectedWords.map(w => w.display).join(', ') || '(пусто)');
     
     updateDebugLevelTrainer();
 }
 
 // ========== ВОЗВРАТ ВСЕХ СЛОВ НА КНОПКИ ==========
 function returnAllWordsToButtons() {
+    console.log('🔄 === НАЧАЛО СБРОСА ===');
+    console.log('   Предложение:', levelTrainerCurrentSentence?.de);
+    console.log('   Выбрано ДО:', levelTrainerSelectedWords.map(w => w.display).join(', ') || '(пусто)');
+    
     while (levelTrainerSelectedWords.length > 0) {
         const word = levelTrainerSelectedWords.pop();
         const wordWithNewId = {
@@ -429,7 +435,11 @@ function returnAllWordsToButtons() {
     const deWords = levelTrainerCurrentSentence.de.replace(/[.,!?;:]/g, '').split(/\s+/);
     const ruWords = levelTrainerCurrentSentence.ru.replace(/[.,!?;:]/g, '').split(/\s+/);
     
+    console.log('   deWords:', deWords);
+    console.log('   ruWords:', ruWords);
+    
     const onlyDistractors = levelTrainerAvailableWords.filter(w => !w.isCorrect);
+    console.log('   Дистракторы сохранены:', onlyDistractors.map(w => w.display).join(', ') || '(нет)');
     
     const firstThreeCorrect = deWords.slice(0, 3).map((w, i) => ({
         id: ++_wordIdCounter,
@@ -448,6 +458,9 @@ function returnAllWordsToButtons() {
         isCorrect: true,
         originalIndex: i + 3
     }));
+    
+    console.log('   Первые 3 правильных:', firstThreeCorrect.map(w => w.display).join(', '));
+    console.log('   В очередь:', remainingCorrect.map(w => w.display).join(', ') || '(пусто)');
     
     levelTrainerAvailableWords = [...firstThreeCorrect];
     
@@ -482,6 +495,7 @@ function returnAllWordsToButtons() {
         
         const randomDistractor = availableDistractors[Math.floor(Math.random() * availableDistractors.length)];
         levelTrainerAvailableWords.push(randomDistractor);
+        console.log(`   Добавлен новый дистрактор: ${randomDistractor.display}`);
     }
     
     _wordQueue = remainingCorrect;
@@ -491,13 +505,12 @@ function returnAllWordsToButtons() {
         [levelTrainerAvailableWords[i], levelTrainerAvailableWords[j]] = [levelTrainerAvailableWords[j], levelTrainerAvailableWords[i]];
     }
     
-    updateLevelTrainerResultDisplay();
-    renderLevelTrainerWords();
-    
-    console.log('🔄 Сброс выполнен для:', levelTrainerCurrentSentence.de);
+    console.log('🔄 === РЕЗУЛЬТАТ СБРОСА ===');
     console.log('   Кнопки:', levelTrainerAvailableWords.map(w => `${w.display}(${w.isCorrect ? '✓' : '✗'})`).join(', '));
     console.log('   Очередь:', _wordQueue.map(w => w.display).join(', ') || '(пусто)');
     
+    updateLevelTrainerResultDisplay();
+    renderLevelTrainerWords();
     updateDebugLevelTrainer();
 }
 
@@ -637,9 +650,6 @@ function showLevelTrainerInterface() {
                 <button class="ctrl-btn" id="levelTrainerSpeakBtn">🔊 ОЗВУЧИТЬ</button>
                 <button class="ctrl-btn" id="levelTrainerShuffleBtn" style="background: #9C27B0; color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; font-size: 12px;">🔄 ПЕРЕМЕШАТЬ</button>
             </div>
-            
-            <!-- БЛОК С ПОДСКАЗКАМИ УДАЛЁН -->
-            
             <div style="display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; margin: 10px 0 5px 0;">
                 <button class="ctrl-btn" id="levelTrainerStudyBtn" style="padding: 6px 14px; background: #4CAF50; color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; font-size: 12px;">✅ ИЗУЧЕНО</button>
                 <button class="ctrl-btn" id="levelTrainerContainerBtn" style="padding: 6px 14px; background: #FF9800; color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; font-size: 12px;">📦 КОНТЕЙНЕР</button>
@@ -751,6 +761,10 @@ function attachLevelTrainerEvents() {
     if (undoBtn) {
         undoBtn.addEventListener('click', function() {
             if (levelTrainerSelectedWords.length > 0) {
+                console.log('🔄 ОТМЕНА СЛОВА');
+                console.log('   До отмены - кнопок:', levelTrainerAvailableWords.length);
+                console.log('   Выбрано:', levelTrainerSelectedWords.map(w => w.display).join(', '));
+                
                 const lastWord = levelTrainerSelectedWords.pop();
                 const wordWithNewId = {
                     ...lastWord,
@@ -766,6 +780,9 @@ function attachLevelTrainerEvents() {
                         levelTrainerAvailableWords.pop();
                     }
                 }
+                
+                console.log('   После отмены - кнопок:', levelTrainerAvailableWords.length);
+                console.log('   Кнопки:', levelTrainerAvailableWords.map(w => `${w.display}(${w.isCorrect ? '✓' : '✗'})`).join(', '));
                 
                 renderLevelTrainerWords();
                 updateLevelTrainerResultDisplay();
@@ -847,8 +864,6 @@ function attachLevelTrainerEvents() {
             console.log('🔄 Фразы уровня перемешаны');
         });
     }
-
-    // ===== ОБРАБОТЧИК ПОДСКАЗОК УДАЛЁН =====
 
     const studyBtn = document.getElementById('levelTrainerStudyBtn');
     if (studyBtn) {

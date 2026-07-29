@@ -157,24 +157,26 @@ body { font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-
 /* ===== АДАПТИВНЫЕ КНОПКИ ДЛЯ ТРЕНАЖЁРА И ВСЕХ ФРАЗ ===== */
 /* ============================================================ */
 
-/* Десктоп: flex в строку с переносом */
+/* Десктоп: flex в ОДНУ строку (без переноса) */
 .words-container {
     display: flex !important;
-    flex-wrap: wrap !important;
+    flex-wrap: nowrap !important;
     justify-content: center !important;
     gap: 10px !important;
     max-width: 700px !important;
     margin: 15px auto !important;
+    overflow-x: auto !important;
+    padding: 4px 0 !important;
 }
 
 .words-container .word-btn {
-    flex: 0 1 auto !important;
-    min-width: 80px !important;
-    max-width: 180px !important;
-    padding: 12px 18px !important;
-    font-size: 15px !important;
+    flex: 0 0 auto !important;
+    min-width: 60px !important;
+    max-width: 160px !important;
+    padding: 10px 16px !important;
+    font-size: 14px !important;
     white-space: nowrap !important;
-    min-height: 44px !important;
+    min-height: 40px !important;
     border-radius: 40px !important;
     display: inline-flex !important;
     align-items: center !important;
@@ -193,17 +195,38 @@ body { font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-
     background: #d0e2fc !important;
 }
 
+/* ===== ВЫДЕЛЕНИЕ КНОПОК СО СЛОВАМИ (зелёные) ===== */
+.words-container .word-btn {
+    background: #E8F5E9 !important;
+    border-color: #81C784 !important;
+    box-shadow: 0 2px 8px rgba(76, 175, 80, 0.15) !important;
+}
+
+.words-container .word-btn:hover {
+    background: #C8E6C9 !important;
+    box-shadow: 0 2px 12px rgba(76, 175, 80, 0.25) !important;
+}
+
+.words-container .word-btn:active {
+    background: #A5D6A7 !important;
+    box-shadow: 0 1px 4px rgba(76, 175, 80, 0.3) !important;
+}
+
 /* ===== МОБИЛЬНЫЕ УСТРОЙСТВА (до 768px): 3 колонки ===== */
 @media (max-width: 768px) {
     .words-container {
         display: grid !important;
         grid-template-columns: repeat(3, 1fr) !important;
+        flex-wrap: wrap !important;
         gap: 10px !important;
         max-width: 100% !important;
         margin: 15px auto !important;
+        overflow-x: visible !important;
+        padding: 0 !important;
     }
     
     .words-container .word-btn {
+        flex: 1 1 auto !important;
         width: 100% !important;
         min-height: 50px !important;
         padding: 12px 8px !important;
@@ -219,6 +242,13 @@ body { font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-
         justify-content: center !important;
         max-width: 100% !important;
         min-width: 0 !important;
+        background: #E8F5E9 !important;
+        border-color: #81C784 !important;
+        box-shadow: 0 2px 8px rgba(76, 175, 80, 0.15) !important;
+    }
+    
+    .words-container .word-btn:active {
+        background: #C8E6C9 !important;
     }
 }
 
@@ -414,42 +444,5 @@ body { font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-
     
     #levelCardsCardWrapper {
         min-height: 220px !important;
-    }
-}
-
-/* ============================================================ */
-/* ===== ВЫДЕЛЕНИЕ КНОПОК СО СЛОВАМИ (зелёные) ===== */
-/* ============================================================ */
-
-/* Кнопки со словами в тренажёре и всех фразах уровня */
-.words-container .word-btn {
-    background: #E8F5E9 !important;  /* светло-зелёный фон */
-    border-color: #81C784 !important; /* зелёная рамка */
-    border-width: 2px !important;
-    box-shadow: 0 2px 8px rgba(76, 175, 80, 0.15) !important;
-    transition: all 0.1s ease !important;
-}
-
-.words-container .word-btn:hover {
-    background: #C8E6C9 !important;
-    box-shadow: 0 2px 12px rgba(76, 175, 80, 0.25) !important;
-}
-
-.words-container .word-btn:active {
-    transform: scale(0.95) !important;
-    background: #A5D6A7 !important;
-    box-shadow: 0 1px 4px rgba(76, 175, 80, 0.3) !important;
-}
-
-/* ===== НА МОБИЛЬНЫХ ===== */
-@media (max-width: 768px) {
-    .words-container .word-btn {
-        background: #E8F5E9 !important;
-        border-color: #81C784 !important;
-        box-shadow: 0 2px 8px rgba(76, 175, 80, 0.15) !important;
-    }
-    
-    .words-container .word-btn:active {
-        background: #C8E6C9 !important;
     }
 }

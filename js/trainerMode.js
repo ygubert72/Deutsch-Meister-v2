@@ -1,6 +1,7 @@
 // ====================================================================
 // trainerMode.js — Тренажёр (сборка фраз из слов) — БЕЗ ПОДСКАЗОК
 // С адаптивной версткой: десктоп - flex, мобильные - grid 3 колонки
+// МАКСИМУМ 4 ПРАВИЛЬНЫХ СЛОВА
 // ====================================================================
 
 (function() {
@@ -362,10 +363,13 @@ function restoreTrainerQueue() {
     _trainerWordQueue = newQueue;
 }
 
+// ========== ГАРАНТИЯ 6 КНОПОК И НЕ БОЛЬШЕ 4 ПРАВИЛЬНЫХ СЛОВ ==========
 function ensureSixButtonsWithCorrectWords() {
     let correctCount = trainerAvailableWords.filter(w => w.isCorrect).length;
+    const maxCorrect = 4;
     
-    while (correctCount > 3) {
+    // 1. Если правильных слов больше 4 — удаляем лишние в очередь
+    while (correctCount > maxCorrect) {
         const extraCorrectIndex = trainerAvailableWords.findIndex(w => w.isCorrect);
         if (extraCorrectIndex !== -1) {
             const removed = trainerAvailableWords.splice(extraCorrectIndex, 1)[0];
@@ -381,28 +385,13 @@ function ensureSixButtonsWithCorrectWords() {
         }
     }
     
-    while (correctCount < 3 && _trainerWordQueue.length > 0) {
-        const queued = _trainerWordQueue.shift();
-        const newWord = {
-            id: ++_trainerWordIdCounter,
-            display: queued.display,
-            de: queued.de,
-            ru: queued.ru,
-            isCorrect: true,
-            originalIndex: -1
-        };
-        
-        const distractorIndex = trainerAvailableWords.findIndex(w => !w.isCorrect);
-        if (distractorIndex !== -1) {
-            trainerAvailableWords.splice(distractorIndex, 1);
-            trainerAvailableWords.push(newWord);
-        } else {
-            trainerAvailableWords.push(newWord);
-        }
-        correctCount++;
-    }
+    // 2. Если правильных слов МЕНЬШЕ maxCorrect — НЕ ДОБАВЛЯЕМ!
+    // Просто оставляем как есть (может быть 1, 2 или 3 правильных слова)
     
-    while (trainerAvailableWords.length < 6) {
+    // 3. Убеждаемся, что кнопок ровно 6 (добавляем дистракторы)
+    const maxButtons = 6;
+    
+    while (trainerAvailableWords.length < maxButtons) {
         const usedDisplaySet = new Set(trainerAvailableWords.map(w => w.display));
         const availableDistractors = allVocabWords
             .filter(w => {
@@ -424,7 +413,7 @@ function ensureSixButtonsWithCorrectWords() {
         trainerAvailableWords.push(randomDistractor);
     }
     
-    while (trainerAvailableWords.length > 6) {
+    while (trainerAvailableWords.length > maxButtons) {
         const distractorIdx = trainerAvailableWords.findIndex(w => !w.isCorrect);
         if (distractorIdx !== -1) {
             trainerAvailableWords.splice(distractorIdx, 1);
@@ -434,20 +423,42 @@ function ensureSixButtonsWithCorrectWords() {
     }
 }
 
+// ========== СОЗДАНИЕ НАЧАЛЬНЫХ КНОПОК ==========
 function createInitialButtons() {
     const isRuToDe = trainerDirection === 'ru_to_de';
     const deWords = trainerCurrentSentence.de.replace(/[.,!?;:]/g, '').split(/\s+/);
     const ruWords = trainerCurrentSentence.ru.replace(/[.,!?;:]/g, '').split(/\s+/);
     
-    const correctWords = deWords.map((w, i) => ({
-        id: ++_trainerWordIdCounter,
-        display: isRuToDe ? w : (ruWords[i] || w),
-        de: w,
-        ru: ruWords[i] || w,
-        isCorrect: true,
-        originalIndex: i
-    }));
-
+    console.log('🔍 createInitialButtons: направление =', trainerDirection);
+    console.log('🔍 deWords:', deWords);
+    console.log('🔍 ruWords:', ruWords);
+    
+    let correctWords = [];
+    
+    if (isRuToDe) {
+        // Ru → De: правильные слова — немецкие (из deWords)
+        correctWords = deWords.map((w, i) => ({
+            id: ++_trainerWordIdCounter,
+            display: w,
+            de: w,
+            ru: ruWords[i] || w,
+            isCorrect: true,
+            originalIndex: i
+        }));
+    } else {
+        // De → Ru: правильные слова — русские (из ruWords)
+        correctWords = ruWords.map((w, i) => ({
+            id: ++_trainerWordIdCounter,
+            display: w,
+            de: deWords[i] || w,
+            ru: w,
+            isCorrect: true,
+            originalIndex: i
+        }));
+    }
+    
+    console.log('🔍 correctWords:', correctWords.map(w => w.display).join(', '));
+    
     trainerSelectedWords = [];
 
     let allDistractorWords = [];
@@ -486,8 +497,10 @@ function createInitialButtons() {
             return !correctSet.has(key) && key.length > 0;
         });
 
-    let visibleCorrectWords = correctWords.slice(0, 3);
-    let remainingCorrectWords = correctWords.slice(3);
+    // ===== ПОКАЗЫВАЕМ ВСЕ ПРАВИЛЬНЫЕ СЛОВА, НО НЕ БОЛЬШЕ 4 =====
+    const maxCorrectOnButtons = 4;
+    let visibleCorrectWords = correctWords.slice(0, maxCorrectOnButtons);
+    let remainingCorrectWords = correctWords.slice(maxCorrectOnButtons);
 
     _trainerWordQueue = remainingCorrectWords.map(w => ({
         ...w,
@@ -538,6 +551,7 @@ function createInitialButtons() {
     ensureSixButtonsWithCorrectWords();
     
     console.log('✅ Созданы кнопки для:', trainerCurrentSentence.de);
+    console.log('   Направление:', trainerDirection);
     console.log('   Кнопки:', trainerAvailableWords.map(w => `${w.display}(${w.isCorrect ? '✓' : '✗'})`).join(', '));
     console.log('   Очередь:', _trainerWordQueue.map(w => w.display).join(', ') || '(пусто)');
     
@@ -558,27 +572,36 @@ function returnAllWordsToButtons() {
     const deWords = trainerCurrentSentence.de.replace(/[.,!?;:]/g, '').split(/\s+/);
     const ruWords = trainerCurrentSentence.ru.replace(/[.,!?;:]/g, '').split(/\s+/);
     
+    let firstCorrect = [];
+    let remainingCorrect = [];
+    
+    if (isRuToDe) {
+        const allCorrect = deWords.map((w, i) => ({
+            id: ++_trainerWordIdCounter,
+            display: w,
+            de: w,
+            ru: ruWords[i] || w,
+            isCorrect: true,
+            originalIndex: i
+        }));
+        firstCorrect = allCorrect.slice(0, 4);
+        remainingCorrect = allCorrect.slice(4);
+    } else {
+        const allCorrect = ruWords.map((w, i) => ({
+            id: ++_trainerWordIdCounter,
+            display: w,
+            de: deWords[i] || w,
+            ru: w,
+            isCorrect: true,
+            originalIndex: i
+        }));
+        firstCorrect = allCorrect.slice(0, 4);
+        remainingCorrect = allCorrect.slice(4);
+    }
+    
     const onlyDistractors = trainerAvailableWords.filter(w => !w.isCorrect);
     
-    const firstThreeCorrect = deWords.slice(0, 3).map((w, i) => ({
-        id: ++_trainerWordIdCounter,
-        display: isRuToDe ? w : (ruWords[i] || w),
-        de: w,
-        ru: ruWords[i] || w,
-        isCorrect: true,
-        originalIndex: i
-    }));
-    
-    const remainingCorrect = deWords.slice(3).map((w, i) => ({
-        id: ++_trainerWordIdCounter,
-        display: isRuToDe ? w : (ruWords[i + 3] || w),
-        de: w,
-        ru: ruWords[i + 3] || w,
-        isCorrect: true,
-        originalIndex: i + 3
-    }));
-    
-    trainerAvailableWords = [...firstThreeCorrect];
+    trainerAvailableWords = [...firstCorrect];
     
     let distractorIndex = 0;
     while (trainerAvailableWords.length < 6 && distractorIndex < onlyDistractors.length) {
@@ -749,7 +772,8 @@ function attachTrainerEvents(container) {
             
             const correctOnButtons = trainerAvailableWords.filter(w => w.isCorrect).length;
             
-            if (correctOnButtons < 3 && _trainerWordQueue.length > 0) {
+            // Подгружаем новое слово, если правильных меньше 4
+            if (correctOnButtons < 4 && _trainerWordQueue.length > 0) {
                 const queued = _trainerWordQueue.shift();
                 const newWord = {
                     id: ++_trainerWordIdCounter,
@@ -1011,6 +1035,6 @@ function renderTrainerWords() {
 // ===== ЭКСПОРТ =====
 window.renderTrainer = renderTrainer;
 
-console.log('🧩 trainerMode.js загружен (без подсказок)');
+console.log('🧩 trainerMode.js загружен (макс. 4 правильных слова)');
 
 })();

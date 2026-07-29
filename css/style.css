@@ -157,7 +157,7 @@ body { font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-
 /* ===== АДАПТИВНЫЕ КНОПКИ ДЛЯ ТРЕНАЖЁРА И ВСЕХ ФРАЗ ===== */
 /* ============================================================ */
 
-/* Десктоп: flex в ОДНУ строку (без переноса) */
+/* Десктоп: flex в ОДНУ строку (без переноса, без скролла) */
 .words-container {
     display: flex !important;
     flex-wrap: nowrap !important;
@@ -165,8 +165,6 @@ body { font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-
     gap: 10px !important;
     max-width: 700px !important;
     margin: 15px auto !important;
-    overflow-x: auto !important;
-    padding: 4px 0 !important;
 }
 
 .words-container .word-btn {

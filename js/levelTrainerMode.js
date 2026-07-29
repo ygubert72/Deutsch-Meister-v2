@@ -414,6 +414,8 @@ function createInitialButtons() {
     console.log('   Кнопки:', levelTrainerAvailableWords.map(w => `${w.display}(${w.isCorrect ? '✓' : '✗'})`).join(', '));
     console.log('   Очередь:', _wordQueue.map(w => w.display).join(', ') || '(пусто)');
     console.log('   Выбрано:', levelTrainerSelectedWords.map(w => w.display).join(', ') || '(пусто)');
+    
+    updateDebugLevelTrainer();
 }
 
 // ========== ВОЗВРАТ ВСЕХ СЛОВ НА КНОПКИ ==========
@@ -522,6 +524,8 @@ function returnAllWordsToButtons() {
     // 9. Обновляем отображение
     updateLevelTrainerResultDisplay();
     renderLevelTrainerWords();
+    
+    updateDebugLevelTrainer();
 }
 
 // ========== ОСНОВНАЯ ФУНКЦИЯ ==========
@@ -665,6 +669,8 @@ function showLevelTrainerInterface() {
     document.getElementById('modeIndicator').textContent = `🧩 Все фразы уровня ${levelTrainerCurrentLevel}`;
     updateCounter();
     attachLevelTrainerEvents();
+    
+    updateDebugLevelTrainer();
 }
 
 // ========== ПРИВЯЗКА СОБЫТИЙ ==========
@@ -751,6 +757,7 @@ function attachLevelTrainerEvents() {
             }
             
             renderLevelTrainerWords();
+            updateDebugLevelTrainer();
         });
     }
 
@@ -783,6 +790,7 @@ function attachLevelTrainerEvents() {
                 
                 renderLevelTrainerWords();
                 updateLevelTrainerResultDisplay();
+                updateDebugLevelTrainer();
             }
         });
     }
@@ -1091,24 +1099,26 @@ function showLevelTrainerContainer() {
     });
 }
 
+// ===== ОБНОВЛЕНИЕ ОТЛАДОЧНОЙ ПЕРЕМЕННОЙ =====
+function updateDebugLevelTrainer() {
+    window._debugLevelTrainer = {
+        levelTrainerSentences: levelTrainerSentences,
+        levelTrainerIndex: levelTrainerIndex,
+        levelTrainerCurrentSentence: levelTrainerCurrentSentence,
+        levelTrainerSelectedWords: levelTrainerSelectedWords,
+        levelTrainerAvailableWords: levelTrainerAvailableWords,
+        levelTrainerHintWords: levelTrainerHintWords,
+        levelTrainerDirection: levelTrainerDirection,
+        _wordQueue: _wordQueue,
+        _wordIdCounter: _wordIdCounter,
+        levelTrainerAllPhrases: levelTrainerAllPhrases,
+        levelTrainerStudied: levelTrainerStudied
+    };
+}
+
 // ===== ЭКСПОРТ =====
 window.loadAllPhrasesMode = loadAllPhrasesMode;
 window.showLevelTrainerContainer = showLevelTrainerContainer;
-
-// ===== ОТЛАДОЧНАЯ ПЕРЕМЕННАЯ =====
-window._debugLevelTrainer = {
-    levelTrainerSentences: levelTrainerSentences,
-    levelTrainerIndex: levelTrainerIndex,
-    levelTrainerCurrentSentence: levelTrainerCurrentSentence,
-    levelTrainerSelectedWords: levelTrainerSelectedWords,
-    levelTrainerAvailableWords: levelTrainerAvailableWords,
-    levelTrainerHintWords: levelTrainerHintWords,
-    levelTrainerDirection: levelTrainerDirection,
-    _wordQueue: _wordQueue,
-    _wordIdCounter: _wordIdCounter,
-    levelTrainerAllPhrases: levelTrainerAllPhrases,
-    levelTrainerStudied: levelTrainerStudied
-};
 
 console.log('🧩 levelTrainerMode.js загружен (исправленная версия)');
 

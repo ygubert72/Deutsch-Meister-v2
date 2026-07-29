@@ -416,3 +416,40 @@ body { font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-
         min-height: 220px !important;
     }
 }
+
+/* ============================================================ */
+/* ===== ВЫДЕЛЕНИЕ КНОПОК СО СЛОВАМИ (зелёные) ===== */
+/* ============================================================ */
+
+/* Кнопки со словами в тренажёре и всех фразах уровня */
+.words-container .word-btn {
+    background: #E8F5E9 !important;  /* светло-зелёный фон */
+    border-color: #81C784 !important; /* зелёная рамка */
+    border-width: 2px !important;
+    box-shadow: 0 2px 8px rgba(76, 175, 80, 0.15) !important;
+    transition: all 0.1s ease !important;
+}
+
+.words-container .word-btn:hover {
+    background: #C8E6C9 !important;
+    box-shadow: 0 2px 12px rgba(76, 175, 80, 0.25) !important;
+}
+
+.words-container .word-btn:active {
+    transform: scale(0.95) !important;
+    background: #A5D6A7 !important;
+    box-shadow: 0 1px 4px rgba(76, 175, 80, 0.3) !important;
+}
+
+/* ===== НА МОБИЛЬНЫХ ===== */
+@media (max-width: 768px) {
+    .words-container .word-btn {
+        background: #E8F5E9 !important;
+        border-color: #81C784 !important;
+        box-shadow: 0 2px 8px rgba(76, 175, 80, 0.15) !important;
+    }
+    
+    .words-container .word-btn:active {
+        background: #C8E6C9 !important;
+    }
+}

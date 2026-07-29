@@ -184,15 +184,14 @@ function insertWordAtRandomPosition(words, word) {
     return pos;
 }
 
-// ========== ВОССТАНОВЛЕНИЕ ОЧЕРЕДИ (ИСПРАВЛЕНО) ==========
+// ========== ВОССТАНОВЛЕНИЕ ОЧЕРЕДИ ==========
 function restoreLevelTrainerQueue() {
     if (!levelTrainerCurrentSentence) {
         return;
     }
     
-    // 1. Получаем все правильные слова из текущего предложения
-    const deWords = levelTrainerCurrentSentence.de.replace(/[.,!?;:]/g, '').split(/\s+/);
     const isRuToDe = levelTrainerDirection === 'ru_to_de';
+    const deWords = levelTrainerCurrentSentence.de.replace(/[.,!?;:]/g, '').split(/\s+/);
     const ruWords = levelTrainerCurrentSentence.ru.replace(/[.,!?;:]/g, '').split(/\s+/);
     
     const correctWords = deWords.map((w, i) => ({
@@ -203,15 +202,11 @@ function restoreLevelTrainerQueue() {
         originalIndex: i
     }));
     
-    // 2. Получаем список правильных слов, которые уже есть на кнопках
     const correctTextsOnButtons = levelTrainerAvailableWords
         .filter(w => w.isCorrect)
         .map(w => w.display);
     
-    // 3. Создаём Set для быстрого поиска
     const correctSet = new Set(correctTextsOnButtons);
-    
-    // 4. Создаём очередь из правильных слов, которых НЕТ на кнопках
     const newQueue = [];
     correctWords.forEach(w => {
         if (!correctSet.has(w.display)) {
@@ -226,16 +221,13 @@ function restoreLevelTrainerQueue() {
         }
     });
     
-    // 5. Заменяем существующую очередь
     _wordQueue = newQueue;
 }
 
 // ========== ГАРАНТИЯ 6 КНОПОК И РОВНО 3 ПРАВИЛЬНЫХ СЛОВ ==========
 function ensureSixButtonsWithCorrectWords() {
-    // 1. Считаем правильные слова на кнопках
     let correctCount = levelTrainerAvailableWords.filter(w => w.isCorrect).length;
     
-    // 2. Если правильных слов больше 3 — удаляем лишние и добавляем в очередь
     while (correctCount > 3) {
         const extraCorrectIndex = levelTrainerAvailableWords.findIndex(w => w.isCorrect);
         if (extraCorrectIndex !== -1) {
@@ -252,7 +244,6 @@ function ensureSixButtonsWithCorrectWords() {
         }
     }
     
-    // 3. Если правильных слов меньше 3 — добавляем из очереди
     while (correctCount < 3 && _wordQueue.length > 0) {
         const queued = _wordQueue.shift();
         const newWord = {
@@ -264,7 +255,6 @@ function ensureSixButtonsWithCorrectWords() {
             originalIndex: -1
         };
         
-        // Ищем дистрактор для замены
         const distractorIndex = levelTrainerAvailableWords.findIndex(w => !w.isCorrect);
         if (distractorIndex !== -1) {
             levelTrainerAvailableWords.splice(distractorIndex, 1);
@@ -275,7 +265,6 @@ function ensureSixButtonsWithCorrectWords() {
         correctCount++;
     }
     
-    // 4. Убеждаемся, что кнопок ровно 6
     const allDistractorWords = _cachedDistractors || [];
     
     while (levelTrainerAvailableWords.length < 6) {
@@ -307,13 +296,12 @@ function ensureSixButtonsWithCorrectWords() {
     }
 }
 
-// ========== СОЗДАНИЕ НАЧАЛЬНЫХ КНОПОК ДЛЯ ПРЕДЛОЖЕНИЯ ==========
+// ========== СОЗДАНИЕ НАЧАЛЬНЫХ КНОПОК ==========
 function createInitialButtons() {
     const isRuToDe = levelTrainerDirection === 'ru_to_de';
     const deWords = levelTrainerCurrentSentence.de.replace(/[.,!?;:]/g, '').split(/\s+/);
     const ruWords = levelTrainerCurrentSentence.ru.replace(/[.,!?;:]/g, '').split(/\s+/);
     
-    // ===== ПРАВИЛЬНЫЕ СЛОВА =====
     const correctWords = deWords.map((w, i) => ({
         id: ++_wordIdCounter,
         display: isRuToDe ? w : (ruWords[i] || w),
@@ -326,7 +314,6 @@ function createInitialButtons() {
     levelTrainerHintWords = deWords;
     levelTrainerSelectedWords = [];
 
-    // ===== ДИСТРАКТОРЫ =====
     let allDistractorWords = [];
     
     if (_cachedLevel !== levelTrainerCurrentLevel || _cachedDirection !== levelTrainerDirection) {
@@ -372,21 +359,16 @@ function createInitialButtons() {
             return !correctSet.has(key) && key.length > 0;
         });
 
-    // ===== ФОРМИРУЕМ 6 КНОПОК =====
-    // Берем первые 3 правильных слова (НЕ БОЛЬШЕ!)
     let visibleCorrectWords = correctWords.slice(0, 3);
     let remainingCorrectWords = correctWords.slice(3);
 
-    // Создаём очередь из оставшихся правильных слов
     _wordQueue = remainingCorrectWords.map(w => ({
         ...w,
         id: ++_wordIdCounter
     }));
 
-    // Начинаем с 3 правильных слов (ровно 3!)
     levelTrainerAvailableWords = [...visibleCorrectWords];
     
-    // Добавляем дистракторы до 6 слов (ровно 3 дистрактора)
     let distractorIndex = 0;
     while (levelTrainerAvailableWords.length < 6 && distractorIndex < filteredDistractors.length) {
         const d = filteredDistractors[distractorIndex];
@@ -404,7 +386,6 @@ function createInitialButtons() {
         distractorIndex++;
     }
     
-    // Если всё ещё меньше 6, добиваем любыми словами
     let fallbackIndex = 0;
     while (levelTrainerAvailableWords.length < 6 && fallbackIndex < allDistractorWords.length) {
         const d = allDistractorWords[fallbackIndex];
@@ -422,13 +403,11 @@ function createInitialButtons() {
         fallbackIndex++;
     }
     
-    // ПЕРЕМЕШИВАНИЕ ОДИН РАЗ
     for (let i = levelTrainerAvailableWords.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
         [levelTrainerAvailableWords[i], levelTrainerAvailableWords[j]] = [levelTrainerAvailableWords[j], levelTrainerAvailableWords[i]];
     }
 
-    // Гарантируем, что всё правильно
     ensureSixButtonsWithCorrectWords();
     
     console.log('✅ Созданы кнопки для:', levelTrainerCurrentSentence.de);
@@ -436,7 +415,7 @@ function createInitialButtons() {
     console.log('   Очередь:', _wordQueue.map(w => w.display).join(', ') || '(пусто)');
 }
 
-// ========== ВОЗВРАТ ВСЕХ СЛОВ НА КНОПКИ (ИСПРАВЛЕНО) ==========
+// ========== ВОЗВРАТ ВСЕХ СЛОВ НА КНОПКИ ==========
 function returnAllWordsToButtons() {
     // 1. Возвращаем все выбранные слова на кнопки
     while (levelTrainerSelectedWords.length > 0) {
@@ -453,7 +432,12 @@ function returnAllWordsToButtons() {
     const deWords = levelTrainerCurrentSentence.de.replace(/[.,!?;:]/g, '').split(/\s+/);
     const ruWords = levelTrainerCurrentSentence.ru.replace(/[.,!?;:]/g, '').split(/\s+/);
     
-    const correctWords = deWords.map((w, i) => ({
+    // 3. Удаляем все правильные слова с кнопок (оставляем только дистракторы)
+    const onlyDistractors = levelTrainerAvailableWords.filter(w => !w.isCorrect);
+    
+    // 4. Берём первые 3 правильных слова для кнопок
+    const firstThreeCorrect = deWords.slice(0, 3).map((w, i) => ({
+        id: ++_wordIdCounter,
         display: isRuToDe ? w : (ruWords[i] || w),
         de: w,
         ru: ruWords[i] || w,
@@ -461,27 +445,14 @@ function returnAllWordsToButtons() {
         originalIndex: i
     }));
     
-    // 3. Удаляем все правильные слова с кнопок (оставляем только дистракторы)
-    const onlyDistractors = levelTrainerAvailableWords.filter(w => !w.isCorrect);
-    
-    // 4. Берём первые 3 правильных слова для кнопок
-    const firstThreeCorrect = correctWords.slice(0, 3).map(w => ({
-        id: ++_wordIdCounter,
-        display: w.display,
-        de: w.de,
-        ru: w.ru,
-        isCorrect: true,
-        originalIndex: w.originalIndex
-    }));
-    
     // 5. Остальные правильные слова идут в очередь
-    const remainingCorrect = correctWords.slice(3).map(w => ({
+    const remainingCorrect = deWords.slice(3).map((w, i) => ({
         id: ++_wordIdCounter,
-        display: w.display,
-        de: w.de,
-        ru: w.ru,
+        display: isRuToDe ? w : (ruWords[i + 3] || w),
+        de: w,
+        ru: ruWords[i + 3] || w,
         isCorrect: true,
-        originalIndex: w.originalIndex
+        originalIndex: i + 3
     }));
     
     // 6. Формируем новые кнопки: 3 правильных + дистракторы до 6
@@ -622,7 +593,6 @@ function showLevelTrainerInterface() {
     
     levelTrainerCurrentSentence = levelTrainerSentences[levelTrainerIndex];
     
-    // Создаём начальные кнопки
     createInitialButtons();
 
     const isRuToDe = levelTrainerDirection === 'ru_to_de';
@@ -715,7 +685,6 @@ function attachLevelTrainerEvents() {
             levelTrainerSelectedWords.push(selectedWord);
             updateLevelTrainerResultDisplay();
             
-            // ===== ПОДГРУЗКА НОВОГО СЛОВА =====
             const correctOnButtons = levelTrainerAvailableWords.filter(w => w.isCorrect).length;
             
             if (correctOnButtons < 3 && _wordQueue.length > 0) {
@@ -738,7 +707,6 @@ function attachLevelTrainerEvents() {
                 }
             }
             
-            // ===== ГАРАНТИРУЕМ 6 КНОПОК =====
             const allDistractorWords = _cachedDistractors || [];
             
             while (levelTrainerAvailableWords.length < 6) {
@@ -773,22 +741,17 @@ function attachLevelTrainerEvents() {
         });
     }
 
-    // ===== ИСПРАВЛЕННЫЙ ОБРАБОТЧИК "ВЕРНУТЬ СЛОВО" =====
     const undoBtn = document.getElementById('levelTrainerUndoBtn');
     if (undoBtn) {
         undoBtn.addEventListener('click', function() {
             if (levelTrainerSelectedWords.length > 0) {
-                // 1. Берём последнее выбранное слово
                 const lastWord = levelTrainerSelectedWords.pop();
                 const wordWithNewId = {
                     ...lastWord,
                     id: ++_wordIdCounter
                 };
-                
-                // 2. Добавляем слово на кнопки
                 insertWordAtRandomPosition(levelTrainerAvailableWords, wordWithNewId);
                 
-                // 3. УБЕЖДАЕМСЯ, ЧТО КНОПОК РОВНО 6!
                 while (levelTrainerAvailableWords.length > 6) {
                     const distractorIdx = levelTrainerAvailableWords.findIndex(w => !w.isCorrect);
                     if (distractorIdx !== -1) {
@@ -798,7 +761,6 @@ function attachLevelTrainerEvents() {
                     }
                 }
                 
-                // 4. Обновляем отображение
                 renderLevelTrainerWords();
                 updateLevelTrainerResultDisplay();
             }

@@ -19,6 +19,7 @@ let trainerCurrentLessonData = null;
 let allTrainerTemplates = [];
 let globalVocabularyCache = {};
 
+// ===== ОЧЕРЕДЬ ДЛЯ ПОДГРУЗКИ =====
 let _trainerWordQueue = [];
 let _trainerWordIdCounter = 0;
 
@@ -334,7 +335,6 @@ function insertWordAtRandomPosition(words, word) {
     return pos;
 }
 
-// ========== ВОССТАНОВЛЕНИЕ ОЧЕРЕДИ ==========
 function restoreTrainerQueue() {
     if (!trainerCurrentSentence) {
         return;
@@ -363,7 +363,6 @@ function restoreTrainerQueue() {
     _trainerWordQueue = newQueue;
 }
 
-// ========== ГАРАНТИЯ 6 КНОПОК И РОВНО 3 ПРАВИЛЬНЫХ СЛОВ ==========
 function ensureSixButtonsWithCorrectWords() {
     let correctCount = trainerAvailableWords.filter(w => w.isCorrect).length;
     
@@ -436,7 +435,6 @@ function ensureSixButtonsWithCorrectWords() {
     }
 }
 
-// ========== СОЗДАНИЕ НАЧАЛЬНЫХ КНОПОК ==========
 function createInitialButtons() {
     const isRuToDe = trainerDirection === 'ru_to_de';
     const deWords = trainerCurrentSentence.de.replace(/[.,!?;:]/g, '').split(/\s+/);
@@ -544,11 +542,11 @@ function createInitialButtons() {
     console.log('✅ Созданы кнопки для:', trainerCurrentSentence.de);
     console.log('   Кнопки:', trainerAvailableWords.map(w => `${w.display}(${w.isCorrect ? '✓' : '✗'})`).join(', '));
     console.log('   Очередь:', _trainerWordQueue.map(w => w.display).join(', ') || '(пусто)');
+    
+    updateDebugTrainer();
 }
 
-// ========== ВОЗВРАТ ВСЕХ СЛОВ НА КНОПКИ ==========
 function returnAllWordsToButtons() {
-    // 1. Возвращаем все выбранные слова на кнопки
     while (trainerSelectedWords.length > 0) {
         const word = trainerSelectedWords.pop();
         const wordWithNewId = {
@@ -558,36 +556,32 @@ function returnAllWordsToButtons() {
         insertWordAtRandomPosition(trainerAvailableWords, wordWithNewId);
     }
     
-    // 2. ПОЛНОСТЬЮ ПЕРЕСОЗДАЁМ ПРАВИЛЬНЫЕ СЛОВА из предложения
-    const correctWords = trainerCurrentSentence.de.replace(/[.,!?;:]/g, '').split(/\s+/);
+    const isRuToDe = trainerDirection === 'ru_to_de';
+    const deWords = trainerCurrentSentence.de.replace(/[.,!?;:]/g, '').split(/\s+/);
+    const ruWords = trainerCurrentSentence.ru.replace(/[.,!?;:]/g, '').split(/\s+/);
     
-    // 3. Удаляем все правильные слова с кнопок (оставляем только дистракторы)
     const onlyDistractors = trainerAvailableWords.filter(w => !w.isCorrect);
     
-    // 4. Берём первые 3 правильных слова для кнопок
-    const firstThreeCorrect = correctWords.slice(0, 3).map(w => ({
+    const firstThreeCorrect = deWords.slice(0, 3).map((w, i) => ({
         id: ++_trainerWordIdCounter,
-        display: w,
+        display: isRuToDe ? w : (ruWords[i] || w),
         de: w,
-        ru: w,
+        ru: ruWords[i] || w,
         isCorrect: true,
-        originalIndex: -1
+        originalIndex: i
     }));
     
-    // 5. Остальные правильные слова идут в очередь
-    const remainingCorrect = correctWords.slice(3).map(w => ({
+    const remainingCorrect = deWords.slice(3).map((w, i) => ({
         id: ++_trainerWordIdCounter,
-        display: w,
+        display: isRuToDe ? w : (ruWords[i + 3] || w),
         de: w,
-        ru: w,
+        ru: ruWords[i + 3] || w,
         isCorrect: true,
-        originalIndex: -1
+        originalIndex: i + 3
     }));
     
-    // 6. Формируем новые кнопки: 3 правильных + дистракторы до 6
     trainerAvailableWords = [...firstThreeCorrect];
     
-    // Добавляем дистракторы
     let distractorIndex = 0;
     while (trainerAvailableWords.length < 6 && distractorIndex < onlyDistractors.length) {
         const d = onlyDistractors[distractorIndex];
@@ -601,7 +595,6 @@ function returnAllWordsToButtons() {
         distractorIndex++;
     }
     
-    // Если всё ещё меньше 6, добавляем новые дистракторы из словаря
     while (trainerAvailableWords.length < 6) {
         const usedDisplaySet = new Set(trainerAvailableWords.map(w => w.display));
         const availableDistractors = allVocabWords
@@ -624,22 +617,38 @@ function returnAllWordsToButtons() {
         trainerAvailableWords.push(randomDistractor);
     }
     
-    // 7. Устанавливаем новую очередь
     _trainerWordQueue = remainingCorrect;
     
-    // 8. Перемешиваем кнопки
     for (let i = trainerAvailableWords.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
         [trainerAvailableWords[i], trainerAvailableWords[j]] = [trainerAvailableWords[j], trainerAvailableWords[i]];
     }
     
-    // 9. Обновляем отображение
     updateTrainerResultDisplay();
     renderTrainerWords();
     
     console.log('🔄 Сброс выполнен для:', trainerCurrentSentence.de);
     console.log('   Кнопки:', trainerAvailableWords.map(w => `${w.display}(${w.isCorrect ? '✓' : '✗'})`).join(', '));
     console.log('   Очередь:', _trainerWordQueue.map(w => w.display).join(', ') || '(пусто)');
+    
+    updateDebugTrainer();
+}
+
+// ===== ОБНОВЛЕНИЕ ОТЛАДОЧНОЙ ПЕРЕМЕННОЙ =====
+function updateDebugTrainer() {
+    window._debugTrainer = {
+        trainerSentences: trainerSentences,
+        trainerIndex: trainerIndex,
+        trainerCurrentSentence: trainerCurrentSentence,
+        trainerSelectedWords: trainerSelectedWords,
+        trainerAvailableWords: trainerAvailableWords,
+        trainerHintWords: trainerHintWords,
+        trainerDirection: trainerDirection,
+        _trainerWordQueue: _trainerWordQueue,
+        _trainerWordIdCounter: _trainerWordIdCounter,
+        allVocabWords: allVocabWords,
+        trainerStudiedSentences: trainerStudiedSentences
+    };
 }
 
 // ========== ОСНОВНАЯ ЛОГИКА ==========
@@ -714,6 +723,7 @@ function showTrainerSentence(container) {
 
     container.innerHTML = html;
     attachTrainerEvents(container);
+    updateDebugTrainer();
 }
 
 function attachTrainerEvents(container) {
@@ -799,25 +809,21 @@ function attachTrainerEvents(container) {
             }
             
             renderTrainerWords();
+            updateDebugTrainer();
         });
     }
 
-    // ===== ИСПРАВЛЕННЫЙ ОБРАБОТЧИК "ВЕРНУТЬ СЛОВО" =====
     const undoBtn = document.getElementById('trainerUndoBtn');
     if (undoBtn) {
         undoBtn.addEventListener('click', function() {
             if (trainerSelectedWords.length > 0) {
-                // 1. Берём последнее выбранное слово
                 const lastWord = trainerSelectedWords.pop();
                 const wordWithNewId = {
                     ...lastWord,
                     id: ++_trainerWordIdCounter
                 };
-                
-                // 2. Добавляем слово на кнопки
                 insertWordAtRandomPosition(trainerAvailableWords, wordWithNewId);
                 
-                // 3. УБЕЖДАЕМСЯ, ЧТО КНОПОК РОВНО 6!
                 while (trainerAvailableWords.length > 6) {
                     const distractorIdx = trainerAvailableWords.findIndex(w => !w.isCorrect);
                     if (distractorIdx !== -1) {
@@ -827,9 +833,9 @@ function attachTrainerEvents(container) {
                     }
                 }
                 
-                // 4. Обновляем отображение
                 renderTrainerWords();
                 updateTrainerResultDisplay();
+                updateDebugTrainer();
             }
         });
     }
@@ -996,6 +1002,8 @@ function attachTrainerEvents(container) {
             }
         });
     }
+    
+    updateDebugTrainer();
 }
 
 function updateTrainerResultDisplay() {
@@ -1027,20 +1035,6 @@ function renderTrainerWords() {
 // ===== ЭКСПОРТ =====
 window.renderTrainer = renderTrainer;
 
-window._debugTrainer = {
-    trainerSentences: trainerSentences,
-    trainerIndex: trainerIndex,
-    trainerCurrentSentence: trainerCurrentSentence,
-    trainerSelectedWords: trainerSelectedWords,
-    trainerAvailableWords: trainerAvailableWords,
-    trainerHintWords: trainerHintWords,
-    trainerDirection: trainerDirection,
-    _trainerWordQueue: _trainerWordQueue,
-    _trainerWordIdCounter: _trainerWordIdCounter,
-    allVocabWords: allVocabWords,
-    trainerStudiedSentences: trainerStudiedSentences
-};
-
-console.log('🧩 trainerMode.js загружен (финальная версия)');
+console.log('🧩 trainerMode.js загружен (исправленная версия с отладкой)');
 
 })();

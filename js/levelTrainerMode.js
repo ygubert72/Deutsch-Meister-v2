@@ -413,10 +413,15 @@ function createInitialButtons() {
     console.log('✅ Созданы кнопки для:', levelTrainerCurrentSentence.de);
     console.log('   Кнопки:', levelTrainerAvailableWords.map(w => `${w.display}(${w.isCorrect ? '✓' : '✗'})`).join(', '));
     console.log('   Очередь:', _wordQueue.map(w => w.display).join(', ') || '(пусто)');
+    console.log('   Выбрано:', levelTrainerSelectedWords.map(w => w.display).join(', ') || '(пусто)');
 }
 
 // ========== ВОЗВРАТ ВСЕХ СЛОВ НА КНОПКИ ==========
 function returnAllWordsToButtons() {
+    console.log('🔄 === НАЧАЛО СБРОСА ===');
+    console.log('   Предложение:', levelTrainerCurrentSentence?.de);
+    console.log('   Выбрано ДО:', levelTrainerSelectedWords.map(w => w.display).join(', ') || '(пусто)');
+    
     // 1. Возвращаем все выбранные слова на кнопки
     while (levelTrainerSelectedWords.length > 0) {
         const word = levelTrainerSelectedWords.pop();
@@ -432,8 +437,12 @@ function returnAllWordsToButtons() {
     const deWords = levelTrainerCurrentSentence.de.replace(/[.,!?;:]/g, '').split(/\s+/);
     const ruWords = levelTrainerCurrentSentence.ru.replace(/[.,!?;:]/g, '').split(/\s+/);
     
+    console.log('   deWords:', deWords);
+    console.log('   ruWords:', ruWords);
+    
     // 3. Удаляем все правильные слова с кнопок (оставляем только дистракторы)
     const onlyDistractors = levelTrainerAvailableWords.filter(w => !w.isCorrect);
+    console.log('   Дистракторы сохранены:', onlyDistractors.map(w => w.display).join(', ') || '(нет)');
     
     // 4. Берём первые 3 правильных слова для кнопок
     const firstThreeCorrect = deWords.slice(0, 3).map((w, i) => ({
@@ -454,6 +463,9 @@ function returnAllWordsToButtons() {
         isCorrect: true,
         originalIndex: i + 3
     }));
+    
+    console.log('   Первые 3 правильных:', firstThreeCorrect.map(w => w.display).join(', '));
+    console.log('   В очередь:', remainingCorrect.map(w => w.display).join(', ') || '(пусто)');
     
     // 6. Формируем новые кнопки: 3 правильных + дистракторы до 6
     levelTrainerAvailableWords = [...firstThreeCorrect];
@@ -491,6 +503,7 @@ function returnAllWordsToButtons() {
         
         const randomDistractor = availableDistractors[Math.floor(Math.random() * availableDistractors.length)];
         levelTrainerAvailableWords.push(randomDistractor);
+        console.log(`   Добавлен новый дистрактор: ${randomDistractor.display}`);
     }
     
     // 7. Устанавливаем новую очередь
@@ -502,13 +515,13 @@ function returnAllWordsToButtons() {
         [levelTrainerAvailableWords[i], levelTrainerAvailableWords[j]] = [levelTrainerAvailableWords[j], levelTrainerAvailableWords[i]];
     }
     
+    console.log('🔄 === РЕЗУЛЬТАТ СБРОСА ===');
+    console.log('   Кнопки:', levelTrainerAvailableWords.map(w => `${w.display}(${w.isCorrect ? '✓' : '✗'})`).join(', '));
+    console.log('   Очередь:', _wordQueue.map(w => w.display).join(', ') || '(пусто)');
+    
     // 9. Обновляем отображение
     updateLevelTrainerResultDisplay();
     renderLevelTrainerWords();
-    
-    console.log('🔄 Сброс выполнен для:', levelTrainerCurrentSentence.de);
-    console.log('   Кнопки:', levelTrainerAvailableWords.map(w => `${w.display}(${w.isCorrect ? '✓' : '✗'})`).join(', '));
-    console.log('   Очередь:', _wordQueue.map(w => w.display).join(', ') || '(пусто)');
 }
 
 // ========== ОСНОВНАЯ ФУНКЦИЯ ==========
@@ -745,6 +758,10 @@ function attachLevelTrainerEvents() {
     if (undoBtn) {
         undoBtn.addEventListener('click', function() {
             if (levelTrainerSelectedWords.length > 0) {
+                console.log('🔄 ОТМЕНА СЛОВА');
+                console.log('   До отмены - кнопок:', levelTrainerAvailableWords.length);
+                console.log('   Выбрано:', levelTrainerSelectedWords.map(w => w.display).join(', '));
+                
                 const lastWord = levelTrainerSelectedWords.pop();
                 const wordWithNewId = {
                     ...lastWord,
@@ -760,6 +777,9 @@ function attachLevelTrainerEvents() {
                         levelTrainerAvailableWords.pop();
                     }
                 }
+                
+                console.log('   После отмены - кнопок:', levelTrainerAvailableWords.length);
+                console.log('   Кнопки:', levelTrainerAvailableWords.map(w => `${w.display}(${w.isCorrect ? '✓' : '✗'})`).join(', '));
                 
                 renderLevelTrainerWords();
                 updateLevelTrainerResultDisplay();
@@ -1074,6 +1094,21 @@ function showLevelTrainerContainer() {
 // ===== ЭКСПОРТ =====
 window.loadAllPhrasesMode = loadAllPhrasesMode;
 window.showLevelTrainerContainer = showLevelTrainerContainer;
+
+// ===== ОТЛАДОЧНАЯ ПЕРЕМЕННАЯ =====
+window._debugLevelTrainer = {
+    levelTrainerSentences: levelTrainerSentences,
+    levelTrainerIndex: levelTrainerIndex,
+    levelTrainerCurrentSentence: levelTrainerCurrentSentence,
+    levelTrainerSelectedWords: levelTrainerSelectedWords,
+    levelTrainerAvailableWords: levelTrainerAvailableWords,
+    levelTrainerHintWords: levelTrainerHintWords,
+    levelTrainerDirection: levelTrainerDirection,
+    _wordQueue: _wordQueue,
+    _wordIdCounter: _wordIdCounter,
+    levelTrainerAllPhrases: levelTrainerAllPhrases,
+    levelTrainerStudied: levelTrainerStudied
+};
 
 console.log('🧩 levelTrainerMode.js загружен (исправленная версия)');
 

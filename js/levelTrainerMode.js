@@ -25,7 +25,7 @@ let _cachedDirection = null;
 // ===== ОЧЕРЕДЬ ДЛЯ ПОДГРУЗКИ =====
 let _wordQueue = [];
 
-// Счётчик для генерации уникальных ID
+// Счётчик для генерации уникальных ID (только положительные!)
 let _wordIdCounter = 0;
 
 // ===== КЕШ ДЛЯ ВСЕХ ФРАЗ УРОВНЯ =====
@@ -184,30 +184,360 @@ function insertWordAtRandomPosition(words, word) {
     return pos;
 }
 
-// ========== ВОССТАНОВЛЕНИЕ ОЧЕРЕДИ ==========
+// ========== ВОССТАНОВЛЕНИЕ ОЧЕРЕДИ (ИСПРАВЛЕНО) ==========
 function restoreLevelTrainerQueue() {
-    const allCorrectWords = levelTrainerHintWords.map(w => ({
-        display: w,
+    if (!levelTrainerCurrentSentence) {
+        return;
+    }
+    
+    // 1. Получаем все правильные слова из текущего предложения
+    const deWords = levelTrainerCurrentSentence.de.replace(/[.,!?;:]/g, '').split(/\s+/);
+    const isRuToDe = levelTrainerDirection === 'ru_to_de';
+    const ruWords = levelTrainerCurrentSentence.ru.replace(/[.,!?;:]/g, '').split(/\s+/);
+    
+    const correctWords = deWords.map((w, i) => ({
+        display: isRuToDe ? w : (ruWords[i] || w),
         de: w,
-        ru: w,
+        ru: ruWords[i] || w,
         isCorrect: true,
-        originalIndex: -1
+        originalIndex: i
     }));
     
-    const usedDisplaySet = new Set(levelTrainerAvailableWords.map(w => w.display));
-    const missingCorrectWords = allCorrectWords.filter(w => !usedDisplaySet.has(w.display));
+    // 2. Получаем список правильных слов, которые уже есть на кнопках
+    const correctTextsOnButtons = levelTrainerAvailableWords
+        .filter(w => w.isCorrect)
+        .map(w => w.display);
     
-    _wordQueue = [];
-    missingCorrectWords.forEach(w => {
-        _wordQueue.push({
+    // 3. Создаём Set для быстрого поиска
+    const correctSet = new Set(correctTextsOnButtons);
+    
+    // 4. Создаём очередь из правильных слов, которых НЕТ на кнопках
+    const newQueue = [];
+    correctWords.forEach(w => {
+        if (!correctSet.has(w.display)) {
+            newQueue.push({
+                id: ++_wordIdCounter,
+                display: w.display,
+                de: w.de,
+                ru: w.ru,
+                isCorrect: true,
+                originalIndex: w.originalIndex
+            });
+        }
+    });
+    
+    // 5. Заменяем существующую очередь
+    _wordQueue = newQueue;
+}
+
+// ========== ГАРАНТИЯ 6 КНОПОК И РОВНО 3 ПРАВИЛЬНЫХ СЛОВ ==========
+function ensureSixButtonsWithCorrectWords() {
+    // 1. Считаем правильные слова на кнопках
+    let correctCount = levelTrainerAvailableWords.filter(w => w.isCorrect).length;
+    
+    // 2. Если правильных слов больше 3 — удаляем лишние и добавляем в очередь
+    while (correctCount > 3) {
+        const extraCorrectIndex = levelTrainerAvailableWords.findIndex(w => w.isCorrect);
+        if (extraCorrectIndex !== -1) {
+            const removed = levelTrainerAvailableWords.splice(extraCorrectIndex, 1)[0];
+            _wordQueue.push({
+                id: ++_wordIdCounter,
+                display: removed.display,
+                de: removed.de,
+                ru: removed.ru,
+                isCorrect: true,
+                originalIndex: -1
+            });
+            correctCount--;
+        }
+    }
+    
+    // 3. Если правильных слов меньше 3 — добавляем из очереди
+    while (correctCount < 3 && _wordQueue.length > 0) {
+        const queued = _wordQueue.shift();
+        const newWord = {
             id: ++_wordIdCounter,
-            display: w.display,
-            de: w.de,
-            ru: w.ru,
+            display: queued.display,
+            de: queued.de,
+            ru: queued.ru,
             isCorrect: true,
             originalIndex: -1
+        };
+        
+        // Ищем дистрактор для замены
+        const distractorIndex = levelTrainerAvailableWords.findIndex(w => !w.isCorrect);
+        if (distractorIndex !== -1) {
+            levelTrainerAvailableWords.splice(distractorIndex, 1);
+            levelTrainerAvailableWords.push(newWord);
+        } else {
+            levelTrainerAvailableWords.push(newWord);
+        }
+        correctCount++;
+    }
+    
+    // 4. Убеждаемся, что кнопок ровно 6
+    const allDistractorWords = _cachedDistractors || [];
+    
+    while (levelTrainerAvailableWords.length < 6) {
+        const usedDisplaySet = new Set(levelTrainerAvailableWords.map(w => w.display));
+        const availableDistractors = allDistractorWords
+            .filter(w => !usedDisplaySet.has(w.display) && w.display.length > 0)
+            .map(w => ({
+                id: ++_wordIdCounter,
+                display: w.display,
+                de: w.de,
+                ru: w.ru,
+                isCorrect: false,
+                originalIndex: -1
+            }));
+        
+        if (availableDistractors.length === 0) break;
+        
+        const randomDistractor = availableDistractors[Math.floor(Math.random() * availableDistractors.length)];
+        levelTrainerAvailableWords.push(randomDistractor);
+    }
+    
+    while (levelTrainerAvailableWords.length > 6) {
+        const distractorIdx = levelTrainerAvailableWords.findIndex(w => !w.isCorrect);
+        if (distractorIdx !== -1) {
+            levelTrainerAvailableWords.splice(distractorIdx, 1);
+        } else {
+            levelTrainerAvailableWords.pop();
+        }
+    }
+}
+
+// ========== СОЗДАНИЕ НАЧАЛЬНЫХ КНОПОК ДЛЯ ПРЕДЛОЖЕНИЯ ==========
+function createInitialButtons() {
+    const isRuToDe = levelTrainerDirection === 'ru_to_de';
+    const deWords = levelTrainerCurrentSentence.de.replace(/[.,!?;:]/g, '').split(/\s+/);
+    const ruWords = levelTrainerCurrentSentence.ru.replace(/[.,!?;:]/g, '').split(/\s+/);
+    
+    // ===== ПРАВИЛЬНЫЕ СЛОВА =====
+    const correctWords = deWords.map((w, i) => ({
+        id: ++_wordIdCounter,
+        display: isRuToDe ? w : (ruWords[i] || w),
+        de: w,
+        ru: ruWords[i] || w,
+        isCorrect: true,
+        originalIndex: i
+    }));
+
+    levelTrainerHintWords = deWords;
+    levelTrainerSelectedWords = [];
+
+    // ===== ДИСТРАКТОРЫ =====
+    let allDistractorWords = [];
+    
+    if (_cachedLevel !== levelTrainerCurrentLevel || _cachedDirection !== levelTrainerDirection) {
+        _cachedLevel = levelTrainerCurrentLevel;
+        _cachedDirection = levelTrainerDirection;
+        
+        const allVocabWords = levelTrainerVocabCache[levelTrainerCurrentLevel] || [];
+        
+        if (isRuToDe) {
+            _cachedDistractors = allVocabWords.map(w => ({
+                id: ++_wordIdCounter,
+                display: w.de,
+                de: w.de,
+                ru: w.ru || w.de,
+                isCorrect: false
+            }));
+        } else {
+            _cachedDistractors = allVocabWords.map(w => ({
+                id: ++_wordIdCounter,
+                display: w.ru || w.de,
+                de: w.de,
+                ru: w.ru || w.de,
+                isCorrect: false
+            }));
+        }
+    }
+    
+    allDistractorWords = _cachedDistractors || [];
+    
+    const shuffledDistractors = [...allDistractorWords];
+    for (let i = shuffledDistractors.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [shuffledDistractors[i], shuffledDistractors[j]] = [shuffledDistractors[j], shuffledDistractors[i]];
+    }
+    
+    const correctSet = new Set(
+        correctWords.map(w => w.display.toLowerCase().replace(/[.,!?;:]/g, ''))
+    );
+    
+    const filteredDistractors = shuffledDistractors
+        .filter(w => {
+            const key = w.display.toLowerCase().replace(/[.,!?;:]/g, '');
+            return !correctSet.has(key) && key.length > 0;
         });
-    });
+
+    // ===== ФОРМИРУЕМ 6 КНОПОК =====
+    // Берем первые 3 правильных слова (НЕ БОЛЬШЕ!)
+    let visibleCorrectWords = correctWords.slice(0, 3);
+    let remainingCorrectWords = correctWords.slice(3);
+
+    // Создаём очередь из оставшихся правильных слов
+    _wordQueue = remainingCorrectWords.map(w => ({
+        ...w,
+        id: ++_wordIdCounter
+    }));
+
+    // Начинаем с 3 правильных слов (ровно 3!)
+    levelTrainerAvailableWords = [...visibleCorrectWords];
+    
+    // Добавляем дистракторы до 6 слов (ровно 3 дистрактора)
+    let distractorIndex = 0;
+    while (levelTrainerAvailableWords.length < 6 && distractorIndex < filteredDistractors.length) {
+        const d = filteredDistractors[distractorIndex];
+        const exists = levelTrainerAvailableWords.some(w => w.display === d.display);
+        if (!exists) {
+            levelTrainerAvailableWords.push({
+                id: ++_wordIdCounter,
+                display: d.display,
+                de: d.de,
+                ru: d.ru,
+                isCorrect: false,
+                originalIndex: -1
+            });
+        }
+        distractorIndex++;
+    }
+    
+    // Если всё ещё меньше 6, добиваем любыми словами
+    let fallbackIndex = 0;
+    while (levelTrainerAvailableWords.length < 6 && fallbackIndex < allDistractorWords.length) {
+        const d = allDistractorWords[fallbackIndex];
+        const exists = levelTrainerAvailableWords.some(w => w.display === d.display);
+        if (!exists) {
+            levelTrainerAvailableWords.push({
+                id: ++_wordIdCounter,
+                display: d.display,
+                de: d.de,
+                ru: d.ru,
+                isCorrect: false,
+                originalIndex: -1
+            });
+        }
+        fallbackIndex++;
+    }
+    
+    // ПЕРЕМЕШИВАНИЕ ОДИН РАЗ
+    for (let i = levelTrainerAvailableWords.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [levelTrainerAvailableWords[i], levelTrainerAvailableWords[j]] = [levelTrainerAvailableWords[j], levelTrainerAvailableWords[i]];
+    }
+
+    // Гарантируем, что всё правильно
+    ensureSixButtonsWithCorrectWords();
+    
+    console.log('✅ Созданы кнопки для:', levelTrainerCurrentSentence.de);
+    console.log('   Кнопки:', levelTrainerAvailableWords.map(w => `${w.display}(${w.isCorrect ? '✓' : '✗'})`).join(', '));
+    console.log('   Очередь:', _wordQueue.map(w => w.display).join(', ') || '(пусто)');
+}
+
+// ========== ВОЗВРАТ ВСЕХ СЛОВ НА КНОПКИ (ИСПРАВЛЕНО) ==========
+function returnAllWordsToButtons() {
+    // 1. Возвращаем все выбранные слова на кнопки
+    while (levelTrainerSelectedWords.length > 0) {
+        const word = levelTrainerSelectedWords.pop();
+        const wordWithNewId = {
+            ...word,
+            id: ++_wordIdCounter
+        };
+        insertWordAtRandomPosition(levelTrainerAvailableWords, wordWithNewId);
+    }
+    
+    // 2. ПОЛНОСТЬЮ ПЕРЕСОЗДАЁМ ПРАВИЛЬНЫЕ СЛОВА из предложения
+    const isRuToDe = levelTrainerDirection === 'ru_to_de';
+    const deWords = levelTrainerCurrentSentence.de.replace(/[.,!?;:]/g, '').split(/\s+/);
+    const ruWords = levelTrainerCurrentSentence.ru.replace(/[.,!?;:]/g, '').split(/\s+/);
+    
+    const correctWords = deWords.map((w, i) => ({
+        display: isRuToDe ? w : (ruWords[i] || w),
+        de: w,
+        ru: ruWords[i] || w,
+        isCorrect: true,
+        originalIndex: i
+    }));
+    
+    // 3. Удаляем все правильные слова с кнопок (оставляем только дистракторы)
+    const onlyDistractors = levelTrainerAvailableWords.filter(w => !w.isCorrect);
+    
+    // 4. Берём первые 3 правильных слова для кнопок
+    const firstThreeCorrect = correctWords.slice(0, 3).map(w => ({
+        id: ++_wordIdCounter,
+        display: w.display,
+        de: w.de,
+        ru: w.ru,
+        isCorrect: true,
+        originalIndex: w.originalIndex
+    }));
+    
+    // 5. Остальные правильные слова идут в очередь
+    const remainingCorrect = correctWords.slice(3).map(w => ({
+        id: ++_wordIdCounter,
+        display: w.display,
+        de: w.de,
+        ru: w.ru,
+        isCorrect: true,
+        originalIndex: w.originalIndex
+    }));
+    
+    // 6. Формируем новые кнопки: 3 правильных + дистракторы до 6
+    levelTrainerAvailableWords = [...firstThreeCorrect];
+    
+    // Добавляем дистракторы
+    let distractorIndex = 0;
+    while (levelTrainerAvailableWords.length < 6 && distractorIndex < onlyDistractors.length) {
+        const d = onlyDistractors[distractorIndex];
+        const exists = levelTrainerAvailableWords.some(w => w.display === d.display);
+        if (!exists) {
+            levelTrainerAvailableWords.push({
+                ...d,
+                id: ++_wordIdCounter
+            });
+        }
+        distractorIndex++;
+    }
+    
+    // Если всё ещё меньше 6, добавляем новые дистракторы из словаря
+    const allDistractorWords = _cachedDistractors || [];
+    while (levelTrainerAvailableWords.length < 6) {
+        const usedDisplaySet = new Set(levelTrainerAvailableWords.map(w => w.display));
+        const availableDistractors = allDistractorWords
+            .filter(w => !usedDisplaySet.has(w.display) && w.display.length > 0)
+            .map(w => ({
+                id: ++_wordIdCounter,
+                display: w.display,
+                de: w.de,
+                ru: w.ru,
+                isCorrect: false,
+                originalIndex: -1
+            }));
+        
+        if (availableDistractors.length === 0) break;
+        
+        const randomDistractor = availableDistractors[Math.floor(Math.random() * availableDistractors.length)];
+        levelTrainerAvailableWords.push(randomDistractor);
+    }
+    
+    // 7. Устанавливаем новую очередь
+    _wordQueue = remainingCorrect;
+    
+    // 8. Перемешиваем кнопки
+    for (let i = levelTrainerAvailableWords.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [levelTrainerAvailableWords[i], levelTrainerAvailableWords[j]] = [levelTrainerAvailableWords[j], levelTrainerAvailableWords[i]];
+    }
+    
+    // 9. Обновляем отображение
+    updateLevelTrainerResultDisplay();
+    renderLevelTrainerWords();
+    
+    console.log('🔄 Сброс выполнен для:', levelTrainerCurrentSentence.de);
+    console.log('   Кнопки:', levelTrainerAvailableWords.map(w => `${w.display}(${w.isCorrect ? '✓' : '✗'})`).join(', '));
+    console.log('   Очередь:', _wordQueue.map(w => w.display).join(', ') || '(пусто)');
 }
 
 // ========== ОСНОВНАЯ ФУНКЦИЯ ==========
@@ -291,131 +621,11 @@ function showLevelTrainerInterface() {
     }
     
     levelTrainerCurrentSentence = levelTrainerSentences[levelTrainerIndex];
+    
+    // Создаём начальные кнопки
+    createInitialButtons();
+
     const isRuToDe = levelTrainerDirection === 'ru_to_de';
-    const deWords = levelTrainerCurrentSentence.de.replace(/[.,!?;:]/g, '').split(/\s+/);
-    const ruWords = levelTrainerCurrentSentence.ru.replace(/[.,!?;:]/g, '').split(/\s+/);
-    
-    const correctWords = deWords.map((w, i) => ({
-        display: isRuToDe ? w : (ruWords[i] || w),
-        de: w,
-        ru: ruWords[i] || w,
-        isCorrect: true,
-        originalIndex: i,
-        id: ++_wordIdCounter
-    }));
-
-    if (_cachedLevel !== levelTrainerCurrentLevel || _cachedDirection !== levelTrainerDirection) {
-        _cachedLevel = levelTrainerCurrentLevel;
-        _cachedDirection = levelTrainerDirection;
-        
-        const allVocabWords = levelTrainerVocabCache[levelTrainerCurrentLevel] || [];
-        
-        if (isRuToDe) {
-            _cachedDistractors = allVocabWords.map(w => ({
-                display: w.de,
-                de: w.de,
-                ru: w.ru || w.de,
-                isCorrect: false
-            }));
-        } else {
-            _cachedDistractors = allVocabWords.map(w => ({
-                display: w.ru || w.de,
-                de: w.de,
-                ru: w.ru || w.de,
-                isCorrect: false
-            }));
-        }
-    }
-
-    const allDistractorWords = _cachedDistractors || [];
-
-    const shuffledDistractors = [...allDistractorWords];
-    for (let i = shuffledDistractors.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [shuffledDistractors[i], shuffledDistractors[j]] = [shuffledDistractors[j], shuffledDistractors[i]];
-    }
-
-    const correctSet = new Set(
-        correctWords.map(w => w.display.toLowerCase().replace(/[.,!?;:]/g, ''))
-    );
-
-    const filteredDistractors = shuffledDistractors
-        .filter(w => {
-            const key = w.display.toLowerCase().replace(/[.,!?;:]/g, '');
-            return !correctSet.has(key) && key.length > 0;
-        });
-
-    let visibleCorrectWords = [];
-    let remainingCorrectWords = [];
-    
-    if (correctWords.length <= 3) {
-        visibleCorrectWords = [...correctWords];
-        remainingCorrectWords = [];
-    } else {
-        visibleCorrectWords = correctWords.slice(0, 3);
-        remainingCorrectWords = correctWords.slice(3);
-    }
-
-    _wordQueue = remainingCorrectWords.map(w => ({
-        id: ++_wordIdCounter,
-        display: w.display,
-        de: w.de,
-        ru: w.ru,
-        isCorrect: true,
-        originalIndex: w.originalIndex
-    }));
-
-    let finalAll = [];
-    visibleCorrectWords.forEach(w => {
-        finalAll.push({
-            ...w,
-            id: w.id
-        });
-    });
-
-    const maxTotal = 6;
-    const needed = Math.max(0, maxTotal - visibleCorrectWords.length);
-    const selectedDistractors = filteredDistractors.slice(0, needed);
-
-    selectedDistractors.forEach(d => {
-        finalAll.push({
-            display: d.display,
-            de: d.de,
-            ru: d.ru,
-            isCorrect: false,
-            originalIndex: -1,
-            id: --_wordIdCounter
-        });
-    });
-
-    let distractorIndex = 0;
-    while (finalAll.length < maxTotal && distractorIndex < allDistractorWords.length) {
-        const d = allDistractorWords[distractorIndex];
-        const exists = finalAll.some(f => f.display === d.display);
-        if (!exists) {
-            finalAll.push({
-                display: d.display,
-                de: d.de,
-                ru: d.ru,
-                isCorrect: false,
-                originalIndex: -1,
-                id: --_wordIdCounter
-            });
-        }
-        distractorIndex++;
-    }
-
-    levelTrainerAvailableWords = finalAll;
-    
-    for (let i = levelTrainerAvailableWords.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [levelTrainerAvailableWords[i], levelTrainerAvailableWords[j]] = [levelTrainerAvailableWords[j], levelTrainerAvailableWords[i]];
-    }
-
-    levelTrainerSelectedWords = [];
-    levelTrainerHintIndex = 0;
-    levelTrainerHintWords = deWords;
-
     const questionText = isRuToDe ? levelTrainerCurrentSentence.ru : levelTrainerCurrentSentence.de;
 
     let html = `
@@ -505,75 +715,92 @@ function attachLevelTrainerEvents() {
             levelTrainerSelectedWords.push(selectedWord);
             updateLevelTrainerResultDisplay();
             
-            let replacementWord = null;
+            // ===== ПОДГРУЗКА НОВОГО СЛОВА =====
+            const correctOnButtons = levelTrainerAvailableWords.filter(w => w.isCorrect).length;
             
-            if (_wordQueue.length > 0) {
+            if (correctOnButtons < 3 && _wordQueue.length > 0) {
                 const queued = _wordQueue.shift();
-                replacementWord = {
+                const newWord = {
+                    id: ++_wordIdCounter,
                     display: queued.display,
                     de: queued.de,
                     ru: queued.ru,
                     isCorrect: true,
-                    originalIndex: queued.originalIndex,
-                    id: ++_wordIdCounter
+                    originalIndex: -1
                 };
-            } else {
-                const allDistractorWords = _cachedDistractors || [];
+                
+                const distractorIndex = levelTrainerAvailableWords.findIndex(w => !w.isCorrect);
+                if (distractorIndex !== -1) {
+                    levelTrainerAvailableWords.splice(distractorIndex, 1);
+                    insertWordAtRandomPosition(levelTrainerAvailableWords, newWord);
+                } else {
+                    levelTrainerAvailableWords.push(newWord);
+                }
+            }
+            
+            // ===== ГАРАНТИРУЕМ 6 КНОПОК =====
+            const allDistractorWords = _cachedDistractors || [];
+            
+            while (levelTrainerAvailableWords.length < 6) {
                 const usedDisplaySet = new Set(levelTrainerAvailableWords.map(w => w.display));
                 const availableDistractors = allDistractorWords
                     .filter(w => !usedDisplaySet.has(w.display) && w.display.length > 0)
                     .map(w => ({
+                        id: ++_wordIdCounter,
                         display: w.display,
                         de: w.de,
                         ru: w.ru,
                         isCorrect: false,
-                        originalIndex: -1,
-                        id: --_wordIdCounter
+                        originalIndex: -1
                     }));
                 
-                if (availableDistractors.length > 0) {
-                    const randomDistractor = availableDistractors[Math.floor(Math.random() * availableDistractors.length)];
-                    replacementWord = randomDistractor;
+                if (availableDistractors.length === 0) break;
+                
+                const randomDistractor = availableDistractors[Math.floor(Math.random() * availableDistractors.length)];
+                levelTrainerAvailableWords.push(randomDistractor);
+            }
+            
+            while (levelTrainerAvailableWords.length > 6) {
+                const distractorIdx = levelTrainerAvailableWords.findIndex(w => !w.isCorrect);
+                if (distractorIdx !== -1) {
+                    levelTrainerAvailableWords.splice(distractorIdx, 1);
                 } else {
-                    replacementWord = {
-                        display: '___',
-                        de: '___',
-                        ru: '___',
-                        isCorrect: false,
-                        originalIndex: -1,
-                        id: --_wordIdCounter
-                    };
+                    levelTrainerAvailableWords.pop();
                 }
-            }
-            
-            if (replacementWord) {
-                insertWordAtRandomPosition(levelTrainerAvailableWords, replacementWord);
-            }
-            
-            if (levelTrainerAvailableWords.length > 6) {
-                levelTrainerAvailableWords = levelTrainerAvailableWords.slice(0, 6);
             }
             
             renderLevelTrainerWords();
         });
     }
 
+    // ===== ИСПРАВЛЕННЫЙ ОБРАБОТЧИК "ВЕРНУТЬ СЛОВО" =====
     const undoBtn = document.getElementById('levelTrainerUndoBtn');
     if (undoBtn) {
         undoBtn.addEventListener('click', function() {
             if (levelTrainerSelectedWords.length > 0) {
+                // 1. Берём последнее выбранное слово
                 const lastWord = levelTrainerSelectedWords.pop();
                 const wordWithNewId = {
                     ...lastWord,
                     id: ++_wordIdCounter
                 };
+                
+                // 2. Добавляем слово на кнопки
                 insertWordAtRandomPosition(levelTrainerAvailableWords, wordWithNewId);
-                if (levelTrainerAvailableWords.length > 6) {
-                    levelTrainerAvailableWords = levelTrainerAvailableWords.slice(0, 6);
+                
+                // 3. УБЕЖДАЕМСЯ, ЧТО КНОПОК РОВНО 6!
+                while (levelTrainerAvailableWords.length > 6) {
+                    const distractorIdx = levelTrainerAvailableWords.findIndex(w => !w.isCorrect);
+                    if (distractorIdx !== -1) {
+                        levelTrainerAvailableWords.splice(distractorIdx, 1);
+                    } else {
+                        levelTrainerAvailableWords.pop();
+                    }
                 }
-                restoreLevelTrainerQueue();
-                updateLevelTrainerResultDisplay();
+                
+                // 4. Обновляем отображение
                 renderLevelTrainerWords();
+                updateLevelTrainerResultDisplay();
             }
         });
     }
@@ -581,20 +808,7 @@ function attachLevelTrainerEvents() {
     const resetBtn = document.getElementById('levelTrainerResetBtn');
     if (resetBtn) {
         resetBtn.addEventListener('click', function() {
-            while (levelTrainerSelectedWords.length > 0) {
-                const word = levelTrainerSelectedWords.pop();
-                const wordWithNewId = {
-                    ...word,
-                    id: ++_wordIdCounter
-                };
-                insertWordAtRandomPosition(levelTrainerAvailableWords, wordWithNewId);
-            }
-            restoreLevelTrainerQueue();
-            if (levelTrainerAvailableWords.length > 6) {
-                levelTrainerAvailableWords = levelTrainerAvailableWords.slice(0, 6);
-            }
-            updateLevelTrainerResultDisplay();
-            renderLevelTrainerWords();
+            returnAllWordsToButtons();
             document.getElementById('levelTrainerHintLabel').textContent = '';
             levelTrainerHintIndex = 0;
         });
@@ -636,20 +850,7 @@ function attachLevelTrainerEvents() {
                 result.textContent = '❌ Неправильно. Попробуйте снова.';
                 setTimeout(() => {
                     result.style.backgroundColor = '#FFFFFF';
-                    while (levelTrainerSelectedWords.length > 0) {
-                        const word = levelTrainerSelectedWords.pop();
-                        const wordWithNewId = {
-                            ...word,
-                            id: ++_wordIdCounter
-                        };
-                        insertWordAtRandomPosition(levelTrainerAvailableWords, wordWithNewId);
-                    }
-                    restoreLevelTrainerQueue();
-                    if (levelTrainerAvailableWords.length > 6) {
-                        levelTrainerAvailableWords = levelTrainerAvailableWords.slice(0, 6);
-                    }
-                    updateLevelTrainerResultDisplay();
-                    renderLevelTrainerWords();
+                    returnAllWordsToButtons();
                 }, 800);
             }
         });
@@ -912,6 +1113,6 @@ function showLevelTrainerContainer() {
 window.loadAllPhrasesMode = loadAllPhrasesMode;
 window.showLevelTrainerContainer = showLevelTrainerContainer;
 
-console.log('🧩 levelTrainerMode.js загружен (ВОЛНОВОЙ ПРИНЦИП)');
+console.log('🧩 levelTrainerMode.js загружен (исправленная версия)');
 
 })();

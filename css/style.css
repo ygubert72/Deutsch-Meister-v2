@@ -39,38 +39,6 @@ body { font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-
 .quiz-opt.correct { background: #C8E6C9; border-color: #4CAF50; }
 .quiz-opt.wrong { background: #FFCDD2; border-color: #F44336; }
 
-/* ===== ТРЕНАЖЁР — 6 КНОПОК ===== */
-.words-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 10px;
-    max-width: 700px;
-    margin: 15px auto;
-}
-
-.word-btn {
-    flex: 0 1 auto;
-    min-width: 60px;
-    max-width: 180px;
-    padding: 12px 18px;
-    font-size: 14px;
-    white-space: nowrap;
-    border-radius: 40px;
-    background: #E8F0FE;
-    border: 2px solid #D0D0D0;
-    cursor: pointer;
-    text-align: center;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.08s ease;
-    font-family: inherit;
-    line-height: 1.2;
-}
-
-.word-btn:active { transform: scale(0.95); }
-
 /* ===== УРОКИ ===== */
 .lesson-btn { display: block; width: 100%; padding: 15px; margin: 8px 0; background: #E8F0FE; border: 2px solid #D0D0D0; border-radius: 8px; cursor: pointer; text-align: left; font-size: 16px; }
 .lesson-btn:hover { background: #d0e2fc; }
@@ -186,6 +154,102 @@ body { font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-
 }
 
 /* ============================================================ */
+/* ===== АДАПТИВНЫЕ КНОПКИ ДЛЯ ТРЕНАЖЁРА И ВСЕХ ФРАЗ ===== */
+/* ============================================================ */
+
+/* Десктоп: flex в строку с переносом */
+.words-container {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    justify-content: center !important;
+    gap: 10px !important;
+    max-width: 700px !important;
+    margin: 15px auto !important;
+}
+
+.words-container .word-btn {
+    flex: 0 1 auto !important;
+    min-width: 80px !important;
+    max-width: 180px !important;
+    padding: 12px 18px !important;
+    font-size: 15px !important;
+    white-space: nowrap !important;
+    min-height: 44px !important;
+    border-radius: 40px !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    border: 2px solid #D0D0D0 !important;
+    background: #E8F0FE !important;
+    cursor: pointer !important;
+    font-weight: bold !important;
+    transition: all 0.08s ease !important;
+    font-family: inherit !important;
+    line-height: 1.2 !important;
+}
+
+.words-container .word-btn:active {
+    transform: scale(0.95) !important;
+    background: #d0e2fc !important;
+}
+
+/* ===== МОБИЛЬНЫЕ УСТРОЙСТВА (до 768px): 3 колонки ===== */
+@media (max-width: 768px) {
+    .words-container {
+        display: grid !important;
+        grid-template-columns: repeat(3, 1fr) !important;
+        gap: 10px !important;
+        max-width: 100% !important;
+        margin: 15px auto !important;
+    }
+    
+    .words-container .word-btn {
+        width: 100% !important;
+        min-height: 50px !important;
+        padding: 12px 8px !important;
+        font-size: 16px !important;
+        text-align: center !important;
+        border-radius: 12px !important;
+        white-space: normal !important;
+        word-break: break-word !important;
+        hyphens: auto !important;
+        box-sizing: border-box !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        max-width: 100% !important;
+        min-width: 0 !important;
+    }
+}
+
+/* ===== ОЧЕНЬ МАЛЕНЬКИЕ ТЕЛЕФОНЫ (до 480px) ===== */
+@media (max-width: 480px) {
+    .words-container {
+        gap: 6px !important;
+    }
+    
+    .words-container .word-btn {
+        min-height: 44px !important;
+        padding: 10px 4px !important;
+        font-size: 14px !important;
+        border-radius: 10px !important;
+    }
+}
+
+/* ===== ПЛАНШЕТЫ (481-768px) ===== */
+@media (min-width: 481px) and (max-width: 768px) {
+    .words-container {
+        gap: 8px !important;
+    }
+    
+    .words-container .word-btn {
+        min-height: 48px !important;
+        padding: 12px 6px !important;
+        font-size: 15px !important;
+    }
+}
+
+/* ============================================================ */
 /* ========== ПЛАНШЕТЫ (769-1024px) ========== */
 /* ============================================================ */
 @media (max-width: 1024px) and (min-width: 769px) {
@@ -221,29 +285,6 @@ body { font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-
     .card-word { font-size: 22px; padding: 20px; }
     .card { min-height: 220px; margin: 10px auto; }
     
-    /* ===== КНОПКИ СЛОВ — 2 КОЛОНКИ НА ТЕЛЕФОНАХ ===== */
-    .words-container {
-        display: flex !important;
-        flex-wrap: wrap !important;
-        justify-content: center !important;
-        gap: 10px !important;
-        max-width: 100% !important;
-        margin: 10px auto !important;
-    }
-    
-    .word-btn {
-        flex: 0 1 auto !important;
-        min-width: 80px !important;
-        max-width: 160px !important;
-        padding: 16px 20px !important;
-        font-size: 17px !important;
-        white-space: normal !important;
-        word-break: break-word !important;
-        hyphens: auto !important;
-        min-height: 56px !important;
-        border-radius: 12px !important;
-    }
-    
     .quiz-question { font-size: 20px; margin: 15px 0; }
     .vocab-grid { grid-template-columns: 1fr; }
     
@@ -271,17 +312,6 @@ body { font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-
 @media (max-width: 480px) {
     .btn, .ctrl-btn, .quiz-opt { padding: 8px 10px !important; font-size: 12px !important; }
     .card-word { font-size: 18px; }
-    
-    .words-container { gap: 8px !important; }
-    
-    .word-btn {
-        font-size: 15px !important;
-        padding: 14px 14px !important;
-        min-height: 48px !important;
-        border-radius: 10px !important;
-        min-width: 60px !important;
-        max-width: 130px !important;
-    }
     
     .lesson-title { font-size: 16px; }
     .mode-btn { padding: 6px 10px !important; font-size: 12px !important; }

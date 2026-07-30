@@ -24,7 +24,7 @@ function saveState() {
             level: currentLevel,
             lessonId: currentLesson?.id || null,
             mode: typeof currentMode !== 'undefined' ? currentMode : 'grammar',
-            onLevelList: !currentLesson && courseData !== null,  // ← НОВЫЙ ФЛАГ
+            onLevelList: !currentLesson && courseData !== null,
             timestamp: Date.now()
         };
         localStorage.setItem(APP_STATE_KEY, JSON.stringify(state));
@@ -57,7 +57,7 @@ function clearAppState() {
     localStorage.removeItem(APP_STATE_KEY);
 }
 
-// ========== КЕШИРОВАНИЕ УРОКОВ (С ВЕРСИОНИРОВАНИЕМ) ==========
+// ========== КЕШИРОВАНИЕ УРОКОВ ==========
 function cacheLesson(level, lessonId, lessonData) {
     try {
         const cache = JSON.parse(localStorage.getItem(CACHE_KEY) || '{}');
@@ -77,20 +77,16 @@ function getCachedLesson(level, lessonId) {
         const cache = JSON.parse(localStorage.getItem(CACHE_KEY) || '{}');
         if (cache[level] && cache[level][lessonId]) {
             const cached = cache[level][lessonId];
-            // Проверяем версию контента
             const currentVersion = window.getContentVersion ? window.getContentVersion() : '1.0';
-            // Если версия не совпадает — удаляем устаревший кеш
             if (cached.contentVersion !== currentVersion) {
                 delete cache[level][lessonId];
                 localStorage.setItem(CACHE_KEY, JSON.stringify(cache));
                 return null;
             }
-            // Проверяем срок годности (7 дней)
             const isExpired = (Date.now() - cached.timestamp) > 7 * 24 * 60 * 60 * 1000;
             if (!isExpired) {
                 return cached.data;
             }
-            // Если просрочен — удаляем
             delete cache[level][lessonId];
             localStorage.setItem(CACHE_KEY, JSON.stringify(cache));
         }
@@ -505,6 +501,9 @@ function renderLevel() {
         return;
     }
 
+    // ===== ВАЖНО: очищаем currentLesson, чтобы сохранить состояние "на списке" =====
+    currentLesson = null;
+
     let totalWords = 0;
     let totalPhrases = 0;
     
@@ -587,6 +586,9 @@ function renderLevel() {
     document.getElementById('content').innerHTML = html;
     document.getElementById('modeIndicator').textContent = `Курс ${currentLevel}`;
     updateCounter();
+    
+    // ===== СОХРАНЯЕМ СОСТОЯНИЕ ПОСЛЕ ОЧИСТКИ currentLesson =====
+    // Теперь lessonId будет null, а onLevelList = true
     saveState();
 
     document.querySelectorAll('.lesson-btn[data-lesson-id]').forEach(btn => {
@@ -641,21 +643,17 @@ function renderLesson(lesson) {
     isWelcomePageVisible = false;
     saveState();
 
-    // Сначала рисуем урок без кнопки аудирования
     buildLessonHTML(lesson, true);
     
     const lessonId = lesson.id || 1;
     const level = lesson.level || 'A1';
     const hoerenPath = `docs/${level}/hoeren/${String(lessonId).padStart(2, '0')}_hoeren.json`;
     
-    // Проверяем существование файла аудирования через HEAD запрос
     fetch(hoerenPath, { method: 'HEAD' })
         .then(response => {
             if (response.ok) {
-                // Файл существует — добавляем кнопку "Аудирование"
                 const listeningBtn = document.querySelector('.mode-btn[data-mode="listening"]');
                 if (!listeningBtn) {
-                    // Если кнопки нет — создаём её
                     const modeButtons = document.querySelector('.mode-buttons');
                     if (modeButtons) {
                         const btn = document.createElement('button');
@@ -664,7 +662,6 @@ function renderLesson(lesson) {
                         btn.textContent = '🎧 Аудирование';
                         btn.style.transition = 'all 0.08s ease';
                         
-                        // Добавляем обработчик клика
                         btn.onclick = function() {
                             document.querySelectorAll('.mode-btn').forEach(b => b.classList.remove('active'));
                             this.classList.add('active');
@@ -680,14 +677,11 @@ function renderLesson(lesson) {
                         console.log('✅ Кнопка "Аудирование" добавлена!');
                     }
                 } else {
-                    // Если кнопка уже есть — просто показываем её
                     listeningBtn.style.display = 'inline-block';
                 }
             }
         })
-        .catch(() => {
-            // Ошибка (нет интернета и т.д.) — игнорируем
-        });
+        .catch(() => {});
 }
 
 function buildLessonHTML(lesson, hasListening) {
@@ -817,7 +811,6 @@ window.updateWelcomePage = function() {
 function restoreState() {
     const savedState = loadState();
     
-    // Восстанавливаем режим
     if (savedState && savedState.mode) {
         window.currentMode = savedState.mode;
     } else if (window._savedMode) {
@@ -828,7 +821,6 @@ function restoreState() {
         currentLevel = savedState.level;
         isWelcomePageVisible = false;
         
-        // Активируем кнопку уровня
         document.querySelectorAll('#levelsContainer .btn-level, #levelsContainerMobile .btn-level').forEach(btn => {
             if (btn.getAttribute('data-level') === savedState.level) {
                 btn.classList.add('active');
@@ -837,7 +829,6 @@ function restoreState() {
             }
         });
         
-        // Загружаем уровень
         fetch(`docs/${savedState.level}/index.json`)
             .then(response => {
                 if (!response.ok) throw new Error('Курс не найден');
@@ -846,8 +837,7 @@ function restoreState() {
             .then(data => {
                 courseData = data;
                 
-                // ===== НОВАЯ ЛОГИКА =====
-                // Если мы были на списке уроков — показываем список
+                // Если были на списке уроков — показываем список
                 if (savedState.onLevelList === true) {
                     renderLevel();
                     return;
@@ -862,7 +852,6 @@ function restoreState() {
                     }
                 }
                 
-                // Иначе — показываем список уроков
                 renderLevel();
             })
             .catch(() => {

@@ -24,6 +24,7 @@ function saveState() {
             level: currentLevel,
             lessonId: currentLesson?.id || null,
             mode: typeof currentMode !== 'undefined' ? currentMode : 'grammar',
+            onLevelList: !currentLesson && courseData !== null,  // ← НОВЫЙ ФЛАГ
             timestamp: Date.now()
         };
         localStorage.setItem(APP_STATE_KEY, JSON.stringify(state));
@@ -635,7 +636,6 @@ function renderLevel() {
 }
 
 // ========== ОТОБРАЖЕНИЕ УРОКА ==========
-// ========== ОТОБРАЖЕНИЕ УРОКА ==========
 function renderLesson(lesson) {
     currentLesson = lesson;
     isWelcomePageVisible = false;
@@ -722,7 +722,7 @@ function buildLessonHTML(lesson, hasListening) {
         window.currentMode = mode;
         currentMode = mode;
         saveState();
-        saveProgress();  // ← ДОБАВЛЯЕМ ЭТУ СТРОКУ!
+        saveProgress();
         renderMode(mode, lesson);
         setTimeout(updateCounter, 50);
     };
@@ -817,26 +817,18 @@ window.updateWelcomePage = function() {
 function restoreState() {
     const savedState = loadState();
     
-    // ===== ИЗМЕНЕНО: сначала восстанавливаем режим из сохранённого состояния =====
-    // Используем savedState.mode (из dm_app_state) с приоритетом
+    // Восстанавливаем режим
     if (savedState && savedState.mode) {
         window.currentMode = savedState.mode;
     } else if (window._savedMode) {
-        // Если в dm_app_state нет mode, используем сохранённый из dm_config
         window.currentMode = window._savedMode;
     }
-    // ===== КОНЕЦ ИЗМЕНЕНИЙ =====
     
     if (savedState && savedState.level) {
         currentLevel = savedState.level;
         isWelcomePageVisible = false;
         
-        // ===== УДАЛЕНО: дублирующая установка currentMode (убрали старые строки) =====
-        // if (savedState.mode && typeof currentMode !== 'undefined') {
-        //     window.currentMode = savedState.mode;
-        // }
-        // ===== КОНЕЦ УДАЛЕНИЯ =====
-        
+        // Активируем кнопку уровня
         document.querySelectorAll('#levelsContainer .btn-level, #levelsContainerMobile .btn-level').forEach(btn => {
             if (btn.getAttribute('data-level') === savedState.level) {
                 btn.classList.add('active');
@@ -845,6 +837,7 @@ function restoreState() {
             }
         });
         
+        // Загружаем уровень
         fetch(`docs/${savedState.level}/index.json`)
             .then(response => {
                 if (!response.ok) throw new Error('Курс не найден');
@@ -853,7 +846,14 @@ function restoreState() {
             .then(data => {
                 courseData = data;
                 
-                // ===== ИСПРАВЛЕНО: если lessonId === null — показываем список уроков =====
+                // ===== НОВАЯ ЛОГИКА =====
+                // Если мы были на списке уроков — показываем список
+                if (savedState.onLevelList === true) {
+                    renderLevel();
+                    return;
+                }
+                
+                // Если был конкретный урок — загружаем его
                 if (savedState.lessonId !== null && savedState.lessonId !== undefined) {
                     const lessonExists = courseData.lessons.some(l => l.id === savedState.lessonId);
                     if (lessonExists) {
@@ -861,7 +861,8 @@ function restoreState() {
                         return;
                     }
                 }
-                // ===== НОВОЕ: если нет lessonId — показываем список уроков, а не главную =====
+                
+                // Иначе — показываем список уроков
                 renderLevel();
             })
             .catch(() => {
@@ -874,11 +875,9 @@ function restoreState() {
 
 // ========== ИНИЦИАЛИЗАЦИЯ ==========
 function initApp() {
-    // ===== ДОБАВЛЯЕМ ЭТУ СТРОКУ =====
     if (typeof loadProgress === 'function') {
         loadProgress();
     }
-    // ===== КОНЕЦ ДОБАВЛЕНИЯ =====
     
     document.querySelectorAll('#levelsContainer .btn-level, #levelsContainerMobile .btn-level').forEach(btn => {
         btn.classList.remove('active');
@@ -1037,18 +1036,14 @@ window.clearLessonCache = clearLessonCache;
 window.clearLevelCache = clearLevelCache;
 
 // ===== ПРИНУДИТЕЛЬНЫЙ ВЫЗОВ initApp =====
-// Проверяем, загружен ли DOM
 if (document.readyState === 'loading') {
-    // Если DOM ещё загружается, ждём события
     document.addEventListener('DOMContentLoaded', function() {
         console.log('🔥 DOMContentLoaded: вызываем initApp');
         initApp();
     });
 } else {
-    // Если DOM уже загружен, вызываем сразу
     console.log('🔥 DOM уже загружен, вызываем initApp');
     initApp();
 }
-// ===== КОНЕЦ ПРИНУДИТЕЛЬНОГО ВЫЗОВА =====
 
 console.log('🚀 app.js загружен (с новой структурой)');

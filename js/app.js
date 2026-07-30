@@ -853,6 +853,7 @@ function restoreState() {
             .then(data => {
                 courseData = data;
                 
+                // ===== ИСПРАВЛЕНО: если lessonId === null — показываем список уроков =====
                 if (savedState.lessonId !== null && savedState.lessonId !== undefined) {
                     const lessonExists = courseData.lessons.some(l => l.id === savedState.lessonId);
                     if (lessonExists) {
@@ -860,6 +861,7 @@ function restoreState() {
                         return;
                     }
                 }
+                // ===== НОВОЕ: если нет lessonId — показываем список уроков, а не главную =====
                 renderLevel();
             })
             .catch(() => {

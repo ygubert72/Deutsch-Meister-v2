@@ -53,19 +53,35 @@ const Logger = {
         this.log(this.levels.ERROR, message, data);
     },
     
-    // Отправка на сервер (в Firebase)
+    // ===== ИСПРАВЛЕНО: Отправка на сервер (в Firebase) =====
     async _sendToServer(level, message, data) {
         try {
             // Проверяем, есть ли Firebase и пользователь
             if (typeof db === 'undefined' || !db) return;
             if (!auth || !auth.currentUser) return;
             
+            // ===== ОЧИЩАЕМ data от объектов, которые Firebase не принимает =====
+            let cleanData = null;
+            if (data !== null && data !== undefined) {
+                try {
+                    // Пытаемся сериализовать в JSON и обратно, чтобы убрать циклические ссылки
+                    cleanData = JSON.parse(JSON.stringify(data));
+                } catch(e) {
+                    // Если не получилось, сохраняем как строку
+                    cleanData = { 
+                        _error: 'Невозможно сериализовать данные',
+                        _type: typeof data,
+                        _string: String(data).substring(0, 200)
+                    };
+                }
+            }
+            
             await db.collection('logs').add({
                 userId: auth.currentUser.uid,
                 email: auth.currentUser.email,
                 level: level,
                 message: message,
-                data: data || null,
+                data: cleanData,
                 timestamp: new Date().toISOString(),
                 userAgent: navigator.userAgent,
                 url: window.location.href

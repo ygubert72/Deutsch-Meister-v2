@@ -24,6 +24,7 @@ let levelCardIndex = 0;
 let levelCardFlipped = false;
 let levelDirection = 'de_to_ru';
 let currentLevelForCards = 'A1';
+let levelCardOrder = []; // Хранит текущий порядок индексов (перемешанный или исходный)
 
 // ===== НОВОЕ: КЕШ ДЛЯ ВСЕХ СЛОВ УРОВНЯ =====
 function getCachedWords(level) {
@@ -156,11 +157,15 @@ window.loadAllWordsMode = async function(level) {
         return;
     }
     
+    // ===== СБРАСЫВАЕМ ПОРЯДОК ПРИ ВХОДЕ В РАЗДЕЛ =====
+    levelCardOrder = [];
+    
     loadLevelStudiedWords(level);
     updateLevelCardWords();
     
     if (levelCardWords.length === 0 && levelAllWords.length > 0) {
         levelCardWords = [...levelAllWords];
+        levelCardOrder = levelCardWords.map((_, idx) => idx);
     }
     
     levelCardIndex = 0;
@@ -171,10 +176,36 @@ window.loadAllWordsMode = async function(level) {
 };
 
 function updateLevelCardWords() {
-    levelCardWords = levelAllWords.filter(word => !levelStudiedWords[word.de]);
-    if (levelCardWords.length === 0 && levelAllWords.length > 0) {
-        levelCardWords = [...levelAllWords];
+    // Получаем список доступных слов (не изученных)
+    let availableWords = levelAllWords.filter(word => !levelStudiedWords[word.de]);
+    
+    // Если все слова изучены — показываем все
+    if (availableWords.length === 0 && levelAllWords.length > 0) {
+        availableWords = [...levelAllWords];
     }
+    
+    // Если у нас уже есть сохранённый порядок, используем его
+    if (levelCardOrder.length > 0) {
+        // Фильтруем порядок: оставляем только те индексы, которые есть в availableWords
+        const availableSet = new Set(availableWords.map(w => w.de));
+        levelCardOrder = levelCardOrder.filter(idx => {
+            const word = levelAllWords[idx];
+            return word && availableSet.has(word.de);
+        });
+        
+        // Если после фильтрации порядок пуст — создаём новый
+        if (levelCardOrder.length === 0) {
+            levelCardOrder = availableWords.map((_, idx) => idx);
+        }
+        
+        // Собираем финальный массив по сохранённому порядку
+        levelCardWords = levelCardOrder.map(idx => levelAllWords[idx]);
+    } else {
+        // Если порядка нет — создаём исходный (по порядку из файла)
+        levelCardOrder = availableWords.map((_, idx) => idx);
+        levelCardWords = [...availableWords];
+    }
+    
     if (levelCardIndex >= levelCardWords.length && levelCardWords.length > 0) {
         levelCardIndex = 0;
     }
@@ -622,15 +653,38 @@ function levelStudyWord() {
     const currentWord = getLevelCardWord(levelCardIndex);
     if (!currentWord) return;
     
+    // Помечаем слово как изученное
     levelStudiedWords[currentWord.de] = true;
     saveLevelStudiedWords(currentLevelForCards);
     
-    updateLevelCardWords();
+    // Сохраняем текущий порядок ПЕРЕД обновлением (он нам нужен)
+    const currentOrder = levelCardWords.map(word => {
+        return levelAllWords.findIndex(w => w.de === word.de);
+    }).filter(idx => idx !== -1);
     
-    if (levelCardWords.length === 0 && levelAllWords.length > 0) {
-        levelCardWords = [...levelAllWords];
+    // Обновляем список доступных слов
+    let availableWords = levelAllWords.filter(word => !levelStudiedWords[word.de]);
+    if (availableWords.length === 0 && levelAllWords.length > 0) {
+        availableWords = [...levelAllWords];
     }
     
+    // Фильтруем сохранённый порядок: оставляем только те индексы, которые есть в availableWords
+    const availableSet = new Set(availableWords.map(w => w.de));
+    const filteredOrder = currentOrder.filter(idx => {
+        const word = levelAllWords[idx];
+        return word && availableSet.has(word.de);
+    });
+    
+    // Если после фильтрации порядок пуст — создаём новый
+    if (filteredOrder.length === 0) {
+        levelCardOrder = availableWords.map((_, idx) => idx);
+    } else {
+        levelCardOrder = filteredOrder;
+    }
+    
+    levelCardWords = levelCardOrder.map(idx => levelAllWords[idx]);
+    
+    // Переходим к следующему слову
     if (levelCardWords.length > 0) {
         levelCardIndex = (levelCardIndex + 1) % levelCardWords.length;
     } else {
@@ -653,10 +707,19 @@ function levelSpeakWord() {
 function levelShuffleWords() {
     if (levelCardWords.length === 0) return;
     
-    for (let i = levelCardWords.length - 1; i > 0; i--) {
+    // Перемешиваем порядок ИНДЕКСОВ, а не сами слова
+    const currentOrder = levelCardWords.map(word => {
+        return levelAllWords.findIndex(w => w.de === word.de);
+    }).filter(idx => idx !== -1);
+    
+    // Перемешиваем индексы
+    for (let i = currentOrder.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
-        [levelCardWords[i], levelCardWords[j]] = [levelCardWords[j], levelCardWords[i]];
+        [currentOrder[i], currentOrder[j]] = [currentOrder[j], currentOrder[i]];
     }
+    
+    levelCardOrder = currentOrder;
+    levelCardWords = levelCardOrder.map(idx => levelAllWords[idx]);
     
     levelCardIndex = 0;
     levelCardFlipped = false;

@@ -130,24 +130,65 @@ async function loadAllVocabularyForLevelTrainer(level) {
 }
 
 // ========== ЗАГРУЗКА/СОХРАНЕНИЕ КОНТЕЙНЕРА ==========
-function loadLevelTrainerStudied(level) {
+// ===== НОВАЯ ВЕРСИЯ: загружает из Firebase, если есть =====
+async function loadLevelTrainerStudied(level) {
     const key = 'dm_level_trainer_studied_' + level;
-    try {
-        const saved = localStorage.getItem(key);
-        if (saved) {
-            levelTrainerStudied = JSON.parse(saved);
-        } else {
+    let loadedFromFirebase = false;
+    
+    if (window.auth && window.auth.currentUser && window.db) {
+        try {
+            const userId = window.auth.currentUser.uid;
+            const docRef = window.db.collection('users').doc(userId)
+                .collection('container').doc(`level_phrases_${level}`);
+            const doc = await docRef.get();
+            
+            if (doc.exists) {
+                const data = doc.data();
+                if (data.studiedPhrases) {
+                    levelTrainerStudied = data.studiedPhrases;
+                    localStorage.setItem(key, JSON.stringify(levelTrainerStudied));
+                    loadedFromFirebase = true;
+                    console.log(`✅ Контейнер фраз уровня ${level} загружен из Firebase`);
+                }
+            }
+        } catch(e) {
+            console.warn('⚠️ Ошибка загрузки из Firebase:', e);
+        }
+    }
+    
+    if (!loadedFromFirebase) {
+        try {
+            const saved = localStorage.getItem(key);
+            if (saved) {
+                levelTrainerStudied = JSON.parse(saved);
+                console.log(`✅ Контейнер фраз уровня ${level} загружен из localStorage`);
+            } else {
+                levelTrainerStudied = {};
+            }
+        } catch(e) {
             levelTrainerStudied = {};
         }
-    } catch(e) {
-        levelTrainerStudied = {};
     }
 }
 
-function saveLevelTrainerStudied(level) {
+// ===== НОВАЯ ВЕРСИЯ: сохраняет и в localStorage, и в Firebase =====
+async function saveLevelTrainerStudied(level) {
     const key = 'dm_level_trainer_studied_' + level;
     try {
         localStorage.setItem(key, JSON.stringify(levelTrainerStudied));
+        
+        // ===== НОВОЕ: Сохраняем в Firebase =====
+        if (window.auth && window.auth.currentUser && window.db) {
+            const userId = window.auth.currentUser.uid;
+            const docRef = window.db.collection('users').doc(userId)
+                .collection('container').doc(`level_phrases_${level}`);
+            await docRef.set({
+                studiedPhrases: levelTrainerStudied,
+                level: level,
+                lastUpdated: new Date().toISOString()
+            }, { merge: true });
+            console.log(`✅ Контейнер фраз уровня ${level} сохранён в Firebase`);
+        }
     } catch(e) {
         console.warn('⚠️ Ошибка сохранения контейнера фраз уровня:', e);
     }
@@ -547,7 +588,7 @@ window.loadAllPhrasesMode = async function(level) {
     _wordQueue = [];
     _wordIdCounter = 0;
     
-    loadLevelTrainerStudied(level);
+    await loadLevelTrainerStudied(level);
     levelTrainerAllPhrases = await loadAllPhrasesForLevel(level);
     console.log('📚 Всего фраз в уровне:', levelTrainerAllPhrases.length);
     if (levelTrainerAllPhrases.length === 0) {

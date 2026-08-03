@@ -89,26 +89,72 @@ function saveLessonStudiedWords(level, lessonId) {
     }
 }
 
-function loadLevelStudiedWords(level) {
+// ===== НОВАЯ ВЕРСИЯ: загружает из Firebase, если есть =====
+async function loadLevelStudiedWords(level) {
     const key = getLevelContainerKey(level);
-    try {
-        const saved = localStorage.getItem(key);
-        if (saved) {
-            levelStudiedWords = JSON.parse(saved);
-        } else {
+    
+    // Сначала пробуем загрузить из Firebase
+    let loadedFromFirebase = false;
+    
+    if (window.auth && window.auth.currentUser && window.db) {
+        try {
+            const userId = window.auth.currentUser.uid;
+            const docRef = window.db.collection('users').doc(userId)
+                .collection('container').doc(`level_words_${level}`);
+            const doc = await docRef.get();
+            
+            if (doc.exists) {
+                const data = doc.data();
+                if (data.studiedWords) {
+                    levelStudiedWords = data.studiedWords;
+                    // Сохраняем в localStorage для кеша
+                    localStorage.setItem(key, JSON.stringify(levelStudiedWords));
+                    loadedFromFirebase = true;
+                    console.log(`✅ Контейнер слов уровня ${level} загружен из Firebase`);
+                }
+            }
+        } catch(e) {
+            console.warn('⚠️ Ошибка загрузки из Firebase:', e);
+        }
+    }
+    
+    // Если из Firebase не загрузилось — пробуем localStorage
+    if (!loadedFromFirebase) {
+        try {
+            const saved = localStorage.getItem(key);
+            if (saved) {
+                levelStudiedWords = JSON.parse(saved);
+                console.log(`✅ Контейнер слов уровня ${level} загружен из localStorage`);
+            } else {
+                levelStudiedWords = {};
+            }
+        } catch(e) {
             levelStudiedWords = {};
         }
-    } catch(e) {
-        levelStudiedWords = {};
     }
 }
 
-function saveLevelStudiedWords(level) {
+// ===== НОВАЯ ВЕРСИЯ: сохраняет и в localStorage, и в Firebase =====
+async function saveLevelStudiedWords(level) {
     const key = getLevelContainerKey(level);
     try {
+        // Сохраняем в localStorage
         localStorage.setItem(key, JSON.stringify(levelStudiedWords));
+        
+        // ===== НОВОЕ: Сохраняем в Firebase =====
+        if (window.auth && window.auth.currentUser && window.db) {
+            const userId = window.auth.currentUser.uid;
+            const docRef = window.db.collection('users').doc(userId)
+                .collection('container').doc(`level_words_${level}`);
+            await docRef.set({
+                studiedWords: levelStudiedWords,
+                level: level,
+                lastUpdated: new Date().toISOString()
+            }, { merge: true });
+            console.log(`✅ Контейнер слов уровня ${level} сохранён в Firebase`);
+        }
     } catch(e) {
-        console.warn('Ошибка сохранения контейнера уровня:', e);
+        console.warn('⚠️ Ошибка сохранения контейнера уровня:', e);
     }
 }
 
@@ -160,7 +206,7 @@ window.loadAllWordsMode = async function(level) {
     // ===== СБРАСЫВАЕМ ПОРЯДОК ПРИ ВХОДЕ В РАЗДЕЛ =====
     levelCardOrder = [];
     
-    loadLevelStudiedWords(level);
+    await loadLevelStudiedWords(level);
     updateLevelCardWords();
     
     if (levelCardWords.length === 0 && levelAllWords.length > 0) {

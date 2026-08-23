@@ -1788,8 +1788,8 @@
     "ru": "Я должен завтра учиться."
   },
   {
-    "de": "Liebe Anna,",
-    "ru": "Дорогая Анна,"
+    "de": "Guten Tag, liebe Anna!",
+    "ru": "Добрый день, дорогая Анна!"
   },
   {
     "de": "Ich heiße Maria und komme aus Russland.",
@@ -1910,10 +1910,6 @@
   {
     "de": "Meine Adresse ist in der Hauptstraße 10.",
     "ru": "Мой адрес — Хауптштрассе 10."
-  },
-  {
-    "de": "Liebe Oma,",
-    "ru": "Дорогая бабушка"
   },
   {
     "de": "Ich schreibe dir einen Brief.",

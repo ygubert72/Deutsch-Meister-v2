@@ -56,7 +56,7 @@ function copyDir(src, dest) {
 }
 
 export default defineConfig({
-  base: '/Deutsch-Meister-v2/',
+  base: './',
   
   plugins: [
     {

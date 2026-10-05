@@ -169,13 +169,13 @@ async function loadLevelWordsFromFile(level) {
     
     // Если кеша нет или он устарел — загружаем с сервера
     try {
-        const response = await fetch(`docs/${level}.json`);
-        if (!response.ok) {
-            throw new Error(`Файл docs/${level}.json не найден`);
+        const doc = await firebase.firestore().collection('vocabulary').doc(level).get();
+        if (!doc.exists) {
+            throw new Error(`Документ vocabulary/${level} не найден`);
         }
-        const words = await response.json();
-        console.log(`📚 Загружено ${words.length} слов для уровня ${level}`);
-        
+        const words = doc.data().words || [];
+        console.log(`📖 Загружено ${words.length} слов для уровня ${level}`);
+
         // Сохраняем в кеш
         cacheWords(level, words);
         return words;
@@ -265,7 +265,7 @@ function showLevelCardsEmpty() {
         <div style="text-align: center; padding: 40px; color: #999;">
             <div style="font-size: 48px; margin-bottom: 15px;">📭</div>
             <div>Нет слов для уровня ${currentLevelForCards}</div>
-            <div style="font-size: 14px; margin-top: 10px;">Файл docs/${currentLevelForCards}.json не найден или пуст.</div>
+            <div style="font-size: 14px; margin-top: 10px;">Слова для уровня ${currentLevelForCards} не найдены.</div>
             <button class="back-btn" onclick="window.renderLevel()" style="margin-top: 20px;">← НАЗАД</button>
         </div>
     `;

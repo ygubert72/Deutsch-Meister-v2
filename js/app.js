@@ -275,9 +275,9 @@ async function loadLevel(level) {
     appReady = true;
     
     try {
-        const response = await fetch(`docs/${level}/index.json`);
-        if (!response.ok) throw new Error('Курс не найден');
-        courseData = await response.json();
+        const doc = await firebase.firestore().collection('levels').doc(level).get();
+        if (!doc.exists) throw new Error('Курс не найден');
+        courseData = doc.data();
         renderLevel();
         saveState();
     } catch(e) {
@@ -335,10 +335,10 @@ async function loadLesson(lessonId) {
             };
             
             try {
-                const grammarFile = `docs/${currentLevel}/grammar/${String(lessonId).padStart(2, '0')}_grammar.json`;
-                const grammarResponse = await fetch(grammarFile);
-                if (grammarResponse.ok) {
-                    const grammarData = await grammarResponse.json();
+                const grammarId = `${currentLevel}_${String(lessonId).padStart(2, '0')}`;
+                const grammarDoc = await firebase.firestore().collection('grammar').doc(grammarId).get();
+                if (grammarDoc.exists) {
+                    const grammarData = grammarDoc.data();
                     lesson.grammar = grammarData.theory || grammarData.grammar || '';
                     lesson.examples = grammarData.examples || [];
                     lesson.vocabulary = grammarData.vocabulary || [];
@@ -355,10 +355,10 @@ async function loadLesson(lessonId) {
             }
             
             try {
-                const lessonFile = `docs/${currentLevel}/lessons/lesson_${String(lessonId).padStart(2, '0')}.json`;
-                const lessonResponse = await fetch(lessonFile);
-                if (lessonResponse.ok) {
-                    const lessonData = await lessonResponse.json();
+                const lessonDocId = `${currentLevel}_${String(lessonId).padStart(2, '0')}`;
+                const lessonDoc = await firebase.firestore().collection('lessons').doc(lessonDocId).get();
+                if (lessonDoc.exists) {
+                    const lessonData = lessonDoc.data();
                     lesson.quiz = lessonData.quiz || [];
                     lesson.trainer = lessonData.trainer || [];
                     lesson.dictation = lessonData.dictation || [];
@@ -508,47 +508,36 @@ function renderLevel() {
     let totalPhrases = 0;
     
     const countWordsInLevel = async function() {
-        try {
-            const response = await fetch(`docs/${currentLevel}.json`);
-            if (response.ok) {
-                const data = await response.json();
-                if (Array.isArray(data)) {
-                    return data.length;
-                }
+    try {
+        const doc = await firebase.firestore().collection('vocabulary').doc(currentLevel).get();
+        if (doc.exists) {
+            const data = doc.data();
+            if (data.words && Array.isArray(data.words)) {
+                return data.words.length;
             }
-            return 0;
-        } catch(e) {
-            console.log('⚠️ Не удалось загрузить слова уровня');
-            return 0;
         }
-    };
+        return 0;
+    } catch(e) {
+        console.log('⚠️ Не удалось загрузить слова уровня');
+        return 0;
+    }
+};
 
     const countPhrasesInLevel = async function() {
-        let count = 0;
-        const seen = new Set();
-        for (const lesson of courseData.lessons) {
-            const lessonId = lesson.id;
-            const lessonFile = `docs/${currentLevel}/lessons/lesson_${String(lessonId).padStart(2, '0')}.json`;
-            try {
-                const response = await fetch(lessonFile);
-                if (response.ok) {
-                    const data = await response.json();
-                    if (data.trainer && Array.isArray(data.trainer)) {
-                        for (const phrase of data.trainer) {
-                            const key = phrase.de + '|' + phrase.ru;
-                            if (!seen.has(key)) {
-                                seen.add(key);
-                                count++;
-                            }
-                        }
-                    }
-                }
-            } catch(e) {
-                console.log('⚠️ Не удалось загрузить урок', lessonId);
+    try {
+        const doc = await firebase.firestore().collection('phrases').doc(currentLevel).get();
+        if (doc.exists) {
+            const data = doc.data();
+            if (data.phrases && Array.isArray(data.phrases)) {
+                return data.phrases.length;
             }
         }
-        return count;
-    };
+        return 0;
+    } catch(e) {
+        console.log('⚠️ Не удалось загрузить фразы уровня');
+        return 0;
+    }
+};
 
     let html = `<h2>📚 ${courseData.title}</h2><div style="margin-top: 20px;">`;
     courseData.lessons.forEach(lesson => {
@@ -647,11 +636,15 @@ function renderLesson(lesson) {
     
     const lessonId = lesson.id || 1;
     const level = lesson.level || 'A1';
-    const hoerenPath = `docs/${level}/hoeren/${String(lessonId).padStart(2, '0')}_hoeren.json`;
+    const hoerenId = `${level}_${String(lessonId).padStart(2, '0')}`;
     
-    fetch(hoerenPath, { method: 'HEAD' })
-        .then(response => {
-            if (response.ok) {
+    firebase.firestore().collection('hoeren').doc(hoerenId).get()
+        .then(doc => {
+            const hasDialogs = doc.exists 
+                && doc.data().dialogs 
+                && doc.data().dialogs.length > 0;
+            
+            if (hasDialogs) {
                 const listeningBtn = document.querySelector('.mode-btn[data-mode="listening"]');
                 if (!listeningBtn) {
                     const modeButtons = document.querySelector('.mode-buttons');
@@ -674,10 +667,7 @@ function renderLesson(lesson) {
                         };
                         
                         modeButtons.appendChild(btn);
-                        console.log('✅ Кнопка "Аудирование" добавлена!');
                     }
-                } else {
-                    listeningBtn.style.display = 'inline-block';
                 }
             }
         })
@@ -829,13 +819,10 @@ function restoreState() {
             }
         });
         
-        fetch(`docs/${savedState.level}/index.json`)
-            .then(response => {
-                if (!response.ok) throw new Error('Курс не найден');
-                return response.json();
-            })
-            .then(data => {
-                courseData = data;
+            firebase.firestore().collection('levels').doc(savedState.level).get()
+            .then(doc => {
+                if (!doc.exists) throw new Error('Курс не найден');
+                courseData = doc.data();
                 
                 // Если были на списке уроков — показываем список
                 if (savedState.onLevelList === true) {

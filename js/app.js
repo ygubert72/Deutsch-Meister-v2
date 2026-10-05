@@ -238,18 +238,18 @@ async function loadLevel(level) {
             const user = window.getCurrentUser ? window.getCurrentUser() : null;
             let message = '🔒 Этот уровень недоступен.';
             if (!user) {
-                message += '\n\n👤 Войдите в аккаунт.';
-                if (level === 'B1' || level === 'B2' || level === 'C1') {
-                    message += ' Для уровней B1-C1 также нужен премиум-доступ.';
+                message = '🔒 Для доступа к урокам нужна регистрация.\n\n👤 Нажмите "🔐 Войти" в левом меню — регистрация бесплатная и займёт минуту.';
+                if (level === 'A2' || level === 'B1' || level === 'B2' || level === 'C1') {
+                    message += '\n\n💎 Для уровня ' + level + ' также нужен премиум-доступ.';
                 }
             } else if (level === 'A2') {
-                message += '\n\n🔐 Для уровня A2 нужна регистрация.';
+                message = '💎 Для уровня A2 требуется премиум-доступ.\n\nНажмите "Оплатить премиум" в профиле.';
             } else if (level === 'B1' || level === 'B2' || level === 'C1') {
                 const userData = window.getCurrentUserData ? window.getCurrentUserData() : null;
                 if (!userData || !userData.hasPremiumAccess) {
-                    message += '\n\n💎 Для уровня ' + level + ' требуется премиум-доступ. Нажмите "Оплатить премиум" в профиле.';
+                    message = '💎 Для уровня ' + level + ' требуется премиум-доступ.\n\nНажмите "Оплатить премиум" в профиле.';
                 } else {
-                    message += '\n\n⛔ Доступ запрещён.';
+                    message = '⛔ Доступ запрещён.';
                 }
             }
             alert(message);

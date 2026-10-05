@@ -28,35 +28,35 @@ async function loadAllVocabularyForLevel(level) {
     if (globalVocabularyCache[level]) {
         return globalVocabularyCache[level];
     }
-    
+
     try {
-        const indexResponse = await fetch(`docs/${level}/index.json`);
-        if (!indexResponse.ok) throw new Error('Не удалось загрузить индекс уровня');
-        const indexData = await indexResponse.json();
-        
+        const indexDoc = await firebase.firestore().collection('levels').doc(level).get();
+        if (!indexDoc.exists) throw new Error('Не удалось загрузить индекс уровня');
+        const indexData = indexDoc.data();
+
         let allWords = [];
-        
+
         for (const lesson of indexData.lessons) {
             const lessonId = lesson.id;
-            const grammarFile = `docs/${level}/grammar/${String(lessonId).padStart(2, '0')}_grammar.json`;
+            const grammarId = `${level}_${String(lessonId).padStart(2, '0')}`;
             try {
-                const response = await fetch(grammarFile);
-                if (response.ok) {
-                    const data = await response.json();
+                const doc = await firebase.firestore().collection('grammar').doc(grammarId).get();
+                if (doc.exists) {
+                    const data = doc.data();
                     if (data.vocabulary && Array.isArray(data.vocabulary)) {
                         allWords = allWords.concat(data.vocabulary);
                     }
                 }
             } catch(e) {}
         }
-        
+
         for (const lesson of indexData.lessons) {
             const lessonId = lesson.id;
-            const lessonFile = `docs/${level}/lessons/lesson_${String(lessonId).padStart(2, '0')}.json`;
+            const lessonDocId = `${level}_${String(lessonId).padStart(2, '0')}`;
             try {
-                const response = await fetch(lessonFile);
-                if (response.ok) {
-                    const data = await response.json();
+                const doc = await firebase.firestore().collection('lessons').doc(lessonDocId).get();
+                if (doc.exists) {
+                    const data = doc.data();
                     if (data.quiz && Array.isArray(data.quiz)) {
                         allWords = allWords.concat(data.quiz);
                     }

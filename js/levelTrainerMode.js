@@ -65,16 +65,16 @@ async function loadAllPhrasesForLevel(level) {
     }
     
     try {
-        const response = await fetch(`docs/${level}/all_phrases.json`);
-        if (!response.ok) {
-            throw new Error(`Файл docs/${level}/all_phrases.json не найден`);
+        const doc = await firebase.firestore().collection('phrases').doc(level).get();
+        if (!doc.exists) {
+            throw new Error(`Документ phrases/${level} не найден`);
         }
-        const allPhrases = await response.json();
-        console.log(`📚 Загружено ${allPhrases.length} фраз для уровня ${level}`);
+        const allPhrases = doc.data().phrases || [];
+        console.log(`📖 Загружено ${allPhrases.length} фраз для уровня ${level}`);
         cachePhrases(level, allPhrases);
         return allPhrases;
     } catch(e) {
-        console.error('❌ Ошибка загрузки all_phrases.json:', e);
+        console.error('❌ Ошибка загрузки phrases:', e);
         return await loadAllPhrasesLegacy(level);
     }
 }
@@ -82,18 +82,18 @@ async function loadAllPhrasesForLevel(level) {
 // ========== СТАРЫЙ СПОСОБ (запасной) ==========
 async function loadAllPhrasesLegacy(level) {
     try {
-        const indexResponse = await fetch(`docs/${level}/index.json`);
-        if (!indexResponse.ok) throw new Error('Не удалось загрузить индекс уровня');
-        const indexData = await indexResponse.json();
+        const indexDoc = await firebase.firestore().collection('levels').doc(level).get();
+        if (!indexDoc.exists) throw new Error('Не удалось загрузить индекс уровня');
+        const indexData = indexDoc.data();
         let allPhrases = [];
         const seen = new Set();
         for (const lesson of indexData.lessons) {
             const lessonId = lesson.id;
-            const lessonFile = `docs/${level}/lessons/lesson_${String(lessonId).padStart(2, '0')}.json`;
+            const lessonDocId = `${level}_${String(lessonId).padStart(2, '0')}`;
             try {
-                const response = await fetch(lessonFile);
-                if (response.ok) {
-                    const data = await response.json();
+                const doc = await firebase.firestore().collection('lessons').doc(lessonDocId).get();
+                if (doc.exists) {
+                    const data = doc.data();
                     if (data.trainer && Array.isArray(data.trainer)) {
                         for (const phrase of data.trainer) {
                             const key = phrase.de + '|' + phrase.ru;
@@ -120,13 +120,21 @@ async function loadAllVocabularyForLevelTrainer(level) {
     if (levelTrainerVocabCache[level]) {
         return levelTrainerVocabCache[level];
     }
-    
-    const response = await fetch(`docs/${level}.json`);
-    const allWords = await response.json();
-    
-    levelTrainerVocabCache[level] = allWords;
-    console.log(`📚 Загружено ${allWords.length} слов для уровня ${level}`);
-    return allWords;
+
+    try {
+        const doc = await firebase.firestore().collection('vocabulary').doc(level).get();
+        if (!doc.exists) {
+            console.warn(`⚠️ vocabulary/${level} не найден`);
+            return [];
+        }
+        const allWords = doc.data().words || [];
+        levelTrainerVocabCache[level] = allWords;
+        console.log(`📚 Загружено ${allWords.length} слов для уровня ${level}`);
+        return allWords;
+    } catch(e) {
+        console.error('❌ Ошибка загрузки vocabulary:', e);
+        return [];
+    }
 }
 
 // ========== ЗАГРУЗКА/СОХРАНЕНИЕ КОНТЕЙНЕРА ==========

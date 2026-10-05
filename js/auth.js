@@ -97,7 +97,12 @@ async function loadUserData(uid) {
 // ========== ПРОВЕРКА ДОСТУПА К УРОВНЮ ==========
 window.hasAccessToLevel = function(level) {
     if (!auth) {
-        return level === 'A1';
+        return false;   // ← никто не имеет доступа без Firebase
+    }
+    
+    // Если пользователь не авторизован — доступа нет ни к чему
+    if (!auth.currentUser) {
+        return false;
     }
     
     // Администратор имеет доступ ко всем уровням
@@ -106,7 +111,7 @@ window.hasAccessToLevel = function(level) {
     }
     
     if (level === 'A1') {
-        return true;
+        return auth.currentUser !== null;   // ← только авторизованным
     }
     
     if (level === 'A2') {
@@ -369,9 +374,9 @@ function updateUI(user) {
         const guestHtml = `
             <div style="background:#E8F0FE; border-radius:8px; padding:8px; text-align:center;">
                 <div style="font-size:14px; font-weight:bold;">👋 Гостевой режим</div>
-                <div style="font-size:11px; color:#666; margin-top:4px;">доступен уровень A1</div>
-                <div style="font-size:11px; color:#666; margin-top:2px;">A2 — доступен после регистрации</div>
-                <div style="font-size:11px; color:#666; margin-top:2px;">B1-C1 — доступны с премиумом</div>
+                <div style="font-size:11px; color:#666; margin-top:4px;">🔒 Все уровни доступны после регистрации</div>
+                <div style="font-size:11px; color:#666; margin-top:2px;">A2-C1 — с премиум-доступом</div>
+                <div style="font-size:11px; color:#666; margin-top:6px; font-weight:bold;">🔐 Войдите или зарегистрируйтесь</div>
             </div>
         `;
         

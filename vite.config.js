@@ -7,7 +7,7 @@ function copyAssetsPlugin() {
   return {
     name: 'copy-assets',
     writeBundle() {
-      const foldersToCopy = ['js', 'css', 'docs', 'icons'];
+      const foldersToCopy = ['js', 'css', 'icons'];
       
       for (const folder of foldersToCopy) {
         const srcDir = folder;

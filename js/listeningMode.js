@@ -16,15 +16,15 @@ function renderListening(container, lesson) {
     const lessonId = lesson.id || 1;
     const level = lesson.level || 'A1';
     
-    const filePath = `docs/${level}/hoeren/${String(lessonId).padStart(2, '0')}_hoeren.json`;
-    console.log('🎧 Загрузка аудирования:', filePath);
-    
-    fetch(filePath)
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Файл аудирования не найден');
+    const hoerenId = `${level}_${String(lessonId).padStart(2, '0')}`;
+    console.log('🎧 Загрузка аудирования из Firestore:', hoerenId);
+
+    firebase.firestore().collection('hoeren').doc(hoerenId).get()
+        .then(doc => {
+            if (!doc.exists) {
+                throw new Error('Документ аудирования не найден');
             }
-            return response.json();
+            return doc.data();
         })
         .then(data => {
             listeningData = data;

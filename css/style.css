@@ -168,17 +168,22 @@ body { font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-
 }
 
 .words-container .word-btn {
-    flex: 0 0 auto !important;
+    flex: 0 1 auto !important;
     min-width: 60px !important;
-    max-width: 160px !important;
+    max-width: 100% !important;
     padding: 10px 16px !important;
     font-size: 14px !important;
-    white-space: nowrap !important;
+    white-space: normal !important;
+    word-break: break-word !important;
+    overflow-wrap: break-word !important;
+    hyphens: auto !important;
     min-height: 40px !important;
+    height: auto !important;
     border-radius: 40px !important;
     display: inline-flex !important;
     align-items: center !important;
     justify-content: center !important;
+    text-align: center !important;
     border: 2px solid #D0D0D0 !important;
     background: #E8F0FE !important;
     cursor: pointer !important;
@@ -186,6 +191,7 @@ body { font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-
     transition: all 0.08s ease !important;
     font-family: inherit !important;
     line-height: 1.2 !important;
+    box-sizing: border-box !important;
 }
 
 .words-container .word-btn:active {
@@ -284,7 +290,7 @@ body { font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-
     .sidebar { width: 220px; }
     .content { padding: 15px; }
     .vocab-grid { grid-template-columns: 1fr 1fr; }
-    .word-btn { font-size: 15px !important; padding: 12px 14px !important; max-width: 150px !important; }
+    .word-btn { font-size: 15px !important; padding: 12px 14px !important; max-width: 100% !important; }
     .btn, .ctrl-btn, .quiz-opt, .mode-btn { padding: 8px 12px !important; font-size: 13px !important; }
     .card-word { font-size: 26px; }
     .lesson-title { font-size: 20px; }

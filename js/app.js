@@ -143,7 +143,7 @@ function showWelcomePage() {
                 ❓ Инструкция
             </button>
             <div style="margin-top:20px; font-size:13px; color:#1A1A1A;">
-                🔒 A1 — доступен всем &nbsp;·&nbsp; A2 — после регистрации &nbsp;·&nbsp; B1-C1 — с премиумом
+                🔒 A1 — доступен после регистрации &nbsp;·&nbsp; А2-C1 — с премиум-доступом
             </div>
         </div>
     `;
@@ -203,7 +203,7 @@ function showInstruction() {
             
             <div style="background:#E8F5E9; border-radius:12px; padding:15px 20px; border-left:4px solid #4CAF50;">
                 <p style="margin:0; font-size:14px; color:#1A1A1A;">
-                    🔐 <strong>Доступ к уровням:</strong> A1 — доступен всем · A2 — после регистрации · B1-C1 — с премиум-доступом
+                    🔐 <strong>Доступ к уровням:</strong> A1 — доступен после регистрации · А2-C1 — с премиум-доступом
                 </p>
             </div>
         </div>

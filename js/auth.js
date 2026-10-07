@@ -115,16 +115,9 @@ window.hasAccessToLevel = function(level) {
         return auth.currentUser !== null;
     }
     
-    // A2 — только с премиумом
-    if (level === 'A2') {
+    // A2, B1, B2, C1 — только с премиумом
+    if (level === 'A2' || level === 'B1' || level === 'B2' || level === 'C1') {
         return currentUserData && currentUserData.hasPremiumAccess === true;
-    }
-    
-    // B1, B2, C1 — только с премиумом
-    if (level === 'B1' || level === 'B2' || level === 'C1') {
-        if (!auth.currentUser) return false;
-        if (currentUserData && currentUserData.hasPremiumAccess === true) return true;
-        return false;
     }
     
     return false;
@@ -157,13 +150,7 @@ function updateLevelButtons() {
             btn.style.cursor = 'not-allowed';
             btn.classList.add('locked');
             
-            if (level === 'A2') {
-                if (!auth.currentUser) {
-                    btn.title = '🔐 Войдите в аккаунт';
-                } else if (!currentUserData || !currentUserData.hasPremiumAccess) {
-                    btn.title = '💎 Требуется премиум-доступ';
-                }
-            } else if (level === 'B1' || level === 'B2' || level === 'C1') {
+            if (level === 'A2' || level === 'B1' || level === 'B2' || level === 'C1') {
                 if (!auth.currentUser) {
                     btn.title = '🔐 Войдите в аккаунт и оплатите премиум';
                 } else if (!currentUserData || !currentUserData.hasPremiumAccess) {
@@ -436,7 +423,7 @@ function showPaymentModal() {
         " onmouseover="this.style.color='#333'" onmouseout="this.style.color='#999'">✕</button>
         
         <h2 style="margin:0 0 10px 0; font-size:22px;">💎 Премиум доступ</h2>
-        <div style="font-size:13px; color:#666; margin-bottom:15px;">Уровни B1, B2, C1</div>
+        <div style="font-size:13px; color:#666; margin-bottom:15px;">Уровни A2, B1, B2, C1</div>
         <div style="font-size:32px; color:#3B6FE0; font-weight:bold; margin-bottom:10px;">${PREMIUM_PRICE} ₽</div>
         <div style="font-size:11px; color:#666; margin-bottom:15px;">Разовый платёж / бессрочный доступ</div>
         

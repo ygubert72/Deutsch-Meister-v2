@@ -97,7 +97,7 @@ async function loadUserData(uid) {
 // ========== ПРОВЕРКА ДОСТУПА К УРОВНЮ ==========
 window.hasAccessToLevel = function(level) {
     if (!auth) {
-        return false;   // ← никто не имеет доступа без Firebase
+        return false;
     }
     
     // Если пользователь не авторизован — доступа нет ни к чему
@@ -110,14 +110,17 @@ window.hasAccessToLevel = function(level) {
         return true;
     }
     
+    // A1 — любой авторизованный
     if (level === 'A1') {
-        return auth.currentUser !== null;   // ← только авторизованным
-    }
-    
-    if (level === 'A2') {
         return auth.currentUser !== null;
     }
     
+    // A2 — только с премиумом
+    if (level === 'A2') {
+        return currentUserData && currentUserData.hasPremiumAccess === true;
+    }
+    
+    // B1, B2, C1 — только с премиумом
     if (level === 'B1' || level === 'B2' || level === 'C1') {
         if (!auth.currentUser) return false;
         if (currentUserData && currentUserData.hasPremiumAccess === true) return true;
@@ -157,8 +160,8 @@ function updateLevelButtons() {
             if (level === 'A2') {
                 if (!auth.currentUser) {
                     btn.title = '🔐 Войдите в аккаунт';
-                } else {
-                    btn.title = '🔐 Требуется регистрация';
+                } else if (!currentUserData || !currentUserData.hasPremiumAccess) {
+                    btn.title = '💎 Требуется премиум-доступ';
                 }
             } else if (level === 'B1' || level === 'B2' || level === 'C1') {
                 if (!auth.currentUser) {
